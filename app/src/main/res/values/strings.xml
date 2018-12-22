@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">IstTabletCrm</string>
+    <string name="list_all">List All</string>
+    <string name="toast_error">Something Wrong!</string>
+</resources>
