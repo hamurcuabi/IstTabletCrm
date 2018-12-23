@@ -1,7 +1,7 @@
 package com.emrhmrc.isttabletcrm.api;
 
 
-import com.emrhmrc.isttabletcrm.model.Product;
+import com.emrhmrc.isttabletcrm.models.Product.ProductListAll;
 
 import java.util.List;
 
@@ -11,5 +11,5 @@ import retrofit2.http.GET;
 public interface JsonApi {
 
     @GET("Product/ListAll")
-    Call<List<Product>> getProductListAll();
+    Call<ProductListAll> getProductListAll();
 }

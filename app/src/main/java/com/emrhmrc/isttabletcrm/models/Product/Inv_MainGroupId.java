@@ -1,8 +1,10 @@
-package com.emrhmrc.isttabletcrm.model;
+package com.emrhmrc.isttabletcrm.models.Product;
 
-public class Inv_BrandId {
+public class Inv_MainGroupId {
     private String LogicalName;
+
     private String Text;
+
     private String Id;
 
     public String getLogicalName() {
@@ -31,8 +33,11 @@ public class Inv_BrandId {
 
     @Override
     public String toString() {
-        return "ClassPojo [LogicalName = " + LogicalName + ", Text = " + Text + ", Id = " + Id + "]";
+        return "Inv_MainGroupId{" +
+                "LogicalName='" + LogicalName + '\'' +
+                ", Text='" + Text + '\'' +
+                ", Id='" + Id + '\'' +
+                '}';
     }
 }
-
 

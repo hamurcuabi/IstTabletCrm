@@ -1,6 +1,6 @@
-package com.emrhmrc.isttabletcrm.model;
+package com.emrhmrc.isttabletcrm.models.Product;
 
-public class Product {
+public class Products {
     private String Name;
 
     private Inv_SubGroupId inv_SubGroupId;
@@ -83,6 +83,16 @@ public class Product {
 
     @Override
     public String toString() {
-        return "[Name = " + Name + ", inv_SubGroupId = " + inv_SubGroupId + ", inv_SalesGroupId = " + inv_SalesGroupId + ", ProductNumber = " + ProductNumber + ", inv_BillDefinition = " + inv_BillDefinition + ", ProductId = " + ProductId + ", inv_MainGroupId = " + inv_MainGroupId + ", inv_BrandId = " + inv_BrandId + "]";
+        return "Products{" +
+                "Name='" + Name + '\'' +
+                ", inv_SubGroupId=" + inv_SubGroupId +
+                ", inv_SalesGroupId=" + inv_SalesGroupId +
+                ", ProductNumber='" + ProductNumber + '\'' +
+                ", inv_BillDefinition='" + inv_BillDefinition + '\'' +
+                ", ProductId='" + ProductId + '\'' +
+                ", inv_MainGroupId=" + inv_MainGroupId +
+                ", inv_BrandId=" + inv_BrandId +
+                '}';
     }
 }
+

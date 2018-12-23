@@ -11,9 +11,7 @@ import android.widget.Toast;
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
-import com.emrhmrc.isttabletcrm.model.Product;
-
-import java.util.List;
+import com.emrhmrc.isttabletcrm.models.Product.ProductListAll;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,14 +45,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         txt_json = findViewById(R.id.txt_json);
     }
 
-    private void fillJsonToText(List<Product> list) {
-        String json = "";
-        for (Product product : list) {
-            json += product.toString();
-        }
-        txt_json.setText(json);
-
-    }
 
     @Override
     public void onClick(View view) {
@@ -68,19 +58,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void getProductListAll() {
 
-        Call<List<Product>> call = jsonApi.getProductListAll();
-        call.enqueue(new Callback<List<Product>>() {
+        Call<ProductListAll> call = jsonApi.getProductListAll();
+        call.enqueue(new Callback<ProductListAll>() {
             @Override
-            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+            public void onResponse(Call<ProductListAll> call, Response<ProductListAll> response) {
                 if (response.isSuccessful()) {
-                    List<Product> temp = response.body();
-                    fillJsonToText(temp);
+                    ProductListAll temp = response.body();
+
                 }
 
             }
 
             @Override
-            public void onFailure(Call<List<Product>> call, Throwable t) {
+            public void onFailure(Call<ProductListAll> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
                 Toast.makeText(MainActivity.this, getResources().getString(R.string.toast_error), Toast
                         .LENGTH_SHORT)
