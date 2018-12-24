@@ -2,10 +2,12 @@ package com.emrhmrc.isttabletcrm.models.Elevator;
 
 import com.emrhmrc.isttabletcrm.models.CommonClass.Attributes;
 
+import java.util.List;
+
 public class TableMetadataServAppDetails {
     private String Name;
 
-    private Attributes Attributes;
+    private List<Attributes> Attributes;
 
     private String Label;
 
@@ -17,11 +19,11 @@ public class TableMetadataServAppDetails {
         this.Name = Name;
     }
 
-    public Attributes getAttributes() {
+    public List<Attributes> getAttributes() {
         return Attributes;
     }
 
-    public void setAttributes(Attributes Attributes) {
+    public void setAttributes(List<Attributes> Attributes) {
         this.Attributes = Attributes;
     }
 

@@ -1,6 +1,6 @@
 package com.emrhmrc.isttabletcrm.models.User;
 
-public class Reset {
+public class UserReset {
 
     private boolean Success;
     private String ErrorMsg;
@@ -19,7 +19,7 @@ public class Reset {
 
     @Override
     public String toString() {
-        return "Reset{" +
+        return "UserReset{" +
                 "Success=" + Success +
                 ", ErrorMsg='" + ErrorMsg + '\'' +
                 ", UserId='" + UserId + '\'' +

@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
@@ -72,12 +71,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onFailure(Call<ProductListAll> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
-                Toast.makeText(MainActivity.this, getResources().getString(R.string.toast_error), Toast
-                        .LENGTH_SHORT)
-                        .show();
+
 
             }
         });
+
+
     }
 
 }

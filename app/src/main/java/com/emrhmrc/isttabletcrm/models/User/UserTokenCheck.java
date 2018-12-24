@@ -1,6 +1,6 @@
 package com.emrhmrc.isttabletcrm.models.User;
 
-public class TokenCheck {
+public class UserTokenCheck {
     private boolean Success;
     private String ErrorMsg;
     private String Email;
@@ -35,7 +35,7 @@ public class TokenCheck {
 
     @Override
     public String toString() {
-        return "TokenCheck{" +
+        return "UserTokenCheck{" +
                 "Success=" + Success +
                 ", ErrorMsg='" + ErrorMsg + '\'' +
                 ", Email='" + Email + '\'' +

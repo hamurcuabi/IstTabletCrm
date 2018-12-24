@@ -1,9 +1,9 @@
-package com.emrhmrc.isttabletcrm.models.Elevator;
+package com.emrhmrc.isttabletcrm.models.ServApp;
 
-public class Inv_WorkingStCode {
+public class Inv_TypeCode {
     private String Text;
 
-    private Integer Value;
+    private String Value;
 
     public String getText() {
         return Text;
@@ -13,17 +13,17 @@ public class Inv_WorkingStCode {
         this.Text = Text;
     }
 
-    public Integer getValue() {
+    public String getValue() {
         return Value;
     }
 
-    public void setValue(Integer Value) {
+    public void setValue(String Value) {
         this.Value = Value;
     }
 
     @Override
     public String toString() {
-        return "Inv_WorkingStCode{" +
+        return "Inv_TypeCode{" +
                 "Text='" + Text + '\'' +
                 ", Value='" + Value + '\'' +
                 '}';

@@ -1,8 +1,9 @@
 package com.emrhmrc.isttabletcrm.models.Elevator;
 
-import java.util.Arrays;
+import com.emrhmrc.isttabletcrm.models.CommonClass.TableMetadata;
+
 import java.util.List;
-import com.emrhmrc.isttabletcrm.models.CommonClass.*;
+
 public class ElevatorListAll {
     private List<Elevators> Elevators;
 
@@ -47,7 +48,7 @@ public class ElevatorListAll {
     @Override
     public String toString() {
         return "ElevatorListAll{" +
-                "Elevators=" + Arrays.toString(Elevators) +
+                "Elevators=" + Elevators +
                 ", ErrorMsg='" + ErrorMsg + '\'' +
                 ", Success='" + Success + '\'' +
                 ", TableMetadata=" + TableMetadata +

@@ -10,7 +10,7 @@ public class ServAppListAll {
 
     private String ErrorMsg;
 
-    private String Success;
+    private boolean Success;
 
     public TableMetadataServApps getTableMetadataServApps() {
         return TableMetadataServApps;
@@ -36,11 +36,11 @@ public class ServAppListAll {
         this.ErrorMsg = ErrorMsg;
     }
 
-    public String getSuccess() {
+    public boolean getSuccess() {
         return Success;
     }
 
-    public void setSuccess(String Success) {
+    public void setSuccess(boolean Success) {
         this.Success = Success;
     }
 

@@ -1,10 +1,8 @@
 package com.emrhmrc.isttabletcrm.models.User;
 
-public class Login {
+public class UserForgotPassword {
     private boolean Success;
-    private String ErrorMsg = null;
-    private String UserId;
-
+    private String ErrorMsg;
     // Getter Methods
 
     public boolean getSuccess() {
@@ -15,30 +13,21 @@ public class Login {
         this.Success = Success;
     }
 
+    // Setter Methods
+
     public String getErrorMsg() {
         return ErrorMsg;
     }
-
-    // Setter Methods
 
     public void setErrorMsg(String ErrorMsg) {
         this.ErrorMsg = ErrorMsg;
     }
 
-    public String getUserId() {
-        return UserId;
-    }
-
-    public void setUserId(String UserId) {
-        this.UserId = UserId;
-    }
-
     @Override
     public String toString() {
-        return "UserLogin{" +
+        return "UserForgotPassword{" +
                 "Success=" + Success +
                 ", ErrorMsg='" + ErrorMsg + '\'' +
-                ", UserId='" + UserId + '\'' +
                 '}';
     }
 }

@@ -1,10 +1,10 @@
-package com.emrhmrc.isttabletcrm.models.Elevator;
+package com.emrhmrc.isttabletcrm.models.ServApp;
 
 import com.emrhmrc.isttabletcrm.models.CommonClass.Attributes;
 
 import java.util.List;
 
-public class TableMetadataElevator {
+public class TableMetadataServAppBreakdownTypes {
     private String Name;
 
     private List<Attributes> Attributes;
@@ -37,7 +37,7 @@ public class TableMetadataElevator {
 
     @Override
     public String toString() {
-        return "TableMetadataElevator{" +
+        return "TableMetadataServAppBreakdownTypes{" +
                 "Name='" + Name + '\'' +
                 ", Attributes=" + Attributes +
                 ", Label='" + Label + '\'' +

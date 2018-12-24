@@ -1,6 +1,6 @@
-package com.emrhmrc.isttabletcrm.models.Elevator;
+package com.emrhmrc.isttabletcrm.models.Quote;
 
-public class Inv_ProductId {
+public class Elevators {
     private String LogicalName;
 
     private String Text;
@@ -33,7 +33,7 @@ public class Inv_ProductId {
 
     @Override
     public String toString() {
-        return "Inv_ProductId{" +
+        return "Elevators{" +
                 "LogicalName='" + LogicalName + '\'' +
                 ", Text='" + Text + '\'' +
                 ", Id='" + Id + '\'' +

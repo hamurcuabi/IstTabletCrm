@@ -1,9 +1,10 @@
 package com.emrhmrc.isttabletcrm.models.Account;
 
+import com.emrhmrc.isttabletcrm.models.CommonClass.TableMetadata;
+
 import java.util.Arrays;
 import java.util.List;
 
-import com.emrhmrc.isttabletcrm.models.CommonClass.*;
 public class AccountListAll {
     private List<Accounts> Accounts;
 

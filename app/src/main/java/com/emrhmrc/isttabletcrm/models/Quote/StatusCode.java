@@ -1,31 +1,37 @@
-package com.emrhmrc.isttabletcrm.models.Elevator;
+package com.emrhmrc.isttabletcrm.models.Quote;
 
-public class Inv_WorkingStCode {
+public class StatusCode
+{
     private String Text;
 
-    private Integer Value;
+    private String Value;
 
-    public String getText() {
+    public String getText ()
+    {
         return Text;
     }
 
-    public void setText(String Text) {
+    public void setText (String Text)
+    {
         this.Text = Text;
     }
 
-    public Integer getValue() {
+    public String getValue ()
+    {
         return Value;
     }
 
-    public void setValue(Integer Value) {
+    public void setValue (String Value)
+    {
         this.Value = Value;
     }
 
     @Override
     public String toString() {
-        return "Inv_WorkingStCode{" +
+        return "StatusCode{" +
                 "Text='" + Text + '\'' +
                 ", Value='" + Value + '\'' +
                 '}';
     }
 }
+

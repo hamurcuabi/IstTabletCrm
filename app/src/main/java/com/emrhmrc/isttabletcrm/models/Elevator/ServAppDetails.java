@@ -5,13 +5,13 @@ public class ServAppDetails {
 
     private String inv_Description;
 
-    private String inv_WarrantyStatusCode;
+    private Inv_WarrantyStatusCode inv_WarrantyStatusCode;
 
-    private String inv_WillBeBilled;
+    private boolean inv_WillBeBilled;
 
     private String inv_ServiceAppDetailId;
 
-    private String inv_ApprovalStCode;
+    private Inv_ApprovalStCode inv_ApprovalStCode;
 
     private String inv_UoMid;
 
@@ -37,19 +37,19 @@ public class ServAppDetails {
         this.inv_Description = inv_Description;
     }
 
-    public String getInv_WarrantyStatusCode() {
+    public Inv_WarrantyStatusCode getInv_WarrantyStatusCode() {
         return inv_WarrantyStatusCode;
     }
 
-    public void setInv_WarrantyStatusCode(String inv_WarrantyStatusCode) {
+    public void setInv_WarrantyStatusCode(Inv_WarrantyStatusCode inv_WarrantyStatusCode) {
         this.inv_WarrantyStatusCode = inv_WarrantyStatusCode;
     }
 
-    public String getInv_WillBeBilled() {
+    public boolean getInv_WillBeBilled() {
         return inv_WillBeBilled;
     }
 
-    public void setInv_WillBeBilled(String inv_WillBeBilled) {
+    public void setInv_WillBeBilled(boolean inv_WillBeBilled) {
         this.inv_WillBeBilled = inv_WillBeBilled;
     }
 
@@ -61,11 +61,11 @@ public class ServAppDetails {
         this.inv_ServiceAppDetailId = inv_ServiceAppDetailId;
     }
 
-    public String getInv_ApprovalStCode() {
+    public Inv_ApprovalStCode getInv_ApprovalStCode() {
         return inv_ApprovalStCode;
     }
 
-    public void setInv_ApprovalStCode(String inv_ApprovalStCode) {
+    public void setInv_ApprovalStCode(Inv_ApprovalStCode inv_ApprovalStCode) {
         this.inv_ApprovalStCode = inv_ApprovalStCode;
     }
 
