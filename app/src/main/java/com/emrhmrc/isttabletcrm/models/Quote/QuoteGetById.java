@@ -1,64 +1,57 @@
 package com.emrhmrc.isttabletcrm.models.Quote;
 
-public class QuoteGetById
-{
-    private TableMetadataQuote TableMetadataQuote;
+import com.emrhmrc.isttabletcrm.models.CommonClass.TableMetadata;
+import com.google.gson.annotations.SerializedName;
+
+public class QuoteGetById {
+    @SerializedName("TableMetadataQuote")
+    private TableMetadata TableMetadataQuote;
 
     private Quote Quote;
-
-    private TableMetadataQuoteDetails TableMetadataQuoteDetails;
+    @SerializedName("TableMetadataQuoteDetails")
+    private TableMetadata TableMetadataQuoteDetails;
 
     private String ErrorMsg;
 
     private String Success;
 
-    public TableMetadataQuote getTableMetadataQuote ()
-    {
+    public TableMetadata getTableMetadataQuote() {
         return TableMetadataQuote;
     }
 
-    public void setTableMetadataQuote (TableMetadataQuote TableMetadataQuote)
-    {
+    public void setTableMetadataQuote(TableMetadata TableMetadataQuote) {
         this.TableMetadataQuote = TableMetadataQuote;
     }
 
-    public Quote getQuote ()
-    {
+    public Quote getQuote() {
         return Quote;
     }
 
-    public void setQuote (Quote Quote)
-    {
+    public void setQuote(Quote Quote) {
         this.Quote = Quote;
     }
 
-    public TableMetadataQuoteDetails getTableMetadataQuoteDetails ()
-    {
+    public TableMetadata getTableMetadataQuoteDetails() {
         return TableMetadataQuoteDetails;
     }
 
-    public void setTableMetadataQuoteDetails (TableMetadataQuoteDetails TableMetadataQuoteDetails)
-    {
+    public void setTableMetadataQuoteDetails(TableMetadata TableMetadataQuoteDetails) {
         this.TableMetadataQuoteDetails = TableMetadataQuoteDetails;
     }
 
-    public String getErrorMsg ()
-    {
+    public String getErrorMsg() {
         return ErrorMsg;
     }
 
-    public void setErrorMsg (String ErrorMsg)
-    {
+    public void setErrorMsg(String ErrorMsg) {
         this.ErrorMsg = ErrorMsg;
     }
 
-    public String getSuccess ()
-    {
+    public String getSuccess() {
         return Success;
     }
 
-    public void setSuccess (String Success)
-    {
+    public void setSuccess(String Success) {
         this.Success = Success;
     }
 

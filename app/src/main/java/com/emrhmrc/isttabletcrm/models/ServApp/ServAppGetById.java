@@ -1,63 +1,67 @@
 package com.emrhmrc.isttabletcrm.models.ServApp;
 
+import com.emrhmrc.isttabletcrm.models.CommonClass.TableMetadata;
+import com.google.gson.annotations.SerializedName;
+
 public class ServAppGetById {
-    private TableMetadataServAppBreakdownTypes TableMetadataServAppBreakdownTypes;
-
-    private TableMetadataServAppDetails TableMetadataServAppDetails;
-
-    private TableMetadataNotes TableMetadataNotes;
-
-    private TableMetadataServAppModernizationChecklists TableMetadataServAppModernizationChecklists;
-
-    private TableMetadataServApp TableMetadataServApp;
+    @SerializedName("TableMetadataServAppBreakdownTypes")
+    private TableMetadata TableMetadataServAppBreakdownTypes;
+    @SerializedName("TableMetadataServAppDetails")
+    private TableMetadata TableMetadataServAppDetails;
+    @SerializedName("TableMetadataNotes")
+    private TableMetadata TableMetadataNotes;
+    @SerializedName("TableMetadataServAppModernizationChecklists")
+    private TableMetadata TableMetadataServAppModernizationChecklists;
+    @SerializedName("TableMetadataServApp")
+    private TableMetadata TableMetadataServApp;
 
     private String ErrorMsg;
 
     private boolean Success;
 
     private ServiceAppointment ServiceAppointment;
+    @SerializedName("TableMetadataServAppUnsuitabilities")
+    private TableMetadata TableMetadataServAppUnsuitabilities;
+    @SerializedName("TableMetadataServAppWorkListDetails")
+    private TableMetadata TableMetadataServAppWorkListDetails;
 
-    private TableMetadataServAppUnsuitabilities TableMetadataServAppUnsuitabilities;
-
-    private TableMetadataServAppWorkListDetails TableMetadataServAppWorkListDetails;
-
-    public TableMetadataServAppBreakdownTypes getTableMetadataServAppBreakdownTypes() {
+    public TableMetadata getTableMetadataServAppBreakdownTypes() {
         return TableMetadataServAppBreakdownTypes;
     }
 
-    public void setTableMetadataServAppBreakdownTypes(TableMetadataServAppBreakdownTypes TableMetadataServAppBreakdownTypes) {
+    public void setTableMetadataServAppBreakdownTypes(TableMetadata TableMetadataServAppBreakdownTypes) {
         this.TableMetadataServAppBreakdownTypes = TableMetadataServAppBreakdownTypes;
     }
 
-    public TableMetadataServAppDetails getTableMetadataServAppDetails() {
+    public TableMetadata getTableMetadataServAppDetails() {
         return TableMetadataServAppDetails;
     }
 
-    public void setTableMetadataServAppDetails(TableMetadataServAppDetails TableMetadataServAppDetails) {
+    public void setTableMetadataServAppDetails(TableMetadata TableMetadataServAppDetails) {
         this.TableMetadataServAppDetails = TableMetadataServAppDetails;
     }
 
-    public TableMetadataNotes getTableMetadataNotes() {
+    public TableMetadata getTableMetadataNotes() {
         return TableMetadataNotes;
     }
 
-    public void setTableMetadataNotes(TableMetadataNotes TableMetadataNotes) {
+    public void setTableMetadataNotes(TableMetadata TableMetadataNotes) {
         this.TableMetadataNotes = TableMetadataNotes;
     }
 
-    public TableMetadataServAppModernizationChecklists getTableMetadataServAppModernizationChecklists() {
+    public TableMetadata getTableMetadataServAppModernizationChecklists() {
         return TableMetadataServAppModernizationChecklists;
     }
 
-    public void setTableMetadataServAppModernizationChecklists(TableMetadataServAppModernizationChecklists TableMetadataServAppModernizationChecklists) {
+    public void setTableMetadataServAppModernizationChecklists(TableMetadata TableMetadataServAppModernizationChecklists) {
         this.TableMetadataServAppModernizationChecklists = TableMetadataServAppModernizationChecklists;
     }
 
-    public TableMetadataServApp getTableMetadataServApp() {
+    public TableMetadata getTableMetadataServApp() {
         return TableMetadataServApp;
     }
 
-    public void setTableMetadataServApp(TableMetadataServApp TableMetadataServApp) {
+    public void setTableMetadataServApp(TableMetadata TableMetadataServApp) {
         this.TableMetadataServApp = TableMetadataServApp;
     }
 
@@ -85,19 +89,19 @@ public class ServAppGetById {
         this.ServiceAppointment = ServiceAppointment;
     }
 
-    public TableMetadataServAppUnsuitabilities getTableMetadataServAppUnsuitabilities() {
+    public TableMetadata getTableMetadataServAppUnsuitabilities() {
         return TableMetadataServAppUnsuitabilities;
     }
 
-    public void setTableMetadataServAppUnsuitabilities(TableMetadataServAppUnsuitabilities TableMetadataServAppUnsuitabilities) {
+    public void setTableMetadataServAppUnsuitabilities(TableMetadata TableMetadataServAppUnsuitabilities) {
         this.TableMetadataServAppUnsuitabilities = TableMetadataServAppUnsuitabilities;
     }
 
-    public TableMetadataServAppWorkListDetails getTableMetadataServAppWorkListDetails() {
+    public TableMetadata getTableMetadataServAppWorkListDetails() {
         return TableMetadataServAppWorkListDetails;
     }
 
-    public void setTableMetadataServAppWorkListDetails(TableMetadataServAppWorkListDetails TableMetadataServAppWorkListDetails) {
+    public void setTableMetadataServAppWorkListDetails(TableMetadata TableMetadataServAppWorkListDetails) {
         this.TableMetadataServAppWorkListDetails = TableMetadataServAppWorkListDetails;
     }
 

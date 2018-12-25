@@ -1,12 +1,15 @@
 package com.emrhmrc.isttabletcrm.models.Elevator;
 
-public class ElevatorGetById
-{
-    private TableMetadataElevator TableMetadataElevator;
+import com.emrhmrc.isttabletcrm.models.CommonClass.TableMetadata;
+import com.google.gson.annotations.SerializedName;
 
-    private TableMetadataServAppDetails TableMetadataServAppDetails;
-
-    private TableMetadataServApps TableMetadataServApps;
+public class ElevatorGetById {
+    @SerializedName("TableMetadataElevator")
+    private TableMetadata TableMetadataElevator;
+    @SerializedName("TableMetadataServAppDetails")
+    private TableMetadata TableMetadataServAppDetails;
+    @SerializedName("TableMetadataServApps")
+    private TableMetadata TableMetadataServApps;
 
     private Elevator Elevator;
 
@@ -14,69 +17,56 @@ public class ElevatorGetById
 
     private String Success;
 
-    public TableMetadataElevator getTableMetadataElevator ()
-    {
+    public TableMetadata getTableMetadataElevator() {
         return TableMetadataElevator;
     }
 
-    public void setTableMetadataElevator (TableMetadataElevator TableMetadataElevator)
-    {
+    public void setTableMetadataElevator(TableMetadata TableMetadataElevator) {
         this.TableMetadataElevator = TableMetadataElevator;
     }
 
-    public TableMetadataServAppDetails getTableMetadataServAppDetails ()
-    {
+    public TableMetadata getTableMetadataServAppDetails() {
         return TableMetadataServAppDetails;
     }
 
-    public void setTableMetadataServAppDetails (TableMetadataServAppDetails TableMetadataServAppDetails)
-    {
+    public void setTableMetadataServAppDetails(TableMetadata TableMetadataServAppDetails) {
         this.TableMetadataServAppDetails = TableMetadataServAppDetails;
     }
 
-    public TableMetadataServApps getTableMetadataServApps ()
-    {
+    public TableMetadata getTableMetadataServApps() {
         return TableMetadataServApps;
     }
 
-    public void setTableMetadataServApps (TableMetadataServApps TableMetadataServApps)
-    {
+    public void setTableMetadataServApps(TableMetadata TableMetadataServApps) {
         this.TableMetadataServApps = TableMetadataServApps;
     }
 
-    public Elevator getElevator ()
-    {
+    public Elevator getElevator() {
         return Elevator;
     }
 
-    public void setElevator (Elevator Elevator)
-    {
+    public void setElevator(Elevator Elevator) {
         this.Elevator = Elevator;
     }
 
-    public String getErrorMsg ()
-    {
+    public String getErrorMsg() {
         return ErrorMsg;
     }
 
-    public void setErrorMsg (String ErrorMsg)
-    {
+    public void setErrorMsg(String ErrorMsg) {
         this.ErrorMsg = ErrorMsg;
     }
 
-    public String getSuccess ()
-    {
+    public String getSuccess() {
         return Success;
     }
 
-    public void setSuccess (String Success)
-    {
+    public void setSuccess(String Success) {
         this.Success = Success;
     }
 
     @Override
-    public String toString()
-    {
-        return "ClassPojo [TableMetadataElevator = "+TableMetadataElevator+", TableMetadataServAppDetails = "+TableMetadataServAppDetails+", TableMetadataServApps = "+TableMetadataServApps+", Elevator = "+Elevator+", ErrorMsg = "+ErrorMsg+", Success = "+Success+"]";
+    public String toString() {
+        return "[TableMetadataElevator = " + TableMetadataElevator + ", TableMetadataServAppDetails = " + TableMetadataServAppDetails + ", TableMetadataServApps = " + TableMetadataServApps + ", Elevator = " + Elevator + ", ErrorMsg = " + ErrorMsg + ", Success = " + Success + "]";
     }
 }
