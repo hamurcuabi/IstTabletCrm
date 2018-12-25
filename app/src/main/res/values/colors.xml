@@ -3,4 +3,30 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <!--Anasayfa-->
+    <color name="servisler">#FD831C</color>
+    <color name="mesaj_kutusu">#FAC22A</color>
+    <color name="siparis">#704E96</color>
+    <color name="musteri">#10D3AC</color>
+    <color name="musteri_urun">#25BA64</color>
+    <color name="gorseller">#319AE0</color>
+    <color name="mobil_konum">#002E6E</color>
+    <color name="badge">#FF2121</color>
+    <!--İş Emirlerim ve Takvim-->
+    <color name="header_is_emirleri">#002E6E</color>
+    <color name="yillik_muayene">#4BAF50</color>
+    <color name="bakim">#F58220</color>
+    <color name="modernizasyon">#3B86FF</color>
+    <color name="ariza">#FA4343</color>
+    <color name="yedek_parca_degisimi">#02A9F4</color>
+    <color name="egitmen">#8BC349</color>
+    <color name="az">#02A9F4</color>
+    <color name="yuksek">#FA3B60</color>
+    <color name="orta">#F2C01A</color>
+    <!--İş Emri-->
+    <color name="is_kapatma">#FFB40B</color>
+    <color name="malzeme_icerik">#1B67D1</color>
+    <color name="kontrol_listesi">#F58220</color>
+
+
 </resources>
