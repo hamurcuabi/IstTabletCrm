@@ -3,6 +3,7 @@ package com.emrhmrc.isttabletcrm.api;
 
 import com.emrhmrc.isttabletcrm.models.Account.AccountListAll;
 import com.emrhmrc.isttabletcrm.models.BreakDown.BreakDownTypeListAll;
+import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorGetById;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorListAll;
 import com.emrhmrc.isttabletcrm.models.Product.ProductListAll;
@@ -60,7 +61,7 @@ public interface JsonApi {
     Call<ServAppListAll> servAppGetById(@Query("ServAppId") String servAppId);
 
     @POST("ServApp/CompleteById")
-    Call<ServAppCompleteById> servAppCompleteById(@Body ServAppCompleteById servAppCompleteById);
+    Call<Inv_Id> servAppCompleteById(@Body Inv_Id servAppCompleteById);
 
     @GET("ServApp/GetServFormById")
     Call<GetServFormById> getServFormById(@Query("ServiceAppId") String serviceAppId);
