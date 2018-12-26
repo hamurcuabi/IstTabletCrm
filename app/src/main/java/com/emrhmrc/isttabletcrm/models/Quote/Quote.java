@@ -1,6 +1,9 @@
 package com.emrhmrc.isttabletcrm.models.Quote;
 
 
+import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class Quote {
@@ -12,7 +15,8 @@ public class Quote {
 
     private String Quote;
 
-    private List<Elevators> Elevators;
+    @SerializedName("Elevators")
+    private List<Inv_Id> Elevators;
 
     private Inv_TypeCode inv_TypeCode;
 
@@ -50,11 +54,11 @@ public class Quote {
         this.Quote = Quote;
     }
 
-    public List<Elevators> getElevators() {
+    public List<Inv_Id> getElevators() {
         return Elevators;
     }
 
-    public void setElevators(List<Elevators> Elevators) {
+    public void setElevators(List<Inv_Id> Elevators) {
         this.Elevators = Elevators;
     }
 

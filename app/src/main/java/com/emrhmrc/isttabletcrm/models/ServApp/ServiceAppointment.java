@@ -1,6 +1,9 @@
 package com.emrhmrc.isttabletcrm.models.ServApp;
 
 
+import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class ServiceAppointment {
@@ -11,8 +14,8 @@ public class ServiceAppointment {
     private String Subject;
 
     private List<ServAppGetByIdServAppBreakdownTypes> ServAppGetByIdServAppBreakdownTypes;
-
-    private Inv_CustomerId inv_CustomerId;
+    @SerializedName("Inv_CustomerId")
+    private Inv_Id inv_CustomerId;
 
     private List<ServAppGetByIdServAppWorkListDetails> ServAppGetByIdServAppWorkListDetails;
 
@@ -64,11 +67,11 @@ public class ServiceAppointment {
         this.ServAppGetByIdServAppBreakdownTypes = ServAppGetByIdServAppBreakdownTypes;
     }
 
-    public Inv_CustomerId getInv_CustomerId() {
+    public Inv_Id getInv_CustomerId() {
         return inv_CustomerId;
     }
 
-    public void setInv_CustomerId(Inv_CustomerId inv_CustomerId) {
+    public void setInv_CustomerId(Inv_Id inv_CustomerId) {
         this.inv_CustomerId = inv_CustomerId;
     }
 

@@ -1,11 +1,15 @@
 package com.emrhmrc.isttabletcrm.models.ServApp;
 
 
+import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
+import com.google.gson.annotations.SerializedName;
+
 public class ServAppGetByIdServAppModernizationChecklists
 {
     private String inv_QuoteModernizationChecklistId;
 
-    private Inv_ChecklistDetailid inv_ChecklistDetailid;
+    @SerializedName("Inv_ChecklistDetailid")
+    private Inv_Id inv_ChecklistDetailid;
 
     private String inv_Date;
 
@@ -19,12 +23,12 @@ public class ServAppGetByIdServAppModernizationChecklists
         this.inv_QuoteModernizationChecklistId = inv_QuoteModernizationChecklistId;
     }
 
-    public Inv_ChecklistDetailid getInv_ChecklistDetailid ()
+    public Inv_Id getInv_ChecklistDetailid ()
     {
         return inv_ChecklistDetailid;
     }
 
-    public void setInv_ChecklistDetailid (Inv_ChecklistDetailid inv_ChecklistDetailid)
+    public void setInv_ChecklistDetailid (Inv_Id inv_ChecklistDetailid)
     {
         this.inv_ChecklistDetailid = inv_ChecklistDetailid;
     }

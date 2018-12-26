@@ -1,10 +1,13 @@
 package com.emrhmrc.isttabletcrm.models.ServApp;
 
-import java.util.Arrays;
+import com.emrhmrc.isttabletcrm.models.CommonClass.TableMetadata;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class ServAppListAll {
-    private TableMetadataServApps TableMetadataServApps;
+    @SerializedName("TableMetadataServApps")
+    private TableMetadata TableMetadataServApps;
 
     private List<ServiceAppointments> ServiceAppointments;
 
@@ -12,11 +15,11 @@ public class ServAppListAll {
 
     private boolean Success;
 
-    public TableMetadataServApps getTableMetadataServApps() {
+    public TableMetadata getTableMetadataServApps() {
         return TableMetadataServApps;
     }
 
-    public void setTableMetadataServApps(TableMetadataServApps TableMetadataServApps) {
+    public void setTableMetadataServApps(TableMetadata TableMetadataServApps) {
         this.TableMetadataServApps = TableMetadataServApps;
     }
 
@@ -48,9 +51,9 @@ public class ServAppListAll {
     public String toString() {
         return "ServAppListAll{" +
                 "TableMetadataServApps=" + TableMetadataServApps +
-                ", ServiceAppointments=" + Arrays.toString(ServiceAppointments) +
+                ", ServiceAppointments=" + ServiceAppointments +
                 ", ErrorMsg='" + ErrorMsg + '\'' +
-                ", Success='" + Success + '\'' +
+                ", Success=" + Success +
                 '}';
     }
 }

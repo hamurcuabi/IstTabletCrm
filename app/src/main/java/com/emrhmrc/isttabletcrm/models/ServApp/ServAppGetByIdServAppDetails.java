@@ -1,9 +1,10 @@
 package com.emrhmrc.isttabletcrm.models.ServApp;
 
 
+import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
 import com.emrhmrc.isttabletcrm.models.Elevator.Inv_ApprovalStCode;
-import com.emrhmrc.isttabletcrm.models.Elevator.Inv_ProductId;
 import com.emrhmrc.isttabletcrm.models.Elevator.Inv_WarrantyStatusCode;
+import com.google.gson.annotations.SerializedName;
 
 public class ServAppGetByIdServAppDetails
 {
@@ -21,9 +22,10 @@ public class ServAppGetByIdServAppDetails
 
     private String inv_ProductDescription;
 
-    private Inv_Uomid inv_Uomid;
-
-    private Inv_ProductId inv_ProductId;
+    @SerializedName("Inv_Uomid")
+    private Inv_Id inv_Uomid;
+    @SerializedName("Inv_ProductId")
+    private Inv_Id inv_ProductId;
 
     private String inv_Quantity;
 
@@ -97,22 +99,22 @@ public class ServAppGetByIdServAppDetails
         this.inv_ProductDescription = inv_ProductDescription;
     }
 
-    public Inv_Uomid getInv_Uomid ()
+    public Inv_Id getInv_Uomid ()
     {
         return inv_Uomid;
     }
 
-    public void setInv_Uomid (Inv_Uomid inv_Uomid)
+    public void setInv_Uomid (Inv_Id inv_Uomid)
     {
         this.inv_Uomid = inv_Uomid;
     }
 
-    public Inv_ProductId getInv_ProductId ()
+    public Inv_Id getInv_ProductId ()
     {
         return inv_ProductId;
     }
 
-    public void setInv_ProductId (Inv_ProductId inv_ProductId)
+    public void setInv_ProductId (Inv_Id inv_ProductId)
     {
         this.inv_ProductId = inv_ProductId;
     }

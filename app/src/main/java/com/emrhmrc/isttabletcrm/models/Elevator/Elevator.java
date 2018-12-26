@@ -1,5 +1,8 @@
 package com.emrhmrc.isttabletcrm.models.Elevator;
 
+import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class Elevator {
@@ -17,13 +20,14 @@ public class Elevator {
 
     private String inv_Location;
 
-    private Inv_AccountId inv_AccountId;
+    @SerializedName("Inv_AccountId")
+    private Inv_Id inv_AccountId;
 
     private String inv_BuilderFirmId;
 
     private String inv_Floor;
-
-    private Inv_ClassId inv_ClassId;
+    @SerializedName("Inv_ClassId")
+    private Inv_Id inv_ClassId;
 
     private String inv_ElevatorId;
 
@@ -85,11 +89,11 @@ public class Elevator {
         this.inv_Location = inv_Location;
     }
 
-    public Inv_AccountId getInv_AccountId() {
+    public Inv_Id getInv_AccountId() {
         return inv_AccountId;
     }
 
-    public void setInv_AccountId(Inv_AccountId inv_AccountId) {
+    public void setInv_AccountId(Inv_Id inv_AccountId) {
         this.inv_AccountId = inv_AccountId;
     }
 
@@ -109,11 +113,11 @@ public class Elevator {
         this.inv_Floor = inv_Floor;
     }
 
-    public Inv_ClassId getInv_ClassId() {
+    public Inv_Id getInv_ClassId() {
         return inv_ClassId;
     }
 
-    public void setInv_ClassId(Inv_ClassId inv_ClassId) {
+    public void setInv_ClassId(Inv_Id inv_ClassId) {
         this.inv_ClassId = inv_ClassId;
     }
 

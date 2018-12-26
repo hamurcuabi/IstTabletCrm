@@ -9,7 +9,6 @@ import com.emrhmrc.isttabletcrm.models.Product.ProductListAll;
 import com.emrhmrc.isttabletcrm.models.Quote.QuoteGetById;
 import com.emrhmrc.isttabletcrm.models.ServApp.DefaultResponse;
 import com.emrhmrc.isttabletcrm.models.ServApp.GetServFormById;
-import com.emrhmrc.isttabletcrm.models.ServApp.ServAppCompleteById;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppListAll;
 import com.emrhmrc.isttabletcrm.models.ServApp.UpdateServFormById;
 import com.emrhmrc.isttabletcrm.models.User.UserForgotPassword;

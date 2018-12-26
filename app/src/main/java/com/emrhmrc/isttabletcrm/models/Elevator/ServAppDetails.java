@@ -1,5 +1,8 @@
 package com.emrhmrc.isttabletcrm.models.Elevator;
 
+import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
+import com.google.gson.annotations.SerializedName;
+
 public class ServAppDetails {
     private String inv_LineNo;
 
@@ -16,8 +19,8 @@ public class ServAppDetails {
     private String inv_UoMid;
 
     private String inv_ProductDescription;
-
-    private Inv_ProductId inv_ProductId;
+    @SerializedName("Inv_ProductId")
+    private Inv_Id inv_ProductId;
 
     private String inv_Quantity;
 
@@ -85,11 +88,11 @@ public class ServAppDetails {
         this.inv_ProductDescription = inv_ProductDescription;
     }
 
-    public Inv_ProductId getInv_ProductId() {
+    public Inv_Id getInv_ProductId() {
         return inv_ProductId;
     }
 
-    public void setInv_ProductId(Inv_ProductId inv_ProductId) {
+    public void setInv_ProductId(Inv_Id inv_ProductId) {
         this.inv_ProductId = inv_ProductId;
     }
 

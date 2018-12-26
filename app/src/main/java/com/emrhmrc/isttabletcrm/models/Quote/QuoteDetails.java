@@ -1,5 +1,8 @@
 package com.emrhmrc.isttabletcrm.models.Quote;
 
+import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
+import com.google.gson.annotations.SerializedName;
+
 public class QuoteDetails {
     private String ExtendedAmount;
 
@@ -15,11 +18,12 @@ public class QuoteDetails {
 
     private String BaseAmount;
 
-    private UomId UomId;
+    @SerializedName("UomId")
+    private Inv_Id UomId;
 
     private String TransactionCurrencyId;
-
-    private ProductId ProductId;
+    @SerializedName("ProductId")
+    private Inv_Id ProductId;
 
     public String getExtendedAmount() {
         return ExtendedAmount;
@@ -77,11 +81,11 @@ public class QuoteDetails {
         this.BaseAmount = BaseAmount;
     }
 
-    public UomId getUomId() {
+    public Inv_Id getUomId() {
         return UomId;
     }
 
-    public void setUomId(UomId UomId) {
+    public void setUomId(Inv_Id UomId) {
         this.UomId = UomId;
     }
 
@@ -93,11 +97,11 @@ public class QuoteDetails {
         this.TransactionCurrencyId = TransactionCurrencyId;
     }
 
-    public ProductId getProductId() {
+    public Inv_Id getProductId() {
         return ProductId;
     }
 
-    public void setProductId(ProductId ProductId) {
+    public void setProductId(Inv_Id ProductId) {
         this.ProductId = ProductId;
     }
 

@@ -1,6 +1,6 @@
-package com.emrhmrc.isttabletcrm.models.Product;
+package com.emrhmrc.isttabletcrm.models.CommonClass;
 
-public class Inv_SalesGroupId {
+public class Inv_Id {
     private String LogicalName;
 
     private String Text;
@@ -33,12 +33,10 @@ public class Inv_SalesGroupId {
 
     @Override
     public String toString() {
-        return "Inv_SalesGroupId{" +
+        return "Inv_Id{" +
                 "LogicalName='" + LogicalName + '\'' +
                 ", Text='" + Text + '\'' +
                 ", Id='" + Id + '\'' +
                 '}';
     }
 }
-
-
