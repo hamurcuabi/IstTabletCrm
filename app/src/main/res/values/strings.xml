@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">IstTabletCrm</string>
-    <string name="list_all">List All</string>
+    <string name="product_list_all">Product List All</string>
     <string name="toast_error">Something Wrong!</string>
+    <string name="user_login">User Login</string>
+    <string name="breakdown_type_list_all">BreakdownType List All</string>
+    <string name="account_all">Account All</string>
+    <string name="elevator_list_all">Elevator List All</string>
 </resources>

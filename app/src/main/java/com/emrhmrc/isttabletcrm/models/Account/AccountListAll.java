@@ -1,12 +1,13 @@
 package com.emrhmrc.isttabletcrm.models.Account;
 
 import com.emrhmrc.isttabletcrm.models.CommonClass.TableMetadata;
+import com.google.gson.annotations.SerializedName;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class AccountListAll {
-    private List<Accounts> Accounts;
+    @SerializedName("Accounts")
+    private List<Account> Accounts;
 
     private String ErrorMsg;
 
@@ -14,11 +15,11 @@ public class AccountListAll {
 
     private TableMetadata TableMetadata;
 
-    public List<Accounts> getAccounts() {
+    public List<Account> getAccounts() {
         return Accounts;
     }
 
-    public void setAccounts(List<Accounts> Accounts) {
+    public void setAccounts(List<Account> Accounts) {
         this.Accounts = Accounts;
     }
 
@@ -46,15 +47,7 @@ public class AccountListAll {
         this.TableMetadata = TableMetadata;
     }
 
-    @Override
-    public String toString() {
-        return "AccountListAll{" +
-                "Accounts=" + Arrays.toString(Accounts) +
-                ", ErrorMsg='" + ErrorMsg + '\'' +
-                ", Success='" + Success + '\'' +
-                ", TableMetadata=" + TableMetadata +
-                '}';
-    }
+
 }
 
 

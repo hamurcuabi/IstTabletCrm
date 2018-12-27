@@ -4,12 +4,15 @@ package com.emrhmrc.isttabletcrm.models.BreakDown;
 import java.util.Arrays;
 import java.util.List;
 import com.emrhmrc.isttabletcrm.models.CommonClass.*;
+import com.google.gson.annotations.SerializedName;
+
 public class BreakDownTypeListAll {
     private String ErrorMsg;
 
     private boolean Success;
 
-    private List<BreakdownTypes> BreakdownTypes;
+    @SerializedName("BreakdownTypes")
+    private List<BreakdownType> BreakdownTypes;
 
     private TableMetadata TableMetadata;
 
@@ -29,11 +32,11 @@ public class BreakDownTypeListAll {
         this.Success = Success;
     }
 
-    public List<BreakdownTypes> getBreakdownTypes() {
+    public List<BreakdownType> getBreakdownTypes() {
         return BreakdownTypes;
     }
 
-    public void setBreakdownTypes(List<BreakdownTypes> BreakdownTypes) {
+    public void setBreakdownTypes(List<BreakdownType> BreakdownTypes) {
         this.BreakdownTypes = BreakdownTypes;
     }
 
@@ -50,7 +53,7 @@ public class BreakDownTypeListAll {
         return "BreakDownTypeListAll{" +
                 "ErrorMsg='" + ErrorMsg + '\'' +
                 ", Success=" + Success +
-                ", BreakdownTypes=" + Arrays.toString(BreakdownTypes) +
+                ", BreakdownTypes=" + BreakdownTypes +
                 ", TableMetadata=" + TableMetadata +
                 '}';
     }

@@ -1,13 +1,15 @@
 package com.emrhmrc.isttabletcrm.models.Quote;
 
 
+import com.emrhmrc.isttabletcrm.models.CommonClass.Code;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 public class Quote {
-    private StatusCode StatusCode;
+    @SerializedName("StatusCode")
+    private Code StatusCode;
 
     private String inv_CustomerApprovalStCode;
 
@@ -17,16 +19,16 @@ public class Quote {
 
     @SerializedName("Elevators")
     private List<Inv_Id> Elevators;
-
-    private Inv_TypeCode inv_TypeCode;
+    @SerializedName("Inv_TypeCode")
+    private Code inv_TypeCode;
 
     private List<QuoteDetails> QuoteDetails;
 
-    public StatusCode getStatusCode() {
+    public Code getStatusCode() {
         return StatusCode;
     }
 
-    public void setStatusCode(StatusCode StatusCode) {
+    public void setStatusCode(Code StatusCode) {
         this.StatusCode = StatusCode;
     }
 
@@ -62,11 +64,11 @@ public class Quote {
         this.Elevators = Elevators;
     }
 
-    public Inv_TypeCode getInv_TypeCode() {
+    public Code getInv_TypeCode() {
         return inv_TypeCode;
     }
 
-    public void setInv_TypeCode(Inv_TypeCode inv_TypeCode) {
+    public void setInv_TypeCode(Code inv_TypeCode) {
         this.inv_TypeCode = inv_TypeCode;
     }
 

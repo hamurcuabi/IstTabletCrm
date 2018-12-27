@@ -1,6 +1,6 @@
 package com.emrhmrc.isttabletcrm.models.Account;
 
-public class Accounts {
+public class Account {
     private String Name;
 
     private String AccountId;

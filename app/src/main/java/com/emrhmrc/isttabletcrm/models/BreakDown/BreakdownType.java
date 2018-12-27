@@ -1,6 +1,6 @@
 package com.emrhmrc.isttabletcrm.models.BreakDown;
 
-public class BreakdownTypes
+public class BreakdownType
 {
     private String inv_BreakdownTypeName;
 

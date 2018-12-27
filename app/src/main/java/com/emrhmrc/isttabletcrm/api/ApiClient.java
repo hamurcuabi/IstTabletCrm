@@ -10,11 +10,13 @@ public class ApiClient {
     private static String Base_Url = "http://dpmdcturkliftmobiltest.innova.com.tr/api/";
 
     public static Retrofit getClient() {
+        OkHttpClient okHttpClient = new OkHttpClient().newBuilder().addInterceptor
+                (new BasicAuthInterceptor("Creatif", "Crm365@!")).build();
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(Base_Url)
                     .addConverterFactory(GsonConverterFactory.create())
-                    .client(new OkHttpClient())
+                    .client(okHttpClient)
                     .build();
             return retrofit;
         }

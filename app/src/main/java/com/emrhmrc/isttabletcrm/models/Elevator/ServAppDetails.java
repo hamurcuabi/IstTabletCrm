@@ -1,5 +1,6 @@
 package com.emrhmrc.isttabletcrm.models.Elevator;
 
+import com.emrhmrc.isttabletcrm.models.CommonClass.Code;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
 import com.google.gson.annotations.SerializedName;
 
@@ -8,13 +9,14 @@ public class ServAppDetails {
 
     private String inv_Description;
 
-    private Inv_WarrantyStatusCode inv_WarrantyStatusCode;
+    @SerializedName("Inv_WarrantyStatusCode")
+    private Code inv_WarrantyStatusCode;
 
     private boolean inv_WillBeBilled;
 
     private String inv_ServiceAppDetailId;
-
-    private Inv_ApprovalStCode inv_ApprovalStCode;
+    @SerializedName("Inv_ApprovalStCode")
+    private Code inv_ApprovalStCode;
 
     private String inv_UoMid;
 
@@ -40,11 +42,11 @@ public class ServAppDetails {
         this.inv_Description = inv_Description;
     }
 
-    public Inv_WarrantyStatusCode getInv_WarrantyStatusCode() {
+    public Code getInv_WarrantyStatusCode() {
         return inv_WarrantyStatusCode;
     }
 
-    public void setInv_WarrantyStatusCode(Inv_WarrantyStatusCode inv_WarrantyStatusCode) {
+    public void setInv_WarrantyStatusCode(Code inv_WarrantyStatusCode) {
         this.inv_WarrantyStatusCode = inv_WarrantyStatusCode;
     }
 
@@ -64,11 +66,11 @@ public class ServAppDetails {
         this.inv_ServiceAppDetailId = inv_ServiceAppDetailId;
     }
 
-    public Inv_ApprovalStCode getInv_ApprovalStCode() {
+    public Code getInv_ApprovalStCode() {
         return inv_ApprovalStCode;
     }
 
-    public void setInv_ApprovalStCode(Inv_ApprovalStCode inv_ApprovalStCode) {
+    public void setInv_ApprovalStCode(Code inv_ApprovalStCode) {
         this.inv_ApprovalStCode = inv_ApprovalStCode;
     }
 
@@ -104,9 +106,21 @@ public class ServAppDetails {
         this.inv_Quantity = inv_Quantity;
     }
 
+
     @Override
     public String toString() {
-        return " [inv_LineNo = " + inv_LineNo + ", inv_Description = " + inv_Description + ", inv_WarrantyStatusCode = " + inv_WarrantyStatusCode + ", inv_WillBeBilled = " + inv_WillBeBilled + ", inv_ServiceAppDetailId = " + inv_ServiceAppDetailId + ", inv_ApprovalStCode = " + inv_ApprovalStCode + ", inv_UoMid = " + inv_UoMid + ", inv_ProductDescription = " + inv_ProductDescription + ", inv_ProductId = " + inv_ProductId + ", inv_Quantity = " + inv_Quantity + "]";
+        return "ServAppDetails{" +
+                "inv_LineNo='" + inv_LineNo + '\'' +
+                ", inv_Description='" + inv_Description + '\'' +
+                ", inv_WarrantyStatusCode=" + inv_WarrantyStatusCode +
+                ", inv_WillBeBilled=" + inv_WillBeBilled +
+                ", inv_ServiceAppDetailId='" + inv_ServiceAppDetailId + '\'' +
+                ", inv_ApprovalStCode=" + inv_ApprovalStCode +
+                ", inv_UoMid='" + inv_UoMid + '\'' +
+                ", inv_ProductDescription='" + inv_ProductDescription + '\'' +
+                ", inv_ProductId=" + inv_ProductId +
+                ", inv_Quantity='" + inv_Quantity + '\'' +
+                '}';
     }
 }
 

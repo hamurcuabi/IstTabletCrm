@@ -1,13 +1,15 @@
 package com.emrhmrc.isttabletcrm.models.ServApp;
 
 
+import com.emrhmrc.isttabletcrm.models.CommonClass.Code;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 public class ServiceAppointment {
-    private StatusCode StatusCode;
+    @SerializedName("StatusCode")
+    private Code StatusCode;
 
     private String ActivityId;
 
@@ -30,16 +32,16 @@ public class ServiceAppointment {
     private List<ServAppGetByIdServAppUnsuitabilities> ServAppGetByIdServAppUnsuitabilities;
 
     private List<ServAppGetByIdServAppDetails> ServAppGetByIdServAppDetails;
-
-    private Inv_TypeCode inv_TypeCode;
+    @SerializedName("Inv_TypeCode")
+    private Code inv_TypeCode;
 
     private List<ServAppGetByIdServAppModernizationChecklists> ServAppGetByIdServAppModernizationChecklists;
 
-    public StatusCode getStatusCode() {
+    public Code getStatusCode() {
         return StatusCode;
     }
 
-    public void setStatusCode(StatusCode StatusCode) {
+    public void setStatusCode(Code StatusCode) {
         this.StatusCode = StatusCode;
     }
 
@@ -131,11 +133,11 @@ public class ServiceAppointment {
         this.ServAppGetByIdServAppDetails = ServAppGetByIdServAppDetails;
     }
 
-    public Inv_TypeCode getInv_TypeCode() {
+    public Code getInv_TypeCode() {
         return inv_TypeCode;
     }
 
-    public void setInv_TypeCode(Inv_TypeCode inv_TypeCode) {
+    public void setInv_TypeCode(Code inv_TypeCode) {
         this.inv_TypeCode = inv_TypeCode;
     }
 

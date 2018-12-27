@@ -1,6 +1,10 @@
 package com.emrhmrc.isttabletcrm.models.CommonClass;
 
-public class Attributes {
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
+
+public class Attribute {
     private String Name;
 
     private String RefEntity;
@@ -9,7 +13,8 @@ public class Attributes {
 
     private String Label;
 
-    private String Options;
+    @SerializedName("Options")
+    private List<Code> Options;
 
     public String getName() {
         return Name;
@@ -43,11 +48,11 @@ public class Attributes {
         this.Label = Label;
     }
 
-    public String getOptions() {
+    public List<Code> getOptions() {
         return Options;
     }
 
-    public void setOptions(String Options) {
+    public void setOptions(List<Code> Options) {
         this.Options = Options;
     }
 

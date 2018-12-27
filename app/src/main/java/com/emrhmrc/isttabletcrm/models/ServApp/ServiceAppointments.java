@@ -1,10 +1,12 @@
 package com.emrhmrc.isttabletcrm.models.ServApp;
 
+import com.emrhmrc.isttabletcrm.models.CommonClass.Code;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
 import com.google.gson.annotations.SerializedName;
 
 public class ServiceAppointments {
-    private StatusCode StatusCode;
+    @SerializedName("StatusCode")
+    private Code StatusCode;
 
     private String ActualStart;
 
@@ -19,11 +21,11 @@ public class ServiceAppointments {
 
     private String inv_TypeCode;
 
-    public StatusCode getStatusCode() {
+    public Code getStatusCode() {
         return StatusCode;
     }
 
-    public void setStatusCode(StatusCode StatusCode) {
+    public void setStatusCode(Code StatusCode) {
         this.StatusCode = StatusCode;
     }
 

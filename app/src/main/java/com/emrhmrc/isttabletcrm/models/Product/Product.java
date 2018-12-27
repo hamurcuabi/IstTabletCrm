@@ -3,11 +3,11 @@ package com.emrhmrc.isttabletcrm.models.Product;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
 import com.google.gson.annotations.SerializedName;
 
-public class Products {
+public class Product {
     private String Name;
-    @SerializedName("Inv_SubGroupId")
+    @SerializedName("inv_SubGroupId")
     private Inv_Id inv_SubGroupId;
-    @SerializedName("Inv_SalesGroupId")
+    @SerializedName("inv_SalesGroupId")
     private Inv_Id inv_SalesGroupId;
 
     private String ProductNumber;
@@ -15,9 +15,9 @@ public class Products {
     private String inv_BillDefinition;
 
     private String ProductId;
-    @SerializedName("Inv_MainGroupId")
+    @SerializedName("inv_MainGroupId")
     private Inv_Id inv_MainGroupId;
-    @SerializedName("Inv_BrandId")
+    @SerializedName("inv_BrandId")
     private Inv_Id inv_BrandId;
 
     public String getName() {

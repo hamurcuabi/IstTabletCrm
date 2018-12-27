@@ -1,11 +1,14 @@
 package com.emrhmrc.isttabletcrm.models.CommonClass;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class TableMetadata {
     private String Name;
 
-    private List<Attributes> Attributes;
+    @SerializedName("Attributes")
+    private List<Attribute> Attributes;
 
     private String Label;
 
@@ -17,11 +20,11 @@ public class TableMetadata {
         this.Name = Name;
     }
 
-    public List<Attributes> getAttributes() {
+    public List<Attribute> getAttributes() {
         return Attributes;
     }
 
-    public void setAttributes(List<Attributes> Attributes) {
+    public void setAttributes(List<Attribute> Attributes) {
         this.Attributes = Attributes;
     }
 

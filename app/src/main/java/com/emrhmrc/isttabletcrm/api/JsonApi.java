@@ -24,51 +24,63 @@ import retrofit2.http.Query;
 
 public interface JsonApi {
 
-    @GET("Product/ListAll")
-    Call<ProductListAll> getProductListAll();
-
+    //Fail from Server
     @GET("User/Login")
     Call<UserLogin> userLogin(@Query("Email") String email, @Query("PassWord") String password);
 
+    //Fail from Server
     @GET("User/UserForgotPassword")
     Call<UserForgotPassword> userForgotPassword(@Query("Email") String email);
 
+    //Fail from Server
     @GET("User/TokenCheck")
     Call<UserForgotPassword> userTokenCheck(@Query("Token") String token);
 
+    //Fail from Server
     @GET("User/Reset")
     Call<UserReset> userReset(@Query("Email") String email, @Query("PassWord") String password);
 
+    //OK
     @GET("BreakdownType/ListAll")
     Call<BreakDownTypeListAll> breakDownTypeListAll();
 
+    //OK
     @GET("Product/ListAll")
     Call<ProductListAll> productListAll();
 
+    //OK
     @GET("Account/ListAll")
     Call<AccountListAll> accountListAll();
 
+    //OK
     @GET("Elevator/ListAll")
     Call<ElevatorListAll> elevatorListAll();
 
+    //Fail from Server
     @GET("Elevator/GetById")
     Call<ElevatorGetById> elevatorGetById(@Query("ElevatorId") String elevatorId);
 
+    //Fail from Server
     @GET("ServApp/ListAll")
     Call<ServAppListAll> servAppListAll(@Query("UserId") String userId);
 
+    //Fail from Server
     @GET("ServApp/GetById")
     Call<ServAppListAll> servAppGetById(@Query("ServAppId") String servAppId);
 
+    //Fail from Server
     @POST("ServApp/CompleteById")
     Call<Inv_Id> servAppCompleteById(@Body Inv_Id servAppCompleteById);
 
+    //Fail from Server
     @GET("ServApp/GetServFormById")
     Call<GetServFormById> getServFormById(@Query("ServiceAppId") String serviceAppId);
 
+    //Fail from Server
     @POST("ServApp/UpdateServFormById")
     Call<DefaultResponse> updateServFormById(@Body UpdateServFormById updateServFormById);
 
+    //Fail from Server
     @GET("Quote/GetById")
     Call<QuoteGetById> quoteGetById(@Query("QuoteId") String quoteId);
 

@@ -1,43 +1,41 @@
 package com.emrhmrc.isttabletcrm.models.Elevator;
 
+import com.emrhmrc.isttabletcrm.models.CommonClass.Code;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
 public class Elevator {
-    private String inv_Capacity;
+    private Integer inv_Capacity;
 
     private String inv_SerialNumber;
-
-    private List<ServApps> ServApps;
 
     private String inv_ElevatorNumber;
 
     private String inv_BlockName;
 
-    private String inv_ColorCode;
+    @SerializedName("inv_ColorCode")
+    private Code inv_ColorCode;
 
     private String inv_Location;
 
-    @SerializedName("Inv_AccountId")
+    @SerializedName("inv_AccountId")
     private Inv_Id inv_AccountId;
+    @SerializedName("inv_BuilderFirmId")
+    private Inv_Id inv_BuilderFirmId;
 
-    private String inv_BuilderFirmId;
-
-    private String inv_Floor;
-    @SerializedName("Inv_ClassId")
+    private Integer inv_Floor;
+    @SerializedName("inv_ClassId")
     private Inv_Id inv_ClassId;
 
     private String inv_ElevatorId;
+    @SerializedName("inv_WorkingStCode")
+    private Code inv_WorkingStCode;
 
-    private Inv_WorkingStCode inv_WorkingStCode;
-
-    public String getInv_Capacity() {
+    public Integer getInv_Capacity() {
         return inv_Capacity;
     }
 
-    public void setInv_Capacity(String inv_Capacity) {
+    public void setInv_Capacity(Integer inv_Capacity) {
         this.inv_Capacity = inv_Capacity;
     }
 
@@ -49,13 +47,6 @@ public class Elevator {
         this.inv_SerialNumber = inv_SerialNumber;
     }
 
-    public List<ServApps> getServApps() {
-        return ServApps;
-    }
-
-    public void setServApps(List<ServApps> ServApps) {
-        this.ServApps = ServApps;
-    }
 
     public String getInv_ElevatorNumber() {
         return inv_ElevatorNumber;
@@ -73,11 +64,11 @@ public class Elevator {
         this.inv_BlockName = inv_BlockName;
     }
 
-    public String getInv_ColorCode() {
+    public Code getInv_ColorCode() {
         return inv_ColorCode;
     }
 
-    public void setInv_ColorCode(String inv_ColorCode) {
+    public void setInv_ColorCode(Code inv_ColorCode) {
         this.inv_ColorCode = inv_ColorCode;
     }
 
@@ -97,19 +88,19 @@ public class Elevator {
         this.inv_AccountId = inv_AccountId;
     }
 
-    public String getInv_BuilderFirmId() {
+    public Inv_Id getInv_BuilderFirmId() {
         return inv_BuilderFirmId;
     }
 
-    public void setInv_BuilderFirmId(String inv_BuilderFirmId) {
+    public void setInv_BuilderFirmId(Inv_Id inv_BuilderFirmId) {
         this.inv_BuilderFirmId = inv_BuilderFirmId;
     }
 
-    public String getInv_Floor() {
+    public Integer getInv_Floor() {
         return inv_Floor;
     }
 
-    public void setInv_Floor(String inv_Floor) {
+    public void setInv_Floor(Integer inv_Floor) {
         this.inv_Floor = inv_Floor;
     }
 
@@ -129,17 +120,30 @@ public class Elevator {
         this.inv_ElevatorId = inv_ElevatorId;
     }
 
-    public Inv_WorkingStCode getInv_WorkingStCode() {
+    public Code getInv_WorkingStCode() {
         return inv_WorkingStCode;
     }
 
-    public void setInv_WorkingStCode(Inv_WorkingStCode inv_WorkingStCode) {
+    public void setInv_WorkingStCode(Code inv_WorkingStCode) {
         this.inv_WorkingStCode = inv_WorkingStCode;
     }
 
     @Override
     public String toString() {
-        return "ClassPojo [inv_Capacity = " + inv_Capacity + ", inv_SerialNumber = " + inv_SerialNumber + ", ServApps = " + ServApps + ", inv_ElevatorNumber = " + inv_ElevatorNumber + ", inv_BlockName = " + inv_BlockName + ", inv_ColorCode = " + inv_ColorCode + ", inv_Location = " + inv_Location + ", inv_AccountId = " + inv_AccountId + ", inv_BuilderFirmId = " + inv_BuilderFirmId + ", inv_Floor = " + inv_Floor + ", inv_ClassId = " + inv_ClassId + ", inv_ElevatorId = " + inv_ElevatorId + ", inv_WorkingStCode = " + inv_WorkingStCode + "]";
+        return "Elevator{" +
+                "inv_Capacity='" + inv_Capacity + '\'' +
+                ", inv_SerialNumber='" + inv_SerialNumber + '\'' +
+                ", inv_ElevatorNumber='" + inv_ElevatorNumber + '\'' +
+                ", inv_BlockName='" + inv_BlockName + '\'' +
+                ", inv_ColorCode='" + inv_ColorCode + '\'' +
+                ", inv_Location='" + inv_Location + '\'' +
+                ", inv_AccountId=" + inv_AccountId +
+                ", inv_BuilderFirmId='" + inv_BuilderFirmId + '\'' +
+                ", inv_Floor='" + inv_Floor + '\'' +
+                ", inv_ClassId=" + inv_ClassId +
+                ", inv_ElevatorId='" + inv_ElevatorId + '\'' +
+                ", inv_WorkingStCode=" + inv_WorkingStCode +
+                '}';
     }
 }
 

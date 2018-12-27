@@ -1,6 +1,6 @@
-package com.emrhmrc.isttabletcrm.models.Elevator;
+package com.emrhmrc.isttabletcrm.models.CommonClass;
 
-public class Inv_WorkingStCode {
+public class Code {
     private String Text;
 
     private Integer Value;
@@ -23,7 +23,7 @@ public class Inv_WorkingStCode {
 
     @Override
     public String toString() {
-        return "Inv_WorkingStCode{" +
+        return "Code{" +
                 "Text='" + Text + '\'' +
                 ", Value='" + Value + '\'' +
                 '}';

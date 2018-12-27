@@ -1,11 +1,13 @@
 package com.emrhmrc.isttabletcrm.models.Product;
 
 import com.emrhmrc.isttabletcrm.models.CommonClass.TableMetadata;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 public class ProductListAll {
-    private List<Products> Products;
+    @SerializedName("Products")
+    private List<Product> Products;
 
     private String ErrorMsg;
 
@@ -13,11 +15,11 @@ public class ProductListAll {
 
     private TableMetadata TableMetadata;
 
-    public List<Products> getProducts() {
+    public List<Product> getProducts() {
         return Products;
     }
 
-    public void setProducts(List<Products> Products) {
+    public void setProducts(List<Product> Products) {
         this.Products = Products;
     }
 
