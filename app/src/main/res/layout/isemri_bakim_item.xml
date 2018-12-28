@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="@dimen/isemri_left_width"
+        android:layout_height="@dimen/isemri_left_height"
+        android:background="@drawable/isemri_bakim"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/isemri_icon_iv"
+        android:background="@drawable/ic_bakim"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        app:layout_constraintTop_toTopOf="@+id/imageView4" />
+
+    <TextView
+        android:id="@+id/txt_yillik"
+        android:layout_width="@dimen/isemri_text_width"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/bakim"
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/isemri_text"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_info"
+        android:layout_width="@dimen/isemri_text_info"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/dummy_info_short"
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/isemri_text"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+        app:layout_constraintStart_toEndOf="@+id/txt_yillik"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_start_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/isemri_start_date_info"
+        android:text="@string/dummy_date"
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/isemri_text"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+        app:layout_constraintStart_toEndOf="@+id/txt_info"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_end_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/isemri_dates"
+        android:text="@string/dummy_date"
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/isemri_text"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+        app:layout_constraintStart_toEndOf="@+id/txt_start_date"
+        app:layout_constraintTop_toTopOf="parent"
+         />
+    <TextView
+        android:drawablePadding="@dimen/isemri_icon_text"
+        android:drawableRight="@drawable/ic_yuksek"
+        android:id="@+id/txt_oncelik"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/isemri_oncelik"
+        android:text="@string/yuksek"
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/isemri_text"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+        app:layout_constraintStart_toEndOf="@+id/txt_end_date"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+</android.support.constraint.ConstraintLayout>

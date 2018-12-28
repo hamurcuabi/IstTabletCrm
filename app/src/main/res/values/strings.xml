@@ -8,6 +8,7 @@
     <string name="elevator_list_all">Elevator List All</string>
     <string name="dummy_user_name">İsim Soyad</string>
     <string name="dummy_info">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam condimentum nisl accumsan sem ultricies, gravida tempus nisi fringilla. Praesent non nibh viverra lectus volutpat posuere ut in libero. Aenean eget nunc varius, blandit ipsum et, egestas massa.</string>
+    <string name="dummy_info_short">Lorem ipsum dolor sit amet, um et, egestas massa.</string>
     <string name="servis">Servis</string>
     <string name="circle_text">5</string>
     <string name="mesaj">Mesaj Kutusu</string>
@@ -16,4 +17,14 @@
     <string name="musteri_urun">Müşteri Ürün</string>
     <string name="gorseller">Görseller</string>
     <string name="mobil_konum">Mobil Konum</string>
+    <string name="yillik">Yıllık Muayene</string>
+    <string name="dummy_date">12.09.2018 / 12:24</string>
+    <string name="az">Az</string>
+    <string name="bakim">Bakım</string>
+    <string name="yuksek">Yüksek</string>
+    <string name="modern">Modernizasyon</string>
+    <string name="orta">Orta</string>
+    <string name="ariza">Arıza</string>
+    <string name="yedek">Yedek Parça Değişimi</string>
+    <string name="egitmen">Eğitmen</string>
 </resources>

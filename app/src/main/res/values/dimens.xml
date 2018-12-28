@@ -14,4 +14,14 @@
     <dimen name="buttons">20dp</dimen>
     <dimen name="top_right_x">50dp</dimen>
     <dimen name="top_right_y">-50dp</dimen>
+    <dimen name="isemri_left_height">80dp</dimen>
+    <dimen name="isemri_left_width">10dp</dimen>
+    <dimen name="isemri_icon_iv">20dp</dimen>
+    <dimen name="isemri_text">16sp</dimen>
+    <dimen name="isemri_text_width">85dp</dimen>
+    <dimen name="isemri_text_info">515dp</dimen>
+    <dimen name="isemri_dates">60dp</dimen>
+    <dimen name="isemri_oncelik">96dp</dimen>
+    <dimen name="isemri_start_date_info">35dp</dimen>
+    <dimen name="isemri_icon_text">10dp</dimen>
 </resources>
