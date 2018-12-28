@@ -12,6 +12,8 @@
     <color name="gorseller">#319AE0</color>
     <color name="mobil_konum">#002E6E</color>
     <color name="badge">#FF2121</color>
+    <color name="text_color">#454545</color>
+    <color name="white">#ffffff</color>
     <!--İş Emirlerim ve Takvim-->
     <color name="header_is_emirleri">#002E6E</color>
     <color name="yillik_muayene">#4BAF50</color>

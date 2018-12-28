@@ -6,4 +6,14 @@
     <string name="breakdown_type_list_all">BreakdownType List All</string>
     <string name="account_all">Account All</string>
     <string name="elevator_list_all">Elevator List All</string>
+    <string name="dummy_user_name">İsim Soyad</string>
+    <string name="dummy_info">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam condimentum nisl accumsan sem ultricies, gravida tempus nisi fringilla. Praesent non nibh viverra lectus volutpat posuere ut in libero. Aenean eget nunc varius, blandit ipsum et, egestas massa.</string>
+    <string name="servis">Servis</string>
+    <string name="circle_text">5</string>
+    <string name="mesaj">Mesaj Kutusu</string>
+    <string name="siparis">Sipariş</string>
+    <string name="musteri">Müşteri</string>
+    <string name="musteri_urun">Müşteri Ürün</string>
+    <string name="gorseller">Görseller</string>
+    <string name="mobil_konum">Mobil Konum</string>
 </resources>
