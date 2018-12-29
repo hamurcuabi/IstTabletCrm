@@ -27,4 +27,10 @@
     <string name="ariza">Arıza</string>
     <string name="yedek">Yedek Parça Değişimi</string>
     <string name="egitmen">Eğitmen</string>
+    <string name="isemirlerim">İş Emirlerim</string>
+    <string name="is_tipi">İş Tipi</string>
+    <string name="konusu">Konusu</string>
+    <string name="bas_tarih">Başlangıç Tarihi</string>
+    <string name="bit_tarih">Bitiş Tarihi</string>
+    <string name="oncelik">Öncelik</string>
 </resources>

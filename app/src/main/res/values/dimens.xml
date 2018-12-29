@@ -24,4 +24,18 @@
     <dimen name="isemri_oncelik">96dp</dimen>
     <dimen name="isemri_start_date_info">35dp</dimen>
     <dimen name="isemri_icon_text">10dp</dimen>
+    <dimen name="basic_header_width">1220dp</dimen>
+    <dimen name="basic_header_height">80dp</dimen>
+    <dimen name="menu">30dp</dimen>
+    <dimen name="menu_left">30dp</dimen>
+    <dimen name="menu_top">40dp</dimen>
+    <dimen name="menu_text">26sp</dimen>
+    <dimen name="servapp_icon_text">25dp</dimen>
+    <dimen name="servapp_header">32dp</dimen>
+    <dimen name="txt_header">16sp</dimen>
+    <dimen name="header_txt_2">90dp</dimen>
+    <dimen name="txt_header_3">500dp</dimen>
+    <dimen name="txt_header_4">77dp</dimen>
+    <dimen name="oncelik">120dp</dimen>
+    <dimen name="header_rcw">12dp</dimen>
 </resources>

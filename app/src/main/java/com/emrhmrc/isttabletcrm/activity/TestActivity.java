@@ -2,6 +2,8 @@ package com.emrhmrc.isttabletcrm.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +29,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn_product_list_all, btn_breakdown_type_list_all, btn_account_all, btn_elevator_list_all;
     private TextView txt_json;
     private JsonApi jsonApi;
+    private RecyclerView rcw;
 
     @Override
 
@@ -35,6 +38,8 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.test_main);
         init();
         initClicks();
+
+
     }
 
     private void initClicks() {
@@ -51,6 +56,9 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         btn_account_all = findViewById(R.id.btn_account_all);
         btn_elevator_list_all = findViewById(R.id.btn_elevator_list_all);
         txt_json = findViewById(R.id.txt_json);
+        rcw = findViewById(R.id.rcw_test);
+        rcw.setHasFixedSize(true);
+        rcw.setLayoutManager(new LinearLayoutManager(this));
     }
 
 
@@ -83,6 +91,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 if (response.isSuccessful()) {
                     ProductListAll temp = response.body();
                     txt_json.setText("" + temp.getSuccess());
+
                 }
 
             }
@@ -151,8 +160,12 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
             public void onResponse(Call<ElevatorListAll> call, Response<ElevatorListAll> response) {
                 if (response.isSuccessful()) {
 
-                    ElevatorListAll temp = response.body();
-                    txt_json.setText("" + temp.getSuccess());
+                    final ElevatorListAll temp = response.body();
+                    // txt_json.setText("" + temp.getSuccess());
+
+
+                    // specify an adapter (see also next example)
+
 
                 }
             }
