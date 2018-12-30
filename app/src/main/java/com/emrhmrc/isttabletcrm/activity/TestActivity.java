@@ -8,8 +8,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.emrhmrc.isttabletcrm.R;
+import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
+import com.emrhmrc.isttabletcrm.adapter.TestAdapter;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.models.Account.AccountListAll;
@@ -22,7 +25,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class TestActivity extends AppCompatActivity implements View.OnClickListener {
+public class TestActivity extends AppCompatActivity implements View.OnClickListener, OnItemClickListener {
 
     private static final String TAG = "TestActivity";
 
@@ -30,12 +33,15 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
     private TextView txt_json;
     private JsonApi jsonApi;
     private RecyclerView rcw;
+    private TestAdapter adapter;
 
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_main);
+
+
         init();
         initClicks();
 
@@ -58,6 +64,9 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         txt_json = findViewById(R.id.txt_json);
         rcw = findViewById(R.id.rcw_test);
         rcw.setHasFixedSize(true);
+        adapter = new TestAdapter(getApplicationContext());
+        adapter.setListener(this);
+        rcw.setAdapter(adapter);
         rcw.setLayoutManager(new LinearLayoutManager(this));
     }
 
@@ -91,6 +100,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 if (response.isSuccessful()) {
                     ProductListAll temp = response.body();
                     txt_json.setText("" + temp.getSuccess());
+                    adapter.setItems(temp.getProducts());
 
                 }
 
@@ -117,6 +127,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
                     BreakDownTypeListAll temp = response.body();
                     txt_json.setText("" + temp.getSuccess());
+
 
                 }
             }
@@ -164,9 +175,6 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                     // txt_json.setText("" + temp.getSuccess());
 
 
-                    // specify an adapter (see also next example)
-
-
                 }
             }
 
@@ -178,4 +186,9 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+
+    @Override
+    public void onItemClicked(Object item) {
+        Toast.makeText(getApplicationContext(), item.toString(), Toast.LENGTH_SHORT).show();
+    }
 }
