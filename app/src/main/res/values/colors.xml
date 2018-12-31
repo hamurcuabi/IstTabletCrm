@@ -29,6 +29,7 @@
     <color name="is_kapatma">#FFB40B</color>
     <color name="malzeme_icerik">#1B67D1</color>
     <color name="kontrol_listesi">#F58220</color>
+    <color name="transparent">#50000000</color>
 
 
 </resources>

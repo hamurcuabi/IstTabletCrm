@@ -38,4 +38,6 @@
     <dimen name="txt_header_4">77dp</dimen>
     <dimen name="oncelik">120dp</dimen>
     <dimen name="header_rcw">12dp</dimen>
+    <dimen name="servapp_detail_width">1280dp</dimen>
+    <dimen name="servapp_detail_height">300dp</dimen>
 </resources>
