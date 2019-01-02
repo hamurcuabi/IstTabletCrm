@@ -70,4 +70,8 @@
     <string name="no">Hayır</string>
     <string name="aciklama">Açıklama</string>
     <string name="takvim">Takvim</string>
+    <string name="action_today">Bugün</string>
+    <string name="action_day_view">Günlük</string>
+    <string name="action_three_day_view">3 günlük</string>
+    <string name="action_week_view">Haftalık</string>
 </resources>

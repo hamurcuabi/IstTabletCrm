@@ -84,4 +84,5 @@ public interface JsonApi {
     @GET("Quote/GetById")
     Call<QuoteGetById> quoteGetById(@Query("QuoteId") String quoteId);
 
+
 }

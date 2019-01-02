@@ -69,12 +69,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:layout_width="@dimen/edt_width"
-            android:layout_height="56dp"
-            android:hint="fsdfdsgdsgdsgds"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="80dp" />
+
 
 
 
