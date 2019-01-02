@@ -80,4 +80,9 @@
     <dimen name="margin60">60dp</dimen>
     <dimen name="margin50">50dp</dimen>
     <dimen name="margin30">30dp</dimen>
+    <dimen name="menu_text_32">32sp</dimen>
+    <dimen name="detay_menu_40">40dp</dimen>
+    <dimen name="edit_width250">250dp</dimen>
+    <dimen name="margin40">40dp</dimen>
+
 </resources>

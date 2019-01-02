@@ -66,4 +66,7 @@
     <string name="garanti_durumu">Garanti Durumu</string>
     <string name="faturalandiralacakmi">Faturalandırılacak mı?</string>
     <string name="urun_dahilindemi">Ürün Dahilinde mi?</string>
+    <string name="yes">Evet</string>
+    <string name="no">Hayır</string>
+    <string name="aciklama">Açıklama</string>
 </resources>
