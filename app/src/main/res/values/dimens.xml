@@ -84,5 +84,7 @@
     <dimen name="detay_menu_40">40dp</dimen>
     <dimen name="edit_width250">250dp</dimen>
     <dimen name="margin40">40dp</dimen>
+    <dimen name="edt_width">325dp</dimen>
+    <dimen name="margin570">570dp</dimen>
 
 </resources>
