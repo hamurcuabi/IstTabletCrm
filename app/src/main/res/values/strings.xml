@@ -78,4 +78,20 @@
     <string name="bugün">Bugün</string>
     <string name="geri">Geri</string>
     <string name="ileri">İleri</string>
+    <string name="yeni_isemri">Yeni İş Emri Oluşturma</string>
+    <string name="isemri">Yeni İş Emri</string>
+    <string name="musteri_adi">Müşteri Adı</string>
+    <string name="konu">Konu</string>
+    <string name="asansor">Asansör</string>
+    <string name="apart_adi">Apartman İsmi</string>
+    <string name="motorda_catlak">Motorda çatlak var</string>
+    <string name="blok_makine">1-A Block Makine</string>
+    <string name="saat">Saat Gösterme Şekli</string>
+    <string name="oncekiis">Önceki İş Emri</string>
+    <string name="isemrii">İş Emri</string>
+    <string name="konum">Konum</string>
+    <string name="normal">Normal</string>
+    <string name="sahibi">Sahibi</string>
+    <string name="isimsoyad">İsim Soyad</string>
+    <string name="sonraki_is_not">Sonraki İş Emrine Not</string>
 </resources>

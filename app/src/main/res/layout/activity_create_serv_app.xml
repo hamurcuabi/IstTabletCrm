@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.CreateServAppActivity">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="@dimen/servapp_detail_width"
+        android:layout_height="@dimen/servapp_detail_height"
+        android:background="@drawable/new_servapp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        >
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/transparent">
+
+            <ImageView
+                android:id="@+id/img_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/menu_left"
+                android:layout_marginTop="@dimen/menu_top"
+                android:src="@drawable/ic_menu_white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txt_menu_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/servapp_icon_text"
+                android:text="@string/yeni_isemri"
+                android:textColor="@color/white"
+                android:textSize="@dimen/menu_text"
+                app:layout_constraintBottom_toBottomOf="@+id/img_menu"
+                app:layout_constraintStart_toEndOf="@+id/img_menu"
+                app:layout_constraintTop_toTopOf="@+id/img_menu" />
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/menu_left_32"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_menu_header"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/txt_menu_header"
+                app:srcCompat="@drawable/ic_setting" />
+
+
+        </android.support.constraint.ConstraintLayout>
+
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cons_detail"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin570"
+        android:layout_marginStart="@dimen/menu_left"
+        android:layout_marginTop="@dimen/detay_menu"
+        android:layout_marginEnd="@dimen/menu_left_32"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/detay_menu_35"
+            android:layout_marginTop="@dimen/detay_menu_20"
+            android:text="@string/isemri"
+            android:textColor="@color/text_color_4"
+            android:textSize="@dimen/text_menu_24"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <LinearLayout
+            android:id="@+id/lnr_mus_adi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/detay_menu_40"
+            android:layout_marginTop="@dimen/detay_menu_25"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="@dimen/txt_calendar"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/edt_musteri_adi"
+                android:layout_alignBottom="@+id/edt_musteri_adi"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@+id/edt_musteri_adi"
+                android:text="@string/musteri_adi"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/text_color_5"
+                android:textSize="@dimen/text_menu_15"
+                app:layout_constraintBottom_toBottomOf="@+id/edt_musteri_adi"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edt_musteri_adi" />
+
+            <EditText
+                android:id="@+id/edt_musteri_adi"
+                android:layout_width="@dimen/edt_calendar"
+                android:layout_height="@dimen/edt_calendar_height"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/detay_menu_30"
+                android:background="@drawable/btn_calendars"
+                android:drawableRight="@drawable/ic_eye"
+                android:hint="@string/apart_adi"
+                android:paddingLeft="@dimen/detay_menu_25"
+                android:paddingRight="@dimen/detay_menu_12"
+                app:layout_constraintStart_toEndOf="@+id/textView3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnr_konu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/detay_menu_40"
+            android:layout_marginTop="@dimen/detay_menu_12"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/lnr_mus_adi">
+
+            <TextView
+                android:id="@+id/txt_konu"
+                android:layout_width="@dimen/txt_calendar"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/edt_musteri_adi"
+                android:layout_alignBottom="@+id/edt_musteri_adi"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@+id/edt_musteri_adi"
+                android:text="@string/konu"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/text_color_5"
+                android:textSize="@dimen/text_menu_15"
+                app:layout_constraintBottom_toBottomOf="@+id/edt_konu"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edt_konu" />
+
+            <EditText
+                android:id="@+id/edt_konu"
+                android:layout_width="@dimen/edt_calendar"
+                android:layout_height="@dimen/edt_calendar_height"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/detay_menu_30"
+                android:background="@drawable/btn_calendars"
+                android:drawableRight="@drawable/ic_eye"
+                android:hint="@string/motorda_catlak"
+                android:paddingLeft="@dimen/detay_menu_25"
+                android:paddingRight="@dimen/detay_menu_12"
+                app:layout_constraintStart_toEndOf="@+id/textView3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnr_asansor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/detay_menu_40"
+            android:layout_marginTop="@dimen/detay_menu_12"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/lnr_konu">
+
+            <TextView
+                android:id="@+id/txt_asansor"
+                android:layout_width="@dimen/txt_calendar"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/edt_asansor"
+                android:layout_alignBottom="@+id/edt_asansor"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@+id/edt_asansor"
+                android:text="@string/asansor"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/text_color_5"
+                android:textSize="@dimen/text_menu_15"
+                app:layout_constraintBottom_toBottomOf="@+id/edt_asansor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edt_asansor" />
+
+            <EditText
+                android:id="@+id/edt_asansor"
+                android:layout_width="@dimen/edt_calendar"
+                android:layout_height="@dimen/edt_calendar_height"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/detay_menu_30"
+                android:background="@drawable/btn_calendars"
+                android:drawableRight="@drawable/ic_eye"
+                android:hint="@string/blok_makine"
+                android:paddingLeft="@dimen/detay_menu_25"
+                android:paddingRight="@dimen/detay_menu_12"
+                app:layout_constraintStart_toEndOf="@+id/textView3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnr_saat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/detay_menu_40"
+            android:layout_marginTop="@dimen/detay_menu_12"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/lnr_asansor">
+
+            <TextView
+                android:id="@+id/txt_saat"
+                android:layout_width="@dimen/txt_calendar"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/spn_saat"
+                android:layout_alignParentStart="true"
+                android:layout_gravity="center"
+                android:layout_toStartOf="@+id/spn_saat"
+                android:text="@string/saat"
+                android:textColor="@color/text_color_5"
+                android:textSize="@dimen/text_menu_15"
+                app:layout_constraintBottom_toBottomOf="@+id/spn_saat"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/spn_saat" />
+
+            <Spinner
+                android:background="@drawable/spn_rounded"
+                android:id="@+id/spn_saat"
+                android:layout_width="@dimen/edt_calendar"
+                android:layout_height="@dimen/edt_calendar_height"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/detay_menu_30"
+
+                android:paddingLeft="@dimen/detay_menu_25"
+                android:paddingRight="@dimen/detay_menu_12"
+                app:layout_constraintStart_toEndOf="@+id/textView3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnr_supervisor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/detay_menu_40"
+            android:layout_marginTop="@dimen/detay_menu_12"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/lnr_saat">
+
+            <TextView
+                android:id="@+id/txt_supervisor"
+                android:layout_width="@dimen/txt_calendar"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/edt_supervisor"
+                android:layout_alignBottom="@+id/edt_supervisor"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@+id/edt_supervisor"
+                android:text="@string/supervisor"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/text_color_5"
+                android:textSize="@dimen/text_menu_15"
+                app:layout_constraintBottom_toBottomOf="@+id/edt_supervisor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edt_supervisor" />
+
+            <EditText
+                android:id="@+id/edt_supervisor"
+                android:layout_width="@dimen/edt_calendar"
+                android:layout_height="@dimen/edt_calendar_height"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/detay_menu_30"
+                android:background="@drawable/btn_calendars"
+                android:drawableRight="@drawable/ic_eye"
+                android:paddingLeft="@dimen/detay_menu_25"
+                android:paddingRight="@dimen/detay_menu_12"
+                app:layout_constraintStart_toEndOf="@+id/textView3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnr_oncekiis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/detay_menu_40"
+            android:layout_marginTop="@dimen/detay_menu_12"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/lnr_supervisor">
+
+            <TextView
+                android:id="@+id/txt_oncekiis"
+                android:layout_width="@dimen/txt_calendar"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/edt_oncekiis"
+                android:layout_alignBottom="@+id/edt_oncekiis"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@+id/edt_oncekiis"
+                android:text="@string/oncekiis"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/text_color_5"
+                android:textSize="@dimen/text_menu_15"
+                app:layout_constraintBottom_toBottomOf="@+id/edt_oncekiis"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edt_oncekiis" />
+
+            <EditText
+                android:id="@+id/edt_oncekiis"
+                android:layout_width="@dimen/edt_calendar"
+                android:layout_height="@dimen/edt_calendar_height"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/detay_menu_30"
+                android:background="@drawable/btn_calendars"
+                android:drawableRight="@drawable/ic_eye"
+                android:hint="@string/isemrii"
+                android:paddingLeft="@dimen/detay_menu_25"
+                android:paddingRight="@dimen/detay_menu_12"
+                app:layout_constraintStart_toEndOf="@+id/textView3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnr_servis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/detay_menu_40"
+            android:layout_marginTop="@dimen/detay_menu_12"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/lnr_oncekiis">
+
+            <TextView
+                android:id="@+id/txt_servis"
+                android:layout_width="@dimen/txt_calendar"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/edt_servis"
+                android:layout_alignBottom="@+id/edt_servis"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@+id/edt_servis"
+                android:text="@string/servis"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/text_color_5"
+                android:textSize="@dimen/text_menu_15"
+                app:layout_constraintBottom_toBottomOf="@+id/edt_oncekiis"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edt_oncekiis" />
+
+            <EditText
+                android:id="@+id/edt_servis"
+                android:layout_width="@dimen/edt_calendar"
+                android:layout_height="@dimen/edt_calendar_height"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/detay_menu_30"
+                android:background="@drawable/btn_calendars"
+                android:drawableRight="@drawable/ic_eye"
+                android:hint="@string/bakim"
+                android:paddingLeft="@dimen/detay_menu_25"
+                android:paddingRight="@dimen/detay_menu_12"
+                app:layout_constraintStart_toEndOf="@+id/textView3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnr_ariza"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/detay_menu_25"
+            android:layout_marginEnd="@dimen/detay_menu_40"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+            <TextView
+                android:id="@+id/txt_ariza"
+                android:layout_width="@dimen/txt_calendar"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/edt_ariza"
+                android:layout_alignBottom="@+id/edt_ariza"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@+id/edt_ariza"
+                android:text="@string/isemri_tipi"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/text_color_5"
+                android:textSize="@dimen/text_menu_15"
+                app:layout_constraintBottom_toBottomOf="@+id/edt_ariza"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edt_ariza" />
+
+            <EditText
+                android:id="@+id/edt_ariza"
+                android:layout_width="@dimen/edt_calendar"
+                android:layout_height="@dimen/edt_calendar_height"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/detay_menu_30"
+                android:background="@drawable/btn_calendars"
+                android:drawableRight="@drawable/ic_eye"
+                android:hint="@string/ariza"
+                android:paddingLeft="@dimen/detay_menu_25"
+                android:paddingRight="@dimen/detay_menu_12"
+                app:layout_constraintStart_toEndOf="@+id/textView3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnr_konum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/detay_menu_12"
+            android:layout_marginEnd="@dimen/detay_menu_40"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lnr_ariza">
+
+            <TextView
+                android:id="@+id/txt_konum"
+                android:layout_width="@dimen/txt_calendar"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/edt_konum"
+                android:layout_alignBottom="@+id/edt_konum"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@+id/edt_konum"
+                android:text="@string/konum"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/text_color_5"
+                android:textSize="@dimen/text_menu_15"
+                app:layout_constraintBottom_toBottomOf="@+id/edt_konum"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edt_konum" />
+
+            <EditText
+                android:id="@+id/edt_konum"
+                android:layout_width="@dimen/edt_calendar"
+                android:layout_height="@dimen/edt_calendar_height"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/detay_menu_30"
+                android:background="@drawable/btn_calendars"
+                android:drawableRight="@drawable/ic_eye"
+                android:paddingLeft="@dimen/detay_menu_25"
+                android:paddingRight="@dimen/detay_menu_12"
+                app:layout_constraintStart_toEndOf="@+id/textView3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnr_oncelik"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/detay_menu_12"
+            android:layout_marginEnd="@dimen/detay_menu_40"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lnr_konum">
+
+            <TextView
+                android:id="@+id/txt_oncelik"
+                android:layout_width="@dimen/txt_calendar"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="end"
+                android:text="@string/oncelik"
+                android:textColor="@color/text_color_5"
+                android:textSize="@dimen/text_menu_15"
+                app:layout_constraintBottom_toBottomOf="@+id/edt_oncelik"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edt_oncelik" />
+
+            <Spinner
+                android:background="@drawable/spn_rounded"
+                android:drawSelectorOnTop="true"
+                android:prompt="@string/normal"
+                android:spinnerMode="dropdown"
+                android:id="@+id/edt_oncelik"
+                android:layout_width="@dimen/edt_calendar"
+                android:layout_height="@dimen/edt_calendar_height"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/detay_menu_30"
+                android:paddingLeft="@dimen/detay_menu_25"
+                android:paddingRight="@dimen/detay_menu_12"
+                app:layout_constraintStart_toEndOf="@+id/textView3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnr_isimsoyad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/detay_menu_12"
+            android:layout_marginEnd="@dimen/detay_menu_40"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lnr_oncelik">
+
+            <TextView
+                android:id="@+id/txt_isimsoyad"
+                android:layout_width="@dimen/txt_calendar"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/edt_isimsoyad"
+                android:layout_alignBottom="@+id/edt_isimsoyad"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@+id/edt_isimsoyad"
+                android:text="@string/sahibi"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/text_color_5"
+                android:textSize="@dimen/text_menu_15"
+                app:layout_constraintBottom_toBottomOf="@+id/edt_isimsoyad"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edt_isimsoyad" />
+
+            <EditText
+                android:id="@+id/edt_isimsoyad"
+                android:layout_width="@dimen/edt_calendar"
+                android:layout_height="@dimen/edt_calendar_height"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:hint="@string/isimsoyad"
+                android:layout_marginStart="@dimen/detay_menu_30"
+                android:background="@drawable/btn_calendars"
+                android:drawableRight="@drawable/ic_eye"
+                android:paddingLeft="@dimen/detay_menu_25"
+                android:paddingRight="@dimen/detay_menu_12"
+                app:layout_constraintStart_toEndOf="@+id/textView3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnr_sonraki_is_not"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/detay_menu_12"
+            android:layout_marginEnd="@dimen/detay_menu_40"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lnr_isimsoyad">
+
+            <TextView
+                android:id="@+id/txt_sonraki_is_not"
+                android:layout_width="@dimen/txt_calendar"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/edt_sonraki_is_not"
+                android:layout_alignBottom="@+id/edt_sonraki_is_not"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@+id/edt_sonraki_is_not"
+                android:text="@string/sonraki_is_not"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/text_color_5"
+                android:textSize="@dimen/text_menu_15"
+                app:layout_constraintBottom_toBottomOf="@+id/edt_sonraki_is_not"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edt_sonraki_is_not" />
+
+            <EditText
+                android:id="@+id/edt_sonraki_is_not"
+                android:layout_width="@dimen/edt_calendar"
+                android:layout_height="@dimen/edt_calendar_height"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/detay_menu_30"
+                android:background="@drawable/btn_calendars"
+                android:drawableRight="@drawable/ic_pen"
+                android:paddingLeft="@dimen/detay_menu_25"
+                android:paddingRight="@dimen/detay_menu_12"
+                app:layout_constraintStart_toEndOf="@+id/textView3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnr_onceki_is_not"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/detay_menu_12"
+            android:layout_marginEnd="@dimen/detay_menu_40"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lnr_sonraki_is_not">
+
+            <TextView
+                android:id="@+id/txt_onceki_is_not"
+                android:layout_width="@dimen/txt_calendar"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/edt_onceki_is_not"
+                android:layout_alignBottom="@+id/edt_onceki_is_not"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@+id/edt_onceki_is_not"
+                android:text="@string/sonraki_is_not"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/text_color_5"
+                android:textSize="@dimen/text_menu_15"
+                app:layout_constraintBottom_toBottomOf="@+id/edt_onceki_is_not"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edt_onceki_is_not" />
+
+            <EditText
+                android:id="@+id/edt_onceki_is_not"
+                android:layout_width="@dimen/edt_calendar"
+                android:layout_height="@dimen/edt_calendar_height"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/detay_menu_30"
+                android:background="@drawable/btn_calendars"
+                android:drawableRight="@drawable/ic_pen"
+                android:paddingLeft="@dimen/detay_menu_25"
+                android:paddingRight="@dimen/detay_menu_12"
+                app:layout_constraintStart_toEndOf="@+id/textView3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>

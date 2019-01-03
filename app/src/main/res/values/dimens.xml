@@ -90,5 +90,13 @@
     <dimen name="gps_height">105dp</dimen>
     <dimen name="text_menu_13">13sp</dimen>
     <dimen name="detay_menu_64">64dp</dimen>
+    <dimen name="text_menu_24">24sp</dimen>
+    <dimen name="text_menu_15">15sp</dimen>
+    <dimen name="detay_menu_75">75dp</dimen>
+    <dimen name="detay_menu_30">30dp</dimen>
+    <dimen name="edt_calendar">328dp</dimen>
+    <dimen name="edt_calendar_height">55dp</dimen>
+    <dimen name="detay_menu_12">12dp</dimen>
+    <dimen name="txt_calendar">150dp</dimen>
 
 </resources>
