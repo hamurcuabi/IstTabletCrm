@@ -108,5 +108,7 @@
     <dimen name="txt_padding_2">2dp</dimen>
     <dimen name="txt_padding_4">4dp</dimen>
     <dimen name="detay_menu_100">100dp</dimen>
+    <dimen name="detay_menu_297">297dp</dimen>
+    <dimen name="detay_menu_572">572dp</dimen>
 
 </resources>
