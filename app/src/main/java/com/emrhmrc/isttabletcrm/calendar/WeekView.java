@@ -140,6 +140,8 @@ public class WeekView extends View {
     private boolean mVerticalFlingEnabled = true;
     private int mAllDayEventHeight = 100;
     private int mScrollDuration = 250;
+    private int mMinTime = 0;
+    private int mMaxTime = 24;
     // Listeners.
     private EventClickListener mEventClickListener;
     private EventLongPressListener mEventLongPressListener;
@@ -1975,6 +1977,48 @@ public class WeekView extends View {
         return -mCurrentOrigin.y / mHourHeight;
     }
 
+    public void setMinTime(int startHour) {
+        if (mMaxTime <= startHour) {
+            throw new IllegalArgumentException("startHour must smaller than endHour");
+        } else if (startHour < 0) {
+            throw new IllegalArgumentException("startHour must be at least 0.");
+        }
+        this.mMinTime = startHour;
+        recalculateHourHeight();
+    }
+
+    /**
+     * Set highest shown time
+     *
+     * @param endHour limit time display at bottom (between 0~24 and larger than startHour)
+     */
+    public void setMaxTime(int endHour) {
+        if (endHour <= mMinTime) {
+            throw new IllegalArgumentException("endHour must larger startHour.");
+        } else if (endHour > 24) {
+            throw new IllegalArgumentException("endHour can't be higher than 24.");
+        }
+        this.mMaxTime = endHour;
+        recalculateHourHeight();
+        invalidate();
+    }
+
+
+    /////////////////////////////////////////////////////////////////
+    //
+    //      Interfaces.
+    //
+    /////////////////////////////////////////////////////////////////
+
+    private void recalculateHourHeight() {
+        int height = (int) ((getHeight() - (mHeaderHeight + mHeaderRowPadding * 2 + mTimeTextHeight / 2 + mHeaderMarginBottom)) / (this.mMaxTime - this.mMinTime));
+        if (height > mHourHeight) {
+            if (height > mMaxHourHeight)
+                mMaxHourHeight = height;
+            mNewHourHeight = height;
+        }
+    }
+
     private enum Direction {
         NONE, LEFT, RIGHT, VERTICAL
     }
@@ -1988,13 +2032,6 @@ public class WeekView extends View {
          */
         void onEventClick(WeekViewEvent event, RectF eventRect);
     }
-
-
-    /////////////////////////////////////////////////////////////////
-    //
-    //      Interfaces.
-    //
-    /////////////////////////////////////////////////////////////////
 
     public interface EventLongPressListener {
         /**

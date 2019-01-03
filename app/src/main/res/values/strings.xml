@@ -74,4 +74,8 @@
     <string name="action_day_view">Günlük</string>
     <string name="action_three_day_view">3 günlük</string>
     <string name="action_week_view">Haftalık</string>
+    <string name="dummy_date2">19-25 Kasım 2018</string>
+    <string name="bugün">Bugün</string>
+    <string name="geri">Geri</string>
+    <string name="ileri">İleri</string>
 </resources>

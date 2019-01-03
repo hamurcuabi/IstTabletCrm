@@ -8,6 +8,16 @@ public class UserLogin {
     private String ErrorMsg;
     private String UserId;
 
+    public UserLogin(boolean success, String errorMsg, String userId) {
+        Success = success;
+        ErrorMsg = errorMsg;
+        UserId = userId;
+    }
+
+    public UserLogin() {
+
+    }
+
     // Getter Methods
 
     public boolean getSuccess() {

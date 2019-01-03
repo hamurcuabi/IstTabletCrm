@@ -7,10 +7,15 @@
     tools:context=".calendar.BaseActivity">
 
     <com.emrhmrc.isttabletcrm.calendar.WeekView
+       app:showDistinctPastFutureColor="true"
+        app:nowLineThickness="5dp"
+        app:nowLineColor="@color/btn_dark_blue"
+        app:showNowLine="true"
         android:id="@+id/weekView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:columnGap="2dp"
+
         app:dayBackgroundColor="#05000000"
         app:eventTextColor="@android:color/white"
         app:headerColumnBackground="#ffffffff"

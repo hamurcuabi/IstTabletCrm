@@ -5,11 +5,11 @@ import android.os.Bundle;
 
 import com.emrhmrc.isttabletcrm.R;
 
-public class NewServAppActivity extends AppCompatActivity {
+public class CalendarActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_serv_app);
+        setContentView(R.layout.activity_calendar);
     }
 }

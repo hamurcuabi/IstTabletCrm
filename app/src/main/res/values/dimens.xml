@@ -86,5 +86,9 @@
     <dimen name="margin40">40dp</dimen>
     <dimen name="edt_width">325dp</dimen>
     <dimen name="margin570">570dp</dimen>
+    <dimen name="gps_width">180dp</dimen>
+    <dimen name="gps_height">105dp</dimen>
+    <dimen name="text_menu_13">13sp</dimen>
+    <dimen name="detay_menu_64">64dp</dimen>
 
 </resources>

@@ -40,7 +40,11 @@ public abstract class BaseActivity extends AppCompatActivity implements WeekView
         mWeekView.setEmptyViewLongPressListener(this);
         // Set up a date time interpreter to interpret how the date and time will be formatted in
         // the week view. This is optional.
+        mWeekView.setMinTime(9);
+        mWeekView.setMaxTime(19);
+
         setupDateTimeInterpreter(false);
+
     }
 
 

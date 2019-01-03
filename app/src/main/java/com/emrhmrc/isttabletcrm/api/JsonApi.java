@@ -14,19 +14,23 @@ import com.emrhmrc.isttabletcrm.models.ServApp.ServAppListAll;
 import com.emrhmrc.isttabletcrm.models.ServApp.UpdateServFormById;
 import com.emrhmrc.isttabletcrm.models.User.UserForgotPassword;
 import com.emrhmrc.isttabletcrm.models.User.UserLogin;
+import com.emrhmrc.isttabletcrm.models.User.UserRequest;
 import com.emrhmrc.isttabletcrm.models.User.UserReset;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface JsonApi {
 
     //Fail from Server
+    @Headers({ "Accept: application/json", "Content-Type:application/json" })
     @GET("User/Login")
-    Call<UserLogin> userLogin(@Query("Email") String email, @Query("PassWord") String password);
+    Call<UserLogin> userLogin(@Body UserRequest user);
 
     //Fail from Server
     @GET("User/UserForgotPassword")

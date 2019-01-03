@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.CalendarActivity">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="@dimen/servapp_detail_width"
+        android:layout_height="@dimen/servapp_detail_height"
+        android:background="@drawable/new_servapp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        >
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/transparent">
+
+            <ImageView
+                android:id="@+id/img_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/menu_left"
+                android:layout_marginTop="@dimen/menu_top"
+                android:src="@drawable/ic_menu_white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txt_menu_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/servapp_icon_text"
+                android:text="@string/takvim"
+                android:textColor="@color/white"
+                android:textSize="@dimen/menu_text"
+                app:layout_constraintBottom_toBottomOf="@+id/img_menu"
+                app:layout_constraintStart_toEndOf="@+id/img_menu"
+                app:layout_constraintTop_toTopOf="@+id/img_menu" />
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/menu_left_32"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_menu_header"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/txt_menu_header"
+                app:srcCompat="@drawable/ic_setting" />
+
+
+        </android.support.constraint.ConstraintLayout>
+
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cons_detail"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin570"
+        android:layout_marginStart="@dimen/menu_left"
+        android:layout_marginTop="@dimen/detay_menu"
+        android:layout_marginEnd="@dimen/menu_left_32"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/txt_center_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/menu_left_32"
+            android:text="@string/dummy_date2"
+            android:textColor="@color/text_color_2"
+            android:textSize="@dimen/text_menu_18"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="@dimen/detay_menu_64"
+            android:layout_height="@dimen/menu_left_32"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/btn_calendars"
+            android:text="@string/bugün"
+            android:textSize="@dimen/text_menu_13"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_center_date"
+            app:layout_constraintEnd_toStartOf="@+id/button2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="@dimen/detay_menu_64"
+            android:layout_height="@dimen/menu_left_32"
+            android:background="@drawable/btn_calendars"
+            android:text="@string/geri"
+            android:textSize="@dimen/text_menu_13"
+            app:layout_constraintBottom_toBottomOf="@+id/button"
+            app:layout_constraintStart_toEndOf="@+id/button"
+            app:layout_constraintTop_toTopOf="@+id/button" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="@dimen/detay_menu_64"
+            android:layout_height="@dimen/menu_left_32"
+            android:background="@drawable/btn_calendars"
+            android:text="@string/ileri"
+            android:textSize="@dimen/text_menu_13"
+            app:layout_constraintBottom_toBottomOf="@+id/button2"
+            app:layout_constraintStart_toEndOf="@+id/button2"
+            app:layout_constraintTop_toTopOf="@+id/button2" />
+
+
+        <com.emrhmrc.isttabletcrm.calendar.WeekView
+            android:id="@+id/weekView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/menu_left_32"
+            app:columnGap="2dp"
+            app:dayBackgroundColor="#05000000"
+            app:eventTextColor="@android:color/white"
+            app:headerColumnBackground="#ffffffff"
+            app:headerColumnPadding="8dp"
+            app:headerColumnTextColor="@color/toolbar_text"
+            app:headerRowBackgroundColor="@color/toolbar"
+            app:headerRowPadding="12dp"
+            app:hourHeight="60dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button3"
+            app:noOfVisibleDays="7"
+            app:nowLineColor="@color/btn_dark_blue"
+            app:nowLineThickness="5dp"
+            app:showDistinctPastFutureColor="true"
+            app:showNowLine="true"
+            app:textSize="12sp"
+            app:todayBackgroundColor="#1848adff"
+            app:todayHeaderTextColor="@color/accent"></com.emrhmrc.isttabletcrm.calendar.WeekView>
+
+
+    </android.support.constraint.ConstraintLayout>
+
+    <ImageView
+
+        android:id="@+id/img_gps"
+        android:layout_width="@dimen/gps_width"
+        android:layout_height="@dimen/gps_height"
+        android:layout_marginTop="@dimen/detay_menu_55"
+        android:layout_marginEnd="@dimen/detay_menu_50"
+        android:src="@drawable/gps2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</android.support.constraint.ConstraintLayout>

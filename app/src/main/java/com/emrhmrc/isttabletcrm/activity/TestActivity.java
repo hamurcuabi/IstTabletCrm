@@ -19,6 +19,8 @@ import com.emrhmrc.isttabletcrm.models.Account.AccountListAll;
 import com.emrhmrc.isttabletcrm.models.BreakDown.BreakDownTypeListAll;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorListAll;
 import com.emrhmrc.isttabletcrm.models.Product.ProductListAll;
+import com.emrhmrc.isttabletcrm.models.User.UserLogin;
+import com.emrhmrc.isttabletcrm.models.User.UserRequest;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,7 +31,8 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
     private static final String TAG = "TestActivity";
 
-    private Button btn_product_list_all, btn_breakdown_type_list_all, btn_account_all, btn_elevator_list_all;
+    private Button btn_product_list_all, btn_breakdown_type_list_all,
+            btn_account_all, btn_elevator_list_all, btn_user_login;
     private TextView txt_json;
     private JsonApi jsonApi;
     private RecyclerView rcw;
@@ -41,10 +44,8 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_main);
 
-
         init();
         initClicks();
-
 
     }
 
@@ -53,11 +54,13 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         btn_breakdown_type_list_all.setOnClickListener(this);
         btn_account_all.setOnClickListener(this);
         btn_elevator_list_all.setOnClickListener(this);
+        btn_user_login.setOnClickListener(this);
     }
 
     private void init() {
         jsonApi = ApiClient.getClient().create(JsonApi.class);
         btn_product_list_all = findViewById(R.id.btn_product_list_all);
+        btn_user_login = findViewById(R.id.btn_user_login);
         btn_breakdown_type_list_all = findViewById(R.id.btn_breakdown_type_list_all);
         btn_account_all = findViewById(R.id.btn_account_all);
         btn_elevator_list_all = findViewById(R.id.btn_elevator_list_all);
@@ -86,9 +89,31 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_elevator_list_all:
                 getEvelatorListAll();
                 break;
+            case R.id.btn_user_login:
+                login();
+                break;
 
 
         }
+    }
+
+    private void login() {
+
+        Call<UserLogin> call = jsonApi.userLogin(new UserRequest("test@test.com", "1234567"));
+        call.enqueue(new Callback<UserLogin>() {
+            @Override
+            public void onResponse(Call<UserLogin> call, Response<UserLogin> response) {
+                if (response.isSuccessful()) {
+                    UserLogin userLogin = response.body();
+                    Log.d(TAG, "onResponse: " + userLogin.toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserLogin> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+            }
+        });
     }
 
     private void getProductListAll() {

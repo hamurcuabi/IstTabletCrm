@@ -3,6 +3,7 @@ package com.emrhmrc.isttabletcrm.api;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class ApiClient {
     private static final String TAG = "ApiClient";
@@ -12,6 +13,7 @@ public class ApiClient {
     public static Retrofit getClient() {
         OkHttpClient okHttpClient = new OkHttpClient().newBuilder().addInterceptor
                 (new BasicAuthInterceptor("Creatif", "Crm365@!")).build();
+
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(Base_Url)
