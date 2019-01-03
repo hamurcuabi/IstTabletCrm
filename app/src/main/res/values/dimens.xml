@@ -98,5 +98,15 @@
     <dimen name="edt_calendar_height">55dp</dimen>
     <dimen name="detay_menu_12">12dp</dimen>
     <dimen name="txt_calendar">150dp</dimen>
+    <dimen name="margin594">594dp</dimen>
+    <dimen name="margin456">456dp</dimen>
+    <dimen name="text_menu_32">32sp</dimen>
+    <dimen name="detay_menu_145">145dp</dimen>
+    <dimen name="detay_menu_370">370dp</dimen>
+    <dimen name="detay_menu_8">8dp</dimen>
+    <dimen name="detay_menu_170">170dp</dimen>
+    <dimen name="txt_padding_2">2dp</dimen>
+    <dimen name="txt_padding_4">4dp</dimen>
+    <dimen name="detay_menu_100">100dp</dimen>
 
 </resources>

@@ -24,8 +24,9 @@
         <activity android:name=".activity.ServAppActivty" />
         <activity android:name=".activity.ServAppDetailActivity" />
         <activity android:name=".activity.CalendarActivity" />
-        <activity android:name=".calendar.AsyncActivity"></activity>
-        <activity android:name=".activity.CreateServAppActivity"></activity>
+        <activity android:name=".calendar.AsyncActivity" />
+        <activity android:name=".activity.CreateServAppActivity" />
+        <activity android:name=".activity.ElevatorDetailActivity"></activity>
     </application>
 
 </manifest>
