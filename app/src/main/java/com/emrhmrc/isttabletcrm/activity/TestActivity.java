@@ -43,7 +43,6 @@ public class TestActivity extends AppCompatActivity implements OnItemClickListen
 
     private static final String TAG = "TestActivity";
 
-    private TextView txt_json;
     private JsonApi jsonApi;
     private RecyclerView rcw;
     private TestAdapter adapter;
@@ -61,8 +60,7 @@ public class TestActivity extends AppCompatActivity implements OnItemClickListen
 
     private void init() {
         jsonApi = ApiClient.getClient().create(JsonApi.class);
-        txt_json = findViewById(R.id.txt_json);
-        rcw = findViewById(R.id.rcw_test);
+       // rcw = findViewById(R.id.rcw_test);
         rcw.setHasFixedSize(true);
         adapter = new TestAdapter(getApplicationContext());
         adapter.setListener(this);
@@ -223,7 +221,6 @@ public class TestActivity extends AppCompatActivity implements OnItemClickListen
             public void onResponse(Call<ProductListAll> call, Response<ProductListAll> response) {
                 if (response.isSuccessful()) {
                     ProductListAll temp = response.body();
-                    txt_json.setText("" + temp.getSuccess());
                     adapter.setItems(temp.getProducts());
 
                 }
@@ -250,7 +247,7 @@ public class TestActivity extends AppCompatActivity implements OnItemClickListen
                 if (response.isSuccessful()) {
 
                     BreakDownTypeListAll temp = response.body();
-                    txt_json.setText("" + temp.getSuccess());
+
 
 
                 }
@@ -273,7 +270,7 @@ public class TestActivity extends AppCompatActivity implements OnItemClickListen
             public void onResponse(Call<AccountListAll> call, Response<AccountListAll> response) {
                 if (response.isSuccessful()) {
                     AccountListAll temp = response.body();
-                    txt_json.setText("" + temp.getSuccess());
+
 
                 }
             }
