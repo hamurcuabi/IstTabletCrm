@@ -11,7 +11,7 @@ public class ServAppGetByIdServAppWorkListDetails {
 
     private String inv_Date;
 
-    @SerializedName("Inv_WorkListDetailId")
+    @SerializedName("inv_WorkListDetailId")
     private Inv_Id inv_WorkListDetailId;
 
     public String getInv_ServAppWorkListDetailId() {

@@ -3,16 +3,24 @@ package com.emrhmrc.isttabletcrm.api;
 
 import com.emrhmrc.isttabletcrm.models.Account.AccountListAll;
 import com.emrhmrc.isttabletcrm.models.BreakDown.BreakDownTypeListAll;
-import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorGetById;
+import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorIdRequest;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorListAll;
 import com.emrhmrc.isttabletcrm.models.Product.ProductListAll;
 import com.emrhmrc.isttabletcrm.models.Quote.QuoteGetById;
+import com.emrhmrc.isttabletcrm.models.ServApp.CompleteByIdRequest;
 import com.emrhmrc.isttabletcrm.models.ServApp.DefaultResponse;
+import com.emrhmrc.isttabletcrm.models.ServApp.DefaultResponse2;
 import com.emrhmrc.isttabletcrm.models.ServApp.GetServFormById;
+import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetById;
+import com.emrhmrc.isttabletcrm.models.ServApp.ServAppIdRequest;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppListAll;
+import com.emrhmrc.isttabletcrm.models.ServApp.ServiceAppIdRequest;
 import com.emrhmrc.isttabletcrm.models.ServApp.UpdateServFormById;
+import com.emrhmrc.isttabletcrm.models.ServApp.UpsertById;
+import com.emrhmrc.isttabletcrm.models.User.EmailRequest;
 import com.emrhmrc.isttabletcrm.models.User.UserForgotPassword;
+import com.emrhmrc.isttabletcrm.models.User.UserIdRequest;
 import com.emrhmrc.isttabletcrm.models.User.UserLogin;
 import com.emrhmrc.isttabletcrm.models.User.UserRequest;
 import com.emrhmrc.isttabletcrm.models.User.UserReset;
@@ -20,29 +28,26 @@ import com.emrhmrc.isttabletcrm.models.User.UserReset;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface JsonApi {
 
-    //Fail from Server
-    @Headers({ "Accept: application/json", "Content-Type:application/json" })
-    @GET("User/Login")
+    //OK
+    @POST("User/Login")
     Call<UserLogin> userLogin(@Body UserRequest user);
 
-    //Fail from Server
-    @GET("User/UserForgotPassword")
-    Call<UserForgotPassword> userForgotPassword(@Query("Email") String email);
+    //OK
+    @POST("User/ForgotPassWord")
+    Call<UserForgotPassword> userForgotPassword(@Body EmailRequest email);
 
     //Fail from Server
-    @GET("User/TokenCheck")
+    @POST("User/TokenCheck")
     Call<UserForgotPassword> userTokenCheck(@Query("Token") String token);
 
-    //Fail from Server
-    @GET("User/Reset")
-    Call<UserReset> userReset(@Query("Email") String email, @Query("PassWord") String password);
+    //OK
+    @POST("User/Reset")
+    Call<UserReset> userReset(@Body UserRequest user);
 
     //OK
     @GET("BreakdownType/ListAll")
@@ -60,25 +65,29 @@ public interface JsonApi {
     @GET("Elevator/ListAll")
     Call<ElevatorListAll> elevatorListAll();
 
-    //Fail from Server
-    @GET("Elevator/GetById")
-    Call<ElevatorGetById> elevatorGetById(@Query("ElevatorId") String elevatorId);
+    //OK
+    @POST("Elevator/GetById")
+    Call<ElevatorGetById> elevatorGetById(@Body ElevatorIdRequest elevatorId);
 
-    //Fail from Server
-    @GET("ServApp/ListAll")
-    Call<ServAppListAll> servAppListAll(@Query("UserId") String userId);
+    //OK
+    @POST("ServApp/ListAll")
+    Call<ServAppListAll> servAppListAll(@Body UserIdRequest userId);
 
-    //Fail from Server
-    @GET("ServApp/GetById")
-    Call<ServAppListAll> servAppGetById(@Query("ServAppId") String servAppId);
+    //Not Even Tried
+    @POST("ServApp/UpsertById")
+    Call<DefaultResponse2> upsertById(@Body UpsertById upsertById);
 
-    //Fail from Server
+    //OK
+    @POST("ServApp/GetById")
+    Call<ServAppGetById> servAppGetById(@Body ServAppIdRequest servAppId);
+
+    //OK
     @POST("ServApp/CompleteById")
-    Call<Inv_Id> servAppCompleteById(@Body Inv_Id servAppCompleteById);
+    Call<DefaultResponse> servAppCompleteById(@Body CompleteByIdRequest servAppCompleteById);
 
-    //Fail from Server
-    @GET("ServApp/GetServFormById")
-    Call<GetServFormById> getServFormById(@Query("ServiceAppId") String serviceAppId);
+    //OK
+    @POST("ServApp/GetServFormById")
+    Call<GetServFormById> getServFormById(@Body ServiceAppIdRequest serviceAppId);
 
     //Fail from Server
     @POST("ServApp/UpdateServFormById")

@@ -16,7 +16,7 @@ public class ServiceAppointment {
     private String Subject;
 
     private List<ServAppGetByIdServAppBreakdownTypes> ServAppGetByIdServAppBreakdownTypes;
-    @SerializedName("Inv_CustomerId")
+
     private Inv_Id inv_CustomerId;
 
     private List<ServAppGetByIdServAppWorkListDetails> ServAppGetByIdServAppWorkListDetails;
@@ -27,12 +27,12 @@ public class ServiceAppointment {
 
     private String ActualEnd;
 
-    private String inv_ElevatorId;
+    private Inv_Id inv_ElevatorId;
 
     private List<ServAppGetByIdServAppUnsuitabilities> ServAppGetByIdServAppUnsuitabilities;
 
     private List<ServAppGetByIdServAppDetails> ServAppGetByIdServAppDetails;
-    @SerializedName("Inv_TypeCode")
+
     private Code inv_TypeCode;
 
     private List<ServAppGetByIdServAppModernizationChecklists> ServAppGetByIdServAppModernizationChecklists;
@@ -109,11 +109,11 @@ public class ServiceAppointment {
         this.ActualEnd = ActualEnd;
     }
 
-    public String getInv_ElevatorId() {
+    public Inv_Id getInv_ElevatorId() {
         return inv_ElevatorId;
     }
 
-    public void setInv_ElevatorId(String inv_ElevatorId) {
+    public void setInv_ElevatorId(Inv_Id inv_ElevatorId) {
         this.inv_ElevatorId = inv_ElevatorId;
     }
 

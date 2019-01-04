@@ -16,10 +16,9 @@ public class ServiceAppointments {
 
     private String Subject;
 
-    @SerializedName("Inv_CustomerId")
     private Inv_Id inv_CustomerId;
 
-    private String inv_TypeCode;
+    private Inv_Id inv_TypeCode;
 
     public Code getStatusCode() {
         return StatusCode;
@@ -69,11 +68,11 @@ public class ServiceAppointments {
         this.inv_CustomerId = inv_CustomerId;
     }
 
-    public String getInv_TypeCode() {
+    public Inv_Id getInv_TypeCode() {
         return inv_TypeCode;
     }
 
-    public void setInv_TypeCode(String inv_TypeCode) {
+    public void setInv_TypeCode(Inv_Id inv_TypeCode) {
         this.inv_TypeCode = inv_TypeCode;
     }
 
@@ -86,7 +85,7 @@ public class ServiceAppointments {
                 ", ActivityId='" + ActivityId + '\'' +
                 ", Subject='" + Subject + '\'' +
                 ", inv_CustomerId=" + inv_CustomerId +
-                ", inv_TypeCode='" + inv_TypeCode + '\'' +
+                ", inv_TypeCode=" + inv_TypeCode +
                 '}';
     }
 }

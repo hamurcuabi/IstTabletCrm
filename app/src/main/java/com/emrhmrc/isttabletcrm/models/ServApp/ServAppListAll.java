@@ -9,6 +9,7 @@ public class ServAppListAll {
     @SerializedName("TableMetadataServApps")
     private TableMetadata TableMetadataServApps;
 
+    @SerializedName("ServiceAppointments")
     private List<ServiceAppointments> ServiceAppointments;
 
     private String ErrorMsg;

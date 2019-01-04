@@ -7,11 +7,13 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.emrhmrc.isttabletcrm.R;
-import com.emrhmrc.isttabletcrm.adapter.RcwServAppAdapter;
+import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
+import com.emrhmrc.isttabletcrm.adapter.RcvServAppListAllAdapter;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppListAll;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServiceAppointments;
+import com.emrhmrc.isttabletcrm.models.User.UserIdRequest;
 
 import java.util.List;
 
@@ -19,19 +21,20 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ServAppActivty extends AppCompatActivity {
+public class ServAppActivty extends AppCompatActivity implements OnItemClickListener {
 
     private static final String TAG = "ServAppActivty";
     private RecyclerView rcw;
-    private RcwServAppAdapter adapter;
     private List<ServiceAppointments> model;
     private JsonApi jsonApi;
+    private RcvServAppListAllAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_serv_app_activty);
         init();
+        getServAppListAll();
     }
 
     private void init() {
@@ -39,11 +42,17 @@ public class ServAppActivty extends AppCompatActivity {
         rcw = findViewById(R.id.rcw_servapp);
         rcw.setHasFixedSize(true);
         rcw.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new RcwServAppAdapter(model, getApplicationContext());
+        adapter = new RcvServAppListAllAdapter(getApplicationContext());
+        adapter.setListener(this);
+        rcw.setAdapter(adapter);
+        rcw.setLayoutManager(new LinearLayoutManager(this));
+
+
     }
 
-    private void getServAppListAll(String userId) {
-        Call<ServAppListAll> call = jsonApi.servAppListAll(userId);
+    private void getServAppListAll() {
+        UserIdRequest userIdRequest = new UserIdRequest("206b43b9-75bd-e811-8103-005056b66d80");
+        Call<ServAppListAll> call = jsonApi.servAppListAll(userIdRequest);
         call.enqueue(new Callback<ServAppListAll>() {
             @Override
             public void onResponse(Call<ServAppListAll> call, Response<ServAppListAll> response) {
@@ -51,7 +60,7 @@ public class ServAppActivty extends AppCompatActivity {
 
                     final ServAppListAll temp = response.body();
                     model = temp.getServiceAppointments();
-                    rcw.setAdapter(adapter);
+                    adapter.setItems(model);
 
 
                 }
@@ -62,6 +71,11 @@ public class ServAppActivty extends AppCompatActivity {
                 Log.d(TAG, "onFailure: " + t.getMessage());
             }
         });
+
+    }
+
+    @Override
+    public void onItemClicked(Object item) {
 
     }
 }

@@ -11,20 +11,16 @@ public class ServAppGetByIdServAppDetails
 
     private String inv_Description;
 
-    @SerializedName("Inv_WarrantyStatusCode")
     private Code inv_WarrantyStatusCode;
 
     private boolean inv_WillBeBilled;
 
     private String inv_ServiceAppDetailId;
-    @SerializedName("Inv_WarrantyStatusCode")
     private Code inv_ApprovalStCode;
 
     private String inv_ProductDescription;
 
-    @SerializedName("Inv_Uomid")
     private Inv_Id inv_Uomid;
-    @SerializedName("Inv_ProductId")
     private Inv_Id inv_ProductId;
 
     private String inv_Quantity;

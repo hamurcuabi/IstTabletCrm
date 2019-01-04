@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
+import com.emrhmrc.isttabletcrm.models.ServApp.ServiceAppointment;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServiceAppointments;
 
 import java.util.List;

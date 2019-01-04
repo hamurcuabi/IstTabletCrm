@@ -123,4 +123,8 @@
     <string name="durak">Durak Sayısı</string>
     <string name="hiz">Asansör Hızı</string>
     <string name="sinif1">Sınıf 1</string>
+    <string name="servapplistall">Servapp ListAll</string>
+    <string name="elevetor_getbyid">Elevator GetbyId</string>
+    <string name="servappbyid">ServApp ById</string>
+    <string name="ServFormById">ServFormById</string>
 </resources>

@@ -6,7 +6,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,22 +16,33 @@ import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.models.Account.AccountListAll;
 import com.emrhmrc.isttabletcrm.models.BreakDown.BreakDownTypeListAll;
+import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorGetById;
+import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorIdRequest;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorListAll;
 import com.emrhmrc.isttabletcrm.models.Product.ProductListAll;
+import com.emrhmrc.isttabletcrm.models.ServApp.CompleteByIdRequest;
+import com.emrhmrc.isttabletcrm.models.ServApp.DefaultResponse;
+import com.emrhmrc.isttabletcrm.models.ServApp.GetServFormById;
+import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetById;
+import com.emrhmrc.isttabletcrm.models.ServApp.ServAppIdRequest;
+import com.emrhmrc.isttabletcrm.models.ServApp.ServAppListAll;
+import com.emrhmrc.isttabletcrm.models.ServApp.ServiceAppIdRequest;
+import com.emrhmrc.isttabletcrm.models.User.EmailRequest;
+import com.emrhmrc.isttabletcrm.models.User.UserForgotPassword;
+import com.emrhmrc.isttabletcrm.models.User.UserIdRequest;
 import com.emrhmrc.isttabletcrm.models.User.UserLogin;
 import com.emrhmrc.isttabletcrm.models.User.UserRequest;
+import com.emrhmrc.isttabletcrm.models.User.UserReset;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class TestActivity extends AppCompatActivity implements View.OnClickListener, OnItemClickListener {
+public class TestActivity extends AppCompatActivity implements OnItemClickListener {
 
     private static final String TAG = "TestActivity";
 
-    private Button btn_product_list_all, btn_breakdown_type_list_all,
-            btn_account_all, btn_elevator_list_all, btn_user_login;
     private TextView txt_json;
     private JsonApi jsonApi;
     private RecyclerView rcw;
@@ -45,25 +55,12 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.test_main);
 
         init();
-        initClicks();
 
     }
 
-    private void initClicks() {
-        btn_product_list_all.setOnClickListener(this);
-        btn_breakdown_type_list_all.setOnClickListener(this);
-        btn_account_all.setOnClickListener(this);
-        btn_elevator_list_all.setOnClickListener(this);
-        btn_user_login.setOnClickListener(this);
-    }
 
     private void init() {
         jsonApi = ApiClient.getClient().create(JsonApi.class);
-        btn_product_list_all = findViewById(R.id.btn_product_list_all);
-        btn_user_login = findViewById(R.id.btn_user_login);
-        btn_breakdown_type_list_all = findViewById(R.id.btn_breakdown_type_list_all);
-        btn_account_all = findViewById(R.id.btn_account_all);
-        btn_elevator_list_all = findViewById(R.id.btn_elevator_list_all);
         txt_json = findViewById(R.id.txt_json);
         rcw = findViewById(R.id.rcw_test);
         rcw.setHasFixedSize(true);
@@ -74,30 +71,132 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btn_product_list_all:
-                getProductListAll();
-                break;
-            case R.id.btn_breakdown_type_list_all:
-                getBreakdowTypeListAll();
-                break;
-            case R.id.btn_account_all:
-                getAccountListAll();
-                break;
-            case R.id.btn_elevator_list_all:
-                getEvelatorListAll();
-                break;
-            case R.id.btn_user_login:
-                login();
-                break;
+    public void servAppCompleteById(View view) {
+
+        Call<DefaultResponse> call = jsonApi.servAppCompleteById(new CompleteByIdRequest
+                ("4a7f1a7c-1cc3-e811-8103-005056b66d80", "206b43b9-75bd-e811-8103-005056b66d80"));
+        call.enqueue(new Callback<DefaultResponse>() {
+            @Override
+            public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
+                if (response.isSuccessful()) {
+                    DefaultResponse model = response.body();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DefaultResponse> call, Throwable t) {
+
+                Log.d(TAG, "onFailure: " + t.getMessage());
+            }
+        });
 
 
-        }
     }
 
-    private void login() {
+    public void userReset(View view) {
+        Call<UserReset> call = jsonApi.userReset(new UserRequest("test@test.com", "1234567"));
+        call.enqueue(new Callback<UserReset>() {
+            @Override
+            public void onResponse(Call<UserReset> call, Response<UserReset> response) {
+                if (response.isSuccessful()) {
+                    UserReset model = response.body();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserReset> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+            }
+        });
+    }
+
+    public void userForgotPassWord(View view) {
+
+        Call<UserForgotPassword> call = jsonApi.userForgotPassword(new EmailRequest("test@test.com"));
+        call.enqueue(new Callback<UserForgotPassword>() {
+            @Override
+            public void onResponse(Call<UserForgotPassword> call, Response<UserForgotPassword> response) {
+                if (response.isSuccessful()) {
+
+                    UserForgotPassword model = response.body();
+
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserForgotPassword> call, Throwable t) {
+
+                Log.d(TAG, "onFailure: " + t.getMessage());
+            }
+        });
+
+
+    }
+
+    public void getServFormById(View view) {
+        Call<GetServFormById> call = jsonApi.getServFormById(new ServiceAppIdRequest
+                ("b7cf0efe-84c5-e811-8103-005056b66d80"));
+        call.enqueue(new Callback<GetServFormById>() {
+            @Override
+            public void onResponse(Call<GetServFormById> call, Response<GetServFormById> response) {
+                if (response.isSuccessful()) {
+
+                    GetServFormById model = response.body();
+
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetServFormById> call, Throwable t) {
+
+                Log.d(TAG, "onFailure: " + t.getMessage());
+            }
+        });
+    }
+
+    public void getServAppById(View view) {
+        Call<ServAppGetById> call = jsonApi.servAppGetById(new ServAppIdRequest("4a7f1a7c-1cc3-e811-8103-005056b66d80"));
+        call.enqueue(new Callback<ServAppGetById>() {
+            @Override
+            public void onResponse(Call<ServAppGetById> call, Response<ServAppGetById> response) {
+                if (response.isSuccessful()) {
+                    ServAppGetById model = response.body();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ServAppGetById> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+            }
+        });
+
+
+    }
+
+    public void getElevatorById(View view) {
+
+        Call<ElevatorGetById> call = jsonApi.elevatorGetById(new ElevatorIdRequest("063c38b7-4f8b-e811-80fc-005056b66d80"));
+        call.enqueue(new Callback<ElevatorGetById>() {
+            @Override
+            public void onResponse(Call<ElevatorGetById> call, Response<ElevatorGetById> response) {
+                if (response.isSuccessful()) {
+
+                    ElevatorGetById model = response.body();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ElevatorGetById> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+            }
+        });
+
+    }
+
+    public void login(View view) {
 
         Call<UserLogin> call = jsonApi.userLogin(new UserRequest("test@test.com", "1234567"));
         call.enqueue(new Callback<UserLogin>() {
@@ -116,7 +215,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
-    private void getProductListAll() {
+    public void getProductListAll(View view) {
 
         Call<ProductListAll> call = jsonApi.productListAll();
         call.enqueue(new Callback<ProductListAll>() {
@@ -142,7 +241,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    private void getBreakdowTypeListAll() {
+    public void getBreakdowTypeListAll(View view) {
 
         Call<BreakDownTypeListAll> call = jsonApi.breakDownTypeListAll();
         call.enqueue(new Callback<BreakDownTypeListAll>() {
@@ -166,7 +265,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    private void getAccountListAll() {
+    public void getAccountListAll(View view) {
 
         Call<AccountListAll> call = jsonApi.accountListAll();
         call.enqueue(new Callback<AccountListAll>() {
@@ -189,7 +288,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    private void getEvelatorListAll() {
+    public void getEvelatorListAll(View view) {
         Call<ElevatorListAll> call = jsonApi.elevatorListAll();
         call.enqueue(new Callback<ElevatorListAll>() {
             @Override
@@ -211,6 +310,27 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    public void getServAppListAll(View view) {
+        UserIdRequest userIdRequest = new UserIdRequest("206b43b9-75bd-e811-8103-005056b66d80");
+        Call<ServAppListAll> call = jsonApi.servAppListAll(userIdRequest);
+        call.enqueue(new Callback<ServAppListAll>() {
+            @Override
+            public void onResponse(Call<ServAppListAll> call, Response<ServAppListAll> response) {
+                if (response.isSuccessful()) {
+
+                    final ServAppListAll temp = response.body();
+
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ServAppListAll> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+            }
+        });
+
+    }
 
     @Override
     public void onItemClicked(Object item) {

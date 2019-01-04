@@ -21,7 +21,9 @@
         <activity
             android:name=".activity.HomeActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".activity.ServAppActivty" />
+        <activity android:name=".activity.ServAppActivty">
+
+        </activity>
         <activity android:name=".activity.ServAppDetailActivity" />
         <activity android:name=".activity.CalendarActivity" />
         <activity android:name=".calendar.AsyncActivity" />
