@@ -24,39 +24,30 @@
         android:id="@+id/btn_breakdown_type_list_all"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:onClick="getBreakdowTypeListAll"
         android:text="@string/breakdown_type_list_all"
-        app:layout_constraintEnd_toStartOf="@+id/btn_servp_byid"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/btn_product_list_all"
         app:layout_constraintTop_toBottomOf="@+id/btn_product_list_all" />
 
     <Button
         android:id="@+id/btn_account_all"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:onClick="getAccountListAll"
         android:text="@string/account_all"
-        app:layout_constraintEnd_toStartOf="@+id/button4"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/btn_breakdown_type_list_all"
         app:layout_constraintTop_toBottomOf="@+id/btn_breakdown_type_list_all" />
 
     <Button
         android:id="@+id/btn_elevator_list_all"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:onClick="getEvelatorListAll"
         android:text="@string/elevator_list_all"
-        app:layout_constraintEnd_toStartOf="@+id/button5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/btn_account_all"
         app:layout_constraintTop_toBottomOf="@+id/btn_account_all" />
 
 
@@ -64,26 +55,20 @@
         android:id="@+id/btn_user_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:onClick="login"
         android:text="@string/user_login"
-        app:layout_constraintEnd_toStartOf="@+id/button6"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/btn_elevator_list_all"
         app:layout_constraintTop_toBottomOf="@+id/btn_elevator_list_all" />
 
     <Button
         android:id="@+id/btn_servapp_listall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:onClick="getServAppListAll"
         android:text="@string/servapplistall"
-        app:layout_constraintEnd_toStartOf="@+id/button7"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/btn_user_login"
         app:layout_constraintTop_toBottomOf="@+id/btn_user_login" />
 
     <Button
@@ -103,26 +88,20 @@
         android:id="@+id/btn_servp_byid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:onClick="getServAppById"
         android:text="@string/servappbyid"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_breakdown_type_list_all"
+        app:layout_constraintStart_toStartOf="@+id/btn_elecator_getbyid"
         app:layout_constraintTop_toBottomOf="@+id/btn_elecator_getbyid" />
 
     <Button
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:onClick="getServFormById"
         android:text="@string/ServFormById"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_account_all"
+        app:layout_constraintStart_toStartOf="@+id/btn_servp_byid"
         app:layout_constraintTop_toBottomOf="@+id/btn_servp_byid" />
 
     <Button
@@ -130,37 +109,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:onClick="userForgotPassWord"
         android:text="ForgotPassWord"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_elevator_list_all"
+        app:layout_constraintStart_toStartOf="@+id/button4"
         app:layout_constraintTop_toBottomOf="@+id/button4" />
 
     <Button
         android:id="@+id/button6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:onClick="userReset"
         android:text="UserReset"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_user_login"
+        app:layout_constraintStart_toStartOf="@+id/button5"
         app:layout_constraintTop_toBottomOf="@+id/button5" />
 
     <Button
         android:id="@+id/button7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:onClick="servAppCompleteById"
         android:text="CompleteById"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_servapp_listall"
+        app:layout_constraintStart_toStartOf="@+id/button6"
         app:layout_constraintTop_toBottomOf="@+id/button6" />
 
 

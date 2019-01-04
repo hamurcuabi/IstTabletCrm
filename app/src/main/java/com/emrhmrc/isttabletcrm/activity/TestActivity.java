@@ -44,7 +44,6 @@ public class TestActivity extends AppCompatActivity implements OnItemClickListen
     private static final String TAG = "TestActivity";
 
     private JsonApi jsonApi;
-    private RecyclerView rcw;
     private TestAdapter adapter;
 
     @Override
@@ -61,11 +60,9 @@ public class TestActivity extends AppCompatActivity implements OnItemClickListen
     private void init() {
         jsonApi = ApiClient.getClient().create(JsonApi.class);
        // rcw = findViewById(R.id.rcw_test);
-        rcw.setHasFixedSize(true);
         adapter = new TestAdapter(getApplicationContext());
         adapter.setListener(this);
-        rcw.setAdapter(adapter);
-        rcw.setLayoutManager(new LinearLayoutManager(this));
+
     }
 
 
