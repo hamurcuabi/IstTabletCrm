@@ -1,12 +1,10 @@
 package com.emrhmrc.isttabletcrm.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.emrhmrc.isttabletcrm.R;
@@ -14,6 +12,8 @@ import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.adapter.TestAdapter;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
+import com.emrhmrc.isttabletcrm.calendar.AsyncActivity;
+import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.models.Account.AccountListAll;
 import com.emrhmrc.isttabletcrm.models.BreakDown.BreakDownTypeListAll;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorGetById;
@@ -47,24 +47,28 @@ public class TestActivity extends AppCompatActivity implements OnItemClickListen
     private TestAdapter adapter;
 
     @Override
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_main);
 
         init();
+        ShareData.getInstance().setUserId("EmreHamurcu");
 
     }
 
-
     private void init() {
         jsonApi = ApiClient.getClient().create(JsonApi.class);
-       // rcw = findViewById(R.id.rcw_test);
+        // rcw = findViewById(R.id.rcw_test);
         adapter = new TestAdapter(getApplicationContext());
         adapter.setListener(this);
 
     }
 
+    public void go(View view) {
+
+        startActivity(new Intent(TestActivity.this, AsyncActivity.class));
+
+    }
 
     public void servAppCompleteById(View view) {
 
@@ -152,7 +156,7 @@ public class TestActivity extends AppCompatActivity implements OnItemClickListen
     }
 
     public void getServAppById(View view) {
-        Call<ServAppGetById> call = jsonApi.servAppGetById(new ServAppIdRequest("4a7f1a7c-1cc3-e811-8103-005056b66d80"));
+        Call<ServAppGetById> call = jsonApi.servAppGetById(new ServAppIdRequest("ad9a8e9e-78c5-e811-8103-005056b66d80"));
         call.enqueue(new Callback<ServAppGetById>() {
             @Override
             public void onResponse(Call<ServAppGetById> call, Response<ServAppGetById> response) {
@@ -172,7 +176,7 @@ public class TestActivity extends AppCompatActivity implements OnItemClickListen
 
     public void getElevatorById(View view) {
 
-        Call<ElevatorGetById> call = jsonApi.elevatorGetById(new ElevatorIdRequest("063c38b7-4f8b-e811-80fc-005056b66d80"));
+        Call<ElevatorGetById> call = jsonApi.elevatorGetById(new ElevatorIdRequest("e7b36067-d7ca-e811-8103-005056b66d80"));
         call.enqueue(new Callback<ElevatorGetById>() {
             @Override
             public void onResponse(Call<ElevatorGetById> call, Response<ElevatorGetById> response) {
@@ -244,7 +248,6 @@ public class TestActivity extends AppCompatActivity implements OnItemClickListen
                 if (response.isSuccessful()) {
 
                     BreakDownTypeListAll temp = response.body();
-
 
 
                 }

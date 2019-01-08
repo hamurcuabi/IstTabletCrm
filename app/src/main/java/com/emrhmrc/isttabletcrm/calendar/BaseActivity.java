@@ -25,25 +25,17 @@ public abstract class BaseActivity extends AppCompatActivity implements WeekView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_base);
+        setContentView(R.layout.activity_calendar);
 
-        // Get a reference for the week view in the layout.
         mWeekView = findViewById(R.id.weekView);
-        // Show a toast message about the touched event.
         mWeekView.setOnEventClickListener(this);
-        // The week view has infinite scrolling horizontally. We have to provide the events of a
-        // month every time the month changes on the week view.
         mWeekView.setMonthChangeListener(this);
-        // Set long press listener for events.
         mWeekView.setEventLongPressListener(this);
-        // Set long press listener for empty view
         mWeekView.setEmptyViewLongPressListener(this);
-        // Set up a date time interpreter to interpret how the date and time will be formatted in
-        // the week view. This is optional.
         mWeekView.setMinTime(9);
         mWeekView.setMaxTime(19);
-
         setupDateTimeInterpreter(false);
+        mWeekView.goToHour(9);
 
     }
 

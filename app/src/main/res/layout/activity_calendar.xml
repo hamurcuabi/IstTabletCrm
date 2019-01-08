@@ -137,7 +137,7 @@
             app:layout_constraintTop_toBottomOf="@+id/button3"
             app:noOfVisibleDays="7"
             app:nowLineColor="@color/btn_dark_blue"
-            app:nowLineThickness="5dp"
+            app:nowLineThickness="2dp"
             app:showDistinctPastFutureColor="true"
             app:showNowLine="true"
             app:textSize="12sp"

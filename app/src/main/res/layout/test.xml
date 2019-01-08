@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    >
+    android:layout_columnWeight="7">
 
     <ImageView
         android:id="@+id/imageView4"
@@ -73,7 +73,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
         app:layout_constraintStart_toEndOf="@+id/txt_start_date"
         app:layout_constraintTop_toTopOf="parent"
-         />
+        />
     <TextView
         android:drawablePadding="@dimen/isemri_icon_text"
         android:drawableRight="@drawable/ic_az"

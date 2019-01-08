@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".activity.ServAppDetailActivity">
 
+
     <android.support.constraint.ConstraintLayout
         android:layout_width="@dimen/servapp_detail_width"
         android:layout_height="@dimen/servapp_detail_height"
@@ -145,6 +146,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/menu_left_32"
+                android:onClick="newServApp"
                 android:text="@string/yeni"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
@@ -674,16 +676,15 @@
         android:layout_width="@dimen/btn_malzeme_width"
         android:layout_height="@dimen/btn_malzeme_height"
         android:layout_marginStart="@dimen/progres_padding"
-        android:layout_marginTop="@dimen/detay_menu_15"
         android:background="@drawable/btn_kontrol"
         android:text="@string/kontrol_listesi"
         android:textAllCaps="true"
         android:textColor="@color/white"
         android:textSize="@dimen/text_menu_18"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/cons_malzeme_icerik"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_malzeme_icerik"
         app:layout_constraintStart_toEndOf="@+id/btn_malzeme_icerik"
-        app:layout_constraintTop_toBottomOf="@+id/cons_detail" />
+        app:layout_constraintTop_toTopOf="@+id/btn_malzeme_icerik" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/cons_malzeme_icerik"
@@ -870,17 +871,12 @@
 
     </android.support.constraint.ConstraintLayout>
 
-    <ScrollView
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/cons_malzeme_icerik"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/cons_malzeme_icerik">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rcv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
-
-    </ScrollView>
+    </android.support.v7.widget.RecyclerView>
 </android.support.constraint.ConstraintLayout>
