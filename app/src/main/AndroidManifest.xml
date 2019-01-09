@@ -19,16 +19,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.TestActivity">
-
-        </activity>
-        <activity
-            android:name=".activity.HomeActivity"
-            android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.HomeActivity"
+            android:screenOrientation="landscape" >
+
         </activity>
         <activity android:name=".activity.ServAppActivty"></activity>
         <activity android:name=".activity.ServAppDetailActivity">

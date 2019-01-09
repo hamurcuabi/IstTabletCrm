@@ -64,9 +64,34 @@ public class TestActivity extends AppCompatActivity implements OnItemClickListen
 
     }
 
-    public void go(View view) {
+    public void goHome(View view) {
 
         startActivity(new Intent(TestActivity.this, AsyncActivity.class));
+
+    }
+    public void goCalendar(View view) {
+
+        startActivity(new Intent(TestActivity.this, CalendarActivity.class));
+
+    }
+    public void goServApp(View view) {
+
+        startActivity(new Intent(TestActivity.this, ServAppActivty.class));
+
+    }
+    public void goServAppDetail(View view) {
+
+        startActivity(new Intent(TestActivity.this, ServAppDetailActivity.class));
+
+    }
+    public void goNewServApp(View view) {
+
+        startActivity(new Intent(TestActivity.this, CreateServAppActivity.class));
+
+    }
+    public void goElevatorDetail(View view) {
+
+        startActivity(new Intent(TestActivity.this, ElevatorDetailActivity.class));
 
     }
 
