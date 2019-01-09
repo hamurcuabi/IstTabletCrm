@@ -110,5 +110,8 @@
     <dimen name="detay_menu_100">100dp</dimen>
     <dimen name="detay_menu_297">297dp</dimen>
     <dimen name="detay_menu_572">572dp</dimen>
+    <dimen name="txt_calendar_2">160dp</dimen>
+    <dimen name="close">40dp</dimen>
+    <dimen name="close_2">80dp</dimen>
 
 </resources>

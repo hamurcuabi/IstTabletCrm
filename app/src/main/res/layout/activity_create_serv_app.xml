@@ -37,6 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/servapp_icon_text"
+                android:fontFamily="@font/roboto_medium"
                 android:text="@string/yeni_isemri"
                 android:textColor="@color/white"
                 android:textSize="@dimen/menu_text"
@@ -75,6 +76,7 @@
 
 
         <TextView
+            android:fontFamily="@font/roboto_regular"
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -99,6 +101,8 @@
             app:layout_constraintTop_toBottomOf="@+id/textView2">
 
             <TextView
+                android:textStyle="bold"
+                android:fontFamily="@font/roboto_regular"
                 android:id="@+id/txt_mus_adi"
                 android:layout_width="@dimen/txt_calendar"
                 android:layout_height="wrap_content"
@@ -142,6 +146,8 @@
             app:layout_constraintTop_toBottomOf="@+id/lnr_mus_adi">
 
             <TextView
+                android:textStyle="bold"
+                android:fontFamily="@font/roboto_regular"
                 android:id="@+id/txt_konu"
                 android:layout_width="@dimen/txt_calendar"
                 android:layout_height="wrap_content"
@@ -185,6 +191,8 @@
             app:layout_constraintTop_toBottomOf="@+id/lnr_konu">
 
             <TextView
+                android:textStyle="bold"
+                android:fontFamily="@font/roboto_regular"
                 android:id="@+id/txt_asansor"
                 android:layout_width="@dimen/txt_calendar"
                 android:layout_height="wrap_content"
@@ -228,6 +236,8 @@
             app:layout_constraintTop_toBottomOf="@+id/lnr_asansor">
 
             <TextView
+                android:textStyle="bold"
+                android:fontFamily="@font/roboto_regular"
                 android:id="@+id/txt_saat"
                 android:layout_width="@dimen/txt_calendar"
                 android:layout_height="wrap_content"
@@ -269,6 +279,8 @@
             app:layout_constraintTop_toBottomOf="@+id/lnr_saat">
 
             <TextView
+                android:textStyle="bold"
+                android:fontFamily="@font/roboto_regular"
                 android:id="@+id/txt_supervisor"
                 android:layout_width="@dimen/txt_calendar"
                 android:layout_height="wrap_content"
@@ -311,6 +323,8 @@
             app:layout_constraintTop_toBottomOf="@+id/lnr_supervisor">
 
             <TextView
+                android:textStyle="bold"
+                android:fontFamily="@font/roboto_regular"
                 android:id="@+id/txt_oncekiis"
                 android:layout_width="@dimen/txt_calendar"
                 android:layout_height="wrap_content"
@@ -354,6 +368,8 @@
             app:layout_constraintTop_toBottomOf="@+id/lnr_oncekiis">
 
             <TextView
+                android:textStyle="bold"
+                android:fontFamily="@font/roboto_regular"
                 android:id="@+id/txt_servis"
                 android:layout_width="@dimen/txt_calendar"
                 android:layout_height="wrap_content"
@@ -397,8 +413,10 @@
             app:layout_constraintTop_toBottomOf="@+id/textView2">
 
             <TextView
+                android:textStyle="bold"
+                android:fontFamily="@font/roboto_regular"
                 android:id="@+id/txt_ariza"
-                android:layout_width="@dimen/txt_calendar"
+                android:layout_width="@dimen/txt_calendar_2"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/edt_ariza"
                 android:layout_alignBottom="@+id/edt_ariza"
@@ -440,8 +458,10 @@
             app:layout_constraintTop_toBottomOf="@+id/lnr_ariza">
 
             <TextView
+                android:textStyle="bold"
+                android:fontFamily="@font/roboto_regular"
                 android:id="@+id/txt_konum"
-                android:layout_width="@dimen/txt_calendar"
+                android:layout_width="@dimen/txt_calendar_2"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/edt_konum"
                 android:layout_alignBottom="@+id/edt_konum"
@@ -482,8 +502,10 @@
             app:layout_constraintTop_toBottomOf="@+id/lnr_konum">
 
             <TextView
+                android:textStyle="bold"
+                android:fontFamily="@font/roboto_regular"
                 android:id="@+id/txt_oncelik"
-                android:layout_width="@dimen/txt_calendar"
+                android:layout_width="@dimen/txt_calendar_2"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="end"
@@ -523,8 +545,10 @@
             app:layout_constraintTop_toBottomOf="@+id/lnr_oncelik">
 
             <TextView
+                android:textStyle="bold"
+                android:fontFamily="@font/roboto_regular"
                 android:id="@+id/txt_isimsoyad"
-                android:layout_width="@dimen/txt_calendar"
+                android:layout_width="@dimen/txt_calendar_2"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/edt_isimsoyad"
                 android:layout_alignBottom="@+id/edt_isimsoyad"
@@ -566,8 +590,10 @@
             app:layout_constraintTop_toBottomOf="@+id/lnr_isimsoyad">
 
             <TextView
+                android:textStyle="bold"
+                android:fontFamily="@font/roboto_regular"
                 android:id="@+id/txt_sonraki_is_not"
-                android:layout_width="@dimen/txt_calendar"
+                android:layout_width="@dimen/txt_calendar_2"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/edt_sonraki_is_not"
                 android:layout_alignBottom="@+id/edt_sonraki_is_not"
@@ -608,8 +634,10 @@
             app:layout_constraintTop_toBottomOf="@+id/lnr_sonraki_is_not">
 
             <TextView
+                android:textStyle="bold"
+                android:fontFamily="@font/roboto_regular"
                 android:id="@+id/txt_onceki_is_not"
-                android:layout_width="@dimen/txt_calendar"
+                android:layout_width="@dimen/txt_calendar_2"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/edt_onceki_is_not"
                 android:layout_alignBottom="@+id/edt_onceki_is_not"

@@ -36,12 +36,14 @@
                 android:id="@+id/txt_menu_header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/servapp_icon_text"
                 android:fontFamily="@font/roboto_medium"
                 android:text="@string/takvim"
                 android:textColor="@color/white"
                 android:textSize="@dimen/menu_text"
-                tools:layout_editor_absoluteX="87dp"
-                tools:layout_editor_absoluteY="39dp" />
+                app:layout_constraintBottom_toBottomOf="@+id/img_menu"
+                app:layout_constraintStart_toEndOf="@+id/img_menu"
+                app:layout_constraintTop_toTopOf="@+id/img_menu" />
 
 
 

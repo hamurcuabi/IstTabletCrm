@@ -11,7 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/detay_menu_50"
-        android:layout_marginTop="@dimen/detay_menu_40"
+        android:layout_marginTop="@dimen/close_2"
+        android:fontFamily="@font/roboto_medium"
         android:text="@string/kontrol_listesi"
         android:textColor="@color/text_color"
         android:textSize="@dimen/menu_text_32"
@@ -19,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
+        android:fontFamily="@font/roboto_medium"
         android:id="@+id/checkBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,6 +34,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <CheckBox
+        android:fontFamily="@font/roboto_medium"
         android:id="@+id/checkBox2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,6 +47,7 @@
         app:layout_constraintTop_toBottomOf="@+id/checkBox" />
 
     <CheckBox
+        android:fontFamily="@font/roboto_medium"
         android:id="@+id/checkBox3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -56,6 +60,7 @@
         app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
 
     <CheckBox
+        android:fontFamily="@font/roboto_medium"
         android:id="@+id/checkBox4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -79,6 +84,7 @@
         app:layout_constraintTop_toBottomOf="@+id/checkBox4">
 
         <RadioButton
+            android:buttonTint="@color/kontrol_listesi"
             android:layout_marginRight="@dimen/detay_menu_35"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -95,6 +101,7 @@
     </RadioGroup>
 
     <android.support.design.widget.TextInputLayout
+        android:buttonTint="@color/kontrol_listesi"
         android:layout_width="@dimen/edit_width250"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/detay_menu_40"
@@ -103,6 +110,7 @@
         app:layout_constraintTop_toTopOf="@+id/radGroup">
 
         <android.support.design.widget.TextInputEditText
+            android:buttonTint="@color/kontrol_listesi"
             android:textColorHint="@color/is_kapatma"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -111,6 +119,7 @@
     </android.support.design.widget.TextInputLayout>
 
     <CheckBox
+        android:fontFamily="@font/roboto_medium"
         android:id="@+id/checkBox5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -127,11 +136,23 @@
         android:id="@+id/imageView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin30"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="@dimen/margin40"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_close"
         app:srcCompat="@drawable/task" />
+
+    <ImageView
+
+        android:background="@color/bg"
+        android:id="@+id/img_close"
+        android:layout_width="@dimen/close"
+        android:layout_height="@dimen/close"
+        android:layout_marginTop="@dimen/detay_menu_8"
+        android:layout_marginEnd="@dimen/detay_menu_8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
 
 </android.support.constraint.ConstraintLayout>

@@ -7,10 +7,13 @@ import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.emrhmrc.isttabletcrm.R;
 
-public class ControlListFragment extends DialogFragment {
+public class ControlListFragment extends DialogFragment implements View.OnClickListener {
+
+    private ImageView img_close;
 
     public static ControlListFragment newInstance() {
         Bundle args = new Bundle();
@@ -29,5 +32,18 @@ public class ControlListFragment extends DialogFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        img_close = view.findViewById(R.id.img_close);
+        img_close.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+
+            case R.id.img_close:
+                this.dismiss();
+                break;
+
+        }
     }
 }

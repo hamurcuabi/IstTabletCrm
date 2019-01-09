@@ -33,6 +33,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:fontFamily="@font/roboto_medium"
                 android:id="@+id/txt_menu_header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -45,6 +46,7 @@
                 app:layout_constraintTop_toTopOf="@+id/img_menu" />
 
             <TextView
+                android:fontFamily="@font/roboto_regular"
                 android:id="@+id/txt_elevator_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -86,6 +88,7 @@
 
 
         <TextView
+            android:fontFamily="@font/roboto_regular"
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -138,6 +141,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:fontFamily="@font/roboto_regular"
                         android:id="@+id/txt_asansorname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -175,6 +179,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:fontFamily="@font/roboto_regular"
                         android:id="@+id/txt_apartadi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -214,6 +219,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:fontFamily="@font/roboto_regular"
                         android:id="@+id/txt_blokadi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -251,6 +257,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:fontFamily="@font/roboto_regular"
                         android:id="@+id/txt_panaromikmi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -288,6 +295,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:fontFamily="@font/roboto_regular"
                         android:id="@+id/txt_tekniktakim"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -325,6 +333,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:fontFamily="@font/roboto_regular"
                         android:id="@+id/txt_etiketrengi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -362,6 +371,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:fontFamily="@font/roboto_regular"
                         android:id="@+id/txt_sozlemebitis"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -399,6 +409,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:fontFamily="@font/roboto_regular"
                         android:id="@+id/txt_asansormanike"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -436,6 +447,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:fontFamily="@font/roboto_regular"
                         android:id="@+id/txt_anlikdurum"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -473,6 +485,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:fontFamily="@font/roboto_regular"
                         android:id="@+id/txt_hizmetyili"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -510,6 +523,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:fontFamily="@font/roboto_regular"
                         android:id="@+id/txt_adsoyad"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -549,6 +563,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:fontFamily="@font/roboto_regular"
                         android:id="@+id/txt_arizadakisorun"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -586,6 +601,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:fontFamily="@font/roboto_regular"
                         android:id="@+id/txt_yaptiranfirma"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -629,6 +645,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:fontFamily="@font/roboto_regular"
             android:id="@+id/txt_ozellikler"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -678,6 +695,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:fontFamily="@font/roboto_regular"
                         android:id="@+id/txt_kimlikno"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -714,6 +732,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:fontFamily="@font/roboto_regular"
                         android:id="@+id/txt_kapasite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -750,6 +769,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:fontFamily="@font/roboto_regular"
                         android:id="@+id/txt_katsayisi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -786,6 +806,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:fontFamily="@font/roboto_regular"
                         android:id="@+id/txt_sinif"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -824,6 +845,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:fontFamily="@font/roboto_regular"
                         android:id="@+id/txt_serino"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -860,6 +882,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:fontFamily="@font/roboto_regular"
                         android:id="@+id/txt_duraksayisi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -896,6 +919,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:fontFamily="@font/roboto_regular"
                         android:id="@+id/txt_asansorhizi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

@@ -706,12 +706,13 @@
         app:layout_constraintTop_toBottomOf="@+id/cons_detail" />
 
     <Button
-        android:fontFamily="@font/roboto_regular"
         android:id="@+id/btn_kontrol_listesi"
         android:layout_width="@dimen/btn_malzeme_width"
         android:layout_height="@dimen/btn_malzeme_height"
         android:layout_marginStart="@dimen/progres_padding"
         android:background="@drawable/btn_kontrol"
+        android:fontFamily="@font/roboto_regular"
+        android:onClick="openControlList"
         android:text="@string/kontrol_listesi"
         android:textAllCaps="true"
         android:textColor="@color/white"
