@@ -68,7 +68,7 @@
 
         <TextView
             android:textStyle="bold"
-            android:fontFamily="@font/Roboto-Regular-Regular"
+            android:fontFamily="@font/roboto_regular"
             android:id="@+id/txt_center_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:fontFamily="@font/SourceSansPro-Regular"
+            android:fontFamily="@font/sourcesanspro_regular"
             android:id="@+id/button"
             android:layout_width="@dimen/detay_menu_64"
             android:layout_height="@dimen/menu_left_32"
@@ -97,7 +97,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:fontFamily="@font/SourceSansPro-Regular"
+            android:fontFamily="@font/sourcesanspro_regular"
             android:id="@+id/button2"
             android:layout_width="@dimen/detay_menu_64"
             android:layout_height="@dimen/menu_left_32"
@@ -109,7 +109,7 @@
             app:layout_constraintTop_toTopOf="@+id/button" />
 
         <Button
-            android:fontFamily="@font/SourceSansPro-Regular"
+            android:fontFamily="@font/sourcesanspro_regular"
             android:id="@+id/button3"
             android:layout_width="@dimen/detay_menu_64"
             android:layout_height="@dimen/menu_left_32"
