@@ -66,7 +66,7 @@ public class TestActivity extends AppCompatActivity implements OnItemClickListen
 
     public void goHome(View view) {
 
-        startActivity(new Intent(TestActivity.this, AsyncActivity.class));
+        startActivity(new Intent(TestActivity.this, HomeActivity.class));
 
     }
     public void goCalendar(View view) {
