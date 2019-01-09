@@ -435,7 +435,7 @@
 
                 <TextView
                     android:textStyle="bold"
-                    android:fontFamily="@font/Roboto-Regular"
+                    android:fontFamily="@font/roboto_regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/dummy_tarih"
@@ -470,7 +470,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:fontFamily="@font/Roboto-Regular"
+                    android:fontFamily="@font/roboto_regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/supervisor"
@@ -479,7 +479,7 @@
 
                 <TextView
                     android:textStyle="bold"
-                    android:fontFamily="@font/Roboto-Regular"
+                    android:fontFamily="@font/roboto_regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/dummy_usta_2"
@@ -514,7 +514,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:fontFamily="@font/Roboto-Regular"
+                    android:fontFamily="@font/roboto_regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/ise_baslama"
@@ -523,7 +523,7 @@
 
                 <TextView
                     android:textStyle="bold"
-                    android:fontFamily="@font/Roboto-Regular"
+                    android:fontFamily="@font/roboto_regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/dummy_tarih"
@@ -559,7 +559,7 @@
 
                 <TextView
                     android:textStyle="bold"
-                    android:fontFamily="@font/Roboto-Regular"
+                    android:fontFamily="@font/roboto_regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/ariza_nedini"
@@ -601,7 +601,7 @@
 
                 <TextView
                     android:textStyle="bold"
-                    android:fontFamily="@font/Roboto-Regular"
+                    android:fontFamily="@font/roboto_regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/acikmala_not"
@@ -621,7 +621,7 @@
 
         <Button
             android:textStyle="bold"
-            android:fontFamily="@font/Roboto-Regular"
+            android:fontFamily="@font/roboto_regular"
             android:id="@+id/btn_is_kapatma"
             android:layout_width="@dimen/home_button_width"
             android:layout_height="wrap_content"
@@ -645,7 +645,7 @@
             app:srcCompat="@drawable/gps" />
 
         <TextView
-            android:fontFamily="@font/Roboto-Regular"
+            android:fontFamily="@font/roboto_regular"
             android:id="@+id/txt_oncelik"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -660,7 +660,7 @@
             app:layout_constraintTop_toBottomOf="@+id/img_gps" />
 
         <TextView
-            android:fontFamily="@font/Roboto-Regular"
+            android:fontFamily="@font/roboto_regular"
             android:id="@+id/txt_durum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -691,7 +691,6 @@
     </android.support.constraint.ConstraintLayout>
 
     <Button
-        android:fontFamily="@font/Roboto-Regular"
         android:id="@+id/btn_malzeme_icerik"
         android:layout_width="@dimen/btn_malzeme_width"
         android:layout_height="@dimen/btn_malzeme_height"
@@ -707,7 +706,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cons_detail" />
 
     <Button
-        android:fontFamily="@font/Roboto-Regular"
+        android:fontFamily="@font/roboto_regular"
         android:id="@+id/btn_kontrol_listesi"
         android:layout_width="@dimen/btn_malzeme_width"
         android:layout_height="@dimen/btn_malzeme_height"
@@ -754,7 +753,7 @@
                 android:src="@drawable/ic_yeni" />
 
             <TextView
-                android:fontFamily="@font/Roboto-Regular"
+                android:fontFamily="@font/roboto_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -795,7 +794,7 @@
                 android:src="@drawable/ic_yeni" />
 
             <TextView
-                android:fontFamily="@font/Roboto-Regular"
+                android:fontFamily="@font/roboto_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -827,7 +826,7 @@
             app:layout_constraintTop_toBottomOf="@+id/lnr_isci">
 
             <TextView
-                android:fontFamily="@font/Roboto-Regular"
+                android:fontFamily="@font/roboto_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/kod"
@@ -837,7 +836,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:fontFamily="@font/Roboto-Regular"
+                android:fontFamily="@font/roboto_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin120"
@@ -848,7 +847,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:fontFamily="@font/Roboto-Regular"
+                android:fontFamily="@font/roboto_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin60"
@@ -859,7 +858,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:fontFamily="@font/Roboto-Regular"
+                android:fontFamily="@font/roboto_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin50"
@@ -870,7 +869,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:fontFamily="@font/Roboto-Regular"
+                android:fontFamily="@font/roboto_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin50"
@@ -881,7 +880,6 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:fontFamily="@font/Roboto-Regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin50"
@@ -892,7 +890,6 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:fontFamily="@font/Roboto-Regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin30"
@@ -903,7 +900,6 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:fontFamily="@font/Roboto-Regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin30"

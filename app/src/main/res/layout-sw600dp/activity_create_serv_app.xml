@@ -33,7 +33,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:fontFamily="@font/Roboto-Medium"
                 android:id="@+id/txt_menu_header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -76,7 +75,6 @@
 
 
         <TextView
-            android:fontFamily="@font/Roboto-Regular"
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

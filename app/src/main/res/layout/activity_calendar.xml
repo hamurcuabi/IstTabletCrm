@@ -36,7 +36,7 @@
                 android:id="@+id/txt_menu_header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/Roboto-Medium"
+                android:fontFamily="@font/roboto_medium"
                 android:text="@string/takvim"
                 android:textColor="@color/white"
                 android:textSize="@dimen/menu_text"
