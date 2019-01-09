@@ -36,13 +36,12 @@
                 android:id="@+id/txt_menu_header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/servapp_icon_text"
+                android:fontFamily="@font/Roboto-Medium"
                 android:text="@string/takvim"
                 android:textColor="@color/white"
                 android:textSize="@dimen/menu_text"
-                app:layout_constraintBottom_toBottomOf="@+id/img_menu"
-                app:layout_constraintStart_toEndOf="@+id/img_menu"
-                app:layout_constraintTop_toTopOf="@+id/img_menu" />
+                tools:layout_editor_absoluteX="87dp"
+                tools:layout_editor_absoluteY="39dp" />
 
 
 
@@ -68,6 +67,8 @@
 
 
         <TextView
+            android:textStyle="bold"
+            android:fontFamily="@font/Roboto-Regular-Regular"
             android:id="@+id/txt_center_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -80,6 +81,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
+            android:fontFamily="@font/SourceSansPro-Regular"
             android:id="@+id/button"
             android:layout_width="@dimen/detay_menu_64"
             android:layout_height="@dimen/menu_left_32"
@@ -95,6 +97,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
+            android:fontFamily="@font/SourceSansPro-Regular"
             android:id="@+id/button2"
             android:layout_width="@dimen/detay_menu_64"
             android:layout_height="@dimen/menu_left_32"
@@ -106,6 +109,7 @@
             app:layout_constraintTop_toTopOf="@+id/button" />
 
         <Button
+            android:fontFamily="@font/SourceSansPro-Regular"
             android:id="@+id/button3"
             android:layout_width="@dimen/detay_menu_64"
             android:layout_height="@dimen/menu_left_32"
