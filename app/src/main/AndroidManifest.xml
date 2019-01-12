@@ -33,8 +33,18 @@
         <activity android:name=".activity.TestActivity"></activity>
         <activity
             android:name=".activity.HomeActivity"
-            android:screenOrientation="landscape"></activity>
-        <activity android:name=".activity.ServAppActivty"></activity>
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.ServAppActivty"
+            android:screenOrientation="landscape">
+
+        </activity>
         <activity
             android:name=".activity.ServAppDetailActivity"
             android:screenOrientation="landscape"></activity>
@@ -44,13 +54,11 @@
         <activity android:name=".calendar.AsyncActivity" />
         <activity android:name=".activity.CreateServAppActivity" />
         <activity android:name=".activity.ElevatorDetailActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-        <activity android:name=".activity.LoginActivity"></activity>
+        <activity android:name=".activity.LoginActivity">
+
+        </activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

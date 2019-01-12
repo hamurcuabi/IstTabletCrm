@@ -46,11 +46,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void setTexts() {
-
         edt_nick.setText(pref.getUserMail());
         edt_pass.setText(pref.getUserPass());
-
-
 
     }
 

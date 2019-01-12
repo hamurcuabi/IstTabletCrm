@@ -75,7 +75,7 @@
             app:layout_constraintTop_toBottomOf="@id/cons_user" />
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/cons_servis"
+            android:id="@+id/cons_isemirleri"
             android:layout_width="@dimen/home_button_width"
             android:layout_height="@dimen/home_button_height"
             android:layout_marginStart="@dimen/home_logo"
@@ -150,7 +150,7 @@
             android:layout_marginStart="@dimen/buttons"
             android:layout_marginTop="@dimen/home_btn_text"
             android:background="@drawable/btn_mesaj_rounded"
-            app:layout_constraintStart_toEndOf="@id/cons_servis"
+            app:layout_constraintStart_toEndOf="@id/cons_isemirleri"
             app:layout_constraintTop_toBottomOf="@+id/txt_info">
 
             <ImageView
@@ -286,7 +286,7 @@
             android:layout_marginTop="@dimen/buttons"
             android:background="@drawable/btn_musteri_rounded"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cons_servis">
+            app:layout_constraintTop_toBottomOf="@+id/cons_isemirleri">
 
             <ImageView
                 android:id="@+id/img_musteri"
@@ -353,7 +353,7 @@
             android:layout_marginTop="@dimen/buttons"
             android:background="@drawable/btn_musteri_urun_rounded"
             app:layout_constraintStart_toEndOf="@id/cons_musteri"
-            app:layout_constraintTop_toBottomOf="@+id/cons_servis">
+            app:layout_constraintTop_toBottomOf="@+id/cons_isemirleri">
 
             <ImageView
                 android:id="@+id/img_musteri_urun"
@@ -413,14 +413,14 @@
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/cons_gorseller"
+            android:id="@+id/cons_takvim"
             android:layout_width="@dimen/home_button_width"
             android:layout_height="@dimen/home_button_height"
             android:layout_marginStart="@dimen/buttons"
             android:layout_marginTop="@dimen/buttons"
             android:background="@drawable/btn_gorseller_rounded"
             app:layout_constraintStart_toEndOf="@id/cons_musteri_urun"
-            app:layout_constraintTop_toBottomOf="@+id/cons_servis">
+            app:layout_constraintTop_toBottomOf="@+id/cons_isemirleri">
 
             <ImageView
                 android:id="@+id/img_gorseller"
@@ -480,14 +480,14 @@
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/cons_konum"
+            android:id="@+id/cons_teknik"
             android:layout_width="@dimen/home_button_width"
             android:layout_height="@dimen/home_button_height"
             android:layout_marginStart="@dimen/buttons"
             android:layout_marginTop="@dimen/buttons"
             android:background="@drawable/btn_konum_rounded"
-            app:layout_constraintStart_toEndOf="@id/cons_gorseller"
-            app:layout_constraintTop_toBottomOf="@+id/cons_servis">
+            app:layout_constraintStart_toEndOf="@id/cons_takvim"
+            app:layout_constraintTop_toBottomOf="@+id/cons_isemirleri">
 
             <ImageView
                 android:id="@+id/img_konum"
