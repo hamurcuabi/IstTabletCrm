@@ -1,5 +1,6 @@
 package com.emrhmrc.isttabletcrm.models.ServApp;
 
+import com.emrhmrc.isttabletcrm.models.CommonClass.Code;
 import com.emrhmrc.isttabletcrm.models.CommonClass.TableMetadata;
 import com.google.gson.annotations.SerializedName;
 
@@ -12,9 +13,18 @@ public class ServAppListAll {
     @SerializedName("ServiceAppointments")
     private List<ServiceAppointments> ServiceAppointments;
 
-    private String ErrorMsg;
 
+    private String ErrorMsg;
     private boolean Success;
+
+    public ServAppListAll() {
+    }
+
+
+
+    public boolean isSuccess() {
+        return Success;
+    }
 
     public TableMetadata getTableMetadataServApps() {
         return TableMetadataServApps;

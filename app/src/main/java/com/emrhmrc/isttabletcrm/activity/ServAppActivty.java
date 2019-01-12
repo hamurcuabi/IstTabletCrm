@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
@@ -28,6 +30,7 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
     private List<ServiceAppointments> model;
     private JsonApi jsonApi;
     private RcvServAppListAllAdapter adapter;
+    private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,13 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
         adapter.setListener(this);
         rcw.setAdapter(adapter);
         rcw.setLayoutManager(new LinearLayoutManager(this));
+        spinner = findViewById(R.id.spn_servapp);
+
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(
+                this, R.layout.spinner_item, getResources().getStringArray(R.array.spn_servapp)
+        );
+        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
+        spinner.setAdapter(spinnerArrayAdapter);
 
 
     }

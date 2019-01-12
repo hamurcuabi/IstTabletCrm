@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <layer-list>
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/mobil_konum"/>
+                    <stroke android:width="2px" android:color="@color/white" />
+                    <corners android:radius="2dp" />
+                </shape>
+            </item>
+
+            <item>
+
+                <bitmap android:gravity="right" android:src="@drawable/ic_dropdown_white"/>
+
+            </item>
+
+        </layer-list>
+    </item>
+</selector>

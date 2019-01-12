@@ -1,22 +1,22 @@
 package com.emrhmrc.isttabletcrm.calendar;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.graphics.Point;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.fragment.MapFragment;
+import com.emrhmrc.isttabletcrm.models.MapModel;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -101,8 +101,15 @@ public abstract class BaseActivity extends AppCompatActivity implements WeekView
 //                FragmentTransaction ft = fm.beginTransaction();
 //                ft.add(R.id.mapview, new MapFragment());
 //                ft.commit();
-                MapFragment fragment=MapFragment.newInstance();
-                fragment.show(getSupportFragmentManager(),"KontrolListesi");
+                Display display = getWindowManager().getDefaultDisplay();
+                Point size = new Point();
+                display.getSize(size);
+                int width = size.x - 100;
+                int height = size.y - 200;
+                MapModel map = new MapModel(27.6, 28.3, "title", "desc");
+                MapFragment fragment = MapFragment.newInstance(map,width,height);
+                fragment.show(getSupportFragmentManager(), "KontrolListesi");
+
             }
         });
         after.add(Calendar.DAY_OF_MONTH, 6);

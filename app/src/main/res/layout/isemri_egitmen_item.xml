@@ -1,90 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
-    <ImageView
-        android:id="@+id/imageView4"
+
+    <RelativeLayout
         android:layout_width="@dimen/isemri_left_width"
         android:layout_height="@dimen/isemri_left_height"
-        android:background="@drawable/isemri_egitmen"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:background="@drawable/isemri_egitmen">
+
+        <TextView
+            android:id="@+id/txt_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/roboto_medium"
+            android:text="1"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_menu_18" />
+    </RelativeLayout>
 
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginStart="@dimen/isemri_icon_iv"
-        android:background="@drawable/ic_egitmen"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
-        app:layout_constraintTop_toTopOf="@+id/imageView4" />
+        android:layout_marginEnd="@dimen/detay_menu_12"
+        android:background="@drawable/ic_egitmen" />
 
-    <TextView
-        android:id="@+id/txt_yillik"
-        android:layout_width="@dimen/isemri_text_width"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/egitmen"
-        android:textColor="@color/text_color"
-        android:textSize="@dimen/isemri_text"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-        app:layout_constraintStart_toEndOf="@+id/imageView5"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_gravity="center"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txt_yillik"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/detay_menu_12"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/egitmen"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/isemri_text"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_yillik_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/dummy_aprt"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/isemri_text" />
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/txt_info"
-        android:layout_width="@dimen/isemri_text_info"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="10"
+        android:gravity="center|left"
         android:text="@string/dummy_info_short"
         android:textColor="@color/text_color"
-        android:textSize="@dimen/isemri_text"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-        app:layout_constraintStart_toEndOf="@+id/txt_yillik"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="@dimen/isemri_text" />
 
     <TextView
         android:id="@+id/txt_start_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/isemri_start_date_info"
+        android:layout_gravity="center"
+        android:layout_weight="1"
         android:text="@string/dummy_date"
         android:textColor="@color/text_color"
-        android:textSize="@dimen/isemri_text"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-        app:layout_constraintStart_toEndOf="@+id/txt_info"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="@dimen/isemri_text" />
 
     <TextView
         android:id="@+id/txt_end_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/isemri_dates"
+        android:layout_gravity="center"
+        android:layout_weight="1"
         android:text="@string/dummy_date"
         android:textColor="@color/text_color"
-        android:textSize="@dimen/isemri_text"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-        app:layout_constraintStart_toEndOf="@+id/txt_start_date"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="@dimen/isemri_text" />
 
     <TextView
         android:id="@+id/txt_oncelik"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/isemri_oncelik"
+        android:layout_gravity="center"
+        android:layout_weight="1"
         android:drawableRight="@drawable/ic_az"
-        android:drawablePadding="@dimen/isemri_icon_text"
         android:text="@string/az"
         android:textColor="@color/text_color"
-        android:textSize="@dimen/isemri_text"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-        app:layout_constraintStart_toEndOf="@+id/txt_end_date"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="@dimen/isemri_text" />
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

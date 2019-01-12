@@ -140,7 +140,10 @@
     <string name="urunkatalogu">Ürün Kataloğu</string>
     <string name="bilgilendrme">Bilgilendirme</string>
     <string name="teknik_dokumanlar">Teknik Dökümanlar</string>
+    <string name="dummy_aprt">Deniz Aprt B Blok</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="spn_servapp">
+        <item>Tüm İş Emirlerim</item>
+        <item>Özel İş Emirlerim</item>
+    </string-array>
 </resources>
