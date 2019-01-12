@@ -8,7 +8,7 @@
     tools:context=".activity.ElevatorDetailActivity">
 
     <android.support.constraint.ConstraintLayout
-        android:layout_width="@dimen/servapp_detail_width"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/detay_menu_297"
         android:background="@drawable/elevator_detail"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,15 +64,20 @@
 
 
     </android.support.constraint.ConstraintLayout>
-
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <android.support.constraint.ConstraintLayout
+        android:layout_weight="1"
         android:id="@+id/cons_genel"
-        android:layout_width="@dimen/margin594"
-        android:layout_height="@dimen/detay_menu_572"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginStart="@dimen/menu_left"
         android:layout_marginTop="@dimen/detay_menu_145"
         android:background="@color/white"
         android:elevation="@dimen/detay_menu_8"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -102,6 +107,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ScrollView
+            android:layout_marginBottom="@dimen/detay_menu_12"
             android:id="@+id/scroll_genel"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -113,13 +119,13 @@
             app:layout_constraintTop_toBottomOf="@+id/textView3">
 
             <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
+                android:layout_width="370dp"
                 android:layout_height="match_parent">
 
                 <LinearLayout
                     android:id="@+id/lnr_asansoradi"
                     android:layout_width="@dimen/detay_menu_370"
-                    android:layout_height="wrap_content"
+                    android:layout_height="20dp"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -141,11 +147,11 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:fontFamily="@font/roboto_regular"
                         android:id="@+id/txt_asansorname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/detay_menu_8"
+                        android:fontFamily="@font/roboto_regular"
                         android:text="@string/asansor_name"
                         android:textColor="@color/text_color_3"
                         android:textSize="@dimen/text_menu_16"
@@ -576,6 +582,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+
                     android:id="@+id/lnr_asfirma"
                     android:layout_width="@dimen/detay_menu_370"
                     android:layout_height="wrap_content"
@@ -622,8 +629,9 @@
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
+        android:layout_weight="1"
         android:id="@+id/cons_ozellik"
-        android:layout_width="@dimen/margin594"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/margin456"
         android:layout_marginStart="@dimen/menu_left"
         android:layout_marginTop="@dimen/detay_menu_145"
@@ -937,4 +945,6 @@
 
 
     </android.support.constraint.ConstraintLayout>
+</LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

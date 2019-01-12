@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.emrhmrc.isttabletcrm">
 
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -15,6 +14,7 @@
     <permission
         android:name="com.example.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
+
     <uses-permission android:name="com.example.permission.MAPS_RECEIVE" />
 
     <supports-screens
@@ -30,38 +30,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.TestActivity">
-
-        </activity>
+        <activity android:name=".activity.TestActivity"></activity>
         <activity
             android:name=".activity.HomeActivity"
-            android:screenOrientation="landscape">
-
-        </activity>
-        <activity android:name=".activity.ServAppActivty">
+            android:screenOrientation="landscape"></activity>
+        <activity android:name=".activity.ServAppActivty"></activity>
+        <activity
+            android:name=".activity.ServAppDetailActivity"
+            android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".activity.CalendarActivity"
+            android:screenOrientation="landscape"></activity>
+        <activity android:name=".calendar.AsyncActivity" />
+        <activity android:name=".activity.CreateServAppActivity" />
+        <activity android:name=".activity.ElevatorDetailActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ServAppDetailActivity"
-            android:screenOrientation="landscape"></activity>
-        <activity
-            android:name=".activity.CalendarActivity"
-            android:screenOrientation="landscape">
-
-        </activity>
-        <activity android:name=".calendar.AsyncActivity" />
-        <activity android:name=".activity.CreateServAppActivity"></activity>
-        <activity android:name=".activity.ElevatorDetailActivity"></activity>
-        <activity android:name=".activity.LoginActivity">
-
-        </activity>
+        <activity android:name=".activity.LoginActivity"></activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAJXCTkE7HVCamAy7l0EL7K8E2Y-EE8bNk" />
+
+        <activity android:name=".activity.TechnicalDocumentActivity"></activity>
     </application>
 
 </manifest>

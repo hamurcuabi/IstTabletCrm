@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.ServAppDetailActivity">
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.ServAppDetailActivity">
+
 
 
     <android.support.constraint.ConstraintLayout
@@ -34,11 +42,11 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:fontFamily="@font/roboto_medium"
                 android:id="@+id/txt_menu_header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/servapp_icon_text"
+                android:fontFamily="@font/roboto_medium"
                 android:text="@string/isemirlerim"
                 android:textColor="@color/white"
                 android:textSize="@dimen/menu_text"
@@ -81,7 +89,7 @@
                     android:id="@+id/txt_isemri_tamamla"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/menu_left_32"
+                    android:layout_marginEnd="@dimen/detay_menu_12"
                     android:fontFamily="@font/roboto_regular"
                     android:text="@string/isemri_tamamla"
                     android:textAllCaps="true"
@@ -192,6 +200,7 @@
         android:layout_marginTop="@dimen/detay_menu"
         android:layout_marginEnd="@dimen/menu_left_32"
         android:background="@color/white"
+        android:elevation="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -200,8 +209,8 @@
             android:id="@+id/lnr_ilk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/detay_menu_55"
-            android:layout_marginTop="@dimen/detay_menu_35"
+            android:layout_marginStart="@dimen/detay_menu_25"
+            android:layout_marginTop="@dimen/detay_menu_12"
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -213,34 +222,47 @@
                 android:src="@drawable/ic_name_makine" />
 
             <LinearLayout
-                android:layout_width="@dimen/menu_detay"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/menu_text_12"
                 android:orientation="vertical">
 
                 <TextView
-                    android:fontFamily="@font/roboto_regular"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="@string/firma_ismi"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/menu_text_16" />
 
                 <TextView
-                    android:fontFamily="@font/roboto_regular"
+                    android:id="@+id/txt_firmaismi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="@string/dummy_firma"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/text_menu_28" />
 
                 <TextView
-                    android:fontFamily="@font/roboto_regular"
+                    android:id="@+id/txt_firma_descp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="@string/dummy_info_short"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/menu_text_16" />
+
+                <TextView
+                    android:id="@+id/txt_blokadi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/cblok"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/menu_text_16"
+                    android:textStyle="bold" />
             </LinearLayout>
 
         </LinearLayout>
@@ -249,8 +271,8 @@
             android:id="@+id/lnr_iki"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/detay_menu_55"
-            android:layout_marginTop="@dimen/detay_menu_35"
+            android:layout_marginStart="@dimen/detay_menu_25"
+            android:layout_marginTop="@dimen/detay_menu_12"
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lnr_ilk">
@@ -262,23 +284,24 @@
                 android:src="@drawable/ic_asansor_no" />
 
             <LinearLayout
-                android:layout_width="@dimen/menu_detay"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/menu_text_12"
                 android:orientation="vertical">
 
                 <TextView
-                    android:fontFamily="@font/roboto_regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="@string/asansor_no"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/menu_text_16" />
 
                 <TextView
-                    android:fontFamily="@font/roboto_regular"
+                    android:id="@+id/txt_asansorno"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="@string/dummy_no"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/text_menu_28" />
@@ -291,9 +314,10 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/detay_menu_55"
-            android:layout_marginTop="@dimen/detay_menu_35"
+            android:layout_marginStart="@dimen/detay_menu_25"
+            android:layout_marginTop="@dimen/detay_menu_12"
             android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lnr_iki">
 
@@ -304,24 +328,25 @@
                 android:src="@drawable/ic_ariza" />
 
             <LinearLayout
-                android:layout_width="@dimen/menu_detay"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/menu_text_12"
                 android:layout_marginBottom="@dimen/detay_menu_35"
                 android:orientation="vertical">
 
                 <TextView
-                    android:fontFamily="@font/roboto_regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="@string/isemri_tipi"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/menu_text_16" />
 
                 <TextView
-                    android:fontFamily="@font/roboto_regular"
+                    android:id="@+id/txt_isemritipi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="@string/ariza"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/text_menu_28" />
@@ -332,7 +357,7 @@
                     android:background="@drawable/lnr_progres_parent">
 
                     <ImageView
-                        android:layout_width="@dimen/progres"
+                        android:layout_width="@dimen/detay_menu_55"
                         android:layout_height="@dimen/progres_height"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentTop="true"
@@ -343,12 +368,36 @@
                 </RelativeLayout>
 
                 <TextView
-                    android:fontFamily="@font/roboto_regular"
+                    android:id="@+id/txt_islem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="@string/devam_ediyor"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/menu_text_16" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/detay_menu_12"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="@string/oncelik_durumu"
+                        android:textColor="@color/text_color_3"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txt_oncelik"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableRight="@drawable/ic_yuksek"
+                        android:text="@string/yuksek" />
+                </LinearLayout>
+
             </LinearLayout>
 
         </LinearLayout>
@@ -372,7 +421,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/detay_menu_25"
-            android:layout_marginTop="@dimen/detay_menu_35"
+            android:layout_marginTop="@dimen/detay_menu_12"
             android:orientation="horizontal"
             app:layout_constraintStart_toEndOf="@id/lnr_ayrac"
             app:layout_constraintTop_toTopOf="parent">
@@ -391,21 +440,22 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:fontFamily="@font/roboto_regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="@string/usta_adi"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/menu_text_16" />
 
                 <TextView
-                    android:textStyle="bold"
-                    android:fontFamily="@font/roboto_regular"
+                    android:id="@+id/txt_ustaadi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="@string/dummy_usta"
                     android:textColor="@color/text_color_3"
-                    android:textSize="@dimen/text_menu_16" />
+                    android:textSize="@dimen/text_menu_16"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -416,7 +466,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/detay_menu_25"
-            android:layout_marginTop="@dimen/detay_menu_35"
+            android:layout_marginTop="@dimen/detay_menu_12"
             android:orientation="horizontal"
             app:layout_constraintStart_toEndOf="@id/lnr_yan_bir"
             app:layout_constraintTop_toTopOf="parent">
@@ -434,21 +484,22 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:fontFamily="@font/roboto_regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="@string/randevu_tarih"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/menu_text_16" />
 
                 <TextView
-                    android:textStyle="bold"
-                    android:fontFamily="@font/roboto_regular"
+                    android:id="@+id/txt_randevu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="@string/dummy_tarih"
                     android:textColor="@color/text_color_3"
-                    android:textSize="@dimen/text_menu_16" />
+                    android:textSize="@dimen/text_menu_16"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -478,21 +529,22 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:fontFamily="@font/roboto_regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="@string/supervisor"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/menu_text_16" />
 
                 <TextView
-                    android:textStyle="bold"
-                    android:fontFamily="@font/roboto_regular"
+                    android:id="@+id/txt_ilgilisupervisor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="@string/dummy_usta_2"
                     android:textColor="@color/text_color_3"
-                    android:textSize="@dimen/text_menu_16" />
+                    android:textSize="@dimen/text_menu_16"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -522,21 +574,22 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:fontFamily="@font/roboto_regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="@string/ise_baslama"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/menu_text_16" />
 
                 <TextView
-                    android:textStyle="bold"
-                    android:fontFamily="@font/roboto_regular"
+                    android:id="@+id/txt_isebaslama"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="@string/dummy_tarih"
                     android:textColor="@color/text_color_3"
-                    android:textSize="@dimen/text_menu_16" />
+                    android:textSize="@dimen/text_menu_16"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -566,20 +619,44 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:textStyle="bold"
-                    android:fontFamily="@font/roboto_regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="@string/ariza_nedini"
                     android:textColor="@color/text_color_3"
-                    android:textSize="@dimen/text_menu_16" />
+                    android:textSize="@dimen/text_menu_16"
+                    android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/txt_ariza_nedeni"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/dummy_info_short"
                     android:textColor="@color/text_color_3"
                     android:textSize="@dimen/text_menu_16" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/arizakodu"
+                        android:textColor="@color/text_color_3"
+                        android:textSize="@dimen/text_menu_16"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txt_arizakodu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/dummy_kod"
+                        android:textColor="@color/kontrol_listesi"
+                        android:textSize="@dimen/text_menu_16"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -608,15 +685,16 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:textStyle="bold"
-                    android:fontFamily="@font/roboto_regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="@string/acikmala_not"
                     android:textColor="@color/text_color_3"
-                    android:textSize="@dimen/text_menu_16" />
+                    android:textSize="@dimen/text_menu_16"
+                    android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/txt_aciklamanot"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/dummy_info_short"
@@ -628,82 +706,40 @@
         </LinearLayout>
 
         <Button
-            android:textStyle="bold"
-            android:fontFamily="@font/roboto_regular"
             android:id="@+id/btn_is_kapatma"
             android:layout_width="@dimen/home_button_width"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/detay_menu_20"
-            android:layout_marginEnd="@dimen/detay_menu_20"
+            android:layout_marginTop="@dimen/detay_menu_12"
+            android:layout_marginEnd="@dimen/detay_menu_25"
             android:background="@drawable/btn_is_kapatma"
+            android:fontFamily="@font/roboto_regular"
             android:text="@string/is_kapatma"
             android:textAllCaps="true"
             android:textColor="@color/white"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/img_gps"
-            android:layout_width="@dimen/home_button_width"
-            android:layout_height="@dimen/home_button_width"
-            android:layout_marginTop="@dimen/detay_menu_20"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/detay_menu_145"
+            android:layout_marginTop="@dimen/detay_menu_12"
             app:layout_constraintEnd_toEndOf="@+id/btn_is_kapatma"
             app:layout_constraintStart_toStartOf="@+id/btn_is_kapatma"
             app:layout_constraintTop_toBottomOf="@+id/btn_is_kapatma"
             app:srcCompat="@drawable/gps" />
 
-        <TextView
-            android:fontFamily="@font/roboto_regular"
-            android:id="@+id/txt_oncelik"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/detay_menu_20"
-            android:text="@string/oncelik_durumu"
-            android:textAllCaps="true"
-            android:textColor="@color/text_color"
-            android:textSize="@dimen/text_menu_16"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/img_gps"
-            app:layout_constraintStart_toStartOf="@+id/img_gps"
-            app:layout_constraintTop_toBottomOf="@+id/img_gps" />
-
-        <TextView
-            android:fontFamily="@font/roboto_regular"
-            android:id="@+id/txt_durum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/detay_menu_15"
-            android:text="@string/yuksek"
-            android:textAllCaps="true"
-            android:textColor="@color/yuksek"
-            android:textSize="@dimen/text_menu_16"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/img_gps"
-            app:layout_constraintStart_toStartOf="@+id/img_gps"
-            app:layout_constraintTop_toBottomOf="@+id/txt_oncelik" />
-
-        <RelativeLayout
-            android:id="@+id/rlt_oncelik"
-            android:layout_width="@dimen/lnr_width"
-            android:layout_height="@dimen/lnr_height"
-            android:layout_marginTop="@dimen/lnr_height"
-            android:layout_marginBottom="@dimen/lnr_height"
-            android:background="@drawable/lnr_yuksek"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/img_gps"
-            app:layout_constraintStart_toStartOf="@+id/img_gps"
-            app:layout_constraintTop_toBottomOf="@id/txt_durum">
-
-        </RelativeLayout>
 
     </android.support.constraint.ConstraintLayout>
 
     <Button
         android:id="@+id/btn_malzeme_icerik"
-        android:layout_width="@dimen/btn_malzeme_width"
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/btn_malzeme_height"
         android:layout_marginTop="@dimen/detay_menu_15"
         android:background="@drawable/btn_malzeme"
+        android:padding="@dimen/detay_menu_12"
         android:text="@string/malzeme_icerik"
         android:textAllCaps="true"
         android:textColor="@color/white"
@@ -715,12 +751,13 @@
 
     <Button
         android:id="@+id/btn_kontrol_listesi"
-        android:layout_width="@dimen/btn_malzeme_width"
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/btn_malzeme_height"
-        android:layout_marginStart="@dimen/progres_padding"
+        android:layout_marginStart="@dimen/detay_menu_25"
         android:background="@drawable/btn_kontrol"
-        android:fontFamily="@font/roboto_regular"
+        android:fontFamily="@font/roboto_medium"
         android:onClick="openControlList"
+        android:padding="@dimen/detay_menu_12"
         android:text="@string/kontrol_listesi"
         android:textAllCaps="true"
         android:textColor="@color/white"
@@ -730,14 +767,28 @@
         app:layout_constraintStart_toEndOf="@+id/btn_malzeme_icerik"
         app:layout_constraintTop_toTopOf="@+id/btn_malzeme_icerik" />
 
+
+    <Button
+        android:id="@+id/btn_beforeafter"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/detay_menu_45"
+        android:background="@drawable/btn_konum_rounded"
+        android:padding="@dimen/detay_menu_12"
+        android:text="@string/oncekisonraki"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_menu_18"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/cons_malzeme_icerik"
+        app:layout_constraintEnd_toEndOf="@+id/cons_detail"
+        app:layout_constraintTop_toTopOf="@+id/btn_kontrol_listesi" />
+
     <android.support.constraint.ConstraintLayout
         android:id="@+id/cons_malzeme_icerik"
         android:layout_width="match_parent"
         android:layout_height="@dimen/malzeme_height"
         android:background="@color/malzeme_icerik"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_malzeme_icerik">
 
@@ -762,7 +813,6 @@
                 android:src="@drawable/ic_yeni" />
 
             <TextView
-                android:fontFamily="@font/roboto_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -773,6 +823,7 @@
                 android:layout_marginEnd="0dp"
                 android:layout_marginBottom="0dp"
                 android:layout_toEndOf="@+id/img_add"
+                android:fontFamily="@font/roboto_regular"
                 android:gravity="center_vertical"
                 android:text="@string/yeni"
                 android:textAllCaps="true"
@@ -803,7 +854,6 @@
                 android:src="@drawable/ic_yeni" />
 
             <TextView
-                android:fontFamily="@font/roboto_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -814,6 +864,7 @@
                 android:layout_marginEnd="0dp"
                 android:layout_marginBottom="0dp"
                 android:layout_toEndOf="@+id/img_add_2"
+                android:fontFamily="@font/roboto_regular"
                 android:gravity="center_vertical"
                 android:text="@string/iscilik_ekle"
                 android:textAllCaps="true"
@@ -835,9 +886,9 @@
             app:layout_constraintTop_toBottomOf="@+id/lnr_isci">
 
             <TextView
-                android:fontFamily="@font/roboto_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_regular"
                 android:text="@string/kod"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
@@ -845,10 +896,10 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:fontFamily="@font/roboto_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin120"
+                android:fontFamily="@font/roboto_regular"
                 android:text="@string/urun_adi"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
@@ -856,10 +907,10 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:fontFamily="@font/roboto_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin60"
+                android:fontFamily="@font/roboto_regular"
                 android:text="@string/miktar"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
@@ -867,10 +918,10 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:fontFamily="@font/roboto_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin50"
+                android:fontFamily="@font/roboto_regular"
                 android:text="@string/birim"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
@@ -878,10 +929,10 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:fontFamily="@font/roboto_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin50"
+                android:fontFamily="@font/roboto_regular"
                 android:text="@string/stok_durumu"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
@@ -930,4 +981,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cons_malzeme_icerik">
 
     </android.support.v7.widget.RecyclerView>
+
+
 </android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.NestedScrollView>

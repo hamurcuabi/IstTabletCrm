@@ -7,17 +7,11 @@ import com.google.gson.annotations.SerializedName;
 public class ServiceAppointments {
     @SerializedName("StatusCode")
     private Code StatusCode;
-
     private String ActualStart;
-
     private String ActualEnd;
-
     private String ActivityId;
-
     private String Subject;
-
     private Inv_Id inv_CustomerId;
-
     private Inv_Id inv_TypeCode;
     private double inv_Latitude;
     private double inv_Longitude;

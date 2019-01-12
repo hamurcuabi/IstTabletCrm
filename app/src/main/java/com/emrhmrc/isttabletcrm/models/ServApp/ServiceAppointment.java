@@ -10,32 +10,46 @@ import java.util.List;
 public class ServiceAppointment {
     @SerializedName("StatusCode")
     private Code StatusCode;
-
     private String ActivityId;
-
     private String Subject;
-
     private List<ServAppGetByIdServAppBreakdownTypes> ServAppGetByIdServAppBreakdownTypes;
-
     private Inv_Id inv_CustomerId;
-
     private List<ServAppGetByIdServAppWorkListDetails> ServAppGetByIdServAppWorkListDetails;
-
     private List<ServAppGetByIdNotes> ServAppGetByIdNotes;
-
     private String ActualStart;
-
     private String ActualEnd;
-
     private Inv_Id inv_ElevatorId;
-
     private List<ServAppGetByIdServAppUnsuitabilities> ServAppGetByIdServAppUnsuitabilities;
-
     private List<ServAppGetByIdServAppDetails> ServAppGetByIdServAppDetails;
-
     private Code inv_TypeCode;
-
     private List<ServAppGetByIdServAppModernizationChecklists> ServAppGetByIdServAppModernizationChecklists;
+    private double inv_Latitude;
+    private double inv_Longitude;
+    private Code PriortiyCode;
+
+    public double getInv_Latitude() {
+        return inv_Latitude;
+    }
+
+    public void setInv_Latitude(double inv_Latitude) {
+        this.inv_Latitude = inv_Latitude;
+    }
+
+    public double getInv_Longitude() {
+        return inv_Longitude;
+    }
+
+    public void setInv_Longitude(double inv_Longitude) {
+        this.inv_Longitude = inv_Longitude;
+    }
+
+    public Code getPriortiyCode() {
+        return PriortiyCode;
+    }
+
+    public void setPriortiyCode(Code priortiyCode) {
+        PriortiyCode = priortiyCode;
+    }
 
     public Code getStatusCode() {
         return StatusCode;

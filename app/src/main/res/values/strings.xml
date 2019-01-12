@@ -141,6 +141,15 @@
     <string name="bilgilendrme">Bilgilendirme</string>
     <string name="teknik_dokumanlar">Teknik Dökümanlar</string>
     <string name="dummy_aprt">Deniz Aprt B Blok</string>
+    <string name="oncekisonraki">Önceki Ve Sonraki Görünümü</string>
+    <string name="dummy_kod">CHPSTTWERK</string>
+    <string name="cblok">C Blok</string>
+    <string name="arizakodu">Arıza Kodu</string>
+    <string name="arizaoncesi">Arızadan Önceki Görünüm</string>
+    <string name="foto_ekle">Fotoğraf Ekle</string>
+    <string name="baslangic">Başlangıç</string>
+    <string name="dokumanara">Dökğman Ara</string>
+    <string name="incele">İncele</string>
 
     <string-array name="spn_servapp">
         <item>Tüm İş Emirlerim</item>
