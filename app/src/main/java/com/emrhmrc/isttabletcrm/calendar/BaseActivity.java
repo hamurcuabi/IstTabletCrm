@@ -1,26 +1,40 @@
 package com.emrhmrc.isttabletcrm.calendar;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.emrhmrc.isttabletcrm.R;
+import com.emrhmrc.isttabletcrm.fragment.MapFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public abstract class BaseActivity extends AppCompatActivity implements WeekView.EventClickListener, MonthLoader.MonthChangeListener, WeekView.EventLongPressListener, WeekView.EmptyViewLongPressListener {
+public abstract class BaseActivity extends AppCompatActivity implements WeekView
+        .EventClickListener, MonthLoader.MonthChangeListener, WeekView.EventLongPressListener, WeekView.EmptyViewLongPressListener {
     private static final int TYPE_DAY_VIEW = 1;
     private static final int TYPE_THREE_DAY_VIEW = 2;
     private static final int TYPE_WEEK_VIEW = 3;
+    private final SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
     private int mWeekViewType = TYPE_THREE_DAY_VIEW;
     private WeekView mWeekView;
-
+    private TextView txt_center_date;
+    private Button btn_today, btn_next, btn_back;
+    private Calendar now = Calendar.getInstance();
+    private Calendar after = Calendar.getInstance();
+    private ImageView img_gps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +50,64 @@ public abstract class BaseActivity extends AppCompatActivity implements WeekView
         mWeekView.setMaxTime(19);
         setupDateTimeInterpreter(false);
         mWeekView.goToHour(9);
+        //init
+        txt_center_date = findViewById(R.id.txt_center_date);
+        btn_today = findViewById(R.id.btn_today);
+        btn_back = findViewById(R.id.btn_back);
+        btn_next = findViewById(R.id.btn_next);
+        img_gps = findViewById(R.id.img_gps);
+        //Cliks
+        btn_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                now.add(Calendar.DAY_OF_MONTH, 6);
+                after.add(Calendar.DAY_OF_MONTH, 6);
+                mWeekView.goToDate(now);
+                txt_center_date.setText("" + sdf.format(now.getTime()) + " - " + sdf.format(after
+                        .getTime()));
+
+            }
+        });
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                now.add(Calendar.DAY_OF_MONTH, -6);
+                after.add(Calendar.DAY_OF_MONTH, -6);
+                mWeekView.goToDate(now);
+                txt_center_date.setText("" + sdf.format(now.getTime()) + " - " + sdf.format(after
+                        .getTime()));
+
+
+            }
+        });
+        btn_today.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mWeekView.goToToday();
+                now = Calendar.getInstance();
+                after = Calendar.getInstance();
+                after.add(Calendar.DAY_OF_MONTH, 6);
+                txt_center_date.setText("" + sdf.format(now.getTime()) + " - " + sdf.format(after
+                        .getTime()));
+
+
+            }
+        });
+
+        img_gps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                FragmentManager fm = getFragmentManager();
+//                FragmentTransaction ft = fm.beginTransaction();
+//                ft.add(R.id.mapview, new MapFragment());
+//                ft.commit();
+                MapFragment fragment=MapFragment.newInstance();
+                fragment.show(getSupportFragmentManager(),"KontrolListesi");
+            }
+        });
+        after.add(Calendar.DAY_OF_MONTH, 6);
+        txt_center_date.setText("" + sdf.format(now.getTime()) + " - " + sdf.format(after.getTime
+                ()));
 
     }
 
@@ -107,7 +179,7 @@ public abstract class BaseActivity extends AppCompatActivity implements WeekView
             public String interpretDate(Calendar date) {
                 SimpleDateFormat weekdayNameFormat = new SimpleDateFormat("EEE", Locale.getDefault());
                 String weekday = weekdayNameFormat.format(date.getTime());
-                SimpleDateFormat format = new SimpleDateFormat(" M/d", Locale.getDefault());
+                SimpleDateFormat format = new SimpleDateFormat(" d/M", Locale.getDefault());
 
                 // All android api level do not have a standard way of getting the first letter of
                 // the week day name. Hence we get the first char programmatically.

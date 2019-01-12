@@ -78,9 +78,10 @@
             android:id="@+id/cons_servis"
             android:layout_width="@dimen/home_button_width"
             android:layout_height="@dimen/home_button_height"
-            android:layout_marginTop="@dimen/buttons"
+            android:layout_marginStart="@dimen/home_logo"
+            android:layout_marginTop="@dimen/home_btn_text"
             android:background="@drawable/btn_servis_rounded"
-            app:layout_constraintStart_toStartOf="@+id/txt_info"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_info">
 
             <ImageView
@@ -98,15 +99,16 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:textStyle="bold"
+                android:fontFamily="@font/roboto_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:fontFamily="@font/roboto_regular"
-                android:text="@string/isemrleri"
+                android:text="@string/servis"
+
                 android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:textSize="@dimen/home_user_name_text"
-                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/img_servis"
                 app:layout_constraintStart_toStartOf="@+id/img_servis"
                 app:layout_constraintTop_toBottomOf="@+id/img_servis" />
@@ -121,17 +123,17 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
+                    android:textStyle="bold"
+                    android:fontFamily="@font/roboto_regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="0dp"
                     android:layout_marginTop="0dp"
                     android:layout_marginEnd="0dp"
                     android:layout_marginBottom="0dp"
-                    android:fontFamily="@font/roboto_regular"
                     android:text="@string/circle_text"
                     android:textColor="@color/white"
                     android:textSize="@dimen/circle_text"
-                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -146,7 +148,7 @@
             android:layout_width="@dimen/home_button_width"
             android:layout_height="@dimen/home_button_height"
             android:layout_marginStart="@dimen/buttons"
-            android:layout_marginTop="@dimen/buttons"
+            android:layout_marginTop="@dimen/home_btn_text"
             android:background="@drawable/btn_mesaj_rounded"
             app:layout_constraintStart_toEndOf="@id/cons_servis"
             app:layout_constraintTop_toBottomOf="@+id/txt_info">
@@ -171,7 +173,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/duyurular"
+                android:text="@string/mesaj"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:textSize="@dimen/home_user_name_text"
@@ -214,8 +216,8 @@
             android:layout_width="@dimen/home_button_width"
             android:layout_height="@dimen/home_button_height"
             android:layout_marginStart="@dimen/buttons"
-            android:layout_marginTop="@dimen/buttons"
-            android:background="@drawable/btn_gorseller_rounded"
+            android:layout_marginTop="@dimen/home_btn_text"
+            android:background="@drawable/btn_siparis_rounded"
             app:layout_constraintStart_toEndOf="@id/cons_mesaj"
             app:layout_constraintTop_toBottomOf="@+id/txt_info">
 
@@ -227,7 +229,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                android:src="@drawable/ic_gorseller"
+                android:src="@drawable/ic_siparis"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -239,7 +241,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/urunkatalogu"
+                android:text="@string/siparis"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:textSize="@dimen/home_user_name_text"
@@ -280,10 +282,10 @@
             android:id="@+id/cons_musteri"
             android:layout_width="@dimen/home_button_width"
             android:layout_height="@dimen/home_button_height"
+            android:layout_marginStart="@dimen/home_logo"
             android:layout_marginTop="@dimen/buttons"
-            android:layout_marginBottom="8dp"
             android:background="@drawable/btn_musteri_rounded"
-            app:layout_constraintStart_toStartOf="@+id/txt_info"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cons_servis">
 
             <ImageView
@@ -294,22 +296,22 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                android:src="@drawable/ic_musteri_urun"
+                android:src="@drawable/ic_musteri"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:textStyle="bold"
+                android:fontFamily="@font/roboto_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:fontFamily="@font/roboto_regular"
-                android:text="@string/bilgilendrme"
+                android:text="@string/musteri"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:textSize="@dimen/home_user_name_text"
-                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/img_musteri"
                 app:layout_constraintStart_toStartOf="@+id/img_musteri"
                 app:layout_constraintTop_toBottomOf="@+id/img_musteri" />
@@ -361,7 +363,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                android:src="@drawable/ic_siparis"
+                android:src="@drawable/ic_musteri_urun"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -373,7 +375,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/stok_durumu"
+                android:text="@string/musteri_urun"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:textSize="@dimen/home_user_name_text"
@@ -416,7 +418,7 @@
             android:layout_height="@dimen/home_button_height"
             android:layout_marginStart="@dimen/buttons"
             android:layout_marginTop="@dimen/buttons"
-            android:background="@drawable/btn_konum_rounded"
+            android:background="@drawable/btn_gorseller_rounded"
             app:layout_constraintStart_toEndOf="@id/cons_musteri_urun"
             app:layout_constraintTop_toBottomOf="@+id/cons_servis">
 
@@ -440,7 +442,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/takvim"
+                android:text="@string/gorseller"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:textSize="@dimen/home_user_name_text"
@@ -483,7 +485,7 @@
             android:layout_height="@dimen/home_button_height"
             android:layout_marginStart="@dimen/buttons"
             android:layout_marginTop="@dimen/buttons"
-            android:background="@drawable/btn_siparis_rounded"
+            android:background="@drawable/btn_konum_rounded"
             app:layout_constraintStart_toEndOf="@id/cons_gorseller"
             app:layout_constraintTop_toBottomOf="@+id/cons_servis">
 
@@ -507,7 +509,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/teknik_dokumanlar"
+                android:text="@string/mobil_konum"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:textSize="@dimen/home_user_name_text"
@@ -546,12 +548,11 @@
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:translationX="@dimen/top_right_x"
             android:translationY="@dimen/top_right_y"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/txt_info"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/img_top_right" />
 
@@ -560,7 +561,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/cons_konum"
             app:layout_constraintTop_toBottomOf="@+id/imageView2"
             app:srcCompat="@drawable/bottom_right" />
 

@@ -9,6 +9,9 @@ public class UserRequest {
         PassWord = passWord;
     }
 
+    public UserRequest() {
+    }
+
     public String getEmail() {
         return Email;
     }

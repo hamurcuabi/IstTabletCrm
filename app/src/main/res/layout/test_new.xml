@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    >
+
+    <TextView
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/konusu"
+        android:textColor="@color/white"
+        android:textSize="@dimen/txt_header"
+        android:textStyle="bold"
+        android:layout_marginStart="@dimen/detay_menu_30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"/>
+    <TextView
+        android:text="Konusu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"/>
+    <TextView
+        android:text="Başlangıç Tarihi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"/>
+    <TextView
+        android:text="Bitiş Tarihi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"/>
+    <TextView
+        android:layout_marginEnd="@dimen/detay_menu_45"
+        android:text="Öncelik"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"/>
+
+</LinearLayout>

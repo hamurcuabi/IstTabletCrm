@@ -8,7 +8,7 @@
 
 
     <android.support.constraint.ConstraintLayout
-        android:layout_width="@dimen/servapp_detail_width"
+        android:layout_width="0dp"
         android:layout_height="@dimen/servapp_detail_height"
         android:background="@drawable/servapp_detail"
         android:src="@drawable/servapp_detail"

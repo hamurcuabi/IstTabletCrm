@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.LoginActivity"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/home_logo"
+        android:layout_marginTop="@dimen/home_logo"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_home_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:translationX="@dimen/top_right_x"
+        android:translationY="@dimen/top_right_y"
+        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/img_top_right" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/bottom_right" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageView3"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center"
+            android:text="@string/giris"
+            android:textSize="@dimen/text_menu_24"
+            android:textStyle="bold" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_nick"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="@dimen/detay_menu_297"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/detay_menu_45">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edt_nick"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/kontrol_listesi"
+                android:hint="@string/nickname"
+                android:textColorHint="@color/is_kapatma" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_pass"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="@dimen/detay_menu_297"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/detay_menu_25">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edt_pass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/kontrol_listesi"
+                android:hint="@string/pass"
+                android:inputType="textPassword"
+                android:textColorHint="@color/is_kapatma" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="@dimen/detay_menu_297"
+            android:layout_height="wrap_content">
+        <CheckBox
+            android:layout_weight="1"
+            android:id="@+id/cb_rememberme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/detay_menu_12"
+            android:buttonTint="@color/kontrol_listesi"
+            android:checked="true"
+            android:text="@string/rememberme"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/text_menu_16" />
+
+        <TextView
+            android:gravity="center"
+            android:layout_gravity="center"
+           android:layout_weight="2"
+            android:id="@+id/txt_forgatpass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/forgot_pass"
+            android:textColor="@color/txt_blue"
+            android:textSize="@dimen/menu_text_16"
+            android:textStyle="bold" />
+        </LinearLayout>
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/btn_konum_rounded"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/girisyap"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+
+
+
+</android.support.constraint.ConstraintLayout>

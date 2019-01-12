@@ -127,4 +127,20 @@
     <string name="elevetor_getbyid">Elevator GetbyId</string>
     <string name="servappbyid">ServApp ById</string>
     <string name="ServFormById">ServFormById</string>
+    <string name="giris">Giriş</string>
+    <string name="nickname">Kullanıcı Adı</string>
+    <string name="pass">Şifre</string>
+    <string name="rememberme">Beni Hatırla</string>
+    <string name="forgot_pass">Şifremi Unuttum</string>
+    <string name="error_nick">Kullancı Adı Girilmedi</string>
+    <string name="error_pass">Şifre Girilmedi</string>
+    <string name="girisyap">Giriş Yap</string>
+    <string name="isemrleri">İş Emirleri</string>
+    <string name="duyurular">Duyurular</string>
+    <string name="urunkatalogu">Ürün Kataloğu</string>
+    <string name="bilgilendrme">Bilgilendirme</string>
+    <string name="teknik_dokumanlar">Teknik Dökümanlar</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

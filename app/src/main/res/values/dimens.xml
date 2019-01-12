@@ -12,8 +12,8 @@
     <dimen name="circle">32dp</dimen>
     <dimen name="circle_text">20sp</dimen>
     <dimen name="buttons">20dp</dimen>
-    <dimen name="top_right_x">50dp</dimen>
-    <dimen name="top_right_y">-50dp</dimen>
+    <dimen name="top_right_x">35dp</dimen>
+    <dimen name="top_right_y">-35dp</dimen>
     <dimen name="isemri_left_height">80dp</dimen>
     <dimen name="isemri_left_width">10dp</dimen>
     <dimen name="isemri_icon_iv">20dp</dimen>
@@ -113,5 +113,6 @@
     <dimen name="txt_calendar_2">160dp</dimen>
     <dimen name="close">40dp</dimen>
     <dimen name="close_2">80dp</dimen>
+    <dimen name="detay_menu_250">250dp</dimen>
 
 </resources>
