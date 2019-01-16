@@ -46,9 +46,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void setTexts() {
-        edt_nick.setText(pref.getUserMail());
-        edt_pass.setText(pref.getUserPass());
-
+        if (pref.getRememberMe()) {
+            edt_nick.setText(pref.getUserMail());
+            edt_pass.setText(pref.getUserPass());
+        }
     }
 
     private void init() {
@@ -110,7 +111,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (cb_rememberme.isChecked()) {
             pref.setUserMail(mail);
             pref.setUserPass(pass);
+            pref.setRememberMe(true);
         }
+        else pref.setRememberMe(false);
 
     }
 

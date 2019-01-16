@@ -11,8 +11,8 @@ import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppDetails;
 public class ServAppDetailAdapter extends GenericAdapter<ServAppGetByIdServAppDetails,
         OnItemClickListener<ServAppGetByIdServAppDetails>,
         ServAppDetailViewHolder> {
-    public ServAppDetailAdapter(Context context) {
-        super(context);
+    public ServAppDetailAdapter(Context context,OnItemClickListener listener) {
+        super(context,listener);
     }
 
     @Override

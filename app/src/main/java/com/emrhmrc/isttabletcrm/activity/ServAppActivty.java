@@ -45,7 +45,7 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
         rcw = findViewById(R.id.rcw_servapp);
         rcw.setHasFixedSize(true);
         rcw.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new RcvServAppListAllAdapter(getApplicationContext());
+        adapter = new RcvServAppListAllAdapter(getApplicationContext(), this);
         adapter.setListener(this);
         rcw.setAdapter(adapter);
         rcw.setLayoutManager(new LinearLayoutManager(this));
@@ -87,5 +87,6 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
     @Override
     public void onItemClicked(Object item) {
 
+        Log.d(TAG, "onItemClicked: "+item.toString());
     }
 }

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="@dimen/detay_menu_8"
+        android:layout_marginEnd="@dimen/detay_menu_12" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/detay_menu_12"
+        android:layout_weight="2"
+        android:text="2545866448" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/detay_menu_12"
+        android:layout_weight="3"
+        android:text="Button Komple Frmf fdsf" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/detay_menu_12"
+        android:layout_weight="3"
+        android:text="Button Komple Frmf fdsf" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/detay_menu_12"
+        android:layout_weight="1"
+        android:text="Adet" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/detay_menu_12"
+        android:layout_weight="1"
+        android:text="Ametal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/detay_menu_12"
+        android:layout_weight="1"
+        android:text="Yedek Paça" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/detay_menu_8"
+        android:background="@drawable/btn_kontrol"
+        android:text="Ekle"
+        android:textColor="@color/white" />
+
+</LinearLayout>

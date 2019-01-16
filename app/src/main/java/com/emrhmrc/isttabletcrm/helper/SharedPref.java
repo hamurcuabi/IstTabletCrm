@@ -11,6 +11,7 @@ public class SharedPref {
     private static final String PREF_NAME = "PrefManager";
     private static final String USER_MAIL = "UserMail";
     private static final String USER_PASS = "UserPass";
+    private static final String REMEMBER_ME = "RememberMeCb";
     SharedPreferences pref;
     SharedPreferences.Editor editor;
     Context context;
@@ -38,6 +39,14 @@ public class SharedPref {
 
     public void setUserPass(String pass) {
         editor.putString(USER_PASS, pass);
+        editor.commit();
+    }
+    public boolean getRememberMe() {
+        return pref.getBoolean(REMEMBER_ME, true);
+    }
+
+    public void setRememberMe(boolean checked) {
+        editor.putBoolean(REMEMBER_ME, checked);
         editor.commit();
     }
 }

@@ -64,7 +64,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
         btn_beforeafter = findViewById(R.id.btn_beforeafter);
         btn_beforeafter.setOnClickListener(this);
 
-        adapter = new ServAppDetailAdapter(getApplicationContext());
+        adapter = new ServAppDetailAdapter(getApplicationContext(),this);
         adapter.setListener(this);
     }
 

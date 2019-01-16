@@ -150,6 +150,7 @@
     <string name="baslangic">Başlangıç</string>
     <string name="dokumanara">Dökğman Ara</string>
     <string name="incele">İncele</string>
+    <string name="altkategori">Alt Kategori</string>
 
     <string-array name="spn_servapp">
         <item>Tüm İş Emirlerim</item>
