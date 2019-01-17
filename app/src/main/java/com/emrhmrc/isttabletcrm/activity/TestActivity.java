@@ -12,7 +12,6 @@ import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.adapter.TestAdapter;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
-import com.emrhmrc.isttabletcrm.calendar.AsyncActivity;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.models.Account.AccountListAll;
 import com.emrhmrc.isttabletcrm.models.BreakDown.BreakDownTypeListAll;
@@ -69,26 +68,31 @@ public class TestActivity extends AppCompatActivity implements OnItemClickListen
         startActivity(new Intent(TestActivity.this, HomeActivity.class));
 
     }
+
     public void goCalendar(View view) {
 
         startActivity(new Intent(TestActivity.this, CalendarActivity.class));
 
     }
+
     public void goServApp(View view) {
 
         startActivity(new Intent(TestActivity.this, ServAppActivty.class));
 
     }
+
     public void goServAppDetail(View view) {
 
         startActivity(new Intent(TestActivity.this, ServAppDetailActivity.class));
 
     }
+
     public void goNewServApp(View view) {
 
         startActivity(new Intent(TestActivity.this, CreateServAppActivity.class));
 
     }
+
     public void goElevatorDetail(View view) {
 
         startActivity(new Intent(TestActivity.this, ElevatorDetailActivity.class));
