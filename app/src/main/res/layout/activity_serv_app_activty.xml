@@ -105,12 +105,14 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rcw_servapp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="@dimen/detay_menu_30"
         android:layout_marginTop="@dimen/header_rcw"
         android:layout_marginEnd="@dimen/detay_menu_30"
+        android:layout_marginBottom="8dp"
         android:background="@color/bg"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout"></android.support.v7.widget.RecyclerView>

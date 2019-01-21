@@ -1,987 +1,1035 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activity.ServAppDetailActivity">
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.ServAppDetailActivity">
 
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.ServAppDetailActivity">
 
-
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="@dimen/servapp_detail_height"
-        android:background="@drawable/servapp_detail"
-        android:src="@drawable/servapp_detail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-
-        >
 
         <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/transparent">
+            android:layout_width="0dp"
+            android:layout_height="@dimen/servapp_detail_height"
+            android:background="@drawable/servapp_detail"
+            android:src="@drawable/servapp_detail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
 
-            <ImageView
-                android:id="@+id/img_menu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/menu_left"
-                android:layout_marginTop="@dimen/menu_top"
-                android:src="@drawable/ic_menu_white"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/txt_menu_header"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/servapp_icon_text"
-                android:fontFamily="@font/roboto_medium"
-                android:text="@string/isemirlerim"
-                android:textColor="@color/white"
-                android:textSize="@dimen/menu_text"
-                app:layout_constraintBottom_toBottomOf="@+id/img_menu"
-                app:layout_constraintStart_toEndOf="@+id/img_menu"
-                app:layout_constraintTop_toTopOf="@+id/img_menu" />
+            >
 
             <android.support.constraint.ConstraintLayout
-                android:layout_width="wrap_content"
-                android:layout_height="22dp"
-                app:layout_constraintBottom_toBottomOf="@+id/txt_menu_header"
-                app:layout_constraintEnd_toEndOf="parent">
-
-                <TextView
-                    android:id="@+id/txt_servis_raporu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/menu_left_32"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/servis_raporu"
-                    android:textAllCaps="true"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/menu_text_14"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/img_servis_raporu"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/img_servis_raporu" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/transparent">
 
                 <ImageView
-                    android:id="@+id/img_servis_raporu"
+                    android:id="@+id/img_menu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/menu_icon_text"
-                    android:src="@drawable/ic_servis_rapor"
-                    app:layout_constraintBottom_toBottomOf="@+id/txt_servis_raporu"
-                    app:layout_constraintEnd_toStartOf="@+id/txt_servis_raporu"
-                    app:layout_constraintTop_toTopOf="@+id/txt_servis_raporu" />
+                    android:layout_marginStart="@dimen/menu_left"
+                    android:layout_marginTop="@dimen/menu_top"
+                    android:src="@drawable/ic_menu_white"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/txt_isemri_tamamla"
+                    android:id="@+id/txt_menu_header"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/detay_menu_12"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/isemri_tamamla"
-                    android:textAllCaps="true"
+                    android:layout_marginStart="@dimen/servapp_icon_text"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/isemirlerim"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/menu_text_14"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/img_isemri_tamamla"
-                    app:layout_constraintEnd_toStartOf="@+id/img_servis_raporu"
-                    app:layout_constraintTop_toTopOf="@+id/img_isemri_tamamla" />
+                    android:textSize="@dimen/menu_text"
+                    app:layout_constraintBottom_toBottomOf="@+id/img_menu"
+                    app:layout_constraintStart_toEndOf="@+id/img_menu"
+                    app:layout_constraintTop_toTopOf="@+id/img_menu" />
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_menu_header"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <TextView
+                        android:id="@+id/txt_servis_raporu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/menu_left_32"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="@string/servis_raporu"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/menu_text_14"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/img_servis_raporu"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/img_servis_raporu" />
+
+                    <ImageView
+                        android:id="@+id/img_servis_raporu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/menu_icon_text"
+                        android:src="@drawable/ic_servis_rapor"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_servis_raporu"
+                        app:layout_constraintEnd_toStartOf="@+id/txt_servis_raporu"
+                        app:layout_constraintTop_toTopOf="@+id/txt_servis_raporu" />
+
+                    <TextView
+                        android:id="@+id/txt_isemri_tamamla"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/detay_menu_12"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="@string/isemri_tamamla"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/menu_text_14"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/img_isemri_tamamla"
+                        app:layout_constraintEnd_toStartOf="@+id/img_servis_raporu"
+                        app:layout_constraintTop_toTopOf="@+id/img_isemri_tamamla" />
+
+                    <ImageView
+                        android:id="@+id/img_isemri_tamamla"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/menu_icon_text"
+                        android:src="@drawable/ic_isemri_tamamla"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_servis_raporu"
+                        app:layout_constraintEnd_toStartOf="@+id/txt_isemri_tamamla"
+                        app:layout_constraintTop_toTopOf="@+id/txt_servis_raporu" />
+
+                    <TextView
+                        android:id="@+id/txt_iptal_et"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/detay_menu_12"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="@string/iptal"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/menu_text_14"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/img_iptal"
+                        app:layout_constraintEnd_toStartOf="@+id/img_isemri_tamamla"
+                        app:layout_constraintTop_toTopOf="@+id/img_iptal" />
+
+                    <ImageView
+                        android:id="@+id/img_iptal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/menu_icon_text"
+                        android:src="@drawable/ic_iptal"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_servis_raporu"
+                        app:layout_constraintEnd_toStartOf="@+id/txt_iptal_et"
+                        app:layout_constraintTop_toTopOf="@+id/txt_servis_raporu" />
+
+                    <TextView
+                        android:id="@+id/txt_kaydet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/detay_menu_12"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="@string/kaydet"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/menu_text_14"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/img_kaydet"
+                        app:layout_constraintEnd_toStartOf="@+id/img_iptal"
+                        app:layout_constraintTop_toTopOf="@+id/img_kaydet" />
+
+                    <ImageView
+                        android:id="@+id/img_kaydet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/menu_icon_text"
+                        android:src="@drawable/ic_kaydet"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_servis_raporu"
+                        app:layout_constraintEnd_toStartOf="@+id/txt_kaydet"
+                        app:layout_constraintTop_toTopOf="@+id/txt_servis_raporu" />
+
+                    <TextView
+                        android:id="@+id/txt_yeni"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/detay_menu_12"
+                        android:fontFamily="@font/roboto_regular"
+                        android:onClick="newServApp"
+                        android:text="@string/yeni"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/menu_text_14"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/img_yeni"
+                        app:layout_constraintEnd_toStartOf="@+id/img_kaydet"
+                        app:layout_constraintTop_toTopOf="@+id/img_yeni" />
+
+                    <ImageView
+                        android:id="@+id/img_yeni"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="@dimen/menu_icon_text"
+                        android:src="@drawable/ic_yeni"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_servis_raporu"
+                        app:layout_constraintEnd_toStartOf="@+id/txt_yeni"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/txt_servis_raporu" />
+                </android.support.constraint.ConstraintLayout>
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/cons_detail"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/detay_menu_400"
+            android:layout_marginStart="@dimen/menu_left"
+            android:layout_marginTop="@dimen/detay_menu"
+            android:layout_marginEnd="@dimen/menu_left_32"
+            android:background="@color/white"
+            android:elevation="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/lnr_ilk"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/detay_menu_25"
+                        android:layout_marginTop="@dimen/detay_menu_12"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/menu_icon"
+                            android:src="@drawable/ic_name_makine" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/menu_text_12"
+                            android:orientation="vertical">
+
+                            <TextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_regular"
+                                android:text="@string/firma_ismi"
+                                android:textColor="@color/text_color"
+                                android:textSize="@dimen/menu_text_16" />
+
+                            <TextView
+                                android:id="@+id/txt_firmaismi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_regular"
+                                android:text="@string/dummy_firma"
+                                android:textColor="@color/text_color"
+                                android:textSize="@dimen/text_menu_28" />
+
+                            <TextView
+                                android:id="@+id/txt_firma_descp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_regular"
+                                android:text="@string/dummy_info_short"
+                                android:textColor="@color/text_color"
+                                android:textSize="@dimen/menu_text_16" />
+
+                            <TextView
+                                android:id="@+id/txt_blokadi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_regular"
+                                android:text="@string/cblok"
+                                android:textColor="@color/text_color"
+                                android:textSize="@dimen/menu_text_16"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lnr_iki"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/detay_menu_25"
+                        android:layout_marginTop="@dimen/detay_menu_12"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/lnr_ilk">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/menu_icon"
+                            android:src="@drawable/ic_asansor_no" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/menu_text_12"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_regular"
+                                android:text="@string/asansor_no"
+                                android:textColor="@color/text_color"
+                                android:textSize="@dimen/menu_text_16" />
+
+                            <TextView
+                                android:id="@+id/txt_asansorno"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_regular"
+                                android:text="@string/dummy_no"
+                                android:textColor="@color/text_color"
+                                android:textSize="@dimen/text_menu_28" />
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/detay_menu_25"
+                        android:layout_marginTop="@dimen/detay_menu_12"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/lnr_iki">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/menu_icon"
+                            android:src="@drawable/ic_ariza" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/menu_text_12"
+                            android:layout_marginBottom="@dimen/detay_menu_35"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_regular"
+                                android:text="@string/isemri_tipi"
+                                android:textColor="@color/text_color"
+                                android:textSize="@dimen/menu_text_16" />
+
+                            <TextView
+                                android:id="@+id/txt_isemritipi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_regular"
+                                android:text="@string/ariza"
+                                android:textColor="@color/text_color"
+                                android:textSize="@dimen/text_menu_28" />
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/progres_height_parent"
+                                android:background="@drawable/lnr_progres_parent">
+
+                                <ImageView
+                                    android:layout_width="@dimen/detay_menu_55"
+                                    android:layout_height="@dimen/progres_height"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginTop="@dimen/progres_padding"
+                                    android:layout_marginBottom="@dimen/progres_padding"
+                                    android:src="@drawable/lnr_progres" />
+                            </RelativeLayout>
+
+                            <TextView
+                                android:id="@+id/txt_islem"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_regular"
+                                android:text="@string/devam_ediyor"
+                                android:textColor="@color/text_color"
+                                android:textSize="@dimen/menu_text_16" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/detay_menu_12"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="2"
+                                    android:text="@string/oncelik_durumu"
+                                    android:textColor="@color/text_color_3"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/txt_oncelik"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:drawableRight="@drawable/ic_yuksek"
+                                    android:text="@string/yuksek" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:orientation="vertical"
+                    android:weightSum="4">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/detay_menu_25"
+                            android:layout_marginTop="@dimen/detay_menu_12"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/menu_icon"
+                                android:src="@drawable/ic_usta_adi" />
+
+                            <LinearLayout
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/menu_text_12"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/roboto_regular"
+                                    android:text="@string/usta_adi"
+                                    android:textColor="@color/text_color"
+                                    android:textSize="@dimen/menu_text_16" />
+
+                                <TextView
+                                    android:id="@+id/txt_ustaadi"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/roboto_regular"
+                                    android:text="@string/dummy_usta"
+                                    android:textColor="@color/text_color_3"
+                                    android:textSize="@dimen/text_menu_16"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/detay_menu_25"
+                            android:layout_marginTop="@dimen/detay_menu_12"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/menu_icon"
+                                android:src="@drawable/ic_tarih" />
+
+                            <LinearLayout
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/menu_text_12"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/roboto_regular"
+                                    android:text="@string/randevu_tarih"
+                                    android:textColor="@color/text_color"
+                                    android:textSize="@dimen/menu_text_16" />
+
+                                <TextView
+                                    android:id="@+id/txt_randevu"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/roboto_regular"
+                                    android:text="@string/dummy_usta"
+                                    android:textColor="@color/text_color_3"
+                                    android:textSize="@dimen/text_menu_16"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/detay_menu_25"
+                            android:layout_marginTop="@dimen/detay_menu_12"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/menu_icon"
+                                android:src="@drawable/ic_supervisor" />
+
+                            <LinearLayout
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/menu_text_12"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/roboto_regular"
+                                    android:text="@string/supervisor"
+                                    android:textColor="@color/text_color"
+                                    android:textSize="@dimen/menu_text_16" />
+
+                                <TextView
+                                    android:id="@+id/txt_ilgilisupervisor"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/roboto_regular"
+                                    android:text="@string/dummy_usta"
+                                    android:textColor="@color/text_color_3"
+                                    android:textSize="@dimen/text_menu_16"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/detay_menu_25"
+                            android:layout_marginTop="@dimen/detay_menu_12"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/menu_icon"
+                                android:src="@drawable/ic_tarih" />
+
+                            <LinearLayout
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/menu_text_12"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/roboto_regular"
+                                    android:text="@string/ise_baslama"
+                                    android:textColor="@color/text_color"
+                                    android:textSize="@dimen/menu_text_16" />
+
+                                <TextView
+                                    android:id="@+id/txt_isebaslama"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/roboto_regular"
+                                    android:text="@string/dummy_usta"
+                                    android:textColor="@color/text_color_3"
+                                    android:textSize="@dimen/text_menu_16"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="@dimen/detay_menu_12"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/detay_menu_20"
+                            android:layout_marginTop="@dimen/menu_icon"
+                            android:src="@drawable/ic_aciklama" />
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/menu_text_12"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_regular"
+                                android:text="@string/ariza_nedini"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txt_ariza_nedeni"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/dummy_info_short"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16" />
+
+                            <LinearLayout
+                                android:layout_width="@dimen/detay_menu_110"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/btn_kontrol"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/txt_arizakodu"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/arizakodu"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/text_menu_16"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="@dimen/detay_menu_12"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/detay_menu_20"
+                            android:layout_marginTop="@dimen/menu_icon"
+                            android:src="@drawable/ic_aciklama" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/menu_text_12"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_regular"
+                                android:text="@string/acikmala_not"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txt_aciklamanot"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/dummy_info_short"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/btn_is_kapatma"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/detay_menu_20"
+                        android:layout_marginTop="@dimen/detay_menu_12"
+                        android:layout_marginEnd="@dimen/detay_menu_20"
+                        android:background="@drawable/btn_is_kapatma"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="@string/is_kapatma"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_menu_14"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/img_gps"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/detay_menu_20"
+                        android:layout_marginStart="@dimen/detay_menu_20"
+                        android:layout_marginEnd="@dimen/detay_menu_20"
+                        android:layout_marginBottom="@dimen/detay_menu_25"
+                        app:srcCompat="@drawable/gps" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/detay_menu_20"
+                        android:layout_marginEnd="@dimen/detay_menu_20"
+                        android:gravity="center"
+                        android:text="@string/qr_checkin" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/detay_menu_20"
+                        android:layout_marginEnd="@dimen/detay_menu_20"
+                        android:gravity="center"
+                        android:text="@string/qr_tarat" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/detay_menu_20"
+                        app:srcCompat="@drawable/ic_qr" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </android.support.constraint.ConstraintLayout>
+
+        <Button
+            android:id="@+id/btn_malzeme_icerik"
+            android:layout_width="@dimen/btn_malzeme_width"
+            android:layout_height="@dimen/btn_malzeme_height"
+            android:layout_marginTop="@dimen/detay_menu_15"
+            android:background="@drawable/btn_malzeme"
+            android:text="@string/malzeme_icerik"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_menu_18"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/cons_malzeme_icerik"
+            app:layout_constraintStart_toStartOf="@+id/cons_detail"
+            app:layout_constraintTop_toBottomOf="@+id/cons_detail" />
+
+        <Button
+            android:id="@+id/btn_kontrol_listesi"
+            android:layout_width="@dimen/btn_malzeme_width"
+            android:layout_height="@dimen/btn_malzeme_height"
+            android:layout_marginStart="@dimen/detay_menu_12"
+            android:background="@drawable/btn_kontrol"
+            android:onClick="openControlList"
+            android:text="@string/kontrol_listesi"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_menu_18"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_malzeme_icerik"
+            app:layout_constraintStart_toEndOf="@+id/btn_malzeme_icerik"
+            app:layout_constraintTop_toTopOf="@+id/btn_malzeme_icerik" />
+
+
+        <Button
+            android:id="@+id/btn_beforeafter"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/detay_menu_45"
+            android:background="@drawable/btn_konum_rounded"
+            android:padding="@dimen/detay_menu_8"
+            android:text="@string/oncekisonraki"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_menu_14"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/cons_malzeme_icerik"
+            app:layout_constraintEnd_toEndOf="@+id/cons_detail"
+            app:layout_constraintTop_toTopOf="@+id/btn_kontrol_listesi" />
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/cons_malzeme_icerik"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/malzeme_height"
+            android:background="@color/malzeme_icerik"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_malzeme_icerik">
+
+            <RelativeLayout
+                android:id="@+id/lnr_yeni"
+                android:layout_width="@dimen/btn_width110"
+                android:layout_height="@dimen/btn_height45"
+                android:layout_marginStart="@dimen/padding_top25"
+                android:layout_marginTop="@dimen/padding_rigt32"
+                android:background="@color/btn_dark_blue"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/img_isemri_tamamla"
+                    android:id="@+id/img_add"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/menu_icon_text"
-                    android:src="@drawable/ic_isemri_tamamla"
-                    app:layout_constraintBottom_toBottomOf="@+id/txt_servis_raporu"
-                    app:layout_constraintEnd_toStartOf="@+id/txt_isemri_tamamla"
-                    app:layout_constraintTop_toTopOf="@+id/txt_servis_raporu" />
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="@dimen/icon_text8"
+                    android:src="@drawable/ic_yeni" />
 
                 <TextView
-                    android:id="@+id/txt_iptal_et"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/detay_menu_12"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:layout_toEndOf="@+id/img_add"
                     android:fontFamily="@font/roboto_regular"
-                    android:text="@string/iptal"
-                    android:textAllCaps="true"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/menu_text_14"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/img_iptal"
-                    app:layout_constraintEnd_toStartOf="@+id/img_isemri_tamamla"
-                    app:layout_constraintTop_toTopOf="@+id/img_iptal" />
-
-                <ImageView
-                    android:id="@+id/img_iptal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/menu_icon_text"
-                    android:src="@drawable/ic_iptal"
-                    app:layout_constraintBottom_toBottomOf="@+id/txt_servis_raporu"
-                    app:layout_constraintEnd_toStartOf="@+id/txt_iptal_et"
-                    app:layout_constraintTop_toTopOf="@+id/txt_servis_raporu" />
-
-                <TextView
-                    android:id="@+id/txt_kaydet"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/detay_menu_12"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/kaydet"
-                    android:textAllCaps="true"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/menu_text_14"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/img_kaydet"
-                    app:layout_constraintEnd_toStartOf="@+id/img_iptal"
-                    app:layout_constraintTop_toTopOf="@+id/img_kaydet" />
-
-                <ImageView
-                    android:id="@+id/img_kaydet"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/menu_icon_text"
-                    android:src="@drawable/ic_kaydet"
-                    app:layout_constraintBottom_toBottomOf="@+id/txt_servis_raporu"
-                    app:layout_constraintEnd_toStartOf="@+id/txt_kaydet"
-                    app:layout_constraintTop_toTopOf="@+id/txt_servis_raporu" />
-
-                <TextView
-                    android:id="@+id/txt_yeni"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/detay_menu_12"
-                    android:fontFamily="@font/roboto_regular"
-                    android:onClick="newServApp"
+                    android:gravity="center_vertical"
                     android:text="@string/yeni"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
                     android:textSize="@dimen/menu_text_14"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/img_yeni"
-                    app:layout_constraintEnd_toStartOf="@+id/img_kaydet"
-                    app:layout_constraintTop_toTopOf="@+id/img_yeni" />
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/lnr_isci"
+                android:layout_width="@dimen/btn_width165"
+                android:layout_height="@dimen/btn_height45"
+                android:layout_marginStart="@dimen/padding_top25"
+                android:layout_marginTop="@dimen/padding_rigt32"
+                android:background="@color/btn_dark_blue"
+                app:layout_constraintStart_toEndOf="@id/lnr_yeni"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/img_yeni"
+                    android:id="@+id/img_add_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="@dimen/icon_text8"
+                    android:src="@drawable/ic_yeni" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
                     android:layout_marginStart="8dp"
-                    android:layout_marginEnd="@dimen/menu_icon_text"
-                    android:src="@drawable/ic_yeni"
-                    app:layout_constraintBottom_toBottomOf="@+id/txt_servis_raporu"
-                    app:layout_constraintEnd_toStartOf="@+id/txt_yeni"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/txt_servis_raporu" />
-            </android.support.constraint.ConstraintLayout>
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:layout_toEndOf="@+id/img_add_2"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity="center_vertical"
+                    android:text="@string/iscilik_ekle"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/menu_text_14"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_rigt32"
+                android:layout_marginEnd="@dimen/padding_rigt32"
+                android:layout_marginTop="@dimen/padding_top25"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lnr_isci">
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/kod"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/menu_text_14"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/urun_adi"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/menu_text_14"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/miktar"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/menu_text_14"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/birim"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/menu_text_14"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/stok_durumu"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/menu_text_14"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/garanti_durumu"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/menu_text_14"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_weight="1.5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/faturalandiralacakmi"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/menu_text_14"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/urun_dahilindemi"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/menu_text_14"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+
         </android.support.constraint.ConstraintLayout>
 
-    </android.support.constraint.ConstraintLayout>
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/cons_detail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/menu_left"
-        android:layout_marginTop="@dimen/detay_menu"
-        android:layout_marginEnd="@dimen/menu_left_32"
-        android:background="@color/white"
-        android:elevation="2dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
-            android:id="@+id/lnr_ilk"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/detay_menu_25"
-            android:layout_marginTop="@dimen/detay_menu_12"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/menu_icon"
-                android:src="@drawable/ic_name_makine" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/menu_text_12"
-                android:orientation="vertical">
-
-                <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/firma_ismi"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/menu_text_16" />
-
-                <TextView
-                    android:id="@+id/txt_firmaismi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/dummy_firma"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/text_menu_28" />
-
-                <TextView
-                    android:id="@+id/txt_firma_descp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/dummy_info_short"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/menu_text_16" />
-
-                <TextView
-                    android:id="@+id/txt_blokadi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/cblok"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/menu_text_16"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/lnr_iki"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/detay_menu_25"
-            android:layout_marginTop="@dimen/detay_menu_12"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lnr_ilk">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/menu_icon"
-                android:src="@drawable/ic_asansor_no" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/menu_text_12"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/asansor_no"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/menu_text_16" />
-
-                <TextView
-                    android:id="@+id/txt_asansorno"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/dummy_no"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/text_menu_28" />
-
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/detay_menu_25"
-            android:layout_marginTop="@dimen/detay_menu_12"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lnr_iki">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/menu_icon"
-                android:src="@drawable/ic_ariza" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/menu_text_12"
-                android:layout_marginBottom="@dimen/detay_menu_35"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/isemri_tipi"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/menu_text_16" />
-
-                <TextView
-                    android:id="@+id/txt_isemritipi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/ariza"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/text_menu_28" />
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/progres_height_parent"
-                    android:background="@drawable/lnr_progres_parent">
-
-                    <ImageView
-                        android:layout_width="@dimen/detay_menu_55"
-                        android:layout_height="@dimen/progres_height"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginTop="@dimen/progres_padding"
-                        android:layout_marginBottom="@dimen/progres_padding"
-                        android:src="@drawable/lnr_progres" />
-                </RelativeLayout>
-
-                <TextView
-                    android:id="@+id/txt_islem"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/devam_ediyor"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/menu_text_16" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/detay_menu_12"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="@string/oncelik_durumu"
-                        android:textColor="@color/text_color_3"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txt_oncelik"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawableRight="@drawable/ic_yuksek"
-                        android:text="@string/yuksek" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/lnr_ayrac"
-            android:layout_width="@dimen/progres_padding"
-            android:layout_height="0dp"
-            android:layout_marginStart="@dimen/detay_menu_25"
-            android:layout_marginTop="@dimen/detay_menu_35"
-            android:layout_marginBottom="@dimen/detay_menu_35"
-            android:background="@color/text_color"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/lnr_ilk"
-            app:layout_constraintTop_toTopOf="parent"></LinearLayout>
-
-        <LinearLayout
-
-            android:id="@+id/lnr_yan_bir"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/detay_menu_25"
-            android:layout_marginTop="@dimen/detay_menu_12"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toEndOf="@id/lnr_ayrac"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/menu_icon"
-                android:src="@drawable/ic_usta_adi" />
-
-            <LinearLayout
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/menu_text_12"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/usta_adi"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/menu_text_16" />
-
-                <TextView
-                    android:id="@+id/txt_ustaadi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/dummy_usta"
-                    android:textColor="@color/text_color_3"
-                    android:textSize="@dimen/text_menu_16"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/lnr_yan_iki"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/detay_menu_25"
-            android:layout_marginTop="@dimen/detay_menu_12"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toEndOf="@id/lnr_yan_bir"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/menu_icon"
-                android:src="@drawable/ic_tarih" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/menu_text_12"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/randevu_tarih"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/menu_text_16" />
-
-                <TextView
-                    android:id="@+id/txt_randevu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/dummy_tarih"
-                    android:textColor="@color/text_color_3"
-                    android:textSize="@dimen/text_menu_16"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/lnr_yan_alt_bir"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/detay_menu_25"
-            android:layout_marginBottom="8dp"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/lnr_ariza"
-            app:layout_constraintStart_toEndOf="@id/lnr_ayrac"
-            app:layout_constraintTop_toBottomOf="@id/lnr_yan_bir">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/menu_icon"
-                android:src="@drawable/ic_supervisor" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/menu_text_12"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/supervisor"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/menu_text_16" />
-
-                <TextView
-                    android:id="@+id/txt_ilgilisupervisor"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/dummy_usta_2"
-                    android:textColor="@color/text_color_3"
-                    android:textSize="@dimen/text_menu_16"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/lnr_yan_alt_iki"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/detay_menu_25"
-            android:layout_marginBottom="8dp"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/lnr_ariza"
-            app:layout_constraintStart_toEndOf="@id/lnr_yan_bir"
-            app:layout_constraintTop_toBottomOf="@id/lnr_yan_iki">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/menu_icon"
-                android:src="@drawable/ic_tarih" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/menu_text_12"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/ise_baslama"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/menu_text_16" />
-
-                <TextView
-                    android:id="@+id/txt_isebaslama"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/dummy_tarih"
-                    android:textColor="@color/text_color_3"
-                    android:textSize="@dimen/text_menu_16"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/lnr_ariza"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/detay_menu_15"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/lnr_ariza_detay"
-            app:layout_constraintEnd_toEndOf="@+id/lnr_yan_alt_iki"
-            app:layout_constraintStart_toStartOf="@+id/lnr_yan_alt_bir">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/menu_icon"
-                android:src="@drawable/ic_aciklama" />
-
-            <LinearLayout
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/menu_text_12"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/ariza_nedini"
-                    android:textColor="@color/text_color_3"
-                    android:textSize="@dimen/text_menu_16"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt_ariza_nedeni"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/dummy_info_short"
-                    android:textColor="@color/text_color_3"
-                    android:textSize="@dimen/text_menu_16" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/arizakodu"
-                        android:textColor="@color/text_color_3"
-                        android:textSize="@dimen/text_menu_16"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txt_arizakodu"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/dummy_kod"
-                        android:textColor="@color/kontrol_listesi"
-                        android:textSize="@dimen/text_menu_16"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/lnr_ariza_detay"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/detay_menu_35"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/lnr_ariza"
-            app:layout_constraintStart_toStartOf="@+id/lnr_yan_alt_bir">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/menu_icon"
-                android:src="@drawable/ic_aciklama" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/menu_text_12"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/acikmala_not"
-                    android:textColor="@color/text_color_3"
-                    android:textSize="@dimen/text_menu_16"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt_aciklamanot"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/dummy_info_short"
-                    android:textColor="@color/text_color_3"
-                    android:textSize="@dimen/text_menu_16" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/btn_is_kapatma"
-            android:layout_width="@dimen/home_button_width"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/detay_menu_12"
-            android:layout_marginEnd="@dimen/detay_menu_25"
-            android:background="@drawable/btn_is_kapatma"
-            android:fontFamily="@font/roboto_regular"
-            android:text="@string/is_kapatma"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/img_gps"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/detay_menu_145"
-            android:layout_marginTop="@dimen/detay_menu_12"
-            app:layout_constraintEnd_toEndOf="@+id/btn_is_kapatma"
-            app:layout_constraintStart_toStartOf="@+id/btn_is_kapatma"
-            app:layout_constraintTop_toBottomOf="@+id/btn_is_kapatma"
-            app:srcCompat="@drawable/gps" />
-
-
-    </android.support.constraint.ConstraintLayout>
-
-    <Button
-        android:id="@+id/btn_malzeme_icerik"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/btn_malzeme_height"
-        android:layout_marginTop="@dimen/detay_menu_15"
-        android:background="@drawable/btn_malzeme"
-        android:padding="@dimen/detay_menu_12"
-        android:text="@string/malzeme_icerik"
-        android:textAllCaps="true"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_menu_18"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/cons_malzeme_icerik"
-        app:layout_constraintStart_toStartOf="@+id/cons_detail"
-        app:layout_constraintTop_toBottomOf="@+id/cons_detail" />
-
-    <Button
-        android:id="@+id/btn_kontrol_listesi"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/btn_malzeme_height"
-        android:layout_marginStart="@dimen/detay_menu_25"
-        android:background="@drawable/btn_kontrol"
-        android:fontFamily="@font/roboto_medium"
-        android:onClick="openControlList"
-        android:padding="@dimen/detay_menu_12"
-        android:text="@string/kontrol_listesi"
-        android:textAllCaps="true"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_menu_18"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_malzeme_icerik"
-        app:layout_constraintStart_toEndOf="@+id/btn_malzeme_icerik"
-        app:layout_constraintTop_toTopOf="@+id/btn_malzeme_icerik" />
-
-
-    <Button
-        android:id="@+id/btn_beforeafter"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/detay_menu_45"
-        android:background="@drawable/btn_konum_rounded"
-        android:padding="@dimen/detay_menu_12"
-        android:text="@string/oncekisonraki"
-        android:textAllCaps="true"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_menu_18"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/cons_malzeme_icerik"
-        app:layout_constraintEnd_toEndOf="@+id/cons_detail"
-        app:layout_constraintTop_toTopOf="@+id/btn_kontrol_listesi" />
-
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/cons_malzeme_icerik"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/malzeme_height"
-        android:background="@color/malzeme_icerik"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_malzeme_icerik">
-
-        <RelativeLayout
-            android:id="@+id/lnr_yeni"
-            android:layout_width="@dimen/btn_width110"
-            android:layout_height="@dimen/btn_height45"
-            android:layout_marginStart="@dimen/padding_top25"
-            android:layout_marginTop="@dimen/padding_rigt32"
-            android:background="@color/btn_dark_blue"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/img_add"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="@dimen/icon_text8"
-                android:src="@drawable/ic_yeni" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="0dp"
-                android:layout_marginBottom="0dp"
-                android:layout_toEndOf="@+id/img_add"
-                android:fontFamily="@font/roboto_regular"
-                android:gravity="center_vertical"
-                android:text="@string/yeni"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="@dimen/menu_text_14"
-                android:textStyle="bold" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/lnr_isci"
-            android:layout_width="@dimen/btn_width165"
-            android:layout_height="@dimen/btn_height45"
-            android:layout_marginStart="@dimen/padding_top25"
-            android:layout_marginTop="@dimen/padding_rigt32"
-            android:background="@color/btn_dark_blue"
-            app:layout_constraintStart_toEndOf="@id/lnr_yeni"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/img_add_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="@dimen/icon_text8"
-                android:src="@drawable/ic_yeni" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="0dp"
-                android:layout_marginBottom="0dp"
-                android:layout_toEndOf="@+id/img_add_2"
-                android:fontFamily="@font/roboto_regular"
-                android:gravity="center_vertical"
-                android:text="@string/iscilik_ekle"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="@dimen/menu_text_14"
-                android:textStyle="bold" />
-
-        </RelativeLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rcv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/padding_rigt32"
-            android:layout_marginTop="@dimen/padding_top25"
-            android:orientation="horizontal"
+            android:layout_marginStart="@dimen/text_menu_32"
+            android:layout_marginEnd="@dimen/text_menu_32"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lnr_isci">
+            app:layout_constraintTop_toBottomOf="@+id/cons_malzeme_icerik">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_regular"
-                android:text="@string/kod"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="@dimen/menu_text_14"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin120"
-                android:fontFamily="@font/roboto_regular"
-                android:text="@string/urun_adi"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="@dimen/menu_text_14"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin60"
-                android:fontFamily="@font/roboto_regular"
-                android:text="@string/miktar"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="@dimen/menu_text_14"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin50"
-                android:fontFamily="@font/roboto_regular"
-                android:text="@string/birim"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="@dimen/menu_text_14"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin50"
-                android:fontFamily="@font/roboto_regular"
-                android:text="@string/stok_durumu"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="@dimen/menu_text_14"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin50"
-                android:text="@string/garanti_durumu"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="@dimen/menu_text_14"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin30"
-                android:text="@string/faturalandiralacakmi"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="@dimen/menu_text_14"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin30"
-                android:text="@string/urun_dahilindemi"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="@dimen/menu_text_14"
-                android:textStyle="bold" />
-        </LinearLayout>
+        </android.support.v7.widget.RecyclerView>
 
 
     </android.support.constraint.ConstraintLayout>
-
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rcv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/cons_malzeme_icerik">
-
-    </android.support.v7.widget.RecyclerView>
-
-
-</android.support.constraint.ConstraintLayout>
-    </android.support.v4.widget.NestedScrollView>
+</android.support.v4.widget.NestedScrollView>

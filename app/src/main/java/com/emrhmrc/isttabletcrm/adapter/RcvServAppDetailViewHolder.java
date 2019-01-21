@@ -9,12 +9,12 @@ import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.BaseViewHolder;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppDetails;
 
-public class ServAppDetailViewHolder extends BaseViewHolder<ServAppGetByIdServAppDetails,
+public class RcvServAppDetailViewHolder extends BaseViewHolder<ServAppGetByIdServAppDetails,
         OnItemClickListener<ServAppGetByIdServAppDetails>> {
     private TextView txt_urundahilimi, txt_fatura, txt_garantidurumu, txt_stokdurumu, txt_birim,
             txt_miktar, txt_urunadi, txt_kod;
 
-    public ServAppDetailViewHolder(View itemView) {
+    public RcvServAppDetailViewHolder(View itemView) {
         super(itemView);
         txt_urundahilimi = itemView.findViewById(R.id.txt_urundahilimi);
         txt_fatura = itemView.findViewById(R.id.txt_fatura);

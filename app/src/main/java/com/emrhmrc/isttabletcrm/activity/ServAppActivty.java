@@ -1,5 +1,6 @@
 package com.emrhmrc.isttabletcrm.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +14,7 @@ import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.adapter.RcvServAppListAllAdapter;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
+import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppListAll;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServiceAppointments;
 import com.emrhmrc.isttabletcrm.models.User.UserIdRequest;
@@ -31,6 +33,7 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
     private JsonApi jsonApi;
     private RcvServAppListAllAdapter adapter;
     private Spinner spinner;
+    private ShareData shareData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,12 +59,12 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
         );
         spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         spinner.setAdapter(spinnerArrayAdapter);
-
+        shareData = ShareData.getInstance();
 
     }
 
     private void getServAppListAll() {
-        UserIdRequest userIdRequest = new UserIdRequest("206b43b9-75bd-e811-8103-005056b66d80");
+        UserIdRequest userIdRequest = new UserIdRequest(shareData.getUserId());
         Call<ServAppListAll> call = jsonApi.servAppListAll(userIdRequest);
         call.enqueue(new Callback<ServAppListAll>() {
             @Override
@@ -86,7 +89,14 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
 
     @Override
     public void onItemClicked(Object item) {
+        ServiceAppointments current = (ServiceAppointments) item;
+        shareData.setServAppId(current.getActivityId());
+        goServAppDetail();
 
-        Log.d(TAG, "onItemClicked: "+item.toString());
+    }
+
+    public void goServAppDetail() {
+
+        startActivity(new Intent(ServAppActivty.this, ServAppDetailActivity.class));
     }
 }

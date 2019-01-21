@@ -6,22 +6,23 @@
 
     <TextView
         android:id="@+id/txt_kod"
-        android:layout_marginStart="@dimen/detay_menu_30"
-        android:layout_weight="2.5"
-        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_regular"
         android:text="@string/kod"
         android:textAllCaps="true"
-        android:textColor="@color/btn_dark_blue"
+        android:textColor="@color/malzeme_icerik"
         android:textSize="@dimen/menu_text_16"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/txt_urunadi"
-        android:layout_weight="1.5"
-        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/urun_adi"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/kod"
         android:textAllCaps="true"
         android:textColor="@color/text_color"
         android:textSize="@dimen/menu_text_16"
@@ -29,32 +30,35 @@
 
     <TextView
         android:id="@+id/txt_miktar"
-        android:layout_weight="1.5"
-        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/miktar"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/kod"
         android:textAllCaps="true"
         android:textColor="@color/text_color"
         android:textSize="@dimen/menu_text_16"
-        android:textStyle="bold" />
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/txt_birim"
-        android:layout_weight="1.5"
-        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/birim"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/kod"
         android:textAllCaps="true"
         android:textColor="@color/text_color"
         android:textSize="@dimen/menu_text_16"
-        android:textStyle="bold" />
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/txt_stokdurumu"
-        android:layout_weight="2"
-        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/stok_durumu"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/kod"
         android:textAllCaps="true"
         android:textColor="@color/text_color"
         android:textSize="@dimen/menu_text_16"
@@ -62,10 +66,11 @@
 
     <TextView
         android:id="@+id/txt_garantidurumu"
-        android:layout_weight="2"
-        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/garanti_durumu"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/kod"
         android:textAllCaps="true"
         android:textColor="@color/text_color"
         android:textSize="@dimen/menu_text_16"
@@ -73,10 +78,11 @@
 
     <TextView
         android:id="@+id/txt_fatura"
-        android:layout_weight="3"
-        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/faturalandiralacakmi"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/kod"
         android:textAllCaps="true"
         android:textColor="@color/text_color"
         android:textSize="@dimen/menu_text_16"
@@ -84,10 +90,11 @@
 
     <TextView
         android:id="@+id/txt_urundahilimi"
-        android:layout_weight="3"
-        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/urun_dahilindemi"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/kod"
         android:textAllCaps="true"
         android:textColor="@color/text_color"
         android:textSize="@dimen/menu_text_16"

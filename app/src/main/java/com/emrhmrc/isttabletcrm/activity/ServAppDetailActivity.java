@@ -1,23 +1,24 @@
 package com.emrhmrc.isttabletcrm.activity;
 
 import android.content.Intent;
-import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
-import com.emrhmrc.isttabletcrm.adapter.ServAppDetailAdapter;
+import com.emrhmrc.isttabletcrm.adapter.RcvServAppDetailAdapter;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.fragment.BeforeAfterPicFragment;
 import com.emrhmrc.isttabletcrm.fragment.ControlListFragment;
+import com.emrhmrc.isttabletcrm.fragment.NewUnstabilityFragment;
+import com.emrhmrc.isttabletcrm.fragment.ReasonOfBreakdownFragment;
+import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetById;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppIdRequest;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServiceAppointment;
@@ -30,19 +31,20 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
 
     private static final String TAG = "ServAppDetailActivity";
     private JsonApi jsonApi;
-    private ServAppDetailAdapter adapter;
+    private RcvServAppDetailAdapter adapter;
     private RecyclerView rcv;
     private TextView txt_firmaismi, txt_firma_descp, txt_blokadi, txt_asansorno, txt_isemritipi,
             txt_oncelik, txt_ustaadi, txt_randevu, txt_ilgilisupervisor, txt_isebaslama,
             txt_ariza_nedeni, txt_arizakodu, txt_aciklamanot;
     private Button btn_beforeafter;
+    private ShareData shareData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_serv_app_detail);
         init();
-        getServAppById("ad9a8e9e-78c5-e811-8103-005056b66d80");
+        getServAppById(shareData.getServAppId());
     }
 
     private void init() {
@@ -63,9 +65,11 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
         txt_aciklamanot = findViewById(R.id.txt_aciklamanot);
         btn_beforeafter = findViewById(R.id.btn_beforeafter);
         btn_beforeafter.setOnClickListener(this);
+        txt_arizakodu.setOnClickListener(this);
 
-        adapter = new ServAppDetailAdapter(getApplicationContext(),this);
+        adapter = new RcvServAppDetailAdapter(getApplicationContext(), this);
         adapter.setListener(this);
+        shareData = ShareData.getInstance();
     }
 
     public void newServApp(View view) {
@@ -124,6 +128,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     @Override
     public void onItemClicked(Object item) {
         //Cilcked
+
     }
 
     @Override
@@ -133,6 +138,10 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
             case R.id.btn_beforeafter:
                 openBeforeAfter();
                 break;
+            case R.id.txt_arizakodu:
+                //openReasonOfBreakdown();
+                openNewUnstability();
+                break;
 
 
         }
@@ -140,12 +149,18 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     }
 
     private void openBeforeAfter() {
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        int width = size.x - 100;
-        int height = size.y - 200;
-        BeforeAfterPicFragment fragment = BeforeAfterPicFragment.newInstance(width, height);
+        BeforeAfterPicFragment fragment = BeforeAfterPicFragment.newInstance();
         fragment.show(getSupportFragmentManager(), "beforeafter");
+    }
+
+    private void openReasonOfBreakdown() {
+        ReasonOfBreakdownFragment fragment = ReasonOfBreakdownFragment.newInstance();
+        fragment.show(getSupportFragmentManager(), "reasonbrekadown");
+    }
+
+    //this is for create new unstability
+    private void openNewUnstability() {
+        NewUnstabilityFragment fragment = NewUnstabilityFragment.newInstance();
+        fragment.show(getSupportFragmentManager(), "reasonbrekadown");
     }
 }

@@ -7,7 +7,7 @@
     <string name="account_all">Account All</string>
     <string name="elevator_list_all">Elevator List All</string>
     <string name="dummy_user_name">İsim Soyad</string>
-    <string name="dummy_info">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam condimentum nisl accumsan sem ultricies, gravida tempus nisi fringilla. Praesent non nibh viverra lectus volutpat posuere ut in libero. Aenean eget nunc varius, blandit ipsum et, egestas massa.</string>
+    <string name="dummy_info">Lorem ipsum dolor sit amet, consectetur adipi frn nibh viverra lectus volutpat posuere ut in libero. Aenean eget nunc varius, blandit ipsum et, egestas massa.</string>
     <string name="dummy_info_short">Lorem ipsum dolor sit amet, um et, egestas massa.</string>
     <string name="servis">Servis</string>
     <string name="circle_text">5</string>
@@ -151,6 +151,18 @@
     <string name="dokumanara">Dökğman Ara</string>
     <string name="incele">İncele</string>
     <string name="altkategori">Alt Kategori</string>
+    <string name="date2">12.09.2018</string>
+    <string name="dummy_clock">12:25</string>
+    <string name="qr_tarat">asansördeki QR kodunu taratın</string>
+    <string name="qr_checkin">Check in yapmak için</string>
+    <string name="ariza_nedeni">Arıza Nedeni?</string>
+    <string name="listeye_don">Listeye Dön</string>
+    <string name="ariza_kaydi_alindi">Arıza kaydınız alındı</string>
+    <string name="uygunsuzluk">Uygunsuzluk Bildirimi</string>
+    <string name="baslik">Başlık</string>
+    <string name="tarih">Tarih</string>
+    <string name="yeni_uygunsulzuk">Yeni Uygunsuzluk Bildirimi</string>
+    <string name="gonder">Gönder</string>
 
     <string-array name="spn_servapp">
         <item>Tüm İş Emirlerim</item>

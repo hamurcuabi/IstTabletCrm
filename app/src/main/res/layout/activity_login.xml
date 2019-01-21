@@ -51,17 +51,17 @@
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_regular"
+            android:fontFamily="@font/roboto_medium"
             android:gravity="center"
             android:text="@string/giris"
-            android:textSize="@dimen/text_menu_24"
-            android:textStyle="bold" />
+            android:textSize="@dimen/text_menu_32"
+             />
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/til_nick"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="@dimen/detay_menu_297"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/detay_menu_400"
+            android:layout_height="@dimen/detay_menu_68"
             android:layout_marginTop="@dimen/detay_menu_45">
 
             <android.support.design.widget.TextInputEditText
@@ -77,8 +77,8 @@
         <android.support.design.widget.TextInputLayout
             android:id="@+id/til_pass"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="@dimen/detay_menu_297"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/detay_menu_400"
+            android:layout_height="@dimen/detay_menu_68"
             android:layout_marginTop="@dimen/detay_menu_25">
 
             <android.support.design.widget.TextInputEditText
@@ -93,15 +93,15 @@
         </android.support.design.widget.TextInputLayout>
 
         <LinearLayout
+            android:gravity="center"
             android:orientation="horizontal"
-            android:layout_width="@dimen/detay_menu_297"
-            android:layout_height="wrap_content">
+            android:layout_width="@dimen/detay_menu_400"
+            android:layout_height="@dimen/detay_menu_68">
         <CheckBox
             android:layout_weight="1"
             android:id="@+id/cb_rememberme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/detay_menu_12"
             android:buttonTint="@color/kontrol_listesi"
             android:checked="true"
             android:text="@string/rememberme"
@@ -109,8 +109,7 @@
             android:textSize="@dimen/text_menu_16" />
 
         <TextView
-            android:gravity="center"
-            android:layout_gravity="center"
+            android:textAlignment="textEnd"
            android:layout_weight="2"
             android:id="@+id/txt_forgatpass"
             android:layout_width="wrap_content"
@@ -122,8 +121,8 @@
         </LinearLayout>
         <Button
             android:id="@+id/btn_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/detay_menu_180"
+            android:layout_height="@dimen/detay_menu_56"
             android:layout_marginTop="8dp"
             android:background="@drawable/btn_konum_rounded"
             android:fontFamily="@font/roboto_medium"

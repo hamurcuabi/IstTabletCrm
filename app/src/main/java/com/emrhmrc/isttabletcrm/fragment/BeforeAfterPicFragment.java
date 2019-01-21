@@ -14,12 +14,9 @@ import com.emrhmrc.isttabletcrm.R;
 public class BeforeAfterPicFragment extends DialogFragment implements View.OnClickListener {
 
     private ImageView img_close;
-    private int w, h;
 
-    public static BeforeAfterPicFragment newInstance(int w, int h) {
+    public static BeforeAfterPicFragment newInstance() {
         Bundle args = new Bundle();
-        args.putInt("w", w);
-        args.putInt("h", h);
         BeforeAfterPicFragment fragment = new BeforeAfterPicFragment();
         fragment.setArguments(args);
         return fragment;
@@ -35,26 +32,23 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        img_close = view.findViewById(R.id.img_close);
-        img_close.setOnClickListener(this);
+       /* img_close = view.findViewById(R.id.img_close);
+        img_close.setOnClickListener(this);*/
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        ViewGroup.LayoutParams params = getDialog().getWindow().getAttributes();
-        params.width = w;
-        params.height = h;
-        getDialog().getWindow().setAttributes((android.view.WindowManager.LayoutParams) params);
+
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
 
-            case R.id.img_close:
+          /*  case R.id.img_close:
                 this.dismiss();
-                break;
+                break;*/
 
         }
 

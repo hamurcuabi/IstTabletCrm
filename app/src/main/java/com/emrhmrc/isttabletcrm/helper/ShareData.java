@@ -4,6 +4,7 @@ public class ShareData {
     private static final ShareData Instance = new ShareData();
 
     private String UserId;
+    private String ServAppId;
 
     private ShareData() {
     }
@@ -18,5 +19,13 @@ public class ShareData {
 
     public void setUserId(String userId) {
         UserId = userId;
+    }
+
+    public String getServAppId() {
+        return ServAppId;
+    }
+
+    public void setServAppId(String servAppId) {
+        ServAppId = servAppId;
     }
 }

@@ -1,5 +1,7 @@
 package com.emrhmrc.isttabletcrm.api;
 
+import java.util.concurrent.TimeUnit;
+
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -11,7 +13,10 @@ public class ApiClient {
 
     public static Retrofit getClient() {
         OkHttpClient okHttpClient = new OkHttpClient().newBuilder().addInterceptor
-                (new BasicAuthInterceptor("Creatif", "Crm365@!")).build();
+                (new BasicAuthInterceptor("Creatif", "Crm365@!"))
+                .callTimeout(15, TimeUnit.SECONDS)
+                .build();
+
 
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()

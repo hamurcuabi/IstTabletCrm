@@ -64,7 +64,7 @@
     <dimen name="detay_menu_20">20dp</dimen>
     <dimen name="lnr_width">60dp</dimen>
     <dimen name="lnr_height">12dp</dimen>
-    <dimen name="btn_malzeme_width">348dp</dimen>
+    <dimen name="btn_malzeme_width">318dp</dimen>
     <dimen name="btn_malzeme_height">64dp</dimen>
     <dimen name="text_menu_18">18sp</dimen>
     <dimen name="detay_menu_50">50dp</dimen>
@@ -114,5 +114,16 @@
     <dimen name="close">40dp</dimen>
     <dimen name="close_2">80dp</dimen>
     <dimen name="detay_menu_250">250dp</dimen>
+    <dimen name="detay_menu_400">400dp</dimen>
+    <dimen name="detay_menu_68">68dp</dimen>
+    <dimen name="detay_menu_180">180dp</dimen>
+    <dimen name="detay_menu_56">56dp</dimen>
+    <dimen name="detay_menu_700">700dp</dimen>
+    <dimen name="detay_menu_5">5dp</dimen>
+    <dimen name="detay_menu_273">273dp</dimen>
+    <dimen name="text_menu_14">14sp</dimen>
+    <dimen name="detay_menu_110">110dp</dimen>
+    <dimen name="detay_menu_70">70dp</dimen>
+    <dimen name="text_menu_26">26sp</dimen>
 
 </resources>

@@ -316,7 +316,7 @@
                 <LinearLayout
                     android:id="@+id/lnr_etiket"
                     android:layout_width="@dimen/detay_menu_370"
-                    android:layout_height="wrap_content"
+                    android:layout_height="26dp"
                     android:layout_marginTop="@dimen/text_menu_16"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -339,11 +339,11 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:fontFamily="@font/roboto_regular"
                         android:id="@+id/txt_etiketrengi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/detay_menu_8"
+                        android:fontFamily="@font/roboto_regular"
                         android:text="@string/cizgi"
                         android:textColor="@color/text_color_3"
                         android:textSize="@dimen/text_menu_16"

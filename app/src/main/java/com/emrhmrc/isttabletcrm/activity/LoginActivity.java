@@ -96,7 +96,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 @Override
                 public void onFailure(Call<UserLogin> call, Throwable t) {
-
+                    btn_login.setEnabled(true);
                     Log.d(TAG, "onFailure: " + t.getMessage());
 
                 }
@@ -112,11 +112,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             pref.setUserMail(mail);
             pref.setUserPass(pass);
             pref.setRememberMe(true);
-        }
-        else pref.setRememberMe(false);
+        } else pref.setRememberMe(false);
 
     }
-
 
     private void goHome() {
         startActivity(new Intent(getApplicationContext(), HomeActivity.class));

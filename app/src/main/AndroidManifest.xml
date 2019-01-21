@@ -30,28 +30,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.TestActivity"></activity>
+        <activity android:name=".activity.TestActivity" />
         <activity
             android:name=".activity.HomeActivity"
-            android:screenOrientation="landscape">
-
-        </activity>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".activity.ServAppActivty"
-            android:screenOrientation="landscape">
-
-        </activity>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".activity.ServAppDetailActivity"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".activity.CalendarActivity"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape" />
         <activity android:name=".calendar.AsyncActivity" />
         <activity android:name=".activity.CreateServAppActivity" />
-        <activity android:name=".activity.ElevatorDetailActivity">
-
-        </activity>
+        <activity android:name=".activity.ElevatorDetailActivity" />
         <activity
             android:name=".activity.LoginActivity"
             android:screenOrientation="landscape">
@@ -66,7 +60,10 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAJXCTkE7HVCamAy7l0EL7K8E2Y-EE8bNk" />
 
-        <activity android:name=".activity.TechnicalDocumentActivity"></activity>
+        <activity android:name=".activity.TechnicalDocumentActivity" />
+        <activity android:name=".activity.AnnouncementActivity" />
+        <activity android:name=".activity.AnnouncementDetailActivity" />
+        <activity android:name=".activity.UnsuitabilityActivity"></activity>
     </application>
 
 </manifest>
