@@ -139,8 +139,8 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                 openBeforeAfter();
                 break;
             case R.id.txt_arizakodu:
-                //openReasonOfBreakdown();
-                openNewUnstability();
+                openReasonOfBreakdown();
+
                 break;
 
 
@@ -158,9 +158,5 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
         fragment.show(getSupportFragmentManager(), "reasonbrekadown");
     }
 
-    //this is for create new unstability
-    private void openNewUnstability() {
-        NewUnstabilityFragment fragment = NewUnstabilityFragment.newInstance();
-        fragment.show(getSupportFragmentManager(), "reasonbrekadown");
-    }
+
 }

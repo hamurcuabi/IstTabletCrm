@@ -418,6 +418,14 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/detay_menu_12"
+                    android:layout_marginTop="@dimen/detay_menu_40"
+                    android:layout_marginBottom="@dimen/detay_menu_40"
+                    android:background="@color/border"></LinearLayout>
+
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
@@ -516,6 +524,29 @@
 
                         </LinearLayout>
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="@dimen/detay_menu_40"
+                            android:layout_marginEnd="@dimen/detay_menu_40"
+                            android:layout_weight="1"
+                            android:background="@color/border"></LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="@dimen/detay_menu_40"
+                            android:layout_marginEnd="@dimen/detay_menu_40"
+                            android:layout_weight="1"
+                            android:background="@color/border"></LinearLayout>
+                    </LinearLayout>
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -919,17 +950,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/padding_rigt32"
-                android:layout_marginEnd="@dimen/padding_rigt32"
                 android:layout_marginTop="@dimen/padding_top25"
+                android:layout_marginEnd="@dimen/padding_rigt32"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lnr_isci">
 
                 <TextView
-                    android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:fontFamily="@font/roboto_regular"
                     android:text="@string/kod"
                     android:textAllCaps="true"
@@ -938,9 +969,9 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:fontFamily="@font/roboto_regular"
                     android:text="@string/urun_adi"
                     android:textAllCaps="true"
@@ -949,9 +980,9 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:fontFamily="@font/roboto_regular"
                     android:text="@string/miktar"
                     android:textAllCaps="true"
@@ -960,9 +991,9 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:fontFamily="@font/roboto_regular"
                     android:text="@string/birim"
                     android:textAllCaps="true"
@@ -971,9 +1002,9 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:fontFamily="@font/roboto_regular"
                     android:text="@string/stok_durumu"
                     android:textAllCaps="true"
@@ -982,9 +1013,9 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="@string/garanti_durumu"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
@@ -992,9 +1023,9 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_weight="1.5"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
                     android:text="@string/faturalandiralacakmi"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
@@ -1002,9 +1033,9 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="@string/urun_dahilindemi"
                     android:textAllCaps="true"
                     android:textColor="@color/white"

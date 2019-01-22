@@ -12,7 +12,7 @@ import com.emrhmrc.isttabletcrm.models.ServApp.ServiceAppointments;
 public class RcvSerAppListAllViewHolder extends BaseViewHolder<ServiceAppointments,
         OnItemClickListener<ServiceAppointments>> {
 
-    private TextView txt_info, txt_start_date, txt_end_date, txt_oncelik,txt_count;
+    private TextView txt_info, txt_start_date, txt_end_date, txt_oncelik, txt_count;
 
     public RcvSerAppListAllViewHolder(View itemView) {
         super(itemView);
@@ -39,7 +39,20 @@ public class RcvSerAppListAllViewHolder extends BaseViewHolder<ServiceAppointmen
             txt_start_date.setText(item.getActualStart());
             txt_end_date.setText(item.getActualStart());
             txt_oncelik.setText(item.getPriortiyCode().getText());
-            txt_count.setText(""+(getAdapterPosition()+1));
+            switch (item.getPriortiyCode().getValue()) {
+
+                case 0:
+                    txt_oncelik.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_az);
+                    break;
+                case 1:
+                    txt_oncelik.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_orta);
+                    break;
+                case 2:
+                    txt_oncelik.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_yuksek);
+                    break;
+
+            }
+            txt_count.setText("" + (getAdapterPosition() + 1));
 
         }
     }
