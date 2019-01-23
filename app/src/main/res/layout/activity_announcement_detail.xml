@@ -7,7 +7,7 @@
     tools:context=".activity.AnnouncementDetailActivity">
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraintLayout2"
+        android:id="@+id/cons_sub"
         android:layout_width="match_parent"
         android:layout_height="@dimen/servapp_detail_height"
         android:background="@drawable/new_servapp"

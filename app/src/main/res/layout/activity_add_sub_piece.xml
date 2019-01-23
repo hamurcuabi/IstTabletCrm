@@ -30,7 +30,7 @@
         app:layout_constraintTop_toTopOf="@+id/imageView6" />
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraintLayout"
+        android:id="@+id/cons_main"
         android:layout_width="0dp"
         android:layout_height="@dimen/detay_menu_70"
         android:layout_marginStart="@dimen/menu_left"
@@ -121,15 +121,15 @@
     </android.support.constraint.ConstraintLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout5"
+        android:visibility="gone"
+        android:id="@+id/lnr_main"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/padding_top25"
         android:orientation="vertical"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
-        app:layout_constraintStart_toStartOf="@+id/constraintLayout"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+        app:layout_constraintEnd_toEndOf="@+id/cons_main"
+        app:layout_constraintStart_toStartOf="@+id/cons_main"
+        app:layout_constraintTop_toBottomOf="@+id/cons_main">
 
         <android.support.v7.widget.SearchView
             android:layout_width="@dimen/detay_menu_350"
@@ -153,19 +153,19 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/detay_menu_20"
         app:layout_constraintBottom_toBottomOf="@+id/textView6"
-        app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="@+id/cons_main"
         app:layout_constraintTop_toTopOf="@+id/textView6"
         app:srcCompat="@drawable/ic_close_blue" />
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraintLayout2"
+        android:id="@+id/cons_sub"
         android:layout_width="0dp"
         android:layout_height="@dimen/detay_menu_70"
         android:layout_marginTop="@dimen/detay_menu_5"
         android:background="@drawable/btn_konum_rounded"
-        app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
-        app:layout_constraintStart_toStartOf="@+id/constraintLayout"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
+        app:layout_constraintEnd_toEndOf="@+id/cons_main"
+        app:layout_constraintStart_toStartOf="@+id/cons_main"
+        app:layout_constraintTop_toBottomOf="@+id/lnr_main">
 
 
         <TextView
@@ -203,7 +203,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin40"
             android:fontFamily="@font/roboto_medium"
-            android:text="@string/butonlar"
+            android:text="@string/buton"
             android:textColor="@color/white"
             android:textSize="@dimen/text_menu_20"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -215,7 +215,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/padding_rigt32"
             android:fontFamily="@font/roboto_medium"
-            android:text="@string/butonkodu"
+            android:text="@string/xadeturun"
             android:textColor="@color/white"
             android:textSize="@dimen/text_menu_20"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -237,7 +237,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/padding_rigt32"
             android:fontFamily="@font/roboto_regular"
-            android:text="@string/anagrubuac"
+            android:text="@string/altgrubuac"
             android:textColor="@color/white"
             android:textSize="@dimen/text_menu_16"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -248,15 +248,15 @@
     </android.support.constraint.ConstraintLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout51"
+        android:id="@+id/lnr_sub"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/padding_top25"
         android:orientation="vertical"
         android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="@+id/constraintLayout2"
-        app:layout_constraintStart_toStartOf="@+id/constraintLayout2"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+        app:layout_constraintEnd_toEndOf="@+id/cons_sub"
+        app:layout_constraintStart_toStartOf="@+id/cons_sub"
+        app:layout_constraintTop_toBottomOf="@+id/cons_sub">
 
         <android.support.v7.widget.SearchView
             android:layout_width="@dimen/detay_menu_350"

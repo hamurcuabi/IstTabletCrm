@@ -169,6 +169,9 @@
     <string name="butonlar">Butonlar</string>
     <string name="butonkodu">TRBTN130048</string>
     <string name="anagrubuac">Ana Ürün Gurubunu Aç</string>
+    <string name="altgrubuac">Alt Ürün Gurubunu Aç</string>
+    <string name="buton">Buton</string>
+    <string name="xadeturun">x Adet Ürün</string>
 
     <string-array name="spn_servapp">
         <item>Tüm İş Emirlerim</item>

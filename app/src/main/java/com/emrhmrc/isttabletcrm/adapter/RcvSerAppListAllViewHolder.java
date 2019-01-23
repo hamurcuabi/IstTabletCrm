@@ -42,13 +42,15 @@ public class RcvSerAppListAllViewHolder extends BaseViewHolder<ServiceAppointmen
             switch (item.getPriortiyCode().getValue()) {
 
                 case 0:
-                    txt_oncelik.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_az);
+                    txt_oncelik.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0,
+                            R.drawable.ic_az);
                     break;
                 case 1:
-                    txt_oncelik.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_orta);
+                    txt_oncelik.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.ic_orta);
                     break;
                 case 2:
-                    txt_oncelik.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_yuksek);
+                    txt_oncelik.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable
+                            .ic_yuksek);
                     break;
 
             }
