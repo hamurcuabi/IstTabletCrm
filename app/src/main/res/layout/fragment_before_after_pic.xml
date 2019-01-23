@@ -5,114 +5,116 @@
     android:background="@color/bg"
     android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginStart="@dimen/detay_menu_70"
-        android:layout_marginTop="@dimen/detay_menu_55"
-        android:layout_marginEnd="@dimen/detay_menu_70"
-        android:layout_marginBottom="@dimen/detay_menu_55"
-        android:layout_weight="1"
-        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/detay_menu_25"
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/detay_menu_70"
+            android:layout_marginTop="@dimen/detay_menu_55"
+            android:layout_marginEnd="@dimen/detay_menu_70"
+            android:layout_marginBottom="@dimen/detay_menu_55"
             android:layout_weight="1"
-            android:fontFamily="@font/roboto_medium"
-            android:gravity="center_horizontal"
-            android:text="@string/arizaoncesi"
-            android:textColor="@color/text_color"
-            android:textSize="@dimen/text_menu_24"
-            android:textStyle="bold" />
+            android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/detay_menu_25"
-            android:layout_weight="10"
-            android:src="@drawable/image" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/detay_menu_25"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center_horizontal"
+                android:text="@string/arizaoncesi"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/text_menu_24"
+                android:textStyle="bold" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/detay_menu_25"
-            android:background="@drawable/ic_camera" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/detay_menu_25"
+                android:layout_weight="10"
+                android:src="@drawable/image" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/detay_menu_25"
-            android:layout_marginBottom="@dimen/detay_menu_12"
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/detay_menu_25"
+                android:background="@drawable/ic_camera" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/detay_menu_25"
+                android:layout_marginBottom="@dimen/detay_menu_12"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center_horizontal"
+                android:text="@string/foto_ekle"
+                android:textColor="@color/mobil_konum"
+                android:textSize="@dimen/text_menu_16"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/detay_menu_70"
+            android:layout_marginTop="@dimen/detay_menu_55"
+            android:layout_marginEnd="@dimen/detay_menu_70"
+            android:layout_marginBottom="@dimen/detay_menu_55"
             android:layout_weight="1"
-            android:fontFamily="@font/roboto_medium"
-            android:gravity="center_horizontal"
-            android:text="@string/foto_ekle"
-            android:textColor="@color/mobil_konum"
-            android:textSize="@dimen/text_menu_16"
-            android:textStyle="bold" />
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/detay_menu_25"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center_horizontal"
+                android:text="@string/arizaoncesi"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/text_menu_24"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/detay_menu_25"
+                android:layout_weight="10"
+                android:src="@drawable/image" />
 
 
-    </LinearLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/detay_menu_25"
+                android:background="@drawable/ic_camera" />
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginStart="@dimen/detay_menu_70"
-        android:layout_marginTop="@dimen/detay_menu_55"
-        android:layout_marginEnd="@dimen/detay_menu_70"
-        android:layout_marginBottom="@dimen/detay_menu_55"
-        android:layout_weight="1"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/detay_menu_25"
-            android:layout_weight="1"
-            android:fontFamily="@font/roboto_medium"
-            android:gravity="center_horizontal"
-            android:text="@string/arizaoncesi"
-            android:textColor="@color/text_color"
-            android:textSize="@dimen/text_menu_24"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/detay_menu_25"
-            android:layout_weight="10"
-            android:src="@drawable/image" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/detay_menu_25"
+                android:layout_marginBottom="@dimen/detay_menu_12"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center_horizontal"
+                android:text="@string/foto_ekle"
+                android:textColor="@color/mobil_konum"
+                android:textSize="@dimen/text_menu_16"
+                android:textStyle="bold" />
 
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/detay_menu_25"
-            android:background="@drawable/ic_camera" />
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/detay_menu_25"
-            android:layout_marginBottom="@dimen/detay_menu_12"
-            android:layout_weight="1"
-            android:fontFamily="@font/roboto_medium"
-            android:gravity="center_horizontal"
-            android:text="@string/foto_ekle"
-            android:textColor="@color/mobil_konum"
-            android:textSize="@dimen/text_menu_16"
-            android:textStyle="bold" />
-
-
-    </LinearLayout>
 
 
 </LinearLayout>

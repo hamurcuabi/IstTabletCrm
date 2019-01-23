@@ -12,6 +12,7 @@ import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.adapter.TestAdapter;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
+import com.emrhmrc.isttabletcrm.fragment.BeforeAfterPicFragment;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.models.Account.AccountListAll;
 import com.emrhmrc.isttabletcrm.models.BreakDown.BreakDownTypeListAll;
@@ -65,7 +66,8 @@ public class TestActivity extends AppCompatActivity implements OnItemClickListen
 
     public void goHome(View view) {
 
-        startActivity(new Intent(TestActivity.this, HomeActivity.class));
+        // startActivity(new Intent(TestActivity.this, HomeActivity.class));
+        openBeforeAfter();
 
     }
 
@@ -356,6 +358,11 @@ public class TestActivity extends AppCompatActivity implements OnItemClickListen
             }
         });
 
+    }
+
+    private void openBeforeAfter() {
+        BeforeAfterPicFragment fragment = BeforeAfterPicFragment.newInstance();
+        fragment.show(getSupportFragmentManager(), "beforeafter");
     }
 
     @Override
