@@ -125,5 +125,8 @@
     <dimen name="detay_menu_110">110dp</dimen>
     <dimen name="detay_menu_70">70dp</dimen>
     <dimen name="text_menu_26">26sp</dimen>
+    <dimen name="detay_menu_350">350dp</dimen>
+    <dimen name="text_menu_20">20sp</dimen>
+    <dimen name="detay_menu_90">90dp</dimen>
 
 </resources>

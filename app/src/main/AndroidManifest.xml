@@ -63,7 +63,9 @@
         <activity android:name=".activity.TechnicalDocumentActivity" />
         <activity android:name=".activity.AnnouncementActivity" />
         <activity android:name=".activity.AnnouncementDetailActivity" />
-        <activity android:name=".activity.UnsuitabilityActivity"></activity>
+        <activity android:name=".activity.UnsuitabilityActivity" />
+        <activity android:name=".activity.AddPieceActivity" />
+        <activity android:name=".activity.AddSubPieceActivity"></activity>
     </application>
 
 </manifest>
