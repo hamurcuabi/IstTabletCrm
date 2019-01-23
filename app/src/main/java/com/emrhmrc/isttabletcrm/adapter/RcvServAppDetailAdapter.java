@@ -17,7 +17,7 @@ public class RcvServAppDetailAdapter extends GenericAdapter<ServAppGetByIdServAp
 
     @Override
     public RcvServAppDetailViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new RcvServAppDetailViewHolder(inflate(R.layout.rcv_malzeme_icerik_item, parent));
+        return new RcvServAppDetailViewHolder(inflate(R.layout.rcv_material_content_item, parent));
     }
     @Override
     public int getItemViewType(int position) {

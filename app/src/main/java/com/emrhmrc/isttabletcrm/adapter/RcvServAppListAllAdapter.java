@@ -21,24 +21,24 @@ public class RcvServAppListAllAdapter extends GenericAdapter<ServiceAppointments
     public RcvSerAppListAllViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
             case 1:
-                return new RcvSerAppListAllViewHolder(inflate(R.layout.isemri_bakim_item,
+                return new RcvSerAppListAllViewHolder(inflate(R.layout.servapp_care_item,
                         parent));
             case 2:
-                return new RcvSerAppListAllViewHolder(inflate(R.layout.isemri_ariza_item,
+                return new RcvSerAppListAllViewHolder(inflate(R.layout.servapp_fault_item,
                         parent));
             case 3:
-                return new RcvSerAppListAllViewHolder(inflate(R.layout.isemri_modern_item,
+                return new RcvSerAppListAllViewHolder(inflate(R.layout.servapp_modern_item,
                         parent));
             case 4:
-                return new RcvSerAppListAllViewHolder(inflate(R.layout.isemri_yedek_item,
+                return new RcvSerAppListAllViewHolder(inflate(R.layout.servapp_backup_item,
                         parent));
             case 5:
-                return new RcvSerAppListAllViewHolder(inflate(R.layout.isemri_yillik_item,
+                return new RcvSerAppListAllViewHolder(inflate(R.layout.servapp_yearly_item,
                         parent));
 
 
             default:
-                return new RcvSerAppListAllViewHolder(inflate(R.layout.isemri_bakim_item,
+                return new RcvSerAppListAllViewHolder(inflate(R.layout.servapp_care_item,
                         parent));
         }
 
