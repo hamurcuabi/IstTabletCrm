@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.fragment.MapFragment;
+import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.models.MapModel;
 
 import java.text.SimpleDateFormat;
@@ -106,9 +107,12 @@ public abstract class BaseActivity extends AppCompatActivity implements WeekView
                 display.getSize(size);
                 int width = size.x - 100;
                 int height = size.y - 200;
-                MapModel map = new MapModel(27.6, 28.3, "title", "desc");
-                MapFragment fragment = MapFragment.newInstance(map,width,height);
-                fragment.show(getSupportFragmentManager(), "KontrolListesi");
+                MapModel map = new MapModel(ShareData.getInstance().getLatitude(), ShareData
+                        .getInstance().getLongitude(),
+                        "Title",
+                        "Description");
+                MapFragment fragment = MapFragment.newInstance(map, width, height);
+                fragment.show(getSupportFragmentManager(), "MpaFragment");
 
             }
         });

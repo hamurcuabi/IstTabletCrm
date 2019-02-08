@@ -10,7 +10,7 @@ import com.emrhmrc.isttabletcrm.R;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "HomeActivity";
-    private ConstraintLayout cons_isemirleri, cons_teknik, cons_takvim;
+    private ConstraintLayout cons_isemirleri, cons_teknik, cons_takvim, cons_bilgilendirme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +24,13 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         cons_isemirleri = findViewById(R.id.cons_isemirleri);
         cons_teknik = findViewById(R.id.cons_teknik);
         cons_takvim = findViewById(R.id.cons_takvim);
+        cons_bilgilendirme = findViewById(R.id.cons_bilgilendirme);
 
 
         cons_isemirleri.setOnClickListener(this);
         cons_teknik.setOnClickListener(this);
         cons_takvim.setOnClickListener(this);
+        cons_bilgilendirme.setOnClickListener(this);
     }
 
     @Override
@@ -43,12 +45,19 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.cons_isemirleri:
                 goServApp();
                 break;
+            case R.id.cons_bilgilendirme:
+                goAnnouncement();
+                break;
 
         }
     }
 
     private void goCalendar() {
         startActivity(new Intent(HomeActivity.this, CalendarActivity.class));
+    }
+
+    private void goAnnouncement() {
+        startActivity(new Intent(HomeActivity.this, AnnouncementActivity.class));
     }
 
     private void goTechnical() {

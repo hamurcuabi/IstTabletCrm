@@ -8,12 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.emrhmrc.isttabletcrm.R;
 
 public class BeforeAfterPicFragment extends DialogFragment implements View.OnClickListener {
 
     private ImageView img_close;
+    private LinearLayout lnr;
 
     public static BeforeAfterPicFragment newInstance() {
         Bundle args = new Bundle();
@@ -34,6 +36,8 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
         super.onViewCreated(view, savedInstanceState);
        /* img_close = view.findViewById(R.id.img_close);
         img_close.setOnClickListener(this);*/
+        lnr = view.findViewById(R.id.lnrfrag);
+
     }
 
     @Override

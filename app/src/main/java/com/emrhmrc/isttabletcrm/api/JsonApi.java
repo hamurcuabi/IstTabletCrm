@@ -6,6 +6,10 @@ import com.emrhmrc.isttabletcrm.models.BreakDown.BreakDownTypeListAll;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorGetById;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorIdRequest;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorListAll;
+import com.emrhmrc.isttabletcrm.models.Notification.GetByIdWithSurvey;
+import com.emrhmrc.isttabletcrm.models.Notification.NotificationIdRequest;
+import com.emrhmrc.isttabletcrm.models.Notification.NotificationListAllWithSurvey;
+import com.emrhmrc.isttabletcrm.models.Notification.SurveyUpdateById;
 import com.emrhmrc.isttabletcrm.models.Product.ProductListAll;
 import com.emrhmrc.isttabletcrm.models.Quote.QuoteGetById;
 import com.emrhmrc.isttabletcrm.models.ServApp.CompleteByIdRequest;
@@ -88,6 +92,19 @@ public interface JsonApi {
     //OK
     @POST("ServApp/GetServFormById")
     Call<GetServFormById> getServFormById(@Body ServiceAppIdRequest serviceAppId);
+
+    //OK
+    @POST("Notification/ListAllWithSurvey")
+    Call<NotificationListAllWithSurvey> getNotificationListAllSurvey(@Body UserIdRequest userId);
+
+    //OK
+    @POST("Notification/SurveyUpdateById")
+    Call<SurveyUpdateById> updateSurveyById(@Body SurveyUpdateById surveyUpdateById);
+
+
+    @POST("Notification/GetByIdWithSurvey")
+    Call<GetByIdWithSurvey> getByIdWithSurvey(@Body UserIdRequest userId, @Body
+            NotificationIdRequest notificationIdRequest);
 
     //Fail from Server
     @POST("ServApp/UpdateServFormById")

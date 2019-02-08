@@ -130,7 +130,7 @@
 
                     <EditText
                         android:id="@+id/edt_musteri_adi"
-                        android:layout_width="@dimen/edt_calendar"
+                        android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
@@ -175,7 +175,7 @@
 
                     <EditText
                         android:id="@+id/edt_konu"
-                        android:layout_width="@dimen/edt_calendar"
+                        android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
@@ -220,7 +220,7 @@
 
                     <EditText
                         android:id="@+id/edt_asansor"
-                        android:layout_width="@dimen/edt_calendar"
+                        android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
@@ -264,7 +264,7 @@
 
                     <Spinner
                         android:id="@+id/spn_saat"
-                        android:layout_width="@dimen/edt_calendar"
+                        android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
@@ -308,7 +308,7 @@
 
                     <EditText
                         android:id="@+id/edt_supervisor"
-                        android:layout_width="@dimen/edt_calendar"
+                        android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
@@ -352,7 +352,7 @@
 
                     <EditText
                         android:id="@+id/edt_oncekiis"
-                        android:layout_width="@dimen/edt_calendar"
+                        android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
@@ -397,7 +397,7 @@
 
                     <EditText
                         android:id="@+id/edt_servis"
-                        android:layout_width="@dimen/edt_calendar"
+                        android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
@@ -474,7 +474,7 @@
 
                     <EditText
                         android:id="@+id/edt_ariza"
-                        android:layout_width="@dimen/edt_calendar"
+                        android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
@@ -519,7 +519,7 @@
 
                     <EditText
                         android:id="@+id/edt_konum"
-                        android:layout_width="@dimen/edt_calendar"
+                        android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
@@ -560,7 +560,7 @@
 
                     <Spinner
                         android:id="@+id/edt_oncelik"
-                        android:layout_width="@dimen/edt_calendar"
+                        android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
@@ -606,7 +606,7 @@
 
                     <EditText
                         android:id="@+id/edt_isimsoyad"
-                        android:layout_width="@dimen/edt_calendar"
+                        android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
@@ -651,7 +651,7 @@
 
                     <EditText
                         android:id="@+id/edt_sonraki_is_not"
-                        android:layout_width="@dimen/edt_calendar"
+                        android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
@@ -695,7 +695,7 @@
 
                     <EditText
                         android:id="@+id/edt_onceki_is_not"
-                        android:layout_width="@dimen/edt_calendar"
+                        android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"

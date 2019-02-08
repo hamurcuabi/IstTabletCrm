@@ -5,16 +5,18 @@
     android:orientation="horizontal">
 
     <TextView
+        android:id="@+id/txt_date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:fontFamily="@font/roboto_regular"
         android:text="01.02.2019"
         android:textColor="@color/bakim"
         android:textSize="@dimen/text_menu_16" />
 
     <TextView
+        android:id="@+id/txt_detail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

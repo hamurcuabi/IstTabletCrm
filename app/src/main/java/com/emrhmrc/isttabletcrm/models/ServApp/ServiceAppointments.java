@@ -7,8 +7,8 @@ import com.google.gson.annotations.SerializedName;
 public class ServiceAppointments {
     @SerializedName("StatusCode")
     private Code StatusCode;
-    private String ActualStart;
-    private String ActualEnd;
+    private String ScheduledStart;
+    private String ScheduledEnd;
     private String ActivityId;
     private String Subject;
     private Inv_Id inv_CustomerId;
@@ -50,20 +50,20 @@ public class ServiceAppointments {
         this.StatusCode = StatusCode;
     }
 
-    public String getActualStart() {
-        return ActualStart;
+    public String getScheduledStart() {
+        return ScheduledStart;
     }
 
-    public void setActualStart(String ActualStart) {
-        this.ActualStart = ActualStart;
+    public void setScheduledStart(String ScheduledStart) {
+        this.ScheduledStart = ScheduledStart;
     }
 
-    public String getActualEnd() {
-        return ActualEnd;
+    public String getScheduledEnd() {
+        return ScheduledEnd;
     }
 
-    public void setActualEnd(String ActualEnd) {
-        this.ActualEnd = ActualEnd;
+    public void setScheduledEnd(String ScheduledEnd) {
+        this.ScheduledEnd = ScheduledEnd;
     }
 
     public String getActivityId() {
@@ -102,8 +102,8 @@ public class ServiceAppointments {
     public String toString() {
         return "ServiceAppointments{" +
                 "StatusCode=" + StatusCode +
-                ", ActualStart='" + ActualStart + '\'' +
-                ", ActualEnd='" + ActualEnd + '\'' +
+                ", ScheduledStart='" + ScheduledStart + '\'' +
+                ", ScheduledEnd='" + ScheduledEnd + '\'' +
                 ", ActivityId='" + ActivityId + '\'' +
                 ", Subject='" + Subject + '\'' +
                 ", inv_CustomerId=" + inv_CustomerId +

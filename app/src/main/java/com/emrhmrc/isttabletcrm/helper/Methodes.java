@@ -8,8 +8,11 @@ import android.text.TextUtils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class Methodes {
@@ -74,5 +77,54 @@ public class Methodes {
             return false;
         }
         return true;
+    }
+
+    public static String changeDateFormatToText(String date) {
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+        Date sourceDate = null;
+        try {
+            sourceDate = dateFormat.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        SimpleDateFormat targetFormat = new SimpleDateFormat("dd.MM.yyyy");
+        return targetFormat.format(sourceDate);
+
+
+    }
+    public static String changeDateFormatToClockText(String date) {
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+        Date sourceDate = null;
+        try {
+            sourceDate = dateFormat.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        SimpleDateFormat targetFormat = new SimpleDateFormat("HH:mm");
+        return targetFormat.format(sourceDate);
+
+
+    }
+
+    public static Calendar changeDateFormatToDate(String date) {
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+        Date sourceDate = null;
+        Calendar calendar=Calendar.getInstance();
+        try {
+            sourceDate = dateFormat.parse(date);
+            calendar.setTime(sourceDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+        return calendar;
+
+
     }
 }

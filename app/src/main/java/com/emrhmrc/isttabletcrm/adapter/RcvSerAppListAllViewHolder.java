@@ -2,17 +2,21 @@ package com.emrhmrc.isttabletcrm.adapter;
 
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.BaseViewHolder;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
+import com.emrhmrc.isttabletcrm.helper.Methodes;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServiceAppointments;
 
 public class RcvSerAppListAllViewHolder extends BaseViewHolder<ServiceAppointments,
         OnItemClickListener<ServiceAppointments>> {
 
-    private TextView txt_info, txt_start_date, txt_end_date, txt_oncelik, txt_count;
+    private TextView txt_info, txt_start_date, txt_end_date, txt_oncelik, txt_count,
+            txt_start_date_clock, txt_end_date_clock,txt_custumerid;
+    private ImageView img_state;
 
     public RcvSerAppListAllViewHolder(View itemView) {
         super(itemView);
@@ -21,6 +25,10 @@ public class RcvSerAppListAllViewHolder extends BaseViewHolder<ServiceAppointmen
         txt_end_date = itemView.findViewById(R.id.txt_end_date);
         txt_oncelik = itemView.findViewById(R.id.txt_oncelik);
         txt_count = itemView.findViewById(R.id.txt_count);
+        txt_start_date_clock = itemView.findViewById(R.id.txt_start_date_clock);
+        txt_end_date_clock = itemView.findViewById(R.id.txt_end_date_clock);
+        txt_custumerid = itemView.findViewById(R.id.txt_custumerid);
+        img_state = itemView.findViewById(R.id.img_state);
     }
 
     @Override
@@ -36,21 +44,22 @@ public class RcvSerAppListAllViewHolder extends BaseViewHolder<ServiceAppointmen
             });
 
             txt_info.setText(item.getSubject());
-            txt_start_date.setText(item.getActualStart());
-            txt_end_date.setText(item.getActualStart());
+            txt_start_date.setText(Methodes.changeDateFormatToText(item.getScheduledStart()));
+            txt_start_date_clock.setText(Methodes.changeDateFormatToClockText(item.getScheduledStart()));
+            txt_end_date.setText(Methodes.changeDateFormatToText(item.getScheduledEnd()));
+            txt_end_date_clock.setText(Methodes.changeDateFormatToClockText(item.getScheduledEnd()));
             txt_oncelik.setText(item.getPriortiyCode().getText());
+            txt_custumerid.setText(item.getInv_CustomerId().getText());
             switch (item.getPriortiyCode().getValue()) {
 
                 case 0:
-                    txt_oncelik.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0,
-                            R.drawable.ic_az);
+                    img_state.setImageResource(R.drawable.ic_az);
                     break;
                 case 1:
-                    txt_oncelik.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.ic_orta);
+                    img_state.setImageResource(R.drawable.ic_orta);
                     break;
                 case 2:
-                    txt_oncelik.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable
-                            .ic_yuksek);
+                    img_state.setImageResource(R.drawable.ic_yuksek);
                     break;
 
             }

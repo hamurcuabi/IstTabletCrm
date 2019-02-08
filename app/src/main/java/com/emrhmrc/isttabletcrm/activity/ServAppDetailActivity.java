@@ -1,12 +1,15 @@
 package com.emrhmrc.isttabletcrm.activity;
 
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
@@ -16,9 +19,10 @@ import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.fragment.BeforeAfterPicFragment;
 import com.emrhmrc.isttabletcrm.fragment.ControlListFragment;
-import com.emrhmrc.isttabletcrm.fragment.NewUnstabilityFragment;
+import com.emrhmrc.isttabletcrm.fragment.MapFragment;
 import com.emrhmrc.isttabletcrm.fragment.ReasonOfBreakdownFragment;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
+import com.emrhmrc.isttabletcrm.models.MapModel;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetById;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppIdRequest;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServiceAppointment;
@@ -38,6 +42,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
             txt_ariza_nedeni, txt_arizakodu, txt_aciklamanot;
     private Button btn_beforeafter;
     private ShareData shareData;
+    private ImageView img_gps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +50,20 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
         setContentView(R.layout.activity_serv_app_detail);
         init();
         getServAppById(shareData.getServAppId());
+    }
+
+    private void mapFragment() {
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x - 100;
+        int height = size.y - 200;
+        MapModel map = new MapModel(ShareData.getInstance().getLatitude(), ShareData
+                .getInstance().getLongitude(),
+                "Title",
+                "Description");
+        MapFragment fragment = MapFragment.newInstance(map, width, height);
+        fragment.show(getSupportFragmentManager(), "MpaFragment");
     }
 
     private void init() {
@@ -64,8 +83,10 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
         txt_arizakodu = findViewById(R.id.txt_arizakodu);
         txt_aciklamanot = findViewById(R.id.txt_aciklamanot);
         btn_beforeafter = findViewById(R.id.btn_beforeafter);
+        img_gps = findViewById(R.id.img_gps);
         btn_beforeafter.setOnClickListener(this);
         txt_arizakodu.setOnClickListener(this);
+        img_gps.setOnClickListener(this);
 
         adapter = new RcvServAppDetailAdapter(getApplicationContext(), this);
         adapter.setListener(this);
@@ -92,6 +113,8 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                 if (response.isSuccessful()) {
                     ServAppGetById model = response.body();
                     setTexts(model.getServiceAppointment());
+                    ShareData.getInstance().setLongitude(model.getServiceAppointment().getInv_Longitude());
+                    ShareData.getInstance().setLatitude(model.getServiceAppointment().getInv_Latitude());
                     adapter.setItems(model.getServiceAppointment().getServAppGetByIdServAppDetails());
                 }
             }
@@ -141,6 +164,9 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
             case R.id.txt_arizakodu:
                 openReasonOfBreakdown();
 
+                break;
+            case R.id.img_gps:
+                mapFragment();
                 break;
 
 

@@ -15,7 +15,7 @@ public class ElevatorGetById {
 
     private String ErrorMsg;
 
-    private String Success;
+    private boolean Success;
 
     public TableMetadata getTableMetadataElevator() {
         return TableMetadataElevator;
@@ -57,11 +57,11 @@ public class ElevatorGetById {
         this.ErrorMsg = ErrorMsg;
     }
 
-    public String getSuccess() {
+    public boolean getSuccess() {
         return Success;
     }
 
-    public void setSuccess(String Success) {
+    public void setSuccess(boolean Success) {
         this.Success = Success;
     }
 
