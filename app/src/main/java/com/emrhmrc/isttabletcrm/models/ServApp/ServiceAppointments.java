@@ -12,7 +12,7 @@ public class ServiceAppointments {
     private String ActivityId;
     private String Subject;
     private Inv_Id inv_CustomerId;
-    private Inv_Id inv_TypeCode;
+    private Code inv_TypeCode;
     private double inv_Latitude;
     private double inv_Longitude;
 
@@ -90,11 +90,11 @@ public class ServiceAppointments {
         this.inv_CustomerId = inv_CustomerId;
     }
 
-    public Inv_Id getInv_TypeCode() {
+    public Code getInv_TypeCode() {
         return inv_TypeCode;
     }
 
-    public void setInv_TypeCode(Inv_Id inv_TypeCode) {
+    public void setInv_TypeCode(Code inv_TypeCode) {
         this.inv_TypeCode = inv_TypeCode;
     }
 

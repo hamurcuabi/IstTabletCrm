@@ -45,7 +45,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.cons_isemirleri:
                 goServApp();
                 break;
-            case R.id.cons_bilgilendirme:
+            case R.id.cons_duyurular:
                 goAnnouncement();
                 break;
 

@@ -15,6 +15,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -65,13 +66,16 @@ public class MapFragment extends DialogFragment {
                 }
 
                 // For dropping a marker at a point on the Map
-                LatLng sydney = new LatLng(map.getLatitude(), map.getLongitude());
-                googleMap.addMarker(new MarkerOptions().position(sydney).title(map.getTitle()).snippet
-                        (map.getDescp()));
+                // create marker
+                LatLng gps = new LatLng(map.getLatitude(), map.getLongitude());
+                MarkerOptions marker = new MarkerOptions().position(gps).title(map.getTitle());
+                marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker));
+                googleMap.addMarker(marker.position(gps)).setSnippet(map.getDescp());
+
 
                 // For zooming automatically to the location of the marker
-                CameraPosition cameraPosition = new CameraPosition.Builder().target(sydney).zoom
-                        (6).build();
+                CameraPosition cameraPosition = new CameraPosition.Builder().target(gps).zoom
+                        (8).build();
                 googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
             }
         });

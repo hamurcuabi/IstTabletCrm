@@ -5,6 +5,7 @@ public class ShareData {
 
     private String UserId;
     private String ServAppId;
+    private String ElevatorId;
 
     public String getNotificationIdRequest() {
         return NotificationIdRequest;
@@ -19,6 +20,14 @@ public class ShareData {
     private double Longitude;
 
     private ShareData() {
+    }
+
+    public String getElevatorId() {
+        return ElevatorId;
+    }
+
+    public void setElevatorId(String elevatorId) {
+        ElevatorId = elevatorId;
     }
 
     public static ShareData getInstance() {

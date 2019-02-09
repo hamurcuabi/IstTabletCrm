@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -90,6 +91,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         ShareData.getInstance().setUserId(model.getUserId());
                         goHome();
                     } else {
+                        Log.d(TAG, "onResponse: " + response.message());
                         btn_login.setEnabled(true);
                     }
                 }
@@ -127,8 +129,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (view.getId()) {
 
             case R.id.txt_forgatpass:
-                //Henüz Kullanılmadı
-                forgatPass("test@test.com");
+                forgatPass();
                 break;
             case R.id.btn_login:
                 doLogin();
@@ -138,27 +139,32 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    private void forgatPass(String mail) {
+    private void forgatPass() {
+        String mail = null;
+        if (!TextUtils.equals(edt_nick.getText().toString().trim(), null)) {
+            Call<UserForgotPassword> call = jsonApi.userForgotPassword(new EmailRequest(mail));
+            call.enqueue(new Callback<UserForgotPassword>() {
+                @Override
+                public void onResponse(Call<UserForgotPassword> call, Response<UserForgotPassword> response) {
+                    if (response.isSuccessful()) {
 
-        Call<UserForgotPassword> call = jsonApi.userForgotPassword(new EmailRequest(mail));
-        call.enqueue(new Callback<UserForgotPassword>() {
-            @Override
-            public void onResponse(Call<UserForgotPassword> call, Response<UserForgotPassword> response) {
-                if (response.isSuccessful()) {
-
-                    UserForgotPassword model = response.body();
+                        UserForgotPassword model = response.body();
 
 
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<UserForgotPassword> call, Throwable t) {
+                @Override
+                public void onFailure(Call<UserForgotPassword> call, Throwable t) {
 
-                Log.d(TAG, "onFailure: " + t.getMessage());
-            }
-        });
+                    Log.d(TAG, "onFailure: " + t.getMessage());
+                }
+            });
+        } else {
 
+            Log.d(TAG, "forgatPass: Mail Alanı Boş");
+
+        }
 
     }
 }

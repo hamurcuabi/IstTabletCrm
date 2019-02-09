@@ -873,6 +873,7 @@ public class WeekView extends View {
             bob.append(event.getName());
             bob.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 0, bob.length(), 0);
             bob.append(' ');
+
         }
 
         // Prepare the location of the event.
@@ -1931,7 +1932,6 @@ public class WeekView extends View {
         invalidate();
     }
 
-
     /////////////////////////////////////////////////////////////////
     //
     //      Public methods.
@@ -2004,7 +2004,6 @@ public class WeekView extends View {
         recalculateHourHeight();
         invalidate();
     }
-
 
     /////////////////////////////////////////////////////////////////
     //

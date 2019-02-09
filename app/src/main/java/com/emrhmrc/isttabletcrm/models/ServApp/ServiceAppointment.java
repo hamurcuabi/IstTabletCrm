@@ -16,8 +16,8 @@ public class ServiceAppointment {
     private Inv_Id inv_CustomerId;
     private List<ServAppGetByIdServAppWorkListDetails> ServAppGetByIdServAppWorkListDetails;
     private List<ServAppGetByIdNotes> ServAppGetByIdNotes;
-    private String ActualStart;
-    private String ActualEnd;
+    private String ScheduledStart;
+    private String ScheduledEnd;
     private Inv_Id inv_ElevatorId;
     private List<ServAppGetByIdServAppUnsuitabilities> ServAppGetByIdServAppUnsuitabilities;
     private List<ServAppGetByIdServAppDetails> ServAppGetByIdServAppDetails;
@@ -107,20 +107,20 @@ public class ServiceAppointment {
         this.ServAppGetByIdNotes = ServAppGetByIdNotes;
     }
 
-    public String getActualStart() {
-        return ActualStart;
+    public String getScheduledStart() {
+        return ScheduledStart;
     }
 
-    public void setActualStart(String ActualStart) {
-        this.ActualStart = ActualStart;
+    public void setScheduledStart(String ScheduledStart) {
+        this.ScheduledStart = ScheduledStart;
     }
 
-    public String getActualEnd() {
-        return ActualEnd;
+    public String getScheduledEnd() {
+        return ScheduledEnd;
     }
 
-    public void setActualEnd(String ActualEnd) {
-        this.ActualEnd = ActualEnd;
+    public void setScheduledEnd(String ScheduledEnd) {
+        this.ScheduledEnd = ScheduledEnd;
     }
 
     public Inv_Id getInv_ElevatorId() {
@@ -173,8 +173,8 @@ public class ServiceAppointment {
                 ", inv_CustomerId=" + inv_CustomerId +
                 ", ServAppGetByIdServAppWorkListDetails=" + ServAppGetByIdServAppWorkListDetails +
                 ", ServAppGetByIdNotes=" + ServAppGetByIdNotes +
-                ", ActualStart='" + ActualStart + '\'' +
-                ", ActualEnd='" + ActualEnd + '\'' +
+                ", ActualStart='" + ScheduledStart + '\'' +
+                ", ActualEnd='" + ScheduledEnd + '\'' +
                 ", inv_ElevatorId='" + inv_ElevatorId + '\'' +
                 ", ServAppGetByIdServAppUnsuitabilities=" + ServAppGetByIdServAppUnsuitabilities +
                 ", ServAppGetByIdServAppDetails=" + ServAppGetByIdServAppDetails +

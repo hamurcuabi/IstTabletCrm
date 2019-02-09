@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
+import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.models.Elevator.Elevator;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorGetById;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorIdRequest;
@@ -62,8 +63,18 @@ public class ElevatorDetailActivity extends AppCompatActivity {
 
     private void setTexts(Elevator model) {
 
-
-        txt_blokadi.setText(model.getInv_BlockName());
+        if (model.getInv_ClassId() == null)
+            txt_sinif.setText("-");
+        else txt_sinif.setText(model.getInv_ClassId().getText());
+        if (model.getInv_AccountId() == null)
+            txt_apartadi.setText("-");
+        else txt_apartadi.setText(model.getInv_AccountId().getText());
+        if (model.getInv_ElevatorId() == null)
+            txt_asansorname.setText("-");
+        else txt_asansorname.setText(model.getInv_ElevatorId());
+        if (model.getInv_BlockName() == null)
+            txt_blokadi.setText("-");
+        else txt_blokadi.setText(model.getInv_BlockName());
         if (model.getInv_Capacity() == null)
             txt_kapasite.setText("-");
         else txt_kapasite.setText(model.getInv_Capacity().toString());
@@ -76,29 +87,17 @@ public class ElevatorDetailActivity extends AppCompatActivity {
         if (model.getInv_SerialNumber() == null)
             txt_serino.setText("-");
         else txt_serino.setText(model.getInv_SerialNumber());
-        /*txt_asansorhizi.setText();
-        txt_duraksayisi.setText();
-        txt_sinif.setText();
-        txt_katsayisi.setText();
-        txt_kimlikno.setText();
-        txt_ozellikler.setText();
-        txt_arizadakisorun.setText();
-        txt_adsoyad.setText();
-        txt_hizmetyili.setText();
-        txt_anlikdurum.setText();
-        txt_asansormanike.setText();
-        txt_sozlemebitis.setText();
-        txt_tekniktakim.setText();
-        txt_panaromikmi.setText();
-        txt_elevator_name.setText();
-        txt_asansorname.setText();
-        txt_apartadi.setText();*/
+        if (model.getInv_Floor() == null)
+            txt_katsayisi.setText("-");
+        else txt_katsayisi.setText(""+model.getInv_Floor());
+
 
     }
 
     public void getElevatorById() {
 
-        Call<ElevatorGetById> call = jsonApi.elevatorGetById(new ElevatorIdRequest("e7b36067-d7ca-e811-8103-005056b66d80"));
+        Call<ElevatorGetById> call = jsonApi.elevatorGetById(new ElevatorIdRequest(ShareData
+                .getInstance().getElevatorId()));
         call.enqueue(new Callback<ElevatorGetById>() {
             @Override
             public void onResponse(Call<ElevatorGetById> call, Response<ElevatorGetById> response) {

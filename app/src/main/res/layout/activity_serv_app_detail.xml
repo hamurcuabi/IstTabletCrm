@@ -216,14 +216,15 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="1.5"
                     android:orientation="vertical">
 
                     <LinearLayout
+                        android:layout_weight="2"
                         android:id="@+id/lnr_ilk"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/detay_menu_25"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="@dimen/detay_menu_12"
                         android:layout_marginTop="@dimen/detay_menu_12"
                         android:orientation="horizontal"
                         app:layout_constraintStart_toStartOf="parent"
@@ -237,7 +238,7 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginStart="@dimen/menu_text_12"
                             android:orientation="vertical">
 
@@ -282,10 +283,11 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:layout_weight="1"
                         android:id="@+id/lnr_iki"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/detay_menu_25"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="@dimen/detay_menu_12"
                         android:layout_marginTop="@dimen/detay_menu_12"
                         android:orientation="horizontal"
                         app:layout_constraintStart_toStartOf="parent"
@@ -299,7 +301,7 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginStart="@dimen/menu_text_12"
                             android:orientation="vertical">
 
@@ -326,16 +328,16 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:layout_weight="2"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/detay_menu_25"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="@dimen/detay_menu_12"
                         android:layout_marginTop="@dimen/detay_menu_12"
                         android:orientation="horizontal"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/lnr_iki">
+                       >
 
                         <ImageView
+                            android:id="@+id/img_tip"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/menu_icon"
@@ -343,9 +345,8 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginStart="@dimen/menu_text_12"
-                            android:layout_marginBottom="@dimen/detay_menu_35"
                             android:orientation="vertical">
 
                             <TextView
@@ -391,6 +392,7 @@
                                 android:textSize="@dimen/menu_text_16" />
 
                             <LinearLayout
+                                android:weightSum="2.5"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/detay_menu_12"
@@ -405,6 +407,7 @@
                                     android:textStyle="bold" />
 
                                 <TextView
+                                    android:layout_weight="0.3"
                                     android:id="@+id/txt_oncelik"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -415,6 +418,7 @@
                         </LinearLayout>
 
                     </LinearLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -440,7 +444,7 @@
 
                         <LinearLayout
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginStart="@dimen/detay_menu_25"
                             android:layout_marginTop="@dimen/detay_menu_12"
                             android:layout_weight="1"
@@ -483,10 +487,10 @@
 
                         <LinearLayout
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginStart="@dimen/detay_menu_25"
                             android:layout_marginTop="@dimen/detay_menu_12"
-                            android:layout_weight="1"
+                            android:layout_weight="1.1"
                             android:orientation="horizontal">
 
                             <ImageView
@@ -556,7 +560,7 @@
 
                         <LinearLayout
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginStart="@dimen/detay_menu_25"
                             android:layout_marginTop="@dimen/detay_menu_12"
                             android:layout_weight="1"
@@ -599,10 +603,10 @@
 
                         <LinearLayout
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginStart="@dimen/detay_menu_25"
                             android:layout_marginTop="@dimen/detay_menu_12"
-                            android:layout_weight="1"
+                            android:layout_weight="1.1"
                             android:orientation="horizontal">
 
                             <ImageView
@@ -925,6 +929,7 @@
                     android:src="@drawable/ic_yeni" />
 
                 <TextView
+                    android:id="@+id/add_job"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"

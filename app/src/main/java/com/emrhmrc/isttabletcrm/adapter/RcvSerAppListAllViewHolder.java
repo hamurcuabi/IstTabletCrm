@@ -15,7 +15,7 @@ public class RcvSerAppListAllViewHolder extends BaseViewHolder<ServiceAppointmen
         OnItemClickListener<ServiceAppointments>> {
 
     private TextView txt_info, txt_start_date, txt_end_date, txt_oncelik, txt_count,
-            txt_start_date_clock, txt_end_date_clock,txt_custumerid;
+            txt_start_date_clock, txt_end_date_clock,txt_custumerid,txt_title;
     private ImageView img_state;
 
     public RcvSerAppListAllViewHolder(View itemView) {
@@ -29,6 +29,7 @@ public class RcvSerAppListAllViewHolder extends BaseViewHolder<ServiceAppointmen
         txt_end_date_clock = itemView.findViewById(R.id.txt_end_date_clock);
         txt_custumerid = itemView.findViewById(R.id.txt_custumerid);
         img_state = itemView.findViewById(R.id.img_state);
+        txt_title = itemView.findViewById(R.id.txt_title);
     }
 
     @Override
@@ -50,6 +51,7 @@ public class RcvSerAppListAllViewHolder extends BaseViewHolder<ServiceAppointmen
             txt_end_date_clock.setText(Methodes.changeDateFormatToClockText(item.getScheduledEnd()));
             txt_oncelik.setText(item.getPriortiyCode().getText());
             txt_custumerid.setText(item.getInv_CustomerId().getText());
+            txt_title.setText(item.getInv_TypeCode().getText());
             switch (item.getPriortiyCode().getValue()) {
 
                 case 0:

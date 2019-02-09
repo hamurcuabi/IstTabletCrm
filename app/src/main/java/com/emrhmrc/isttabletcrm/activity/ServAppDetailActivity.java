@@ -21,6 +21,7 @@ import com.emrhmrc.isttabletcrm.fragment.BeforeAfterPicFragment;
 import com.emrhmrc.isttabletcrm.fragment.ControlListFragment;
 import com.emrhmrc.isttabletcrm.fragment.MapFragment;
 import com.emrhmrc.isttabletcrm.fragment.ReasonOfBreakdownFragment;
+import com.emrhmrc.isttabletcrm.helper.Methodes;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.models.MapModel;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetById;
@@ -39,10 +40,10 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     private RecyclerView rcv;
     private TextView txt_firmaismi, txt_firma_descp, txt_blokadi, txt_asansorno, txt_isemritipi,
             txt_oncelik, txt_ustaadi, txt_randevu, txt_ilgilisupervisor, txt_isebaslama,
-            txt_ariza_nedeni, txt_arizakodu, txt_aciklamanot;
+            txt_ariza_nedeni, txt_arizakodu, txt_aciklamanot, txt_islem, add_job;
     private Button btn_beforeafter;
     private ShareData shareData;
-    private ImageView img_gps;
+    private ImageView img_gps, img_tip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,10 +84,17 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
         txt_arizakodu = findViewById(R.id.txt_arizakodu);
         txt_aciklamanot = findViewById(R.id.txt_aciklamanot);
         btn_beforeafter = findViewById(R.id.btn_beforeafter);
+        txt_firmaismi = findViewById(R.id.txt_firmaismi);
+        txt_firma_descp = findViewById(R.id.txt_firma_descp);
+        txt_islem = findViewById(R.id.txt_islem);
         img_gps = findViewById(R.id.img_gps);
+        img_tip = findViewById(R.id.img_tip);
+        add_job = findViewById(R.id.add_job);
         btn_beforeafter.setOnClickListener(this);
+        add_job.setOnClickListener(this);
         txt_arizakodu.setOnClickListener(this);
         img_gps.setOnClickListener(this);
+        txt_asansorno.setOnClickListener(this);
 
         adapter = new RcvServAppDetailAdapter(getApplicationContext(), this);
         adapter.setListener(this);
@@ -129,22 +137,62 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     }
 
     private void setTexts(ServiceAppointment model) {
-        // txt_firmaismi.setText();
-        // txt_firma_descp.setText();
-        //txt_blokadi.setText();
-        if (model.getInv_ElevatorId() != null)
-            txt_asansorno.setText(model.getInv_ElevatorId().getText());
-        if (model.getInv_TypeCode() != null)
+        ShareData.getInstance().setElevatorId(model.getInv_ElevatorId().getId());
+        txt_asansorno.setText(model.getInv_ElevatorId().getText());
+        if (model.getInv_TypeCode() != null) {
             txt_isemritipi.setText(model.getInv_TypeCode().getText());
-        if (model.getPriortiyCode() != null)
+            switch (model.getInv_TypeCode().getValue()) {
+                case 1:
+                    img_tip.setImageResource(R.drawable.ic_bakim);
+                    break;
+                case 2:
+                    img_tip.setImageResource(R.drawable.ic_ariza);
+                    break;
+                case 3:
+                    img_tip.setImageResource(R.drawable.ic_modern);
+                    break;
+                case 4:
+                    img_tip.setImageResource(R.drawable.ic_yedek);
+                    break;
+                case 5:
+                    //Belirlenmedi
+                    img_tip.setImageResource(R.drawable.ic_yedek);
+                    break;
+                case 7:
+                    //Belirlenmedi
+                    img_tip.setImageResource(R.drawable.ic_yedek);
+                    break;
+                default:
+                    img_tip.setImageResource(R.drawable.ic_bakim);
+                    break;
+            }
+        }
+
+        if (model.getPriortiyCode() != null) {
+            int img;
             txt_oncelik.setText(model.getPriortiyCode().getText());
-        // txt_ustaadi.setText();
-        //  txt_randevu.setText();
-        //  txt_ilgilisupervisor.setText();
-        // txt_isebaslama.setText();
-        //  txt_ariza_nedeni.setText();
-        //  txt_arizakodu.setText();
-        // txt_aciklamanot.setText();
+            switch (model.getPriortiyCode().getValue()) {
+                case 0:
+                    img = R.drawable.ic_az;
+                    break;
+                case 1:
+                    img = R.drawable.ic_orta;
+                    break;
+                case 2:
+                    img = R.drawable.ic_yuksek;
+                    break;
+                default:
+                    img = R.drawable.ic_az;
+                    break;
+            }
+            txt_oncelik.setCompoundDrawablesWithIntrinsicBounds(null, null, getResources().getDrawable(img), null);
+        }
+
+        txt_firmaismi.setText(model.getInv_CustomerId().getText());
+        txt_firma_descp.setText(model.getSubject());
+        txt_islem.setText(model.getStatusCode().getText());
+        txt_randevu.setText(Methodes.changeDateFormatToText(model.getScheduledStart()));
+        txt_isebaslama.setText(Methodes.changeDateFormatToText(model.getScheduledEnd()));
 
     }
 
@@ -168,10 +216,24 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
             case R.id.img_gps:
                 mapFragment();
                 break;
+            case R.id.txt_asansorno:
+                openElevatorDetail();
+                break;
+            case R.id.add_job:
+                openAddPiece();
+                break;
 
 
         }
 
+    }
+
+    private void openAddPiece() {
+        startActivity(new Intent(ServAppDetailActivity.this, AddPieceActivity.class));
+    }
+
+    private void openElevatorDetail() {
+        startActivity(new Intent(ServAppDetailActivity.this, ElevatorDetailActivity.class));
     }
 
     private void openBeforeAfter() {

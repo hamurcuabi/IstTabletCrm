@@ -112,7 +112,7 @@ public abstract class BaseActivity extends AppCompatActivity implements WeekView
                         "Title",
                         "Description");
                 MapFragment fragment = MapFragment.newInstance(map, width, height);
-                fragment.show(getSupportFragmentManager(), "MpaFragment");
+                fragment.show(getSupportFragmentManager(), "MapFragment");
 
             }
         });
