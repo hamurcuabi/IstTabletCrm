@@ -1,12 +1,15 @@
 package com.emrhmrc.isttabletcrm.adapter;
 
 import android.content.Context;
+import android.databinding.DataBindingUtil;
+import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.GenericAdapter;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
-import com.emrhmrc.isttabletcrm.models.ServApp.ServiceAppointments;
+import com.emrhmrc.isttabletcrm.databinding.ServappCareItemBinding;
+import com.emrhmrc.isttabletcrm.models.ServiceAppointments;
 
 public class RcvServAppListAllAdapter extends GenericAdapter<ServiceAppointments,
         OnItemClickListener<ServiceAppointments>,
@@ -19,11 +22,12 @@ public class RcvServAppListAllAdapter extends GenericAdapter<ServiceAppointments
 
     @Override
     public RcvSerAppListAllViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        switch (viewType) {
+
+        /*   switch (viewType) {
             case 1:
                 return new RcvSerAppListAllViewHolder(inflate(R.layout.servapp_care_item,
                         parent));
-            case 2:
+         case 2:
                 return new RcvSerAppListAllViewHolder(inflate(R.layout.servapp_fault_item,
                         parent));
             case 3:
@@ -39,14 +43,17 @@ public class RcvServAppListAllAdapter extends GenericAdapter<ServiceAppointments
 
             default:
                 return new RcvSerAppListAllViewHolder(inflate(R.layout.servapp_care_item,
-                        parent));
-        }
-
+                        parent));*/
+        ServappCareItemBinding binding = DataBindingUtil.inflate(
+                LayoutInflater.from(parent.getContext()),
+                R.layout.servapp_care_item, parent, false);
+        return new RcvSerAppListAllViewHolder(binding);
     }
+
 
     @Override
     public int getItemViewType(int position) {
-        final ServiceAppointments item=getItem(position);
+        final ServiceAppointments item = getItem(position);
         return item.getStatusCode().getValue();
     }
 }

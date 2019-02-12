@@ -3,7 +3,6 @@ package com.emrhmrc.isttabletcrm.models.ServApp;
 
 import com.emrhmrc.isttabletcrm.models.CommonClass.Code;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
-import com.google.gson.annotations.SerializedName;
 
 public class ServAppGetByIdServAppDetails
 {

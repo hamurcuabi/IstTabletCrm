@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -83,8 +82,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void doLogin() {
-        String mail = binding.getUserName();
-        String pass = binding.getUserPass();
+        String mail = edt_nick.getText().toString();
+        String pass = edt_pass.getText().toString();
         if (StringUtil.ValidateStrings(mail, pass)) {
             rememberMe(mail, pass);
             UserRequest userRequest = new UserRequest(mail, pass);
@@ -115,7 +114,6 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-
     private void rememberMe(String mail, String pass) {
 
         if (cb_rememberme.isChecked()) {
@@ -133,7 +131,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void forgatPass() {
         String mail = null;
-        if (!TextUtils.isEmpty(binding.getUserName())) {
+        if (StringUtil.ValidateStrings(mail)) {
             Call<UserForgotPassword> call = jsonApi.userForgotPassword(new EmailRequest(mail));
             call.enqueue(new Callback<UserForgotPassword>() {
                 @Override

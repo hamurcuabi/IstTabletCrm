@@ -14,7 +14,6 @@ import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.models.Notification.Notification;
 import com.emrhmrc.isttabletcrm.models.Notification.NotificationListAllWithSurvey;
-import com.emrhmrc.isttabletcrm.models.ServApp.ServiceAppointments;
 import com.emrhmrc.isttabletcrm.models.User.UserIdRequest;
 
 import java.util.List;

@@ -21,4 +21,9 @@ public class StringUtil {
     public static String convertIntToString(int value) {
         return String.valueOf(value);
     }
+
+    public static String nullToString(String string) {
+        if (ValidateStrings(string)) return string;
+        else return "null";
+    }
 }
