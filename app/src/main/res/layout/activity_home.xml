@@ -83,7 +83,7 @@
         android:layout_marginStart="@dimen/detay_menu_50"
         android:layout_marginTop="@dimen/detay_menu_12"
         android:layout_marginEnd="@dimen/detay_menu_50"
-        android:layout_marginBottom="@dimen/detay_menu_12"
+        android:layout_marginBottom="@dimen/detay_menu_15"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

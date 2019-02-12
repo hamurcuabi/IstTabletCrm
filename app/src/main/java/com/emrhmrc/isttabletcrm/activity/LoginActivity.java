@@ -1,6 +1,7 @@
 package com.emrhmrc.isttabletcrm.activity;
 
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
@@ -15,73 +16,79 @@ import android.widget.TextView;
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
-import com.emrhmrc.isttabletcrm.helper.Methodes;
+import com.emrhmrc.isttabletcrm.databinding.ActivityLoginBinding;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.helper.SharedPref;
 import com.emrhmrc.isttabletcrm.models.User.EmailRequest;
 import com.emrhmrc.isttabletcrm.models.User.UserForgotPassword;
 import com.emrhmrc.isttabletcrm.models.User.UserLogin;
 import com.emrhmrc.isttabletcrm.models.User.UserRequest;
+import com.emrhmrc.isttabletcrm.util.StringUtil;
 
+import butterknife.BindString;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";
+    @BindView(R.id.edt_nick)
+    TextInputEditText edt_nick;
+    @BindView(R.id.til_nick)
+    TextInputLayout til_nick;
+    @BindView(R.id.edt_pass)
+    TextInputEditText edt_pass;
+    @BindView(R.id.til_pass)
+    TextInputLayout til_pass;
+    @BindView(R.id.cb_rememberme)
+    CheckBox cb_rememberme;
+    @BindView(R.id.txt_forgatpass)
+    TextView txt_forgatpass;
+    @BindView(R.id.btn_login)
+    Button btn_login;
+    @BindString(R.string.error_nick)
+    String error_nick;
+    @BindString(R.string.error_pass)
+    String error_pass;
+    private ActivityLoginBinding binding;
     private JsonApi jsonApi;
-    private TextInputEditText edt_nick, edt_pass;
-    private TextInputLayout til_nick, til_pass;
-    private TextView txt_forgatpass;
-    private Button btn_login;
-    private CheckBox cb_rememberme;
     private SharedPref pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
+        ButterKnife.bind(this);
         init();
         setTexts();
     }
 
     private void setTexts() {
         if (pref.getRememberMe()) {
-            edt_nick.setText(pref.getUserMail());
-            edt_pass.setText(pref.getUserPass());
+            binding.setUserName(pref.getUserMail());
+            binding.setUserPass(pref.getUserPass());
+
         }
+        binding.setRemember(pref.getRememberMe());
     }
 
     private void init() {
         pref = new SharedPref(getApplicationContext());
         jsonApi = ApiClient.getClient().create(JsonApi.class);
-        edt_nick = findViewById(R.id.edt_nick);
-        edt_pass = findViewById(R.id.edt_pass);
-        til_nick = findViewById(R.id.til_nick);
-        til_pass = findViewById(R.id.til_pass);
-        txt_forgatpass = findViewById(R.id.txt_forgatpass);
-        btn_login = findViewById(R.id.btn_login);
-        cb_rememberme = findViewById(R.id.cb_rememberme);
-        btn_login.setOnClickListener(this);
-        txt_forgatpass.setOnClickListener(this);
 
     }
 
     private void doLogin() {
-        btn_login.setEnabled(false);
-        String mail = edt_nick.getText().toString();
-        String pass = edt_pass.getText().toString();
-
-        if (!Methodes.validateInput(mail)) {
-            til_nick.setError(getResources().getString(R.string.error_nick));
-            btn_login.setEnabled(true);
-        } else if (!Methodes.validateInput(pass)) {
-            til_pass.setError(getResources().getString(R.string.error_pass));
-            btn_login.setEnabled(true);
-        } else {
+        String mail = binding.getUserName();
+        String pass = binding.getUserPass();
+        if (StringUtil.ValidateStrings(mail, pass)) {
             rememberMe(mail, pass);
             UserRequest userRequest = new UserRequest(mail, pass);
+            btn_login.setEnabled(false);
             Call<UserLogin> call = jsonApi.userLogin(userRequest);
             call.enqueue(new Callback<UserLogin>() {
                 @Override
@@ -103,10 +110,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 }
             });
-
-
+        } else {
+            Log.d(TAG, "doLogin: Alanlar Boş");
         }
     }
+
 
     private void rememberMe(String mail, String pass) {
 
@@ -123,25 +131,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
-    @Override
-    public void onClick(View view) {
-
-        switch (view.getId()) {
-
-            case R.id.txt_forgatpass:
-                forgatPass();
-                break;
-            case R.id.btn_login:
-                doLogin();
-                break;
-
-
-        }
-    }
-
     private void forgatPass() {
         String mail = null;
-        if (!TextUtils.equals(edt_nick.getText().toString().trim(), null)) {
+        if (!TextUtils.isEmpty(binding.getUserName())) {
             Call<UserForgotPassword> call = jsonApi.userForgotPassword(new EmailRequest(mail));
             call.enqueue(new Callback<UserForgotPassword>() {
                 @Override
@@ -149,7 +141,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     if (response.isSuccessful()) {
 
                         UserForgotPassword model = response.body();
-
 
                     }
                 }
@@ -161,10 +152,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
             });
         } else {
-
             Log.d(TAG, "forgatPass: Mail Alanı Boş");
-
         }
 
     }
+
+    @OnClick({R.id.txt_forgatpass, R.id.btn_login})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.txt_forgatpass:
+                forgatPass();
+                break;
+            case R.id.btn_login:
+                doLogin();
+                break;
+        }
+    }
+
+
 }
