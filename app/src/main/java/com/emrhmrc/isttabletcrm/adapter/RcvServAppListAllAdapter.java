@@ -48,6 +48,7 @@ public class RcvServAppListAllAdapter extends GenericAdapter<ServiceAppointments
                 LayoutInflater.from(parent.getContext()),
                 R.layout.servapp_care_item, parent, false);
         return new RcvSerAppListAllViewHolder(binding);
+
     }
 
 

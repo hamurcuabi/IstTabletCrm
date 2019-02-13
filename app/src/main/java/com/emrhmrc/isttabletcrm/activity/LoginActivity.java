@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
     private void doLogin() {
         String mail = edt_nick.getText().toString();
         String pass = edt_pass.getText().toString();
-        if (StringUtil.ValidateStrings(mail, pass)) {
+        if (StringUtil.validateStrings(mail, pass)) {
             rememberMe(mail, pass);
             UserRequest userRequest = new UserRequest(mail, pass);
             btn_login.setEnabled(false);
@@ -131,7 +131,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void forgatPass() {
         String mail = null;
-        if (StringUtil.ValidateStrings(mail)) {
+        if (StringUtil.validateStrings(mail)) {
             Call<UserForgotPassword> call = jsonApi.userForgotPassword(new EmailRequest(mail));
             call.enqueue(new Callback<UserForgotPassword>() {
                 @Override

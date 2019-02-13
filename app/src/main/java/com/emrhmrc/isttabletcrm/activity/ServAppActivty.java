@@ -21,6 +21,9 @@ import com.emrhmrc.isttabletcrm.models.User.UserIdRequest;
 
 import java.util.List;
 
+import butterknife.BindArray;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -28,35 +31,37 @@ import retrofit2.Response;
 public class ServAppActivty extends AppCompatActivity implements OnItemClickListener {
 
     private static final String TAG = "ServAppActivty";
-    private RecyclerView rcw;
+    @BindView(R.id.spn_servapp)
+    Spinner spinner;
+    @BindView(R.id.rcw_servapp)
+    RecyclerView rcw;
+    @BindArray(R.array.spn_servapp)
+    String[] items;
     private List<ServiceAppointments> model;
     private JsonApi jsonApi;
     private RcvServAppListAllAdapter adapter;
-    private Spinner spinner;
     private ShareData shareData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_serv_app_activty);
+        ButterKnife.bind(this);
         init();
         getServAppListAll();
     }
 
     private void init() {
         jsonApi = ApiClient.getClient().create(JsonApi.class);
-        rcw = findViewById(R.id.rcw_servapp);
         rcw.setHasFixedSize(true);
         rcw.setLayoutManager(new LinearLayoutManager(this));
         adapter = new RcvServAppListAllAdapter(getApplicationContext(), this);
         adapter.setListener(this);
         rcw.setAdapter(adapter);
         rcw.setLayoutManager(new LinearLayoutManager(this));
-        spinner = findViewById(R.id.spn_servapp);
 
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(
-                this, R.layout.spinner_item, getResources().getStringArray(R.array.spn_servapp)
-        );
+                this, R.layout.spinner_item, items);
         spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         spinner.setAdapter(spinnerArrayAdapter);
         shareData = ShareData.getInstance();

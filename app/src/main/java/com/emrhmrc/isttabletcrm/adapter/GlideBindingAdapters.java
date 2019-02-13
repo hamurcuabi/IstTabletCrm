@@ -33,7 +33,10 @@ public class GlideBindingAdapters {
                 imageUrl = R.drawable.ic_yedek;
                 break;
             case 5:
-                imageUrl = R.drawable.ic_muayene;
+                imageUrl = R.drawable.ic_yedek;
+                break;
+            case 7:
+                imageUrl = R.drawable.ic_yedek;
                 break;
             default:
                 imageUrl = R.drawable.ic_bakim;
@@ -56,7 +59,6 @@ public class GlideBindingAdapters {
         Context context = view.getContext();
         int imageUrl;
         switch (id) {
-
             case 1:
                 imageUrl = R.drawable.isemri_bakim;
                 break;

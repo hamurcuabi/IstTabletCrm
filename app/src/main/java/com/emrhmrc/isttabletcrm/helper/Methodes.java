@@ -81,19 +81,24 @@ public class Methodes {
 
     public static String changeDateFormatToText(String date) {
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-        Date sourceDate = null;
-        try {
-            sourceDate = dateFormat.parse(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        if (validateInput(date)) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+            Date sourceDate = null;
+            try {
+                sourceDate = dateFormat.parse(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+                return "null";
 
-        SimpleDateFormat targetFormat = new SimpleDateFormat("dd.MM.yyyy");
-        return targetFormat.format(sourceDate);
+            }
+
+            SimpleDateFormat targetFormat = new SimpleDateFormat("dd.MM.yyyy");
+            return targetFormat.format(sourceDate);
+        } else return "null";
 
 
     }
+
     public static String changeDateFormatToClockText(String date) {
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
@@ -114,7 +119,7 @@ public class Methodes {
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
         Date sourceDate = null;
-        Calendar calendar=Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance();
         try {
             sourceDate = dateFormat.parse(date);
             calendar.setTime(sourceDate);

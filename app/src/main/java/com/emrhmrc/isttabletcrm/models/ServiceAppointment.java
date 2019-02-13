@@ -1,8 +1,14 @@
-package com.emrhmrc.isttabletcrm.models.ServApp;
+package com.emrhmrc.isttabletcrm.models;
 
 
 import com.emrhmrc.isttabletcrm.models.CommonClass.Code;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
+import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdNotes;
+import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppBreakdownTypes;
+import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppDetails;
+import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppModernizationChecklists;
+import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppUnsuitabilities;
+import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppWorkListDetails;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -12,17 +18,17 @@ public class ServiceAppointment {
     private Code StatusCode;
     private String ActivityId;
     private String Subject;
-    private List<ServAppGetByIdServAppBreakdownTypes> ServAppGetByIdServAppBreakdownTypes;
+    private List<com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppBreakdownTypes> ServAppGetByIdServAppBreakdownTypes;
     private Inv_Id inv_CustomerId;
-    private List<ServAppGetByIdServAppWorkListDetails> ServAppGetByIdServAppWorkListDetails;
-    private List<ServAppGetByIdNotes> ServAppGetByIdNotes;
+    private List<com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppWorkListDetails> ServAppGetByIdServAppWorkListDetails;
+    private List<com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdNotes> ServAppGetByIdNotes;
     private String ScheduledStart;
     private String ScheduledEnd;
     private Inv_Id inv_ElevatorId;
-    private List<ServAppGetByIdServAppUnsuitabilities> ServAppGetByIdServAppUnsuitabilities;
-    private List<ServAppGetByIdServAppDetails> ServAppGetByIdServAppDetails;
+    private List<com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppUnsuitabilities> ServAppGetByIdServAppUnsuitabilities;
+    private List<com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppDetails> ServAppGetByIdServAppDetails;
     private Code inv_TypeCode;
-    private List<ServAppGetByIdServAppModernizationChecklists> ServAppGetByIdServAppModernizationChecklists;
+    private List<com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppModernizationChecklists> ServAppGetByIdServAppModernizationChecklists;
     private double inv_Latitude;
     private double inv_Longitude;
     private Code PriortiyCode;

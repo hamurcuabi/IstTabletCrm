@@ -5,7 +5,7 @@ import android.text.TextUtils;
 public class StringUtil {
 
 
-    public static boolean ValidateStrings(String... string) {
+    public static boolean validateStrings(String... string) {
 
         boolean validation = true;
         for (String current : string) {
@@ -23,7 +23,8 @@ public class StringUtil {
     }
 
     public static String nullToString(String string) {
-        if (ValidateStrings(string)) return string;
+        if (validateStrings(string)) return string;
         else return "null";
     }
+
 }
