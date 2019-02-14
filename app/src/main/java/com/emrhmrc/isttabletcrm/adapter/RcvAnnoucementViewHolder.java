@@ -37,5 +37,7 @@ public class RcvAnnoucementViewHolder extends BaseViewHolder<Notification,
     }
 
 
+
+
 }
 

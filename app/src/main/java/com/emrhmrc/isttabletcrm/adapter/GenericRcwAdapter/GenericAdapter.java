@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,6 +79,7 @@ public abstract class GenericAdapter<T, L extends BaseRecyclerListener, VH exten
         }
         T item = items.get(position);
         holder.onBind(item, listener);
+
     }
 
     /**
@@ -91,6 +91,7 @@ public abstract class GenericAdapter<T, L extends BaseRecyclerListener, VH exten
     public int getItemCount() {
         return items != null ? items.size() : 0;
     }
+
 
     /**
      * Sets items to the adapter and notifies that data set has been changed.

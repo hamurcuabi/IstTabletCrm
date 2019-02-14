@@ -39,4 +39,7 @@ public class RcvServAppDetailViewHolder extends BaseViewHolder<ServAppGetByIdSer
         txt_kod.setText(item.getInv_LineNo().toString());
 
     }
+
+
+
 }

@@ -76,7 +76,7 @@ public class AddPieceActivity extends AppCompatActivity implements OnItemClickLi
         adapter = new RcvProductMainAdapter(getApplicationContext(), this);
         adapter.setListener(this);
         rcwServapp.setAdapter(adapter);
-        jsonApi = ApiClient.getClient().create(JsonApi.class);
+
 
     }
 

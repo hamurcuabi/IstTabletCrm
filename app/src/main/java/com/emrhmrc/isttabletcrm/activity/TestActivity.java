@@ -247,7 +247,7 @@ public class TestActivity extends AppCompatActivity implements OnItemClickListen
 
     public void getProductListAll(View view) {
 
-        Call<ProductListAll> call = jsonApi.productListAll();
+       /* Call<ProductListAll> call = jsonApi.productListAll();
         call.enqueue(new Callback<ProductListAll>() {
             @Override
             public void onResponse(Call<ProductListAll> call, Response<ProductListAll> response) {
@@ -265,7 +265,7 @@ public class TestActivity extends AppCompatActivity implements OnItemClickListen
 
 
             }
-        });
+        });*/
 
 
     }

@@ -28,6 +28,7 @@ public class ProductSubViewHolder extends BaseViewHolder<SubList,
     public ProductSubViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
+
     }
 
     @Override
@@ -44,6 +45,7 @@ public class ProductSubViewHolder extends BaseViewHolder<SubList,
             });
         }
     }
+
 
 
 }

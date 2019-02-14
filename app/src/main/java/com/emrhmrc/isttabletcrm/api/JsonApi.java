@@ -12,6 +12,9 @@ import com.emrhmrc.isttabletcrm.models.Notification.NotificationListAll;
 import com.emrhmrc.isttabletcrm.models.Notification.SurveyUpdateById;
 import com.emrhmrc.isttabletcrm.models.Product.MainProductList;
 import com.emrhmrc.isttabletcrm.models.Product.ProductListAll;
+import com.emrhmrc.isttabletcrm.models.Product.SubGroupProductsRequest;
+import com.emrhmrc.isttabletcrm.models.Product.SubGroupRequest;
+import com.emrhmrc.isttabletcrm.models.Product.SubProductList;
 import com.emrhmrc.isttabletcrm.models.Quote.QuoteGetById;
 import com.emrhmrc.isttabletcrm.models.ServApp.CompleteByIdRequest;
 import com.emrhmrc.isttabletcrm.models.ServApp.DefaultResponse;
@@ -59,12 +62,16 @@ public interface JsonApi {
     Call<BreakDownTypeListAll> breakDownTypeListAll();
 
     //OK
-    @GET("Product/ListAll")
-    Call<ProductListAll> productListAll();
+    @POST("Product/ListAll")
+    Call<ProductListAll> productListAll(@Body SubGroupProductsRequest request);
 
     //OK
-    @POST("MainProductGroup/ListAll")
+    @GET("MainProductGroup/ListAll")
     Call<MainProductList> getMainProductListCall();
+
+    //OK
+    @POST("SubProductGroup/ListAllByParentId")
+    Call<SubProductList> getSubProductListCall(@Body SubGroupRequest subGroupRequest);
 
     //OK
     @GET("Account/ListAll")
