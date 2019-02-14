@@ -14,7 +14,7 @@ import com.emrhmrc.isttabletcrm.helper.SingletonUser;
 import com.emrhmrc.isttabletcrm.models.Notification.Notification;
 import com.emrhmrc.isttabletcrm.models.Notification.NotificationListAll;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppListAll;
-import com.emrhmrc.isttabletcrm.models.ServiceAppointments;
+import com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointments;
 import com.emrhmrc.isttabletcrm.models.User.UserIdRequest;
 import com.emrhmrc.isttabletcrm.util.StringUtil;
 

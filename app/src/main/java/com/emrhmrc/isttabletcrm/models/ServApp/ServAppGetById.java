@@ -1,7 +1,7 @@
 package com.emrhmrc.isttabletcrm.models.ServApp;
 
+import com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointment;
 import com.emrhmrc.isttabletcrm.models.CommonClass.TableMetadata;
-import com.emrhmrc.isttabletcrm.models.ServiceAppointment;
 import com.google.gson.annotations.SerializedName;
 
 public class ServAppGetById {
@@ -20,7 +20,7 @@ public class ServAppGetById {
 
     private boolean Success;
 
-    private com.emrhmrc.isttabletcrm.models.ServiceAppointment ServiceAppointment;
+    private com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointment ServiceAppointment;
     @SerializedName("TableMetadataServAppUnsuitabilities")
     private TableMetadata TableMetadataServAppUnsuitabilities;
     @SerializedName("TableMetadataServAppWorkListDetails")

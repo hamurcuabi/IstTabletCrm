@@ -2,7 +2,6 @@ package com.emrhmrc.isttabletcrm.adapter;
 
 import android.content.Context;
 import android.databinding.BindingAdapter;
-import android.support.annotation.DrawableRes;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -80,6 +79,7 @@ public class GlideBindingAdapters {
         }
         view.setBackground(context.getDrawable(imageUrl));
     }
+
     @BindingAdapter("statusColor")
     public static void setStatusColor(ImageView view, int id) {
 
@@ -102,6 +102,7 @@ public class GlideBindingAdapters {
         }
         view.setBackground(context.getDrawable(imageUrl));
     }
+
     @BindingAdapter("imageResource")
     public static void setImageResource(ImageView view, String imageUrl) {
         Context context = view.getContext();

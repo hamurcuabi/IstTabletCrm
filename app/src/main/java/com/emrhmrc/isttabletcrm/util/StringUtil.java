@@ -5,6 +5,10 @@ import android.text.TextUtils;
 public class StringUtil {
 
 
+    public static String returnNull() {
+        return "";
+    }
+
     public static boolean validateStrings(String... string) {
 
         boolean validation = true;
@@ -26,5 +30,6 @@ public class StringUtil {
         if (validateStrings(string)) return string;
         else return "null";
     }
+
 
 }

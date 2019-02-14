@@ -1,7 +1,7 @@
 package com.emrhmrc.isttabletcrm.models.ServApp;
 
+import com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointments;
 import com.emrhmrc.isttabletcrm.models.CommonClass.TableMetadata;
-import com.emrhmrc.isttabletcrm.models.ServiceAppointments;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -38,7 +38,7 @@ public class ServAppListAll {
         return ServiceAppointments;
     }
 
-    public void setServiceAppointments(List<com.emrhmrc.isttabletcrm.models.ServiceAppointments> ServiceAppointments) {
+    public void setServiceAppointments(List<com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointments> ServiceAppointments) {
         this.ServiceAppointments = ServiceAppointments;
     }
 

@@ -26,8 +26,6 @@ public class RcvAnnoucementViewHolder extends BaseViewHolder<Notification,
         txt_date.setText(item.getScheduledStart());
 
         if (listener != null) {
-            //if min sdk >24
-            // txt_test.setOnClickListener(v->listener.onItemClicked(item));
             txt_detail.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

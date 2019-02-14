@@ -10,7 +10,7 @@ import com.emrhmrc.isttabletcrm.calendar.WeekViewEvent;
 import com.emrhmrc.isttabletcrm.helper.Methodes;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppListAll;
-import com.emrhmrc.isttabletcrm.models.ServiceAppointments;
+import com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointments;
 import com.emrhmrc.isttabletcrm.models.User.UserIdRequest;
 
 import java.util.ArrayList;

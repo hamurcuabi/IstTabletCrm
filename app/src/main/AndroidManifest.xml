@@ -45,11 +45,7 @@
         <activity
             android:name=".activity.LoginActivity"
             android:screenOrientation="landscape">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <meta-data
@@ -60,7 +56,13 @@
         <activity android:name=".activity.AnnouncementActivity" />
         <activity android:name=".activity.AnnouncementDetailActivity" />
         <activity android:name=".activity.UnsuitabilityActivity" />
-        <activity android:name=".activity.AddPieceActivity" />
+        <activity android:name=".activity.AddPieceActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".activity.AddSubPieceActivity"
             android:screenOrientation="landscape">

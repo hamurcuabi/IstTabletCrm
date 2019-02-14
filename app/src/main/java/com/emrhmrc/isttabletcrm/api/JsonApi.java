@@ -10,6 +10,7 @@ import com.emrhmrc.isttabletcrm.models.Notification.GetByIdWithSurvey;
 import com.emrhmrc.isttabletcrm.models.Notification.NotificationIdRequest;
 import com.emrhmrc.isttabletcrm.models.Notification.NotificationListAll;
 import com.emrhmrc.isttabletcrm.models.Notification.SurveyUpdateById;
+import com.emrhmrc.isttabletcrm.models.Product.MainProductList;
 import com.emrhmrc.isttabletcrm.models.Product.ProductListAll;
 import com.emrhmrc.isttabletcrm.models.Quote.QuoteGetById;
 import com.emrhmrc.isttabletcrm.models.ServApp.CompleteByIdRequest;
@@ -60,6 +61,10 @@ public interface JsonApi {
     //OK
     @GET("Product/ListAll")
     Call<ProductListAll> productListAll();
+
+    //OK
+    @POST("MainProductGroup/ListAll")
+    Call<MainProductList> getMainProductListCall();
 
     //OK
     @GET("Account/ListAll")

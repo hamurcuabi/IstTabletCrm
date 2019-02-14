@@ -9,9 +9,11 @@
 
         <import type="com.emrhmrc.isttabletcrm.helper.Methodes" />
 
+        <import type="com.emrhmrc.isttabletcrm.helper.SingletonUser" />
+
         <variable
             name="model"
-            type="com.emrhmrc.isttabletcrm.models.ServiceAppointment" />
+            type="com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointment" />
     </data>
 
     <android.support.v4.widget.NestedScrollView
@@ -63,126 +65,14 @@
                         app:layout_constraintStart_toEndOf="@+id/img_menu"
                         app:layout_constraintTop_toTopOf="@+id/img_menu" />
 
-                    <android.support.constraint.ConstraintLayout
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="22dp"
-                        app:layout_constraintBottom_toBottomOf="@+id/txt_menu_header"
+                        android:layout_marginEnd="@dimen/menu_left_32"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="@+id/img_menu"
                         app:layout_constraintEnd_toEndOf="parent">
-
-                        <TextView
-                            android:id="@+id/txt_servis_raporu"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/menu_left_32"
-                            android:fontFamily="@font/roboto_regular"
-                            android:text="@string/servis_raporu"
-                            android:textAllCaps="true"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/menu_text_14"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="@+id/img_servis_raporu"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/img_servis_raporu" />
-
-                        <ImageView
-                            android:id="@+id/img_servis_raporu"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/menu_icon_text"
-                            android:src="@drawable/ic_servis_rapor"
-                            app:layout_constraintBottom_toBottomOf="@+id/txt_servis_raporu"
-                            app:layout_constraintEnd_toStartOf="@+id/txt_servis_raporu"
-                            app:layout_constraintTop_toTopOf="@+id/txt_servis_raporu" />
-
-                        <TextView
-                            android:id="@+id/txt_servapp_done"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/detay_menu_12"
-                            android:fontFamily="@font/roboto_regular"
-                            android:text="@string/isemri_tamamla"
-                            android:textAllCaps="true"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/menu_text_14"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="@+id/img_servapp_done"
-                            app:layout_constraintEnd_toStartOf="@+id/img_servis_raporu"
-                            app:layout_constraintTop_toTopOf="@+id/img_servapp_done" />
-
-                        <ImageView
-                            android:id="@+id/img_servapp_done"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/menu_icon_text"
-                            android:src="@drawable/ic_isemri_tamamla"
-                            app:layout_constraintBottom_toBottomOf="@+id/txt_servis_raporu"
-                            app:layout_constraintEnd_toStartOf="@+id/txt_servapp_done"
-                            app:layout_constraintTop_toTopOf="@+id/txt_servis_raporu" />
-
-                        <TextView
-                            android:id="@+id/txt_cancel"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/detay_menu_12"
-                            android:fontFamily="@font/roboto_regular"
-                            android:text="@string/iptal"
-                            android:textAllCaps="true"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/menu_text_14"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="@+id/img_cancel"
-                            app:layout_constraintEnd_toStartOf="@+id/img_servapp_done"
-                            app:layout_constraintTop_toTopOf="@+id/img_cancel" />
-
-                        <ImageView
-                            android:id="@+id/img_cancel"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/menu_icon_text"
-                            android:src="@drawable/ic_iptal"
-                            app:layout_constraintBottom_toBottomOf="@+id/txt_servis_raporu"
-                            app:layout_constraintEnd_toStartOf="@+id/txt_cancel"
-                            app:layout_constraintTop_toTopOf="@+id/txt_servis_raporu" />
-
-                        <TextView
-                            android:id="@+id/txt_kaydet"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/detay_menu_12"
-                            android:fontFamily="@font/roboto_regular"
-                            android:text="@string/kaydet"
-                            android:textAllCaps="true"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/menu_text_14"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="@+id/img_kaydet"
-                            app:layout_constraintEnd_toStartOf="@+id/img_cancel"
-                            app:layout_constraintTop_toTopOf="@+id/img_kaydet" />
-
-                        <ImageView
-                            android:id="@+id/img_kaydet"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/menu_icon_text"
-                            android:src="@drawable/ic_kaydet"
-                            app:layout_constraintBottom_toBottomOf="@+id/txt_servis_raporu"
-                            app:layout_constraintEnd_toStartOf="@+id/txt_kaydet"
-                            app:layout_constraintTop_toTopOf="@+id/txt_servis_raporu" />
-
-                        <TextView
-                            android:id="@+id/txt_yeni"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/detay_menu_12"
-                            android:fontFamily="@font/roboto_regular"
-                            android:text="@string/yeni"
-                            android:textAllCaps="true"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/menu_text_14"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="@+id/img_yeni"
-                            app:layout_constraintEnd_toStartOf="@+id/img_kaydet"
-                            app:layout_constraintTop_toTopOf="@+id/img_yeni" />
 
                         <ImageView
                             android:id="@+id/img_yeni"
@@ -190,12 +80,84 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:layout_marginEnd="@dimen/menu_icon_text"
-                            android:src="@drawable/ic_yeni"
-                            app:layout_constraintBottom_toBottomOf="@+id/txt_servis_raporu"
-                            app:layout_constraintEnd_toStartOf="@+id/txt_yeni"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/txt_servis_raporu" />
-                    </android.support.constraint.ConstraintLayout>
+                            android:src="@drawable/ic_yeni" />
+
+                        <TextView
+                            android:id="@+id/txt_yeni"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="@dimen/detay_menu_12"
+                            android:fontFamily="@font/roboto_regular"
+                            android:text="@string/yeni"
+                            android:textAllCaps="true"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/menu_text_14"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/img_kaydet"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/menu_icon_text"
+                            android:src="@drawable/ic_kaydet" />
+
+                        <TextView
+                            android:id="@+id/txt_kaydet"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="@dimen/detay_menu_12"
+                            android:fontFamily="@font/roboto_regular"
+                            android:text="@string/kaydet"
+                            android:textAllCaps="true"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/menu_text_14"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/img_cancel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/menu_icon_text"
+                            android:src="@drawable/ic_iptal" />
+
+
+                        <TextView
+                            android:id="@+id/txt_cancel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="@dimen/detay_menu_12"
+                            android:fontFamily="@font/roboto_regular"
+                            android:text="@string/iptal"
+                            android:textAllCaps="true"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/menu_text_14"
+                            android:textStyle="bold" />
+
+
+                        <ImageView
+                            android:id="@+id/img_servis_raporu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/menu_icon_text"
+                            android:src="@drawable/ic_servis_rapor" />
+
+                        <TextView
+                            android:id="@+id/txt_servis_raporu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="@dimen/menu_left_32"
+                            android:fontFamily="@font/roboto_regular"
+                            android:text="@string/servis_raporu"
+                            android:textAllCaps="true"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/menu_text_14"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
                 </android.support.constraint.ConstraintLayout>
 
             </android.support.constraint.ConstraintLayout>
@@ -287,7 +249,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/roboto_regular"
-                                    android:text="@string/cblok"
+                                    android:text="@{StringUtil.nullToString(model.getInv_BlockName())}"
                                     android:textColor="@color/text_color"
                                     android:textSize="@dimen/menu_text_16"
                                     android:textStyle="bold" />
@@ -378,21 +340,6 @@
                                     android:textColor="@color/text_color"
                                     android:textSize="@dimen/text_menu_28" />
 
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/progres_height_parent"
-                                    android:background="@drawable/lnr_progres_parent">
-
-                                    <ImageView
-                                        android:layout_width="@dimen/detay_menu_55"
-                                        android:layout_height="@dimen/progres_height"
-                                        android:layout_alignParentStart="true"
-                                        android:layout_alignParentTop="true"
-                                        android:layout_alignParentBottom="true"
-                                        android:layout_marginTop="@dimen/progres_padding"
-                                        android:layout_marginBottom="@dimen/progres_padding"
-                                        android:src="@drawable/lnr_progres" />
-                                </RelativeLayout>
 
                                 <TextView
                                     android:id="@+id/txt_process"
@@ -494,7 +441,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/roboto_regular"
-                                        android:text="@string/dummy_usta"
+                                        android:text="@{SingletonUser.getInstance().getUser().getUserName()}"
                                         android:textColor="@color/text_color_3"
                                         android:textSize="@dimen/text_menu_16"
                                         android:textStyle="bold" />
@@ -610,7 +557,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/roboto_regular"
-                                        android:text="@string/dummy_usta"
+                                        android:text="@{StringUtil.nullToString(model.getInv_Supervisorid().getText())}"
                                         android:textColor="@color/text_color_3"
                                         android:textSize="@dimen/text_menu_16"
                                         android:textStyle="bold" />
@@ -697,7 +644,7 @@
                                     android:id="@+id/txt_ariza_nedeni"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/dummy_info_short"
+                                    android:text="@{StringUtil.nullToString(model.getInv_BreakdownCode().getText())}"
                                     android:textColor="@color/text_color_3"
                                     android:textSize="@dimen/text_menu_16" />
 

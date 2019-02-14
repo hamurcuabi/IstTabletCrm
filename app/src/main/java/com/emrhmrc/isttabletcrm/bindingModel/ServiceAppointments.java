@@ -1,4 +1,4 @@
-package com.emrhmrc.isttabletcrm.models;
+package com.emrhmrc.isttabletcrm.bindingModel;
 
 import com.emrhmrc.isttabletcrm.models.CommonClass.Code;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;

@@ -5,6 +5,8 @@ import android.databinding.DataBindingUtil;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
@@ -20,11 +22,18 @@ import com.emrhmrc.isttabletcrm.fragment.ControlListFragment;
 import com.emrhmrc.isttabletcrm.fragment.MapFragment;
 import com.emrhmrc.isttabletcrm.fragment.ReasonOfBreakdownFragment;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
+import com.emrhmrc.isttabletcrm.helper.SingletonUser;
 import com.emrhmrc.isttabletcrm.models.MapModel;
+import com.emrhmrc.isttabletcrm.models.ServApp.CompleteByIdRequest;
+import com.emrhmrc.isttabletcrm.models.ServApp.DefaultResponse;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetById;
+import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppDetails;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppIdRequest;
-import com.emrhmrc.isttabletcrm.models.ServiceAppointment;
+import com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointment;
 
+import java.util.List;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.Call;
@@ -35,9 +44,13 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
 
     private static final String TAG = "ServAppDetailActivity";
     ActivityServAppDetailBinding binding;
+    @BindView(R.id.rcv)
+    RecyclerView rcv;
     private JsonApi jsonApi;
     private RcvServAppDetailAdapter adapter;
     private ShareData shareData;
+    private List<ServAppGetByIdServAppDetails> model;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +77,11 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
 
     private void init() {
         jsonApi = ApiClient.getClient().create(JsonApi.class);
-
         adapter = new RcvServAppDetailAdapter(getApplicationContext(), this);
         adapter.setListener(this);
+        rcv.setHasFixedSize(true);
+        rcv.setLayoutManager(new LinearLayoutManager(this));
+        rcv.setAdapter(adapter);
         shareData = ShareData.getInstance();
     }
 
@@ -96,6 +111,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     private void setModelToBind(ServiceAppointment model) {
         binding.setModel(model);
         ShareData.getInstance().setElevatorId(model.getInv_ElevatorId().getId());
+        adapter.setItems(model.getServAppGetByIdServAppDetails());
 
     }
 
@@ -106,7 +122,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     }
 
     @OnClick({R.id.txt_yeni, R.id.img_gps, R.id.btn_kontrol_listesi, R.id.btn_beforeafter, R.id
-            .add_job, R.id.txt_arizakodu, R.id.txt_asansorno})
+            .add_job, R.id.txt_arizakodu, R.id.txt_asansorno, R.id.img_yeni, R.id.btn_closejob})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_beforeafter:
@@ -130,7 +146,36 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
             case R.id.txt_yeni:
                 newServApp();
                 break;
+            case R.id.img_yeni:
+                newServApp();
+                break;
+            case R.id.btn_closejob:
+                completeServApp();
+                break;
+
         }
+    }
+
+    private void completeServApp() {
+        CompleteByIdRequest request = new CompleteByIdRequest();
+        request.setUserId(SingletonUser.getInstance().getUser().getUserId());
+        request.setServiceAppId(ShareData.getInstance().getServAppId());
+        Call<DefaultResponse> call = jsonApi.servAppCompleteById(request);
+        call.enqueue(new Callback<DefaultResponse>() {
+            @Override
+            public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
+                if (response.isSuccessful()) {
+                    Log.d(TAG, "onResponse: ServCompleteById is Succes");
+
+                } else
+                    Log.d(TAG, "onResponse: ServCompleteById is Fail " + response.errorBody().toString());
+            }
+
+            @Override
+            public void onFailure(Call<DefaultResponse> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+            }
+        });
     }
 
     public void newServApp() {

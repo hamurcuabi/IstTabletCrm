@@ -1,4 +1,4 @@
-package com.emrhmrc.isttabletcrm.models;
+package com.emrhmrc.isttabletcrm.bindingModel;
 
 
 import com.emrhmrc.isttabletcrm.models.CommonClass.Code;
@@ -32,6 +32,51 @@ public class ServiceAppointment {
     private double inv_Latitude;
     private double inv_Longitude;
     private Code PriortiyCode;
+    private String inv_BlockName;
+    private String inv_QuoteId;
+    private Inv_Id inv_BreakdownCode;
+    private Inv_Id OwnerId;
+    private Inv_Id inv_Supervisorid;
+
+    public Inv_Id getInv_BreakdownCode() {
+        return inv_BreakdownCode;
+    }
+
+    public void setInv_BreakdownCode(Inv_Id inv_BreakdownCode) {
+        this.inv_BreakdownCode = inv_BreakdownCode;
+    }
+
+    public String getInv_QuoteId() {
+        return inv_QuoteId;
+    }
+
+    public void setInv_QuoteId(String inv_QuoteId) {
+        this.inv_QuoteId = inv_QuoteId;
+    }
+
+    public Inv_Id getInv_Supervisorid() {
+        return inv_Supervisorid;
+    }
+
+    public void setInv_Supervisorid(Inv_Id inv_Supervisorid) {
+        this.inv_Supervisorid = inv_Supervisorid;
+    }
+
+    public Inv_Id getOwnerId() {
+        return OwnerId;
+    }
+
+    public void setOwnerId(Inv_Id ownerId) {
+        OwnerId = ownerId;
+    }
+
+    public String getInv_BlockName() {
+        return inv_BlockName;
+    }
+
+    public void setInv_BlockName(String inv_BlockName) {
+        this.inv_BlockName = inv_BlockName;
+    }
 
     public double getInv_Latitude() {
         return inv_Latitude;

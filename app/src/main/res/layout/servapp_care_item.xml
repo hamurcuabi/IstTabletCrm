@@ -10,7 +10,7 @@
 
         <variable
             name="servappItem"
-            type="com.emrhmrc.isttabletcrm.models.ServiceAppointments" />
+            type="com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointments" />
 
         <variable
             name="count"

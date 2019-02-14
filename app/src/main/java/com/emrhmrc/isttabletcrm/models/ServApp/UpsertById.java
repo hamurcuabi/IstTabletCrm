@@ -1,6 +1,6 @@
 package com.emrhmrc.isttabletcrm.models.ServApp;
 
-import com.emrhmrc.isttabletcrm.models.ServiceAppointment;
+import com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointment;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;

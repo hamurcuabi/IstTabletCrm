@@ -9,7 +9,7 @@ import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.BaseViewHolder;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.databinding.ServappCareItemBinding;
-import com.emrhmrc.isttabletcrm.models.ServiceAppointments;
+import com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointments;
 import com.emrhmrc.isttabletcrm.util.StringUtil;
 
 import butterknife.BindView;

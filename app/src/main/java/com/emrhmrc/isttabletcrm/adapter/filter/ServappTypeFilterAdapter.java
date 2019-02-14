@@ -1,8 +1,9 @@
-package com.emrhmrc.isttabletcrm.adapter;
+package com.emrhmrc.isttabletcrm.adapter.filter;
 
 import android.widget.Filter;
 
-import com.emrhmrc.isttabletcrm.models.ServiceAppointments;
+import com.emrhmrc.isttabletcrm.adapter.RcvServAppListAllAdapter;
+import com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointments;
 
 import java.util.ArrayList;
 import java.util.List;
