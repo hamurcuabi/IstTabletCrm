@@ -8,7 +8,7 @@ import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorIdRequest;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorListAll;
 import com.emrhmrc.isttabletcrm.models.Notification.GetByIdWithSurvey;
 import com.emrhmrc.isttabletcrm.models.Notification.NotificationIdRequest;
-import com.emrhmrc.isttabletcrm.models.Notification.NotificationListAllWithSurvey;
+import com.emrhmrc.isttabletcrm.models.Notification.NotificationListAll;
 import com.emrhmrc.isttabletcrm.models.Notification.SurveyUpdateById;
 import com.emrhmrc.isttabletcrm.models.Product.ProductListAll;
 import com.emrhmrc.isttabletcrm.models.Quote.QuoteGetById;
@@ -94,8 +94,8 @@ public interface JsonApi {
     Call<GetServFormById> getServFormById(@Body ServiceAppIdRequest serviceAppId);
 
     //OK
-    @POST("Notification/ListAllWithSurvey")
-    Call<NotificationListAllWithSurvey> getNotificationListAllSurvey(@Body UserIdRequest userId);
+    @POST("Notification/ListAll")
+    Call<NotificationListAll> getNotificationListAll(@Body UserIdRequest userId);
 
     //OK
     @POST("Notification/SurveyUpdateById")

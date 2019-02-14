@@ -2,13 +2,13 @@ package com.emrhmrc.isttabletcrm.models.Notification;
 
 import java.util.List;
 
-public class NotificationListAllWithSurvey {
+public class NotificationListAll {
 
     private String ErrorMsg;
     private boolean Success;
     private List<Notification> Notifications;
 
-    public NotificationListAllWithSurvey() {
+    public NotificationListAll() {
 
     }
 

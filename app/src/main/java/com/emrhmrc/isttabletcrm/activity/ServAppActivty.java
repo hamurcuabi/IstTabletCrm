@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -18,6 +20,7 @@ import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppListAll;
 import com.emrhmrc.isttabletcrm.models.ServiceAppointments;
 import com.emrhmrc.isttabletcrm.models.User.UserIdRequest;
+import com.emrhmrc.isttabletcrm.util.StringUtil;
 
 import java.util.List;
 
@@ -49,6 +52,22 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
         ButterKnife.bind(this);
         init();
         getServAppListAll();
+
+    }
+
+    private void filterwithSpinner() {
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                adapter.getFilter().filter(StringUtil.convertIntToString(i));
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
     private void init() {
@@ -79,6 +98,8 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
                     final ServAppListAll temp = response.body();
                     model = temp.getServiceAppointments();
                     adapter.setItems(model);
+                    adapter.setItemsFilter(model);
+                    filterwithSpinner();
 
 
                 }

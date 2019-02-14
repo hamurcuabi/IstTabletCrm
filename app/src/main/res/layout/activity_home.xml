@@ -66,6 +66,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cons_user">
 
         <TextView
+            android:id="@+id/txt_user_descp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
@@ -133,6 +134,8 @@
                     app:layout_constraintTop_toBottomOf="@+id/img_servis" />
 
                 <android.support.constraint.ConstraintLayout
+
+                    android:id="@+id/cons_servapp_notif"
                     android:layout_width="@dimen/circle"
                     android:layout_height="@dimen/circle"
                     android:layout_marginTop="@dimen/circle_button"
@@ -142,6 +145,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
+                        android:id="@+id/txt_servapcount_notif"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="0dp"
@@ -149,7 +153,7 @@
                         android:layout_marginEnd="0dp"
                         android:layout_marginBottom="0dp"
                         android:fontFamily="@font/roboto_regular"
-                        android:text="@string/circle_text"
+
                         android:textColor="@color/white"
                         android:textSize="@dimen/circle_text"
                         android:textStyle="bold"
@@ -199,6 +203,8 @@
                     app:layout_constraintTop_toBottomOf="@+id/img_duyuru" />
 
                 <android.support.constraint.ConstraintLayout
+
+                    android:id="@+id/cons_notif_notif"
                     android:layout_width="@dimen/circle"
                     android:layout_height="@dimen/circle"
                     android:layout_marginTop="@dimen/circle_button"
@@ -208,6 +214,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
+                        android:id="@+id/txt_notif_notif"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="0dp"
@@ -215,7 +222,6 @@
                         android:layout_marginEnd="0dp"
                         android:layout_marginBottom="0dp"
                         android:fontFamily="@font/roboto_regular"
-                        android:text="@string/circle_text"
                         android:textColor="@color/white"
                         android:textSize="@dimen/circle_text"
                         android:textStyle="bold"
@@ -267,6 +273,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/img_katalog" />
 
                 <android.support.constraint.ConstraintLayout
+                    android:id="@+id/const_itemcatalog"
                     android:layout_width="@dimen/circle"
                     android:layout_height="@dimen/circle"
                     android:layout_marginTop="@dimen/circle_button"
@@ -277,6 +284,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
+                        android:id="@+id/txt_itemcatolog_notif"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="0dp"
@@ -412,6 +420,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/img_bilgilendirme" />
 
                 <android.support.constraint.ConstraintLayout
+                    android:id="@+id/cons_getinfo"
                     android:layout_width="@dimen/circle"
                     android:layout_height="@dimen/circle"
                     android:layout_marginTop="@dimen/circle_button"
@@ -422,6 +431,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
+                        android:id="@+id/txt_getinfo_notif"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_regular"
@@ -430,6 +440,7 @@
                         android:textSize="@dimen/circle_text"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -474,6 +485,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/img_stokdurumu" />
 
                 <android.support.constraint.ConstraintLayout
+                    android:id="@+id/cons_stok_notif"
                     android:layout_width="@dimen/circle"
                     android:layout_height="@dimen/circle"
                     android:layout_marginTop="@dimen/circle_button"
@@ -484,6 +496,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
+                        android:id="@+id/txt_stok_notif"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="0dp"
@@ -541,6 +554,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/img_takvim" />
 
                 <android.support.constraint.ConstraintLayout
+                    android:id="@+id/cons_calendar"
                     android:layout_width="@dimen/circle"
                     android:layout_height="@dimen/circle"
                     android:layout_marginTop="@dimen/circle_button"
@@ -551,6 +565,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
+                        android:id="@+id/txt_calendar_notif"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="0dp"
@@ -608,6 +623,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/img_teknik" />
 
                 <android.support.constraint.ConstraintLayout
+                    android:id="@+id/cons_tecchnical"
                     android:layout_width="@dimen/circle"
                     android:layout_height="@dimen/circle"
                     android:layout_marginTop="@dimen/circle_button"
@@ -618,6 +634,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
+                        android:id="@+id/txt_technical_notif"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="0dp"

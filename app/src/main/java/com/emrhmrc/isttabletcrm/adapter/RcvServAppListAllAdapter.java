@@ -4,6 +4,8 @@ import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.GenericAdapter;
@@ -13,37 +15,18 @@ import com.emrhmrc.isttabletcrm.models.ServiceAppointments;
 
 public class RcvServAppListAllAdapter extends GenericAdapter<ServiceAppointments,
         OnItemClickListener<ServiceAppointments>,
-        RcvSerAppListAllViewHolder> {
-
+        RcvSerAppListAllViewHolder> implements Filterable {
+    ServappTypeFilterAdapter filterAdapter;
 
     public RcvServAppListAllAdapter(Context context, OnItemClickListener listener) {
         super(context, listener);
+        filterAdapter = new ServappTypeFilterAdapter(this, getItemsFilter());
+
     }
 
     @Override
     public RcvSerAppListAllViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        /*   switch (viewType) {
-            case 1:
-                return new RcvSerAppListAllViewHolder(inflate(R.layout.servapp_care_item,
-                        parent));
-         case 2:
-                return new RcvSerAppListAllViewHolder(inflate(R.layout.servapp_fault_item,
-                        parent));
-            case 3:
-                return new RcvSerAppListAllViewHolder(inflate(R.layout.servapp_modern_item,
-                        parent));
-            case 4:
-                return new RcvSerAppListAllViewHolder(inflate(R.layout.servapp_backup_item,
-                        parent));
-            case 5:
-                return new RcvSerAppListAllViewHolder(inflate(R.layout.servapp_yearly_item,
-                        parent));
-
-
-            default:
-                return new RcvSerAppListAllViewHolder(inflate(R.layout.servapp_care_item,
-                        parent));*/
         ServappCareItemBinding binding = DataBindingUtil.inflate(
                 LayoutInflater.from(parent.getContext()),
                 R.layout.servapp_care_item, parent, false);
@@ -56,5 +39,10 @@ public class RcvServAppListAllAdapter extends GenericAdapter<ServiceAppointments
     public int getItemViewType(int position) {
         final ServiceAppointments item = getItem(position);
         return item.getStatusCode().getValue();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return filterAdapter;
     }
 }

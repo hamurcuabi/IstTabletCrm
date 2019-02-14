@@ -36,6 +36,7 @@ public abstract class BaseActivity extends AppCompatActivity implements WeekView
     private Calendar now = Calendar.getInstance();
     private Calendar after = Calendar.getInstance();
     private ImageView img_gps;
+    private boolean selected = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +49,7 @@ public abstract class BaseActivity extends AppCompatActivity implements WeekView
         mWeekView.setEventLongPressListener(this);
         mWeekView.setEmptyViewLongPressListener(this);
         mWeekView.setMinTime(9);
-        mWeekView.setMaxTime(19);
+        //  mWeekView.setMaxTime(19);
         setupDateTimeInterpreter(false);
         mWeekView.goToHour(9);
         //init
@@ -98,27 +99,29 @@ public abstract class BaseActivity extends AppCompatActivity implements WeekView
         img_gps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                FragmentManager fm = getFragmentManager();
-//                FragmentTransaction ft = fm.beginTransaction();
-//                ft.add(R.id.mapview, new MapFragment());
-//                ft.commit();
-                Display display = getWindowManager().getDefaultDisplay();
-                Point size = new Point();
-                display.getSize(size);
-                int width = size.x - 100;
-                int height = size.y - 200;
-                MapModel map = new MapModel(ShareData.getInstance().getLatitude(), ShareData
-                        .getInstance().getLongitude(),
-                        "Title",
-                        "Description");
-                MapFragment fragment = MapFragment.newInstance(map, width, height);
-                fragment.show(getSupportFragmentManager(), "MapFragment");
+                if (selected) {
+                    Display display = getWindowManager().getDefaultDisplay();
+                    Point size = new Point();
+                    display.getSize(size);
+                    int width = size.x - 100;
+                    int height = size.y - 200;
+                    MapModel map = new MapModel(ShareData.getInstance().getLatitude(), ShareData
+                            .getInstance().getLongitude(),
+                            "Title",
+                            "Description");
+                    MapFragment fragment = MapFragment.newInstance(map, width, height);
+                    fragment.show(getSupportFragmentManager(), "MapFragment");
 
+                } else {
+                    Toast.makeText(getApplicationContext(), "Önce Gün Seçiniz", Toast.LENGTH_SHORT).show();
+                }
             }
+
         });
         after.add(Calendar.DAY_OF_MONTH, 6);
         txt_center_date.setText("" + sdf.format(now.getTime()) + " - " + sdf.format(after.getTime
                 ()));
+
 
     }
 
@@ -217,6 +220,10 @@ public abstract class BaseActivity extends AppCompatActivity implements WeekView
     @Override
     public void onEventClick(WeekViewEvent event, RectF eventRect) {
         Toast.makeText(this, "Clicked " + event.getName(), Toast.LENGTH_SHORT).show();
+        selected = true;
+        ShareData.getInstance().setLatitude(event.getLatitude());
+        ShareData.getInstance().setLongitude(event.getLongitude());
+
     }
 
     @Override

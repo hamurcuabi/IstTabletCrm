@@ -12,8 +12,9 @@ import com.emrhmrc.isttabletcrm.adapter.RcvAnnouncementAdapter;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
+import com.emrhmrc.isttabletcrm.helper.SingletonUser;
 import com.emrhmrc.isttabletcrm.models.Notification.Notification;
-import com.emrhmrc.isttabletcrm.models.Notification.NotificationListAllWithSurvey;
+import com.emrhmrc.isttabletcrm.models.Notification.NotificationListAll;
 import com.emrhmrc.isttabletcrm.models.User.UserIdRequest;
 
 import java.util.List;
@@ -48,14 +49,14 @@ public class AnnouncementActivity extends AppCompatActivity implements OnItemCli
     }
 
     private void getAnnouncementList() {
-        UserIdRequest userIdRequest = new UserIdRequest(ShareData.getInstance().getUserId());
-        Call<NotificationListAllWithSurvey> call = jsonApi.getNotificationListAllSurvey(userIdRequest);
-        call.enqueue(new Callback<NotificationListAllWithSurvey>() {
+        UserIdRequest userIdRequest = new UserIdRequest(SingletonUser.getInstance().getUser().getUserId());
+        Call<NotificationListAll> call = jsonApi.getNotificationListAll(userIdRequest);
+        call.enqueue(new Callback<NotificationListAll>() {
             @Override
-            public void onResponse(Call<NotificationListAllWithSurvey> call, Response<NotificationListAllWithSurvey> response) {
+            public void onResponse(Call<NotificationListAll> call, Response<NotificationListAll> response) {
                 if (response.isSuccessful()) {
 
-                    final NotificationListAllWithSurvey temp = response.body();
+                    final NotificationListAll temp = response.body();
                     model = temp.getNotifications();
                     adapter.setItems(model);
 
@@ -63,7 +64,7 @@ public class AnnouncementActivity extends AppCompatActivity implements OnItemCli
             }
 
             @Override
-            public void onFailure(Call<NotificationListAllWithSurvey> call, Throwable t) {
+            public void onFailure(Call<NotificationListAll> call, Throwable t) {
 
             }
         });

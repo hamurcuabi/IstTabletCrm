@@ -175,6 +175,11 @@
 
     <string-array name="spn_servapp">
         <item>Tüm İş Emirlerim</item>
-        <item>Özel İş Emirlerim</item>
+        <item>Bakım</item>
+        <item>Arıza</item>
+        <item>Modernizasyon</item>
+        <item>Yedek Parça Değişimi</item>
+        <item>Durum Tespit</item>
+        <item>Açık Servis</item>
     </string-array>
 </resources>

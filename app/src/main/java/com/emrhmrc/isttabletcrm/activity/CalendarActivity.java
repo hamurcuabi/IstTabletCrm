@@ -70,54 +70,54 @@ public class CalendarActivity extends BaseActivity {
         for (ServiceAppointments current : list) {
 
             if (current.getStatusCode() != null) {
-                if (current.getStatusCode().getValue() == 1) {
-
-                    if (current.getScheduledStart() != null && current.getScheduledEnd() != null) {
-                        Calendar startTime = Methodes.changeDateFormatToDate(current.getScheduledStart());
-                        Calendar endTime = Methodes.changeDateFormatToDate(current.getScheduledEnd());
-                        Log.d(TAG, "setCalendarEvents: " + startTime.getTime().toString());
-
-                        WeekViewEvent event = new WeekViewEvent(i,
-                                current.getInv_TypeCode().getText() + "\n" + current.getSubject(),
-                                startTime,
-                                endTime);
-                        int colorid;
-                        switch (current.getInv_TypeCode().getValue()) {
-
-                            case 1:
-                                colorid = R.color.bakim;
-                                break;
-                            case 2:
-                                colorid = R.color.ariza;
-                                break;
-                            case 3:
-                                colorid = R.color.modernizasyon;
-                                break;
-                            case 4:
-                                colorid = R.color.yedek_parca_degisimi;
-                                break;
-                            case 5:
-                                //Burası Yok
-                                colorid = R.color.yedek_parca_degisimi;
-                                break;
-                            case 7:
-                                //Burası Yok
-                                colorid = R.color.yedek_parca_degisimi;
-                                break;
-                            default:
-                                colorid = R.color.bakim;
-                                break;
 
 
-                        }
-                        event.setColor(getResources().getColor(colorid));
-                        events.add(event);
-                        i++;
+                if (current.getScheduledStart() != null && current.getScheduledEnd() != null) {
+                    Calendar startTime = Methodes.changeDateFormatToDate(current.getScheduledStart());
+                    Calendar endTime = Methodes.changeDateFormatToDate(current.getScheduledEnd());
+                    Log.d(TAG, "setCalendarEvents: " + startTime.getTime().toString());
+                    String text = current.getInv_TypeCode().getText();
+                    String subtext = current.getSubject();
 
-                        ShareData.getInstance().setLatitude(current.getInv_Latitude());
-                        ShareData.getInstance().setLongitude(current.getInv_Longitude());
+
+                    WeekViewEvent event = new WeekViewEvent(i,text+" "+subtext , startTime,
+                            endTime);
+                    int colorid;
+                    switch (current.getInv_TypeCode().getValue()) {
+
+                        case 1:
+                            colorid = R.color.bakim;
+                            break;
+                        case 2:
+                            colorid = R.color.ariza;
+                            break;
+                        case 3:
+                            colorid = R.color.modernizasyon;
+                            break;
+                        case 4:
+                            colorid = R.color.yedek_parca_degisimi;
+                            break;
+                        case 5:
+                            //Burası Yok
+                            colorid = R.color.yedek_parca_degisimi;
+                            break;
+                        case 7:
+                            //Burası Yok
+                            colorid = R.color.yedek_parca_degisimi;
+                            break;
+                        default:
+                            colorid = R.color.bakim;
+                            break;
+
 
                     }
+                    event.setColor(getResources().getColor(colorid));
+                    event.setLatitude(current.getInv_Latitude());
+                    event.setLongitude(current.getInv_Longitude());
+                    events.add(event);
+                    i++;
+
+
                 }
             }
         }

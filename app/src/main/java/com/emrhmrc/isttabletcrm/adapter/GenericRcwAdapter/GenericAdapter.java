@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,7 @@ import java.util.List;
 public abstract class GenericAdapter<T, L extends BaseRecyclerListener, VH extends BaseViewHolder<T, L>> extends RecyclerView.Adapter<VH> {
 
     private List<T> items;
+    private List<T> itemsFilter;
     private L listener;
     private LayoutInflater layoutInflater;
 
@@ -39,11 +41,13 @@ public abstract class GenericAdapter<T, L extends BaseRecyclerListener, VH exten
     public GenericAdapter(Context context) {
         layoutInflater = LayoutInflater.from(context);
         items = new ArrayList<>();
+
     }
 
     public GenericAdapter(Context context, L listener) {
         this.listener = listener;
         this.items = new ArrayList<>();
+        this.itemsFilter = new ArrayList<>();
         this.layoutInflater = LayoutInflater.from(context);
     }
 
@@ -64,6 +68,7 @@ public abstract class GenericAdapter<T, L extends BaseRecyclerListener, VH exten
      * Called by RecyclerView to display the data at the specified position. This method should
      * update the contents of the itemView to reflect the item at the given
      * position.
+     *
      * @param holder   The ViewHolder which should be updated to represent the contents of the
      *                 item at the given position in the data set.
      * @param position The position of the item within the adapter's data set.
@@ -74,11 +79,12 @@ public abstract class GenericAdapter<T, L extends BaseRecyclerListener, VH exten
             return;
         }
         T item = items.get(position);
-        holder.onBind(item,listener);
+        holder.onBind(item, listener);
     }
 
     /**
      * Returns the total number of items in the data set held by the adapter.
+     *
      * @return The total number of items in this adapter.
      */
     @Override
@@ -109,6 +115,7 @@ public abstract class GenericAdapter<T, L extends BaseRecyclerListener, VH exten
     /**
      * Updates items list.
      * Typically to be used for the implementation of DiffUtil {@link android.support.v7.util.DiffUtil}
+     *
      * @param newItems new items
      */
     public void updateItems(List<T> newItems) {
@@ -117,6 +124,7 @@ public abstract class GenericAdapter<T, L extends BaseRecyclerListener, VH exten
 
     /**
      * Updates items with use of DiffUtil callback {@link DiffUtil.Callback}
+     *
      * @param newItems     new items
      * @param diffCallback DiffUtil callback
      */
@@ -126,8 +134,17 @@ public abstract class GenericAdapter<T, L extends BaseRecyclerListener, VH exten
         result.dispatchUpdatesTo(this);
     }
 
+    public List<T> getItemsFilter() {
+        return itemsFilter;
+    }
+
+    public void setItemsFilter(List<T> itemsFilter) {
+        this.itemsFilter = itemsFilter;
+    }
+
     /**
      * Returns all items from the data set held by the adapter.
+     *
      * @return All of items in this adapter.
      */
     public List<T> getItems() {
@@ -136,14 +153,17 @@ public abstract class GenericAdapter<T, L extends BaseRecyclerListener, VH exten
 
     /**
      * Sets items to the adapter and notifies that data set has been changed.
+     *
      * @param items items to set to the adapter
      */
     public void setItems(List<T> items) {
         setItems(items, true);
+
     }
 
     /**
      * Returns an items from the data set at a certain position.
+     *
      * @return All of items in this adapter.
      */
     public T getItem(int position) {
@@ -153,6 +173,7 @@ public abstract class GenericAdapter<T, L extends BaseRecyclerListener, VH exten
     /**
      * Adds item to the end of the data set.
      * Notifies that item has been inserted.
+     *
      * @param item item which has to be added to the adapter.
      */
     public void add(T item) {
@@ -166,6 +187,7 @@ public abstract class GenericAdapter<T, L extends BaseRecyclerListener, VH exten
     /**
      * Adds item to the beginning of the data set.
      * Notifies that item has been inserted.
+     *
      * @param item item which has to be added to the adapter.
      */
     public void addToBeginning(T item) {
@@ -179,6 +201,7 @@ public abstract class GenericAdapter<T, L extends BaseRecyclerListener, VH exten
     /**
      * Adds list of items to the end of the adapter's data set.
      * Notifies that item has been inserted.
+     *
      * @param items items which has to be added to the adapter.
      */
     public void addAll(List<T> items) {
@@ -215,6 +238,7 @@ public abstract class GenericAdapter<T, L extends BaseRecyclerListener, VH exten
 
     /**
      * Returns whether adapter is empty or not.
+     *
      * @return `true` if adapter is empty or `false` otherwise
      */
     public boolean isEmpty() {

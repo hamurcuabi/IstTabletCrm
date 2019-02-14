@@ -16,7 +16,7 @@ public class RcvAnnoucementViewHolder extends BaseViewHolder<Notification,
 
     public RcvAnnoucementViewHolder(View itemView) {
         super(itemView);
-        txt_detail = itemView.findViewById(R.id.txt_test);
+        txt_detail = itemView.findViewById(R.id.txt_detail);
         txt_date = itemView.findViewById(R.id.txt_date);
     }
 

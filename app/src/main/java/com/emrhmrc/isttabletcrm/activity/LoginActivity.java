@@ -18,6 +18,7 @@ import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.databinding.ActivityLoginBinding;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.helper.SharedPref;
+import com.emrhmrc.isttabletcrm.helper.SingletonUser;
 import com.emrhmrc.isttabletcrm.models.User.EmailRequest;
 import com.emrhmrc.isttabletcrm.models.User.UserForgotPassword;
 import com.emrhmrc.isttabletcrm.models.User.UserLogin;
@@ -94,8 +95,7 @@ public class LoginActivity extends AppCompatActivity {
                 public void onResponse(Call<UserLogin> call, Response<UserLogin> response) {
                     if (response.isSuccessful()) {
                         UserLogin model = response.body();
-                        ShareData.getInstance().setUserId(model.getUserId());
-                        goHome();
+                        goHome(model);
                     } else {
                         Log.d(TAG, "onResponse: " + response.message());
                         btn_login.setEnabled(true);
@@ -124,22 +124,21 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void goHome() {
+    private void goHome(UserLogin model) {
+        ShareData.getInstance().setUserId(model.getUserId());
+        SingletonUser.getInstance().setUser(model);
         startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-
     }
 
     private void forgatPass() {
-        String mail = null;
+        String mail = edt_nick.getText().toString();
         if (StringUtil.validateStrings(mail)) {
             Call<UserForgotPassword> call = jsonApi.userForgotPassword(new EmailRequest(mail));
             call.enqueue(new Callback<UserForgotPassword>() {
                 @Override
                 public void onResponse(Call<UserForgotPassword> call, Response<UserForgotPassword> response) {
                     if (response.isSuccessful()) {
-
                         UserForgotPassword model = response.body();
-
                     }
                 }
 

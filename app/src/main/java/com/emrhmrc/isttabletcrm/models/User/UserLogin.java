@@ -7,15 +7,31 @@ public class UserLogin {
     private boolean Success;
     private String ErrorMsg;
     private String UserId;
-
-    public UserLogin(boolean success, String errorMsg, String userId) {
-        Success = success;
-        ErrorMsg = errorMsg;
-        UserId = userId;
-    }
+    private String UserName;
+    private String Description;
 
     public UserLogin() {
 
+    }
+
+    public boolean isSuccess() {
+        return Success;
+    }
+
+    public String getUserName() {
+        return UserName;
+    }
+
+    public void setUserName(String userName) {
+        UserName = userName;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String description) {
+        Description = description;
     }
 
     // Getter Methods
@@ -52,6 +68,8 @@ public class UserLogin {
                 "Success=" + Success +
                 ", ErrorMsg='" + ErrorMsg + '\'' +
                 ", UserId='" + UserId + '\'' +
+                ", UserName='" + UserName + '\'' +
+                ", Description='" + Description + '\'' +
                 '}';
     }
 }
