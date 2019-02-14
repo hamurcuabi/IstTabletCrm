@@ -1,9 +1,11 @@
 package com.emrhmrc.isttabletcrm.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 
 import com.emrhmrc.isttabletcrm.R;
@@ -11,6 +13,7 @@ import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.adapter.RcvProductMainAdapter;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
+import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.models.Product.MainList;
 import com.emrhmrc.isttabletcrm.models.Product.MainProductList;
 
@@ -30,6 +33,7 @@ public class AddPieceActivity extends AppCompatActivity implements OnItemClickLi
     private List<MainList> model;
     private JsonApi jsonApi;
     private RcvProductMainAdapter adapter;
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,8 @@ public class AddPieceActivity extends AppCompatActivity implements OnItemClickLi
                 if (response.isSuccessful()) {
                     MainProductList model = response.body();
                     adapter.setItems(model.getMainProductGroups());
+                    adapter.setItemsFilter(model.getMainProductGroups());
+                    search();
 
                 } else {
                     Log.d(TAG, "onResponse: " + response.errorBody().toString());
@@ -62,6 +68,7 @@ public class AddPieceActivity extends AppCompatActivity implements OnItemClickLi
     }
 
     private void init() {
+        searchView = findViewById(R.id.search);
         jsonApi = ApiClient.getClient().create(JsonApi.class);
         rcwServapp.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
@@ -71,11 +78,32 @@ public class AddPieceActivity extends AppCompatActivity implements OnItemClickLi
         rcwServapp.setAdapter(adapter);
         jsonApi = ApiClient.getClient().create(JsonApi.class);
 
+    }
 
+    private void search() {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                adapter.getFilter().filter(s);
+                return false;
+            }
+        });
     }
 
     @Override
     public void onItemClicked(Object item) {
 
+        final MainList model = (MainList) item;
+        ShareData.getInstance().setProductMainId(model.getInv_MainProductGroupid());
+        goSubGroup();
+    }
+
+    private void goSubGroup() {
+        startActivity(new Intent(AddPieceActivity.this, AddSubPieceActivity.class));
     }
 }

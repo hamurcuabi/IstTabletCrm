@@ -18,6 +18,8 @@
     <color name="text_color">#454545</color>
     <color name="text_color_2">#4D4F5C</color>
     <color name="white">#ffffff</color>
+    <color name="back">#EBEBEB</color>
+    <color name="rcv_back">#FAFAFA</color>
     <!--İş Emirlerim ve Takvim-->
     <color name="header_is_emirleri">#002E6E</color>
     <color name="yillik_muayene">#4BAF50</color>

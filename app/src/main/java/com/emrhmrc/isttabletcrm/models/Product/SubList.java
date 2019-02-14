@@ -1,36 +1,34 @@
 package com.emrhmrc.isttabletcrm.models.Product;
 
-public class MainList {
-    private String inv_MainProductGroupName;
+public class SubList {
+    private String inv_SubProductGroupName;
     private int ProductCount;
-    private String inv_MainProductGroupid;
+    private String inv_SubProductGroupid;
     private String Image;
     private String ImageMimeType;
-    private int SubGroupCount;
     private double ImageFileSize;
 
-    public MainList() {
+    public SubList() {
+    }
+
+    public String getInv_SubProductGroupName() {
+        return inv_SubProductGroupName;
     }
 
     @Override
     public String toString() {
-        return "MainList{" +
-                "inv_MainProductGroupName='" + inv_MainProductGroupName + '\'' +
+        return "SubList{" +
+                "inv_SubProductGroupName='" + inv_SubProductGroupName + '\'' +
                 ", ProductCount=" + ProductCount +
-                ", inv_MainProductGroupid='" + inv_MainProductGroupid + '\'' +
+                ", inv_SubProductGroupid='" + inv_SubProductGroupid + '\'' +
                 ", Image='" + Image + '\'' +
                 ", ImageMimeType='" + ImageMimeType + '\'' +
-                ", SubGroupCount=" + SubGroupCount +
                 ", ImageFileSize=" + ImageFileSize +
                 '}';
     }
 
-    public String getInv_MainProductGroupName() {
-        return inv_MainProductGroupName;
-    }
-
-    public void setInv_MainProductGroupName(String inv_MainProductGroupName) {
-        this.inv_MainProductGroupName = inv_MainProductGroupName;
+    public void setInv_SubProductGroupName(String inv_SubProductGroupName) {
+        this.inv_SubProductGroupName = inv_SubProductGroupName;
     }
 
     public int getProductCount() {
@@ -41,12 +39,12 @@ public class MainList {
         ProductCount = productCount;
     }
 
-    public String getInv_MainProductGroupid() {
-        return inv_MainProductGroupid;
+    public String getInv_SubProductGroupid() {
+        return inv_SubProductGroupid;
     }
 
-    public void setInv_MainProductGroupid(String inv_MainProductGroupid) {
-        this.inv_MainProductGroupid = inv_MainProductGroupid;
+    public void setInv_SubProductGroupid(String inv_SubProductGroupid) {
+        this.inv_SubProductGroupid = inv_SubProductGroupid;
     }
 
     public String getImage() {
@@ -63,14 +61,6 @@ public class MainList {
 
     public void setImageMimeType(String imageMimeType) {
         ImageMimeType = imageMimeType;
-    }
-
-    public int getSubGroupCount() {
-        return SubGroupCount;
-    }
-
-    public void setSubGroupCount(int subGroupCount) {
-        SubGroupCount = subGroupCount;
     }
 
     public double getImageFileSize() {

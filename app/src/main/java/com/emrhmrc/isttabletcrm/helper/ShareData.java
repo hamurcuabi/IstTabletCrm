@@ -5,16 +5,24 @@ public class ShareData {
 
     private String UserId;
     private String ServAppId;
+    private String ProductMainId;
     private String ElevatorId;
     private String NotificationIdRequest;
     private double Latitude;
     private double Longitude;
-
     private ShareData() {
     }
 
     public static ShareData getInstance() {
         return Instance;
+    }
+
+    public String getProductMainId() {
+        return ProductMainId;
+    }
+
+    public void setProductMainId(String productMainId) {
+        ProductMainId = productMainId;
     }
 
     public String getNotificationIdRequest() {

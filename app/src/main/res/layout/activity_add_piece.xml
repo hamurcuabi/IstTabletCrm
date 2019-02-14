@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/back"
     tools:context=".activity.AddPieceActivity">
 
     <ImageView
@@ -53,6 +54,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <android.support.v7.widget.SearchView
+            android:id="@+id/search"
             android:layout_width="@dimen/detay_menu_350"
             android:layout_height="@dimen/detay_menu_55"
             android:background="@color/white"
