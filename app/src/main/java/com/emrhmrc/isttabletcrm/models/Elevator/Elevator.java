@@ -4,6 +4,8 @@ import com.emrhmrc.isttabletcrm.models.CommonClass.Code;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class Elevator {
     private Integer inv_Capacity;
 
@@ -28,8 +30,68 @@ public class Elevator {
     private Inv_Id inv_ClassId;
 
     private String inv_ElevatorId;
+
+    public Elevator() {
+    }
+
     @SerializedName("inv_WorkingStCode")
     private Code inv_WorkingStCode;
+
+    private List<ServApps> ServApps;
+
+    public List<com.emrhmrc.isttabletcrm.models.Elevator.ServApps> getServApps() {
+        return ServApps;
+    }
+
+    public void setServApps(List<com.emrhmrc.isttabletcrm.models.Elevator.ServApps> servApps) {
+        ServApps = servApps;
+    }
+
+    public double getInv_Latitude() {
+        return inv_Latitude;
+    }
+
+    public void setInv_Latitude(double inv_Latitude) {
+        this.inv_Latitude = inv_Latitude;
+    }
+
+    public double getInv_Longitude() {
+        return inv_Longitude;
+    }
+
+    public void setInv_Longitude(double inv_Longitude) {
+        this.inv_Longitude = inv_Longitude;
+    }
+
+    public int getInv_Speed() {
+        return inv_Speed;
+    }
+
+    public void setInv_Speed(int inv_Speed) {
+        this.inv_Speed = inv_Speed;
+    }
+
+    public String getInv_StartDate() {
+        return inv_StartDate;
+    }
+
+    public void setInv_StartDate(String inv_StartDate) {
+        this.inv_StartDate = inv_StartDate;
+    }
+
+    public String getInv_ContractEndDate() {
+        return inv_ContractEndDate;
+    }
+
+    public void setInv_ContractEndDate(String inv_ContractEndDate) {
+        this.inv_ContractEndDate = inv_ContractEndDate;
+    }
+
+    private double inv_Latitude;
+    private double inv_Longitude;
+    private int inv_Speed;
+    private String inv_StartDate;
+    private String inv_ContractEndDate;
 
     public Integer getInv_Capacity() {
         return inv_Capacity;

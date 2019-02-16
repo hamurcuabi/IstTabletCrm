@@ -2,6 +2,7 @@ package com.emrhmrc.isttabletcrm.adapter;
 
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -10,10 +11,12 @@ import android.widget.TextView;
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.BaseViewHolder;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
+import com.emrhmrc.isttabletcrm.fragment.ImageSliderFragment;
+import com.emrhmrc.isttabletcrm.helper.SlideInterface;
+import com.emrhmrc.isttabletcrm.helper.StateHandler;
 import com.emrhmrc.isttabletcrm.models.Product.Product;
 import com.emrhmrc.isttabletcrm.util.StringUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindDrawable;
@@ -21,7 +24,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ProductSubProductViewHolder extends BaseViewHolder<Product,
-        OnItemClickListener<Product>> {
+        OnItemClickListener<Product>> implements View.OnClickListener {
+    private static final String TAG = "ProductSubProductViewHo";
     @BindView(R.id.img_pic)
     ImageView imgPic;
     @BindView(R.id.txt_code)
@@ -42,61 +46,53 @@ public class ProductSubProductViewHolder extends BaseViewHolder<Product,
     Drawable btn_selected;
     @BindDrawable(R.drawable.btn_kontrol)
     Drawable btn_default;
+    private FragmentManager fragmentManager;
+    private List<Product> list;
 
 
-    List<Boolean> list_btn_enabled;
-
-    public ProductSubProductViewHolder(View itemView, int count) {
+    public ProductSubProductViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
-        list_btn_enabled = new ArrayList<>();
-        list_btn_enabled.clear();
-        for (int i = 0; i < count; i++) {
-            Boolean b = new Boolean(false);
-            list_btn_enabled.add(b);
+        this.fragmentManager = fragmentManager;
+        this.list = list;
+    }
+
+
+    @Override
+    public void onBind(final Product item, @Nullable final OnItemClickListener<Product> listener) {
+        GlideBindingAdapters.setImageResource(imgPic, item.getImage());
+        txtCode.setText(StringUtil.nullToString(item.getProductNumber()));
+        if (listener != null)
+            imgPic.setOnClickListener(view -> listener.onItemClicked(item, getAdapterPosition()));
+        btnAdd.setOnClickListener(this);
+
+        if (!StateHandler.getInstance().getStateList().get(getAdapterPosition()).isState()) {
+            btnAdd.setText("Ekle");
+            btnAdd.setBackground(btn_default);
+        } else {
+            btnAdd.setText("Eklendi");
+            btnAdd.setBackground(btn_selected);
         }
 
     }
 
     @Override
-    public void onBind(final Product item, @Nullable final OnItemClickListener<Product> listener) {
-        final int k = getAdapterPosition();
-        GlideBindingAdapters.setImageResource(imgPic, item.getImage());
-        txtCode.setText(StringUtil.nullToString(item.getProductNumber()));
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                list_btn_enabled.set(k, !list_btn_enabled.get(k));
-                if (list_btn_enabled.get(k)) {
-                    btnAdd.setText("Eklendi");
-                    btnAdd.setBackground(btn_selected);
-                } else {
-                    btnAdd.setText("Ekle");
-                    btnAdd.setBackground(btn_default);
-                }
-
-
-            }
-        });
-        if (list_btn_enabled.get(k)) {
+    public void onClick(View view) {
+        int adapterPosition = getAdapterPosition();
+        if (!StateHandler.getInstance().getStateList().get(getAdapterPosition()).isState()) {
+            StateHandler.getInstance().getStateList().get(getAdapterPosition()).setState(true);
             btnAdd.setText("Eklendi");
             btnAdd.setBackground(btn_selected);
+
         } else {
+            StateHandler.getInstance().getStateList().get(getAdapterPosition()).setState(false);
             btnAdd.setText("Ekle");
             btnAdd.setBackground(btn_default);
+
         }
 
-        if (listener != null) {
-            imgPic.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    listener.onItemClicked(item);
-                }
-            });
-        }
+
     }
-
 
 }
 

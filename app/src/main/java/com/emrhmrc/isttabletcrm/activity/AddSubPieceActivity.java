@@ -19,7 +19,9 @@ import com.emrhmrc.isttabletcrm.adapter.RcvProductSubAdapter;
 import com.emrhmrc.isttabletcrm.adapter.RcvProductSubProductAdapter;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
+import com.emrhmrc.isttabletcrm.fragment.ImageSliderFragment;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
+import com.emrhmrc.isttabletcrm.helper.SlideInterface;
 import com.emrhmrc.isttabletcrm.models.Product.Product;
 import com.emrhmrc.isttabletcrm.models.Product.ProductListAll;
 import com.emrhmrc.isttabletcrm.models.Product.SubGroupProductsRequest;
@@ -27,11 +29,16 @@ import com.emrhmrc.isttabletcrm.models.Product.SubGroupRequest;
 import com.emrhmrc.isttabletcrm.models.Product.SubList;
 import com.emrhmrc.isttabletcrm.models.Product.SubProductList;
 
+import java.util.List;
+
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddSubPieceActivity extends AppCompatActivity implements View.OnClickListener, OnItemClickListener {
+public class AddSubPieceActivity extends AppCompatActivity implements View.OnClickListener,
+        OnItemClickListener, SlideInterface {
 
     private static final String TAG = "AddSubPieceActivity";
     private LinearLayout lnr_main, lnr_sub;
@@ -43,11 +50,15 @@ public class AddSubPieceActivity extends AppCompatActivity implements View.OnCli
     private JsonApi jsonApi;
     private RcvProductSubAdapter adapter_main;
     private RcvProductSubProductAdapter adapter_sub;
+    private List<Product> productList;
+    private int last_img;
+    private ImageSliderFragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_sub_piece);
+        ButterKnife.bind(this);
         init();
         getSubProduct();
     }
@@ -85,6 +96,7 @@ public class AddSubPieceActivity extends AppCompatActivity implements View.OnCli
                 if (response.isSuccessful()) {
 
                     ProductListAll temp = response.body();
+                    productList = temp.getProducts();
                     adapter_sub.setItems(temp.getProducts());
                     adapter_sub.setItemsFilter(temp.getProducts());
                     search_sub();
@@ -228,19 +240,45 @@ public class AddSubPieceActivity extends AppCompatActivity implements View.OnCli
     }
 
     @Override
-    public void onItemClicked(Object item) {
-
+    public void onItemClicked(Object item, int positon) {
         if (item instanceof SubList) {
             final SubList subList = (SubList) item;
             getSubProductProduct(subList.getInv_SubProductGroupid());
             AnimateDownSub();
         } else if (item instanceof Product) {
             final Product product = (Product) item;
+            last_img = positon;
+            openSilder(product, last_img);
+
             //  AnimateDownMain();
         } else {
             Log.d(TAG, "onItemClicked: Faill");
         }
 
+    }
 
+    private void openSilder(Product product, int position) {
+        fragment = ImageSliderFragment.newInstance(product, position);
+        fragment.show(getSupportFragmentManager(), "slider");
+    }
+
+    @OnClick({R.id.img_back, R.id.img_close})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.img_back:
+                super.onBackPressed();
+                break;
+            case R.id.img_close:
+                super.onBackPressed();
+                break;
+        }
+    }
+
+    @Override
+    public void slideTo(int position) {
+        if (position < 0) openSilder(productList.get(0), 0);
+        else if (position > productList.size()-1) openSilder(productList.get(productList.size() - 1),
+                productList.size() - 1);
+        else openSilder(productList.get(position), position);
     }
 }

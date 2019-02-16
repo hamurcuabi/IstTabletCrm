@@ -644,7 +644,7 @@
                                     android:id="@+id/txt_ariza_nedeni"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@{StringUtil.nullToString(model.getInv_BreakdownCode().getText())}"
+                                    android:text="@{StringUtil.nullToString(model.getInv_BreakdownCode())}"
                                     android:textColor="@color/text_color_3"
                                     android:textSize="@dimen/text_menu_16" />
 

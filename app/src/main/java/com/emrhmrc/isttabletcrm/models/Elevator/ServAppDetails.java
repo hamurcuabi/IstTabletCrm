@@ -18,13 +18,13 @@ public class ServAppDetails {
     @SerializedName("Inv_ApprovalStCode")
     private Code inv_ApprovalStCode;
 
-    private String inv_UoMid;
+    private Inv_Id inv_UoMid;
 
     private String inv_ProductDescription;
     @SerializedName("Inv_ProductId")
     private Inv_Id inv_ProductId;
 
-    private String inv_Quantity;
+    private int inv_Quantity;
 
     public String getInv_LineNo() {
         return inv_LineNo;
@@ -74,13 +74,7 @@ public class ServAppDetails {
         this.inv_ApprovalStCode = inv_ApprovalStCode;
     }
 
-    public String getInv_UoMid() {
-        return inv_UoMid;
-    }
 
-    public void setInv_UoMid(String inv_UoMid) {
-        this.inv_UoMid = inv_UoMid;
-    }
 
     public String getInv_ProductDescription() {
         return inv_ProductDescription;
@@ -98,14 +92,25 @@ public class ServAppDetails {
         this.inv_ProductId = inv_ProductId;
     }
 
-    public String getInv_Quantity() {
+    public boolean isInv_WillBeBilled() {
+        return inv_WillBeBilled;
+    }
+
+    public Inv_Id getInv_UoMid() {
+        return inv_UoMid;
+    }
+
+    public void setInv_UoMid(Inv_Id inv_UoMid) {
+        this.inv_UoMid = inv_UoMid;
+    }
+
+    public int getInv_Quantity() {
         return inv_Quantity;
     }
 
-    public void setInv_Quantity(String inv_Quantity) {
+    public void setInv_Quantity(int inv_Quantity) {
         this.inv_Quantity = inv_Quantity;
     }
-
 
     @Override
     public String toString() {

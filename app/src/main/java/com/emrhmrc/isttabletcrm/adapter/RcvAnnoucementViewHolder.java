@@ -21,7 +21,8 @@ public class RcvAnnoucementViewHolder extends BaseViewHolder<Notification,
     }
 
     @Override
-    public void onBind(final Notification item, @Nullable final OnItemClickListener<Notification> listener) {
+    public void onBind(final Notification item,
+                       @Nullable final OnItemClickListener<Notification> listener) {
         txt_detail.setText(item.getDescription());
         txt_date.setText(item.getScheduledStart());
 
@@ -29,7 +30,7 @@ public class RcvAnnoucementViewHolder extends BaseViewHolder<Notification,
             txt_detail.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    listener.onItemClicked(item);
+                    listener.onItemClicked(item,getAdapterPosition());
                 }
             });
 

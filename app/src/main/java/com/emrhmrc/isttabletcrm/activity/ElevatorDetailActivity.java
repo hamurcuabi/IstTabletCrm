@@ -12,7 +12,10 @@ import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.models.Elevator.Elevator;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorGetById;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorIdRequest;
+import com.emrhmrc.isttabletcrm.util.StringUtil;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -20,76 +23,84 @@ import retrofit2.Response;
 public class ElevatorDetailActivity extends AppCompatActivity {
 
     private static final String TAG = "ElevatorDetailActivity";
-    private TextView txt_elevator_name, txt_asansorname, txt_apartadi, txt_blokadi, txt_asansorhizi,
-            txt_duraksayisi, txt_serino, txt_sinif, txt_katsayisi, txt_kapasite, txt_kimlikno,
-            txt_ozellikler, txt_yaptiranfirma, txt_arizadakisorun, txt_adsoyad, txt_hizmetyili,
-            txt_anlikdurum, txt_asansormanike, txt_sozlemebitis, txt_etiketrengi, txt_tekniktakim,
-            txt_panaromikmi;
+    @BindView(R.id.txt_elevator_name)
+    TextView txtElevatorName;
+    @BindView(R.id.txt_asansorname)
+    TextView txtAsansorname;
+    @BindView(R.id.txt_apartadi)
+    TextView txtApartadi;
+    @BindView(R.id.txt_blokadi)
+    TextView txtBlokadi;
+    @BindView(R.id.txt_panaromikmi)
+    TextView txtPanaromikmi;
+    @BindView(R.id.txt_tekniktakim)
+    TextView txtTekniktakim;
+    @BindView(R.id.txt_etiketrengi)
+    TextView txtEtiketrengi;
+    @BindView(R.id.txt_sozlemebitis)
+    TextView txtSozlemebitis;
+    @BindView(R.id.txt_asansormanike)
+    TextView txtAsansormanike;
+    @BindView(R.id.txt_anlikdurum)
+    TextView txtAnlikdurum;
+    @BindView(R.id.txt_hizmetyili)
+    TextView txtHizmetyili;
+    @BindView(R.id.txt_adsoyad)
+    TextView txtAdsoyad;
+    @BindView(R.id.txt_arizadakisorun)
+    TextView txtArizadakisorun;
+    @BindView(R.id.txt_yaptiranfirma)
+    TextView txtYaptiranfirma;
+    @BindView(R.id.txt_ozellikler)
+    TextView txtOzellikler;
+    @BindView(R.id.txt_kimlikno)
+    TextView txtKimlikno;
+    @BindView(R.id.txt_kapasite)
+    TextView txtKapasite;
+    @BindView(R.id.txt_katsayisi)
+    TextView txtKatsayisi;
+    @BindView(R.id.txt_sinif)
+    TextView txtSinif;
+    @BindView(R.id.txt_serino)
+    TextView txtSerino;
+    @BindView(R.id.txt_duraksayisi)
+    TextView txtDuraksayisi;
+    @BindView(R.id.txt_asansorhizi)
+    TextView txtAsansorhizi;
+
+
     private JsonApi jsonApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_elevator_detail);
+        ButterKnife.bind(this);
         init();
         getElevatorById();
     }
 
     private void init() {
         jsonApi = ApiClient.getClient().create(JsonApi.class);
-        txt_elevator_name = findViewById(R.id.txt_elevator_name);
-        txt_asansorname = findViewById(R.id.txt_asansorname);
-        txt_apartadi = findViewById(R.id.txt_apartadi);
-        txt_blokadi = findViewById(R.id.txt_blokadi);
-        txt_asansorhizi = findViewById(R.id.txt_asansorhizi);
-        txt_duraksayisi = findViewById(R.id.txt_duraksayisi);
-        txt_serino = findViewById(R.id.txt_serino);
-        txt_sinif = findViewById(R.id.txt_sinif);
-        txt_katsayisi = findViewById(R.id.txt_katsayisi);
-        txt_kapasite = findViewById(R.id.txt_kapasite);
-        txt_kimlikno = findViewById(R.id.txt_kimlikno);
-        txt_ozellikler = findViewById(R.id.txt_ozellikler);
-        txt_yaptiranfirma = findViewById(R.id.txt_yaptiranfirma);
-        txt_arizadakisorun = findViewById(R.id.txt_arizadakisorun);
-        txt_adsoyad = findViewById(R.id.txt_adsoyad);
-        txt_hizmetyili = findViewById(R.id.txt_hizmetyili);
-        txt_anlikdurum = findViewById(R.id.txt_anlikdurum);
-        txt_asansormanike = findViewById(R.id.txt_asansormanike);
-        txt_sozlemebitis = findViewById(R.id.txt_sozlemebitis);
-        txt_etiketrengi = findViewById(R.id.txt_etiketrengi);
-        txt_tekniktakim = findViewById(R.id.txt_tekniktakim);
-        txt_panaromikmi = findViewById(R.id.txt_panaromikmi);
+
     }
 
     private void setTexts(Elevator model) {
 
-        if (model.getInv_ClassId() == null)
-            txt_sinif.setText("-");
-        else txt_sinif.setText(model.getInv_ClassId().getText());
-        if (model.getInv_AccountId() == null)
-            txt_apartadi.setText("-");
-        else txt_apartadi.setText(model.getInv_AccountId().getText());
-        if (model.getInv_ElevatorId() == null)
-            txt_asansorname.setText("-");
-        else txt_asansorname.setText(model.getInv_ElevatorId());
-        if (model.getInv_BlockName() == null)
-            txt_blokadi.setText("-");
-        else txt_blokadi.setText(model.getInv_BlockName());
-        if (model.getInv_Capacity() == null)
-            txt_kapasite.setText("-");
-        else txt_kapasite.setText(model.getInv_Capacity().toString());
-        if (model.getInv_BuilderFirmId() == null)
-            txt_yaptiranfirma.setText("-");
-        else txt_yaptiranfirma.setText(model.getInv_BuilderFirmId().getText());
-        if (model.getInv_ColorCode() == null)
-            txt_etiketrengi.setText("-");
-        else txt_etiketrengi.setText(model.getInv_ColorCode().getText());
-        if (model.getInv_SerialNumber() == null)
-            txt_serino.setText("-");
-        else txt_serino.setText(model.getInv_SerialNumber());
-        if (model.getInv_Floor() == null)
-            txt_katsayisi.setText("-");
-        else txt_katsayisi.setText(""+model.getInv_Floor());
+        txtBlokadi.setText(StringUtil.nullToString(model.getInv_BlockName()));
+        txtEtiketrengi.setText(StringUtil.nullToString(model.getInv_ColorCode().getText()));
+        txtSozlemebitis.setText(StringUtil.nullToString(model.getInv_ContractEndDate()));
+        txtAnlikdurum.setText(StringUtil.nullToString(model.getInv_WorkingStCode().getText()));
+        txtHizmetyili.setText(StringUtil.nullToString(model.getInv_StartDate()));
+        txtYaptiranfirma.setText(StringUtil.nullToString(model.getInv_BuilderFirmId().getText()));
+        txtKapasite.setText(StringUtil.convertIntToString(model.getInv_Capacity()));
+        txtSinif.setText(StringUtil.nullToString(model.getInv_ClassId().getText()));
+        txtAsansorhizi.setText(StringUtil.convertIntToString(model.getInv_Speed()));
+        txtAsansormanike.setText(StringUtil.nullToString(model.getInv_Location()));
+        txtKatsayisi.setText(StringUtil.convertIntToString(model.getInv_Floor()));
+        txtSerino.setText(StringUtil.nullToString(model.getInv_SerialNumber()));
+        txtKimlikno.setText(StringUtil.nullToString(model.getInv_ElevatorNumber()));
+
 
 
     }

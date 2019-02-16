@@ -40,7 +40,7 @@ public class ProductSubViewHolder extends BaseViewHolder<SubList,
             imgAnapic.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    listener.onItemClicked(item);
+                    listener.onItemClicked(item,getAdapterPosition());
                 }
             });
         }

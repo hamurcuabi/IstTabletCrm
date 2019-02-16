@@ -27,7 +27,7 @@ public class RcvProductSubProductAdapter extends GenericAdapter<Product,
     public ProductSubProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //viewtype göre ekelriz
 
-        return new ProductSubProductViewHolder(inflate(R.layout.sub_product_item, parent),getItemCount());
+        return new ProductSubProductViewHolder(inflate(R.layout.sub_product_item, parent));
     }
 
     @Override

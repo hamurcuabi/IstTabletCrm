@@ -29,7 +29,7 @@ public class TestViewHolder extends BaseViewHolder<Product,
             txt_test.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    listener.onItemClicked(item);
+                    listener.onItemClicked(item,getAdapterPosition());
                 }
             });
 

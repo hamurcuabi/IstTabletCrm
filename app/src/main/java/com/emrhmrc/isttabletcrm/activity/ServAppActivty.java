@@ -114,7 +114,7 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
     }
 
     @Override
-    public void onItemClicked(Object item) {
+    public void onItemClicked(Object item, int positon) {
         ServiceAppointments current = (ServiceAppointments) item;
         shareData.setServAppId(current.getActivityId());
         goServAppDetail();

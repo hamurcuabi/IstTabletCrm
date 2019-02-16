@@ -77,7 +77,7 @@
             android:id="@+id/rcv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/bg"></android.support.v7.widget.RecyclerView>
+            android:background="@color/rcv_back"></android.support.v7.widget.RecyclerView>
 
     </LinearLayout>
 

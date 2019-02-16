@@ -27,19 +27,19 @@ public class RcvServAppDetailViewHolder extends BaseViewHolder<ServAppGetByIdSer
     }
 
     @Override
-    public void onBind(ServAppGetByIdServAppDetails item, @Nullable OnItemClickListener<ServAppGetByIdServAppDetails> listener) {
+    public void onBind(ServAppGetByIdServAppDetails item,
+                       @Nullable OnItemClickListener<ServAppGetByIdServAppDetails> listener) {
 
         //txt_urundahilimi.setText();
-        txt_fatura.setText(""+item.getInv_WillBeBilled());
+        txt_fatura.setText(String.valueOf(item.getInv_WillBeBilled()));
         txt_garantidurumu.setText(item.getInv_WarrantyStatusCode().getText());
-       // txt_stokdurumu.setText();
+        // txt_stokdurumu.setText();
         txt_birim.setText(item.getInv_Uomid().getText());
-        txt_miktar.setText(item.getInv_Quantity());
+        txt_miktar.setText(String.valueOf(item.getInv_Quantity()));
         txt_urunadi.setText(item.getInv_ProductId().getText());
         txt_kod.setText(item.getInv_LineNo().toString());
 
     }
-
 
 
 }

@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.emrhmrc.isttabletcrm.helper.StateHandler;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -158,6 +160,7 @@ public abstract class GenericAdapter<T, L extends BaseRecyclerListener, VH exten
      * @param items items to set to the adapter
      */
     public void setItems(List<T> items) {
+        StateHandler.getInstance().setStateList(items.size());
         setItems(items, true);
 
     }

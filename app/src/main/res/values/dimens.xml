@@ -128,5 +128,6 @@
     <dimen name="detay_menu_350">350dp</dimen>
     <dimen name="text_menu_20">20sp</dimen>
     <dimen name="detay_menu_90">90dp</dimen>
+    <dimen name="margin80">80dp</dimen>
 
 </resources>

@@ -11,8 +11,8 @@ import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.GenericAdapter;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.adapter.filter.ServappTypeFilterAdapter;
-import com.emrhmrc.isttabletcrm.databinding.ServappCareItemBinding;
 import com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointments;
+import com.emrhmrc.isttabletcrm.databinding.ServappCareItemBinding;
 
 public class RcvServAppListAllAdapter extends GenericAdapter<ServiceAppointments,
         OnItemClickListener<ServiceAppointments>,

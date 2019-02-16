@@ -7,6 +7,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
+import android.view.View;
 
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
@@ -21,6 +22,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -95,9 +97,9 @@ public class AddPieceActivity extends AppCompatActivity implements OnItemClickLi
         });
     }
 
-    @Override
-    public void onItemClicked(Object item) {
 
+    @Override
+    public void onItemClicked(Object item, int positon) {
         final MainList model = (MainList) item;
         ShareData.getInstance().setProductMainId(model.getInv_MainProductGroupid());
         goSubGroup();
@@ -106,4 +108,19 @@ public class AddPieceActivity extends AppCompatActivity implements OnItemClickLi
     private void goSubGroup() {
         startActivity(new Intent(AddPieceActivity.this, AddSubPieceActivity.class));
     }
+
+    @OnClick({R.id.img_back, R.id.img_close})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.img_back:
+                super.onBackPressed();
+                break;
+            case R.id.img_close:
+                super.onBackPressed();
+                break;
+        }
+
+    }
+
+
 }

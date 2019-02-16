@@ -115,9 +115,9 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
 
     }
 
+
     @Override
-    public void onItemClicked(Object item) {
-        //Cilcked
+    public void onItemClicked(Object item, int positon) {
 
     }
 

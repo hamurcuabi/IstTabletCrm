@@ -22,7 +22,7 @@ public class ServAppGetByIdServAppDetails
     private Inv_Id inv_Uomid;
     private Inv_Id inv_ProductId;
 
-    private String inv_Quantity;
+    private int inv_Quantity;
 
     public Integer getInv_LineNo ()
     {
@@ -114,12 +114,12 @@ public class ServAppGetByIdServAppDetails
         this.inv_ProductId = inv_ProductId;
     }
 
-    public String getInv_Quantity ()
+    public int getInv_Quantity ()
     {
         return inv_Quantity;
     }
 
-    public void setInv_Quantity (String inv_Quantity)
+    public void setInv_Quantity (int inv_Quantity)
     {
         this.inv_Quantity = inv_Quantity;
     }

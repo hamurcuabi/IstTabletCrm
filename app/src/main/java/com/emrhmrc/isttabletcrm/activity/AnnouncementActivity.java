@@ -72,11 +72,10 @@ public class AnnouncementActivity extends AppCompatActivity implements OnItemCli
     }
 
     @Override
-    public void onItemClicked(Object item) {
+    public void onItemClicked(Object item, int positon) {
         Notification current = (Notification) item;
         ShareData.getInstance().setNotificationIdRequest(((Notification) item).getActivityId());
         goDetail();
-
     }
 
     public void goDetail() {

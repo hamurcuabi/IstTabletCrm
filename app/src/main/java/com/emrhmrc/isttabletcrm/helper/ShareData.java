@@ -10,6 +10,7 @@ public class ShareData {
     private String NotificationIdRequest;
     private double Latitude;
     private double Longitude;
+
     private ShareData() {
     }
 

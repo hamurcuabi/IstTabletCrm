@@ -1,9 +1,12 @@
 package com.emrhmrc.isttabletcrm.models.Elevator;
 
+import com.emrhmrc.isttabletcrm.models.CommonClass.Code;
+import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
+
 import java.util.List;
 
 public class ServApps {
-    private String ActualStart;
+    private String ScheduledStart;
 
     private List<ServAppDetails> ServAppDetails;
 
@@ -11,51 +14,49 @@ public class ServApps {
 
     private String Subject;
 
-    private String inv_TypeCode;
+    private Code inv_TypeCode;
 
-    public String getActualStart() {
-        return ActualStart;
+    public ServApps() {
     }
 
-    public void setActualStart(String ActualStart) {
-        this.ActualStart = ActualStart;
+    public String getScheduledStart() {
+        return ScheduledStart;
     }
 
-    public List<ServAppDetails> getServAppDetails() {
+    public void setScheduledStart(String scheduledStart) {
+        ScheduledStart = scheduledStart;
+    }
+
+    public List<com.emrhmrc.isttabletcrm.models.Elevator.ServAppDetails> getServAppDetails() {
         return ServAppDetails;
     }
 
-    public void setServAppDetails(List<ServAppDetails> ServAppDetails) {
-        this.ServAppDetails = ServAppDetails;
+    public void setServAppDetails(List<com.emrhmrc.isttabletcrm.models.Elevator.ServAppDetails> servAppDetails) {
+        ServAppDetails = servAppDetails;
     }
 
     public String getActivityId() {
         return ActivityId;
     }
 
-    public void setActivityId(String ActivityId) {
-        this.ActivityId = ActivityId;
+    public void setActivityId(String activityId) {
+        ActivityId = activityId;
     }
 
     public String getSubject() {
         return Subject;
     }
 
-    public void setSubject(String Subject) {
-        this.Subject = Subject;
+    public void setSubject(String subject) {
+        Subject = subject;
     }
 
-    public String getInv_TypeCode() {
+    public Code getInv_TypeCode() {
         return inv_TypeCode;
     }
 
-    public void setInv_TypeCode(String inv_TypeCode) {
+    public void setInv_TypeCode(Code inv_TypeCode) {
         this.inv_TypeCode = inv_TypeCode;
-    }
-
-    @Override
-    public String toString() {
-        return " [ActualStart = " + ActualStart + ", ServAppDetails = " + ServAppDetails + ", ActivityId = " + ActivityId + ", Subject = " + Subject + ", inv_TypeCode = " + inv_TypeCode + "]";
     }
 }
 

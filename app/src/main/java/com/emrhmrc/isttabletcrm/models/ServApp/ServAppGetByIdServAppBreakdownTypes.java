@@ -1,9 +1,11 @@
 package com.emrhmrc.isttabletcrm.models.ServApp;
 
+import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
+
 public class ServAppGetByIdServAppBreakdownTypes {
     private String inv_ServAppBreakdownTypeId;
 
-    private String inv_BreakdownTypeId;
+    private Inv_Id inv_BreakdownTypeId;
 
     public String getInv_ServAppBreakdownTypeId() {
         return inv_ServAppBreakdownTypeId;
@@ -13,11 +15,11 @@ public class ServAppGetByIdServAppBreakdownTypes {
         this.inv_ServAppBreakdownTypeId = inv_ServAppBreakdownTypeId;
     }
 
-    public String getInv_BreakdownTypeId() {
+    public Inv_Id getInv_BreakdownTypeId() {
         return inv_BreakdownTypeId;
     }
 
-    public void setInv_BreakdownTypeId(String inv_BreakdownTypeId) {
+    public void setInv_BreakdownTypeId(Inv_Id inv_BreakdownTypeId) {
         this.inv_BreakdownTypeId = inv_BreakdownTypeId;
     }
 

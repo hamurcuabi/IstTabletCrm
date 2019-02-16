@@ -34,15 +34,15 @@ public class ServiceAppointment {
     private Code PriortiyCode;
     private String inv_BlockName;
     private String inv_QuoteId;
-    private Inv_Id inv_BreakdownCode;
+    private String inv_BreakdownCode;
     private Inv_Id OwnerId;
     private Inv_Id inv_Supervisorid;
 
-    public Inv_Id getInv_BreakdownCode() {
+    public String getInv_BreakdownCode() {
         return inv_BreakdownCode;
     }
 
-    public void setInv_BreakdownCode(Inv_Id inv_BreakdownCode) {
+    public void setInv_BreakdownCode(String inv_BreakdownCode) {
         this.inv_BreakdownCode = inv_BreakdownCode;
     }
 

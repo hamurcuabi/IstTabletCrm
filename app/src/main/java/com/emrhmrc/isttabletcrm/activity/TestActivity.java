@@ -366,7 +366,7 @@ public class TestActivity extends AppCompatActivity implements OnItemClickListen
     }
 
     @Override
-    public void onItemClicked(Object item) {
-        Toast.makeText(getApplicationContext(), item.toString(), Toast.LENGTH_SHORT).show();
+    public void onItemClicked(Object item, int positon) {
+
     }
 }
