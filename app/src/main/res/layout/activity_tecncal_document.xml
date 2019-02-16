@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg"
+
+    android:background="@color/item_bg"
     tools:context=".activity.TechnicalDocumentActivity">
 
     <ImageView
@@ -70,13 +71,13 @@
                 android:textStyle="bold" />
 
             <android.support.v7.widget.SearchView
-                android:layout_gravity="center_vertical"
-                android:background="@color/white"
-                app:queryHint="@string/dokumanara"
-                android:layout_width="wrap_content"
+                android:id="@+id/search"
+                android:layout_width="@dimen/detay_menu_350"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_marginEnd="@dimen/detay_menu_30"
-                android:layout_weight="3"></android.support.v7.widget.SearchView>
+                android:background="@color/white"
+                app:queryHint="@string/dokumanara"></android.support.v7.widget.SearchView>
 
 
         </LinearLayout>
@@ -89,7 +90,6 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/header_rcw"
-        android:background="@color/bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/cons_main"
         app:layout_constraintStart_toStartOf="@+id/cons_main"

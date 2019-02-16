@@ -16,12 +16,14 @@ import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.adapter.RcvServAppDetailAdapter;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
+import com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointment;
 import com.emrhmrc.isttabletcrm.databinding.ActivityServAppDetailBinding;
 import com.emrhmrc.isttabletcrm.fragment.BeforeAfterPicFragment;
 import com.emrhmrc.isttabletcrm.fragment.ControlListFragment;
 import com.emrhmrc.isttabletcrm.fragment.MapFragment;
 import com.emrhmrc.isttabletcrm.fragment.ReasonOfBreakdownFragment;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
+import com.emrhmrc.isttabletcrm.helper.SingletonListUnsuitability;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
 import com.emrhmrc.isttabletcrm.models.MapModel;
 import com.emrhmrc.isttabletcrm.models.ServApp.CompleteByIdRequest;
@@ -29,7 +31,6 @@ import com.emrhmrc.isttabletcrm.models.ServApp.DefaultResponse;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetById;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppDetails;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppIdRequest;
-import com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointment;
 
 import java.util.List;
 
@@ -93,6 +94,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                 if (response.isSuccessful()) {
                     ServAppGetById model = response.body();
                     setModelToBind(model.getServiceAppointment());
+                    SingletonListUnsuitability.getInstance().setUnsuitabilities(model.getServiceAppointment().getServAppGetByIdServAppUnsuitabilities());
                     ShareData.getInstance().setLongitude(model.getServiceAppointment().getInv_Longitude());
                     ShareData.getInstance().setLatitude(model.getServiceAppointment().getInv_Latitude());
                     adapter.setItems(model.getServiceAppointment().getServAppGetByIdServAppDetails());
@@ -122,7 +124,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     }
 
     @OnClick({R.id.txt_yeni, R.id.img_gps, R.id.btn_kontrol_listesi, R.id.btn_beforeafter, R.id
-            .add_job, R.id.txt_arizakodu, R.id.txt_asansorno, R.id.img_yeni, R.id.btn_closejob})
+            .add_job, R.id.txt_arizakodu, R.id.txt_asansorno, R.id.img_yeni, R.id.btn_closejob, R.id.img_add, R.id.txt_add})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_beforeafter:
@@ -152,8 +154,18 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
             case R.id.btn_closejob:
                 completeServApp();
                 break;
+            case R.id.img_add:
+                goUnsuitablility();
+                break;
+            case R.id.txt_add:
+                goUnsuitablility();
+                break;
 
         }
+    }
+
+    private void goUnsuitablility() {
+        startActivity(new Intent(ServAppDetailActivity.this, UnsuitabilityActivity.class));
     }
 
     private void completeServApp() {
@@ -193,6 +205,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     private void openAddPiece() {
         startActivity(new Intent(ServAppDetailActivity.this, AddPieceActivity.class));
     }
+
 
     private void openElevatorDetail() {
         startActivity(new Intent(ServAppDetailActivity.this, ElevatorDetailActivity.class));

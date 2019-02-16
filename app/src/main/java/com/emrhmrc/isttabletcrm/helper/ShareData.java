@@ -6,16 +6,24 @@ public class ShareData {
     private String UserId;
     private String ServAppId;
     private String ProductMainId;
+    private String ProductMainName;
     private String ElevatorId;
     private String NotificationIdRequest;
     private double Latitude;
     private double Longitude;
-
     private ShareData() {
     }
 
     public static ShareData getInstance() {
         return Instance;
+    }
+
+    public String getProductMainName() {
+        return ProductMainName;
+    }
+
+    public void setProductMainName(String productMainName) {
+        ProductMainName = productMainName;
     }
 
     public String getProductMainId() {

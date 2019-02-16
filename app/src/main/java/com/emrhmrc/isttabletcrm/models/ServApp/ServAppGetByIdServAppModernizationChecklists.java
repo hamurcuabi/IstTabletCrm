@@ -13,6 +13,9 @@ public class ServAppGetByIdServAppModernizationChecklists
 
     private String inv_Date;
 
+    public ServAppGetByIdServAppModernizationChecklists() {
+    }
+
     public String getInv_QuoteModernizationChecklistId ()
     {
         return inv_QuoteModernizationChecklistId;

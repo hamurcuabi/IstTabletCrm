@@ -24,6 +24,9 @@ public class ServAppGetByIdServAppDetails
 
     private int inv_Quantity;
 
+    public ServAppGetByIdServAppDetails() {
+    }
+
     public Integer getInv_LineNo ()
     {
         return inv_LineNo;

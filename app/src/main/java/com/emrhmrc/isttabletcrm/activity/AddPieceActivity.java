@@ -102,6 +102,7 @@ public class AddPieceActivity extends AppCompatActivity implements OnItemClickLi
     public void onItemClicked(Object item, int positon) {
         final MainList model = (MainList) item;
         ShareData.getInstance().setProductMainId(model.getInv_MainProductGroupid());
+        ShareData.getInstance().setProductMainName(model.getInv_MainProductGroupName());
         goSubGroup();
     }
 

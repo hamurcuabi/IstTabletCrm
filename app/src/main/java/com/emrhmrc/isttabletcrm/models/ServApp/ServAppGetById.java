@@ -17,12 +17,7 @@ public class ServAppGetById {
     private TableMetadata TableMetadataServAppModernizationChecklists;
     @SerializedName("TableMetadataServApp")
     private TableMetadata TableMetadataServApp;
-    private List<ServAppGetByIdNotes> ServAppGetByIdNotes;
-    private List<ServAppGetByIdServAppWorkListDetails> ServAppGetByIdServAppWorkListDetails;
-    private List<ServAppGetByIdServAppDetails> ServAppGetByIdServAppDetails;
-    private List<ServAppGetByIdServAppBreakdownTypes> ServAppGetByIdServAppBreakdownTypes;
-    private List<ServAppGetByIdServAppModernizationChecklists> ServAppGetByIdServAppModernizationChecklists;
-    private List<ServAppGetByIdServAppUnsuitabilities> ServAppGetByIdServAppUnsuitabilities;
+
     private String ErrorMsg;
     private boolean Success;
     private com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointment ServiceAppointment;
@@ -30,54 +25,6 @@ public class ServAppGetById {
     private TableMetadata TableMetadataServAppUnsuitabilities;
     @SerializedName("TableMetadataServAppWorkListDetails")
     private TableMetadata TableMetadataServAppWorkListDetails;
-
-    public List<com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdNotes> getServAppGetByIdNotes() {
-        return ServAppGetByIdNotes;
-    }
-
-    public void setServAppGetByIdNotes(List<com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdNotes> servAppGetByIdNotes) {
-        ServAppGetByIdNotes = servAppGetByIdNotes;
-    }
-
-    public List<com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppWorkListDetails> getServAppGetByIdServAppWorkListDetails() {
-        return ServAppGetByIdServAppWorkListDetails;
-    }
-
-    public void setServAppGetByIdServAppWorkListDetails(List<com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppWorkListDetails> servAppGetByIdServAppWorkListDetails) {
-        ServAppGetByIdServAppWorkListDetails = servAppGetByIdServAppWorkListDetails;
-    }
-
-    public List<com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppDetails> getServAppGetByIdServAppDetails() {
-        return ServAppGetByIdServAppDetails;
-    }
-
-    public void setServAppGetByIdServAppDetails(List<com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppDetails> servAppGetByIdServAppDetails) {
-        ServAppGetByIdServAppDetails = servAppGetByIdServAppDetails;
-    }
-
-    public List<com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppBreakdownTypes> getServAppGetByIdServAppBreakdownTypes() {
-        return ServAppGetByIdServAppBreakdownTypes;
-    }
-
-    public void setServAppGetByIdServAppBreakdownTypes(List<com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppBreakdownTypes> servAppGetByIdServAppBreakdownTypes) {
-        ServAppGetByIdServAppBreakdownTypes = servAppGetByIdServAppBreakdownTypes;
-    }
-
-    public List<com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppModernizationChecklists> getServAppGetByIdServAppModernizationChecklists() {
-        return ServAppGetByIdServAppModernizationChecklists;
-    }
-
-    public void setServAppGetByIdServAppModernizationChecklists(List<com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppModernizationChecklists> servAppGetByIdServAppModernizationChecklists) {
-        ServAppGetByIdServAppModernizationChecklists = servAppGetByIdServAppModernizationChecklists;
-    }
-
-    public List<com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppUnsuitabilities> getServAppGetByIdServAppUnsuitabilities() {
-        return ServAppGetByIdServAppUnsuitabilities;
-    }
-
-    public void setServAppGetByIdServAppUnsuitabilities(List<com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppUnsuitabilities> servAppGetByIdServAppUnsuitabilities) {
-        ServAppGetByIdServAppUnsuitabilities = servAppGetByIdServAppUnsuitabilities;
-    }
 
     public boolean isSuccess() {
         return Success;

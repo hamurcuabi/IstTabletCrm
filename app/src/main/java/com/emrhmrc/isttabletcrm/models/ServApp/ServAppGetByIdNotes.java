@@ -16,6 +16,9 @@ public class ServAppGetByIdNotes {
 
     private String NoteId;
 
+    public ServAppGetByIdNotes() {
+    }
+
     private String NoteText;
 
     public Integer getFileSize() {

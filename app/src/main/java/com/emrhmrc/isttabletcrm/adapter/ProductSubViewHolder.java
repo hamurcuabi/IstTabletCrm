@@ -1,6 +1,7 @@
 package com.emrhmrc.isttabletcrm.adapter;
 
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -8,15 +9,15 @@ import android.widget.TextView;
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.BaseViewHolder;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
-import com.emrhmrc.isttabletcrm.models.Product.MainList;
 import com.emrhmrc.isttabletcrm.models.Product.SubList;
 import com.emrhmrc.isttabletcrm.util.StringUtil;
 
+import butterknife.BindColor;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ProductSubViewHolder extends BaseViewHolder<SubList,
-        OnItemClickListener<SubList>> {
+        OnItemClickListener<SubList>> implements View.OnClickListener {
 
     @BindView(R.id.img_anapic)
     ImageView imgAnapic;
@@ -24,6 +25,10 @@ public class ProductSubViewHolder extends BaseViewHolder<SubList,
     TextView txtAnatext;
     @BindView(R.id.txt_anacount)
     TextView txtAnacount;
+    @BindView(R.id.cons_rcv)
+    ConstraintLayout cons_bg;
+    @BindColor(R.color.cons_bg)
+    int bg;
 
     public ProductSubViewHolder(View itemView) {
         super(itemView);
@@ -40,13 +45,17 @@ public class ProductSubViewHolder extends BaseViewHolder<SubList,
             imgAnapic.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    listener.onItemClicked(item,getAdapterPosition());
+                    listener.onItemClicked(item, getAdapterPosition());
                 }
             });
+
         }
     }
 
 
+    @Override
+    public void onClick(View view) {
 
+    }
 }
 

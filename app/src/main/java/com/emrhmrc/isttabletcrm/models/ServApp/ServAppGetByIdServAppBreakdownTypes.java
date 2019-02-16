@@ -7,6 +7,9 @@ public class ServAppGetByIdServAppBreakdownTypes {
 
     private Inv_Id inv_BreakdownTypeId;
 
+    public ServAppGetByIdServAppBreakdownTypes() {
+    }
+
     public String getInv_ServAppBreakdownTypeId() {
         return inv_ServAppBreakdownTypeId;
     }

@@ -11,6 +11,9 @@ public class UpdateServFormById {
 
     private String UserId;
 
+    public UpdateServFormById() {
+    }
+
     public Integer getFilesize() {
         return Filesize;
     }

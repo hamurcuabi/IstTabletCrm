@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
@@ -53,6 +54,7 @@ public class AddSubPieceActivity extends AppCompatActivity implements View.OnCli
     private List<Product> productList;
     private int last_img;
     private ImageSliderFragment fragment;
+    private TextView txt_maingroup_name, txt_maingroup_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +116,8 @@ public class AddSubPieceActivity extends AppCompatActivity implements View.OnCli
 
     private void init() {
         search_main = findViewById(R.id.search_main);
+        txt_maingroup_name = findViewById(R.id.txt_maingroup_name);
+        txt_maingroup_id = findViewById(R.id.txt_maingroup_id);
         search_sub = findViewById(R.id.search_sub);
         rcv_main = findViewById(R.id.rcw_servapp);
         rcv_sub = findViewById(R.id.rcw_servapp2);
@@ -161,7 +165,7 @@ public class AddSubPieceActivity extends AppCompatActivity implements View.OnCli
         adapter_sub.setListener(this);
         rcv_main.setAdapter(adapter_main);
         rcv_sub.setAdapter(adapter_sub);
-
+        txt_maingroup_name.setText(ShareData.getInstance().getProductMainName());
 
     }
 
@@ -277,8 +281,9 @@ public class AddSubPieceActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void slideTo(int position) {
         if (position < 0) openSilder(productList.get(0), 0);
-        else if (position > productList.size()-1) openSilder(productList.get(productList.size() - 1),
-                productList.size() - 1);
+        else if (position > productList.size() - 1)
+            openSilder(productList.get(productList.size() - 1),
+                    productList.size() - 1);
         else openSilder(productList.get(position), position);
     }
 }

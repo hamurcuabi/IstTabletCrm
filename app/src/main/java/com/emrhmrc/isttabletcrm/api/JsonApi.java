@@ -3,6 +3,7 @@ package com.emrhmrc.isttabletcrm.api;
 
 import com.emrhmrc.isttabletcrm.models.Account.AccountListAll;
 import com.emrhmrc.isttabletcrm.models.BreakDown.BreakDownTypeListAll;
+import com.emrhmrc.isttabletcrm.models.Document.TechnicalDocument;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorGetById;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorIdRequest;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorListAll;
@@ -17,6 +18,7 @@ import com.emrhmrc.isttabletcrm.models.Product.SubGroupRequest;
 import com.emrhmrc.isttabletcrm.models.Product.SubProductList;
 import com.emrhmrc.isttabletcrm.models.Quote.QuoteGetById;
 import com.emrhmrc.isttabletcrm.models.ServApp.CompleteByIdRequest;
+import com.emrhmrc.isttabletcrm.models.ServApp.CreateUnsuitability;
 import com.emrhmrc.isttabletcrm.models.ServApp.DefaultResponse;
 import com.emrhmrc.isttabletcrm.models.ServApp.DefaultResponse2;
 import com.emrhmrc.isttabletcrm.models.ServApp.GetServFormById;
@@ -105,6 +107,9 @@ public interface JsonApi {
     @POST("ServApp/GetServFormById")
     Call<GetServFormById> getServFormById(@Body ServiceAppIdRequest serviceAppId);
 
+    @POST("ServApp/CreateUnsuitability")
+    Call<DefaultResponse2> createUnsuitabilityCall(@Body CreateUnsuitability createUnsuitability);
+
     //OK
     @POST("Notification/ListAll")
     Call<NotificationListAll> getNotificationListAll(@Body UserIdRequest userId);
@@ -125,6 +130,9 @@ public interface JsonApi {
     //Fail from Server
     @GET("Quote/GetById")
     Call<QuoteGetById> quoteGetById(@Query("QuoteId") String quoteId);
+
+    @GET("TechnicalDocument/ListAll")
+    Call<TechnicalDocument> getTechnicalDocumentAll();
 
 
 }

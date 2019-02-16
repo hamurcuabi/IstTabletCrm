@@ -182,6 +182,7 @@
             android:textStyle="bold" />
 
         <Button
+            android:id="@+id/btn_send"
             android:layout_width="@dimen/detay_menu_145"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/detay_menu_12"
