@@ -33,6 +33,7 @@ public class ServappTypeFilterAdapter extends Filter {
 
             for (int i = 0; i < adapter.getItemsFilter().size(); i++) {
                 //CHECK
+                if(adapter.getItemsFilter().get(i).getInv_TypeCode()!=null)
                 if (adapter.getItemsFilter().get(i).getInv_TypeCode().getValue() == Integer.parseInt(constraint.toString()) || Integer.parseInt(constraint.toString()) == 0) {
                     //ADD DATA TO FILTERED DATA
                     filtered.add(adapter.getItemsFilter().get(i));

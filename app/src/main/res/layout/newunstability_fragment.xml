@@ -27,10 +27,10 @@
             android:id="@+id/txt_mus_adi"
             android:layout_width="@dimen/txt_calendar"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/edt_musteri_adi"
-            android:layout_alignBottom="@+id/edt_musteri_adi"
+            android:layout_alignTop="@+id/spinner_musteri"
+            android:layout_alignBottom="@+id/spinner_musteri"
             android:layout_alignParentStart="true"
-            android:layout_toStartOf="@+id/edt_musteri_adi"
+            android:layout_toStartOf="@+id/spinner_musteri"
             android:fontFamily="@font/roboto_regular"
             android:text="@string/musteri_adi"
             android:textAlignment="viewEnd"
@@ -63,10 +63,10 @@
 
             android:layout_width="@dimen/txt_calendar"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/edt_musteri_adi"
-            android:layout_alignBottom="@+id/edt_musteri_adi"
+            android:layout_alignTop="@+id/spinner_musteri"
+            android:layout_alignBottom="@+id/spinner_musteri"
             android:layout_alignParentStart="true"
-            android:layout_toStartOf="@+id/edt_musteri_adi"
+            android:layout_toStartOf="@+id/spinner_musteri"
             android:fontFamily="@font/roboto_regular"
             android:text="@string/asansor_no"
             android:textAlignment="viewEnd"
@@ -100,10 +100,10 @@
 
             android:layout_width="@dimen/txt_calendar"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/edt_musteri_adi"
-            android:layout_alignBottom="@+id/edt_musteri_adi"
+            android:layout_alignTop="@+id/spinner_musteri"
+            android:layout_alignBottom="@+id/spinner_musteri"
             android:layout_alignParentStart="true"
-            android:layout_toStartOf="@+id/edt_musteri_adi"
+            android:layout_toStartOf="@+id/spinner_musteri"
             android:fontFamily="@font/roboto_regular"
             android:text="@string/tarih"
             android:textAlignment="viewEnd"
@@ -137,10 +137,10 @@
 
             android:layout_width="@dimen/txt_calendar"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/edt_musteri_adi"
-            android:layout_alignBottom="@+id/edt_musteri_adi"
+            android:layout_alignTop="@+id/spinner_musteri"
+            android:layout_alignBottom="@+id/spinner_musteri"
             android:layout_alignParentStart="true"
-            android:layout_toStartOf="@+id/edt_musteri_adi"
+            android:layout_toStartOf="@+id/spinner_musteri"
             android:fontFamily="@font/roboto_regular"
             android:text="@string/aciklama"
             android:textAlignment="viewEnd"
@@ -149,7 +149,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/edt_musteri_adi"
+            android:id="@+id/spinner_musteri"
             android:layout_width="@dimen/edt_calendar"
             android:layout_height="@dimen/detay_menu_110"
             android:layout_marginStart="@dimen/detay_menu_30"
@@ -157,29 +157,23 @@
             android:drawableEnd="@drawable/ic_pen"
             android:gravity="top|left"
             android:inputType="textMultiLine"
-            android:paddingBottom="@dimen/detay_menu_70"
             android:paddingLeft="@dimen/detay_menu_25"
             android:paddingRight="@dimen/detay_menu_12"
+            android:paddingBottom="@dimen/detay_menu_70"
             android:singleLine="false" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginBottom="@dimen/detay_menu_40"
-        android:layout_marginTop="@dimen/detay_menu_50"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginStart="@dimen/detay_menu_110"
-        android:gravity="center">
+        android:layout_marginTop="@dimen/detay_menu_50"
+        android:layout_marginEnd="@dimen/detay_menu_50"
+        android:layout_marginBottom="@dimen/detay_menu_40"
+        android:gravity="end"
+        android:orientation="horizontal">
 
-        <Button
-            android:layout_width="@dimen/detay_menu_145"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_kontrol"
-            android:text="@string/kaydet"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btn_send"
@@ -187,7 +181,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/detay_menu_12"
             android:background="@drawable/btn_konum_rounded"
-            android:text="@string/gonder"
+            android:text="@string/kaydet"
             android:textColor="@color/white"
             android:textStyle="bold" />
 

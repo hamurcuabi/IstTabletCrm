@@ -7,7 +7,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
-    private static final int TIME_OUT = 15;
+    private static final int TIME_OUT = 20;
     private static final String TAG = "ApiClient";
     private static final String USER_NAME = "Creatif";
     private static final String PASSWORD = "Crm365@!";
@@ -18,8 +18,9 @@ public class ApiClient {
         OkHttpClient okHttpClient = new OkHttpClient().newBuilder().addInterceptor
                 (new BasicAuthInterceptor(USER_NAME, PASSWORD))
                 .callTimeout(TIME_OUT, TimeUnit.SECONDS)
+               // .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
+                .connectTimeout(1, TimeUnit.MINUTES)
                 .build();
-
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(Base_Url)

@@ -115,6 +115,10 @@ public interface JsonApi {
     Call<NotificationListAll> getNotificationListAll(@Body UserIdRequest userId);
 
     //OK
+    @GET("Account/ListAll")
+    Call<AccountListAll> geAccountListAllCall();
+
+    //OK
     @POST("Notification/SurveyUpdateById")
     Call<SurveyUpdateById> updateSurveyById(@Body SurveyUpdateById surveyUpdateById);
 

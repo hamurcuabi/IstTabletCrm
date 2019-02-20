@@ -18,6 +18,30 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/txt_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/yeni"
+        android:textColor="@color/mobil_konum"
+        android:textSize="@dimen/text_menu_14"
+        app:layout_constraintBottom_toBottomOf="@+id/img_add"
+        app:layout_constraintEnd_toEndOf="@+id/cons_main"
+        app:layout_constraintTop_toTopOf="@+id/img_add" />
+
+    <ImageView
+        android:id="@+id/img_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_back"
+        app:layout_constraintEnd_toStartOf="@+id/txt_add"
+        app:layout_constraintTop_toTopOf="@+id/img_back"
+        app:srcCompat="@drawable/ic_add" />
+
+    <TextView
+        android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/servapp_icon_text"

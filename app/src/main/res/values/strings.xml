@@ -172,6 +172,7 @@
     <string name="altgrubuac">Alt Ürün Gurubunu Aç</string>
     <string name="buton">Buton</string>
     <string name="xadeturun">x Adet Ürün</string>
+    <string name="isemritipi">İş Emri tipi</string>
 
     <string-array name="spn_servapp">
         <item>Tüm İş Emirlerim</item>
@@ -181,5 +182,22 @@
         <item>Yedek Parça Değişimi</item>
         <item>Durum Tespit</item>
         <item>Açık Servis</item>
+    </string-array>
+    <string-array name="priorty">
+        <item>Az</item>
+        <item>Orta</item>
+        <item>Yüksek</item>
+    </string-array>
+    <string-array name="type_of_servapp">
+        <item>Bakım</item>
+        <item>Arıza</item>
+        <item>Modernizasyon</item>
+        <item>Yedek Parça Değişimi</item>
+        <item>Durum Tespit</item>
+        <item>Açık Servis</item>
+    </string-array>
+    <string-array name="clock_type">
+        <item>Açık</item>
+        <item>Kapalı</item>
     </string-array>
 </resources>

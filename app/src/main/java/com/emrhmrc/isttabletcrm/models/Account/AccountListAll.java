@@ -6,15 +6,11 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class AccountListAll {
-    @SerializedName("Accounts")
+
     private List<Account> Accounts;
-
     private String ErrorMsg;
-
     private boolean Success;
-
     private TableMetadata TableMetadata;
-
     public List<Account> getAccounts() {
         return Accounts;
     }

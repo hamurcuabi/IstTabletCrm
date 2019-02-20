@@ -20,14 +20,16 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+
 public class MapFragment extends DialogFragment {
 
     MapView mMapView;
     private GoogleMap googleMap;
-    private MapModel map;
+    private ArrayList<MapModel> map;
     private int w, h;
 
-    public static MapFragment newInstance(MapModel map, int w, int h) {
+    public static MapFragment newInstance(ArrayList<MapModel> map, int w, int h) {
 
         Bundle args = new Bundle();
         args.putSerializable("map", map);
@@ -41,7 +43,7 @@ public class MapFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.map_fragment, container, false);
-        map = (MapModel) getArguments().getSerializable("map");
+        map = (ArrayList<MapModel>) getArguments().getSerializable("map");
         w = getArguments().getInt("w");
         h = getArguments().getInt("h");
         mMapView = rootView.findViewById(R.id.mapview);
@@ -67,16 +69,18 @@ public class MapFragment extends DialogFragment {
 
                 // For dropping a marker at a point on the Map
                 // create marker
-                LatLng gps = new LatLng(map.getLatitude(), map.getLongitude());
-                MarkerOptions marker = new MarkerOptions().position(gps).title(map.getTitle());
-                marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker));
-                googleMap.addMarker(marker.position(gps)).setSnippet(map.getDescp());
-
+                for (MapModel current : map
+                ) {
+                    LatLng gps = new LatLng(current.getLatitude(), current.getLongitude());
+                    MarkerOptions marker = new MarkerOptions().position(gps).title(current.getTitle());
+                    marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker));
+                    googleMap.addMarker(marker.position(gps)).setSnippet(current.getDescp());
+                }
 
                 // For zooming automatically to the location of the marker
-                CameraPosition cameraPosition = new CameraPosition.Builder().target(gps).zoom
+                /*CameraPosition cameraPosition = new CameraPosition.Builder().target(gps).zoom
                         (8).build();
-                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));*/
             }
         });
 

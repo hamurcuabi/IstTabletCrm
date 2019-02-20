@@ -3,6 +3,15 @@ package com.emrhmrc.isttabletcrm.models.ServApp;
 public class CompleteByIdRequest {
     private String ServiceAppId;
     private String UserId;
+    private boolean CompleteType;
+
+    public boolean isCompleteType() {
+        return CompleteType;
+    }
+
+    public void setCompleteType(boolean completeType) {
+        CompleteType = completeType;
+    }
 
     public CompleteByIdRequest(String serviceAppId, String userId) {
         ServiceAppId = serviceAppId;

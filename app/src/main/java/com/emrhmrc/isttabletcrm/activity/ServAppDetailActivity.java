@@ -32,6 +32,7 @@ import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetById;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppDetails;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppIdRequest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -72,7 +73,9 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                 .getInstance().getLongitude(),
                 "Title",
                 "Description");
-        MapFragment fragment = MapFragment.newInstance(map, width, height);
+        ArrayList<MapModel> mapModels=new ArrayList<>();
+        mapModels.add(map);
+        MapFragment fragment = MapFragment.newInstance(mapModels, width, height);
         fragment.show(getSupportFragmentManager(), "MpaFragment");
     }
 
@@ -117,16 +120,74 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
 
     }
 
+    private void cancelServApp() {
+
+        CompleteByIdRequest request = new CompleteByIdRequest();
+        request.setServiceAppId(ShareData.getInstance().getServAppId());
+        request.setUserId(SingletonUser.getInstance().getUser().getUserId());
+        request.setCompleteType(false);
+
+
+    }
+
+    private void closeServApp() {
+
+        CompleteByIdRequest request = new CompleteByIdRequest();
+        request.setServiceAppId(ShareData.getInstance().getServAppId());
+        request.setUserId(SingletonUser.getInstance().getUser().getUserId());
+        request.setCompleteType(true);
+
+
+    }
 
     @Override
     public void onItemClicked(Object item, int positon) {
 
     }
 
-    @OnClick({R.id.txt_yeni, R.id.img_gps, R.id.btn_kontrol_listesi, R.id.btn_beforeafter, R.id
-            .add_job, R.id.txt_arizakodu, R.id.txt_asansorno, R.id.img_yeni, R.id.btn_closejob, R.id.img_add, R.id.txt_add})
+    private void goUnsuitablility() {
+        startActivity(new Intent(ServAppDetailActivity.this, UnsuitabilityActivity.class));
+    }
+
+    public void newServApp() {
+        startActivity(new Intent(ServAppDetailActivity.this, CreateServAppActivity.class));
+    }
+
+    public void openControlList() {
+
+        ControlListFragment fragment = ControlListFragment.newInstance();
+        fragment.setCancelable(false);
+        fragment.show(getSupportFragmentManager(), "KontrolListesi");
+
+    }
+
+    private void openAddPiece() {
+        startActivity(new Intent(ServAppDetailActivity.this, AddPieceActivity.class));
+    }
+
+    private void openElevatorDetail() {
+        startActivity(new Intent(ServAppDetailActivity.this, ElevatorDetailActivity.class));
+    }
+
+    private void openBeforeAfter() {
+        BeforeAfterPicFragment fragment = BeforeAfterPicFragment.newInstance();
+        fragment.show(getSupportFragmentManager(), "beforeafter");
+    }
+
+    private void openReasonOfBreakdown() {
+        ReasonOfBreakdownFragment fragment = ReasonOfBreakdownFragment.newInstance();
+        fragment.show(getSupportFragmentManager(), "reasonbrekadown");
+    }
+
+    @OnClick({R.id.img_cancel, R.id.txt_cancel, R.id.btn_closejob})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.img_cancel:
+                cancelServApp();
+                break;
+            case R.id.txt_cancel:
+                cancelServApp();
+                break;
             case R.id.btn_beforeafter:
                 openBeforeAfter();
                 break;
@@ -152,7 +213,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                 newServApp();
                 break;
             case R.id.btn_closejob:
-                completeServApp();
+                closeServApp();
                 break;
             case R.id.img_add:
                 goUnsuitablility();
@@ -160,65 +221,6 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
             case R.id.txt_add:
                 goUnsuitablility();
                 break;
-
         }
     }
-
-    private void goUnsuitablility() {
-        startActivity(new Intent(ServAppDetailActivity.this, UnsuitabilityActivity.class));
-    }
-
-    private void completeServApp() {
-        CompleteByIdRequest request = new CompleteByIdRequest();
-        request.setUserId(SingletonUser.getInstance().getUser().getUserId());
-        request.setServiceAppId(ShareData.getInstance().getServAppId());
-        Call<DefaultResponse> call = jsonApi.servAppCompleteById(request);
-        call.enqueue(new Callback<DefaultResponse>() {
-            @Override
-            public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
-                if (response.isSuccessful()) {
-                    Log.d(TAG, "onResponse: ServCompleteById is Succes");
-
-                } else
-                    Log.d(TAG, "onResponse: ServCompleteById is Fail " + response.errorBody().toString());
-            }
-
-            @Override
-            public void onFailure(Call<DefaultResponse> call, Throwable t) {
-                Log.d(TAG, "onFailure: " + t.getMessage());
-            }
-        });
-    }
-
-    public void newServApp() {
-        startActivity(new Intent(ServAppDetailActivity.this, CreateServAppActivity.class));
-    }
-
-    public void openControlList() {
-
-        ControlListFragment fragment = ControlListFragment.newInstance();
-        fragment.setCancelable(false);
-        fragment.show(getSupportFragmentManager(), "KontrolListesi");
-
-    }
-
-    private void openAddPiece() {
-        startActivity(new Intent(ServAppDetailActivity.this, AddPieceActivity.class));
-    }
-
-
-    private void openElevatorDetail() {
-        startActivity(new Intent(ServAppDetailActivity.this, ElevatorDetailActivity.class));
-    }
-
-    private void openBeforeAfter() {
-        BeforeAfterPicFragment fragment = BeforeAfterPicFragment.newInstance();
-        fragment.show(getSupportFragmentManager(), "beforeafter");
-    }
-
-    private void openReasonOfBreakdown() {
-        ReasonOfBreakdownFragment fragment = ReasonOfBreakdownFragment.newInstance();
-        fragment.show(getSupportFragmentManager(), "reasonbrekadown");
-    }
-
 }

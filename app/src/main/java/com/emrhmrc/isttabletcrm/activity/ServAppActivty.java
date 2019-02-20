@@ -16,9 +16,9 @@ import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.adapter.RcvServAppListAllAdapter;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
+import com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointments;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppListAll;
-import com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointments;
 import com.emrhmrc.isttabletcrm.models.User.UserIdRequest;
 import com.emrhmrc.isttabletcrm.util.StringUtil;
 
@@ -27,6 +27,7 @@ import java.util.List;
 import butterknife.BindArray;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -124,5 +125,22 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
     public void goServAppDetail() {
 
         startActivity(new Intent(ServAppActivty.this, ServAppDetailActivity.class));
+    }
+
+    public void goCreateServApp() {
+
+        startActivity(new Intent(ServAppActivty.this, CreateServAppActivity.class));
+    }
+
+    @OnClick({R.id.txt_add, R.id.img_add})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.txt_add:
+                goCreateServApp();
+                break;
+            case R.id.img_add:
+                goCreateServApp();
+                break;
+        }
     }
 }

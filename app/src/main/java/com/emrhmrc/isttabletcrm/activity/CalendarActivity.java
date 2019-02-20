@@ -5,12 +5,13 @@ import android.util.Log;
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
+import com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointments;
 import com.emrhmrc.isttabletcrm.calendar.BaseActivity;
 import com.emrhmrc.isttabletcrm.calendar.WeekViewEvent;
+import com.emrhmrc.isttabletcrm.helper.CalendarEventsSingleton;
 import com.emrhmrc.isttabletcrm.helper.Methodes;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppListAll;
-import com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointments;
 import com.emrhmrc.isttabletcrm.models.User.UserIdRequest;
 
 import java.util.ArrayList;
@@ -23,8 +24,8 @@ import retrofit2.Response;
 
 public class CalendarActivity extends BaseActivity {
     private static final String TAG = "CalendarActivity";
+    public List<WeekViewEvent> events = new ArrayList<WeekViewEvent>();
     boolean calledNetwork = false;
-    private List<WeekViewEvent> events = new ArrayList<WeekViewEvent>();
     private JsonApi jsonApi;
 
     @Override
@@ -76,41 +77,46 @@ public class CalendarActivity extends BaseActivity {
                     Calendar startTime = Methodes.changeDateFormatToDate(current.getScheduledStart());
                     Calendar endTime = Methodes.changeDateFormatToDate(current.getScheduledEnd());
                     Log.d(TAG, "setCalendarEvents: " + startTime.getTime().toString());
-                    String text = current.getInv_TypeCode().getText();
+                    String text;
+                    if (current.getInv_TypeCode() != null) {
+                        text = current.getInv_TypeCode().getText();
+                    } else text = "null";
+
                     String subtext = current.getSubject();
 
-
-                    WeekViewEvent event = new WeekViewEvent(i,text+" "+subtext , startTime,
+                    WeekViewEvent event = new WeekViewEvent(i, text + " " + subtext, startTime,
                             endTime);
                     int colorid;
-                    switch (current.getInv_TypeCode().getValue()) {
+                    if (current.getInv_TypeCode() != null) {
+                        switch (current.getInv_TypeCode().getValue()) {
 
-                        case 1:
-                            colorid = R.color.bakim;
-                            break;
-                        case 2:
-                            colorid = R.color.ariza;
-                            break;
-                        case 3:
-                            colorid = R.color.modernizasyon;
-                            break;
-                        case 4:
-                            colorid = R.color.yedek_parca_degisimi;
-                            break;
-                        case 5:
-                            //Burası Yok
-                            colorid = R.color.yedek_parca_degisimi;
-                            break;
-                        case 7:
-                            //Burası Yok
-                            colorid = R.color.yedek_parca_degisimi;
-                            break;
-                        default:
-                            colorid = R.color.bakim;
-                            break;
+                            case 1:
+                                colorid = R.color.bakim;
+                                break;
+                            case 2:
+                                colorid = R.color.ariza;
+                                break;
+                            case 3:
+                                colorid = R.color.modernizasyon;
+                                break;
+                            case 4:
+                                colorid = R.color.yedek_parca_degisimi;
+                                break;
+                            case 5:
+                                //Burası Yok
+                                colorid = R.color.yedek_parca_degisimi;
+                                break;
+                            case 7:
+                                //Burası Yok
+                                colorid = R.color.yedek_parca_degisimi;
+                                break;
+                            default:
+                                colorid = R.color.bakim;
+                                break;
 
 
-                    }
+                        }
+                    } else colorid = R.color.bakim;
                     event.setColor(getResources().getColor(colorid));
                     event.setLatitude(current.getInv_Latitude());
                     event.setLongitude(current.getInv_Longitude());
@@ -119,6 +125,7 @@ public class CalendarActivity extends BaseActivity {
 
 
                 }
+                CalendarEventsSingleton.getInstance().setList(events);
             }
         }
        /* Calendar startTime = Calendar.getInstance();
