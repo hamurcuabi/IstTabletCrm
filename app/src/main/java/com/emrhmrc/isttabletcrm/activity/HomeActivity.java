@@ -10,11 +10,11 @@ import android.widget.TextView;
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
+import com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointments;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
 import com.emrhmrc.isttabletcrm.models.Notification.Notification;
 import com.emrhmrc.isttabletcrm.models.Notification.NotificationListAll;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppListAll;
-import com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointments;
 import com.emrhmrc.isttabletcrm.models.User.UserIdRequest;
 import com.emrhmrc.isttabletcrm.util.StringUtil;
 
@@ -129,6 +129,9 @@ public class HomeActivity extends AppCompatActivity {
     private void goAnnouncement() {
         startActivity(new Intent(HomeActivity.this, AnnouncementActivity.class));
     }
+    private void goUnstability() {
+        startActivity(new Intent(HomeActivity.this, UnsuitabilityActivity.class));
+    }
 
     private void goTechnical() {
         startActivity(new Intent(HomeActivity.this, TechnicalDocumentActivity.class));
@@ -138,7 +141,7 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(new Intent(HomeActivity.this, ServAppActivty.class));
     }
 
-    @OnClick({R.id.cons_isemirleri, R.id.cons_duyurular, R.id.cons_takvim, R.id.cons_teknik})
+    @OnClick({R.id.cons_isemirleri, R.id.cons_duyurular, R.id.cons_takvim, R.id.cons_teknik, R.id.img_uygunsuzluk, R.id.cons_uygunsuzluk})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.cons_isemirleri:
@@ -153,6 +156,13 @@ public class HomeActivity extends AppCompatActivity {
             case R.id.cons_teknik:
                 goTechnical();
                 break;
+            case R.id.img_uygunsuzluk:
+               // goUnstability();
+                break;
+            case R.id.cons_uygunsuzluk:
+               // goUnstability();
+                break;
         }
     }
+
 }
