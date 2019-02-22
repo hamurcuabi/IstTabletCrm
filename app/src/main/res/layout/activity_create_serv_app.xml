@@ -130,7 +130,7 @@
                         app:layout_constraintTop_toTopOf="@+id/spinner_musteri" />
 
                     <Spinner
-
+                        android:spinnerMode="dropdown"
                         android:id="@+id/spinner_musteri"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
@@ -140,7 +140,7 @@
                         android:background="@drawable/spn_style"
                         android:paddingLeft="@dimen/detay_menu_25"
                         android:paddingRight="@dimen/detay_menu_12"
-                        android:prompt="@string/apart_adi"
+                        android:drawSelectorOnTop="true"
                         app:layout_constraintStart_toEndOf="@+id/txt_mus_adi"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -295,10 +295,10 @@
                         android:id="@+id/txt_ariza"
                         android:layout_width="@dimen/txt_calendar"
                         android:layout_height="wrap_content"
-                        android:layout_alignTop="@+id/edt_ariza"
-                        android:layout_alignBottom="@+id/edt_ariza"
+                        android:layout_alignTop="@+id/spn_ariza"
+                        android:layout_alignBottom="@+id/spn_ariza"
                         android:layout_alignParentStart="true"
-                        android:layout_toStartOf="@+id/edt_ariza"
+                        android:layout_toStartOf="@+id/spn_ariza"
                         android:fontFamily="@font/roboto_regular"
                         android:gravity="end"
                         android:text="@string/isemri_tipi"
@@ -306,12 +306,12 @@
                         android:textColor="@color/text_color_5"
                         android:textSize="@dimen/text_menu_15"
                         android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="@+id/edt_ariza"
+                        app:layout_constraintBottom_toBottomOf="@+id/spn_ariza"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/edt_ariza" />
+                        app:layout_constraintTop_toTopOf="@+id/spn_ariza" />
 
                     <Spinner
-                        android:id="@+id/edt_ariza"
+                        android:id="@+id/spn_ariza"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
                         android:layout_alignParentTop="true"
@@ -381,12 +381,12 @@
                         android:textColor="@color/text_color_5"
                         android:textSize="@dimen/text_menu_15"
                         android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="@+id/edt_oncelik"
+                        app:layout_constraintBottom_toBottomOf="@+id/spn_oncelik"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/edt_oncelik" />
+                        app:layout_constraintTop_toTopOf="@+id/spn_oncelik" />
 
                     <Spinner
-                        android:id="@+id/edt_oncelik"
+                        android:id="@+id/spn_oncelik"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
                         android:layout_alignParentTop="true"
@@ -509,23 +509,23 @@
                         android:id="@+id/txt_sonraki_is_not"
                         android:layout_width="@dimen/txt_calendar_2"
                         android:layout_height="wrap_content"
-                        android:layout_alignTop="@+id/edt_sonraki_is_not"
-                        android:layout_alignBottom="@+id/edt_sonraki_is_not"
+                        android:layout_alignTop="@+id/edt_aciklama"
+                        android:layout_alignBottom="@+id/edt_aciklama"
                         android:layout_alignParentStart="true"
                         android:layout_gravity="center"
-                        android:layout_toStartOf="@+id/edt_sonraki_is_not"
+                        android:layout_toStartOf="@+id/edt_aciklama"
                         android:fontFamily="@font/roboto_regular"
                         android:gravity="end"
                         android:text="@string/aciklama"
                         android:textColor="@color/text_color_5"
                         android:textSize="@dimen/text_menu_15"
                         android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="@+id/edt_sonraki_is_not"
+                        app:layout_constraintBottom_toBottomOf="@+id/edt_aciklama"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/edt_sonraki_is_not" />
+                        app:layout_constraintTop_toTopOf="@+id/edt_aciklama" />
 
                     <EditText
-                        android:id="@+id/edt_sonraki_is_not"
+                        android:id="@+id/edt_aciklama"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_alignParentTop="true"

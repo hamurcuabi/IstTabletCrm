@@ -22,12 +22,12 @@ import com.emrhmrc.isttabletcrm.fragment.BeforeAfterPicFragment;
 import com.emrhmrc.isttabletcrm.fragment.ControlListFragment;
 import com.emrhmrc.isttabletcrm.fragment.MapFragment;
 import com.emrhmrc.isttabletcrm.fragment.ReasonOfBreakdownFragment;
+import com.emrhmrc.isttabletcrm.helper.CreateSubServAppSingleton;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.helper.SingletonListUnsuitability;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
 import com.emrhmrc.isttabletcrm.models.MapModel;
 import com.emrhmrc.isttabletcrm.models.ServApp.CompleteByIdRequest;
-import com.emrhmrc.isttabletcrm.models.ServApp.DefaultResponse;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetById;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppDetails;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppIdRequest;
@@ -73,7 +73,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                 .getInstance().getLongitude(),
                 "Title",
                 "Description");
-        ArrayList<MapModel> mapModels=new ArrayList<>();
+        ArrayList<MapModel> mapModels = new ArrayList<>();
         mapModels.add(map);
         MapFragment fragment = MapFragment.newInstance(mapModels, width, height);
         fragment.show(getSupportFragmentManager(), "MpaFragment");
@@ -96,6 +96,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
             public void onResponse(Call<ServAppGetById> call, Response<ServAppGetById> response) {
                 if (response.isSuccessful()) {
                     ServAppGetById model = response.body();
+                    CreateSubServAppSingleton.getInstance().setServAppGetById(model);
                     setModelToBind(model.getServiceAppointment());
                     SingletonListUnsuitability.getInstance().setUnsuitabilities(model.getServiceAppointment().getServAppGetByIdServAppUnsuitabilities());
                     ShareData.getInstance().setLongitude(model.getServiceAppointment().getInv_Longitude());
@@ -107,6 +108,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
             @Override
             public void onFailure(Call<ServAppGetById> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
+                CreateSubServAppSingleton.getInstance().setServAppGetById(null);
             }
         });
 
@@ -145,11 +147,9 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
 
     }
 
-    private void goUnsuitablility() {
-        startActivity(new Intent(ServAppDetailActivity.this, UnsuitabilityActivity.class));
-    }
 
     public void newServApp() {
+
         startActivity(new Intent(ServAppDetailActivity.this, CreateServAppActivity.class));
     }
 
@@ -179,7 +179,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
         fragment.show(getSupportFragmentManager(), "reasonbrekadown");
     }
 
-    @OnClick({R.id.img_cancel, R.id.txt_cancel, R.id.btn_closejob})
+    @OnClick({R.id.img_cancel, R.id.txt_cancel, R.id.btn_closejob, R.id.txt_yeni, R.id.img_yeni})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_cancel:
@@ -216,10 +216,10 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                 closeServApp();
                 break;
             case R.id.img_add:
-                goUnsuitablility();
+                openAddPiece();
                 break;
             case R.id.txt_add:
-                goUnsuitablility();
+                openAddPiece();
                 break;
         }
     }

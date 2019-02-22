@@ -82,7 +82,7 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
 
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(
                 this, R.layout.spinner_item, items);
-        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(spinnerArrayAdapter);
         shareData = ShareData.getInstance();
 
@@ -116,8 +116,10 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
 
     @Override
     public void onItemClicked(Object item, int positon) {
+
         ServiceAppointments current = (ServiceAppointments) item;
         shareData.setServAppId(current.getActivityId());
+        Log.d(TAG, "onItemClicked: " + current.getActivityId());
         goServAppDetail();
 
     }
