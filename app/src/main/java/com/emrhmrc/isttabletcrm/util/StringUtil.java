@@ -28,7 +28,7 @@ public class StringUtil {
 
     public static String nullToString(String string) {
         if (validateStrings(string)) return string;
-        else return "null";
+        else return "Yükleniyor...";
     }
 
 
