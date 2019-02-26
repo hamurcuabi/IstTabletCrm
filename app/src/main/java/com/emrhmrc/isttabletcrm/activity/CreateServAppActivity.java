@@ -14,7 +14,6 @@ import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointment;
 import com.emrhmrc.isttabletcrm.helper.CreateSubServAppSingleton;
-import com.emrhmrc.isttabletcrm.helper.SingletonUser;
 import com.emrhmrc.isttabletcrm.models.Account.Account;
 import com.emrhmrc.isttabletcrm.models.Account.AccountListAll;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetById;
@@ -24,6 +23,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,8 +37,6 @@ public class CreateServAppActivity extends AppCompatActivity {
     EditText edtKonu;
     @BindView(R.id.edt_asansor)
     EditText edtAsansor;
-    @BindView(R.id.spn_saat)
-    Spinner spnSaat;
     @BindView(R.id.spn_ariza)
     Spinner spnAriza;
     @BindView(R.id.spn_oncelik)
@@ -87,7 +85,7 @@ public class CreateServAppActivity extends AppCompatActivity {
         edtAsansor.setText(item.getInv_ElevatorId().getText());
         edtAsansor.setEnabled(false);
         spnAriza.setSelection(item.getInv_TypeCode().getValue() - 1);
-        spnOncelik.setSelection(item.getPriortiyCode().getValue()-1);
+        spnOncelik.setSelection(item.getPriortiyCode().getValue() - 1);
         edtIsimsoyad.setText(item.getOwnerId().getText());
         edtIsimsoyad.setEnabled(false);
         edtAciklama.setText(item.getInv_Description());
@@ -136,4 +134,5 @@ public class CreateServAppActivity extends AppCompatActivity {
 
 
     }
+
 }

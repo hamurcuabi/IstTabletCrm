@@ -28,10 +28,7 @@ public class ServAppGetByIdServAppBreakdownTypes {
 
     @Override
     public String toString() {
-        return "ServAppGetByIdServAppBreakdownTypes{" +
-                "inv_ServAppBreakdownTypeId='" + inv_ServAppBreakdownTypeId + '\'' +
-                ", inv_BreakdownTypeId='" + inv_BreakdownTypeId + '\'' +
-                '}';
+        return inv_BreakdownTypeId.getText();
     }
 }
 

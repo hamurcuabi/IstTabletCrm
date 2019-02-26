@@ -89,7 +89,7 @@
                             android:layout_gravity="center"
                             android:layout_marginEnd="@dimen/detay_menu_12"
                             android:fontFamily="@font/roboto_regular"
-                            android:text="@string/yeni"
+                            android:text="@string/add_sub_servapp"
                             android:textAllCaps="true"
                             android:textColor="@color/white"
                             android:textSize="@dimen/menu_text_14"
@@ -640,11 +640,12 @@
                                     android:textSize="@dimen/text_menu_16"
                                     android:textStyle="bold" />
 
-                                <TextView
+                                <Spinner
+                                    android:entries="@{model.getServAppGetByIdServAppBreakdownTypes()}"
+                                    android:background="@drawable/spn_style"
                                     android:id="@+id/txt_ariza_nedeni"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@{StringUtil.nullToString(model.getInv_BreakdownCode())}"
                                     android:textColor="@color/text_color_3"
                                     android:textSize="@dimen/text_menu_16" />
 
@@ -833,7 +834,7 @@
 
                 <RelativeLayout
                     android:id="@+id/lnr_yeni"
-                    android:layout_width="@dimen/btn_width110"
+                    android:layout_width="220dp"
                     android:layout_height="@dimen/btn_height45"
                     android:layout_marginStart="@dimen/padding_top25"
                     android:layout_marginTop="@dimen/padding_rigt32"
@@ -865,7 +866,7 @@
                         android:layout_toEndOf="@+id/img_add"
                         android:fontFamily="@font/roboto_regular"
                         android:gravity="center_vertical"
-                        android:text="@string/yeni"
+                        android:text="@string/add_new_pieces"
                         android:textAllCaps="true"
                         android:textColor="@color/white"
                         android:textSize="@dimen/menu_text_14"

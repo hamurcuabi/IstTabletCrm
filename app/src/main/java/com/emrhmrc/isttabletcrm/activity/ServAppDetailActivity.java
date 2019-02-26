@@ -179,7 +179,8 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
         fragment.show(getSupportFragmentManager(), "reasonbrekadown");
     }
 
-    @OnClick({R.id.img_cancel, R.id.txt_cancel, R.id.btn_closejob, R.id.txt_yeni, R.id.img_yeni})
+    @OnClick({R.id.img_cancel, R.id.txt_cancel, R.id.btn_closejob, R.id.txt_yeni, R.id.img_yeni,
+            R.id.img_add,R.id.txt_add})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_cancel:

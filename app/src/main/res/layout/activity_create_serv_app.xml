@@ -130,6 +130,7 @@
                         app:layout_constraintTop_toTopOf="@+id/spinner_musteri" />
 
                     <Spinner
+
                         android:spinnerMode="dropdown"
                         android:id="@+id/spinner_musteri"
                         android:layout_width="match_parent"
@@ -236,50 +237,6 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/lnr_saat"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/detay_menu_40"
-                    android:layout_marginTop="@dimen/detay_menu_12"
-                    android:orientation="horizontal"
-                    app:layout_constraintStart_toStartOf="@+id/textView2"
-                    app:layout_constraintTop_toBottomOf="@+id/lnr_asansor">
-
-                    <TextView
-                        android:id="@+id/txt_saat"
-                        android:layout_width="@dimen/txt_calendar"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/spn_saat"
-                        android:layout_alignParentStart="true"
-                        android:layout_gravity="center"
-                        android:layout_toStartOf="@+id/spn_saat"
-                        android:fontFamily="@font/roboto_regular"
-                        android:gravity="end"
-                        android:text="@string/saat"
-                        android:textColor="@color/text_color_5"
-                        android:textSize="@dimen/text_menu_15"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="@+id/spn_saat"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/spn_saat" />
-
-                    <Spinner
-                        android:id="@+id/spn_saat"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/edt_calendar_height"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginStart="@dimen/detay_menu_30"
-                        android:background="@drawable/spn_style"
-                        android:entries="@array/clock_type"
-
-                        android:paddingLeft="@dimen/detay_menu_25"
-                        android:paddingRight="@dimen/detay_menu_12"
-                        app:layout_constraintStart_toEndOf="@+id/txt_saat"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/lnr_ariza"

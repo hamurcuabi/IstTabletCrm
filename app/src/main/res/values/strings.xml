@@ -173,6 +173,8 @@
     <string name="buton">Buton</string>
     <string name="xadeturun">x Adet Ürün</string>
     <string name="isemritipi">İş Emri tipi</string>
+    <string name="add_sub_servapp">Alt İş Emri Ekle</string>
+    <string name="add_new_pieces">Yeni Malzeme Ekle</string>
 
     <string-array name="spn_servapp">
         <item>Tüm İş Emirlerim</item>

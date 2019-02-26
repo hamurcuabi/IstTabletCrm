@@ -125,6 +125,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void goHome(UserLogin model) {
+        btn_login.setEnabled(true);
         ShareData.getInstance().setUserId(model.getUserId());
         SingletonUser.getInstance().setUser(model);
         startActivity(new Intent(getApplicationContext(), HomeActivity.class));
