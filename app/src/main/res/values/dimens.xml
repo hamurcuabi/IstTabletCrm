@@ -130,5 +130,6 @@
     <dimen name="detay_menu_90">90dp</dimen>
     <dimen name="margin80">80dp</dimen>
     <dimen name="detay_menu_10">10dp</dimen>
+    <dimen name="m300">300dp</dimen>
 
 </resources>

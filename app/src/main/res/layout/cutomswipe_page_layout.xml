@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/text_color"
     android:orientation="horizontal">
 
     <LinearLayout
@@ -21,6 +20,8 @@
     </LinearLayout>
 
     <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_gravity="center_vertical"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -58,8 +59,10 @@
             android:textSize="@dimen/menu_text_16" />
 
         <ImageView
+            android:layout_marginTop="@dimen/padding_top25"
+            android:scaleType="fitCenter"
             android:id="@+id/img_pic"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
            />

@@ -11,6 +11,8 @@ import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.adapter.RcvTechnicalAdapter;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
+import com.emrhmrc.isttabletcrm.fragment.DetailTechnicalFragment;
+import com.emrhmrc.isttabletcrm.models.Document.TechnicDocument;
 import com.emrhmrc.isttabletcrm.models.Document.TechnicalDocument;
 
 import butterknife.BindView;
@@ -58,7 +60,11 @@ public class TechnicalDocumentActivity extends AppCompatActivity implements OnIt
             }
         });
 
+    }
 
+    private void openDetail(TechnicDocument document) {
+        DetailTechnicalFragment fragment = DetailTechnicalFragment.newInstance(document);
+        fragment.show(getSupportFragmentManager(), "DetailTechnicalFragment");
     }
 
     private void init() {
@@ -91,5 +97,7 @@ public class TechnicalDocumentActivity extends AppCompatActivity implements OnIt
     @Override
     public void onItemClicked(Object item, int positon) {
 
+        final TechnicDocument document = (TechnicDocument) item;
+        openDetail(document);
     }
 }

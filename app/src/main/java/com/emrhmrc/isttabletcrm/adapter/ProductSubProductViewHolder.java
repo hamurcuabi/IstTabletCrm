@@ -60,7 +60,7 @@ public class ProductSubProductViewHolder extends BaseViewHolder<Product,
 
     @Override
     public void onBind(final Product item, @Nullable final OnItemClickListener<Product> listener) {
-        GlideBindingAdapters.setImageResource(imgPic, item.getImage());
+        GlideBindingAdapters.setImageResourceBase64(imgPic, item.getImage());
         txtCode.setText(StringUtil.nullToString(item.getProductNumber()));
         if (listener != null)
             imgPic.setOnClickListener(view -> listener.onItemClicked(item, getAdapterPosition()));

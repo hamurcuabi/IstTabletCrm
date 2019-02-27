@@ -38,7 +38,7 @@ public class ProductSubViewHolder extends BaseViewHolder<SubList,
 
     @Override
     public void onBind(final SubList item, @Nullable final OnItemClickListener<SubList> listener) {
-        GlideBindingAdapters.setImageResource(imgAnapic, item.getImage());
+        GlideBindingAdapters.setImageResourceBase64(imgAnapic, item.getImage());
         txtAnatext.setText(StringUtil.nullToString(item.getInv_SubProductGroupName()));
         txtAnacount.setText(StringUtil.convertIntToString(item.getProductCount()));
         if (listener != null) {

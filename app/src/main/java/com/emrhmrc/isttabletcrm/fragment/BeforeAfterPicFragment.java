@@ -1,5 +1,7 @@
 package com.emrhmrc.isttabletcrm.fragment;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -7,6 +9,7 @@ import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -29,6 +32,8 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_before_after_pic, container);
 
+
+
     }
 
     @Override
@@ -36,8 +41,8 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
         super.onViewCreated(view, savedInstanceState);
        /* img_close = view.findViewById(R.id.img_close);
         img_close.setOnClickListener(this);*/
-        lnr = view.findViewById(R.id.lnrfrag);
-
+      //  lnr = view.findViewById(R.id.lnrfrag);
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
     }
 
     @Override

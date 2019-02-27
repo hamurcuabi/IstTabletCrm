@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Spinner;
 
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
@@ -16,6 +19,7 @@ import com.emrhmrc.isttabletcrm.helper.SingletonUser;
 import com.emrhmrc.isttabletcrm.models.Notification.Notification;
 import com.emrhmrc.isttabletcrm.models.Notification.NotificationListAll;
 import com.emrhmrc.isttabletcrm.models.User.UserIdRequest;
+import com.emrhmrc.isttabletcrm.util.StringUtil;
 
 import java.util.List;
 
@@ -29,6 +33,7 @@ public class AnnouncementActivity extends AppCompatActivity implements OnItemCli
     private List<Notification> model;
     private JsonApi jsonApi;
     private RcvAnnouncementAdapter adapter;
+    private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +44,7 @@ public class AnnouncementActivity extends AppCompatActivity implements OnItemCli
     }
 
     private void init() {
+        spinner = findViewById(R.id.spn_notif);
         jsonApi = ApiClient.getClient().create(JsonApi.class);
         rcw = findViewById(R.id.rcv);
         rcw.setHasFixedSize(true);
@@ -59,6 +65,8 @@ public class AnnouncementActivity extends AppCompatActivity implements OnItemCli
                     final NotificationListAll temp = response.body();
                     model = temp.getNotifications();
                     adapter.setItems(model);
+                    adapter.setItemsFilter(model);
+                    spinnerListener();
 
                 }
             }
@@ -78,8 +86,23 @@ public class AnnouncementActivity extends AppCompatActivity implements OnItemCli
         goDetail();
     }
 
-    public void goDetail() {
+    private void goDetail() {
 
         startActivity(new Intent(AnnouncementActivity.this, AnnouncementDetailActivity.class));
+    }
+
+    private void spinnerListener() {
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                adapter.getFilter().filter(StringUtil.convertIntToString(i));
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 }

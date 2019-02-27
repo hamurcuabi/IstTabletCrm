@@ -2,7 +2,9 @@ package com.emrhmrc.isttabletcrm.models.Document;
 
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
 
-public class TechnicDocument {
+import java.io.Serializable;
+
+public class TechnicDocument implements Serializable {
 
     private String inv_TechnicalDocumentId;
     private String inv_TechnicalDocumentName;

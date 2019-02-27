@@ -3,6 +3,8 @@ package com.emrhmrc.isttabletcrm.api;
 
 import com.emrhmrc.isttabletcrm.models.Account.AccountListAll;
 import com.emrhmrc.isttabletcrm.models.BreakDown.BreakDownTypeListAll;
+import com.emrhmrc.isttabletcrm.models.CommonClass.ServAppCountResponse;
+import com.emrhmrc.isttabletcrm.models.CommonClass.NotificationCountResponse;
 import com.emrhmrc.isttabletcrm.models.Document.TechnicalDocument;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorGetById;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorIdRequest;
@@ -28,12 +30,15 @@ import com.emrhmrc.isttabletcrm.models.ServApp.ServAppListAll;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServiceAppIdRequest;
 import com.emrhmrc.isttabletcrm.models.ServApp.UpdateServFormById;
 import com.emrhmrc.isttabletcrm.models.ServApp.UpsertById;
+import com.emrhmrc.isttabletcrm.models.Unsuitablity.UnsuitabilityListAll;
 import com.emrhmrc.isttabletcrm.models.User.EmailRequest;
 import com.emrhmrc.isttabletcrm.models.User.UserForgotPassword;
 import com.emrhmrc.isttabletcrm.models.User.UserIdRequest;
 import com.emrhmrc.isttabletcrm.models.User.UserLogin;
 import com.emrhmrc.isttabletcrm.models.User.UserRequest;
 import com.emrhmrc.isttabletcrm.models.User.UserReset;
+import com.emrhmrc.isttabletcrm.models.Warehouse.WarehouseItemListAll;
+import com.emrhmrc.isttabletcrm.models.Warehouse.WarehouseTransferListAll;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -137,6 +142,21 @@ public interface JsonApi {
 
     @GET("TechnicalDocument/ListAll")
     Call<TechnicalDocument> getTechnicalDocumentAll();
+
+    @POST("ServApp/GetCount")
+    Call<ServAppCountResponse> getServappCount(@Body UserIdRequest userIdRequest);
+
+    @POST("Notification/GetCount")
+    Call<NotificationCountResponse> getNotifCount(@Body UserIdRequest userIdRequest);
+
+    @POST("Unsuitability/ListAll")
+    Call<UnsuitabilityListAll> getUnsuitabilityListAllCall(@Body UserIdRequest userId);
+
+    @POST("WarehouseItem/ListAll")
+    Call<WarehouseItemListAll> getWarehouseItemListAllCall(@Body UserIdRequest userId);
+
+    @POST("WarehouseTransfer/ListAll")
+    Call<WarehouseTransferListAll> getWarehouseTransferListAllCall(@Body UserIdRequest userId);
 
 
 }

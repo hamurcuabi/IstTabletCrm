@@ -1,9 +1,12 @@
 package com.emrhmrc.isttabletcrm.fragment;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,14 +54,24 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
         super.onViewCreated(view, savedInstanceState);
         jsonApi = ApiClient.getClient().create(JsonApi.class);
         btn_send = view.findViewById(R.id.btn_send);
+        img_close = view.findViewById(R.id.img_close);
         btn_send.setOnClickListener(this);
+        img_close.setOnClickListener(this);
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        getDialog().setCanceledOnTouchOutside(false);
 
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
+        DisplayMetrics metrics = getResources().getDisplayMetrics();
+        int width = metrics.widthPixels;
+        int height = metrics.heightPixels;
+        ViewGroup.LayoutParams params = getDialog().getWindow().getAttributes();
+        params.width = width / 2;
+        params.height = height;
+        getDialog().getWindow().setAttributes((android.view.WindowManager.LayoutParams) params);
     }
 
     @Override
@@ -66,6 +79,9 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
         switch (view.getId()) {
             case R.id.btn_send:
                 send();
+                break;
+            case R.id.img_close:
+                dismiss();
                 break;
 
         }
@@ -83,10 +99,9 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
         call.enqueue(new Callback<DefaultResponse2>() {
             @Override
             public void onResponse(Call<DefaultResponse2> call, Response<DefaultResponse2> response) {
-              if(response.isSuccessful()){
-                  Log.d(TAG, "onResponse: Succes");
-              }
-              else Log.d(TAG, "onResponse: Fail");
+                if (response.isSuccessful()) {
+                    Log.d(TAG, "onResponse: Succes");
+                } else Log.d(TAG, "onResponse: Fail");
             }
 
             @Override

@@ -10,16 +10,11 @@ import android.widget.TextView;
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
-import com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointments;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
-import com.emrhmrc.isttabletcrm.models.Notification.Notification;
-import com.emrhmrc.isttabletcrm.models.Notification.NotificationListAll;
-import com.emrhmrc.isttabletcrm.models.ServApp.ServAppListAll;
+import com.emrhmrc.isttabletcrm.models.CommonClass.NotificationCountResponse;
+import com.emrhmrc.isttabletcrm.models.CommonClass.ServAppCountResponse;
 import com.emrhmrc.isttabletcrm.models.User.UserIdRequest;
 import com.emrhmrc.isttabletcrm.util.StringUtil;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -60,60 +55,52 @@ public class HomeActivity extends AppCompatActivity {
 
     private void getNotificationsAll() {
         UserIdRequest userIdRequest = new UserIdRequest(SingletonUser.getInstance().getUser().getUserId());
-        Call<NotificationListAll> call = jsonApi.getNotificationListAll(userIdRequest);
-        call.enqueue(new Callback<NotificationListAll>() {
+        Call<NotificationCountResponse> call = jsonApi.getNotifCount(userIdRequest);
+        call.enqueue(new Callback<NotificationCountResponse>() {
             @Override
-            public void onResponse(Call<NotificationListAll> call, Response<NotificationListAll> response) {
+            public void onResponse(Call<NotificationCountResponse> call, Response<NotificationCountResponse> response) {
                 if (response.isSuccessful()) {
-
-                    NotificationListAll temp = response.body();
-                    setNotifNotifCount(temp.getNotifications());
+                    final NotificationCountResponse countResponse = response.body();
+                    setNotifNotifCount(countResponse.getNotificationCount());
                 }
             }
 
             @Override
-            public void onFailure(Call<NotificationListAll> call, Throwable t) {
+            public void onFailure(Call<NotificationCountResponse> call, Throwable t) {
 
             }
         });
+
     }
 
-    private void setNotifNotifCount(List<Notification> notifications) {
-        txtNotifNotif.setText(StringUtil.convertIntToString(notifications.size()));
+    private void setNotifNotifCount(int count) {
+        txtNotifNotif.setText(StringUtil.convertIntToString(count));
     }
 
     public void getServAppListAll() {
         UserIdRequest userIdRequest = new UserIdRequest(SingletonUser.getInstance().getUser().getUserId());
-        Call<ServAppListAll> call = jsonApi.servAppListAll(userIdRequest);
-        call.enqueue(new Callback<ServAppListAll>() {
+        Call<ServAppCountResponse> call = jsonApi.getServappCount(userIdRequest);
+        call.enqueue(new Callback<ServAppCountResponse>() {
             @Override
-            public void onResponse(Call<ServAppListAll> call, Response<ServAppListAll> response) {
+            public void onResponse(Call<ServAppCountResponse> call, Response<ServAppCountResponse> response) {
                 if (response.isSuccessful()) {
-
-                    final ServAppListAll temp = response.body();
-                    setServappNotifCount(temp.getServiceAppointments());
-
-
+                    final ServAppCountResponse countResponse = response.body();
+                    setServappNotifCount(countResponse.getServAppCount());
                 }
             }
 
             @Override
-            public void onFailure(Call<ServAppListAll> call, Throwable t) {
+            public void onFailure(Call<ServAppCountResponse> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
             }
         });
 
+
     }
 
-    private void setServappNotifCount(List<ServiceAppointments> serviceAppointments) {
+    private void setServappNotifCount(int count) {
 
-        List<ServiceAppointments> model = new ArrayList<>();
-        for (ServiceAppointments current : serviceAppointments
-        ) {
-            if (current.getStatusCode().getValue() != 8 && current.getStatusCode().getValue() != 9)
-                model.add(current);
-        }
-        txtServapcountNotif.setText(StringUtil.convertIntToString(model.size()));
+        txtServapcountNotif.setText(StringUtil.convertIntToString(count));
     }
 
     private void setTexts() {
@@ -129,6 +116,7 @@ public class HomeActivity extends AppCompatActivity {
     private void goAnnouncement() {
         startActivity(new Intent(HomeActivity.this, AnnouncementActivity.class));
     }
+
     private void goUnstability() {
         startActivity(new Intent(HomeActivity.this, UnsuitabilityActivity.class));
     }
@@ -141,7 +129,8 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(new Intent(HomeActivity.this, ServAppActivty.class));
     }
 
-    @OnClick({R.id.cons_isemirleri, R.id.cons_duyurular, R.id.cons_takvim, R.id.cons_teknik, R.id.img_uygunsuzluk, R.id.cons_uygunsuzluk})
+    @OnClick({R.id.cons_isemirleri, R.id.cons_duyurular, R.id.cons_takvim, R.id.cons_teknik,
+            R.id.img_uygunsuzluk, R.id.cons_uygunsuzluk, R.id.cons_bilgilendirme, R.id.img_bilgilendirme})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.cons_isemirleri:
@@ -157,12 +146,22 @@ public class HomeActivity extends AppCompatActivity {
                 goTechnical();
                 break;
             case R.id.img_uygunsuzluk:
-               // goUnstability();
+                goUnstability();
                 break;
             case R.id.cons_uygunsuzluk:
-               // goUnstability();
+                goUnstability();
+                break;
+            case R.id.cons_bilgilendirme:
+                goWareHouse();
+                break;
+            case R.id.img_bilgilendirme:
+                goWareHouse();
                 break;
         }
+    }
+
+    private void goWareHouse() {
+        startActivity(new Intent(HomeActivity.this, WareHouseActivity.class));
     }
 
 }

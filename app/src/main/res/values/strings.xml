@@ -175,6 +175,14 @@
     <string name="isemritipi">İş Emri tipi</string>
     <string name="add_sub_servapp">Alt İş Emri Ekle</string>
     <string name="add_new_pieces">Yeni Malzeme Ekle</string>
+    <string name="new_ware">Yeni Stok</string>
+    <string name="stok_info">Stok Bilgisi</string>
+    <string name="talep">Taleplerim</string>
+    <string name="depo">Depo</string>
+    <string name="transfer_tipi">Transfer Tipi</string>
+    <string name="onay_durumu">Onay Durumu</string>
+    <string name="cikis_depo">Çıkış Yapılacak Depo</string>
+    <string name="gonderilecek_depo">Gönderilecek Depo</string>
 
     <string-array name="spn_servapp">
         <item>Tüm İş Emirlerim</item>
@@ -184,6 +192,11 @@
         <item>Yedek Parça Değişimi</item>
         <item>Durum Tespit</item>
         <item>Açık Servis</item>
+    </string-array>
+    <string-array name="spn_notif">
+        <item>Tüm Duyurular</item>
+        <item>Anket</item>
+        <item>Bildirim</item>
     </string-array>
     <string-array name="priorty">
         <item>Az</item>

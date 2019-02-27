@@ -10,9 +10,11 @@ import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.GenericAdapter;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.adapter.filter.UstabilityFilterAdapter;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppUnsuitabilities;
+import com.emrhmrc.isttabletcrm.models.Unsuitablity.Unsuitabilities;
+import com.emrhmrc.isttabletcrm.models.Unsuitablity.UnsuitabilityListAll;
 
-public class RcvUnstabilityAdapter extends GenericAdapter<ServAppGetByIdServAppUnsuitabilities,
-        OnItemClickListener<ServAppGetByIdServAppUnsuitabilities>,
+public class RcvUnstabilityAdapter extends GenericAdapter<Unsuitabilities,
+        OnItemClickListener<Unsuitabilities>,
         RcvUnstabilityViewHolder> implements Filterable {
     UstabilityFilterAdapter filterAdapter;
 

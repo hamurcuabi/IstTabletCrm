@@ -97,7 +97,6 @@ public class AddPieceActivity extends AppCompatActivity implements OnItemClickLi
         });
     }
 
-
     @Override
     public void onItemClicked(Object item, int positon) {
         final MainList model = (MainList) item;

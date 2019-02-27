@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <ImageView
+        android:id="@+id/img_close"
+        android:layout_gravity="end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_close"/>
 
+    <LinearLayout
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/detay_menu_50"
@@ -16,16 +27,18 @@
         android:textSize="@dimen/text_menu_32" />
 
     <LinearLayout
+        android:layout_marginEnd="@dimen/padding_top25"
+        android:layout_marginStart="@dimen/padding_top25"
         android:id="@+id/lnr_mus_adi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/detay_menu_50"
-        android:layout_marginEnd="@dimen/detay_menu_50"
         android:orientation="horizontal">
 
         <TextView
+            android:layout_weight="1"
             android:id="@+id/txt_mus_adi"
-            android:layout_width="@dimen/txt_calendar"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/spinner_musteri"
             android:layout_alignBottom="@+id/spinner_musteri"
@@ -39,7 +52,8 @@
             android:textStyle="bold" />
 
         <EditText
-            android:layout_width="@dimen/edt_calendar"
+            android:layout_weight="5"
+            android:layout_width="0dp"
             android:layout_height="@dimen/edt_calendar_height"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
@@ -53,15 +67,16 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginEnd="@dimen/padding_top25"
+        android:layout_marginStart="@dimen/padding_top25"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/detay_menu_5"
-        android:layout_marginEnd="@dimen/detay_menu_50"
         android:orientation="horizontal">
 
         <TextView
-
-            android:layout_width="@dimen/txt_calendar"
+            android:layout_weight="1"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/spinner_musteri"
             android:layout_alignBottom="@+id/spinner_musteri"
@@ -75,8 +90,8 @@
             android:textStyle="bold" />
 
         <EditText
-
-            android:layout_width="@dimen/edt_calendar"
+            android:layout_weight="5"
+            android:layout_width="0dp"
             android:layout_height="@dimen/edt_calendar_height"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
@@ -90,15 +105,17 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginEnd="@dimen/padding_top25"
+        android:layout_marginStart="@dimen/padding_top25"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/detay_menu_5"
-        android:layout_marginEnd="@dimen/detay_menu_50"
         android:orientation="horizontal">
 
         <TextView
 
-            android:layout_width="@dimen/txt_calendar"
+            android:layout_weight="1"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/spinner_musteri"
             android:layout_alignBottom="@+id/spinner_musteri"
@@ -113,7 +130,8 @@
 
         <EditText
 
-            android:layout_width="@dimen/edt_calendar"
+            android:layout_weight="5"
+            android:layout_width="0dp"
             android:layout_height="@dimen/edt_calendar_height"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
@@ -127,15 +145,16 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginEnd="@dimen/padding_top25"
+        android:layout_marginStart="@dimen/padding_top25"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/detay_menu_5"
-        android:layout_marginEnd="@dimen/detay_menu_50"
         android:orientation="horizontal">
 
         <TextView
-
-            android:layout_width="@dimen/txt_calendar"
+            android:layout_weight="1"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/spinner_musteri"
             android:layout_alignBottom="@+id/spinner_musteri"
@@ -150,7 +169,8 @@
 
         <EditText
             android:id="@+id/spinner_musteri"
-            android:layout_width="@dimen/edt_calendar"
+            android:layout_weight="5"
+            android:layout_width="0dp"
             android:layout_height="@dimen/detay_menu_110"
             android:layout_marginStart="@dimen/detay_menu_30"
             android:background="@drawable/btn_calendars"
@@ -167,7 +187,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/detay_menu_110"
         android:layout_marginTop="@dimen/detay_menu_50"
         android:layout_marginEnd="@dimen/detay_menu_50"
         android:layout_marginBottom="@dimen/detay_menu_40"
@@ -186,5 +205,5 @@
             android:textStyle="bold" />
 
     </LinearLayout>
-
+    </LinearLayout>
 </LinearLayout>

@@ -18,7 +18,6 @@
         android:layout_marginStart="@dimen/detay_menu_40"
         android:layout_weight="1"
         android:fontFamily="@font/roboto_regular"
-        android:text="Uygunsuzluk"
         android:textColor="@color/text_color"
         android:textSize="@dimen/text_menu_16"
         android:textStyle="bold" />
@@ -30,7 +29,6 @@
         android:layout_gravity="center"
         android:layout_weight="1.3"
         android:fontFamily="@font/roboto_regular"
-        android:text="Uygunsuzluk"
         android:textColor="@color/text_color"
         android:textSize="@dimen/text_menu_16" />
 
@@ -41,7 +39,6 @@
         android:layout_gravity="center"
         android:layout_weight="1"
         android:fontFamily="@font/roboto_regular"
-        android:text="Uygunsuzluk"
         android:textColor="@color/text_color"
         android:textSize="@dimen/text_menu_16" />
 
@@ -52,7 +49,6 @@
         android:layout_gravity="center"
         android:layout_weight="1"
         android:fontFamily="@font/roboto_regular"
-        android:text="Uygunsuzluk"
         android:textColor="@color/text_color"
         android:textSize="@dimen/text_menu_16" />
 

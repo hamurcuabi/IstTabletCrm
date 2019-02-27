@@ -32,20 +32,13 @@ public class ProductMainViewHolder extends BaseViewHolder<MainList,
     @Override
     public void onBind(final MainList item,
                        @Nullable final OnItemClickListener<MainList> listener) {
-        GlideBindingAdapters.setImageResource(imgAnapic, item.getImage());
+        GlideBindingAdapters.setImageResourceBase64(imgAnapic, item.getImage());
         txtAnatext.setText(StringUtil.nullToString(item.getInv_MainProductGroupName()));
         txtAnacount.setText(StringUtil.convertIntToString(item.getSubGroupCount()));
         if (listener != null) {
-            imgAnapic.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    listener.onItemClicked(item,getAdapterPosition());
-                }
-            });
+            imgAnapic.setOnClickListener(view -> listener.onItemClicked(item, getAdapterPosition()));
         }
     }
-
-
 
 
 }

@@ -10,43 +10,76 @@ import android.view.View;
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.adapter.RcvUnstabilityAdapter;
+import com.emrhmrc.isttabletcrm.api.APIHelper;
+import com.emrhmrc.isttabletcrm.api.ApiClient;
+import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.fragment.NewUnstabilityFragment;
-import com.emrhmrc.isttabletcrm.helper.SingletonListUnsuitability;
-import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppUnsuitabilities;
+import com.emrhmrc.isttabletcrm.helper.SingletonUser;
+import com.emrhmrc.isttabletcrm.models.Unsuitablity.Unsuitabilities;
+import com.emrhmrc.isttabletcrm.models.Unsuitablity.UnsuitabilityListAll;
+import com.emrhmrc.isttabletcrm.models.User.UserIdRequest;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class UnsuitabilityActivity extends AppCompatActivity implements OnItemClickListener {
 
+    private static final String TAG = "UnsuitabilityActivity";
     @BindView(R.id.search)
     SearchView search;
     @BindView(R.id.rcw_servapp)
     RecyclerView rcwServapp;
-    private List<ServAppGetByIdServAppUnsuitabilities> list;
     private RcvUnstabilityAdapter adapter;
+    private JsonApi jsonApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_unsuitability);
         ButterKnife.bind(this);
-        list = SingletonListUnsuitability.getInstance().getByIdServAppUnsuitabilities();
         init();
+        getAll();
+
+    }
+
+    private void getAll() {
+
+        UserIdRequest userIdRequest = new UserIdRequest(SingletonUser.getInstance().getUser().getUserId());
+        Call<UnsuitabilityListAll> call = jsonApi.getUnsuitabilityListAllCall(userIdRequest);
+        APIHelper.enqueueWithRetry(call, 3, new Callback<UnsuitabilityListAll>() {
+                    @Override
+                    public void onResponse(Call<UnsuitabilityListAll> call, Response<UnsuitabilityListAll> response) {
+                        if (response.isSuccessful()) {
+                            List<Unsuitabilities> model = response.body().getUnsuitabilities();
+                            adapter.setItemsFilter(model);
+                            adapter.setItems(model);
+                            search();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<UnsuitabilityListAll> call, Throwable t) {
+
+                    }
+                }
+        );
+
     }
 
     private void init() {
+        jsonApi = ApiClient.getClient().create(JsonApi.class);
         rcwServapp.setHasFixedSize(true);
         rcwServapp.setLayoutManager(new LinearLayoutManager(this));
         adapter = new RcvUnstabilityAdapter(getApplicationContext(), this);
         adapter.setListener(this);
         rcwServapp.setAdapter(adapter);
-        adapter.setItems(list);
-        adapter.setItemsFilter(list);
-        search();
+
 
     }
 

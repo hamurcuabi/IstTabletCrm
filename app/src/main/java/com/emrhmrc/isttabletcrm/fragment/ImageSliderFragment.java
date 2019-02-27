@@ -1,18 +1,20 @@
 package com.emrhmrc.isttabletcrm.fragment;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.emrhmrc.isttabletcrm.R;
+import com.emrhmrc.isttabletcrm.adapter.GlideBindingAdapters;
 import com.emrhmrc.isttabletcrm.helper.SlideInterface;
 import com.emrhmrc.isttabletcrm.models.Product.Product;
 
@@ -46,6 +48,7 @@ public class ImageSliderFragment extends DialogFragment implements View.OnClickL
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         txt_id = view.findViewById(R.id.txt_id);
         txt_info = view.findViewById(R.id.txt_info);
         img = view.findViewById(R.id.img_pic);
@@ -61,6 +64,8 @@ public class ImageSliderFragment extends DialogFragment implements View.OnClickL
         img_resource = getArguments().getString("image");
         setField(id, info, img_resource);
         slideInterface = (SlideInterface) getActivity();
+        getDialog().setCanceledOnTouchOutside(false);
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
     }
 
@@ -68,21 +73,21 @@ public class ImageSliderFragment extends DialogFragment implements View.OnClickL
 
         txt_info.setText(info);
         txt_id.setText(id);
-        RequestOptions option = new RequestOptions()
-                .placeholder(R.drawable.ic_launcher_background)
-                .error(R.drawable.ic_launcher_background);
-        Glide.with(getActivity())
-                .setDefaultRequestOptions(option)
-                .load(img_resource)
-                .into(img);
-
+        GlideBindingAdapters.setImageResourceBase64(img, img_resource);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
+        DisplayMetrics metrics = getResources().getDisplayMetrics();
+        int width = metrics.widthPixels;
+        int height = metrics.heightPixels;
+        ViewGroup.LayoutParams params = getDialog().getWindow().getAttributes();
+        params.width = width / 2;
+        params.height = height / 2;
+        getDialog().getWindow().setAttributes((android.view.WindowManager.LayoutParams) params);
     }
+
 
     @Override
     public void onClick(View view) {

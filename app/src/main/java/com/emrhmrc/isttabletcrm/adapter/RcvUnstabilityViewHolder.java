@@ -8,10 +8,11 @@ import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.BaseViewHolder;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppUnsuitabilities;
+import com.emrhmrc.isttabletcrm.models.Unsuitablity.Unsuitabilities;
 import com.emrhmrc.isttabletcrm.util.StringUtil;
 
-public class RcvUnstabilityViewHolder extends BaseViewHolder<ServAppGetByIdServAppUnsuitabilities,
-        OnItemClickListener<ServAppGetByIdServAppUnsuitabilities>> {
+public class RcvUnstabilityViewHolder extends BaseViewHolder<Unsuitabilities,
+        OnItemClickListener<Unsuitabilities>> {
 
     private TextView txt_baslik, txt_asansor_no, txt_tarih, txt_musteri_no;
 
@@ -24,11 +25,9 @@ public class RcvUnstabilityViewHolder extends BaseViewHolder<ServAppGetByIdServA
     }
 
     @Override
-    public void onBind(final ServAppGetByIdServAppUnsuitabilities item,
-                       @Nullable final OnItemClickListener<ServAppGetByIdServAppUnsuitabilities> listener) {
+    public void onBind(final Unsuitabilities item,
+                       @Nullable final OnItemClickListener<Unsuitabilities> listener) {
         txt_baslik.setText(StringUtil.nullToString(item.getSubject()));
-        txt_asansor_no.setText(StringUtil.nullToString(item.getDescription()));
-        txt_tarih.setText(StringUtil.nullToString(item.getSentOn()==null ? "":item.getSentOn().toString()));
 
         if (listener != null) {
             txt_asansor_no.setOnClickListener(view -> listener.onItemClicked(item, getAdapterPosition()));

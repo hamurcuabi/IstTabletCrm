@@ -2,12 +2,14 @@ package com.emrhmrc.isttabletcrm.adapter;
 
 import android.content.Context;
 import android.databinding.BindingAdapter;
+import android.util.Base64;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.emrhmrc.isttabletcrm.R;
+import com.emrhmrc.isttabletcrm.util.StringUtil;
 
 public class GlideBindingAdapters {
 
@@ -113,5 +115,29 @@ public class GlideBindingAdapters {
                 .setDefaultRequestOptions(option)
                 .load(imageUrl)
                 .into(view);
+    }
+
+    @BindingAdapter("imageResourceBase64")
+    public static void setImageResourceBase64(ImageView view, String base64) {
+        Context context = view.getContext();
+        RequestOptions option = new RequestOptions()
+                .placeholder(R.drawable.ic_launcher_background)
+                .error(R.drawable.ic_launcher_background);
+        if (StringUtil.isNull(base64)) {
+            final byte[] decodedBytes = Base64.decode(base64, Base64.DEFAULT);
+            // Bitmap decodedBitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes
+            // .length);
+
+            Glide.with(context)
+                    .setDefaultRequestOptions(option)
+                    .load(decodedBytes)
+                    .into(view);
+        }
+        else {
+            Glide.with(context)
+                    .setDefaultRequestOptions(option)
+                    .load("")
+                    .into(view);
+        }
     }
 }

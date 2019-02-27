@@ -24,7 +24,6 @@ import com.emrhmrc.isttabletcrm.fragment.MapFragment;
 import com.emrhmrc.isttabletcrm.fragment.ReasonOfBreakdownFragment;
 import com.emrhmrc.isttabletcrm.helper.CreateSubServAppSingleton;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
-import com.emrhmrc.isttabletcrm.helper.SingletonListUnsuitability;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
 import com.emrhmrc.isttabletcrm.models.MapModel;
 import com.emrhmrc.isttabletcrm.models.ServApp.CompleteByIdRequest;
@@ -98,7 +97,6 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                     ServAppGetById model = response.body();
                     CreateSubServAppSingleton.getInstance().setServAppGetById(model);
                     setModelToBind(model.getServiceAppointment());
-                    SingletonListUnsuitability.getInstance().setUnsuitabilities(model.getServiceAppointment().getServAppGetByIdServAppUnsuitabilities());
                     ShareData.getInstance().setLongitude(model.getServiceAppointment().getInv_Longitude());
                     ShareData.getInstance().setLatitude(model.getServiceAppointment().getInv_Latitude());
                     adapter.setItems(model.getServiceAppointment().getServAppGetByIdServAppDetails());

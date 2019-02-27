@@ -1,6 +1,9 @@
 package com.emrhmrc.isttabletcrm.util;
 
 import android.text.TextUtils;
+import android.util.Base64;
+
+import java.io.UnsupportedEncodingException;
 
 public class StringUtil {
 
@@ -31,7 +34,22 @@ public class StringUtil {
         else return "Yükleniyor...";
     }
 
+    public static boolean isNull(String string) {
+        if (string == null) return false;
+        else return true;
+    }
 
+    public static String base64ToString(String string) {
 
+        byte[] data = Base64.decode(string, Base64.DEFAULT);
+        try {
+            String text = new String(data, "UTF-8");
+            return text;
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return "";
+        }
+
+    }
 
 }

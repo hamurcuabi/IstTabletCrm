@@ -45,11 +45,12 @@
                 app:layout_constraintTop_toTopOf="@+id/img_menu" />
 
             <Spinner
-                android:background="@drawable/spn_style"
-                android:id="@+id/spn_servapp"
+                android:id="@+id/spn_notif"
                 android:layout_width="@dimen/detay_menu_370"
                 android:layout_height="@dimen/detay_menu_55"
                 android:layout_marginEnd="@dimen/menu_left_32"
+                android:background="@drawable/spn_style"
+                android:entries="@array/spn_notif"
                 app:layout_constraintBottom_toBottomOf="@+id/txt_menu_header"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/txt_menu_header"></Spinner>

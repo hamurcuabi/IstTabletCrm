@@ -2,22 +2,20 @@ package com.emrhmrc.isttabletcrm.adapter.filter;
 
 import android.widget.Filter;
 
-import com.emrhmrc.isttabletcrm.adapter.RcvTechnicalAdapter;
-import com.emrhmrc.isttabletcrm.adapter.RcvUnstabilityAdapter;
-import com.emrhmrc.isttabletcrm.models.Document.TechnicDocument;
-import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppUnsuitabilities;
-import com.emrhmrc.isttabletcrm.models.Unsuitablity.Unsuitabilities;
-import com.emrhmrc.isttabletcrm.models.Unsuitablity.UnsuitabilityListAll;
+import com.emrhmrc.isttabletcrm.adapter.RcvWarehouseAdapter;
+import com.emrhmrc.isttabletcrm.adapter.RcvWarehouseTransferAdapter;
+import com.emrhmrc.isttabletcrm.models.Warehouse.WarehouseItem;
+import com.emrhmrc.isttabletcrm.models.Warehouse.WarehouseTransferItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class UstabilityFilterAdapter extends Filter {
-    List<Unsuitabilities> filterList;
-    RcvUnstabilityAdapter adapter;
+public class WarehouseFilterTransferAdapter extends Filter {
+    List<WarehouseTransferItem> filterList;
+    RcvWarehouseTransferAdapter adapter;
 
-    public UstabilityFilterAdapter(RcvUnstabilityAdapter adapter,
-                                   List<Unsuitabilities> filterList) {
+    public WarehouseFilterTransferAdapter(RcvWarehouseTransferAdapter adapter,
+                                          List<WarehouseTransferItem> filterList) {
         this.adapter = adapter;
         this.filterList = filterList;
 
@@ -33,11 +31,11 @@ public class UstabilityFilterAdapter extends Filter {
             //CHANGE TO UPPER
             constraint = constraint.toString().toLowerCase();
             //STORE OUR FILTERED PLAYERS
-            List<Unsuitabilities> filtered = new ArrayList<>();
+            List<WarehouseTransferItem> filtered = new ArrayList<>();
 
             for (int i = 0; i < adapter.getItemsFilter().size(); i++) {
                 //CHECK
-                if (adapter.getItemsFilter().get(i).getSubject().toLowerCase().contains(constraint)) {
+                if (adapter.getItemsFilter().get(i).getInv_Productid().getText().toLowerCase().contains(constraint)) {
                     //ADD DATA TO FILTERED DATA
                     filtered.add(adapter.getItemsFilter().get(i));
                 }
@@ -58,6 +56,6 @@ public class UstabilityFilterAdapter extends Filter {
     @Override
     protected void publishResults(CharSequence constraint, FilterResults results) {
 
-        adapter.setItems((List<Unsuitabilities>) results.values, true);
+        adapter.setItems((List<WarehouseTransferItem>) results.values, true);
     }
 }
