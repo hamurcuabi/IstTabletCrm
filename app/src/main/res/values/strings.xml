@@ -183,6 +183,9 @@
     <string name="onay_durumu">Onay Durumu</string>
     <string name="cikis_depo">Çıkış Yapılacak Depo</string>
     <string name="gonderilecek_depo">Gönderilecek Depo</string>
+    <string name="ekle">Ekle</string>
+    <string name="video_ekle">Video Ekle</string>
+    <string name="arizasonrasi">Arızadan Sonraki Görünüm</string>
 
     <string-array name="spn_servapp">
         <item>Tüm İş Emirlerim</item>

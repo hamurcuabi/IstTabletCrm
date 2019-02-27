@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg"
     android:orientation="vertical">
 
     <LinearLayout
@@ -15,12 +14,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
+            android:layout_margin="@dimen/detay_menu_12"
             android:src="@drawable/ic_close" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/white"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -31,6 +33,7 @@
             android:layout_marginEnd="@dimen/detay_menu_70"
             android:layout_marginBottom="@dimen/detay_menu_55"
             android:layout_weight="1"
+            android:background="@color/white"
             android:orientation="vertical">
 
             <TextView
@@ -53,26 +56,104 @@
                 android:layout_weight="10"
                 android:src="@drawable/image" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/detay_menu_25"
-                android:background="@drawable/ic_camera" />
+            <LinearLayout
 
-            <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/detay_menu_25"
-                android:layout_marginBottom="@dimen/detay_menu_12"
-                android:layout_weight="1"
-                android:fontFamily="@font/roboto_medium"
-                android:gravity="center_horizontal"
-                android:text="@string/foto_ekle"
-                android:textColor="@color/mobil_konum"
-                android:textSize="@dimen/text_menu_16"
-                android:textStyle="bold" />
+                android:layout_marginTop="@dimen/margin30"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/edt_calendar_height"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/detay_menu_30"
+                    android:layout_marginEnd="@dimen/detay_menu_12"
+                    android:layout_weight="5"
+                    android:background="@drawable/btn_calendars"
+                    android:hint="@string/aciklama"
+                    android:paddingStart="@dimen/detay_menu_12" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5">
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edt_calendar_height"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="@dimen/detay_menu_12"
+                        android:background="@drawable/btn_malzeme"
+                        android:gravity="center"
+                        android:text="@string/ekle"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/detay_menu_25"
+                        android:background="@drawable/ic_camera" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/detay_menu_12"
+                        android:layout_marginBottom="@dimen/detay_menu_12"
+                        android:fontFamily="@font/roboto_medium"
+                        android:gravity="center"
+                        android:text="@string/foto_ekle"
+                        android:textColor="@color/mobil_konum"
+                        android:textSize="@dimen/text_menu_16"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/detay_menu_25"
+                        android:background="@drawable/ic_camera" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/detay_menu_12"
+                        android:layout_marginBottom="@dimen/detay_menu_12"
+                        android:fontFamily="@font/roboto_medium"
+                        android:gravity="center"
+                        android:text="@string/video_ekle"
+                        android:textColor="@color/mobil_konum"
+                        android:textSize="@dimen/text_menu_16"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
 
 
         </LinearLayout>
@@ -85,6 +166,7 @@
             android:layout_marginEnd="@dimen/detay_menu_70"
             android:layout_marginBottom="@dimen/detay_menu_55"
             android:layout_weight="1"
+            android:background="@color/white"
             android:orientation="vertical">
 
             <TextView
@@ -95,7 +177,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/roboto_medium"
                 android:gravity="center_horizontal"
-                android:text="@string/arizaoncesi"
+                android:text="@string/arizasonrasi"
                 android:textColor="@color/text_color"
                 android:textSize="@dimen/text_menu_24"
                 android:textStyle="bold" />
@@ -107,27 +189,104 @@
                 android:layout_weight="10"
                 android:src="@drawable/image" />
 
+            <LinearLayout
 
-            <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/detay_menu_25"
-                android:background="@drawable/ic_camera" />
+                android:layout_marginTop="@dimen/margin30"
+                android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/edt_calendar_height"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/detay_menu_30"
+                    android:layout_marginEnd="@dimen/detay_menu_12"
+                    android:layout_weight="5"
+                    android:background="@drawable/btn_calendars"
+                    android:hint="@string/aciklama"
+                    android:paddingStart="@dimen/detay_menu_12" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5">
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edt_calendar_height"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="@dimen/detay_menu_12"
+                        android:background="@drawable/btn_malzeme"
+                        android:gravity="center"
+                        android:text="@string/ekle"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/detay_menu_25"
-                android:layout_marginBottom="@dimen/detay_menu_12"
-                android:layout_weight="1"
-                android:fontFamily="@font/roboto_medium"
-                android:gravity="center_horizontal"
-                android:text="@string/foto_ekle"
-                android:textColor="@color/mobil_konum"
-                android:textSize="@dimen/text_menu_16"
-                android:textStyle="bold" />
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/detay_menu_25"
+                        android:background="@drawable/ic_camera" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/detay_menu_12"
+                        android:layout_marginBottom="@dimen/detay_menu_12"
+                        android:fontFamily="@font/roboto_medium"
+                        android:gravity="center"
+                        android:text="@string/foto_ekle"
+                        android:textColor="@color/mobil_konum"
+                        android:textSize="@dimen/text_menu_16"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/detay_menu_25"
+                        android:background="@drawable/ic_camera" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/detay_menu_12"
+                        android:layout_marginBottom="@dimen/detay_menu_12"
+                        android:fontFamily="@font/roboto_medium"
+                        android:gravity="center"
+                        android:text="@string/video_ekle"
+                        android:textColor="@color/mobil_konum"
+                        android:textSize="@dimen/text_menu_16"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
 
 
         </LinearLayout>
