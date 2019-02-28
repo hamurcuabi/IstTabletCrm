@@ -18,37 +18,37 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:layout_width="@dimen/btn_width110"
-        android:layout_height="@dimen/btn_height45"
-        android:background="@drawable/btn_konum_rounded"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="@+id/img_back"
-        app:layout_constraintEnd_toEndOf="@+id/cons_main"
-        app:layout_constraintTop_toTopOf="@+id/img_back">
+    android:layout_width="@dimen/btn_width110"
+    android:layout_height="@dimen/btn_height45"
+    android:background="@drawable/btn_konum_rounded"
+    android:gravity="center"
+    android:orientation="horizontal"
+    app:layout_constraintBottom_toBottomOf="@+id/img_back"
+    app:layout_constraintEnd_toEndOf="@+id/cons_main"
+    app:layout_constraintTop_toTopOf="@+id/img_back">
 
-        <ImageView
-            android:id="@+id/img_add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginEnd="8dp"
-            android:src="@drawable/ic_yeni" />
+    <ImageView
+        android:id="@+id/img_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/ic_yeni" />
 
-        <TextView
-            android:id="@+id/txt_add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginEnd="8dp"
-            android:fontFamily="@font/roboto_regular"
-            android:text="@string/yeni"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_menu_14"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/txt_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/yeni"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_menu_14"
+        android:textStyle="bold" />
 
-    </LinearLayout>
+</LinearLayout>
 
     <TextView
         android:id="@+id/textView5"

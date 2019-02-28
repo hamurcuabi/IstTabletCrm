@@ -207,7 +207,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/urun_adi"
                 android:textAllCaps="true"
@@ -218,7 +218,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="0.8"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/miktar"
                 android:textAllCaps="true"
@@ -229,7 +229,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="0.8"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/birim"
                 android:textAllCaps="true"
@@ -262,7 +262,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="1.2"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/cikis_depo"
                 android:textAllCaps="true"
@@ -273,7 +273,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="1.2"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/gonderilecek_depo"
                 android:textAllCaps="true"
@@ -336,4 +336,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cons_content"></android.support.v7.widget.RecyclerView>
+
+
+
 </android.support.constraint.ConstraintLayout>

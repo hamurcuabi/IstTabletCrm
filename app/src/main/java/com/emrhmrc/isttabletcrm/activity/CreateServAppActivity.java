@@ -135,4 +135,7 @@ public class CreateServAppActivity extends AppCompatActivity {
 
     }
 
+    @OnClick(R.id.btn_save)
+    public void onViewClicked() {
+    }
 }

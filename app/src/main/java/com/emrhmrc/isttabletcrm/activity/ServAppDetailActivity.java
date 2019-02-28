@@ -14,6 +14,7 @@ import android.view.View;
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.adapter.RcvServAppDetailAdapter;
+import com.emrhmrc.isttabletcrm.api.APIHelper;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointment;
@@ -90,7 +91,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
 
     private void getServAppById(String id) {
         Call<ServAppGetById> call = jsonApi.servAppGetById(new ServAppIdRequest(id));
-        call.enqueue(new Callback<ServAppGetById>() {
+        APIHelper.enqueueWithRetry(call, new Callback<ServAppGetById>() {
             @Override
             public void onResponse(Call<ServAppGetById> call, Response<ServAppGetById> response) {
                 if (response.isSuccessful()) {
@@ -178,7 +179,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     }
 
     @OnClick({R.id.img_cancel, R.id.txt_cancel, R.id.btn_closejob, R.id.txt_yeni, R.id.img_yeni,
-            R.id.img_add,R.id.txt_add})
+            R.id.img_add, R.id.txt_add})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_cancel:
@@ -221,5 +222,10 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                 openAddPiece();
                 break;
         }
+    }
+
+    @OnClick(R.id.btn_beforeafter)
+    public void onViewClicked() {
+        openBeforeAfter();
     }
 }

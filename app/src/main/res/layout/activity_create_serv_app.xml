@@ -70,17 +70,19 @@
         android:layout_marginEnd="@dimen/menu_left_32"
         android:background="@color/white"
         android:elevation="2dp"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/detay_menu_12"
-            android:layout_weight="1">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="top"
                 android:layout_weight="1"
                 android:gravity="left"
@@ -131,7 +133,6 @@
 
                     <Spinner
 
-                        android:spinnerMode="dropdown"
                         android:id="@+id/spinner_musteri"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
@@ -139,9 +140,10 @@
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
                         android:background="@drawable/spn_style"
+                        android:drawSelectorOnTop="true"
                         android:paddingLeft="@dimen/detay_menu_25"
                         android:paddingRight="@dimen/detay_menu_12"
-                        android:drawSelectorOnTop="true"
+                        android:spinnerMode="dropdown"
                         app:layout_constraintStart_toEndOf="@+id/txt_mus_adi"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -286,17 +288,10 @@
 
 
             </LinearLayout>
-        </ScrollView>
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/detay_menu_12"
-            android:layout_weight="1">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="top"
                 android:layout_weight="1"
                 android:gravity="right"
@@ -490,9 +485,9 @@
                         android:layout_marginStart="@dimen/detay_menu_30"
                         android:background="@drawable/btn_calendars"
                         android:drawableRight="@drawable/ic_pen"
+                        android:gravity="top|left"
                         android:inputType="textMultiLine"
                         android:lines="5"
-                        android:gravity="top|left"
                         android:scrollbars="vertical"
                         app:layout_constraintStart_toEndOf="@+id/txt_sonraki_is_not"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -500,7 +495,18 @@
                 </LinearLayout>
 
             </LinearLayout>
-        </ScrollView>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="@dimen/detay_menu_145"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/padding_top25"
+            android:background="@drawable/btn_kontrol"
+            android:text="@string/kaydet"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

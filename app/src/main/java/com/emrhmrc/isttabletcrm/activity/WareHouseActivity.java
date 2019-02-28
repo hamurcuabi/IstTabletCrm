@@ -20,6 +20,7 @@ import com.emrhmrc.isttabletcrm.adapter.RcvWarehouseAdapter;
 import com.emrhmrc.isttabletcrm.adapter.RcvWarehouseTransferAdapter;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
+import com.emrhmrc.isttabletcrm.fragment.CreateNewWareRequestFragment;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
 import com.emrhmrc.isttabletcrm.models.User.UserIdRequest;
 import com.emrhmrc.isttabletcrm.models.Warehouse.WarehouseItemListAll;
@@ -200,13 +201,20 @@ public class WareHouseActivity extends AppCompatActivity implements OnItemClickL
                 rcvSecond();
                 break;
             case R.id.img_add_2:
+                openCreateFragment();
                 break;
             case R.id.add_job:
+                openCreateFragment();
                 break;
             case R.id.rcv_talep:
-
                 break;
+
         }
+    }
+
+    private void openCreateFragment() {
+        CreateNewWareRequestFragment fragment = CreateNewWareRequestFragment.newInstance();
+        fragment.show(getSupportFragmentManager(), "beforeafter");
     }
 
     @Override

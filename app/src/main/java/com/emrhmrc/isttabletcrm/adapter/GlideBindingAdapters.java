@@ -20,15 +20,14 @@ public class GlideBindingAdapters {
         Context context = view.getContext();
         int imageUrl;
         switch (id) {
-
             case 1:
                 imageUrl = R.drawable.ic_bakim;
                 break;
             case 2:
-                imageUrl = R.drawable.ic_modern;
+                imageUrl = R.drawable.ic_ariza;
                 break;
             case 3:
-                imageUrl = R.drawable.ic_ariza;
+                imageUrl = R.drawable.ic_modern;
                 break;
             case 4:
                 imageUrl = R.drawable.ic_yedek;
@@ -64,10 +63,10 @@ public class GlideBindingAdapters {
                 imageUrl = R.drawable.isemri_bakim;
                 break;
             case 2:
-                imageUrl = R.drawable.isemri_modern;
+                imageUrl = R.drawable.isemri_ariza;
                 break;
             case 3:
-                imageUrl = R.drawable.isemri_ariza;
+                imageUrl = R.drawable.isemri_modern;
                 break;
             case 4:
                 imageUrl = R.drawable.isemri_yedek;

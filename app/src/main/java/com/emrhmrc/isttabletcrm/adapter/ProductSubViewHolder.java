@@ -29,6 +29,14 @@ public class ProductSubViewHolder extends BaseViewHolder<SubList,
     ConstraintLayout cons_bg;
     @BindColor(R.color.cons_bg)
     int bg;
+    @BindColor(R.color.rcv_back)
+    int bg_default;
+    @BindColor(R.color.white)
+    int white;
+    @BindColor(R.color.border)
+    int defaulttext;
+    @BindColor(R.color.kontrol_listesi)
+    int defaulttext2;
 
     public ProductSubViewHolder(View itemView) {
         super(itemView);
@@ -41,11 +49,17 @@ public class ProductSubViewHolder extends BaseViewHolder<SubList,
         GlideBindingAdapters.setImageResourceBase64(imgAnapic, item.getImage());
         txtAnatext.setText(StringUtil.nullToString(item.getInv_SubProductGroupName()));
         txtAnacount.setText(StringUtil.convertIntToString(item.getProductCount()));
+        cons_bg.setBackgroundColor(bg_default);
+        txtAnacount.setTextColor(defaulttext2);
+        txtAnatext.setTextColor(defaulttext);
         if (listener != null) {
             imgAnapic.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     listener.onItemClicked(item, getAdapterPosition());
+                    cons_bg.setBackgroundColor(bg);
+                    txtAnacount.setTextColor(white);
+                    txtAnatext.setTextColor(white);
                 }
             });
 

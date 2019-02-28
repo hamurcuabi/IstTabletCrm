@@ -31,7 +31,7 @@ public class StringUtil {
 
     public static String nullToString(String string) {
         if (validateStrings(string)) return string;
-        else return "Yükleniyor...";
+        else return "";
     }
 
     public static boolean isNull(String string) {

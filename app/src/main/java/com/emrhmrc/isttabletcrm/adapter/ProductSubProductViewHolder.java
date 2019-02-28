@@ -11,8 +11,6 @@ import android.widget.TextView;
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.BaseViewHolder;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
-import com.emrhmrc.isttabletcrm.fragment.ImageSliderFragment;
-import com.emrhmrc.isttabletcrm.helper.SlideInterface;
 import com.emrhmrc.isttabletcrm.helper.StateHandler;
 import com.emrhmrc.isttabletcrm.models.Product.Product;
 import com.emrhmrc.isttabletcrm.util.StringUtil;

@@ -130,7 +130,8 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     @OnClick({R.id.cons_isemirleri, R.id.cons_duyurular, R.id.cons_takvim, R.id.cons_teknik,
-            R.id.img_uygunsuzluk, R.id.cons_uygunsuzluk, R.id.cons_bilgilendirme, R.id.img_bilgilendirme})
+            R.id.img_uygunsuzluk, R.id.cons_uygunsuzluk, R.id.cons_bilgilendirme,
+            R.id.img_bilgilendirme, R.id.img_katalog, R.id.cons_katalog})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.cons_isemirleri:
@@ -157,11 +158,22 @@ public class HomeActivity extends AppCompatActivity {
             case R.id.img_bilgilendirme:
                 goWareHouse();
                 break;
+            case R.id.img_katalog:
+                goCatalog();
+                break;
+            case R.id.cons_katalog:
+                goCatalog();
+                break;
         }
+    }
+
+    private void goCatalog() {
+        startActivity(new Intent(HomeActivity.this, AddPieceActivity.class));
     }
 
     private void goWareHouse() {
         startActivity(new Intent(HomeActivity.this, WareHouseActivity.class));
     }
+
 
 }

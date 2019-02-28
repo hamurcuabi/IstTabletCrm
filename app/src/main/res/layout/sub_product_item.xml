@@ -21,7 +21,6 @@
         android:layout_marginEnd="@dimen/detay_menu_12"
         android:layout_weight="2"
         android:fontFamily="@font/roboto_regular"
-        android:text="2545866448"
         android:textColor="@color/border"
         android:textSize="@dimen/menu_text_16"
         android:textStyle="bold" />
@@ -33,7 +32,6 @@
         android:layout_marginEnd="@dimen/detay_menu_12"
         android:layout_weight="3"
         android:fontFamily="@font/roboto_regular"
-        android:text="Button Komple Frmf fdsf"
         android:textColor="@color/text_color"
         android:textSize="@dimen/menu_text_16" />
 
@@ -44,7 +42,6 @@
         android:layout_marginEnd="@dimen/detay_menu_12"
         android:layout_weight="3"
         android:fontFamily="@font/roboto_regular"
-        android:text="Button Komple Frmf fdsf"
         android:textColor="@color/text_color"
         android:textSize="@dimen/menu_text_16" />
 
@@ -55,7 +52,6 @@
         android:layout_marginEnd="@dimen/detay_menu_12"
         android:layout_weight="1"
         android:fontFamily="@font/roboto_regular"
-        android:text="Adet"
         android:textColor="@color/text_color"
         android:textSize="@dimen/menu_text_16" />
 
@@ -66,7 +62,6 @@
         android:layout_marginEnd="@dimen/detay_menu_12"
         android:layout_weight="1"
         android:fontFamily="@font/roboto_regular"
-        android:text="Ametal"
         android:textColor="@color/text_color"
         android:textSize="@dimen/menu_text_16" />
 
@@ -77,7 +72,6 @@
         android:layout_marginEnd="@dimen/detay_menu_12"
         android:layout_weight="1"
         android:fontFamily="@font/roboto_regular"
-        android:text="Yedek Paça"
         android:textColor="@color/text_color"
         android:textSize="@dimen/menu_text_16" />
 

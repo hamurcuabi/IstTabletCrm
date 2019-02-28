@@ -55,6 +55,7 @@ public class AddSubPieceActivity extends AppCompatActivity implements View.OnCli
     private int last_img;
     private ImageSliderFragment fragment;
     private TextView txt_maingroup_name, txt_maingroup_id;
+    private int main_background = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -246,6 +247,12 @@ public class AddSubPieceActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onItemClicked(Object item, int positon) {
         if (item instanceof SubList) {
+            if (main_background == -1) main_background = positon;
+            else {
+                adapter_main.notifyItemChanged(main_background,
+                        (SubList) item);
+                main_background = positon;
+            }
             final SubList subList = (SubList) item;
             getSubProductProduct(subList.getInv_SubProductGroupid());
             AnimateDownSub();
