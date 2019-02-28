@@ -1,22 +1,25 @@
 package com.emrhmrc.isttabletcrm.fragment;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.helper.Methodes;
 import com.emrhmrc.isttabletcrm.models.MapModel;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -28,6 +31,7 @@ public class MapFragment extends DialogFragment {
     private GoogleMap googleMap;
     private ArrayList<MapModel> map;
     private int w, h;
+    private ImageView img_close;
 
     public static MapFragment newInstance(ArrayList<MapModel> map, int w, int h) {
 
@@ -47,6 +51,10 @@ public class MapFragment extends DialogFragment {
         w = getArguments().getInt("w");
         h = getArguments().getInt("h");
         mMapView = rootView.findViewById(R.id.mapview);
+        img_close = rootView.findViewById(R.id.img_close);
+        img_close.setOnClickListener(view -> {
+            dismiss();
+        });
         mMapView.onCreate(savedInstanceState);
 
         mMapView.onResume(); // needed to get the map to display immediately
@@ -85,6 +93,13 @@ public class MapFragment extends DialogFragment {
         });
 
         return rootView;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        getDialog().setCanceledOnTouchOutside(false);
     }
 
     @Override
