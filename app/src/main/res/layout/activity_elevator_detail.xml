@@ -8,14 +8,14 @@
     tools:context=".activity.ElevatorDetailActivity">
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/detay_menu_297"
         android:background="@drawable/elevator_detail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
 
-        >
+        app:layout_constraintTop_toTopOf="parent">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -65,9 +65,14 @@
     </android.support.constraint.ConstraintLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/cons_genel"
@@ -112,7 +117,7 @@
                 android:layout_height="0dp"
                 android:layout_marginTop="@dimen/detay_menu_30"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="@dimen/detay_menu_12"
+                android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/imageView9"
                 app:layout_constraintStart_toStartOf="@+id/textView3"
@@ -944,5 +949,157 @@
 
         </android.support.constraint.ConstraintLayout>
     </LinearLayout>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6" />
+
+    <Button
+        android:id="@+id/btn_changeproductlist"
+        android:layout_width="@dimen/btn_malzeme_width"
+        android:layout_height="@dimen/btn_malzeme_height"
+        android:layout_marginStart="@dimen/menu_left"
+        android:layout_marginTop="@dimen/margin30"
+        android:background="@drawable/btn_malzeme"
+        android:text="@string/malzemelistesi"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_menu_18"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+
+    <Button
+        android:id="@+id/btn_wish"
+        android:layout_width="@dimen/btn_malzeme_width"
+        android:layout_height="@dimen/btn_malzeme_height"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="@dimen/margin30"
+        android:background="@drawable/btn_taleplerim"
+        android:text="@string/servistalep"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_menu_18"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/btn_changeproductlist"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/detay_menu_50"
+        android:background="@color/malzeme_icerik"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_wish">
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin30"
+            android:orientation="horizontal"
+            android:weightSum="8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/malzeme"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_menu_14" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/degisim_tarihi"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_menu_14" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/usta_adi"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_menu_14" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:text="@string/garantibitis"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_menu_14" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin30"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:weightSum="8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/servistipi"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_menu_14" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/malzeme"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/tarih"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_menu_14" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:text="@string/statu"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_menu_14" />
+
+
+        </LinearLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"></android.support.v7.widget.RecyclerView>
 
 </android.support.constraint.ConstraintLayout>

@@ -191,6 +191,13 @@
     <string name="isteniledepo">İstenilen Depo</string>
     <string name="cikis_depoo">Çıkış Yapılacak Depo</string>
     <string name="hurdanedeni">Hurda Nedeni</string>
+    <string name="malzemelistesi">Değişen Malzeme Listesi</string>
+    <string name="servistalep">Servis Talepleri</string>
+    <string name="malzeme">Malzeme</string>
+    <string name="degisim_tarihi">Değişim Tarihi</string>
+    <string name="garantibitis">Garanti Bitiş Tarihi</string>
+    <string name="servistipi">Servis Tipi</string>
+    <string name="statu">Statü</string>
 
     <string-array name="spn_servapp">
         <item>Tüm İş Emirlerim</item>
