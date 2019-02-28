@@ -11,12 +11,21 @@ public class CalendarEventsSingleton {
     private static final CalendarEventsSingleton ourInstance = new CalendarEventsSingleton();
     private List<WeekViewEvent> list = new ArrayList<>();
     private List<WeekViewEvent> filteredlist = new ArrayList<>();
+    private Calendar selected;
 
     private CalendarEventsSingleton() {
     }
 
     public static CalendarEventsSingleton getInstance() {
         return ourInstance;
+    }
+
+    public Calendar getSelected() {
+        return selected;
+    }
+
+    public void setSelected(Calendar selected) {
+        this.selected = selected;
     }
 
     public List<WeekViewEvent> getList() {
@@ -36,6 +45,7 @@ public class CalendarEventsSingleton {
     }
 
     public void getDayList(Calendar date) {
+        setSelected(date);
         filteredlist.clear();
         SimpleDateFormat targetFormat = new SimpleDateFormat("dd.MM.yyyy");
         List<WeekViewEvent> filtered = new ArrayList<>();

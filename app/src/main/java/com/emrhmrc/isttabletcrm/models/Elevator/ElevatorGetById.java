@@ -11,6 +11,7 @@ public class ElevatorGetById {
     @SerializedName("TableMetadataServApps")
     private TableMetadata TableMetadataServApps;
 
+
     private Elevator Elevator;
 
     private String ErrorMsg;

@@ -222,16 +222,15 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/edt_asansor" />
 
-                    <EditText
-                        android:id="@+id/edt_asansor"
+                    <Spinner
+                        android:id="@+id/spn_asansor"
+                        android:background="@drawable/spn_style"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
-                        android:background="@drawable/btn_calendars"
                         android:drawableRight="@drawable/ic_eye"
-                        android:hint="@string/blok_makine"
                         android:paddingLeft="@dimen/detay_menu_25"
                         android:paddingRight="@dimen/detay_menu_12"
                         app:layout_constraintStart_toEndOf="@+id/txt_asansor"

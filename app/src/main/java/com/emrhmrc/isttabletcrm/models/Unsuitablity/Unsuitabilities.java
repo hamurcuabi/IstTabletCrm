@@ -2,7 +2,8 @@ package com.emrhmrc.isttabletcrm.models.Unsuitablity;
 
 public class Unsuitabilities {
     private String ActivityId;
-    private String subject;
+    private String Subject;
+
 
     public Unsuitabilities() {
     }
@@ -16,10 +17,11 @@ public class Unsuitabilities {
     }
 
     public String getSubject() {
-        return subject;
+        return Subject;
     }
 
+
     public void setSubject(String subject) {
-        this.subject = subject;
+        this.Subject = subject;
     }
 }

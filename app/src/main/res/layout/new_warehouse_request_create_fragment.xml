@@ -577,4 +577,17 @@
         android:text="@string/kaydet"
         android:textColor="@color/white"
         android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btn_send2"
+        android:layout_width="@dimen/detay_menu_145"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginTop="@dimen/padding_top25"
+        android:background="@drawable/btn_kontrol"
+        android:gravity="center"
+        android:text="@string/kaydet"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:visibility="gone" />
 </LinearLayout>

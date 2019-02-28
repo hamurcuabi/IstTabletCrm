@@ -6,6 +6,15 @@ public class ServAppGetByIdServAppBreakdownTypes {
     private String inv_ServAppBreakdownTypeId;
 
     private Inv_Id inv_BreakdownTypeId;
+    private boolean IsDeleted;
+
+    public boolean isDeleted() {
+        return IsDeleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        IsDeleted = deleted;
+    }
 
     public ServAppGetByIdServAppBreakdownTypes() {
     }

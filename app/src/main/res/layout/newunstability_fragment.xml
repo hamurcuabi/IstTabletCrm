@@ -129,7 +129,7 @@
             android:textStyle="bold" />
 
         <EditText
-
+    android:id="@+id/edt_tarih"
             android:layout_weight="5"
             android:layout_width="0dp"
             android:layout_height="@dimen/edt_calendar_height"

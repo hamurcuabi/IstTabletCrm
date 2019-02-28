@@ -21,6 +21,7 @@ import com.emrhmrc.isttabletcrm.adapter.RcvProductSubProductAdapter;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.fragment.ImageSliderFragment;
+import com.emrhmrc.isttabletcrm.helper.MapGo;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.helper.SlideInterface;
 import com.emrhmrc.isttabletcrm.models.Product.Product;

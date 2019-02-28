@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 public class ServAppGetByIdServAppWorkListDetails {
     private String inv_ServAppWorkListDetailId;
 
-    private String inv_CompletePercentage;
+    private float inv_CompletePercentage;
 
     private String inv_Date;
 
@@ -25,11 +25,11 @@ public class ServAppGetByIdServAppWorkListDetails {
         this.inv_ServAppWorkListDetailId = inv_ServAppWorkListDetailId;
     }
 
-    public String getInv_CompletePercentage() {
+    public float getInv_CompletePercentage() {
         return inv_CompletePercentage;
     }
 
-    public void setInv_CompletePercentage(String inv_CompletePercentage) {
+    public void setInv_CompletePercentage(float inv_CompletePercentage) {
         this.inv_CompletePercentage = inv_CompletePercentage;
     }
 

@@ -47,20 +47,8 @@ public class Methodes {
     }
 
     public static boolean checkAndRequestPermissions(Activity activity) {
-        int permissionINTERNET = ContextCompat.checkSelfPermission(activity, android.Manifest.permission.INTERNET);
-        int permissionACCESS_NETWORK_STATE = ContextCompat.checkSelfPermission(activity, android.Manifest.permission.ACCESS_NETWORK_STATE);
         int permissionACCESS_FINE_LOCATION = ContextCompat.checkSelfPermission(activity, android.Manifest.permission.ACCESS_FINE_LOCATION);
-        int permissionACCESS_VIBRATE = ContextCompat.checkSelfPermission(activity, android.Manifest.permission.VIBRATE);
-        int permissionCAMERA = ContextCompat.checkSelfPermission(activity, android.Manifest.permission.CAMERA);
-        int permissionACCESS_LOCATION_EXTRA_COMMANDS = ContextCompat.checkSelfPermission(activity, android.Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS);
         int permissionACCESS_COARSE_LOCATION = ContextCompat.checkSelfPermission(activity, android.Manifest.permission.ACCESS_COARSE_LOCATION);
-        int permissionWRITE_EXTERNAL_STORAGE = ContextCompat.checkSelfPermission(activity, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        int permissionACCESS_WIFI_STATE = ContextCompat.checkSelfPermission(activity, android.Manifest.permission.ACCESS_WIFI_STATE);
-        int permissionCHANGE_WIFI_STATE = ContextCompat.checkSelfPermission(activity, android.Manifest.permission.CHANGE_WIFI_STATE);
-        int permissionREAD_PHONE_STATE = ContextCompat.checkSelfPermission(activity, android.Manifest.permission.READ_PHONE_STATE);
-        int permissionRECEIVE_BOOT_COMPLETED = ContextCompat.checkSelfPermission(activity, android.Manifest.permission.RECEIVE_BOOT_COMPLETED);
-        int permissionBLUETOOTH_ADMIN = ContextCompat.checkSelfPermission(activity, android.Manifest.permission.BLUETOOTH_ADMIN);
-        int permissionBLUETOOTH = ContextCompat.checkSelfPermission(activity, android.Manifest.permission.BLUETOOTH);
         List<String> listPermissionsNeeded = new ArrayList<>();
 
         if (permissionACCESS_FINE_LOCATION != PackageManager.PERMISSION_GRANTED) {

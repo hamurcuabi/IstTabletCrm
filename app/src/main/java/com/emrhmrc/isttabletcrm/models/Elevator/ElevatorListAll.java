@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ElevatorListAll {
     @SerializedName("Elevators")
-    private List<Elevator> Elevators;
+    private List<Elevators> Elevators;
 
     private String ErrorMsg;
 
@@ -15,11 +15,11 @@ public class ElevatorListAll {
 
     private TableMetadata TableMetadata;
 
-    public List<Elevator> getElevators() {
+    public List<Elevators> getElevators() {
         return Elevators;
     }
 
-    public void setElevators(List<Elevator> Elevators) {
+    public void setElevators(List<Elevators> Elevators) {
         this.Elevators = Elevators;
     }
 

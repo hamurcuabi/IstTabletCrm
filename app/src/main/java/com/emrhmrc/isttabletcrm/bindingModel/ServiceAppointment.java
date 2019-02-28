@@ -17,15 +17,6 @@ public class ServiceAppointment {
     @SerializedName("StatusCode")
     private Code StatusCode;
     private String ActivityId;
-
-    public String getInv_Description() {
-        return inv_Description;
-    }
-
-    public void setInv_Description(String inv_Description) {
-        this.inv_Description = inv_Description;
-    }
-
     private String inv_Description;
     private String Subject;
     private List<com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppBreakdownTypes> ServAppGetByIdServAppBreakdownTypes;
@@ -47,6 +38,14 @@ public class ServiceAppointment {
     private String inv_BreakdownCode;
     private Inv_Id OwnerId;
     private Inv_Id inv_Supervisorid;
+
+    public String getInv_Description() {
+        return inv_Description;
+    }
+
+    public void setInv_Description(String inv_Description) {
+        this.inv_Description = inv_Description;
+    }
 
     public String getInv_BreakdownCode() {
         return inv_BreakdownCode;

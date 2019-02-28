@@ -155,4 +155,8 @@ public class BasicActivity extends BaseActivity {
         return events;
     }
 
+    @Override
+    public void goToDay(Calendar calendar) {
+
+    }
 }

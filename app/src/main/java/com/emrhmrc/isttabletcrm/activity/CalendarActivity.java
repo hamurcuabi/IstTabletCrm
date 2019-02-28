@@ -1,6 +1,9 @@
 package com.emrhmrc.isttabletcrm.activity;
 
+import android.graphics.Point;
 import android.util.Log;
+import android.view.Display;
+import android.widget.Toast;
 
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
@@ -8,9 +11,11 @@ import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointments;
 import com.emrhmrc.isttabletcrm.calendar.BaseActivity;
 import com.emrhmrc.isttabletcrm.calendar.WeekViewEvent;
+import com.emrhmrc.isttabletcrm.fragment.MapFragment;
 import com.emrhmrc.isttabletcrm.helper.CalendarEventsSingleton;
 import com.emrhmrc.isttabletcrm.helper.Methodes;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
+import com.emrhmrc.isttabletcrm.models.MapModel;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppListAll;
 import com.emrhmrc.isttabletcrm.models.User.UserIdRequest;
 
@@ -128,27 +133,42 @@ public class CalendarActivity extends BaseActivity {
                 CalendarEventsSingleton.getInstance().setList(events);
             }
         }
-       /* Calendar startTime = Calendar.getInstance();
-        Calendar endTime = (Calendar) startTime.clone();
-
-        endTime.add(Calendar.HOUR, 2);
-        WeekViewEvent event = new WeekViewEvent(1, "Arıza", startTime, endTime);
-        event.setColor(getResources().getColor(R.color.ariza));
-        events.add(event);
-
-        startTime = Calendar.getInstance();
-        startTime.add(Calendar.DAY_OF_MONTH, 1);
-        endTime = (Calendar) startTime.clone();
-        endTime.add(Calendar.HOUR, 14);
-        event = new WeekViewEvent(2, "Bakım\nDeniz Binası", startTime, endTime);
-        event.setColor(getResources().getColor(R.color.bakim));
-        events.add(event);*/
         getWeekView().notifyDatasetChanged();
 
     }
 
     private boolean eventMatches(WeekViewEvent event, int year, int month) {
         return (event.getStartTime().get(Calendar.YEAR) == year && event.getStartTime().get(Calendar.MONTH) == month - 1) || (event.getEndTime().get(Calendar.YEAR) == year && event.getEndTime().get(Calendar.MONTH) == month - 1);
+    }
+
+    @Override
+    public void goToDay(Calendar calendar) {
+
+        CalendarEventsSingleton.getInstance().getDayList(calendar);
+        if (CalendarEventsSingleton.getInstance().getFilteredlist().size() > 0) {
+
+        } else {
+            Toast.makeText(getApplicationContext(), "Bugun İş Yok",
+                    Toast.LENGTH_SHORT).show();
+        }
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x - 100;
+        int height = size.y - 200;
+        ArrayList<MapModel> mapModels = new ArrayList<>();
+        for (WeekViewEvent m : CalendarEventsSingleton.getInstance().getFilteredlist()
+        ) {
+            MapModel map = new MapModel(m.getLatitude(), m.getLongitude(),
+                    m.getName(),
+                    m.getName());
+            mapModels.add(map);
+
+        }
+
+        MapFragment fragment = MapFragment.newInstance(mapModels, width, height);
+        fragment.show(getSupportFragmentManager(), "MapFragment");
+
     }
 
 }

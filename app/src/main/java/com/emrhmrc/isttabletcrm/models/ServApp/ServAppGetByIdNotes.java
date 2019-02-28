@@ -3,9 +3,7 @@ package com.emrhmrc.isttabletcrm.models.ServApp;
 
 public class ServAppGetByIdNotes {
     private Integer FileSize;
-
     private boolean IsDocument;
-
     private String Subject;
 
     private String MimeType;
@@ -15,11 +13,10 @@ public class ServAppGetByIdNotes {
     private String DocumentBody;
 
     private String NoteId;
+    private String NoteText;
 
     public ServAppGetByIdNotes() {
     }
-
-    private String NoteText;
 
     public Integer getFileSize() {
         return FileSize;

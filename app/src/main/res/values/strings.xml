@@ -198,6 +198,8 @@
     <string name="garantibitis">Garanti Bitiş Tarihi</string>
     <string name="servistipi">Servis Tipi</string>
     <string name="statu">Statü</string>
+    <string name="oncekigun">Önceki Gün</string>
+    <string name="sonrakigun">Sonraki Gün</string>
 
     <string-array name="spn_servapp">
         <item>Tüm İş Emirlerim</item>

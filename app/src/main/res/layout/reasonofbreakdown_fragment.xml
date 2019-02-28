@@ -17,16 +17,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/text_menu_32"
             android:fontFamily="@font/roboto_medium"
-            android:text="@string/ariza_nedeni"
+            android:text="@string/aciklama"
             android:textSize="@dimen/text_menu_32" />
 
-        <TextView
+        <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/detay_menu_25"
-            android:fontFamily="@font/roboto_regular"
-            android:text="@string/dummy_info"
-            android:textSize="@dimen/text_menu_16" />
+            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
 
     </LinearLayout>
 

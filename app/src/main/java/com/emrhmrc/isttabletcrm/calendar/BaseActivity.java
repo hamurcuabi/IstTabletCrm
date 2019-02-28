@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.fragment.MapFragment;
 import com.emrhmrc.isttabletcrm.helper.CalendarEventsSingleton;
+import com.emrhmrc.isttabletcrm.helper.MapGo;
 import com.emrhmrc.isttabletcrm.models.MapModel;
 
 import java.text.SimpleDateFormat;
@@ -25,7 +26,8 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public abstract class BaseActivity extends AppCompatActivity implements WeekView
-        .EventClickListener, MonthLoader.MonthChangeListener, WeekView.EventLongPressListener, WeekView.EmptyViewLongPressListener {
+        .EventClickListener, MonthLoader.MonthChangeListener, WeekView.EventLongPressListener,
+        WeekView.EmptyViewLongPressListener,MapGo {
     private static final int TYPE_DAY_VIEW = 1;
     private static final int TYPE_THREE_DAY_VIEW = 2;
     private static final int TYPE_WEEK_VIEW = 3;
@@ -112,6 +114,7 @@ public abstract class BaseActivity extends AppCompatActivity implements WeekView
                                 m.getName(),
                                 m.getName());
                         mapModels.add(map);
+
                     }
 
                     MapFragment fragment = MapFragment.newInstance(mapModels, width, height);
@@ -243,4 +246,5 @@ public abstract class BaseActivity extends AppCompatActivity implements WeekView
     public WeekView getWeekView() {
         return mWeekView;
     }
+
 }

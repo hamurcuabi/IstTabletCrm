@@ -72,4 +72,8 @@ public class AsyncActivity extends BaseActivity {
     }
 
 
+    @Override
+    public void goToDay(Calendar calendar) {
+
+    }
 }

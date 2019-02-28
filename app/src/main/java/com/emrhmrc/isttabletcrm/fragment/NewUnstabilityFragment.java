@@ -1,5 +1,6 @@
 package com.emrhmrc.isttabletcrm.fragment;
 
+import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -12,6 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.emrhmrc.isttabletcrm.R;
@@ -32,6 +35,7 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
 
     private static final String TAG = "NewUnstabilityFragment";
     private ImageView img_close;
+    private EditText edt_tarih;
     private Button btn_send;
     private JsonApi jsonApi;
 
@@ -55,8 +59,10 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
         jsonApi = ApiClient.getClient().create(JsonApi.class);
         btn_send = view.findViewById(R.id.btn_send);
         img_close = view.findViewById(R.id.img_close);
+        edt_tarih = view.findViewById(R.id.edt_tarih);
         btn_send.setOnClickListener(this);
         img_close.setOnClickListener(this);
+        edt_tarih.setOnClickListener(this);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getDialog().setCanceledOnTouchOutside(false);
 
@@ -83,9 +89,35 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
             case R.id.img_close:
                 dismiss();
                 break;
+            case R.id.edt_tarih:
+                openDatePicker();
+                break;
 
         }
 
+    }
+
+    private void openDatePicker() {
+        // Şimdiki zaman bilgilerini alıyoruz. güncel yıl, güncel ay, güncel gün.
+        final Calendar takvim = Calendar.getInstance();
+        int yil = takvim.get(Calendar.YEAR);
+        int ay = takvim.get(Calendar.MONTH);
+        int gun = takvim.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog dpd = new DatePickerDialog(getActivity(),
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        // ay değeri 0 dan başladığı için (Ocak=0, Şubat=1,..,Aralık=11)
+                        // değeri 1 artırarak gösteriyoruz.
+                        month += 1;
+                        edt_tarih.setText(dayOfMonth + "." + month + "." + year);
+
+                    }
+                }, yil, ay, gun);
+        dpd.setButton(DatePickerDialog.BUTTON_POSITIVE, "Seç", dpd);
+        dpd.setButton(DatePickerDialog.BUTTON_NEGATIVE, "İptal", dpd);
+        dpd.show();
     }
 
     private void send() {

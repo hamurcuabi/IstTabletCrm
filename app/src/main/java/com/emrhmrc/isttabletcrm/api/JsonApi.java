@@ -3,8 +3,8 @@ package com.emrhmrc.isttabletcrm.api;
 
 import com.emrhmrc.isttabletcrm.models.Account.AccountListAll;
 import com.emrhmrc.isttabletcrm.models.BreakDown.BreakDownTypeListAll;
-import com.emrhmrc.isttabletcrm.models.CommonClass.ServAppCountResponse;
 import com.emrhmrc.isttabletcrm.models.CommonClass.NotificationCountResponse;
+import com.emrhmrc.isttabletcrm.models.CommonClass.ServAppCountResponse;
 import com.emrhmrc.isttabletcrm.models.Document.TechnicalDocument;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorGetById;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorIdRequest;
@@ -29,7 +29,7 @@ import com.emrhmrc.isttabletcrm.models.ServApp.ServAppIdRequest;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppListAll;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServiceAppIdRequest;
 import com.emrhmrc.isttabletcrm.models.ServApp.UpdateServFormById;
-import com.emrhmrc.isttabletcrm.models.ServApp.UpsertById;
+import com.emrhmrc.isttabletcrm.models.ServApp.UpsertByIdRequest;
 import com.emrhmrc.isttabletcrm.models.Unsuitablity.UnsuitabilityListAll;
 import com.emrhmrc.isttabletcrm.models.User.EmailRequest;
 import com.emrhmrc.isttabletcrm.models.User.UserForgotPassword;
@@ -38,6 +38,7 @@ import com.emrhmrc.isttabletcrm.models.User.UserLogin;
 import com.emrhmrc.isttabletcrm.models.User.UserRequest;
 import com.emrhmrc.isttabletcrm.models.User.UserReset;
 import com.emrhmrc.isttabletcrm.models.Warehouse.WarehouseItemListAll;
+import com.emrhmrc.isttabletcrm.models.Warehouse.WarehouseTransferCreateRequest;
 import com.emrhmrc.isttabletcrm.models.Warehouse.WarehouseTransferListAll;
 
 import retrofit2.Call;
@@ -97,8 +98,8 @@ public interface JsonApi {
     Call<ServAppListAll> servAppListAll(@Body UserIdRequest userId);
 
     //Not Even Tried
-    @POST("ServApp/UpsertById")
-    Call<DefaultResponse2> upsertById(@Body UpsertById upsertById);
+    @POST("ServApp/UpsertByIdRequest")
+    Call<DefaultResponse2> upsertById(@Body UpsertByIdRequest upsertById);
 
     //OK
     @POST("ServApp/GetById")
@@ -157,6 +158,9 @@ public interface JsonApi {
 
     @POST("WarehouseTransfer/ListAll")
     Call<WarehouseTransferListAll> getWarehouseTransferListAllCall(@Body UserIdRequest userId);
+
+    @POST("WarehouseTransfer/Create")
+    Call<DefaultResponse> createTransfer(@Body WarehouseTransferCreateRequest request);
 
 
 }

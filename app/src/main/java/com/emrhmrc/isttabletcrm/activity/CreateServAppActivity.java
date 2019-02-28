@@ -10,12 +10,16 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import com.emrhmrc.isttabletcrm.R;
+import com.emrhmrc.isttabletcrm.api.APIHelper;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointment;
 import com.emrhmrc.isttabletcrm.helper.CreateSubServAppSingleton;
+import com.emrhmrc.isttabletcrm.helper.SingletonUser;
 import com.emrhmrc.isttabletcrm.models.Account.Account;
 import com.emrhmrc.isttabletcrm.models.Account.AccountListAll;
+import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorListAll;
+import com.emrhmrc.isttabletcrm.models.Elevator.Elevators;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetById;
 
 import java.util.ArrayList;
@@ -35,8 +39,8 @@ public class CreateServAppActivity extends AppCompatActivity {
     Spinner spinner_musteri;
     @BindView(R.id.edt_konu)
     EditText edtKonu;
-    @BindView(R.id.edt_asansor)
-    EditText edtAsansor;
+    @BindView(R.id.spn_asansor)
+    Spinner spnAsansor;
     @BindView(R.id.spn_ariza)
     Spinner spnAriza;
     @BindView(R.id.spn_oncelik)
@@ -68,8 +72,30 @@ public class CreateServAppActivity extends AppCompatActivity {
             fillAll(servAppGetById);
         } else {
             getAccountAll();
+            getElevatorAll();
             lnrOnceki.setVisibility(View.GONE);
+            edtIsimsoyad.setText(SingletonUser.getInstance().getUser().getUserName());
         }
+    }
+
+    private void getElevatorAll() {
+        Call<ElevatorListAll> call = jsonApi.elevatorListAll();
+        APIHelper.enqueueWithRetry(call, new Callback<ElevatorListAll>() {
+            @Override
+            public void onResponse(Call<ElevatorListAll> call, Response<ElevatorListAll> response) {
+                if (response.isSuccessful()) {
+
+                    ElevatorListAll listAll = response.body();
+                    fillElevatorSpinner(listAll.getElevators());
+
+                } else Log.d(TAG, "onResponse: ");
+            }
+
+            @Override
+            public void onFailure(Call<ElevatorListAll> call, Throwable t) {
+
+            }
+        });
     }
 
     private void fillAll(ServAppGetById model) {
@@ -82,8 +108,8 @@ public class CreateServAppActivity extends AppCompatActivity {
         fillSpinner(list);
         edtKonu.setText(item.getSubject());
         edtKonu.setEnabled(false);
-        edtAsansor.setText(item.getInv_ElevatorId().getText());
-        edtAsansor.setEnabled(false);
+        fillElevatorSpinner(item.getInv_ElevatorId().getId(), item.getInv_ElevatorId().getText());
+        spnAsansor.setEnabled(false);
         spnAriza.setSelection(item.getInv_TypeCode().getValue() - 1);
         spnOncelik.setSelection(item.getPriortiyCode().getValue() - 1);
         edtIsimsoyad.setText(item.getOwnerId().getText());
@@ -98,7 +124,7 @@ public class CreateServAppActivity extends AppCompatActivity {
 
     private void getAccountAll() {
         Call<AccountListAll> call = jsonApi.geAccountListAllCall();
-        call.enqueue(new Callback<AccountListAll>() {
+        APIHelper.enqueueWithRetry(call, new Callback<AccountListAll>() {
             @Override
             public void onResponse(Call<AccountListAll> call, Response<AccountListAll> response) {
                 if (response.isSuccessful()) {
@@ -135,7 +161,33 @@ public class CreateServAppActivity extends AppCompatActivity {
 
     }
 
+    private void fillElevatorSpinner(List<Elevators> list) {
+        ArrayAdapter<Elevators> spinnerArrayAdapter = new ArrayAdapter<>(this, R.layout.spinner_item,
+                list);
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnAsansor.setAdapter(spinnerArrayAdapter);
+
+
+    }
+
+    private void fillElevatorSpinner(String id, String name) {
+        List<Elevators> list = new ArrayList<>();
+        Elevators elevators = new Elevators();
+        elevators.setInv_ElevatorId(id);
+        elevators.setInv_ElevatorName(name);
+        ArrayAdapter<Elevators> spinnerArrayAdapter = new ArrayAdapter<>(this, R.layout.spinner_item,
+                list);
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnAsansor.setAdapter(spinnerArrayAdapter);
+
+
+    }
+
     @OnClick(R.id.btn_save)
     public void onViewClicked() {
+        createNew();
+    }
+
+    private void createNew() {
     }
 }
