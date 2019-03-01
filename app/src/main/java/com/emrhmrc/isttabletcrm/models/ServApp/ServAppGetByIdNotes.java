@@ -1,7 +1,9 @@
 package com.emrhmrc.isttabletcrm.models.ServApp;
 
 
-public class ServAppGetByIdNotes {
+import java.io.Serializable;
+
+public class ServAppGetByIdNotes implements Serializable {
     private Integer FileSize;
     private boolean IsDocument;
     private String Subject;

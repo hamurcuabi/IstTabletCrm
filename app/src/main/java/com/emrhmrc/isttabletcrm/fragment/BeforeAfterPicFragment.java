@@ -45,6 +45,7 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
         return inflater.inflate(R.layout.fragment_before_after_pic, container);
 
 
+
     }
 
     @Override

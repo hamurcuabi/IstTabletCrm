@@ -29,6 +29,7 @@ import com.emrhmrc.isttabletcrm.helper.SingletonUser;
 import com.emrhmrc.isttabletcrm.models.MapModel;
 import com.emrhmrc.isttabletcrm.models.ServApp.CompleteByIdRequest;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetById;
+import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdNotes;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppDetails;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppIdRequest;
 
@@ -52,6 +53,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     private RcvServAppDetailAdapter adapter;
     private ShareData shareData;
     private List<ServAppGetByIdServAppDetails> model;
+    private List<ServAppGetByIdNotes> notes;
 
 
     @Override
@@ -97,6 +99,8 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                 if (response.isSuccessful()) {
                     ServAppGetById model = response.body();
                     CreateSubServAppSingleton.getInstance().setServAppGetById(model);
+                    notes = new ArrayList<>();
+                    notes = model.getServiceAppointment().getServAppGetByIdNotes();
                     setModelToBind(model.getServiceAppointment());
                     ShareData.getInstance().setLongitude(model.getServiceAppointment().getInv_Longitude());
                     ShareData.getInstance().setLatitude(model.getServiceAppointment().getInv_Latitude());
@@ -174,12 +178,13 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     }
 
     private void openReasonOfBreakdown() {
-        ReasonOfBreakdownFragment fragment = ReasonOfBreakdownFragment.newInstance();
+        ReasonOfBreakdownFragment fragment =
+                ReasonOfBreakdownFragment.newInstance(new ArrayList<>(notes));
         fragment.show(getSupportFragmentManager(), "reasonbrekadown");
     }
 
     @OnClick({R.id.img_cancel, R.id.txt_cancel, R.id.btn_closejob, R.id.txt_yeni, R.id.img_yeni,
-            R.id.img_add, R.id.txt_add})
+            R.id.img_add, R.id.txt_add, R.id.btn_beforeafter, R.id.txt_aciklamanot})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_cancel:
@@ -192,7 +197,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                 openBeforeAfter();
                 break;
             case R.id.txt_arizakodu:
-                openReasonOfBreakdown();
+                // openReasonOfBreakdown();
                 break;
             case R.id.img_gps:
                 mapFragment();
@@ -221,11 +226,11 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
             case R.id.txt_add:
                 openAddPiece();
                 break;
+            case R.id.txt_aciklamanot:
+                openReasonOfBreakdown();
+                break;
         }
     }
 
-    @OnClick(R.id.btn_beforeafter)
-    public void onViewClicked() {
-        openBeforeAfter();
-    }
+
 }
