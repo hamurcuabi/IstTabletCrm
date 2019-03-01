@@ -53,7 +53,6 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     private ShareData shareData;
     private List<ServAppGetByIdNotes> notes;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -147,7 +146,6 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     public void onItemClicked(Object item, int positon) {
 
     }
-
 
     public void newServApp() {
 
