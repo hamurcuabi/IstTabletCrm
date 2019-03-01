@@ -9,6 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -23,8 +25,13 @@ import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.fragment.CreateNewWareRequestFragment;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
 import com.emrhmrc.isttabletcrm.models.User.UserIdRequest;
+import com.emrhmrc.isttabletcrm.models.Warehouse.WarehouseItem;
 import com.emrhmrc.isttabletcrm.models.Warehouse.WarehouseItemListAll;
+import com.emrhmrc.isttabletcrm.models.Warehouse.WarehouseTransferItem;
 import com.emrhmrc.isttabletcrm.models.Warehouse.WarehouseTransferListAll;
+
+import java.util.Collections;
+import java.util.List;
 
 import butterknife.BindDrawable;
 import butterknife.BindView;
@@ -37,8 +44,6 @@ import retrofit2.Response;
 public class WareHouseActivity extends AppCompatActivity implements OnItemClickListener {
 
     private static final String TAG = "WareHouseActivity";
-    @BindView(R.id.txt_add)
-    Spinner txtAdd;
     @BindView(R.id.search)
     SearchView search;
     @BindView(R.id.rcv)
@@ -63,9 +68,16 @@ public class WareHouseActivity extends AppCompatActivity implements OnItemClickL
     Drawable first;
     @BindDrawable(R.drawable.btn_taleplerim)
     Drawable second;
+    @BindView(R.id.spn_sort)
+    Spinner spnSort;
+    @BindView(R.id.spn_sort2)
+    Spinner spnSort2;
     private JsonApi jsonApi;
     private RcvWarehouseAdapter adapter;
     private RcvWarehouseTransferAdapter adapter_talep;
+    private List<WarehouseTransferItem> warehouseTransferItems;
+    private List<WarehouseItem> warehouseItems;
+    private String[] items;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,9 +99,11 @@ public class WareHouseActivity extends AppCompatActivity implements OnItemClickL
                 if (response.isSuccessful()) {
 
                     final WarehouseTransferListAll temp = response.body();
+                    warehouseTransferItems = temp.getWarehouseTransfers();
                     adapter_talep.setItems(temp.getWarehouseTransfers());
                     adapter_talep.setItemsFilter(temp.getWarehouseTransfers());
                     search2();
+                    filterwithSpinner2();
 
                 }
             }
@@ -110,9 +124,11 @@ public class WareHouseActivity extends AppCompatActivity implements OnItemClickL
                 if (response.isSuccessful()) {
 
                     final WarehouseItemListAll temp = response.body();
+                    warehouseItems = temp.getWarehouseItems();
                     adapter.setItems(temp.getWarehouseItems());
                     adapter.setItemsFilter(temp.getWarehouseItems());
                     search();
+                    filterwithSpinner();
                 }
             }
 
@@ -164,6 +180,13 @@ public class WareHouseActivity extends AppCompatActivity implements OnItemClickL
         adapter_talep.setListener(this);
         rcvTalep.setLayoutManager(new LinearLayoutManager(this));
         rcvTalep.setAdapter(adapter_talep);
+
+        items = getResources().getStringArray(R.array.spn_sort);
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(
+                this, R.layout.spinner_item_white, items);
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnSort.setAdapter(spinnerArrayAdapter);
+        spnSort2.setAdapter(spinnerArrayAdapter);
     }
 
     private void rcvFirst() {
@@ -176,6 +199,9 @@ public class WareHouseActivity extends AppCompatActivity implements OnItemClickL
         btnWish.setBackground(second);
         linearLayout.setVisibility(View.VISIBLE);
         linearLayout2.setVisibility(View.GONE);
+        spnSort.setVisibility(View.VISIBLE);
+        spnSort2.setVisibility(View.GONE);
+
 
     }
 
@@ -189,6 +215,8 @@ public class WareHouseActivity extends AppCompatActivity implements OnItemClickL
         btnWish.setBackground(first);
         linearLayout2.setVisibility(View.VISIBLE);
         linearLayout.setVisibility(View.GONE);
+        spnSort2.setVisibility(View.VISIBLE);
+        spnSort.setVisibility(View.GONE);
     }
 
     @OnClick({R.id.btn_info, R.id.btn_wish, R.id.img_add_2, R.id.add_job, R.id.rcv_talep})
@@ -215,6 +243,72 @@ public class WareHouseActivity extends AppCompatActivity implements OnItemClickL
     private void openCreateFragment() {
         CreateNewWareRequestFragment fragment = CreateNewWareRequestFragment.newInstance();
         fragment.show(getSupportFragmentManager(), "beforeafter");
+    }
+
+    private void filterwithSpinner() {
+
+        spnSort.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                // adapter.getFilter().filter(StringUtil.convertIntToString(i));
+                switch (i) {
+                    case 0:
+                        break;
+                    case 1:
+                        Collections.sort(warehouseItems,
+                                (lhs, rhs) -> lhs.getInv_Productid().getText().compareTo(rhs.getInv_Productid().getText()));
+                        break;
+                    case 2:
+                        Collections.sort(warehouseItems,
+                                (lhs, rhs) -> rhs.getInv_Productid().getText().compareTo(lhs.getInv_Productid().getText()));
+                        break;
+
+                    case 3:
+                        Collections.sort(warehouseItems,
+                                (lhs, rhs) -> lhs.getInv_Quantity() - rhs.getInv_Quantity());
+                        break;
+                    case 4:
+                        Collections.sort(warehouseItems,
+                                (lhs, rhs) -> rhs.getInv_Quantity() - lhs.getInv_Quantity());
+                        break;
+                }
+                adapter.setItems(warehouseItems);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    private void filterwithSpinner2() {
+        spnSort2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                // adapter.getFilter().filter(StringUtil.convertIntToString(i));
+                switch (i) {
+                    case 0:
+                        break;
+                    case 1:
+                        Collections.sort(warehouseTransferItems,
+                                (lhs, rhs) -> lhs.getInv_Productid().getText().compareTo(rhs.getInv_Productid().getText()));
+                        break;
+                    case 2:
+                        Collections.sort(warehouseTransferItems,
+                                (lhs, rhs) -> lhs.getInv_Quantity() - rhs.getInv_Quantity());
+                        break;
+                }
+                adapter_talep.setItems(warehouseTransferItems);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
     @Override

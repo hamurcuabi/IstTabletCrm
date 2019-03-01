@@ -80,6 +80,7 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
         rcw.setAdapter(adapter);
         rcw.setLayoutManager(new LinearLayoutManager(this));
 
+
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(
                 this, R.layout.spinner_item_white, items);
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -144,5 +145,11 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
                 goCreateServApp();
                 break;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
     }
 }

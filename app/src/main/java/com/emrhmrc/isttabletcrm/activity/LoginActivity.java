@@ -13,6 +13,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
+import com.emrhmrc.isttabletcrm.api.APIHelper;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.databinding.ActivityLoginBinding;
@@ -90,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
             UserRequest userRequest = new UserRequest(mail, pass);
             btn_login.setEnabled(false);
             Call<UserLogin> call = jsonApi.userLogin(userRequest);
-            call.enqueue(new Callback<UserLogin>() {
+          APIHelper.enqueueWithRetry(call,new Callback<UserLogin>() {
                 @Override
                 public void onResponse(Call<UserLogin> call, Response<UserLogin> response) {
                     if (response.isSuccessful()) {

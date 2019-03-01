@@ -30,7 +30,6 @@ import com.emrhmrc.isttabletcrm.models.MapModel;
 import com.emrhmrc.isttabletcrm.models.ServApp.CompleteByIdRequest;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetById;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdNotes;
-import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppDetails;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppIdRequest;
 
 import java.util.ArrayList;
@@ -52,7 +51,6 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     private JsonApi jsonApi;
     private RcvServAppDetailAdapter adapter;
     private ShareData shareData;
-    private List<ServAppGetByIdServAppDetails> model;
     private List<ServAppGetByIdNotes> notes;
 
 
@@ -184,7 +182,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     }
 
     @OnClick({R.id.img_cancel, R.id.txt_cancel, R.id.btn_closejob, R.id.txt_yeni, R.id.img_yeni,
-            R.id.img_add, R.id.txt_add, R.id.btn_beforeafter, R.id.txt_aciklamanot})
+            R.id.img_add, R.id.txt_add, R.id.btn_beforeafter, R.id.txt_aciklamanot, R.id.txt_asansorno})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_cancel:
@@ -232,5 +230,10 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
         }
     }
 
-
+    @Override
+    protected void onDestroy() {
+        Log.d(TAG, "onDestroy: ");
+        CreateSubServAppSingleton.getInstance().setServAppGetById(null);
+        super.onDestroy();
+    }
 }

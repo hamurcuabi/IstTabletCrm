@@ -58,9 +58,9 @@
 
 
             <Spinner
-                android:id="@+id/txt_add"
+                android:id="@+id/spn_sort"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/btn_height45"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
@@ -69,9 +69,30 @@
                 android:layout_marginEnd="0dp"
                 android:layout_marginBottom="0dp"
                 android:layout_toEndOf="@+id/img_add"
-                android:backgroundTint="@color/white" />
+                android:backgroundTint="@color/white"
+                android:entries="@array/spn_sort"
+                android:gravity="center" />
+
+            <Spinner
+                android:id="@+id/spn_sort2"
+                style="@style/CustomSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/btn_height45"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="0dp"
+                android:layout_toEndOf="@+id/img_add"
+                android:backgroundTint="@color/white"
+                android:entries="@array/spn_sort"
+                android:gravity="center"
+                android:visibility="gone" />
 
         </RelativeLayout>
+
 
         <RelativeLayout
 
@@ -336,7 +357,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cons_content"></android.support.v7.widget.RecyclerView>
-
 
 
 </android.support.constraint.ConstraintLayout>

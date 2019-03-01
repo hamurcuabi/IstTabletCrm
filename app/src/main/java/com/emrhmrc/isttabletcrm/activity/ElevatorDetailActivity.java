@@ -86,7 +86,7 @@ public class ElevatorDetailActivity extends AppCompatActivity {
     }
 
     private void setTexts(Elevator model) {
-
+        txtAsansorname.setText(StringUtil.nullToString(model.getInv_AccountId().getText()));
         txtBlokadi.setText(StringUtil.nullToString(model.getInv_BlockName()));
         txtEtiketrengi.setText(StringUtil.nullToString(model.getInv_ColorCode().getText()));
         txtSozlemebitis.setText(StringUtil.nullToString(model.getInv_ContractEndDate()));
@@ -102,11 +102,11 @@ public class ElevatorDetailActivity extends AppCompatActivity {
         txtKimlikno.setText(StringUtil.nullToString(model.getInv_ElevatorNumber()));
 
 
-
     }
 
     public void getElevatorById() {
-
+        Log.d(TAG, "getElevatorById: " + ShareData
+                .getInstance().getElevatorId());
         Call<ElevatorGetById> call = jsonApi.elevatorGetById(new ElevatorIdRequest(ShareData
                 .getInstance().getElevatorId()));
         call.enqueue(new Callback<ElevatorGetById>() {
