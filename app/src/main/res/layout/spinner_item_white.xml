@@ -4,9 +4,9 @@
     android:id="@+id/txt_spinner"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="38dp"
+    android:layout_height="wrap_content"
     android:textSize="20sp"
-    android:gravity="left"
+    android:gravity="center_vertical|start"
     android:textColor="@color/white"
 
     />
