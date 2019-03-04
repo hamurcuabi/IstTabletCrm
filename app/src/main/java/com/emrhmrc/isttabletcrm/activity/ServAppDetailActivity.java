@@ -21,6 +21,7 @@ import com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointment;
 import com.emrhmrc.isttabletcrm.databinding.ActivityServAppDetailBinding;
 import com.emrhmrc.isttabletcrm.fragment.BeforeAfterPicFragment;
 import com.emrhmrc.isttabletcrm.fragment.ControlListFragment;
+import com.emrhmrc.isttabletcrm.fragment.DetailServAppFormFragment;
 import com.emrhmrc.isttabletcrm.fragment.MapFragment;
 import com.emrhmrc.isttabletcrm.fragment.ReasonOfBreakdownFragment;
 import com.emrhmrc.isttabletcrm.helper.CreateSubServAppSingleton;
@@ -60,6 +61,11 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
         ButterKnife.bind(this);
         init();
         getServAppById(shareData.getServAppId());
+    }
+
+    private void openServappFormFragment() {
+        DetailServAppFormFragment fragment = DetailServAppFormFragment.newInstance(ShareData.getInstance().getServAppId());
+        fragment.show(getSupportFragmentManager(), "DetailServAppFormFragment");
     }
 
     private void mapFragment() {
@@ -180,7 +186,8 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     }
 
     @OnClick({R.id.img_cancel, R.id.txt_cancel, R.id.btn_closejob, R.id.txt_yeni, R.id.img_yeni,
-            R.id.img_add, R.id.txt_add, R.id.btn_beforeafter, R.id.txt_aciklamanot, R.id.txt_asansorno})
+            R.id.img_add, R.id.txt_add, R.id.btn_beforeafter, R.id.txt_aciklamanot,
+            R.id.txt_asansorno, R.id.txt_servis_raporu, R.id.img_servis_raporu})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_cancel:
@@ -224,6 +231,12 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                 break;
             case R.id.txt_aciklamanot:
                 openReasonOfBreakdown();
+                break;
+            case R.id.txt_servis_raporu:
+                openServappFormFragment();
+                break;
+            case R.id.img_servis_raporu:
+                openServappFormFragment();
                 break;
         }
     }

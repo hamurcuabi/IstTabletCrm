@@ -1,6 +1,8 @@
 package com.emrhmrc.isttabletcrm.models.ServApp;
 
-public class GetServFormById {
+import java.io.Serializable;
+
+public class GetServFormById implements Serializable {
     private String Filesize;
 
     private String MimeType;
