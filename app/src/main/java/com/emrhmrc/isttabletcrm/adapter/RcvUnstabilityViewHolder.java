@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.BaseViewHolder;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
+import com.emrhmrc.isttabletcrm.helper.Methodes;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppUnsuitabilities;
 import com.emrhmrc.isttabletcrm.models.Unsuitablity.Unsuitabilities;
 import com.emrhmrc.isttabletcrm.util.StringUtil;
@@ -28,6 +29,10 @@ public class RcvUnstabilityViewHolder extends BaseViewHolder<Unsuitabilities,
     public void onBind(final Unsuitabilities item,
                        @Nullable final OnItemClickListener<Unsuitabilities> listener) {
         txt_baslik.setText(StringUtil.nullToString(item.getSubject()));
+        txt_asansor_no.setText(StringUtil.nullToString(item.getElevatorId().getText()));
+        txt_musteri_no.setText(StringUtil.nullToString(item.getCustomerId().getText()));
+        txt_tarih.setText(Methodes.changeDateFormatToText(StringUtil.nullToString(item.getScheduledStart())));
+
 
         if (listener != null) {
             txt_asansor_no.setOnClickListener(view -> listener.onItemClicked(item, getAdapterPosition()));
