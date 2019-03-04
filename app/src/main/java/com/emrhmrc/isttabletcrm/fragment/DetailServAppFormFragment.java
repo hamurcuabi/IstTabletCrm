@@ -49,7 +49,7 @@ public class DetailServAppFormFragment extends DialogFragment implements View.On
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.detail_technical_fragment, container);
+        return inflater.inflate(R.layout.detail_servapp_form_fragment, container);
     }
 
     @Override
@@ -60,8 +60,7 @@ public class DetailServAppFormFragment extends DialogFragment implements View.On
         img_close.setOnClickListener(this);
         txt_header = view.findViewById(R.id.txt_header);
         txt_content = view.findViewById(R.id.txt_content);
-        txt_header.setText(header);
-
+        id = getArguments().getString("id");
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getDialog().setCanceledOnTouchOutside(false);
         jsonApi = ApiClient.getClient().create(JsonApi.class);

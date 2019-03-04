@@ -30,7 +30,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class MapFragment extends DialogFragment {
+public class DefaultMapFragment extends DialogFragment {
 
     MapView mMapView;
     private GoogleMap googleMap;
@@ -38,22 +38,22 @@ public class MapFragment extends DialogFragment {
     private int w, h;
     private ImageView img_close;
     private Button btn_before, btn_next;
-    private MapGo mapGo;
 
-    public static MapFragment newInstance(ArrayList<MapModel> map, int w, int h) {
+
+    public static DefaultMapFragment newInstance(ArrayList<MapModel> map, int w, int h) {
 
         Bundle args = new Bundle();
         args.putSerializable("map", map);
         args.putInt("w", w);
         args.putInt("h", h);
-        MapFragment fragment = new MapFragment();
+        DefaultMapFragment fragment = new DefaultMapFragment();
         fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.map_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.default_map_fragment, container, false);
         map = (ArrayList<MapModel>) getArguments().getSerializable("map");
         w = getArguments().getInt("w");
         h = getArguments().getInt("h");
@@ -100,22 +100,7 @@ public class MapFragment extends DialogFragment {
                     (8).build();
             googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));*/
         });
-        if (CalendarEventsSingleton.getInstance().getSelected() != null) {
-            Calendar calendar = CalendarEventsSingleton.getInstance().getSelected();
-            Calendar before = (Calendar) calendar.clone();
-            before.add(Calendar.DAY_OF_MONTH, -1);
-            Calendar next = (Calendar) calendar.clone();
-            next.add(Calendar.DAY_OF_MONTH, 1);
 
-            btn_before.setOnClickListener(view -> {
-                mapGo.goToDay(before);
-                dismiss();
-            });
-            btn_next.setOnClickListener(view -> {
-                dismiss();
-                mapGo.goToDay(next);
-            });
-        }
 
         return rootView;
     }
@@ -125,7 +110,7 @@ public class MapFragment extends DialogFragment {
         super.onViewCreated(view, savedInstanceState);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getDialog().setCanceledOnTouchOutside(false);
-        mapGo = (MapGo) getActivity();
+
     }
 
     @Override

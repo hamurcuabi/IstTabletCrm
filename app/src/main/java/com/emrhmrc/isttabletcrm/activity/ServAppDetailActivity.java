@@ -21,6 +21,7 @@ import com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointment;
 import com.emrhmrc.isttabletcrm.databinding.ActivityServAppDetailBinding;
 import com.emrhmrc.isttabletcrm.fragment.BeforeAfterPicFragment;
 import com.emrhmrc.isttabletcrm.fragment.ControlListFragment;
+import com.emrhmrc.isttabletcrm.fragment.DefaultMapFragment;
 import com.emrhmrc.isttabletcrm.fragment.DetailServAppFormFragment;
 import com.emrhmrc.isttabletcrm.fragment.MapFragment;
 import com.emrhmrc.isttabletcrm.fragment.ReasonOfBreakdownFragment;
@@ -80,7 +81,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                 "Description");
         ArrayList<MapModel> mapModels = new ArrayList<>();
         mapModels.add(map);
-        MapFragment fragment = MapFragment.newInstance(mapModels, width, height);
+        DefaultMapFragment fragment = DefaultMapFragment.newInstance(mapModels, width, height);
         fragment.show(getSupportFragmentManager(), "MpaFragment");
     }
 
@@ -187,7 +188,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
 
     @OnClick({R.id.img_cancel, R.id.txt_cancel, R.id.btn_closejob, R.id.txt_yeni, R.id.img_yeni,
             R.id.img_add, R.id.txt_add, R.id.btn_beforeafter, R.id.txt_aciklamanot,
-            R.id.txt_asansorno, R.id.txt_servis_raporu, R.id.img_servis_raporu})
+            R.id.txt_asansorno, R.id.txt_servis_raporu, R.id.img_servis_raporu,R.id.img_gps})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_cancel:
@@ -200,7 +201,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                 openBeforeAfter();
                 break;
             case R.id.txt_arizakodu:
-                // openReasonOfBreakdown();
+                 //openReasonOfBreakdown();
                 break;
             case R.id.img_gps:
                 mapFragment();
