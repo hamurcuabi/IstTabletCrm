@@ -15,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.emrhmrc.isttabletcrm.R;
+import com.emrhmrc.isttabletcrm.SweetDialog.AnyDialog;
+import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
 import com.emrhmrc.isttabletcrm.fragment.MapFragment;
 import com.emrhmrc.isttabletcrm.helper.CalendarEventsSingleton;
 import com.emrhmrc.isttabletcrm.helper.MapGo;
@@ -27,24 +29,26 @@ import java.util.Locale;
 
 public abstract class BaseActivity extends AppCompatActivity implements WeekView
         .EventClickListener, MonthLoader.MonthChangeListener, WeekView.EventLongPressListener,
-        WeekView.EmptyViewLongPressListener,MapGo {
+        WeekView.EmptyViewLongPressListener, MapGo {
     private static final int TYPE_DAY_VIEW = 1;
     private static final int TYPE_THREE_DAY_VIEW = 2;
     private static final int TYPE_WEEK_VIEW = 3;
     private final SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
+    public SweetAlertDialog dialog;
     private int mWeekViewType = TYPE_THREE_DAY_VIEW;
     private WeekView mWeekView;
     private TextView txt_center_date;
     private Button btn_today, btn_next, btn_back;
     private Calendar now = Calendar.getInstance();
     private Calendar after = Calendar.getInstance();
-    private ImageView img_gps;
+    private ImageView img_gps, img_menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
-
+        AnyDialog anyDialog = new AnyDialog(this);
+        dialog = anyDialog.loading(getResources().getString(R.string.loading));
         mWeekView = findViewById(R.id.weekView);
         mWeekView.setOnEventClickListener(this);
         mWeekView.setMonthChangeListener(this);
@@ -60,6 +64,7 @@ public abstract class BaseActivity extends AppCompatActivity implements WeekView
         btn_back = findViewById(R.id.btn_back);
         btn_next = findViewById(R.id.btn_next);
         img_gps = findViewById(R.id.img_gps);
+        img_menu = findViewById(R.id.img_menu);
         //Cliks
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,6 +135,12 @@ public abstract class BaseActivity extends AppCompatActivity implements WeekView
         after.add(Calendar.DAY_OF_MONTH, 6);
         txt_center_date.setText("" + sdf.format(now.getTime()) + " - " + sdf.format(after.getTime
                 ()));
+        img_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BaseActivity.super.onBackPressed();
+            }
+        });
 
 
     }

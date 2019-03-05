@@ -8,11 +8,12 @@
     android:weightSum="7">
 
     <TextView
+        android:layout_marginStart="@dimen/padding_rigt32"
         android:layout_gravity="center"
         android:id="@+id/txt_depo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="1.2"
         android:fontFamily="@font/roboto_regular"
         android:text="@string/depo"
         android:textAllCaps="true"
@@ -21,6 +22,7 @@
         android:textStyle="bold" />
 
     <TextView
+        android:layout_marginEnd="@dimen/detay_menu_12"
         android:layout_gravity="center"
         android:id="@+id/txt_urunadi"
         android:layout_width="0dp"

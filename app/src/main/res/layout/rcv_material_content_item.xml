@@ -7,10 +7,11 @@
     android:orientation="horizontal">
 
     <TextView
+        android:layout_marginStart="@dimen/text_menu_32"
         android:layout_gravity="center"
         android:gravity="center_vertical"
         android:id="@+id/txt_kod"
-        android:layout_weight="1"
+        android:layout_weight="0.4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_regular"
@@ -21,9 +22,10 @@
         android:textStyle="bold" />
 
     <TextView
+        android:layout_marginEnd="@dimen/detay_menu_12"
         android:layout_gravity="center"
         android:id="@+id/txt_urunadi"
-        android:layout_weight="1"
+        android:layout_weight="1.9"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_regular"
@@ -33,17 +35,17 @@
         android:textSize="@dimen/menu_text_16"
         android:textStyle="bold" />
 
-    <TextView
+    <EditText
         android:layout_gravity="center"
-        android:id="@+id/txt_miktar"
-        android:layout_weight="1"
+        android:id="@+id/edt_miktar"
+        android:layout_weight="0.5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_regular"
-        android:text="-"
         android:textAllCaps="true"
         android:textColor="@color/text_color"
         android:textSize="@dimen/menu_text_16"
+        android:inputType="numberDecimal"
         android:textStyle="bold"/>
 
     <TextView

@@ -6,27 +6,49 @@
     android:layout_height="match_parent"
     tools:context=".activity.WareHouseActivity">
 
+    <ImageView
+        android:id="@+id/img_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/menu_left"
+        android:layout_marginTop="@dimen/menu_top"
+        android:src="@drawable/ic_menu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/servapp_icon_text"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/stok_durumu"
+        android:textColor="@color/mobil_konum"
+        android:textSize="@dimen/menu_text"
+        app:layout_constraintBottom_toBottomOf="@+id/img_back"
+        app:layout_constraintStart_toEndOf="@+id/img_back"
+        app:layout_constraintTop_toTopOf="@+id/img_back" />
+
     <Button
         android:id="@+id/btn_info"
         android:layout_width="@dimen/btn_malzeme_width"
         android:layout_height="@dimen/btn_malzeme_height"
-        android:layout_marginStart="@dimen/margin30"
-        android:layout_marginTop="@dimen/btn_height45"
-        android:background="@drawable/btn_malzeme"
+        android:layout_marginStart="@dimen/menu_left"
+        android:layout_marginTop="@dimen/padding_top25"
+        android:background="@drawable/btn_malzeme_2"
         android:text="@string/stok_info"
         android:textAllCaps="true"
         android:textColor="@color/white"
         android:textSize="@dimen/text_menu_18"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/img_back" />
 
     <Button
         android:id="@+id/btn_wish"
         android:layout_width="@dimen/btn_malzeme_width"
         android:layout_height="@dimen/btn_malzeme_height"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="@dimen/btn_height45"
+        android:layout_marginStart="16dp"
         android:background="@drawable/btn_taleplerim"
         android:text="@string/talep"
         android:textAllCaps="true"
@@ -34,7 +56,7 @@
         android:textSize="@dimen/text_menu_18"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/btn_info"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/btn_info" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/cons_content"
@@ -42,18 +64,18 @@
         android:layout_height="@dimen/malzeme_height"
         android:background="@color/malzeme_icerik"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_wish">
 
         <RelativeLayout
-            android:gravity="center"
             android:id="@+id/lnr_yeni"
             android:layout_width="220dp"
             android:layout_height="@dimen/btn_height45"
             android:layout_marginStart="@dimen/padding_top25"
             android:layout_marginTop="@dimen/padding_rigt32"
             android:background="@color/btn_dark_blue"
+            android:gravity="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -148,7 +170,7 @@
             android:layout_marginEnd="@dimen/padding_rigt32"
             android:layout_marginBottom="8dp"
             android:orientation="horizontal"
-            android:weightSum="5"
+            android:weightSum="7"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -157,7 +179,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="1.2"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/depo"
                 android:textAllCaps="true"
@@ -166,9 +188,10 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:layout_marginEnd="@dimen/btn_height45"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="1.9"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/urun_adi"
                 android:textAllCaps="true"
@@ -179,7 +202,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="1.1"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/miktar"
                 android:textAllCaps="true"
@@ -310,10 +333,10 @@
 
     <android.support.v7.widget.SearchView
         android:id="@+id/search"
-        android:layout_width="@dimen/m300"
+        android:layout_width="@dimen/detay_menu_250"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/menu_left_32"
         android:layout_marginEnd="@dimen/padding_top25"
         android:background="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/cons_content"
@@ -322,10 +345,10 @@
 
     <android.support.v7.widget.SearchView
         android:id="@+id/search2"
-        android:layout_width="@dimen/m300"
+        android:layout_width="@dimen/detay_menu_250"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/menu_left_32"
         android:layout_marginEnd="@dimen/padding_top25"
         android:background="@color/white"
         android:visibility="gone"
@@ -338,9 +361,6 @@
         android:id="@+id/rcv"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="@dimen/padding_top25"
-        android:layout_marginTop="@dimen/padding_top25"
-        android:layout_marginEnd="@dimen/padding_top25"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

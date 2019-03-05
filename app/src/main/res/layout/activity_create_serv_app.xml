@@ -68,7 +68,7 @@
         android:layout_marginStart="@dimen/menu_left"
         android:layout_marginTop="@dimen/detay_menu"
         android:layout_marginEnd="@dimen/menu_left_32"
-        android:background="@color/white"
+        android:background="@drawable/btn_default_layout"
         android:elevation="2dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -131,19 +131,17 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/spinner_musteri" />
 
-                    <Spinner
-
+                    <AutoCompleteTextView
+                        android:background="@drawable/spn_style"
                         android:id="@+id/spinner_musteri"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
-                        android:background="@drawable/spn_style"
-                        android:drawSelectorOnTop="true"
+                        android:completionThreshold="1"
                         android:paddingLeft="@dimen/detay_menu_25"
                         android:paddingRight="@dimen/detay_menu_12"
-                        android:spinnerMode="dropdown"
                         app:layout_constraintStart_toEndOf="@+id/txt_mus_adi"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -222,7 +220,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/edt_asansor" />
 
-                    <Spinner
+                    <AutoCompleteTextView
                         android:id="@+id/spn_asansor"
                         android:background="@drawable/spn_style"
                         android:layout_width="match_parent"
@@ -230,8 +228,8 @@
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
-                        android:drawableRight="@drawable/ic_eye"
                         android:paddingLeft="@dimen/detay_menu_25"
+                        android:completionThreshold="1"
                         android:paddingRight="@dimen/detay_menu_12"
                         app:layout_constraintStart_toEndOf="@+id/txt_asansor"
                         app:layout_constraintTop_toTopOf="parent" />

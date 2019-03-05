@@ -15,6 +15,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -76,6 +77,8 @@ public class CreateNewWareRequestFragment extends DialogFragment {
     RadioButton rdHurda;
     @BindView(R.id.rd_grup)
     RadioGroup rdGrup;
+    @BindView(R.id.img_close)
+    ImageView imgClose;
     private JsonApi jsonApi;
 
 
@@ -139,7 +142,8 @@ public class CreateNewWareRequestFragment extends DialogFragment {
     }
 
 
-    @OnClick({R.id.rd_new, R.id.rd_hurda, R.id.btn_send, R.id.btn_send2, R.id.edt_tarih, R.id.edt_tarih2})
+    @OnClick({R.id.rd_new, R.id.rd_hurda, R.id.btn_send, R.id.btn_send2, R.id.edt_tarih,
+            R.id.edt_tarih2,R.id.img_close})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rd_new:
@@ -159,6 +163,9 @@ public class CreateNewWareRequestFragment extends DialogFragment {
                 break;
             case R.id.edt_tarih2:
                 openDatePicker(2);
+                break;
+            case R.id.img_close:
+               dismiss();
                 break;
 
         }

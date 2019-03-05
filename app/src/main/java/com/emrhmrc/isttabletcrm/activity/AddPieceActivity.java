@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.View;
 
 import com.emrhmrc.isttabletcrm.R;
+import com.emrhmrc.isttabletcrm.SweetDialog.AnyDialog;
+import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.adapter.RcvProductMainAdapter;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
@@ -20,6 +22,7 @@ import com.emrhmrc.isttabletcrm.models.Product.MainProductList;
 
 import java.util.List;
 
+import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -32,10 +35,13 @@ public class AddPieceActivity extends AppCompatActivity implements OnItemClickLi
     private static final String TAG = "AddPieceActivity";
     @BindView(R.id.rcw_servapp)
     RecyclerView rcwServapp;
+    @BindString(R.string.loading)
+    String loading;
     private List<MainList> model;
     private JsonApi jsonApi;
     private RcvProductMainAdapter adapter;
     private SearchView searchView;
+    private SweetAlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +53,7 @@ public class AddPieceActivity extends AppCompatActivity implements OnItemClickLi
     }
 
     private void getMainProductGroup() {
+        dialog.show();
         Call<MainProductList> call = jsonApi.getMainProductListCall();
         call.enqueue(new Callback<MainProductList>() {
             @Override
@@ -60,11 +67,13 @@ public class AddPieceActivity extends AppCompatActivity implements OnItemClickLi
                 } else {
                     Log.d(TAG, "onResponse: " + response.errorBody().toString());
                 }
+                dialog.dismissWithAnimation();
             }
 
             @Override
             public void onFailure(Call<MainProductList> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
+                dialog.dismissWithAnimation();
             }
         });
     }
@@ -78,6 +87,8 @@ public class AddPieceActivity extends AppCompatActivity implements OnItemClickLi
         adapter = new RcvProductMainAdapter(getApplicationContext(), this);
         adapter.setListener(this);
         rcwServapp.setAdapter(adapter);
+        AnyDialog anyDialog = new AnyDialog(this);
+        dialog = anyDialog.loading(loading);
 
 
     }

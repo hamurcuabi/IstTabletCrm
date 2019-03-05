@@ -200,6 +200,16 @@
     <string name="statu">Statü</string>
     <string name="oncekigun">Önceki Gün</string>
     <string name="sonrakigun">Sonraki Gün</string>
+    <string name="loading">Yükleniyor...</string>
+    <string name="sure">Emin misiniz?</string>
+    <string name="doit">Evet Uygula</string>
+    <string name="dont">Hayır İptal Et</string>
+    <string name="close_servapp">İş Emri Kapatma İşlemi</string>
+
+    <string name="dialog_default_title">Here\'s a message!</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="LOADING">Loading...</string>
 
     <string-array name="spn_servapp">
         <item>Tüm İş Emirlerim</item>

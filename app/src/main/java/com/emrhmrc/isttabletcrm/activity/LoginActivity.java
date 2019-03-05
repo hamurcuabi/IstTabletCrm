@@ -13,6 +13,8 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
+import com.emrhmrc.isttabletcrm.SweetDialog.AnyDialog;
+import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
 import com.emrhmrc.isttabletcrm.api.APIHelper;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
@@ -55,9 +57,12 @@ public class LoginActivity extends AppCompatActivity {
     String error_nick;
     @BindString(R.string.error_pass)
     String error_pass;
+    @BindString(R.string.loading)
+    String loading;
     private ActivityLoginBinding binding;
     private JsonApi jsonApi;
     private SharedPref pref;
+    private SweetAlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +85,8 @@ public class LoginActivity extends AppCompatActivity {
     private void init() {
         pref = new SharedPref(getApplicationContext());
         jsonApi = ApiClient.getClient().create(JsonApi.class);
+        AnyDialog anyDialog = new AnyDialog(this);
+        dialog = anyDialog.loading(loading);
 
     }
 
@@ -87,11 +94,12 @@ public class LoginActivity extends AppCompatActivity {
         String mail = edt_nick.getText().toString();
         String pass = edt_pass.getText().toString();
         if (StringUtil.validateStrings(mail, pass)) {
+            dialog.show();
             rememberMe(mail, pass);
             UserRequest userRequest = new UserRequest(mail, pass);
             btn_login.setEnabled(false);
             Call<UserLogin> call = jsonApi.userLogin(userRequest);
-          APIHelper.enqueueWithRetry(call,new Callback<UserLogin>() {
+            APIHelper.enqueueWithRetry(call, new Callback<UserLogin>() {
                 @Override
                 public void onResponse(Call<UserLogin> call, Response<UserLogin> response) {
                     if (response.isSuccessful()) {
@@ -101,12 +109,14 @@ public class LoginActivity extends AppCompatActivity {
                         Log.d(TAG, "onResponse: " + response.message());
                         btn_login.setEnabled(true);
                     }
+                    dialog.dismissWithAnimation();
                 }
 
                 @Override
                 public void onFailure(Call<UserLogin> call, Throwable t) {
                     btn_login.setEnabled(true);
                     Log.d(TAG, "onFailure: " + t.getMessage());
+                    dialog.dismissWithAnimation();
 
                 }
             });

@@ -53,6 +53,7 @@ public class ProductSubViewHolder extends BaseViewHolder<SubList,
         txtAnacount.setTextColor(defaulttext2);
         txtAnatext.setTextColor(defaulttext);
         if (listener != null) {
+            cons_bg.setOnClickListener(view -> listener.onItemClicked(item, getAdapterPosition()));
             imgAnapic.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -64,6 +65,15 @@ public class ProductSubViewHolder extends BaseViewHolder<SubList,
             });
 
         }
+        cons_bg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onItemClicked(item, getAdapterPosition());
+                cons_bg.setBackgroundColor(bg);
+                txtAnacount.setTextColor(white);
+                txtAnatext.setTextColor(white);
+            }
+        });
     }
 
 

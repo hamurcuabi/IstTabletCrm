@@ -5,8 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 
 import com.emrhmrc.isttabletcrm.R;
+import com.emrhmrc.isttabletcrm.SweetDialog.AnyDialog;
+import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.adapter.RcvTechnicalAdapter;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
@@ -15,6 +18,7 @@ import com.emrhmrc.isttabletcrm.fragment.DetailTechnicalFragment;
 import com.emrhmrc.isttabletcrm.models.Document.TechnicDocument;
 import com.emrhmrc.isttabletcrm.models.Document.TechnicalDocument;
 
+import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -24,12 +28,16 @@ import retrofit2.Response;
 
 public class TechnicalDocumentActivity extends AppCompatActivity implements OnItemClickListener {
 
+    private static final String TAG = "TechnicalDocumentActivi";
     @BindView(R.id.search)
     SearchView search;
     @BindView(R.id.rcw_servapp)
     RecyclerView rcwServapp;
+    @BindString(R.string.loading)
+    String loading;
     private JsonApi jsonApi;
     private RcvTechnicalAdapter adapter;
+    private SweetAlertDialog pDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +50,7 @@ public class TechnicalDocumentActivity extends AppCompatActivity implements OnIt
 
     private void getAllList() {
 
+        pDialog.show();
         Call<TechnicalDocument> call = jsonApi.getTechnicalDocumentAll();
         call.enqueue(new Callback<TechnicalDocument>() {
             @Override
@@ -51,12 +60,15 @@ public class TechnicalDocumentActivity extends AppCompatActivity implements OnIt
                     adapter.setItems(model.getTechnicDocuments());
                     adapter.setItemsFilter(model.getTechnicDocuments());
                     search();
+                    pDialog.dismissWithAnimation();
                 }
             }
 
             @Override
             public void onFailure(Call<TechnicalDocument> call, Throwable t) {
 
+                Log.d(TAG, "onFailure: " + t.getMessage());
+                pDialog.dismissWithAnimation();
             }
         });
 
@@ -73,6 +85,8 @@ public class TechnicalDocumentActivity extends AppCompatActivity implements OnIt
         adapter.setListener(this);
         rcwServapp.setLayoutManager(new LinearLayoutManager(this));
         rcwServapp.setAdapter(adapter);
+        AnyDialog anyDialog = new AnyDialog(this);
+        pDialog = anyDialog.loading(loading);
     }
 
     private void search() {
@@ -92,6 +106,7 @@ public class TechnicalDocumentActivity extends AppCompatActivity implements OnIt
 
     @OnClick(R.id.img_back)
     public void onViewClicked() {
+        super.onBackPressed();
     }
 
     @Override
@@ -100,4 +115,6 @@ public class TechnicalDocumentActivity extends AppCompatActivity implements OnIt
         final TechnicDocument document = (TechnicDocument) item;
         openDetail(document);
     }
+
+
 }

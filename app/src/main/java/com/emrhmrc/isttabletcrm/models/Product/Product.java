@@ -3,47 +3,21 @@ package com.emrhmrc.isttabletcrm.models.Product;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
 import com.google.gson.annotations.SerializedName;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
     private String Name;
-
-    @SerializedName("inv_SubGroupId")
     private Inv_Id inv_SubGroupId;
-
-    @SerializedName("inv_SalesGroupId")
     private Inv_Id inv_SalesGroupId;
-
-    @SerializedName("inv_MainGroupId")
     private Inv_Id inv_MainGroupId;
-
-    @SerializedName("inv_BrandId")
     private Inv_Id inv_BrandId;
-
     private String ProductNumber;
-
     private String inv_BillDefinition;
-
     private String ProductId;
-
     private String Image;
     private String ImageMimeType;
     private double ImageFileSize;
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "Name='" + Name + '\'' +
-                ", inv_SubGroupId=" + inv_SubGroupId +
-                ", inv_SalesGroupId=" + inv_SalesGroupId +
-                ", inv_MainGroupId=" + inv_MainGroupId +
-                ", inv_BrandId=" + inv_BrandId +
-                ", ProductNumber='" + ProductNumber + '\'' +
-                ", inv_BillDefinition='" + inv_BillDefinition + '\'' +
-                ", ProductId='" + ProductId + '\'' +
-                ", Image='" + Image + '\'' +
-                ", ImageMimeType='" + ImageMimeType + '\'' +
-                ", ImageFileSize=" + ImageFileSize +
-                '}';
-    }
 
     public String getImage() {
         return Image;

@@ -17,6 +17,8 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
 import com.emrhmrc.isttabletcrm.R;
+import com.emrhmrc.isttabletcrm.SweetDialog.AnyDialog;
+import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.adapter.RcvWarehouseAdapter;
 import com.emrhmrc.isttabletcrm.adapter.RcvWarehouseTransferAdapter;
@@ -34,6 +36,7 @@ import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindDrawable;
+import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -64,7 +67,7 @@ public class WareHouseActivity extends AppCompatActivity implements OnItemClickL
     Button btnInfo;
     @BindView(R.id.btn_wish)
     Button btnWish;
-    @BindDrawable(R.drawable.btn_malzeme)
+    @BindDrawable(R.drawable.btn_malzeme_2)
     Drawable first;
     @BindDrawable(R.drawable.btn_taleplerim)
     Drawable second;
@@ -72,12 +75,15 @@ public class WareHouseActivity extends AppCompatActivity implements OnItemClickL
     Spinner spnSort;
     @BindView(R.id.spn_sort2)
     Spinner spnSort2;
+    @BindString(R.string.loading)
+    String loading;
     private JsonApi jsonApi;
     private RcvWarehouseAdapter adapter;
     private RcvWarehouseTransferAdapter adapter_talep;
     private List<WarehouseTransferItem> warehouseTransferItems;
     private List<WarehouseItem> warehouseItems;
     private String[] items;
+    private SweetAlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +97,7 @@ public class WareHouseActivity extends AppCompatActivity implements OnItemClickL
     }
 
     private void getAllTrasnefer() {
+        dialog.show();
         UserIdRequest userIdRequest = new UserIdRequest(SingletonUser.getInstance().getUser().getUserId());
         Call<WarehouseTransferListAll> call = jsonApi.getWarehouseTransferListAllCall(userIdRequest);
         call.enqueue(new Callback<WarehouseTransferListAll>() {
@@ -104,18 +111,22 @@ public class WareHouseActivity extends AppCompatActivity implements OnItemClickL
                     adapter_talep.setItemsFilter(temp.getWarehouseTransfers());
                     search2();
                     filterwithSpinner2();
+                    dialog.dismissWithAnimation();
 
                 }
             }
 
             @Override
             public void onFailure(Call<WarehouseTransferListAll> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+                dialog.dismissWithAnimation();
 
             }
         });
     }
 
     private void getAll() {
+        dialog.show();
         UserIdRequest userIdRequest = new UserIdRequest(SingletonUser.getInstance().getUser().getUserId());
         Call<WarehouseItemListAll> call = jsonApi.getWarehouseItemListAllCall(userIdRequest);
         call.enqueue(new Callback<WarehouseItemListAll>() {
@@ -130,11 +141,13 @@ public class WareHouseActivity extends AppCompatActivity implements OnItemClickL
                     search();
                     filterwithSpinner();
                 }
+                dialog.dismissWithAnimation();
             }
 
             @Override
             public void onFailure(Call<WarehouseItemListAll> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
+                dialog.dismissWithAnimation();
             }
         });
     }
@@ -187,6 +200,8 @@ public class WareHouseActivity extends AppCompatActivity implements OnItemClickL
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnSort.setAdapter(spinnerArrayAdapter);
         spnSort2.setAdapter(spinnerArrayAdapter);
+        AnyDialog anyDialog = new AnyDialog(this);
+        dialog = anyDialog.loading(loading);
     }
 
     private void rcvFirst() {
@@ -219,7 +234,7 @@ public class WareHouseActivity extends AppCompatActivity implements OnItemClickL
         spnSort.setVisibility(View.GONE);
     }
 
-    @OnClick({R.id.btn_info, R.id.btn_wish, R.id.img_add_2, R.id.add_job, R.id.rcv_talep})
+    @OnClick({R.id.btn_info, R.id.btn_wish, R.id.img_add_2, R.id.add_job, R.id.rcv_talep, R.id.img_back})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_info:
@@ -235,6 +250,9 @@ public class WareHouseActivity extends AppCompatActivity implements OnItemClickL
                 openCreateFragment();
                 break;
             case R.id.rcv_talep:
+                break;
+            case R.id.img_back:
+                super.onBackPressed();
                 break;
 
         }

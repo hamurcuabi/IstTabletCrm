@@ -63,6 +63,7 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
         btn_send.setOnClickListener(this);
         img_close.setOnClickListener(this);
         edt_tarih.setOnClickListener(this);
+        edt_tarih.setOnKeyListener(null);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getDialog().setCanceledOnTouchOutside(false);
 
@@ -92,6 +93,7 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
             case R.id.edt_tarih:
                 openDatePicker();
                 break;
+
 
         }
 
@@ -143,4 +145,5 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
         });
 
     }
+
 }

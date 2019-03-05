@@ -85,7 +85,7 @@
                 android:layout_marginStart="@dimen/menu_left"
                 android:layout_marginTop="@dimen/detay_menu_145"
                 android:layout_weight="1"
-                android:background="@color/white"
+                android:background="@drawable/btn_default_layout"
                 android:elevation="@dimen/detay_menu_8"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -643,7 +643,7 @@
                 android:layout_marginTop="@dimen/detay_menu_145"
                 android:layout_marginEnd="@dimen/menu_left"
                 android:layout_weight="1"
-                android:background="@color/white"
+                android:background="@drawable/btn_default_layout"
                 android:elevation="@dimen/detay_menu_20"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/cons_genel"

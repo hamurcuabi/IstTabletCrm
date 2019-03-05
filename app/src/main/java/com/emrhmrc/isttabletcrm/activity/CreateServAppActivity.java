@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -18,6 +20,7 @@ import com.emrhmrc.isttabletcrm.helper.CreateSubServAppSingleton;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
 import com.emrhmrc.isttabletcrm.models.Account.Account;
 import com.emrhmrc.isttabletcrm.models.Account.AccountListAll;
+import com.emrhmrc.isttabletcrm.models.Elevator.CustomerIdRequest;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorListAll;
 import com.emrhmrc.isttabletcrm.models.Elevator.Elevators;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetById;
@@ -36,11 +39,11 @@ public class CreateServAppActivity extends AppCompatActivity {
 
     private static final String TAG = "CreateServAppActivity";
     @BindView(R.id.spinner_musteri)
-    Spinner spinner_musteri;
+    AutoCompleteTextView spinner_musteri;
     @BindView(R.id.edt_konu)
     EditText edtKonu;
     @BindView(R.id.spn_asansor)
-    Spinner spnAsansor;
+    AutoCompleteTextView spnAsansor;
     @BindView(R.id.spn_ariza)
     Spinner spnAriza;
     @BindView(R.id.spn_oncelik)
@@ -72,14 +75,15 @@ public class CreateServAppActivity extends AppCompatActivity {
             fillAll(servAppGetById);
         } else {
             getAccountAll();
-            getElevatorAll();
             lnrOnceki.setVisibility(View.GONE);
             edtIsimsoyad.setText(SingletonUser.getInstance().getUser().getUserName());
         }
     }
 
-    private void getElevatorAll() {
-        Call<ElevatorListAll> call = jsonApi.elevatorListAll();
+    private void getElevatorByCustomerAll(String id) {
+        Log.d(TAG, "getElevatorByCustomerAll: "+id);
+        CustomerIdRequest request = new CustomerIdRequest(id);
+        Call<ElevatorListAll> call = jsonApi.elevatorGetByCustomerId(request);
         APIHelper.enqueueWithRetry(call, new Callback<ElevatorListAll>() {
             @Override
             public void onResponse(Call<ElevatorListAll> call, Response<ElevatorListAll> response) {
@@ -153,20 +157,49 @@ public class CreateServAppActivity extends AppCompatActivity {
     }
 
     private void fillSpinner(List<Account> list) {
-        ArrayAdapter<Account> spinnerArrayAdapter = new ArrayAdapter<>(this, R.layout.spinner_item,
-                list);
-        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner_musteri.setAdapter(spinnerArrayAdapter);
-
+        if (list.size() > 0 && list != null) {
+            ArrayAdapter<Account> spinnerArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line,
+                    list);
+            //spinnerArrayAdapter.setDropDownViewResource(android.R.layout
+            // .simple_spinner_dropdown_item);
+            spinner_musteri.setAdapter(spinnerArrayAdapter);
+            spinner_musteri.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    spinner_musteri.showDropDown();
+                }
+            });
+            spinner_musteri.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    getElevatorByCustomerAll(list.get(i).getAccountId());
+                }
+            });
+        } else {
+            spinner_musteri.setAdapter(null);
+            spinner_musteri.setOnClickListener(null);
+        }
 
     }
 
     private void fillElevatorSpinner(List<Elevators> list) {
-        ArrayAdapter<Elevators> spinnerArrayAdapter = new ArrayAdapter<>(this, R.layout.spinner_item,
-                list);
-        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spnAsansor.setAdapter(spinnerArrayAdapter);
+        if (list.size() > 0 && list != null) {
+            ArrayAdapter<Elevators> spinnerArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line,
+                    list);
+            // spinnerArrayAdapter.setDropDownViewResource(android.R.layout
+            // .simple_spinner_dropdown_item);
+            spnAsansor.setAdapter(spinnerArrayAdapter);
+            spnAsansor.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
+                    spnAsansor.showDropDown();
+                }
+            });
+        } else {
+            spnAsansor.setAdapter(null);
+            spnAsansor.setOnClickListener(null);
+        }
 
     }
 
@@ -177,7 +210,8 @@ public class CreateServAppActivity extends AppCompatActivity {
         elevators.setInv_ElevatorName(name);
         ArrayAdapter<Elevators> spinnerArrayAdapter = new ArrayAdapter<>(this, R.layout.spinner_item,
                 list);
-        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // spinnerArrayAdapter.setDropDownViewResource(android.R.layout
+        // .simple_spinner_dropdown_item);
         spnAsansor.setAdapter(spinnerArrayAdapter);
 
 

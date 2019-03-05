@@ -21,6 +21,8 @@ public class RcvSerAppListAllViewHolder extends BaseViewHolder<ServiceAppointmen
     TextView txtCount;
     @BindView(R.id.rlf)
     LinearLayout rlf;
+    @BindView(R.id.lnr)
+    LinearLayout lnr;
     @BindView(R.id.imageView5)
     ImageView imageView5;
     @BindView(R.id.txt_title)
@@ -59,6 +61,7 @@ public class RcvSerAppListAllViewHolder extends BaseViewHolder<ServiceAppointmen
         binding.setCount(StringUtil.convertIntToString(getAdapterPosition() + 1));
         if (listener != null) {
             rlf.setOnClickListener(view -> listener.onItemClicked(item,getAdapterPosition()));
+            lnr.setOnClickListener(view -> listener.onItemClicked(item,getAdapterPosition()));
         }
 
     }

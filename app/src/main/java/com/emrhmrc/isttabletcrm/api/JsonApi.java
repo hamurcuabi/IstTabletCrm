@@ -6,6 +6,7 @@ import com.emrhmrc.isttabletcrm.models.BreakDown.BreakDownTypeListAll;
 import com.emrhmrc.isttabletcrm.models.CommonClass.NotificationCountResponse;
 import com.emrhmrc.isttabletcrm.models.CommonClass.ServAppCountResponse;
 import com.emrhmrc.isttabletcrm.models.Document.TechnicalDocument;
+import com.emrhmrc.isttabletcrm.models.Elevator.CustomerIdRequest;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorGetById;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorIdRequest;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorListAll;
@@ -92,6 +93,9 @@ public interface JsonApi {
     //OK
     @POST("Elevator/GetById")
     Call<ElevatorGetById> elevatorGetById(@Body ElevatorIdRequest elevatorId);
+    //OK
+    @POST("Elevator/GetByCustomerId")
+    Call<ElevatorListAll> elevatorGetByCustomerId(@Body CustomerIdRequest customerIdRequest);
 
     //OK
     @POST("ServApp/ListAll")

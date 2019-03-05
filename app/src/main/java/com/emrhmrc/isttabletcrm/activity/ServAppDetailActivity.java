@@ -1,19 +1,28 @@
 package com.emrhmrc.isttabletcrm.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.databinding.DataBindingUtil;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
+import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
+import com.emrhmrc.isttabletcrm.SweetDialog.AnyDialog;
+import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.adapter.RcvServAppDetailAdapter;
+import com.emrhmrc.isttabletcrm.adapter.SwipeToDelete;
 import com.emrhmrc.isttabletcrm.api.APIHelper;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
@@ -23,20 +32,23 @@ import com.emrhmrc.isttabletcrm.fragment.BeforeAfterPicFragment;
 import com.emrhmrc.isttabletcrm.fragment.ControlListFragment;
 import com.emrhmrc.isttabletcrm.fragment.DefaultMapFragment;
 import com.emrhmrc.isttabletcrm.fragment.DetailServAppFormFragment;
-import com.emrhmrc.isttabletcrm.fragment.MapFragment;
 import com.emrhmrc.isttabletcrm.fragment.ReasonOfBreakdownFragment;
 import com.emrhmrc.isttabletcrm.helper.CreateSubServAppSingleton;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
+import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
 import com.emrhmrc.isttabletcrm.models.MapModel;
+import com.emrhmrc.isttabletcrm.models.Product.Product;
 import com.emrhmrc.isttabletcrm.models.ServApp.CompleteByIdRequest;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetById;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdNotes;
+import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppDetails;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppIdRequest;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -50,10 +62,58 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     ActivityServAppDetailBinding binding;
     @BindView(R.id.rcv)
     RecyclerView rcv;
+    @BindView(R.id.txt_aciklamanot)
+    TextView txt_aciklamanot;
+    @BindString(R.string.loading)
+    String loading;
+    @BindString(R.string.sure)
+    String sure;
+    @BindString(R.string.doit)
+    String doit;
+    @BindString(R.string.dont)
+    String dont;
+    @BindString(R.string.close_servapp)
+    String close;
     private JsonApi jsonApi;
     private RcvServAppDetailAdapter adapter;
     private ShareData shareData;
     private List<ServAppGetByIdNotes> notes;
+    private SweetAlertDialog dialog;
+    private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // Get extra data included in the Intent
+            Product product = (Product) intent.getSerializableExtra("product");
+            String id = intent.getStringExtra("id");
+            if (product != null) {
+                boolean exist = false;
+                for (ServAppGetByIdServAppDetails details : adapter.getItems()
+                ) {
+                    if (details.getInv_ProductId().getText().equals(product.getProductId())) {
+                        exist = true;
+                    }
+
+                }
+                if (!exist) {
+                    ServAppGetByIdServAppDetails add = new ServAppGetByIdServAppDetails();
+                    add.setInv_ProductId(new Inv_Id("YENİ", "YENİ", product.getProductId()));
+                    add.setManuel(true);
+                    adapter.add(add);
+                }
+            }
+
+            if (id != null) {
+
+                for (ServAppGetByIdServAppDetails details : adapter.getItems()
+                ) {
+                    if (details.getInv_ProductId().getText().equals(id)) {
+                        adapter.remove(details);
+                    }
+
+                }
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +122,8 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
         ButterKnife.bind(this);
         init();
         getServAppById(shareData.getServAppId());
+        LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
+                new IntentFilter("custom-event-name"));
     }
 
     private void openServappFormFragment() {
@@ -93,9 +155,15 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
         rcv.setLayoutManager(new LinearLayoutManager(this));
         rcv.setAdapter(adapter);
         shareData = ShareData.getInstance();
+        ItemTouchHelper itemTouchHelper = new
+                ItemTouchHelper(new SwipeToDelete(adapter));
+        itemTouchHelper.attachToRecyclerView(rcv);
+        AnyDialog anyDialog = new AnyDialog(this);
+        dialog = anyDialog.loading(loading);
     }
 
     private void getServAppById(String id) {
+        dialog.show();
         Call<ServAppGetById> call = jsonApi.servAppGetById(new ServAppIdRequest(id));
         APIHelper.enqueueWithRetry(call, new Callback<ServAppGetById>() {
             @Override
@@ -105,17 +173,22 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                     CreateSubServAppSingleton.getInstance().setServAppGetById(model);
                     notes = new ArrayList<>();
                     notes = model.getServiceAppointment().getServAppGetByIdNotes();
+                    if (notes.size() > 0)
+                        txt_aciklamanot.setText(notes.get(notes.size() - 1).getNoteText());
+
                     setModelToBind(model.getServiceAppointment());
                     ShareData.getInstance().setLongitude(model.getServiceAppointment().getInv_Longitude());
                     ShareData.getInstance().setLatitude(model.getServiceAppointment().getInv_Latitude());
                     adapter.setItems(model.getServiceAppointment().getServAppGetByIdServAppDetails());
                 }
+                dialog.dismissWithAnimation();
             }
 
             @Override
             public void onFailure(Call<ServAppGetById> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
                 CreateSubServAppSingleton.getInstance().setServAppGetById(null);
+                dialog.dismissWithAnimation();
             }
         });
 
@@ -140,11 +213,31 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     }
 
     private void closeServApp() {
+        if (checkProductAmount()) {
+            new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText(sure)
+                    .setContentText(close)
+                    .setCancelText(dont)
+                    .setConfirmText(doit)
+                    .showCancelButton(true)
+                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                            CompleteByIdRequest request = new CompleteByIdRequest();
+                            request.setServiceAppId(ShareData.getInstance().getServAppId());
+                            request.setUserId(SingletonUser.getInstance().getUser().getUserId());
+                            request.setCompleteType(true);
+                        }
+                    })
+                    .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+                            sDialog.cancel();
+                        }
+                    })
+                    .show();
 
-        CompleteByIdRequest request = new CompleteByIdRequest();
-        request.setServiceAppId(ShareData.getInstance().getServAppId());
-        request.setUserId(SingletonUser.getInstance().getUser().getUserId());
-        request.setCompleteType(true);
+        }
 
 
     }
@@ -188,7 +281,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
 
     @OnClick({R.id.img_cancel, R.id.txt_cancel, R.id.btn_closejob, R.id.txt_yeni, R.id.img_yeni,
             R.id.img_add, R.id.txt_add, R.id.btn_beforeafter, R.id.txt_aciklamanot,
-            R.id.txt_asansorno, R.id.txt_servis_raporu, R.id.img_servis_raporu,R.id.img_gps})
+            R.id.txt_asansorno, R.id.txt_servis_raporu, R.id.img_servis_raporu, R.id.img_gps, R.id.img_menu})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_cancel:
@@ -201,7 +294,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                 openBeforeAfter();
                 break;
             case R.id.txt_arizakodu:
-                 //openReasonOfBreakdown();
+                //openReasonOfBreakdown();
                 break;
             case R.id.img_gps:
                 mapFragment();
@@ -239,6 +332,9 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
             case R.id.img_servis_raporu:
                 openServappFormFragment();
                 break;
+            case R.id.img_menu:
+                super.onBackPressed();
+                break;
         }
     }
 
@@ -246,6 +342,32 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     protected void onDestroy() {
         Log.d(TAG, "onDestroy: ");
         CreateSubServAppSingleton.getInstance().setServAppGetById(null);
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
         super.onDestroy();
     }
+
+    private void openDialog() {
+        new SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)
+                .setTitleText("Hata...")
+                .setContentText("Miktarları belirleyiniz !")
+                .show();
+    }
+
+    private boolean checkProductAmount() {
+
+
+        for (ServAppGetByIdServAppDetails details : adapter.getItems()
+        ) {
+            if (details.getInv_Quantity() == 0) {
+                openDialog();
+                return false;
+            }
+
+        }
+
+
+        return true;
+    }
+
+
 }

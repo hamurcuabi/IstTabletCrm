@@ -1,6 +1,8 @@
 package com.emrhmrc.isttabletcrm.adapter;
 
 import android.support.annotation.Nullable;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.TextView;
 
@@ -12,7 +14,7 @@ import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppDetails;
 public class RcvServAppDetailViewHolder extends BaseViewHolder<ServAppGetByIdServAppDetails,
         OnItemClickListener<ServAppGetByIdServAppDetails>> {
     private TextView txt_urundahilimi, txt_fatura, txt_garantidurumu, txt_stokdurumu, txt_birim,
-            txt_miktar, txt_urunadi, txt_kod;
+            edt_miktar, txt_urunadi, txt_kod;
 
     public RcvServAppDetailViewHolder(View itemView) {
         super(itemView);
@@ -21,7 +23,7 @@ public class RcvServAppDetailViewHolder extends BaseViewHolder<ServAppGetByIdSer
         txt_garantidurumu = itemView.findViewById(R.id.txt_garantidurumu);
         txt_stokdurumu = itemView.findViewById(R.id.txt_stokdurumu);
         txt_birim = itemView.findViewById(R.id.txt_birim);
-        txt_miktar = itemView.findViewById(R.id.txt_miktar);
+        edt_miktar = itemView.findViewById(R.id.edt_miktar);
         txt_urunadi = itemView.findViewById(R.id.txt_urunadi);
         txt_kod = itemView.findViewById(R.id.txt_kod);
     }
@@ -30,14 +32,36 @@ public class RcvServAppDetailViewHolder extends BaseViewHolder<ServAppGetByIdSer
     public void onBind(ServAppGetByIdServAppDetails item,
                        @Nullable OnItemClickListener<ServAppGetByIdServAppDetails> listener) {
 
-        //txt_urundahilimi.setText();
         txt_fatura.setText(String.valueOf(item.getInv_WillBeBilled()));
-        txt_garantidurumu.setText(item.getInv_WarrantyStatusCode().getText());
-        // txt_stokdurumu.setText();
-        txt_birim.setText(item.getInv_Uomid().getText());
-        txt_miktar.setText(String.valueOf(item.getInv_Quantity()));
-        txt_urunadi.setText(item.getInv_ProductId().getText());
-        txt_kod.setText(item.getInv_LineNo().toString());
+        if (item.getInv_WarrantyStatusCode() != null)
+            txt_garantidurumu.setText(item.getInv_WarrantyStatusCode().getText());
+        if (item.getInv_Uomid() != null)
+            txt_birim.setText(item.getInv_Uomid().getText());
+        edt_miktar.setText(String.valueOf(item.getInv_Quantity()));
+        edt_miktar.setEnabled(false);
+        if (item.getInv_ProductId() != null)
+            txt_urunadi.setText(item.getInv_ProductId().getText());
+        if (item.getInv_LineNo() != null)
+            txt_kod.setText(item.getInv_LineNo().toString());
+        if (item.isManuel()) {
+            edt_miktar.setEnabled(true);
+            edt_miktar.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+                    if (!editable.toString().isEmpty())
+                        item.setInv_Quantity(Integer.parseInt(editable.toString()));
+                }
+            });
+        }
+
 
     }
 

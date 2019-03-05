@@ -16,9 +16,11 @@ public class RcvProductSubProductAdapter extends GenericAdapter<Product,
         ProductSubProductViewHolder> implements Filterable {
 
     private ProductSubGroupProductFilterAdapter filter;
+    private Context context;
 
     public RcvProductSubProductAdapter(Context context, OnItemClickListener listener) {
         super(context, listener);
+        this.context=context;
         filter = new ProductSubGroupProductFilterAdapter(this, getItemsFilter());
 
     }
@@ -27,7 +29,7 @@ public class RcvProductSubProductAdapter extends GenericAdapter<Product,
     public ProductSubProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //viewtype göre ekelriz
 
-        return new ProductSubProductViewHolder(inflate(R.layout.sub_product_item, parent));
+        return new ProductSubProductViewHolder(inflate(R.layout.sub_product_item, parent),context);
     }
 
     @Override

@@ -59,7 +59,7 @@
         android:layout_marginTop="@dimen/detay_menu"
         android:layout_marginEnd="@dimen/menu_left_32"
         android:layout_marginBottom="@dimen/detay_menu_25"
-        android:background="@color/white"
+        android:background="@drawable/btn_default_layout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -62,14 +62,14 @@
     </android.support.constraint.ConstraintLayout>
 
     <LinearLayout
-        android:layout_marginBottom="@dimen/text_menu_32"
         android:id="@+id/cons_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="@dimen/menu_left"
         android:layout_marginTop="@dimen/detay_menu"
         android:layout_marginEnd="@dimen/menu_left_32"
-        android:background="@color/white"
+        android:layout_marginBottom="@dimen/text_menu_32"
+        android:background="@drawable/btn_default_layout"
         android:elevation="2dp"
         android:orientation="horizontal">
 

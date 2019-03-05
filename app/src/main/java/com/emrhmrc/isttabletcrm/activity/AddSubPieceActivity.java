@@ -1,7 +1,9 @@
 package com.emrhmrc.isttabletcrm.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,13 +17,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
+import com.emrhmrc.isttabletcrm.SweetDialog.AnyDialog;
+import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.adapter.RcvProductSubAdapter;
 import com.emrhmrc.isttabletcrm.adapter.RcvProductSubProductAdapter;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.fragment.ImageSliderFragment;
-import com.emrhmrc.isttabletcrm.helper.MapGo;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.helper.SlideInterface;
 import com.emrhmrc.isttabletcrm.models.Product.Product;
@@ -57,6 +60,7 @@ public class AddSubPieceActivity extends AppCompatActivity implements View.OnCli
     private ImageSliderFragment fragment;
     private TextView txt_maingroup_name, txt_maingroup_id;
     private int main_background = -1;
+    private SweetAlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,9 +69,11 @@ public class AddSubPieceActivity extends AppCompatActivity implements View.OnCli
         ButterKnife.bind(this);
         init();
         getSubProduct();
+        AnimateDownMain();
     }
 
     private void getSubProduct() {
+        dialog.show();
         SubGroupRequest request = new SubGroupRequest(ShareData.getInstance().getProductMainId());
         Call<SubProductList> call = jsonApi.getSubProductListCall(request);
         call.enqueue(new Callback<SubProductList>() {
@@ -81,17 +87,19 @@ public class AddSubPieceActivity extends AppCompatActivity implements View.OnCli
                 } else {
                     Log.d(TAG, "onResponse: ");
                 }
+                dialog.dismissWithAnimation();
             }
 
             @Override
             public void onFailure(Call<SubProductList> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
+                dialog.dismissWithAnimation();
             }
         });
     }
 
     private void getSubProductProduct(String id) {
-
+        dialog.show();
         SubGroupProductsRequest request = new SubGroupProductsRequest(id);
         Call<ProductListAll> call = jsonApi.productListAll(request);
         call.enqueue(new Callback<ProductListAll>() {
@@ -106,11 +114,13 @@ public class AddSubPieceActivity extends AppCompatActivity implements View.OnCli
                     search_sub();
 
                 }
+                dialog.dismissWithAnimation();
             }
 
             @Override
             public void onFailure(Call<ProductListAll> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
+                dialog.dismissWithAnimation();
             }
         });
 
@@ -168,6 +178,9 @@ public class AddSubPieceActivity extends AppCompatActivity implements View.OnCli
         rcv_main.setAdapter(adapter_main);
         rcv_sub.setAdapter(adapter_sub);
         txt_maingroup_name.setText(ShareData.getInstance().getProductMainName());
+
+        AnyDialog anyDialog = new AnyDialog(this);
+        dialog = anyDialog.loading(getResources().getString(R.string.loading));
 
     }
 
@@ -293,5 +306,13 @@ public class AddSubPieceActivity extends AppCompatActivity implements View.OnCli
             openSilder(productList.get(productList.size() - 1),
                     productList.size() - 1);
         else openSilder(productList.get(position), position);
+    }
+
+    public void sendMessage(Product product) {
+        Log.d("sender", "Broadcasting message");
+        Intent intent = new Intent("custom-event-name");
+        // You can also include some extra data.
+        intent.putExtra("message", "This is my message!");
+        LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
     }
 }

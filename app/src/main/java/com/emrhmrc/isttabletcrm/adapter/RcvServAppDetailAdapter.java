@@ -11,8 +11,19 @@ import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppDetails;
 public class RcvServAppDetailAdapter extends GenericAdapter<ServAppGetByIdServAppDetails,
         OnItemClickListener<ServAppGetByIdServAppDetails>,
         RcvServAppDetailViewHolder> {
+    private Context context;
+
+    public Context getContext() {
+        return context;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
+    }
+
     public RcvServAppDetailAdapter(Context context, OnItemClickListener listener) {
         super(context, listener);
+        this.context=context;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.emrhmrc.isttabletcrm.adapter;
 
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,6 +24,8 @@ public class ProductMainViewHolder extends BaseViewHolder<MainList,
     TextView txtAnatext;
     @BindView(R.id.txt_anacount)
     TextView txtAnacount;
+    @BindView(R.id.cons_rcv)
+    ConstraintLayout cons;
 
     public ProductMainViewHolder(View itemView) {
         super(itemView);
@@ -37,6 +40,7 @@ public class ProductMainViewHolder extends BaseViewHolder<MainList,
         txtAnacount.setText(StringUtil.convertIntToString(item.getSubGroupCount()));
         if (listener != null) {
             imgAnapic.setOnClickListener(view -> listener.onItemClicked(item, getAdapterPosition()));
+            cons.setOnClickListener(view -> listener.onItemClicked(item, getAdapterPosition()));
         }
     }
 

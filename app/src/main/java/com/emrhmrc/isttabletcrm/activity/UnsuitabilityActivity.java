@@ -5,9 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.View;
 
 import com.emrhmrc.isttabletcrm.R;
+import com.emrhmrc.isttabletcrm.SweetDialog.AnyDialog;
+import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.adapter.RcvUnstabilityAdapter;
 import com.emrhmrc.isttabletcrm.api.APIHelper;
@@ -21,6 +24,7 @@ import com.emrhmrc.isttabletcrm.models.User.UserIdRequest;
 
 import java.util.List;
 
+import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -35,8 +39,11 @@ public class UnsuitabilityActivity extends AppCompatActivity implements OnItemCl
     SearchView search;
     @BindView(R.id.rcw_servapp)
     RecyclerView rcwServapp;
+    @BindString(R.string.loading)
+    String loading;
     private RcvUnstabilityAdapter adapter;
     private JsonApi jsonApi;
+    private SweetAlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +57,7 @@ public class UnsuitabilityActivity extends AppCompatActivity implements OnItemCl
 
     private void getAll() {
 
+        dialog.show();
         UserIdRequest userIdRequest = new UserIdRequest(SingletonUser.getInstance().getUser().getUserId());
         Call<UnsuitabilityListAll> call = jsonApi.getUnsuitabilityListAllCall(userIdRequest);
         APIHelper.enqueueWithRetry(call, 3, new Callback<UnsuitabilityListAll>() {
@@ -61,11 +69,13 @@ public class UnsuitabilityActivity extends AppCompatActivity implements OnItemCl
                             adapter.setItems(model);
                             search();
                         }
+                        dialog.dismissWithAnimation();
                     }
 
                     @Override
                     public void onFailure(Call<UnsuitabilityListAll> call, Throwable t) {
-
+                        dialog.dismissWithAnimation();
+                        Log.d(TAG, "onFailure: " + t.getMessage());
                     }
                 }
         );
@@ -79,6 +89,8 @@ public class UnsuitabilityActivity extends AppCompatActivity implements OnItemCl
         adapter = new RcvUnstabilityAdapter(getApplicationContext(), this);
         adapter.setListener(this);
         rcwServapp.setAdapter(adapter);
+        AnyDialog anyDialog = new AnyDialog(this);
+        dialog = anyDialog.loading(loading);
 
 
     }

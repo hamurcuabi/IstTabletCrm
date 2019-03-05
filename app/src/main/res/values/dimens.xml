@@ -131,5 +131,8 @@
     <dimen name="margin80">80dp</dimen>
     <dimen name="detay_menu_10">10dp</dimen>
     <dimen name="m300">300dp</dimen>
-
+    <dimen name="m200">200dp</dimen>
+    <dimen name="alert_width">290dp</dimen>
+    <dimen name="common_circle_width">3dp</dimen>
+    <dimen name="progress_circle_radius">34dp</dimen>
 </resources>

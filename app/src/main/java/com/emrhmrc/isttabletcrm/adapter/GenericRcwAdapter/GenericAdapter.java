@@ -240,6 +240,13 @@ public abstract class GenericAdapter<T, L extends BaseRecyclerListener, VH exten
         }
     }
 
+    public void remove(int position) {
+        if (position > -1) {
+            items.remove(position);
+            notifyItemRemoved(position);
+        }
+    }
+
     /**
      * Returns whether adapter is empty or not.
      *

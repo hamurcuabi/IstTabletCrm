@@ -6,6 +6,7 @@ import android.view.Display;
 import android.widget.Toast;
 
 import com.emrhmrc.isttabletcrm.R;
+import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointments;
@@ -33,9 +34,11 @@ public class CalendarActivity extends BaseActivity {
     boolean calledNetwork = false;
     private JsonApi jsonApi;
 
+
     @Override
     public List<? extends WeekViewEvent> onMonthChange(int newYear, int newMonth) {
         if (!calledNetwork) {
+            dialog.show();
             jsonApi = ApiClient.getClient().create(JsonApi.class);
             UserIdRequest userIdRequest = new UserIdRequest(ShareData.getInstance().getUserId());
             Call<ServAppListAll> call = jsonApi.servAppListAll(userIdRequest);
@@ -46,6 +49,7 @@ public class CalendarActivity extends BaseActivity {
 
                         final ServAppListAll temp = response.body();
                         setCalendarEvents(temp.getServiceAppointments());
+                        dialog.dismissWithAnimation();
 
 
                     }
@@ -54,6 +58,7 @@ public class CalendarActivity extends BaseActivity {
                 @Override
                 public void onFailure(Call<ServAppListAll> call, Throwable t) {
                     Log.d(TAG, "onFailure: " + t.getMessage());
+                    dialog.dismissWithAnimation();
                 }
             });
 

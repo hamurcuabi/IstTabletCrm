@@ -1,8 +1,12 @@
 package com.emrhmrc.isttabletcrm.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -45,14 +49,14 @@ public class ProductSubProductViewHolder extends BaseViewHolder<Product,
     @BindDrawable(R.drawable.btn_kontrol)
     Drawable btn_default;
     private FragmentManager fragmentManager;
-    private List<Product> list;
+   private Product current;
+    private Context context;
 
-
-    public ProductSubProductViewHolder(View itemView) {
+    public ProductSubProductViewHolder(View itemView, Context context) {
         super(itemView);
         ButterKnife.bind(this, itemView);
-        this.fragmentManager = fragmentManager;
-        this.list = list;
+        this.context = context;
+
     }
 
 
@@ -67,10 +71,12 @@ public class ProductSubProductViewHolder extends BaseViewHolder<Product,
         if (!StateHandler.getInstance().getStateList().get(getAdapterPosition()).isState()) {
             btnAdd.setText("Ekle");
             btnAdd.setBackground(btn_default);
+
         } else {
             btnAdd.setText("Eklendi");
             btnAdd.setBackground(btn_selected);
         }
+        current=item;
 
     }
 
@@ -81,15 +87,32 @@ public class ProductSubProductViewHolder extends BaseViewHolder<Product,
             StateHandler.getInstance().getStateList().get(getAdapterPosition()).setState(true);
             btnAdd.setText("Eklendi");
             btnAdd.setBackground(btn_selected);
+            sendItemToAdd(current);
 
         } else {
             StateHandler.getInstance().getStateList().get(getAdapterPosition()).setState(false);
             btnAdd.setText("Ekle");
             btnAdd.setBackground(btn_default);
+            sendItemToDelete(current.getProductId());
 
         }
 
 
+    }
+
+    public void sendItemToAdd(Product current) {
+        Log.d("sender", "Broadcasting message");
+        Intent intent = new Intent("custom-event-name");
+        // You can also include some extra data.
+        intent.putExtra("product", current);
+        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+    }
+    public void sendItemToDelete(String id) {
+        Log.d("sender", "Broadcasting message");
+        Intent intent = new Intent("custom-event-name");
+        // You can also include some extra data.
+        intent.putExtra("id", id);
+        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
     }
 
 }

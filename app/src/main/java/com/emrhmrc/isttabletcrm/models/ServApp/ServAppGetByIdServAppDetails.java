@@ -4,126 +4,111 @@ package com.emrhmrc.isttabletcrm.models.ServApp;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Code;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
 
-public class ServAppGetByIdServAppDetails
-{
+public class ServAppGetByIdServAppDetails {
     private Integer inv_LineNo;
-
     private String inv_Description;
-
     private Code inv_WarrantyStatusCode;
-
     private boolean inv_WillBeBilled;
-
     private String inv_ServiceAppDetailId;
     private Code inv_ApprovalStCode;
-
     private String inv_ProductDescription;
-
     private Inv_Id inv_Uomid;
     private Inv_Id inv_ProductId;
-
     private int inv_Quantity;
+    private boolean isManuel = false;
+
+    public boolean isInv_WillBeBilled() {
+        return inv_WillBeBilled;
+    }
+
+    public boolean isManuel() {
+        return isManuel;
+    }
+
+    public void setManuel(boolean manuel) {
+        isManuel = manuel;
+    }
 
     public ServAppGetByIdServAppDetails() {
     }
 
-    public Integer getInv_LineNo ()
-    {
+    public Integer getInv_LineNo() {
         return inv_LineNo;
     }
 
-    public void setInv_LineNo (Integer inv_LineNo)
-    {
+    public void setInv_LineNo(Integer inv_LineNo) {
         this.inv_LineNo = inv_LineNo;
     }
 
-    public String getInv_Description ()
-    {
+    public String getInv_Description() {
         return inv_Description;
     }
 
-    public void setInv_Description (String inv_Description)
-    {
+    public void setInv_Description(String inv_Description) {
         this.inv_Description = inv_Description;
     }
 
-    public Code getInv_WarrantyStatusCode ()
-    {
+    public Code getInv_WarrantyStatusCode() {
         return inv_WarrantyStatusCode;
     }
 
-    public void setInv_WarrantyStatusCode (Code inv_WarrantyStatusCode)
-    {
+    public void setInv_WarrantyStatusCode(Code inv_WarrantyStatusCode) {
         this.inv_WarrantyStatusCode = inv_WarrantyStatusCode;
     }
 
-    public boolean getInv_WillBeBilled ()
-    {
+    public boolean getInv_WillBeBilled() {
         return inv_WillBeBilled;
     }
 
-    public void setInv_WillBeBilled (boolean inv_WillBeBilled)
-    {
+    public void setInv_WillBeBilled(boolean inv_WillBeBilled) {
         this.inv_WillBeBilled = inv_WillBeBilled;
     }
 
-    public String getInv_ServiceAppDetailId ()
-    {
+    public String getInv_ServiceAppDetailId() {
         return inv_ServiceAppDetailId;
     }
 
-    public void setInv_ServiceAppDetailId (String inv_ServiceAppDetailId)
-    {
+    public void setInv_ServiceAppDetailId(String inv_ServiceAppDetailId) {
         this.inv_ServiceAppDetailId = inv_ServiceAppDetailId;
     }
 
-    public Code getInv_ApprovalStCode ()
-    {
+    public Code getInv_ApprovalStCode() {
         return inv_ApprovalStCode;
     }
 
-    public void setInv_ApprovalStCode (Code inv_ApprovalStCode)
-    {
+    public void setInv_ApprovalStCode(Code inv_ApprovalStCode) {
         this.inv_ApprovalStCode = inv_ApprovalStCode;
     }
 
-    public String getInv_ProductDescription ()
-    {
+    public String getInv_ProductDescription() {
         return inv_ProductDescription;
     }
 
-    public void setInv_ProductDescription (String inv_ProductDescription)
-    {
+    public void setInv_ProductDescription(String inv_ProductDescription) {
         this.inv_ProductDescription = inv_ProductDescription;
     }
 
-    public Inv_Id getInv_Uomid ()
-    {
+    public Inv_Id getInv_Uomid() {
         return inv_Uomid;
     }
 
-    public void setInv_Uomid (Inv_Id inv_Uomid)
-    {
+    public void setInv_Uomid(Inv_Id inv_Uomid) {
         this.inv_Uomid = inv_Uomid;
     }
 
-    public Inv_Id getInv_ProductId ()
-    {
+    public Inv_Id getInv_ProductId() {
         return inv_ProductId;
     }
 
-    public void setInv_ProductId (Inv_Id inv_ProductId)
-    {
+    public void setInv_ProductId(Inv_Id inv_ProductId) {
         this.inv_ProductId = inv_ProductId;
     }
 
-    public int getInv_Quantity ()
-    {
+    public int getInv_Quantity() {
         return inv_Quantity;
     }
 
-    public void setInv_Quantity (int inv_Quantity)
-    {
+    public void setInv_Quantity(int inv_Quantity) {
         this.inv_Quantity = inv_Quantity;
     }
 

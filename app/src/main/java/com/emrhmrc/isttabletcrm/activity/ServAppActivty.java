@@ -12,6 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.emrhmrc.isttabletcrm.R;
+import com.emrhmrc.isttabletcrm.SweetDialog.AnyDialog;
+import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.adapter.RcvServAppListAllAdapter;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
@@ -25,6 +27,7 @@ import com.emrhmrc.isttabletcrm.util.StringUtil;
 import java.util.List;
 
 import butterknife.BindArray;
+import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -41,10 +44,13 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
     RecyclerView rcw;
     @BindArray(R.array.spn_servapp)
     String[] items;
+    @BindString(R.string.loading)
+    String loading;
     private List<ServiceAppointments> model;
     private JsonApi jsonApi;
     private RcvServAppListAllAdapter adapter;
     private ShareData shareData;
+    private SweetAlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,10 +92,13 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(spinnerArrayAdapter);
         shareData = ShareData.getInstance();
+        AnyDialog anyDialog = new AnyDialog(this);
+        dialog = anyDialog.loading(loading);
 
     }
 
     private void getServAppListAll() {
+        dialog.show();
         UserIdRequest userIdRequest = new UserIdRequest(shareData.getUserId());
         Call<ServAppListAll> call = jsonApi.servAppListAll(userIdRequest);
         call.enqueue(new Callback<ServAppListAll>() {
@@ -105,11 +114,13 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
 
 
                 }
+                dialog.dismissWithAnimation();
             }
 
             @Override
             public void onFailure(Call<ServAppListAll> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
+                dialog.dismissWithAnimation();
             }
         });
 
@@ -135,7 +146,7 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
         startActivity(new Intent(ServAppActivty.this, CreateServAppActivity.class));
     }
 
-    @OnClick({R.id.txt_add, R.id.img_add})
+    @OnClick({R.id.txt_add, R.id.img_add, R.id.img_back})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.txt_add:
@@ -144,6 +155,10 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
             case R.id.img_add:
                 goCreateServApp();
                 break;
+            case R.id.img_back:
+                super.onBackPressed();
+                break;
+
         }
     }
 
