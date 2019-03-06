@@ -1,5 +1,6 @@
 package com.emrhmrc.isttabletcrm.helper;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
@@ -49,6 +50,10 @@ public class Methodes {
     public static boolean checkAndRequestPermissions(Activity activity) {
         int permissionACCESS_FINE_LOCATION = ContextCompat.checkSelfPermission(activity, android.Manifest.permission.ACCESS_FINE_LOCATION);
         int permissionACCESS_COARSE_LOCATION = ContextCompat.checkSelfPermission(activity, android.Manifest.permission.ACCESS_COARSE_LOCATION);
+        int permissionACCESS_READ = ContextCompat.checkSelfPermission(activity,
+                Manifest.permission.READ_EXTERNAL_STORAGE);
+        int permissionACCESS_WRITE = ContextCompat.checkSelfPermission(activity,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE);
         List<String> listPermissionsNeeded = new ArrayList<>();
 
         if (permissionACCESS_FINE_LOCATION != PackageManager.PERMISSION_GRANTED) {
@@ -58,7 +63,11 @@ public class Methodes {
         if (permissionACCESS_COARSE_LOCATION != PackageManager.PERMISSION_GRANTED) {
             listPermissionsNeeded.add(android.Manifest.permission.ACCESS_COARSE_LOCATION);
         }
-
+        if (permissionACCESS_READ != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(android.Manifest.permission.READ_EXTERNAL_STORAGE);
+        } if (permissionACCESS_WRITE != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
         if (!listPermissionsNeeded.isEmpty()) {
             ActivityCompat.requestPermissions(activity, listPermissionsNeeded.toArray(new
                     String[listPermissionsNeeded.size()]), REQUEST_ID_MULTIPLE_PERMISSIONS);

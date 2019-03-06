@@ -25,6 +25,7 @@ import com.emrhmrc.isttabletcrm.R;
 import java.io.ByteArrayOutputStream;
 
 import static android.app.Activity.RESULT_OK;
+import static com.emrhmrc.isttabletcrm.helper.Methodes.checkAndRequestPermissions;
 
 public class BeforeAfterPicFragment extends DialogFragment implements View.OnClickListener {
 
@@ -72,6 +73,7 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
 
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getDialog().setCanceledOnTouchOutside(false);
+
     }
 
     @Override
@@ -112,11 +114,13 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
     }
 
     private void dispatchTakePictureIntent(int i) {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (checkAndRequestPermissions(getActivity())) {
+            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
        /* if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, i);
         }*/
-        this.startActivityForResult(takePictureIntent, i);
+            this.startActivityForResult(takePictureIntent, i);
+        }
     }
 
     private void dispatchTakeVideoIntent(int i) {
@@ -136,10 +140,10 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
             video_first.setVisibility(View.GONE);
             img_first.setVisibility(View.VISIBLE);
 
-           /* Uri selectedImage = getImageUri(getActivity(), photo);
+            Uri selectedImage = getImageUri(getActivity(), photo);
             String realPath = getRealPathFromURI(selectedImage);
             selectedImage = Uri.parse(realPath);
-            Log.d(TAG, "onActivityResult: " + selectedImage.toString());*/
+            Log.d(TAG, "onActivityResult: " + selectedImage.toString());
 
         } else if (requestCode == REQUEST_IMAGE_CAPTURE_SECOND && resultCode == RESULT_OK) {
 

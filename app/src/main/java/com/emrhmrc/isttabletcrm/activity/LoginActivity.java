@@ -110,6 +110,7 @@ public class LoginActivity extends AppCompatActivity {
                         btn_login.setEnabled(true);
                     }
                     dialog.dismissWithAnimation();
+
                 }
 
                 @Override

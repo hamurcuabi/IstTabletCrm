@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
+import com.emrhmrc.isttabletcrm.helper.Methodes;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
 import com.emrhmrc.isttabletcrm.models.CommonClass.NotificationCountResponse;
 import com.emrhmrc.isttabletcrm.models.CommonClass.ServAppCountResponse;
@@ -44,6 +45,7 @@ public class HomeActivity extends AppCompatActivity {
         jsonApi = ApiClient.getClient().create(JsonApi.class);
         setTexts();
         setNotifCount();
+        Methodes.checkAndRequestPermissions(this);
 
     }
 

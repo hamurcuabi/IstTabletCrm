@@ -4,9 +4,13 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.Cursor;
 import android.databinding.DataBindingUtil;
+import android.graphics.Bitmap;
 import android.graphics.Point;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -48,6 +52,7 @@ import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppDetails;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppIdRequest;
 import com.emrhmrc.isttabletcrm.models.ServApp.UpsertByIdRequest;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -428,7 +433,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     private void doUpsert() {
         UpsertByIdRequest request = new UpsertByIdRequest();
         List<String> changed = new ArrayList<>();
-        changed.add("ServAppGetByIdServAppDetails");
+        changed.add("ServAppDetails");
         if (model != null)
             request.setServiceApp(model.getServiceAppointment());
         request.setServAppChangedFields(changed);
@@ -440,22 +445,15 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
             @Override
             public void onResponse(Call<DefaultResponse2> call, Response<DefaultResponse2> response) {
                 if (response.isSuccessful()) {
-                    Log.d(TAG, "onResponse: ");
-                    new SweetAlertDialog(ServAppDetailActivity.this,
-                            SweetAlertDialog.SUCCESS_TYPE)
-                            .setTitleText(succes)
-                            .setContentText("")
-                            .show();
+
+
                 }
+                Log.d(TAG, "ActvityonResponse: ");
             }
 
             @Override
             public void onFailure(Call<DefaultResponse2> call, Throwable t) {
-                Log.d(TAG, "onFailure: " + t.getMessage());
-                new SweetAlertDialog(ServAppDetailActivity.this, SweetAlertDialog.ERROR_TYPE)
-                        .setTitleText(error)
-                        .setContentText(t.getMessage())
-                        .show();
+                Log.d(TAG, "ActivtyonFailure: " + t.getMessage());
             }
         });
     }
@@ -494,6 +492,38 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if ( resultCode == RESULT_OK) {
+
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+
+            Uri selectedImage = getImageUri(this, photo);
+            String realPath = getRealPathFromURI(selectedImage);
+            selectedImage = Uri.parse(realPath);
+            Log.d(TAG, "onActivityResult: " + selectedImage.toString());
+
+        }
+    }
+
+    public Uri getImageUri(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
+        return Uri.parse(path);
+    }
+
+    public String getRealPathFromURI(Uri contentUri) {
+        Cursor cursor = null;
+        try {
+            String[] proj = {MediaStore.Images.Media.DATA};
+            cursor = getContentResolver().query(contentUri, proj, null, null, null);
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
     }
 
 }
