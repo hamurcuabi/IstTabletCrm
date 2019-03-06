@@ -1,5 +1,6 @@
 package com.emrhmrc.isttabletcrm.models.ServApp;
 
+import com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointment;
 import com.emrhmrc.isttabletcrm.models.Elevator.ServAppDetails;
 import com.emrhmrc.isttabletcrm.models.Unsuitablity.Unsuitabilities;
 
@@ -8,7 +9,7 @@ import java.util.List;
 public class UpsertByIdRequest {
     private String UserId;
     private List<String> ServAppChangedFields;
-    private ServiceAppointmentRequest serviceAppointment;
+    private ServiceAppointment serviceAppointment;
     private ServAppGetByIdNotes servAppNotesList;
     private List<ServAppGetByIdServAppWorkListDetails> servAppWorkListDetailsList;
     private List<ServAppDetails> servAppDetailsList;
@@ -32,11 +33,11 @@ public class UpsertByIdRequest {
         ServAppChangedFields = servAppChangedFields;
     }
 
-    public ServiceAppointmentRequest getServiceAppointment() {
+    public ServiceAppointment getServiceAppointment() {
         return serviceAppointment;
     }
 
-    public void setServiceAppointment(ServiceAppointmentRequest serviceAppointment) {
+    public void setServiceAppointment(ServiceAppointment serviceAppointment) {
         this.serviceAppointment = serviceAppointment;
     }
 

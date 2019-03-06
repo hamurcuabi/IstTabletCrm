@@ -102,7 +102,7 @@ public interface JsonApi {
     Call<ServAppListAll> servAppListAll(@Body UserIdRequest userId);
 
     //Not Even Tried
-    @POST("ServApp/UpsertByIdRequest")
+    @POST("ServApp/UpsertById")
     Call<DefaultResponse2> upsertById(@Body UpsertByIdRequest upsertById);
 
     //OK

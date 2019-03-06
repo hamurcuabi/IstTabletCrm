@@ -32,6 +32,7 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
             img_add_video, img_add_video_second;
     private VideoView video_first, video_second;
 
+
     public static BeforeAfterPicFragment newInstance() {
         Bundle args = new Bundle();
         BeforeAfterPicFragment fragment = new BeforeAfterPicFragment();
@@ -43,7 +44,6 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_before_after_pic, container);
-
 
 
     }
@@ -107,7 +107,6 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
 
     }
 
-
     private void dispatchTakePictureIntent(int i) {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
@@ -131,6 +130,7 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
             video_first.setVisibility(View.GONE);
             img_first.setVisibility(View.VISIBLE);
         } else if (requestCode == REQUEST_IMAGE_CAPTURE_SECOND && resultCode == RESULT_OK) {
+
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             img_second.setImageBitmap(imageBitmap);
@@ -148,4 +148,5 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
             video_second.setVisibility(View.VISIBLE);
         }
     }
+
 }

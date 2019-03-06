@@ -60,7 +60,7 @@ public class AddSubPieceActivity extends AppCompatActivity implements View.OnCli
     private ImageSliderFragment fragment;
     private TextView txt_maingroup_name, txt_maingroup_id;
     private int main_background = -1;
-    private SweetAlertDialog dialog;
+    private SweetAlertDialog dialog,dialog2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +99,7 @@ public class AddSubPieceActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void getSubProductProduct(String id) {
-        dialog.show();
+        dialog2.show();
         SubGroupProductsRequest request = new SubGroupProductsRequest(id);
         Call<ProductListAll> call = jsonApi.productListAll(request);
         call.enqueue(new Callback<ProductListAll>() {
@@ -114,13 +114,13 @@ public class AddSubPieceActivity extends AppCompatActivity implements View.OnCli
                     search_sub();
 
                 }
-                dialog.dismissWithAnimation();
+                dialog2.dismissWithAnimation();
             }
 
             @Override
             public void onFailure(Call<ProductListAll> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
-                dialog.dismissWithAnimation();
+                dialog2.dismissWithAnimation();
             }
         });
 
@@ -181,6 +181,8 @@ public class AddSubPieceActivity extends AppCompatActivity implements View.OnCli
 
         AnyDialog anyDialog = new AnyDialog(this);
         dialog = anyDialog.loading(getResources().getString(R.string.loading));
+        AnyDialog anyDialog2 = new AnyDialog(this);
+        dialog2 = anyDialog2.loading(getResources().getString(R.string.loading));
 
     }
 

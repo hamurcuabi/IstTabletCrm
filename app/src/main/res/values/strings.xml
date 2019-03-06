@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">IstTabletCrm</string>
     <string name="product_list_all">Product List All</string>
-    <string name="toast_error">Something Wrong!</string>
+    <string name="toast_error">Hata!</string>
     <string name="user_login">User Login</string>
     <string name="breakdown_type_list_all">BreakdownType List All</string>
     <string name="account_all">Account All</string>
@@ -210,6 +210,7 @@
     <string name="dialog_ok">OK</string>
     <string name="dialog_cancel">Cancel</string>
     <string name="LOADING">Loading...</string>
+    <string name="succes">Başarılı</string>
 
     <string-array name="spn_servapp">
         <item>Tüm İş Emirlerim</item>
