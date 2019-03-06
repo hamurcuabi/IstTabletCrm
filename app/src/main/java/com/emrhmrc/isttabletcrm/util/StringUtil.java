@@ -47,7 +47,7 @@ public class StringUtil {
             return text;
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
-            return "";
+            return "null";
         }
 
     }

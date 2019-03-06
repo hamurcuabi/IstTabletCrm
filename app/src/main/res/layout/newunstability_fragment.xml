@@ -53,6 +53,7 @@
                 android:textStyle="bold" />
 
             <AutoCompleteTextView
+                android:id="@+id/spn_account"
                 android:background="@drawable/spn_style"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/edt_calendar_height"
@@ -90,6 +91,7 @@
                 android:textStyle="bold" />
 
             <AutoCompleteTextView
+                android:id="@+id/spnElevator"
                 android:background="@drawable/spn_style"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/edt_calendar_height"
@@ -167,7 +169,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/spinner_musteri"
+                android:id="@+id/edt_descp"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/detay_menu_110"
                 android:layout_marginStart="@dimen/detay_menu_30"

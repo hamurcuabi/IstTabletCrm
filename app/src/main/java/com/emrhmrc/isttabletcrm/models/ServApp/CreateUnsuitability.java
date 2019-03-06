@@ -7,18 +7,9 @@ public class CreateUnsuitability {
     private String UserId;
     private String Description;
     private String Subject;
-    private Date SentOn;
+    private String SentOn;
 
-    @Override
-    public String toString() {
-        return "CreateUnsuitability{" +
-                "ServAppId='" + ServAppId + '\'' +
-                ", UserId='" + UserId + '\'' +
-                ", Description='" + Description + '\'' +
-                ", Subject='" + Subject + '\'' +
-                ", SentOn=" + SentOn +
-                '}';
-    }
+
 
     public CreateUnsuitability() {
     }
@@ -55,11 +46,11 @@ public class CreateUnsuitability {
         Subject = subject;
     }
 
-    public Date getSentOn() {
+    public String getSentOn() {
         return SentOn;
     }
 
-    public void setSentOn(Date sentOn) {
+    public void setSentOn(String sentOn) {
         SentOn = sentOn;
     }
 }

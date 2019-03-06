@@ -12,20 +12,32 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.emrhmrc.isttabletcrm.R;
+import com.emrhmrc.isttabletcrm.SweetDialog.AnyDialog;
+import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
+import com.emrhmrc.isttabletcrm.api.APIHelper;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
+import com.emrhmrc.isttabletcrm.models.Account.Account;
+import com.emrhmrc.isttabletcrm.models.Account.AccountListAll;
+import com.emrhmrc.isttabletcrm.models.Elevator.CustomerIdRequest;
+import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorListAll;
+import com.emrhmrc.isttabletcrm.models.Elevator.Elevators;
 import com.emrhmrc.isttabletcrm.models.ServApp.CreateUnsuitability;
 import com.emrhmrc.isttabletcrm.models.ServApp.DefaultResponse2;
 
 import java.util.Calendar;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,9 +47,10 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
 
     private static final String TAG = "NewUnstabilityFragment";
     private ImageView img_close;
-    private EditText edt_tarih;
+    private EditText edt_tarih, edt_descp;
     private Button btn_send;
     private JsonApi jsonApi;
+    private AutoCompleteTextView spn_account, spnElevator;
 
     public static NewUnstabilityFragment newInstance() {
         Bundle args = new Bundle();
@@ -59,13 +72,17 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
         jsonApi = ApiClient.getClient().create(JsonApi.class);
         btn_send = view.findViewById(R.id.btn_send);
         img_close = view.findViewById(R.id.img_close);
+        edt_descp = view.findViewById(R.id.edt_descp);
         edt_tarih = view.findViewById(R.id.edt_tarih);
+        spnElevator = view.findViewById(R.id.spnElevator);
+        spn_account = view.findViewById(R.id.spn_account);
         btn_send.setOnClickListener(this);
         img_close.setOnClickListener(this);
         edt_tarih.setOnClickListener(this);
         edt_tarih.setOnKeyListener(null);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getDialog().setCanceledOnTouchOutside(false);
+        getAccountAll();
 
     }
 
@@ -125,8 +142,8 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
     private void send() {
         CreateUnsuitability createUnsuitability = new CreateUnsuitability();
         createUnsuitability.setUserId(SingletonUser.getInstance().getUser().getUserId());
-        createUnsuitability.setDescription("Test Description");
-        createUnsuitability.setSentOn(Calendar.getInstance().getTime());
+        createUnsuitability.setDescription(edt_descp.getText().toString());
+        createUnsuitability.setSentOn(edt_tarih.getText().toString());
         createUnsuitability.setSubject("Test Subject");
         createUnsuitability.setServAppId(ShareData.getInstance().getServAppId());
         Call<DefaultResponse2> call = jsonApi.createUnsuitabilityCall(createUnsuitability);
@@ -143,6 +160,103 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
                 Log.d(TAG, "onFailure: " + t.getMessage());
             }
         });
+
+    }
+
+    private void getElevatorByCustomerAll(String id) {
+
+
+        Log.d(TAG, "getElevatorByCustomerAll: " + id);
+        CustomerIdRequest request = new CustomerIdRequest(id);
+        Call<ElevatorListAll> call = jsonApi.elevatorGetByCustomerId(request);
+        APIHelper.enqueueWithRetry(call, new Callback<ElevatorListAll>() {
+            @Override
+            public void onResponse(Call<ElevatorListAll> call, Response<ElevatorListAll> response) {
+                if (response.isSuccessful()) {
+
+                    ElevatorListAll listAll = response.body();
+                    fillElevatorSpinner(listAll.getElevators());
+
+
+                } else Log.d(TAG, "onResponse: ");
+            }
+
+            @Override
+            public void onFailure(Call<ElevatorListAll> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+
+            }
+        });
+    }
+
+    private void fillElevatorSpinner(List<Elevators> list) {
+        if (list.size() > 0 && list != null) {
+            ArrayAdapter<Elevators> spinnerArrayAdapter = new ArrayAdapter<>(getActivity(),
+                    android.R.layout.simple_dropdown_item_1line,
+                    list);
+            // spinnerArrayAdapter.setDropDownViewResource(android.R.layout
+            // .simple_spinner_dropdown_item);
+            spnElevator.setAdapter(spinnerArrayAdapter);
+            spnElevator.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    spnElevator.showDropDown();
+                }
+            });
+        } else {
+            spnElevator.setAdapter(null);
+            spnElevator.setOnClickListener(null);
+        }
+
+    }
+
+    private void getAccountAll() {
+
+        Call<AccountListAll> call = jsonApi.geAccountListAllCall();
+        APIHelper.enqueueWithRetry(call, new Callback<AccountListAll>() {
+            @Override
+            public void onResponse(Call<AccountListAll> call, Response<AccountListAll> response) {
+                if (response.isSuccessful()) {
+
+                    AccountListAll listAll = response.body();
+                    fillSpinner(listAll.getAccounts());
+
+                } else Log.d(TAG, "onResponse: ");
+
+            }
+
+            @Override
+            public void onFailure(Call<AccountListAll> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+            }
+        });
+    }
+
+    private void fillSpinner(List<Account> list) {
+        if (list.size() > 0 && list != null) {
+            ArrayAdapter<Account> spinnerArrayAdapter = new ArrayAdapter<>(getActivity(),
+                    android.R.layout.simple_dropdown_item_1line,
+                    list);
+            //spinnerArrayAdapter.setDropDownViewResource(android.R.layout
+            // .simple_spinner_dropdown_item);
+            spn_account.setAdapter(spinnerArrayAdapter);
+            spn_account.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    spn_account.showDropDown();
+                }
+            });
+            spn_account.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    getElevatorByCustomerAll(list.get(i).getAccountId());
+                }
+            });
+        } else {
+            spn_account.setAdapter(null);
+            spn_account.setOnClickListener(null);
+        }
 
     }
 
