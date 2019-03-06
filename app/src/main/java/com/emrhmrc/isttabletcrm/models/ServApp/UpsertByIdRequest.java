@@ -9,13 +9,16 @@ import java.util.List;
 public class UpsertByIdRequest {
     private String UserId;
     private List<String> ServAppChangedFields;
-    private ServiceAppointment serviceAppointment;
-    private ServAppGetByIdNotes servAppNotesList;
-    private List<ServAppGetByIdServAppWorkListDetails> servAppWorkListDetailsList;
-    private List<ServAppDetails> servAppDetailsList;
-    private List<ServAppGetByIdServAppBreakdownTypes> servAppBreakdownTypesList;
-    private List<ServAppGetByIdServAppModernizationChecklists> servAppModernizationChecklistsList;
-    private List<Unsuitabilities> servAppUnsuitabilitiesTable;
+    private ServiceAppointment ServiceApp;
+    private List<ServAppGetByIdNotes> Notes;
+    private List<ServAppGetByIdServAppWorkListDetails> ServAppWorkDetails;
+    private List<ServAppGetByIdServAppDetails> ServAppDetails;
+    private List<ServAppGetByIdServAppBreakdownTypes> ServAppBreakdownTypes;
+    private List<ServAppGetByIdServAppModernizationChecklists> ServAppModernizationChecklists;
+    private List<Unsuitabilities> ServAppUnsuitabilities;
+
+    public UpsertByIdRequest() {
+    }
 
     public String getUserId() {
         return UserId;
@@ -33,62 +36,60 @@ public class UpsertByIdRequest {
         ServAppChangedFields = servAppChangedFields;
     }
 
-    public ServiceAppointment getServiceAppointment() {
-        return serviceAppointment;
+    public ServiceAppointment getServiceApp() {
+        return ServiceApp;
     }
 
-    public void setServiceAppointment(ServiceAppointment serviceAppointment) {
-        this.serviceAppointment = serviceAppointment;
+    public void setServiceApp(ServiceAppointment serviceApp) {
+        ServiceApp = serviceApp;
     }
 
-    public ServAppGetByIdNotes getServAppNotesList() {
-        return servAppNotesList;
+    public List<ServAppGetByIdNotes> getNotes() {
+        return Notes;
     }
 
-    public void setServAppNotesList(ServAppGetByIdNotes servAppNotesList) {
-        this.servAppNotesList = servAppNotesList;
+    public void setNotes(List<ServAppGetByIdNotes> notes) {
+        Notes = notes;
     }
 
-    public List<ServAppGetByIdServAppWorkListDetails> getServAppWorkListDetailsList() {
-        return servAppWorkListDetailsList;
+    public List<ServAppGetByIdServAppWorkListDetails> getServAppWorkDetails() {
+        return ServAppWorkDetails;
     }
 
-    public void setServAppWorkListDetailsList(List<ServAppGetByIdServAppWorkListDetails> servAppWorkListDetailsList) {
-        this.servAppWorkListDetailsList = servAppWorkListDetailsList;
+    public void setServAppWorkDetails(List<ServAppGetByIdServAppWorkListDetails> servAppWorkDetails) {
+        ServAppWorkDetails = servAppWorkDetails;
     }
 
-    public List<ServAppDetails> getServAppDetailsList() {
-        return servAppDetailsList;
+
+    public List<ServAppGetByIdServAppDetails> getServAppDetails() {
+        return ServAppDetails;
     }
 
-    public void setServAppDetailsList(List<ServAppDetails> servAppDetailsList) {
-        this.servAppDetailsList = servAppDetailsList;
+    public void setServAppDetails(List<ServAppGetByIdServAppDetails> servAppDetails) {
+        ServAppDetails = servAppDetails;
     }
 
-    public List<ServAppGetByIdServAppBreakdownTypes> getServAppBreakdownTypesList() {
-        return servAppBreakdownTypesList;
+    public List<ServAppGetByIdServAppBreakdownTypes> getServAppBreakdownTypes() {
+        return ServAppBreakdownTypes;
     }
 
-    public void setServAppBreakdownTypesList(List<ServAppGetByIdServAppBreakdownTypes> servAppBreakdownTypesList) {
-        this.servAppBreakdownTypesList = servAppBreakdownTypesList;
+    public void setServAppBreakdownTypes(List<ServAppGetByIdServAppBreakdownTypes> servAppBreakdownTypes) {
+        ServAppBreakdownTypes = servAppBreakdownTypes;
     }
 
-    public List<ServAppGetByIdServAppModernizationChecklists> getServAppModernizationChecklistsList() {
-        return servAppModernizationChecklistsList;
+    public List<ServAppGetByIdServAppModernizationChecklists> getServAppModernizationChecklists() {
+        return ServAppModernizationChecklists;
     }
 
-    public void setServAppModernizationChecklistsList(List<ServAppGetByIdServAppModernizationChecklists> servAppModernizationChecklistsList) {
-        this.servAppModernizationChecklistsList = servAppModernizationChecklistsList;
+    public void setServAppModernizationChecklists(List<ServAppGetByIdServAppModernizationChecklists> servAppModernizationChecklists) {
+        ServAppModernizationChecklists = servAppModernizationChecklists;
     }
 
-    public List<Unsuitabilities> getServAppUnsuitabilitiesTable() {
-        return servAppUnsuitabilitiesTable;
+    public List<Unsuitabilities> getServAppUnsuitabilities() {
+        return ServAppUnsuitabilities;
     }
 
-    public void setServAppUnsuitabilitiesTable(List<Unsuitabilities> servAppUnsuitabilitiesTable) {
-        this.servAppUnsuitabilitiesTable = servAppUnsuitabilitiesTable;
-    }
-
-    public UpsertByIdRequest() {
+    public void setServAppUnsuitabilities(List<Unsuitabilities> servAppUnsuitabilities) {
+        ServAppUnsuitabilities = servAppUnsuitabilities;
     }
 }

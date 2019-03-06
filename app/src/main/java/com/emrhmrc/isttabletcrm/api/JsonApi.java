@@ -42,10 +42,15 @@ import com.emrhmrc.isttabletcrm.models.Warehouse.WarehouseItemListAll;
 import com.emrhmrc.isttabletcrm.models.Warehouse.WarehouseTransferCreateRequest;
 import com.emrhmrc.isttabletcrm.models.Warehouse.WarehouseTransferListAll;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 public interface JsonApi {
@@ -93,6 +98,7 @@ public interface JsonApi {
     //OK
     @POST("Elevator/GetById")
     Call<ElevatorGetById> elevatorGetById(@Body ElevatorIdRequest elevatorId);
+
     //OK
     @POST("Elevator/GetByCustomerId")
     Call<ElevatorListAll> elevatorGetByCustomerId(@Body CustomerIdRequest customerIdRequest);
@@ -101,7 +107,7 @@ public interface JsonApi {
     @POST("ServApp/ListAll")
     Call<ServAppListAll> servAppListAll(@Body UserIdRequest userId);
 
-    //Not Even Tried
+    //Not Even Tried :D
     @POST("ServApp/UpsertById")
     Call<DefaultResponse2> upsertById(@Body UpsertByIdRequest upsertById);
 
@@ -166,5 +172,14 @@ public interface JsonApi {
     @POST("WarehouseTransfer/Create")
     Call<DefaultResponse> createTransfer(@Body WarehouseTransferCreateRequest request);
 
+    @Multipart
+    @POST("ServApp/UpsertById")
+    Call<ResponseBody> uploadFile(@Part MultipartBody.Part file,
+                                   @Part("DocumentBody") RequestBody DocumentBody,
+                                   @Part("MimeType") RequestBody MimeType,
+                                   @Part("FileSize") RequestBody FileSize,
+                                   @Part("Subject") RequestBody Subject,
+                                   @Part("IsDocument") RequestBody IsDocument,
+                                   @Part("FileName") RequestBody FileName);
 
 }

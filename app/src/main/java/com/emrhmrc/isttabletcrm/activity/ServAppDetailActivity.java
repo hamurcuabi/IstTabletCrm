@@ -430,14 +430,17 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
         List<String> changed = new ArrayList<>();
         changed.add("ServAppGetByIdServAppDetails");
         if (model != null)
-            request.setServiceAppointment(model.getServiceAppointment());
+            request.setServiceApp(model.getServiceAppointment());
         request.setServAppChangedFields(changed);
         request.setUserId(SingletonUser.getInstance().getUser().getUserId());
+        request.setNotes(notes);
+        request.setServAppDetails(adapter.getItems());
         Call<DefaultResponse2> call = jsonApi.upsertById(request);
         APIHelper.enqueueWithRetry(call, new Callback<DefaultResponse2>() {
             @Override
             public void onResponse(Call<DefaultResponse2> call, Response<DefaultResponse2> response) {
                 if (response.isSuccessful()) {
+                    Log.d(TAG, "onResponse: ");
                     new SweetAlertDialog(ServAppDetailActivity.this,
                             SweetAlertDialog.SUCCESS_TYPE)
                             .setTitleText(succes)
@@ -448,6 +451,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
 
             @Override
             public void onFailure(Call<DefaultResponse2> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
                 new SweetAlertDialog(ServAppDetailActivity.this, SweetAlertDialog.ERROR_TYPE)
                         .setTitleText(error)
                         .setContentText(t.getMessage())
@@ -487,5 +491,9 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
         return true;
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 
 }
