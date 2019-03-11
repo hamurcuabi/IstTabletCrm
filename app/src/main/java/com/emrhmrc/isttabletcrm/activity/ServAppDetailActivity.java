@@ -68,7 +68,6 @@ import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class ServAppDetailActivity extends AppCompatActivity implements OnItemClickListener {
 
@@ -147,6 +146,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     }
 
     private void openServappFormFragment() {
+
         DetailServAppFormFragment fragment = DetailServAppFormFragment.newInstance(ShareData.getInstance().getServAppId());
         fragment.show(getSupportFragmentManager(), "DetailServAppFormFragment");
     }
@@ -498,7 +498,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if ( resultCode == RESULT_OK) {
+        if (resultCode == RESULT_OK) {
 
             Bitmap photo = (Bitmap) data.getExtras().get("data");
 
@@ -543,6 +543,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
         RequestBody filename = RequestBody.create(MediaType.parse("text/plain"), file.getName());
 
     }
+
     private String getRealPathFromURIPath(Uri contentURI, Activity activity) {
         Cursor cursor = activity.getContentResolver().query(contentURI, null, null, null, null);
         if (cursor == null) {

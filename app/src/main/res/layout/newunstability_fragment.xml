@@ -54,13 +54,13 @@
 
             <AutoCompleteTextView
                 android:id="@+id/spn_account"
-                android:background="@drawable/spn_style"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/edt_calendar_height"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="@dimen/detay_menu_30"
                 android:layout_weight="5"
+                android:background="@drawable/spn_style"
                 android:hint="@string/apart_adi"
                 android:paddingLeft="@dimen/detay_menu_25"
                 android:paddingRight="@dimen/detay_menu_12" />
@@ -92,13 +92,13 @@
 
             <AutoCompleteTextView
                 android:id="@+id/spnElevator"
-                android:background="@drawable/spn_style"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/edt_calendar_height"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="@dimen/detay_menu_30"
                 android:layout_weight="5"
+                android:background="@drawable/spn_style"
                 android:hint="@string/asansor_no"
                 android:paddingLeft="@dimen/detay_menu_25"
                 android:paddingRight="@dimen/detay_menu_12" />
@@ -129,7 +129,7 @@
                 android:textSize="@dimen/text_menu_15"
                 android:textStyle="bold" />
 
-            <EditText
+            <TextView
                 android:id="@+id/edt_tarih"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/edt_calendar_height"
@@ -139,6 +139,7 @@
                 android:layout_weight="5"
                 android:background="@drawable/btn_calendars"
                 android:drawableRight="@drawable/ic_eye"
+                android:gravity="center|left"
                 android:hint="@string/tarih"
                 android:paddingLeft="@dimen/detay_menu_25"
                 android:paddingRight="@dimen/detay_menu_12" />

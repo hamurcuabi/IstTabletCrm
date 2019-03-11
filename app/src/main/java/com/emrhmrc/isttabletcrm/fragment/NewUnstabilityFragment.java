@@ -19,10 +19,9 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
-import com.emrhmrc.isttabletcrm.SweetDialog.AnyDialog;
-import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
 import com.emrhmrc.isttabletcrm.api.APIHelper;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
@@ -47,7 +46,8 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
 
     private static final String TAG = "NewUnstabilityFragment";
     private ImageView img_close;
-    private EditText edt_tarih, edt_descp;
+    private EditText edt_descp;
+    private TextView edt_tarih;
     private Button btn_send;
     private JsonApi jsonApi;
     private AutoCompleteTextView spn_account, spnElevator;
@@ -79,7 +79,6 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
         btn_send.setOnClickListener(this);
         img_close.setOnClickListener(this);
         edt_tarih.setOnClickListener(this);
-        edt_tarih.setOnKeyListener(null);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getDialog().setCanceledOnTouchOutside(false);
         getAccountAll();
@@ -130,7 +129,11 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
                         // ay değeri 0 dan başladığı için (Ocak=0, Şubat=1,..,Aralık=11)
                         // değeri 1 artırarak gösteriyoruz.
                         month += 1;
-                        edt_tarih.setText(dayOfMonth + "." + month + "." + year);
+                        String monthString = String.valueOf(month);
+                        if (monthString.length() == 1) {
+                            monthString = "0" + monthString;
+                        }
+                        edt_tarih.setText(dayOfMonth + "." + monthString + "." + year);
 
                     }
                 }, yil, ay, gun);
