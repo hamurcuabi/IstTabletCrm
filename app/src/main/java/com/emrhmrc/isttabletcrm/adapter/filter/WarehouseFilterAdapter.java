@@ -33,13 +33,28 @@ public class WarehouseFilterAdapter extends Filter {
             List<WarehouseItem> filtered = new ArrayList<>();
             for (int i = 0; i < adapter.getItemsFilter().size(); i++) {
                 //CHECK
-                if (adapter.getItemsFilter().get(i).getInv_WarehouseTypeCode() != null) {
-                    if (adapter.getItemsFilter().get(i).getInv_WarehouseTypeCode().getValue() == Integer.parseInt(constraint.toString())) {
-                        //ADD DATA TO FILTERED DATA
+                try {
+                    int k = Integer.parseInt(constraint.toString());
+                    if (k == 0 || k == 1) {
+                        if (adapter.getItemsFilter().get(i).getInv_WarehouseTypeCode() != null) {
+                            if (adapter.getItemsFilter().get(i).getInv_WarehouseTypeCode().getValue() == k) {
+                                //ADD DATA TO FILTERED DATA
+                                filtered.add(adapter.getItemsFilter().get(i));
+                            } else if (Integer.parseInt(constraint.toString()) == 0) {
+                                filtered.add(adapter.getItemsFilter().get(i));
+                            }
+
+                        }
+                    } else {
                         filtered.add(adapter.getItemsFilter().get(i));
                     }
-                    else if(Integer.parseInt(constraint.toString())==0){
-                        filtered.add(adapter.getItemsFilter().get(i));
+                } catch (Exception ex) {
+
+                    if (adapter.getItemsFilter().get(i).getInv_Productid() != null) {
+                        if (adapter.getItemsFilter().get(i).getInv_Productid().getText().toLowerCase().contains(constraint)) {
+                            //ADD DATA TO FILTERED DATA
+                            filtered.add(adapter.getItemsFilter().get(i));
+                        }
                     }
 
                 }
@@ -48,8 +63,8 @@ public class WarehouseFilterAdapter extends Filter {
             results.count = filtered.size();
             results.values = filtered;
         } else {
-            results.count = filterList.size();
-            results.values = filterList;
+            results.count = adapter.getItemsFilter().size();
+            results.values = adapter.getItemsFilter();
 
         }
 

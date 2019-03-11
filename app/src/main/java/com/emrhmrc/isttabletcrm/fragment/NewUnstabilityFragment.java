@@ -31,7 +31,7 @@ import com.emrhmrc.isttabletcrm.models.Account.Account;
 import com.emrhmrc.isttabletcrm.models.Account.AccountListAll;
 import com.emrhmrc.isttabletcrm.models.Elevator.CustomerIdRequest;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorListAll;
-import com.emrhmrc.isttabletcrm.models.Elevator.Elevators;
+import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorsCustomer;
 import com.emrhmrc.isttabletcrm.models.ServApp.CreateUnsuitability;
 import com.emrhmrc.isttabletcrm.models.ServApp.DefaultResponse2;
 
@@ -192,9 +192,9 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
         });
     }
 
-    private void fillElevatorSpinner(List<Elevators> list) {
+    private void fillElevatorSpinner(List<ElevatorsCustomer> list) {
         if (list.size() > 0 && list != null) {
-            ArrayAdapter<Elevators> spinnerArrayAdapter = new ArrayAdapter<>(getActivity(),
+            ArrayAdapter<ElevatorsCustomer> spinnerArrayAdapter = new ArrayAdapter<>(getActivity(),
                     android.R.layout.simple_dropdown_item_1line,
                     list);
             // spinnerArrayAdapter.setDropDownViewResource(android.R.layout

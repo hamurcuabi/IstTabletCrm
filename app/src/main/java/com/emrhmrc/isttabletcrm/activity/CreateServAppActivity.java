@@ -23,6 +23,7 @@ import com.emrhmrc.isttabletcrm.models.Account.AccountListAll;
 import com.emrhmrc.isttabletcrm.models.Elevator.CustomerIdRequest;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorListAll;
 import com.emrhmrc.isttabletcrm.models.Elevator.Elevators;
+import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorsCustomer;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetById;
 
 import java.util.ArrayList;
@@ -81,7 +82,7 @@ public class CreateServAppActivity extends AppCompatActivity {
     }
 
     private void getElevatorByCustomerAll(String id) {
-        Log.d(TAG, "getElevatorByCustomerAll: "+id);
+        Log.d(TAG, "getElevatorByCustomerAll: " + id);
         CustomerIdRequest request = new CustomerIdRequest(id);
         Call<ElevatorListAll> call = jsonApi.elevatorGetByCustomerId(request);
         APIHelper.enqueueWithRetry(call, new Callback<ElevatorListAll>() {
@@ -182,9 +183,9 @@ public class CreateServAppActivity extends AppCompatActivity {
 
     }
 
-    private void fillElevatorSpinner(List<Elevators> list) {
+    private void fillElevatorSpinner(List<ElevatorsCustomer> list) {
         if (list.size() > 0 && list != null) {
-            ArrayAdapter<Elevators> spinnerArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line,
+            ArrayAdapter<ElevatorsCustomer> spinnerArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line,
                     list);
             // spinnerArrayAdapter.setDropDownViewResource(android.R.layout
             // .simple_spinner_dropdown_item);

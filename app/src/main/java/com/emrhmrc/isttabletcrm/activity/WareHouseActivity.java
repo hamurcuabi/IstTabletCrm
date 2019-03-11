@@ -82,7 +82,7 @@ public class WareHouseActivity extends AppCompatActivity implements OnItemClickL
     private RcvWarehouseTransferAdapter adapter_talep;
     private List<WarehouseTransferItem> warehouseTransferItems;
     private List<WarehouseItem> warehouseItems;
-    private String[] items;
+    private String[] items,items2;
     private SweetAlertDialog dialog;
 
     @Override
@@ -195,11 +195,15 @@ public class WareHouseActivity extends AppCompatActivity implements OnItemClickL
         rcvTalep.setAdapter(adapter_talep);
 
         items = getResources().getStringArray(R.array.spn_stok);
+        items2 = getResources().getStringArray(R.array.spn_sort);
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(
                 this, R.layout.spinner_item_white, items);
+        ArrayAdapter<String> spinnerArrayAdapter2 = new ArrayAdapter<>(
+                this, R.layout.spinner_item_white, items2);
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerArrayAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnSort.setAdapter(spinnerArrayAdapter);
-        spnSort2.setAdapter(spinnerArrayAdapter);
+        spnSort2.setAdapter(spinnerArrayAdapter2);
         AnyDialog anyDialog = new AnyDialog(this);
         dialog = anyDialog.loading(loading);
     }
@@ -325,7 +329,16 @@ public class WareHouseActivity extends AppCompatActivity implements OnItemClickL
                         break;
                     case 2:
                         Collections.sort(warehouseTransferItems,
+                                (lhs, rhs) -> rhs.getInv_Productid().getText().compareTo(lhs.getInv_Productid().getText()));
+
+                        break;
+                    case 3:
+                        Collections.sort(warehouseTransferItems,
                                 (lhs, rhs) -> lhs.getInv_Quantity() - rhs.getInv_Quantity());
+                        break;
+                    case 4:
+                        Collections.sort(warehouseTransferItems,
+                                (lhs, rhs) -> rhs.getInv_Quantity() - lhs.getInv_Quantity());
                         break;
                 }
                 adapter_talep.setItems(warehouseTransferItems);

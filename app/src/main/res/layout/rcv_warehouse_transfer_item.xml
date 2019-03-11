@@ -7,6 +7,7 @@
     android:orientation="horizontal">
 
     <TextView
+        android:layout_marginStart="@dimen/padding_rigt32"
         android:id="@+id/txt_tranfertipi"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

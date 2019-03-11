@@ -1,13 +1,12 @@
 package com.emrhmrc.isttabletcrm.models.Elevator;
 
 import com.emrhmrc.isttabletcrm.models.CommonClass.TableMetadata;
-import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 public class ElevatorListAll {
-    @SerializedName("Elevators")
-    private List<Elevators> Elevators;
+
+    private List<ElevatorsCustomer> Elevators;
 
     private String ErrorMsg;
 
@@ -15,11 +14,11 @@ public class ElevatorListAll {
 
     private TableMetadata TableMetadata;
 
-    public List<Elevators> getElevators() {
+    public List<ElevatorsCustomer> getElevators() {
         return Elevators;
     }
 
-    public void setElevators(List<Elevators> Elevators) {
+    public void setElevators(List<ElevatorsCustomer> Elevators) {
         this.Elevators = Elevators;
     }
 
