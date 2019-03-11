@@ -33,7 +33,8 @@ public class TechnicalFilterAdapter extends Filter {
 
             for (int i = 0; i < adapter.getItemsFilter().size(); i++) {
                 //CHECK
-                if (adapter.getItemsFilter().get(i).getInv_TechnicalDocumentName().toLowerCase().contains(constraint)) {
+                if (adapter.getItemsFilter().get(i).getInv_TechnicalDocumentName().toLowerCase().contains(constraint) ||
+                        adapter.getItemsFilter().get(i).getInv_Keywords().toLowerCase().contains(constraint)) {
                     //ADD DATA TO FILTERED DATA
                     filtered.add(adapter.getItemsFilter().get(i));
                 }

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WarehouseFilterAdapter extends Filter {
+    private static final String TAG = "WarehouseFilterAdapter";
     List<WarehouseItem> filterList;
     RcvWarehouseAdapter adapter;
 
@@ -30,21 +31,25 @@ public class WarehouseFilterAdapter extends Filter {
             constraint = constraint.toString().toLowerCase();
             //STORE OUR FILTERED PLAYERS
             List<WarehouseItem> filtered = new ArrayList<>();
-
             for (int i = 0; i < adapter.getItemsFilter().size(); i++) {
                 //CHECK
-                if (adapter.getItemsFilter().get(i).getInv_Productid().getText().toLowerCase().contains(constraint)) {
-                    //ADD DATA TO FILTERED DATA
-                    filtered.add(adapter.getItemsFilter().get(i));
-                }
+                if (adapter.getItemsFilter().get(i).getInv_WarehouseTypeCode() != null) {
+                    if (adapter.getItemsFilter().get(i).getInv_WarehouseTypeCode().getValue() == Integer.parseInt(constraint.toString())) {
+                        //ADD DATA TO FILTERED DATA
+                        filtered.add(adapter.getItemsFilter().get(i));
+                    }
+                    else if(Integer.parseInt(constraint.toString())==0){
+                        filtered.add(adapter.getItemsFilter().get(i));
+                    }
 
+                }
             }
 
             results.count = filtered.size();
             results.values = filtered;
         } else {
-            results.count = adapter.getItemsFilter().size();
-            results.values = adapter.getItemsFilter();
+            results.count = filterList.size();
+            results.values = filterList;
 
         }
 

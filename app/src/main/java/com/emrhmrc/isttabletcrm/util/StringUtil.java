@@ -6,7 +6,8 @@ import android.util.Base64;
 import java.io.UnsupportedEncodingException;
 
 public class StringUtil {
-
+    public final static String TEXT = "text/plain";
+    public final static String PDF = "application/pdf";
 
     public static String returnNull() {
         return "";

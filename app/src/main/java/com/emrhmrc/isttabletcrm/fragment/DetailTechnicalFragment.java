@@ -3,6 +3,7 @@ package com.emrhmrc.isttabletcrm.fragment;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -14,14 +15,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
+import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
 import com.emrhmrc.isttabletcrm.models.Document.TechnicDocument;
 import com.emrhmrc.isttabletcrm.util.StringUtil;
+import com.joanzapata.pdfview.PDFView;
+
+import java.io.File;
 
 public class DetailTechnicalFragment extends DialogFragment implements View.OnClickListener {
     private static final String TAG = "DetailTechnicalFragment";
     private ImageView img_close;
     private TextView txt_header, txt_content;
     private TechnicDocument document;
+    private PDFView pdfView;
 
     public static DetailTechnicalFragment newInstance(TechnicDocument technicDocument) {
 
@@ -41,7 +47,7 @@ public class DetailTechnicalFragment extends DialogFragment implements View.OnCl
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        pdfView = view.findViewById(R.id.pdfview);
         img_close = view.findViewById(R.id.img_close);
         img_close.setOnClickListener(this);
         txt_header = view.findViewById(R.id.txt_header);
@@ -49,10 +55,35 @@ public class DetailTechnicalFragment extends DialogFragment implements View.OnCl
 
         document = (TechnicDocument) getArguments().getSerializable("obj");
         txt_header.setText(StringUtil.nullToString(document.getInv_TechnicalDocumentName()));
-        txt_content.setText(StringUtil.base64ToString(StringUtil.nullToString(document.getDocumentBody())));
+
 
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getDialog().setCanceledOnTouchOutside(false);
+
+
+        if (document.getMimeType().equals(StringUtil.PDF)) {
+            String filename = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) +
+                    "/" + document.getFileName();
+            File file = new File(filename);
+            txt_content.setVisibility(View.GONE);
+            if (file.exists()) {
+                pdfView.fromFile(file)
+                        .defaultPage(1)
+                        .enableSwipe(true)
+                        .showMinimap(true)
+                        .load();
+            } else {
+                new SweetAlertDialog(getActivity(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("Hata...")
+                        .setContentText("Dosya Bozuk !")
+                        .show();
+            }
+        } else {
+            pdfView.setVisibility(View.GONE);
+            txt_content.setText(StringUtil.base64ToString(StringUtil.nullToString(document
+                    .getDocumentBody())));
+        }
+
 
     }
 
@@ -63,8 +94,8 @@ public class DetailTechnicalFragment extends DialogFragment implements View.OnCl
         int width = metrics.widthPixels;
         int height = metrics.heightPixels;
         ViewGroup.LayoutParams params = getDialog().getWindow().getAttributes();
-        params.width = width / 2;
-        params.height = height/2;
+        params.width = 9 * width / 10;
+        params.height = 9 * height / 10;
         getDialog().getWindow().setAttributes((android.view.WindowManager.LayoutParams) params);
     }
 

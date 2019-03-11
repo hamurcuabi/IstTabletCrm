@@ -94,7 +94,7 @@
                         android:textSize="@dimen/text_menu_15"
                         android:textStyle="bold" />
 
-                    <Spinner
+                    <AutoCompleteTextView
                         android:id="@+id/spn_istenilen"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
@@ -130,24 +130,27 @@
                         android:textSize="@dimen/text_menu_15"
                         android:textStyle="bold" />
 
-                    <EditText
-                        android:id="@+id/edt_urunadi"
+                    <AutoCompleteTextView
+                        android:id="@+id/spn_urunadi"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
-                        android:background="@drawable/btn_calendars"
+                        android:background="@drawable/spn_style"
+                        android:drawSelectorOnTop="true"
+                        android:maxLines="10"
                         android:paddingLeft="@dimen/detay_menu_25"
-                        android:paddingRight="@dimen/detay_menu_12" />
+                        android:paddingRight="@dimen/detay_menu_12"
+                        android:spinnerMode="dropdown" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                android:layout_marginBottom="@dimen/detay_menu_12"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/detay_menu_12"
+                    android:layout_marginBottom="@dimen/detay_menu_12"
                     android:orientation="horizontal">
 
                     <TextView
@@ -167,7 +170,6 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:paddingEnd="8dp"
                         android:id="@+id/edt_birim"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
@@ -175,7 +177,8 @@
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
                         android:background="@drawable/btn_calendars"
-                        android:drawableRight="@drawable/ic_eye" />
+                        android:drawableRight="@drawable/ic_eye"
+                        android:paddingEnd="8dp" />
 
                 </LinearLayout>
 
@@ -252,7 +255,7 @@
                         android:textSize="@dimen/text_menu_15"
                         android:textStyle="bold" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/edt_tarih"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
@@ -260,6 +263,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
                         android:background="@drawable/btn_calendars"
+                        android:gravity="center|left"
                         android:paddingLeft="@dimen/detay_menu_25"
                         android:paddingRight="@dimen/detay_menu_12" />
 
@@ -269,8 +273,8 @@
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/detay_menu_12"
                     android:layout_marginTop="@dimen/detay_menu_12"
+                    android:layout_marginBottom="@dimen/detay_menu_12"
                     android:orientation="horizontal">
 
                     <TextView
@@ -290,7 +294,6 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:paddingEnd="8dp"
                         android:id="@+id/edt_aciklama"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
@@ -298,7 +301,8 @@
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
                         android:background="@drawable/btn_calendars"
-                        android:drawableRight="@drawable/ic_pen" />
+                        android:drawableRight="@drawable/ic_pen"
+                        android:paddingEnd="8dp" />
 
                 </LinearLayout>
 
@@ -306,7 +310,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:visibility="gone"
                 android:id="@+id/lnr2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -314,7 +317,7 @@
                 android:layout_weight="1"
                 android:gravity="left"
                 android:orientation="vertical"
-               >
+                android:visibility="gone">
 
 
                 <LinearLayout
@@ -339,7 +342,7 @@
                         android:textSize="@dimen/text_menu_15"
                         android:textStyle="bold" />
 
-                    <Spinner
+                    <AutoCompleteTextView
                         android:id="@+id/spn_cikisdepo"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
@@ -375,16 +378,19 @@
                         android:textSize="@dimen/text_menu_15"
                         android:textStyle="bold" />
 
-                    <EditText
-                        android:id="@+id/edt_urunadi2"
+                    <AutoCompleteTextView
+                        android:id="@+id/spn_urunadi2"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
-                        android:background="@drawable/btn_calendars"
+                        android:background="@drawable/spn_style"
+                        android:drawSelectorOnTop="true"
+                        android:maxLines="10"
                         android:paddingLeft="@dimen/detay_menu_25"
-                        android:paddingRight="@dimen/detay_menu_12" />
+                        android:paddingRight="@dimen/detay_menu_12"
+                        android:spinnerMode="dropdown" />
 
                 </LinearLayout>
 
@@ -412,7 +418,6 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:paddingEnd="8dp"
                         android:id="@+id/edt_birim2"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
@@ -420,15 +425,16 @@
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
                         android:background="@drawable/btn_calendars"
-                        android:drawableRight="@drawable/ic_eye" />
+                        android:drawableRight="@drawable/ic_eye"
+                        android:paddingEnd="8dp" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginBottom="@dimen/detay_menu_12"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/detay_menu_12"
+                    android:layout_marginBottom="@dimen/detay_menu_12"
                     android:orientation="horizontal">
 
                     <TextView
@@ -448,7 +454,6 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:paddingEnd="8dp"
                         android:id="@+id/edt_aciklama2"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
@@ -456,14 +461,14 @@
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
                         android:background="@drawable/btn_calendars"
-                        android:drawableRight="@drawable/ic_pen" />
+                        android:drawableRight="@drawable/ic_pen"
+                        android:paddingEnd="8dp" />
 
                 </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                android:visibility="gone"
                 android:id="@+id/lnr22"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -472,7 +477,7 @@
                 android:layout_weight="1"
                 android:gravity="left"
                 android:orientation="vertical"
-                >
+                android:visibility="gone">
 
 
                 <LinearLayout
@@ -517,7 +522,6 @@
                     android:orientation="horizontal">
 
                     <TextView
-
                         android:layout_width="@dimen/txt_calendar"
                         android:layout_height="wrap_content"
                         android:layout_alignTop="@+id/spinner_musteri"
@@ -532,7 +536,7 @@
                         android:textSize="@dimen/text_menu_15"
                         android:textStyle="bold" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/edt_tarih2"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
@@ -540,6 +544,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
                         android:background="@drawable/btn_calendars"
+                        android:gravity="center|left"
                         android:paddingLeft="@dimen/detay_menu_25"
                         android:paddingRight="@dimen/detay_menu_12" />
 
@@ -569,7 +574,6 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:paddingEnd="8dp"
                         android:id="@+id/edt_hurdanedeni"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
@@ -577,7 +581,8 @@
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
                         android:background="@drawable/btn_calendars"
-                        android:drawableRight="@drawable/ic_pen" />
+                        android:drawableRight="@drawable/ic_pen"
+                        android:paddingEnd="8dp" />
 
                 </LinearLayout>
 
@@ -601,12 +606,12 @@
             android:textStyle="bold" />
 
         <Button
-            android:layout_marginBottom="@dimen/detay_menu_12"
             android:id="@+id/btn_send2"
             android:layout_width="@dimen/m200"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
             android:layout_marginTop="@dimen/padding_top25"
+            android:layout_marginBottom="@dimen/detay_menu_12"
             android:background="@drawable/btn_kontrol"
             android:gravity="center"
             android:text="@string/kaydet"

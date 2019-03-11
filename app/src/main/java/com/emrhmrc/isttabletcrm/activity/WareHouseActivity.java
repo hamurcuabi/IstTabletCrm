@@ -194,7 +194,7 @@ public class WareHouseActivity extends AppCompatActivity implements OnItemClickL
         rcvTalep.setLayoutManager(new LinearLayoutManager(this));
         rcvTalep.setAdapter(adapter_talep);
 
-        items = getResources().getStringArray(R.array.spn_sort);
+        items = getResources().getStringArray(R.array.spn_stok);
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(
                 this, R.layout.spinner_item_white, items);
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -268,8 +268,18 @@ public class WareHouseActivity extends AppCompatActivity implements OnItemClickL
         spnSort.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                // adapter.getFilter().filter(StringUtil.convertIntToString(i));
+
+                Log.d(TAG, "onItemSelected: " + i);
                 switch (i) {
+                    case 0:
+                        adapter.getFilter().filter("0");
+                        break;
+                    case 1:
+                        adapter.getFilter().filter("1");
+                        break;
+                }
+
+               /* switch (i) {
                     case 0:
                         break;
                     case 1:
@@ -290,7 +300,7 @@ public class WareHouseActivity extends AppCompatActivity implements OnItemClickL
                                 (lhs, rhs) -> rhs.getInv_Quantity() - lhs.getInv_Quantity());
                         break;
                 }
-                adapter.setItems(warehouseItems);
+                adapter.setItems(warehouseItems);*/
 
             }
 

@@ -38,6 +38,7 @@ import com.emrhmrc.isttabletcrm.models.User.UserIdRequest;
 import com.emrhmrc.isttabletcrm.models.User.UserLogin;
 import com.emrhmrc.isttabletcrm.models.User.UserRequest;
 import com.emrhmrc.isttabletcrm.models.User.UserReset;
+import com.emrhmrc.isttabletcrm.models.Warehouse.WareHouseListAll;
 import com.emrhmrc.isttabletcrm.models.Warehouse.WarehouseItemListAll;
 import com.emrhmrc.isttabletcrm.models.Warehouse.WarehouseTransferCreateRequest;
 import com.emrhmrc.isttabletcrm.models.Warehouse.WarehouseTransferListAll;
@@ -78,6 +79,10 @@ public interface JsonApi {
     //OK
     @POST("Product/ListAll")
     Call<ProductListAll> productListAll(@Body SubGroupProductsRequest request);
+
+    //OK
+    @POST("Product/ListAll")
+    Call<ProductListAll> productListAll(@Body UserIdRequest request);
 
     //OK
     @GET("MainProductGroup/ListAll")
@@ -163,6 +168,9 @@ public interface JsonApi {
     @POST("Unsuitability/ListAll")
     Call<UnsuitabilityListAll> getUnsuitabilityListAllCall(@Body UserIdRequest userId);
 
+    @POST("Warehouse/ListAll")
+    Call<WareHouseListAll> getWareHouseListAllCall(@Body UserIdRequest userId);
+
     @POST("WarehouseItem/ListAll")
     Call<WarehouseItemListAll> getWarehouseItemListAllCall(@Body UserIdRequest userId);
 
@@ -175,11 +183,11 @@ public interface JsonApi {
     @Multipart
     @POST("ServApp/UpsertById")
     Call<ResponseBody> uploadFile(@Part MultipartBody.Part file,
-                                   @Part("DocumentBody") RequestBody DocumentBody,
-                                   @Part("MimeType") RequestBody MimeType,
-                                   @Part("FileSize") RequestBody FileSize,
-                                   @Part("Subject") RequestBody Subject,
-                                   @Part("IsDocument") RequestBody IsDocument,
-                                   @Part("FileName") RequestBody FileName);
+                                  @Part("DocumentBody") RequestBody DocumentBody,
+                                  @Part("MimeType") RequestBody MimeType,
+                                  @Part("FileSize") RequestBody FileSize,
+                                  @Part("Subject") RequestBody Subject,
+                                  @Part("IsDocument") RequestBody IsDocument,
+                                  @Part("FileName") RequestBody FileName);
 
 }

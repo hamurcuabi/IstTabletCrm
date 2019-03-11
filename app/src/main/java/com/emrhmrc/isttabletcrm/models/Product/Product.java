@@ -1,7 +1,6 @@
 package com.emrhmrc.isttabletcrm.models.Product;
 
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
-import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
@@ -107,5 +106,9 @@ public class Product implements Serializable {
         this.inv_BrandId = inv_BrandId;
     }
 
+    @Override
+    public String toString() {
+        return Name;
+    }
 }
 
