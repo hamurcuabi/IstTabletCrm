@@ -396,7 +396,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                 openServappFormFragment();
                 break;
             case R.id.img_menu:
-                super.onBackPressed();
+                onBackPressed();
                 break;
             case R.id.txt_kaydet:
                 checkUpsertById();
@@ -405,6 +405,12 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                 checkUpsertById();
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        CreateSubServAppSingleton.getInstance().setServAppGetById(null);
+        super.onBackPressed();
     }
 
     private void checkUpsertById() {

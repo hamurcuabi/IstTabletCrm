@@ -115,7 +115,9 @@ public class CreateServAppActivity extends AppCompatActivity {
         edtKonu.setEnabled(false);
         fillElevatorSpinner(item.getInv_ElevatorId().getId(), item.getInv_ElevatorId().getText());
         spnAsansor.setEnabled(false);
+        if(item.getInv_TypeCode()!=null)
         spnAriza.setSelection(item.getInv_TypeCode().getValue() - 1);
+        if(item.getPriortiyCode()!=null)
         spnOncelik.setSelection(item.getPriortiyCode().getValue() - 1);
         edtIsimsoyad.setText(item.getOwnerId().getText());
         edtIsimsoyad.setEnabled(false);
