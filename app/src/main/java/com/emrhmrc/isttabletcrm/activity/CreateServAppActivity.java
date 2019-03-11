@@ -218,11 +218,20 @@ public class CreateServAppActivity extends AppCompatActivity {
 
     }
 
-    @OnClick(R.id.btn_save)
-    public void onViewClicked() {
-        createNew();
-    }
 
     private void createNew() {
+
+    }
+
+    @OnClick({R.id.img_menu, R.id.btn_save})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.img_menu:
+                onBackPressed();
+                break;
+            case R.id.btn_save:
+                createNew();
+                break;
+        }
     }
 }
