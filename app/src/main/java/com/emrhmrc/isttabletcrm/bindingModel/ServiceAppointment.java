@@ -39,6 +39,16 @@ public class ServiceAppointment {
     private Inv_Id OwnerId;
     private Inv_Id inv_Supervisorid;
 
+    public Inv_Id getInv_BreakdownCodeId() {
+        return Inv_BreakdownCodeId;
+    }
+
+    public void setInv_BreakdownCodeId(Inv_Id inv_BreakdownCodeId) {
+        Inv_BreakdownCodeId = inv_BreakdownCodeId;
+    }
+
+    private Inv_Id Inv_BreakdownCodeId;
+
     public String getInv_Description() {
         return inv_Description;
     }

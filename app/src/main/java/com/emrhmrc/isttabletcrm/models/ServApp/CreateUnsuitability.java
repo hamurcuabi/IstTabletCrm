@@ -1,6 +1,6 @@
 package com.emrhmrc.isttabletcrm.models.ServApp;
 
-import java.util.Date;
+import java.util.List;
 
 public class CreateUnsuitability {
     private String ServAppId;
@@ -8,10 +8,17 @@ public class CreateUnsuitability {
     private String Description;
     private String Subject;
     private String SentOn;
-
-
+    private List<Notes> UnsuitabilityNotes;
 
     public CreateUnsuitability() {
+    }
+
+    public List<Notes> getUnsuitabilityNotes() {
+        return UnsuitabilityNotes;
+    }
+
+    public void setUnsuitabilityNotes(List<Notes> unsuitabilityNotes) {
+        UnsuitabilityNotes = unsuitabilityNotes;
     }
 
     public String getServAppId() {

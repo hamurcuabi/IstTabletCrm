@@ -7,6 +7,10 @@ public class Unsuitabilities {
     private String Subject;
     private String ScheduledStart;
     private Inv_Id CustomerId;
+    private Inv_Id ElevatorId;
+
+    public Unsuitabilities() {
+    }
 
     public String getScheduledStart() {
         return ScheduledStart;
@@ -30,12 +34,6 @@ public class Unsuitabilities {
 
     public void setElevatorId(Inv_Id elevatorId) {
         ElevatorId = elevatorId;
-    }
-
-    private Inv_Id ElevatorId;
-
-
-    public Unsuitabilities() {
     }
 
     public String getActivityId() {

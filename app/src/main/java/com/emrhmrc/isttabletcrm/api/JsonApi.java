@@ -5,6 +5,7 @@ import com.emrhmrc.isttabletcrm.models.Account.AccountListAll;
 import com.emrhmrc.isttabletcrm.models.BreakDown.BreakDownTypeListAll;
 import com.emrhmrc.isttabletcrm.models.CommonClass.NotificationCountResponse;
 import com.emrhmrc.isttabletcrm.models.CommonClass.ServAppCountResponse;
+import com.emrhmrc.isttabletcrm.models.CommonClass.UomListAll;
 import com.emrhmrc.isttabletcrm.models.Document.TechnicalDocument;
 import com.emrhmrc.isttabletcrm.models.Elevator.CustomerIdRequest;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorGetById;
@@ -138,6 +139,10 @@ public interface JsonApi {
     //OK
     @GET("Account/ListAll")
     Call<AccountListAll> geAccountListAllCall();
+
+    //OK
+    @GET("Uom/ListAll")
+    Call<UomListAll> getUomListAllCall();
 
     //OK
     @POST("Notification/SurveyUpdateById")

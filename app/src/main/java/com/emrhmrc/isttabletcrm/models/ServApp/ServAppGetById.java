@@ -4,8 +4,6 @@ import com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointment;
 import com.emrhmrc.isttabletcrm.models.CommonClass.TableMetadata;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
 public class ServAppGetById {
     @SerializedName("TableMetadataServAppBreakdownTypes")
     private TableMetadata TableMetadataServAppBreakdownTypes;

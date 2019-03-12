@@ -262,7 +262,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_marginStart="@dimen/detay_menu_12"
-                            android:layout_marginTop="@dimen/detay_menu_12"
+                            android:layout_marginTop="@dimen/detay_menu_8"
                             android:layout_weight="1"
                             android:orientation="horizontal"
                             app:layout_constraintStart_toStartOf="parent"
@@ -283,7 +283,9 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:autoSizeTextType="uniform"
                                     android:fontFamily="@font/roboto_regular"
+                                    android:maxLines="1"
                                     android:text="@string/asansor_no"
                                     android:textColor="@color/text_color"
                                     android:textSize="@dimen/menu_text_16" />
@@ -292,10 +294,11 @@
                                     android:id="@+id/txt_asansorno"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:autoSizeTextType="uniform"
                                     android:fontFamily="@font/roboto_regular"
+                                    android:maxLines="2"
                                     android:text="@{StringUtil.nullToString(model.getInv_ElevatorId().getText())}"
-                                    android:textColor="@color/text_color"
-                                    android:textSize="@dimen/text_menu_28" />
+                                    android:textColor="@color/text_color" />
 
 
                             </LinearLayout>
@@ -955,9 +958,9 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_marginEnd="@dimen/detay_menu_12"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/detay_menu_12"
                         android:layout_weight="2"
                         android:fontFamily="@font/roboto_regular"
                         android:text="@string/urun_adi"
@@ -989,9 +992,9 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_marginEnd="@dimen/detay_menu_12"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/detay_menu_12"
                         android:layout_weight="1.2"
                         android:fontFamily="@font/roboto_regular"
                         android:text="@string/stok_durumu"
@@ -1039,9 +1042,9 @@
                 android:id="@+id/rcv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="@dimen/m200"
                 android:layout_marginTop="@dimen/detay_menu_8"
                 android:layout_marginBottom="8dp"
+                android:minHeight="@dimen/m200"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

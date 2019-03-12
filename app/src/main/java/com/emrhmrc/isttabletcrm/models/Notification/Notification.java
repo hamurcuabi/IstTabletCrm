@@ -1,6 +1,7 @@
 package com.emrhmrc.isttabletcrm.models.Notification;
 
 import com.emrhmrc.isttabletcrm.models.CommonClass.Code;
+import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
 
 public class Notification {
 
@@ -9,6 +10,16 @@ public class Notification {
     private String ScheduledStart;
     private String Description;
     private Code NotificationType;
+
+    public Inv_Id getFrom() {
+        return From;
+    }
+
+    public void setFrom(Inv_Id from) {
+        From = from;
+    }
+
+    private Inv_Id From;
 
     public Notification() {
     }

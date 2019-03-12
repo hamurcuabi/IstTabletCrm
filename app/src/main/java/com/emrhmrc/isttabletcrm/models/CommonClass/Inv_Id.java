@@ -39,10 +39,6 @@ public class Inv_Id {
 
     @Override
     public String toString() {
-        return "Inv_Id{" +
-                "LogicalName='" + LogicalName + '\'' +
-                ", Text='" + Text + '\'' +
-                ", Id='" + Id + '\'' +
-                '}';
+        return Text;
     }
 }
