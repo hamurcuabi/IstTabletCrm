@@ -1,9 +1,15 @@
 package com.emrhmrc.isttabletcrm.fragment;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -35,6 +41,7 @@ import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorsCustomer;
 import com.emrhmrc.isttabletcrm.models.ServApp.CreateUnsuitability;
 import com.emrhmrc.isttabletcrm.models.ServApp.DefaultResponse2;
 
+import java.io.ByteArrayOutputStream;
 import java.util.Calendar;
 import java.util.List;
 
@@ -42,10 +49,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.app.Activity.RESULT_OK;
+import static com.emrhmrc.isttabletcrm.helper.Methodes.checkAndRequestPermissions;
+
 public class NewUnstabilityFragment extends DialogFragment implements View.OnClickListener {
 
     private static final String TAG = "NewUnstabilityFragment";
-    private ImageView img_close;
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
+    private ImageView img_close, img_add;
     private EditText edt_descp;
     private TextView edt_tarih;
     private Button btn_send;
@@ -76,7 +87,9 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
         edt_tarih = view.findViewById(R.id.edt_tarih);
         spnElevator = view.findViewById(R.id.spnElevator);
         spn_account = view.findViewById(R.id.spn_account);
+        img_add = view.findViewById(R.id.img_add);
         btn_send.setOnClickListener(this);
+        img_add.setOnClickListener(this);
         img_close.setOnClickListener(this);
         edt_tarih.setOnClickListener(this);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -92,7 +105,7 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
         int width = metrics.widthPixels;
         int height = metrics.heightPixels;
         ViewGroup.LayoutParams params = getDialog().getWindow().getAttributes();
-        params.width = width / 2;
+        params.width = 3 * width / 5;
         params.height = height;
         getDialog().getWindow().setAttributes((android.view.WindowManager.LayoutParams) params);
     }
@@ -108,6 +121,9 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
                 break;
             case R.id.edt_tarih:
                 openDatePicker();
+                break;
+            case R.id.img_add:
+                dispatchTakePictureIntent(REQUEST_IMAGE_CAPTURE);
                 break;
 
 
@@ -262,5 +278,52 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
         }
 
     }
+
+    private void dispatchTakePictureIntent(int i) {
+        if (checkAndRequestPermissions(getActivity())) {
+            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+       /* if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, i);
+        }*/
+            this.startActivityForResult(takePictureIntent, i);
+        }
+    }
+
+    public Uri getImageUri(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
+        return Uri.parse(path);
+    }
+
+    public String getRealPathFromURI(Uri contentUri) {
+        Cursor cursor = null;
+        try {
+            String[] proj = {MediaStore.Images.Media.DATA};
+            cursor = getActivity().getContentResolver().query(contentUri, proj, null, null, null);
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+
+            Uri selectedImage = getImageUri(getActivity(), photo);
+            String realPath = getRealPathFromURI(selectedImage);
+            selectedImage = Uri.parse(realPath);
+            Log.d(TAG, "onActivityResult: " + selectedImage.toString());
+        }
+    }
+
 
 }

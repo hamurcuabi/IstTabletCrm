@@ -1,6 +1,8 @@
 package com.emrhmrc.isttabletcrm.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -133,5 +135,10 @@ public class UnsuitabilityActivity extends AppCompatActivity implements OnItemCl
     @Override
     public void onItemClicked(Object item, int positon) {
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

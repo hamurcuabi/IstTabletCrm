@@ -4,80 +4,124 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg"
     tools:context=".activity.AnnouncementActivity">
 
+    <ImageView
+        android:id="@+id/img_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/menu_left"
+        android:layout_marginTop="@dimen/menu_top"
+        android:src="@drawable/ic_menu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/servapp_icon_text"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/duyurular"
+        android:textColor="@color/mobil_konum"
+        android:textSize="@dimen/menu_text"
+        app:layout_constraintBottom_toBottomOf="@+id/img_back"
+        app:layout_constraintStart_toEndOf="@+id/img_back"
+        app:layout_constraintTop_toTopOf="@+id/img_back" />
+
     <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/servapp_detail_height"
-        android:background="@drawable/new_servapp"
+        android:id="@+id/cons_main"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/basic_header_height"
+        android:layout_marginStart="@dimen/menu_left"
+        android:layout_marginTop="@dimen/servapp_header"
+        android:layout_marginEnd="@dimen/menu_left"
+        android:background="@drawable/btn_konum_rounded"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_back">
 
-        >
-
-        <android.support.constraint.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/transparent">
-
-            <ImageView
-                android:id="@+id/img_menu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/menu_left"
-                android:layout_marginTop="@dimen/menu_top"
-                android:src="@drawable/ic_menu_white"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            android:gravity="center|left"
+            android:orientation="horizontal"
+            android:weightSum="15">
 
             <TextView
-                android:id="@+id/txt_menu_header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/servapp_icon_text"
-                android:fontFamily="@font/roboto_medium"
-                android:text="@string/duyurular"
+                android:layout_marginStart="@dimen/detay_menu_30"
+                android:layout_weight="2"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/tarih"
                 android:textColor="@color/white"
-                android:textSize="@dimen/menu_text"
-                app:layout_constraintBottom_toBottomOf="@+id/img_menu"
-                app:layout_constraintStart_toEndOf="@+id/img_menu"
-                app:layout_constraintTop_toTopOf="@+id/img_menu" />
+                android:textSize="@dimen/txt_header"
+                android:textStyle="bold" />
 
-            <Spinner
-                android:id="@+id/spn_notif"
-                android:layout_width="@dimen/detay_menu_370"
-                android:layout_height="@dimen/detay_menu_55"
-                android:layout_marginEnd="@dimen/menu_left_32"
-                android:background="@drawable/spn_style"
-                android:entries="@array/spn_notif"
-                app:layout_constraintBottom_toBottomOf="@+id/txt_menu_header"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/txt_menu_header"></Spinner>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/detay_menu_30"
+                android:layout_weight="2"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/superv"
+                android:textColor="@color/white"
+                android:textSize="@dimen/txt_header"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/detay_menu_30"
+                android:layout_weight="2"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/duyuru"
+                android:textColor="@color/white"
+                android:textSize="@dimen/txt_header"
+                android:textStyle="bold" />
 
 
-        </android.support.constraint.ConstraintLayout>
+        </LinearLayout>
 
 
     </android.support.constraint.ConstraintLayout>
 
+    <Spinner
+        android:id="@+id/spn_notif"
+        android:layout_width="@dimen/detay_menu_370"
+        android:layout_height="@dimen/detay_menu_55"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/spn_style"
+        android:entries="@array/spn_notif"
+        app:layout_constraintBottom_toTopOf="@+id/cons_main"
+        app:layout_constraintEnd_toEndOf="@+id/cons_main"
+        app:layout_constraintTop_toTopOf="parent"></Spinner>
+
     <LinearLayout
-        android:id="@+id/cons_detail"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:layout_marginStart="@dimen/menu_left"
-        android:layout_marginTop="@dimen/detay_menu"
-        android:layout_marginEnd="@dimen/menu_left_32"
-        android:layout_marginBottom="@dimen/text_menu_32"
+        android:layout_marginTop="@dimen/servapp_header"
+        android:layout_marginEnd="@dimen/menu_left"
+        android:id="@+id/cons_detail"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/btn_default_layout"
         android:elevation="2dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cons_main">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rcv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/rcv_back"></android.support.v7.widget.RecyclerView>
+            android:background="@color/bg"></android.support.v7.widget.RecyclerView>
 
     </LinearLayout>
 

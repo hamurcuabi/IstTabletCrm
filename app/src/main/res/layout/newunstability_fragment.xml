@@ -20,7 +20,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/detay_menu_50"
+            android:layout_marginStart="@dimen/padding_top25"
             android:layout_marginTop="@dimen/detay_menu_12"
             android:fontFamily="@font/roboto_medium"
             android:text="@string/yeni_uygunsulzuk"
@@ -190,9 +190,56 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/padding_top25"
-            android:layout_marginTop="@dimen/detay_menu_50"
-            android:layout_marginEnd="@dimen/detay_menu_50"
-            android:layout_marginBottom="@dimen/detay_menu_40"
+            android:layout_marginTop="@dimen/detay_menu_5"
+            android:layout_marginEnd="@dimen/padding_top25"
+            android:orientation="horizontal"
+            android:weightSum="6">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginStart="@dimen/padding_top25"
+                android:layout_marginEnd="@dimen/padding_top25"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/img_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:src="@drawable/ic_camera" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:text="@string/foto_ekle"
+                    android:textColor="@color/mobil_konum"
+                    android:textSize="@dimen/text_menu_16"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_top25"
+            android:layout_marginTop="@dimen/detay_menu_25"
+            android:layout_marginEnd="@dimen/padding_top25"
+            android:layout_marginBottom="@dimen/padding_top25"
             android:orientation="horizontal"
             android:weightSum="6">
 
@@ -210,12 +257,25 @@
 
             <Button
 
-                android:id="@+id/btn_send"
-                android:layout_width="@dimen/detay_menu_145"
+                android:id="@+id/btn_save"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/padding_top25"
-                android:background="@drawable/btn_konum_rounded"
+                android:layout_weight="2.5"
+                android:background="@drawable/btn_kontrol"
                 android:text="@string/kaydet"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <Button
+
+                android:id="@+id/btn_send"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_top25"
+                android:layout_weight="2.5"
+                android:background="@drawable/btn_konum_rounded"
+                android:text="@string/gonder"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
         </LinearLayout>

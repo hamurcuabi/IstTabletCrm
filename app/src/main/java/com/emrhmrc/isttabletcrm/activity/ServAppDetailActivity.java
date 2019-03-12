@@ -218,6 +218,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     private void setModelToBind(ServiceAppointment model) {
         binding.setModel(model);
         ShareData.getInstance().setElevatorId(model.getInv_ElevatorId().getId());
+        Log.d(TAG, "setElevatorId: "+model.getInv_ElevatorId().getId());
         adapter.setItems(model.getServAppGetByIdServAppDetails());
 
     }
@@ -355,9 +356,6 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                 break;
             case R.id.btn_beforeafter:
                 openBeforeAfter();
-                break;
-            case R.id.txt_arizakodu:
-                //openReasonOfBreakdown();
                 break;
             case R.id.img_gps:
                 mapFragment();

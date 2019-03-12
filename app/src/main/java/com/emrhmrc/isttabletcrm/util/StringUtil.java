@@ -10,7 +10,7 @@ public class StringUtil {
     public final static String PDF = "application/pdf";
 
     public static String returnNull() {
-        return "";
+        return "null";
     }
 
     public static boolean validateStrings(String... string) {
@@ -51,6 +51,12 @@ public class StringUtil {
             return "null";
         }
 
+    }
+
+    public static String breakdownCode(String code) {
+        if (code != null)
+            return "ARIZA KODU: " + code;
+        else return returnNull();
     }
 
 }

@@ -281,6 +281,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:textStyle="bold"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:autoSizeTextType="uniform"
@@ -291,6 +292,7 @@
                                     android:textSize="@dimen/menu_text_16" />
 
                                 <TextView
+                                    android:autoSizeMinTextSize="@dimen/text_menu_18"
                                     android:id="@+id/txt_asansorno"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -658,71 +660,33 @@
                             android:layout_height="0dp"
                             android:layout_marginTop="@dimen/detay_menu_12"
                             android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            android:weightSum="2.5">
 
-                            <ImageView
-                                android:layout_width="wrap_content"
+                            <Button
+                                android:id="@+id/btn_ariza_kodu"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/detay_menu_20"
-                                android:layout_marginTop="@dimen/menu_icon"
-                                android:src="@drawable/ic_aciklama" />
+                                android:layout_weight="1"
+                                android:background="@drawable/btn_arizakodu"
+                                android:gravity="center"
+                                android:text="@{StringUtil.breakdownCode(model.inv_BreakdownCode)}"
+                                android:textColor="@color/white"
+                                android:textStyle="bold" />
 
-                            <LinearLayout
-
-                                android:layout_width="match_parent"
+                            <Button
+                                android:id="@+id/btn_ariza_nedeni"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/menu_text_12"
-                                android:orientation="vertical">
+                                android:layout_marginStart="@dimen/detay_menu_12"
+                                android:layout_weight="1"
+                                android:background="@drawable/btn_malzeme"
+                                android:gravity="center"
+                                android:text="@string/ariza_nedini"
+                                android:textColor="@color/white"
+                                android:textStyle="bold" />
 
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:fontFamily="@font/roboto_regular"
-                                        android:text="@string/ariza_nedini"
-                                        android:textColor="@color/text_color_3"
-                                        android:textSize="@dimen/text_menu_16"
-                                        android:textStyle="bold" />
-
-                                    <TextView
-                                        android:id="@+id/txt_arizakodu"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginEnd="@dimen/detay_menu_5"
-                                        android:background="@drawable/btn_kontrol"
-                                        android:padding="5dp"
-                                        android:text="@string/arizakodu"
-                                        android:textAlignment="center"
-                                        android:textColor="@color/white"
-                                        android:textSize="@dimen/text_menu_16"
-                                        android:textStyle="bold" />
-
-                                </LinearLayout>
-
-                                <Spinner
-                                    android:id="@+id/txt_ariza_nedeni"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/btn_height45"
-                                    android:background="@drawable/spn_style"
-                                    android:entries="@{model.getServAppGetByIdServAppBreakdownTypes()}"
-                                    android:textColor="@color/text_color_3"
-                                    android:textSize="@dimen/text_menu_16" />
-
-                                <LinearLayout
-                                    android:layout_width="@dimen/detay_menu_110"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/btn_kontrol"
-                                    android:orientation="horizontal">
-
-
-                                </LinearLayout>
-
-                            </LinearLayout>
 
                         </LinearLayout>
 
@@ -931,6 +895,48 @@
 
                 </RelativeLayout>
 
+                <RelativeLayout
+                    android:id="@+id/lnr_out"
+                    android:layout_width="@dimen/detay_menu_180"
+                    android:layout_height="@dimen/btn_height45"
+                    android:layout_marginStart="@dimen/padding_top25"
+                    android:layout_marginTop="@dimen/padding_rigt32"
+                    android:background="@color/btn_dark_blue"
+                    app:layout_constraintStart_toEndOf="@id/lnr_worker"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/img_add_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="@dimen/icon_text8"
+                        android:src="@drawable/ic_yeni" />
+
+                    <TextView
+                        android:id="@+id/add_job_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginBottom="0dp"
+                        android:layout_toEndOf="@+id/img_add_3"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center_vertical"
+                        android:text="@string/dis_hizmet_ekle"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/menu_text_14"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
                 <LinearLayout
                     android:id="@+id/linearLayout"
                     android:layout_width="match_parent"
@@ -949,7 +955,7 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.7"
+                        android:layout_weight="2"
                         android:fontFamily="@font/roboto_regular"
                         android:text="@string/kod"
                         android:textAllCaps="true"
@@ -960,7 +966,7 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/detay_menu_12"
+
                         android:layout_weight="2"
                         android:fontFamily="@font/roboto_regular"
                         android:text="@string/urun_adi"
@@ -972,7 +978,7 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.9"
+                        android:layout_weight="1.5"
                         android:fontFamily="@font/roboto_regular"
                         android:text="@string/miktar"
                         android:textAllCaps="true"
@@ -983,7 +989,7 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="0.8"
                         android:fontFamily="@font/roboto_regular"
                         android:text="@string/birim"
                         android:textAllCaps="true"
@@ -994,8 +1000,7 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/detay_menu_12"
-                        android:layout_weight="1.2"
+                        android:layout_weight="2"
                         android:fontFamily="@font/roboto_regular"
                         android:text="@string/stok_durumu"
                         android:textAllCaps="true"
@@ -1016,8 +1021,8 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1.5"
-                        android:text="@string/faturalandiralacakmi"
+                        android:layout_weight="2.5"
+                        android:text="@string/ucretli_ucretsiz"
                         android:textAllCaps="true"
                         android:textColor="@color/white"
                         android:textSize="@dimen/menu_text_14"
@@ -1026,8 +1031,18 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/urun_dahilindemi"
+                        android:layout_weight="1.5"
+                        android:text="@string/dis_hizmet"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/menu_text_14"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.2"
+                        android:text="@string/aciklama"
                         android:textAllCaps="true"
                         android:textColor="@color/white"
                         android:textSize="@dimen/menu_text_14"

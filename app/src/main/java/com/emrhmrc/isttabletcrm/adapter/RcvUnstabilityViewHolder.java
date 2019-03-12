@@ -29,8 +29,12 @@ public class RcvUnstabilityViewHolder extends BaseViewHolder<Unsuitabilities,
     public void onBind(final Unsuitabilities item,
                        @Nullable final OnItemClickListener<Unsuitabilities> listener) {
         txt_baslik.setText(StringUtil.nullToString(item.getSubject()));
+        if(item.getElevatorId()!=null)
         txt_asansor_no.setText(StringUtil.nullToString(item.getElevatorId().getText()));
+        else txt_asansor_no.setText(StringUtil.returnNull());
+        if(item.getCustomerId()!=null)
         txt_musteri_no.setText(StringUtil.nullToString(item.getCustomerId().getText()));
+        else txt_musteri_no.setText(StringUtil.returnNull());
         txt_tarih.setText(Methodes.changeDateFormatToText(StringUtil.nullToString(item.getScheduledStart())));
 
 

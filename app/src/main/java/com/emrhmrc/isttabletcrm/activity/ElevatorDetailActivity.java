@@ -3,6 +3,7 @@ package com.emrhmrc.isttabletcrm.activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
@@ -16,6 +17,7 @@ import com.emrhmrc.isttabletcrm.util.StringUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -126,5 +128,23 @@ public class ElevatorDetailActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+
+    @OnClick({R.id.img_menu, R.id.txt_menu_header})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.img_menu:
+                onBackPressed();
+                break;
+            case R.id.txt_menu_header:
+                onBackPressed();
+                break;
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

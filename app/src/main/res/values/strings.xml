@@ -211,6 +211,19 @@
     <string name="dialog_cancel">Cancel</string>
     <string name="LOADING">Loading...</string>
     <string name="succes">Başarılı</string>
+    <string name="ucretli_ucretsiz">Ücretli/Ücretsiz</string>
+    <string name="dis_hizmet">Dış Hizmet Eklensin mi?</string>
+    <string name="dis_hizmet_ekle">Dış Hizmet Ekle</string>
+    <string name="superv">Supervisor</string>
+    <string name="duyuru">Duyuru</string>
+    <string name="malzemekodu">Malzeme Kodu</string>
+    <string name="garantibaslangic">Garanti Başlangıç Tarihi</string>
+    <string name="sure2">Süre</string>
+    <string name="serino">Seri No</string>
+    <string name="baglioldugu">Bağlı Olduğu İş Emri</string>
+    <string name="serinumarasi">Seri Numarası</string>
+    <string name="iadenedeni">İade Nedeni</string>
+    <string name="iadeet">İade Et</string>
 
     <string-array name="spn_servapp">
         <item>Tüm İş Emirlerim</item>

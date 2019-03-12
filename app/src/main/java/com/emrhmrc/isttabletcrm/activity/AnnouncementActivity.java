@@ -38,7 +38,7 @@ public class AnnouncementActivity extends AppCompatActivity implements OnItemCli
     private RcvAnnouncementAdapter adapter;
     private Spinner spinner;
     private SweetAlertDialog dialog;
-    private ImageView img_menu;
+    private ImageView img_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +52,8 @@ public class AnnouncementActivity extends AppCompatActivity implements OnItemCli
         spinner = findViewById(R.id.spn_notif);
         jsonApi = ApiClient.getClient().create(JsonApi.class);
         rcw = findViewById(R.id.rcv);
-        img_menu = findViewById(R.id.img_menu);
-        img_menu.setOnClickListener(this::onClick);
+        img_back = findViewById(R.id.img_back);
+        img_back.setOnClickListener(this::onClick);
         rcw.setHasFixedSize(true);
         rcw.setLayoutManager(new LinearLayoutManager(this));
         adapter = new RcvAnnouncementAdapter(getApplicationContext(), this);
@@ -122,7 +122,7 @@ public class AnnouncementActivity extends AppCompatActivity implements OnItemCli
 
         switch (view.getId()) {
 
-            case R.id.img_menu:
+            case R.id.img_back:
                 super.onBackPressed();
                 break;
 

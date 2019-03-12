@@ -73,7 +73,6 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/guideline3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -83,7 +82,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/menu_left"
-                android:layout_marginTop="@dimen/detay_menu_145"
+                android:layout_marginTop="@dimen/detay_menu"
                 android:layout_weight="1"
                 android:background="@drawable/btn_default_layout"
                 android:elevation="@dimen/detay_menu_8"
@@ -640,7 +639,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/margin456"
                 android:layout_marginStart="@dimen/menu_left"
-                android:layout_marginTop="@dimen/detay_menu_145"
+                android:layout_marginTop="@dimen/detay_menu"
                 android:layout_marginEnd="@dimen/menu_left"
                 android:layout_weight="1"
                 android:background="@drawable/btn_default_layout"
@@ -954,27 +953,20 @@
             </android.support.constraint.ConstraintLayout>
         </LinearLayout>
 
-        <android.support.constraint.Guideline
-            android:id="@+id/guideline3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.8" />
-
         <Button
             android:id="@+id/btn_changeproductlist"
             android:layout_width="@dimen/btn_malzeme_width"
             android:layout_height="@dimen/btn_malzeme_height"
             android:layout_marginStart="@dimen/menu_left"
-            android:layout_marginTop="@dimen/margin30"
-            android:background="@drawable/btn_malzeme"
+            android:background="@drawable/btn_malzeme_2"
             android:text="@string/malzemelistesi"
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="@dimen/text_menu_18"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_wish"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline3" />
+            app:layout_constraintTop_toTopOf="@+id/btn_wish" />
 
         <Button
             android:id="@+id/btn_wish"
@@ -1002,12 +994,10 @@
             app:layout_constraintTop_toBottomOf="@+id/btn_wish">
 
             <LinearLayout
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin30"
                 android:orientation="horizontal"
-                android:weightSum="8"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -1016,7 +1006,14 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="2.5"
+                    android:text="@string/malzemekodu"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_menu_14" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
                     android:text="@string/malzeme"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_menu_14" />
@@ -1024,7 +1021,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="1.7"
                     android:text="@string/degisim_tarihi"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_menu_14" />
@@ -1032,7 +1029,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="2.5"
                     android:text="@string/usta_adi"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_menu_14" />
@@ -1040,8 +1037,29 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.5"
+                    android:layout_weight="2"
+                    android:text="@string/garantibaslangic"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_menu_14" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.6"
                     android:text="@string/garantibitis"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_menu_14" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:text="@string/sure2"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_menu_14" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/serino"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_menu_14" />
 
@@ -1097,14 +1115,18 @@
         </android.support.constraint.ConstraintLayout>
 
         <android.support.v7.widget.RecyclerView
+            android:id="@+id/rcv"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginBottom="12dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/detay_menu_8"
+            android:layout_marginBottom="8dp"
+            android:minHeight="@dimen/m200"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"></android.support.v7.widget.RecyclerView>
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+
+        </android.support.v7.widget.RecyclerView>
 
     </android.support.constraint.ConstraintLayout>
 </android.support.v4.widget.NestedScrollView>

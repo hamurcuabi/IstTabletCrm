@@ -78,7 +78,7 @@ public class CreateNewWareRequestFragment extends DialogFragment {
     EditText edtMiktar2;
     @BindView(R.id.edt_tarih2)
     TextView edtTarih2;
-    @BindView(R.id.edt_hurdanedeni)
+    @BindView(R.id.edt_iadenedeni)
     EditText edtHurdanedeni;
     @BindView(R.id.lnr22)
     LinearLayout lnr22;

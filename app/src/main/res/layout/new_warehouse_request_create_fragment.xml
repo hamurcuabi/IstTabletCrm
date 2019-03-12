@@ -52,7 +52,7 @@
                 android:id="@+id/rd_hurda"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/hurdaya" />
+                android:text="@string/iadeet" />
         </RadioGroup>
 
         <LinearLayout
@@ -64,7 +64,7 @@
             <LinearLayout
 
                 android:id="@+id/lnr1"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
                 android:layout_weight="1"
@@ -181,6 +181,40 @@
                         android:paddingEnd="8dp" />
 
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/detay_menu_12"
+                    android:layout_marginBottom="@dimen/detay_menu_12"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="@dimen/txt_calendar"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/edt_asansor"
+                        android:layout_alignBottom="@+id/edt_asansor"
+                        android:layout_alignParentStart="true"
+                        android:layout_gravity="center"
+                        android:layout_toStartOf="@+id/edt_asansor"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="end"
+                        android:text="@string/baglioldugu"
+                        android:textColor="@color/text_color_5"
+                        android:textSize="@dimen/text_menu_15"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/edt_baglioldugu_isemri"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edt_calendar_height"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="@dimen/detay_menu_30"
+                        android:background="@drawable/btn_calendars"
+                        android:drawableRight="@drawable/ic_eye"
+                        android:paddingEnd="8dp" />
+
+                </LinearLayout>
 
 
             </LinearLayout>
@@ -188,7 +222,7 @@
             <LinearLayout
 
                 android:id="@+id/lnr11"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
                 android:layout_marginEnd="@dimen/padding_top25"
@@ -256,6 +290,8 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:textColor="@color/text_color_5"
+                        android:textSize="@dimen/text_menu_15"
                         android:id="@+id/edt_tarih"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
@@ -310,14 +346,15 @@
             </LinearLayout>
 
             <LinearLayout
+                android:visibility="gone"
                 android:id="@+id/lnr2"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
                 android:layout_weight="1"
                 android:gravity="left"
                 android:orientation="vertical"
-                android:visibility="gone">
+                >
 
 
                 <LinearLayout
@@ -412,13 +449,13 @@
                         android:layout_toStartOf="@+id/edt_asansor"
                         android:fontFamily="@font/roboto_regular"
                         android:gravity="end"
-                        android:text="@string/birim"
+                        android:text="@string/serinumarasi"
                         android:textColor="@color/text_color_5"
                         android:textSize="@dimen/text_menu_15"
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/edt_birim2"
+                        android:id="@+id/edt_serino2"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
                         android:layout_alignParentTop="true"
@@ -448,36 +485,36 @@
                         android:layout_toStartOf="@+id/edt_asansor"
                         android:fontFamily="@font/roboto_regular"
                         android:gravity="end"
-                        android:text="@string/aciklama"
+                        android:text="@string/birim"
                         android:textColor="@color/text_color_5"
                         android:textSize="@dimen/text_menu_15"
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/edt_aciklama2"
+                        android:id="@+id/edt_birim2"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
                         android:background="@drawable/btn_calendars"
-                        android:drawableRight="@drawable/ic_pen"
-                        android:paddingEnd="8dp" />
+                      />
 
                 </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
+                android:visibility="gone"
                 android:id="@+id/lnr22"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
                 android:layout_marginEnd="@dimen/detay_menu_12"
                 android:layout_weight="1"
                 android:gravity="left"
                 android:orientation="vertical"
-                android:visibility="gone">
+                >
 
 
                 <LinearLayout
@@ -568,13 +605,48 @@
                         android:layout_toStartOf="@+id/edt_asansor"
                         android:fontFamily="@font/roboto_regular"
                         android:gravity="end"
-                        android:text="@string/hurdanedeni"
+                        android:text="@string/iadenedeni"
                         android:textColor="@color/text_color_5"
                         android:textSize="@dimen/text_menu_15"
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/edt_hurdanedeni"
+                        android:id="@+id/edt_iadenedeni"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edt_calendar_height"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="@dimen/detay_menu_30"
+                        android:background="@drawable/btn_calendars"
+                        android:drawableRight="@drawable/ic_pen"
+                        android:paddingEnd="8dp" />
+
+                </LinearLayout>
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/detay_menu_12"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="@dimen/txt_calendar"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/edt_asansor"
+                        android:layout_alignBottom="@+id/edt_asansor"
+                        android:layout_alignParentStart="true"
+                        android:layout_gravity="center"
+                        android:layout_toStartOf="@+id/edt_asansor"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="end"
+                        android:text="@string/aciklama"
+                        android:textColor="@color/text_color_5"
+                        android:textSize="@dimen/text_menu_15"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/edt_aciklama2"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
                         android:layout_alignParentTop="true"
@@ -601,7 +673,7 @@
             android:layout_marginBottom="@dimen/detay_menu_12"
             android:background="@drawable/btn_kontrol"
             android:gravity="center"
-            android:text="@string/kaydet"
+            android:text="@string/gonder"
             android:textColor="@color/white"
             android:textStyle="bold" />
 
