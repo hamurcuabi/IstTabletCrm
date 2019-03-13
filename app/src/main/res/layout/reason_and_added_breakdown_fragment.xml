@@ -9,10 +9,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:layout_marginEnd="@dimen/detay_menu_12"
         android:src="@drawable/ic_close" />
 
     <LinearLayout
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
@@ -41,6 +41,8 @@
         </LinearLayout>
 
         <View
+            android:layout_marginTop="@dimen/text_menu_32"
+            android:layout_marginBottom="@dimen/text_menu_32"
             android:layout_width="2dp"
             android:layout_height="match_parent"
             android:background="@color/back"/>

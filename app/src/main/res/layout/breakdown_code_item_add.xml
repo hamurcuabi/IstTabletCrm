@@ -30,9 +30,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginEnd="@dimen/detay_menu_8"
-            android:background="@drawable/btn_state"
+            android:background="@drawable/btn_konum_rounded"
             android:gravity="center"
-            android:text="Ekle"
+            android:text="@string/cikart"
             android:textColor="@color/white" />
 
     </LinearLayout>

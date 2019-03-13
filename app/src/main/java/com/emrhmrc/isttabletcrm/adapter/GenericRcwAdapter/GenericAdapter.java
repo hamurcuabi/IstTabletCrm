@@ -165,6 +165,7 @@ public abstract class GenericAdapter<T, L extends BaseRecyclerListener, VH exten
 
     }
 
+
     /**
      * Returns an items from the data set at a certain position.
      *

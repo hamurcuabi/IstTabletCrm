@@ -18,22 +18,30 @@ import android.widget.ImageView;
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.adapter.RcvBreakdownTypeAdapter;
+import com.emrhmrc.isttabletcrm.adapter.RcvBreakdownTypeAddAdapter;
 import com.emrhmrc.isttabletcrm.api.APIHelper;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
+import com.emrhmrc.isttabletcrm.helper.StateHandler;
 import com.emrhmrc.isttabletcrm.models.BreakDown.BreakDownTypeListAll;
+import com.emrhmrc.isttabletcrm.models.BreakDown.BreakdownType;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ReasonAndAddenBreakdownFragment extends DialogFragment implements View.OnClickListener, OnItemClickListener {
+public class ReasonAndAddenBreakdownFragment extends DialogFragment implements View.OnClickListener {
     private static final String TAG = "DetailTechnicalFragment";
 
     private ImageView img_close;
     private JsonApi jsonApi;
     private RcvBreakdownTypeAdapter adapter;
-    private RecyclerView rcv_reason;
+    private RcvBreakdownTypeAddAdapter adapter_add;
+    private RecyclerView rcv_reason, rcv_add;
+    private List<BreakdownType> list, allreason;
 
     public static ReasonAndAddenBreakdownFragment newInstance() {
 
@@ -54,6 +62,7 @@ public class ReasonAndAddenBreakdownFragment extends DialogFragment implements V
         super.onViewCreated(view, savedInstanceState);
 
         img_close = view.findViewById(R.id.img_close);
+        rcv_add = view.findViewById(R.id.rcv_added);
         rcv_reason = view.findViewById(R.id.rcv_reason);
         img_close.setOnClickListener(this);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -74,6 +83,7 @@ public class ReasonAndAddenBreakdownFragment extends DialogFragment implements V
 
                     final BreakDownTypeListAll model = response.body();
                     adapter.setItems(model.getBreakdownTypes());
+                    allreason = model.getBreakdownTypes();
 
                 } else Log.d(TAG, "onResponse: " + response.errorBody());
             }
@@ -87,10 +97,51 @@ public class ReasonAndAddenBreakdownFragment extends DialogFragment implements V
     }
 
     private void init() {
+        list = new ArrayList<>();
+        //
+        rcv_add.setHasFixedSize(true);
+        rcv_add.setLayoutManager(new LinearLayoutManager(getActivity()));
+        adapter_add = new RcvBreakdownTypeAddAdapter(getActivity(), new OnItemClickListener() {
+            @Override
+            public void onItemClicked(Object item, int positon) {
+                final BreakdownType current = (BreakdownType) item;
+                adapter_add.remove(current);
+                for (int i = 0; i < adapter.getItems().size(); i++) {
+
+                    if (adapter.getItems().get(i).getInv_BreakdownTypeId().equals(current.getInv_BreakdownTypeId())) {
+                        StateHandler.getInstance().getStateList().get(i).setState(false);
+                        adapter.notifyItemChanged(i);
+                        return;
+                    }
+
+                }
+
+
+            }
+        });
+
+        rcv_add.setAdapter(adapter_add);
+        rcv_add.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+
         rcv_reason.setHasFixedSize(true);
         rcv_reason.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new RcvBreakdownTypeAdapter(getActivity(), this);
-        adapter.setListener(this);
+        adapter = new RcvBreakdownTypeAdapter(getActivity(), new OnItemClickListener() {
+            @Override
+            public void onItemClicked(Object item, int positon) {
+                final BreakdownType current = (BreakdownType) item;
+                adapter_add.add(current);
+                if (!StateHandler.getInstance().getStateList().get(positon).isState()) {
+                    StateHandler.getInstance().getStateList().get(positon).setState(true);
+
+                } else {
+                    StateHandler.getInstance().getStateList().get(positon).setState(false);
+
+                }
+                adapter.notifyItemChanged(positon);
+            }
+        });
+
         rcv_reason.setAdapter(adapter);
         rcv_reason.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
@@ -118,8 +169,5 @@ public class ReasonAndAddenBreakdownFragment extends DialogFragment implements V
 
     }
 
-    @Override
-    public void onItemClicked(Object item, int positon) {
 
-    }
 }
