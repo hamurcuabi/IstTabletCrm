@@ -813,7 +813,7 @@
 
                 <RelativeLayout
                     android:id="@+id/lnr_yeni"
-                    android:layout_width="220dp"
+                    android:layout_width="@dimen/detay_menu_100"
                     android:layout_height="@dimen/btn_height45"
                     android:layout_marginStart="@dimen/padding_top25"
                     android:layout_marginTop="@dimen/padding_rigt32"
@@ -845,7 +845,7 @@
                         android:layout_toEndOf="@+id/img_add"
                         android:fontFamily="@font/roboto_regular"
                         android:gravity="center_vertical"
-                        android:text="@string/add_new_pieces"
+                        android:text="@string/yeni"
                         android:textAllCaps="true"
                         android:textColor="@color/white"
                         android:textSize="@dimen/menu_text_14"

@@ -3,6 +3,7 @@ package com.emrhmrc.isttabletcrm.api;
 
 import com.emrhmrc.isttabletcrm.models.Account.AccountListAll;
 import com.emrhmrc.isttabletcrm.models.BreakDown.BreakDownTypeListAll;
+import com.emrhmrc.isttabletcrm.models.BreakDown.BreakdownCodeListAll;
 import com.emrhmrc.isttabletcrm.models.CommonClass.NotificationCountResponse;
 import com.emrhmrc.isttabletcrm.models.CommonClass.ServAppCountResponse;
 import com.emrhmrc.isttabletcrm.models.CommonClass.UomListAll;
@@ -120,6 +121,10 @@ public interface JsonApi {
     //OK
     @POST("ServApp/GetById")
     Call<ServAppGetById> servAppGetById(@Body ServAppIdRequest servAppId);
+
+    //OK
+    @POST("BreakdownCode/ListAll")
+    Call<BreakdownCodeListAll> getBreakdownCodeListAllCall(@Body ServAppIdRequest servAppId);
 
     //OK
     @POST("ServApp/CompleteById")

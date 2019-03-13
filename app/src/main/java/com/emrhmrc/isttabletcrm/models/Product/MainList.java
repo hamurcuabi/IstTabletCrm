@@ -14,15 +14,7 @@ public class MainList {
 
     @Override
     public String toString() {
-        return "MainList{" +
-                "inv_MainProductGroupName='" + inv_MainProductGroupName + '\'' +
-                ", ProductCount=" + ProductCount +
-                ", inv_MainProductGroupid='" + inv_MainProductGroupid + '\'' +
-                ", Image='" + Image + '\'' +
-                ", ImageMimeType='" + ImageMimeType + '\'' +
-                ", SubGroupCount=" + SubGroupCount +
-                ", ImageFileSize=" + ImageFileSize +
-                '}';
+        return inv_MainProductGroupName;
     }
 
     public String getInv_MainProductGroupName() {

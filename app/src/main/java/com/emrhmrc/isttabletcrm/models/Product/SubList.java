@@ -17,14 +17,7 @@ public class SubList {
 
     @Override
     public String toString() {
-        return "SubList{" +
-                "inv_SubProductGroupName='" + inv_SubProductGroupName + '\'' +
-                ", ProductCount=" + ProductCount +
-                ", inv_SubProductGroupid='" + inv_SubProductGroupid + '\'' +
-                ", Image='" + Image + '\'' +
-                ", ImageMimeType='" + ImageMimeType + '\'' +
-                ", ImageFileSize=" + ImageFileSize +
-                '}';
+        return  inv_SubProductGroupName;
     }
 
     public void setInv_SubProductGroupName(String inv_SubProductGroupName) {

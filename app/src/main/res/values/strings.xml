@@ -224,6 +224,10 @@
     <string name="serinumarasi">Seri Numarası</string>
     <string name="iadenedeni">İade Nedeni</string>
     <string name="iadeet">İade Et</string>
+    <string name="urun_anakodu">Ürün Ana Kodu</string>
+    <string name="urunaltkodu">Ürün Alt Kodu</string>
+    <string name="ururntanim">Ürün Tanım Kodu</string>
+    <string name="eklenenarizalar">Eklenen Arızalar</string>
 
     <string-array name="spn_servapp">
         <item>Tüm İş Emirlerim</item>
