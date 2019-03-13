@@ -61,9 +61,7 @@
                 android:layout_marginStart="@dimen/detay_menu_30"
                 android:layout_weight="5"
                 android:background="@drawable/spn_style"
-                android:hint="@string/apart_adi"
-                android:paddingLeft="@dimen/detay_menu_25"
-                android:paddingRight="@dimen/detay_menu_12" />
+                android:paddingStart="@dimen/detay_menu_12" />
 
         </LinearLayout>
 
@@ -99,9 +97,7 @@
                 android:layout_marginStart="@dimen/detay_menu_30"
                 android:layout_weight="5"
                 android:background="@drawable/spn_style"
-                android:hint="@string/asansor_no"
-                android:paddingLeft="@dimen/detay_menu_25"
-                android:paddingRight="@dimen/detay_menu_12" />
+                android:paddingStart="@dimen/detay_menu_12" />
 
         </LinearLayout>
 
@@ -137,12 +133,9 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="@dimen/detay_menu_30"
                 android:layout_weight="5"
-                android:background="@drawable/btn_calendars"
-                android:drawableRight="@drawable/ic_eye"
+                android:background="@drawable/calendar_style"
                 android:gravity="center|left"
-                android:hint="@string/tarih"
-                android:paddingLeft="@dimen/detay_menu_25"
-                android:paddingRight="@dimen/detay_menu_12" />
+                android:paddingStart="@dimen/detay_menu_12" />
 
         </LinearLayout>
 
@@ -175,14 +168,12 @@
                 android:layout_height="@dimen/detay_menu_110"
                 android:layout_marginStart="@dimen/detay_menu_30"
                 android:layout_weight="5"
-                android:background="@drawable/btn_calendars"
-                android:drawableEnd="@drawable/ic_pen"
-                android:gravity="top|left"
+                android:background="@drawable/btn_descp"
                 android:inputType="textMultiLine"
-                android:paddingLeft="@dimen/detay_menu_25"
-                android:paddingRight="@dimen/detay_menu_12"
-                android:paddingBottom="@dimen/detay_menu_70"
-                android:singleLine="false" />
+                android:gravity="top|left"
+                android:paddingEnd="@dimen/padding_rigt32"
+                android:paddingStart="@dimen/detay_menu_12"
+                android:paddingTop="@dimen/detay_menu_12" />
 
         </LinearLayout>
 

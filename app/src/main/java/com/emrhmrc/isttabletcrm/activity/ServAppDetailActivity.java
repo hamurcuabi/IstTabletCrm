@@ -20,6 +20,7 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
@@ -106,6 +107,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
             // Get extra data included in the Intent
             Product product = (Product) intent.getSerializableExtra("product");
             String id = intent.getStringExtra("id");
+
             if (product != null) {
                 boolean exist = false;
                 for (ServAppGetByIdServAppDetails details : adapter.getItems()
@@ -117,7 +119,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                 }
                 if (!exist) {
                     ServAppGetByIdServAppDetails add = new ServAppGetByIdServAppDetails();
-                    add.setInv_ProductId(new Inv_Id("product", product.getName(), product.getProductId()));
+                    add.setInv_ProductId(new Inv_Id("inv_subproductgroup", product.getName(), product.getProductId()));
                     add.setManuel(true);
                     adapter.add(add);
                 }
@@ -125,10 +127,10 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
 
             if (id != null) {
 
-                for (ServAppGetByIdServAppDetails details : adapter.getItems()
-                ) {
-                    if (details.getInv_ProductId().getText().equals(id)) {
-                        adapter.remove(details);
+                for (int k=0;k< adapter.getItems().size();k++) {
+
+                    if (adapter.getItems().get(k).getInv_ProductId().getText().equals(id)) {
+                        adapter.remove(k);
                     }
 
                 }
@@ -281,21 +283,16 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                             APIHelper.enqueueWithRetry(call, new Callback<DefaultResponse>() {
                                 @Override
                                 public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
+                                    sweetAlertDialog.dismissWithAnimation();
                                     if (response.isSuccessful()) {
-                                        new SweetAlertDialog(ServAppDetailActivity.this,
-                                                SweetAlertDialog.SUCCESS_TYPE)
-                                                .setTitleText(succes)
-                                                .setContentText("")
-                                                .show();
+
                                     }
                                 }
 
                                 @Override
                                 public void onFailure(Call<DefaultResponse> call, Throwable t) {
-                                    new SweetAlertDialog(ServAppDetailActivity.this, SweetAlertDialog.ERROR_TYPE)
-                                            .setTitleText(error)
-                                            .setContentText(t.getMessage())
-                                            .show();
+                                    sweetAlertDialog.dismissWithAnimation();
+
                                 }
                             });
                         }

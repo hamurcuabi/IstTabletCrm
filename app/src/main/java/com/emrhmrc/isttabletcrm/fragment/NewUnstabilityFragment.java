@@ -153,6 +153,7 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
 
                     }
                 }, yil, ay, gun);
+        dpd.getDatePicker().setMinDate(takvim.getTime().getTime());
         dpd.setButton(DatePickerDialog.BUTTON_POSITIVE, "Seç", dpd);
         dpd.setButton(DatePickerDialog.BUTTON_NEGATIVE, "İptal", dpd);
         dpd.show();

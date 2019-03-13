@@ -52,8 +52,8 @@ public class CreateNewWareRequestFragment extends DialogFragment {
     AutoCompleteTextView spnIstenilen;
     @BindView(R.id.spn_urunadi)
     AutoCompleteTextView spnUrunadi;
-    @BindView(R.id.edt_birim)
-    EditText edtBirim;
+    @BindView(R.id.spn_birim)
+    AutoCompleteTextView spnBirim;
     @BindView(R.id.lnr1)
     LinearLayout lnr1;
     @BindView(R.id.edt_miktar)
@@ -256,6 +256,7 @@ public class CreateNewWareRequestFragment extends DialogFragment {
 
                     }
                 }, yil, ay, gun);
+        dpd.getDatePicker().setMinDate(takvim.getTime().getTime());
         dpd.setButton(DatePickerDialog.BUTTON_POSITIVE, "Seç", dpd);
         dpd.setButton(DatePickerDialog.BUTTON_NEGATIVE, "İptal", dpd);
         dpd.show();

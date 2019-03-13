@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
@@ -10,7 +11,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:layout_marginEnd="@dimen/detay_menu_12"
         android:src="@drawable/ic_close" />
 
     <LinearLayout
@@ -62,7 +62,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
-
+                android:visibility="gone"
                 android:id="@+id/lnr1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -73,7 +73,6 @@
 
 
                 <LinearLayout
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/detay_menu_25"
@@ -101,11 +100,9 @@
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
+                        android:paddingEnd="@dimen/margin30"
                         android:background="@drawable/spn_style"
-                        android:drawSelectorOnTop="true"
-                        android:paddingLeft="@dimen/detay_menu_25"
-                        android:paddingRight="@dimen/detay_menu_12"
-                        android:spinnerMode="dropdown" />
+                        android:paddingStart="@dimen/detay_menu_12" />
 
                 </LinearLayout>
 
@@ -137,12 +134,9 @@
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
+                        android:paddingEnd="@dimen/margin30"
                         android:background="@drawable/spn_style"
-                        android:drawSelectorOnTop="true"
-                        android:maxLines="10"
-                        android:paddingLeft="@dimen/detay_menu_25"
-                        android:paddingRight="@dimen/detay_menu_12"
-                        android:spinnerMode="dropdown" />
+                        android:paddingStart="@dimen/detay_menu_12" />
 
                 </LinearLayout>
 
@@ -150,7 +144,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/detay_menu_12"
-                    android:layout_marginBottom="@dimen/detay_menu_12"
                     android:orientation="horizontal">
 
                     <TextView
@@ -169,18 +162,19 @@
                         android:textSize="@dimen/text_menu_15"
                         android:textStyle="bold" />
 
-                    <EditText
-                        android:id="@+id/edt_birim"
+                    <AutoCompleteTextView
+                        android:id="@+id/spn_birim"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
-                        android:background="@drawable/btn_calendars"
-                        android:drawableRight="@drawable/ic_eye"
-                        android:paddingEnd="8dp" />
+                        android:paddingEnd="@dimen/margin30"
+                        android:background="@drawable/spn_style"
+                        android:paddingStart="@dimen/detay_menu_12" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -210,17 +204,16 @@
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
-                        android:background="@drawable/btn_calendars"
-                        android:drawableRight="@drawable/ic_eye"
-                        android:paddingEnd="8dp" />
+                        android:background="@drawable/calendar_style"
+                        android:gravity="center|left"
+                        android:paddingStart="@dimen/detay_menu_12" />
 
                 </LinearLayout>
-
 
             </LinearLayout>
 
             <LinearLayout
-
+                android:visibility="gone"
                 android:id="@+id/lnr11"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -232,7 +225,6 @@
 
 
                 <LinearLayout
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/detay_menu_25"
@@ -260,16 +252,16 @@
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
-                        android:background="@drawable/btn_calendars"
-                        android:paddingLeft="@dimen/detay_menu_25"
-                        android:paddingRight="@dimen/detay_menu_12" />
+                        android:background="@drawable/calendar_style"
+                        android:gravity="center|left"
+                        android:inputType="numberDecimal"
+                        android:paddingStart="@dimen/detay_menu_12" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:layout_marginTop="@dimen/detay_menu_12"
                     android:orientation="horizontal">
 
@@ -290,18 +282,15 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:textColor="@color/text_color_5"
-                        android:textSize="@dimen/text_menu_15"
                         android:id="@+id/edt_tarih"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
-                        android:background="@drawable/btn_calendars"
+                        android:background="@drawable/calendar_style"
                         android:gravity="center|left"
-                        android:paddingLeft="@dimen/detay_menu_25"
-                        android:paddingRight="@dimen/detay_menu_12" />
+                        android:paddingStart="@dimen/detay_menu_12" />
 
                 </LinearLayout>
 
@@ -320,7 +309,7 @@
                         android:layout_alignTop="@+id/edt_asansor"
                         android:layout_alignBottom="@+id/edt_asansor"
                         android:layout_alignParentStart="true"
-                        android:layout_gravity="center"
+                        android:layout_gravity="center|top"
                         android:layout_toStartOf="@+id/edt_asansor"
                         android:fontFamily="@font/roboto_regular"
                         android:gravity="end"
@@ -332,13 +321,15 @@
                     <EditText
                         android:id="@+id/edt_aciklama"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/edt_calendar_height"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
+                        android:layout_height="122dp"
                         android:layout_marginStart="@dimen/detay_menu_30"
-                        android:background="@drawable/btn_calendars"
-                        android:drawableRight="@drawable/ic_pen"
-                        android:paddingEnd="8dp" />
+                        android:layout_weight="5"
+                        android:background="@drawable/btn_descp"
+                        android:gravity="top|left"
+                        android:inputType="textMultiLine"
+                        android:paddingStart="@dimen/detay_menu_12"
+                        android:paddingTop="@dimen/detay_menu_12"
+                        android:paddingEnd="@dimen/padding_rigt32" />
 
                 </LinearLayout>
 
@@ -346,7 +337,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:visibility="gone"
                 android:id="@+id/lnr2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -354,7 +344,7 @@
                 android:layout_weight="1"
                 android:gravity="left"
                 android:orientation="vertical"
-                >
+               >
 
 
                 <LinearLayout
@@ -386,11 +376,9 @@
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
+                        android:paddingEnd="@dimen/margin30"
                         android:background="@drawable/spn_style"
-                        android:drawSelectorOnTop="true"
-                        android:paddingLeft="@dimen/detay_menu_25"
-                        android:paddingRight="@dimen/detay_menu_12"
-                        android:spinnerMode="dropdown" />
+                        android:paddingStart="@dimen/detay_menu_12" />
 
                 </LinearLayout>
 
@@ -422,12 +410,9 @@
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
+                        android:paddingEnd="@dimen/margin30"
                         android:background="@drawable/spn_style"
-                        android:drawSelectorOnTop="true"
-                        android:maxLines="10"
-                        android:paddingLeft="@dimen/detay_menu_25"
-                        android:paddingRight="@dimen/detay_menu_12"
-                        android:spinnerMode="dropdown" />
+                        android:paddingStart="@dimen/detay_menu_12"/>
 
                 </LinearLayout>
 
@@ -461,9 +446,9 @@
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
-                        android:background="@drawable/btn_calendars"
-                        android:drawableRight="@drawable/ic_eye"
-                        android:paddingEnd="8dp" />
+                        android:background="@drawable/calendar_style"
+                        android:gravity="center|left"
+                        android:paddingStart="@dimen/detay_menu_12" />
 
                 </LinearLayout>
 
@@ -471,7 +456,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/detay_menu_12"
-                    android:layout_marginBottom="@dimen/detay_menu_12"
                     android:orientation="horizontal">
 
                     <TextView
@@ -497,15 +481,15 @@
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
-                        android:background="@drawable/btn_calendars"
-                      />
+                        android:background="@drawable/calendar_style"
+                        android:gravity="center|left"
+                        android:paddingStart="@dimen/detay_menu_12"/>
 
                 </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                android:visibility="gone"
                 android:id="@+id/lnr22"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -540,15 +524,16 @@
                         android:textStyle="bold" />
 
                     <EditText
+                        android:inputType="numberDecimal"
                         android:id="@+id/edt_miktar2"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
-                        android:background="@drawable/btn_calendars"
-                        android:paddingLeft="@dimen/detay_menu_25"
-                        android:paddingRight="@dimen/detay_menu_12" />
+                        android:background="@drawable/text_style_no_icon"
+                        android:gravity="center|left"
+                        android:paddingStart="@dimen/detay_menu_12" />
 
                 </LinearLayout>
 
@@ -580,10 +565,9 @@
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
-                        android:background="@drawable/btn_calendars"
+                        android:background="@drawable/text_style_no_icon"
                         android:gravity="center|left"
-                        android:paddingLeft="@dimen/detay_menu_25"
-                        android:paddingRight="@dimen/detay_menu_12" />
+                        android:paddingStart="@dimen/detay_menu_12" />
 
                 </LinearLayout>
 
@@ -617,11 +601,12 @@
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
-                        android:background="@drawable/btn_calendars"
-                        android:drawableRight="@drawable/ic_pen"
-                        android:paddingEnd="8dp" />
+                        android:background="@drawable/text_style_no_icon"
+                        android:gravity="center|left"
+                        android:paddingStart="@dimen/detay_menu_12" />
 
                 </LinearLayout>
+
                 <LinearLayout
 
                     android:layout_width="match_parent"
@@ -652,9 +637,10 @@
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
-                        android:background="@drawable/btn_calendars"
-                        android:drawableRight="@drawable/ic_pen"
-                        android:paddingEnd="8dp" />
+                        android:background="@drawable/text_style_no_icon"
+                        android:gravity="center|left"
+                        android:paddingStart="@dimen/detay_menu_12" />
+
 
                 </LinearLayout>
 

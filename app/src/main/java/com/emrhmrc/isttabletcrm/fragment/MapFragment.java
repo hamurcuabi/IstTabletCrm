@@ -12,6 +12,7 @@ import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -93,6 +94,7 @@ public class MapFragment extends DialogFragment {
                 MarkerOptions marker = new MarkerOptions().position(gps).title(current.getTitle());
                 marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker));
                 googleMap.addMarker(marker.position(gps)).setSnippet(current.getDescp());
+
             }
 
             // For zooming automatically to the location of the marker
@@ -135,6 +137,7 @@ public class MapFragment extends DialogFragment {
         ViewGroup.LayoutParams params = getDialog().getWindow().getAttributes();
         params.width = w;
         params.height = h;
+        getDialog().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         getDialog().getWindow().setAttributes((android.view.WindowManager.LayoutParams) params);
     }
 
