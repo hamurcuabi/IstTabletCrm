@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/margin80"
+    android:background="@color/white"
+    android:elevation="2dp"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/txt_malzemekodu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin30"
+        android:layout_marginEnd="@dimen/detay_menu_12"
+        android:layout_weight="2.5"
+        android:text="@string/malzemekodu"
+        android:textColor="@color/text_color" />
+
+    <TextView
+        android:id="@+id/txt_malzeme"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/detay_menu_12"
+        android:layout_weight="3"
+        android:text="@string/malzeme"
+        android:textColor="@color/text_color" />
+
+    <TextView
+        android:id="@+id/txt_degisimtarih"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/detay_menu_12"
+        android:layout_weight="1.7"
+        android:text="@string/degisim_tarihi"
+        android:textColor="@color/text_color" />
+
+    <TextView
+        android:id="@+id/txt_ustaadi"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/detay_menu_12"
+        android:layout_weight="2.5"
+        android:text="@string/usta_adi"
+        android:textColor="@color/text_color" />
+
+    <TextView
+        android:id="@+id/txt_baslangictarih"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/detay_menu_12"
+        android:layout_weight="2"
+        android:text="@string/garantibaslangic"
+        android:textColor="@color/text_color" />
+
+    <TextView
+        android:id="@+id/txt_bitistarih"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/detay_menu_12"
+        android:layout_weight="1.6"
+        android:text="@string/garantibitis"
+        android:textColor="@color/text_color" />
+
+    <TextView
+        android:id="@+id/txt_sure"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/detay_menu_12"
+        android:layout_weight="1.5"
+        android:text="@string/sure2"
+        android:textColor="@color/text_color" />
+
+    <TextView
+        android:id="@+id/txt_serino"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin30"
+        android:layout_weight="1"
+        android:text="@string/serino"
+        android:textColor="@color/text_color" />
+
+</LinearLayout>

@@ -1,5 +1,7 @@
 package com.emrhmrc.isttabletcrm.helper;
 
+import com.emrhmrc.isttabletcrm.models.Notification.Notification;
+
 public class ShareData {
     private static final ShareData Instance = new ShareData();
 
@@ -8,14 +10,24 @@ public class ShareData {
     private String ProductMainId;
     private String ProductMainName;
     private String ElevatorId;
-    private String NotificationIdRequest;
+    private Notification NotificationObject;
+    private String NotificationDetail;
     private double Latitude;
     private double Longitude;
+
     private ShareData() {
     }
 
     public static ShareData getInstance() {
         return Instance;
+    }
+
+    public String getNotificationDetail() {
+        return NotificationDetail;
+    }
+
+    public void setNotificationDetail(String notificationDetail) {
+        NotificationDetail = notificationDetail;
     }
 
     public String getProductMainName() {
@@ -34,12 +46,12 @@ public class ShareData {
         ProductMainId = productMainId;
     }
 
-    public String getNotificationIdRequest() {
-        return NotificationIdRequest;
+    public Notification getNotificationObject() {
+        return NotificationObject;
     }
 
-    public void setNotificationIdRequest(String notificationIdRequest) {
-        NotificationIdRequest = notificationIdRequest;
+    public void setNotificationObject(Notification notificationObject) {
+        NotificationObject = notificationObject;
     }
 
     public String getElevatorId() {

@@ -994,6 +994,7 @@
             app:layout_constraintTop_toBottomOf="@+id/btn_wish">
 
             <LinearLayout
+                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin30"

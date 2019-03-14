@@ -44,17 +44,6 @@
                 app:layout_constraintStart_toEndOf="@+id/img_menu"
                 app:layout_constraintTop_toTopOf="@+id/img_menu" />
 
-            <Spinner
-                android:id="@+id/spn_servapp"
-                android:layout_width="@dimen/detay_menu_370"
-                android:layout_height="@dimen/detay_menu_55"
-                android:layout_marginEnd="@dimen/menu_left_32"
-                android:background="@color/white"
-                android:backgroundTint="@color/white"
-                app:layout_constraintBottom_toBottomOf="@+id/txt_menu_header"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/txt_menu_header"></Spinner>
-
 
         </android.support.constraint.ConstraintLayout>
 
@@ -100,34 +89,34 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/txt_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/detay_menu_40"
             android:layout_marginTop="@dimen/detay_menu_45"
             android:fontFamily="@font/roboto_regular"
-            android:text="@string/ariza_kaydi_alindi"
             android:textColor="@color/mobil_konum"
             android:textSize="@dimen/text_menu_26"
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/txt_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/detay_menu_40"
             android:layout_marginTop="@dimen/detay_menu_8"
             android:fontFamily="@font/roboto_regular"
-            android:text="@string/dummy_date"
             android:textColor="@color/bakim"
             android:textSize="@dimen/text_menu_16" />
 
         <TextView
+            android:id="@+id/txt_descp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/detay_menu_40"
             android:layout_marginTop="@dimen/detay_menu_8"
             android:layout_marginEnd="@dimen/detay_menu_40"
             android:fontFamily="@font/roboto_regular"
-            android:text="@string/dummy_info"
             android:textColor="@color/text_color"
             android:textSize="@dimen/text_menu_16" />
 

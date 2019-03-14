@@ -9,6 +9,7 @@ import com.emrhmrc.isttabletcrm.models.CommonClass.ServAppCountResponse;
 import com.emrhmrc.isttabletcrm.models.CommonClass.UomListAll;
 import com.emrhmrc.isttabletcrm.models.Document.TechnicalDocument;
 import com.emrhmrc.isttabletcrm.models.Elevator.CustomerIdRequest;
+import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorChangingPart;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorGetById;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorIdRequest;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorListAll;
@@ -189,6 +190,9 @@ public interface JsonApi {
 
     @POST("WarehouseTransfer/Create")
     Call<DefaultResponse> createTransfer(@Body WarehouseTransferCreateRequest request);
+
+    @POST("ElevatorChangingPart/ListAll")
+    Call<ElevatorChangingPart> getElevatorChangingPartCall(@Body ElevatorIdRequest request);
 
     @Multipart
     @POST("ServApp/UpsertById")

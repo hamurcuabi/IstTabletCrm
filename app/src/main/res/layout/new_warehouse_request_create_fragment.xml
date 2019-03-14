@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="center"
     android:orientation="vertical">
 
     <ImageView
@@ -10,6 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
+        android:layout_marginBottom="@dimen/detay_menu_12"
         android:src="@drawable/ic_close" />
 
     <LinearLayout
@@ -93,6 +93,7 @@
                         android:textStyle="bold" />
 
                     <AutoCompleteTextView
+                        android:focusableInTouchMode="true"
                         android:id="@+id/spn_istenilen"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
@@ -127,6 +128,7 @@
                         android:textStyle="bold" />
 
                     <AutoCompleteTextView
+                        android:focusableInTouchMode="true"
                         android:id="@+id/spn_urunadi"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
@@ -162,6 +164,7 @@
                         android:textStyle="bold" />
 
                     <AutoCompleteTextView
+                        android:focusableInTouchMode="true"
                         android:id="@+id/spn_birim"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"

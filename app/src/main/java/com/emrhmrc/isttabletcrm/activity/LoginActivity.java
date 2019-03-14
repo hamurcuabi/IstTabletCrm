@@ -85,15 +85,18 @@ public class LoginActivity extends AppCompatActivity {
     private void init() {
         pref = new SharedPref(getApplicationContext());
         jsonApi = ApiClient.getClient().create(JsonApi.class);
-        AnyDialog anyDialog = new AnyDialog(this);
-        dialog = anyDialog.loading(loading);
 
     }
+   private void  initDialog(){
+       AnyDialog anyDialog = new AnyDialog(this);
+       dialog = anyDialog.loading(loading);
+   }
 
     private void doLogin() {
         String mail = edt_nick.getText().toString();
         String pass = edt_pass.getText().toString();
         if (StringUtil.validateStrings(mail, pass)) {
+            initDialog();
             dialog.show();
             rememberMe(mail, pass);
             UserRequest userRequest = new UserRequest(mail, pass);
@@ -115,9 +118,10 @@ public class LoginActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<UserLogin> call, Throwable t) {
+                    dialog.dismissWithAnimation();
                     btn_login.setEnabled(true);
                     Log.d(TAG, "onFailure: " + t.getMessage());
-                    dialog.dismissWithAnimation();
+
 
                 }
             });

@@ -26,10 +26,13 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
+import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
 import com.emrhmrc.isttabletcrm.api.APIHelper;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
+import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
+import com.emrhmrc.isttabletcrm.models.CommonClass.UomListAll;
 import com.emrhmrc.isttabletcrm.models.Product.Product;
 import com.emrhmrc.isttabletcrm.models.Product.ProductListAll;
 import com.emrhmrc.isttabletcrm.models.User.UserIdRequest;
@@ -95,6 +98,7 @@ public class CreateNewWareRequestFragment extends DialogFragment {
     @BindView(R.id.img_close)
     ImageView imgClose;
     private JsonApi jsonApi;
+    private SweetAlertDialog dialog;
 
 
     public static CreateNewWareRequestFragment newInstance() {
@@ -114,11 +118,53 @@ public class CreateNewWareRequestFragment extends DialogFragment {
         jsonApi = ApiClient.getClient().create(JsonApi.class);
         getDepo1();
         getProduct1();
+        getUoms();
+        focusing();
         return view;
 
     }
 
+    private void getUoms() {
+        Call<UomListAll> call = jsonApi.getUomListAllCall();
+        APIHelper.enqueueWithRetry(call, new Callback<UomListAll>() {
+            @Override
+            public void onResponse(Call<UomListAll> call, Response<UomListAll> response) {
+                if (response.isSuccessful()) {
+                    final UomListAll model = response.body();
+                    fillSpinnerUom(model.getUomList());
+                } else Log.d(TAG, "onResponse: " + response.errorBody());
+            }
+
+            @Override
+            public void onFailure(Call<UomListAll> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+
+            }
+        });
+    }
+
+    private void focusing() {
+        spnIstenilen.setOnFocusChangeListener((view, b) -> {
+            if (b) spnIstenilen.showDropDown();
+            else spnIstenilen.dismissDropDown();
+        });
+        spnUrunadi2.setOnFocusChangeListener((view, b) -> {
+            if (b) spnUrunadi2.showDropDown();
+            else spnUrunadi2.dismissDropDown();
+        });
+        spnUrunadi.setOnFocusChangeListener((view, b) -> {
+            if (b) spnUrunadi.showDropDown();
+            else spnUrunadi.dismissDropDown();
+        });
+        spnCikisdepo.setOnFocusChangeListener((view, b) -> {
+            if (b) spnCikisdepo.showDropDown();
+            else spnCikisdepo.dismissDropDown();
+        });
+    }
+
     private void getDepo1() {
+        initDialog();
+        dialog.show();
         UserIdRequest request = new UserIdRequest(SingletonUser.getInstance().getUser().getUserId());
         Call<WareHouseListAll> call = jsonApi.getWareHouseListAllCall(request);
         APIHelper.enqueueWithRetry(call, new Callback<WareHouseListAll>() {
@@ -131,16 +177,27 @@ public class CreateNewWareRequestFragment extends DialogFragment {
                     fillSpinner2(listAll.getWarehouses());
 
                 } else Log.d(TAG, "onResponse: ");
+                dialog.dismissWithAnimation();
             }
 
             @Override
             public void onFailure(Call<WareHouseListAll> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
+                dialog.dismissWithAnimation();
             }
         });
     }
 
+    private void initDialog() {
+        dialog = new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE);
+        dialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        dialog.setTitleText("Loading");
+        dialog.setCancelable(false);
+
+    }
+
     private void getProduct1() {
+        initDialog();
         UserIdRequest request = new UserIdRequest(SingletonUser.getInstance().getUser().getUserId());
         Call<ProductListAll> call = jsonApi.productListAll(request);
         APIHelper.enqueueWithRetry(call, new Callback<ProductListAll>() {
@@ -153,15 +210,16 @@ public class CreateNewWareRequestFragment extends DialogFragment {
                     fillSpinner22(listAll.getProducts());
 
                 } else Log.d(TAG, "onResponse: ");
+                dialog.dismissWithAnimation();
             }
 
             @Override
             public void onFailure(Call<ProductListAll> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
+                dialog.dismissWithAnimation();
             }
         });
     }
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -297,12 +355,7 @@ public class CreateNewWareRequestFragment extends DialogFragment {
                     android.R.layout.simple_dropdown_item_1line,
                     list);
             spnUrunadi.setAdapter(spinnerArrayAdapter);
-            spnUrunadi.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    spnUrunadi.showDropDown();
-                }
-            });
+
             spnUrunadi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -322,12 +375,7 @@ public class CreateNewWareRequestFragment extends DialogFragment {
                     android.R.layout.simple_dropdown_item_1line,
                     list);
             spnUrunadi2.setAdapter(spinnerArrayAdapter);
-            spnUrunadi2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    spnUrunadi2.showDropDown();
-                }
-            });
+
             spnUrunadi2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -347,12 +395,6 @@ public class CreateNewWareRequestFragment extends DialogFragment {
                     android.R.layout.simple_dropdown_item_1line,
                     list);
             spnCikisdepo.setAdapter(spinnerArrayAdapter);
-            spnCikisdepo.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    spnCikisdepo.showDropDown();
-                }
-            });
             spnCikisdepo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -362,6 +404,25 @@ public class CreateNewWareRequestFragment extends DialogFragment {
         } else {
             spnCikisdepo.setAdapter(null);
             spnCikisdepo.setOnClickListener(null);
+        }
+
+    }
+
+    private void fillSpinnerUom(List<Inv_Id> list) {
+        if (list.size() > 0 && list != null) {
+            ArrayAdapter<Inv_Id> spinnerArrayAdapter = new ArrayAdapter<>(getActivity(),
+                    android.R.layout.simple_dropdown_item_1line,
+                    list);
+            spnBirim.setAdapter(spinnerArrayAdapter);
+            spnBirim.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    //getElevatorByCustomerAll(list.get(i).getAccountId());
+                }
+            });
+        } else {
+            spnBirim.setAdapter(null);
+            spnBirim.setOnClickListener(null);
         }
 
     }
