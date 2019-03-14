@@ -19,6 +19,7 @@ import com.emrhmrc.isttabletcrm.api.APIHelper;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.fragment.NewUnstabilityFragment;
+import com.emrhmrc.isttabletcrm.helper.Methodes;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
 import com.emrhmrc.isttabletcrm.models.Unsuitablity.Unsuitabilities;
 import com.emrhmrc.isttabletcrm.models.Unsuitablity.UnsuitabilityListAll;
@@ -93,6 +94,7 @@ public class UnsuitabilityActivity extends AppCompatActivity implements OnItemCl
         rcwServapp.setAdapter(adapter);
         AnyDialog anyDialog = new AnyDialog(this);
         dialog = anyDialog.loading(loading);
+        Methodes.checkAndRequestPermissions(this);
 
 
     }

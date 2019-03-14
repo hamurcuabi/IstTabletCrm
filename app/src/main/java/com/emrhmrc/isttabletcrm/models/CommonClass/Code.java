@@ -5,6 +5,11 @@ public class Code {
 
     private Integer Value;
 
+    public Code(String text, Integer value) {
+        Text = text;
+        Value = value;
+    }
+
     public String getText() {
         return Text;
     }

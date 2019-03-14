@@ -256,7 +256,7 @@
                         android:layout_marginStart="@dimen/detay_menu_30"
                         android:background="@drawable/calendar_style"
                         android:gravity="center|left"
-                        android:inputType="numberDecimal"
+                        android:inputType="number"
                         android:paddingStart="@dimen/detay_menu_12" />
 
                 </LinearLayout>

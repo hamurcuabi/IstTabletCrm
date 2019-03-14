@@ -1,5 +1,9 @@
 package com.emrhmrc.isttabletcrm.models.ServApp;
 
+import android.graphics.Bitmap;
+
+import com.google.gson.annotations.Expose;
+
 public class Notes {
     private Integer FileSize;
     private boolean IsDocument;
@@ -8,6 +12,17 @@ public class Notes {
     private String FileName;
     private String DocumentBody;
     private String NoteText;
+
+    public Bitmap getBitmap() {
+        return bitmap;
+    }
+
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
+    }
+
+    @Expose
+    private Bitmap bitmap;
 
     public Notes() {
     }

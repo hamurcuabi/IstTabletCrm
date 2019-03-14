@@ -6,6 +6,18 @@ import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
 public class WarehouseTransferCreateRequest {
 
     private String UserId;
+    private String inv_Description;
+    private String inv_RequestDate;
+    private String inv_WarehouseTransferName;
+    private Code inv_TransferTypeCode;
+    private Inv_Id inv_ToWarehouseid;
+    private Inv_Id inv_FromWarehouseid;
+    private Inv_Id inv_Productid;
+    private Inv_Id inv_Uomid;
+    private String inv_Quantity;
+
+    public WarehouseTransferCreateRequest() {
+    }
 
     public String getUserId() {
         return UserId;
@@ -47,20 +59,20 @@ public class WarehouseTransferCreateRequest {
         this.inv_TransferTypeCode = inv_TransferTypeCode;
     }
 
-    public Code getInv_ScrapReasonCode() {
-        return inv_ScrapReasonCode;
+    public Inv_Id getInv_ToWarehouseid() {
+        return inv_ToWarehouseid;
     }
 
-    public void setInv_ScrapReasonCode(Code inv_ScrapReasonCode) {
-        this.inv_ScrapReasonCode = inv_ScrapReasonCode;
+    public void setInv_ToWarehouseid(Inv_Id inv_ToWarehouseid) {
+        this.inv_ToWarehouseid = inv_ToWarehouseid;
     }
 
-    public Inv_Id getInv_Warehouseid() {
-        return inv_Warehouseid;
+    public Inv_Id getInv_FromWarehouseid() {
+        return inv_FromWarehouseid;
     }
 
-    public void setInv_Warehouseid(Inv_Id inv_Warehouseid) {
-        this.inv_Warehouseid = inv_Warehouseid;
+    public void setInv_FromWarehouseid(Inv_Id inv_FromWarehouseid) {
+        this.inv_FromWarehouseid = inv_FromWarehouseid;
     }
 
     public Inv_Id getInv_Productid() {
@@ -86,17 +98,4 @@ public class WarehouseTransferCreateRequest {
     public void setInv_Quantity(String inv_Quantity) {
         this.inv_Quantity = inv_Quantity;
     }
-
-    public WarehouseTransferCreateRequest() {
-    }
-
-    private String inv_Description;
-    private String inv_RequestDate;
-    private String inv_WarehouseTransferName;
-    private Code inv_TransferTypeCode;
-    private Code inv_ScrapReasonCode;
-    private Inv_Id inv_Warehouseid;
-    private Inv_Id inv_Productid;
-    private Inv_Id inv_Uomid;
-    private String inv_Quantity;
 }

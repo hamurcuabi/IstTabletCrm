@@ -31,12 +31,15 @@ import com.emrhmrc.isttabletcrm.api.APIHelper;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
+import com.emrhmrc.isttabletcrm.models.CommonClass.Code;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
 import com.emrhmrc.isttabletcrm.models.CommonClass.UomListAll;
 import com.emrhmrc.isttabletcrm.models.Product.Product;
 import com.emrhmrc.isttabletcrm.models.Product.ProductListAll;
+import com.emrhmrc.isttabletcrm.models.ServApp.DefaultResponse;
 import com.emrhmrc.isttabletcrm.models.User.UserIdRequest;
 import com.emrhmrc.isttabletcrm.models.Warehouse.WareHouseListAll;
+import com.emrhmrc.isttabletcrm.models.Warehouse.WarehouseTransferCreateRequest;
 import com.emrhmrc.isttabletcrm.models.Warehouse.Warehouses;
 
 import java.util.Calendar;
@@ -97,9 +100,9 @@ public class CreateNewWareRequestFragment extends DialogFragment {
     RadioGroup rdGrup;
     @BindView(R.id.img_close)
     ImageView imgClose;
+    WarehouseTransferCreateRequest request;
+    SweetAlertDialog pDialog;
     private JsonApi jsonApi;
-    private SweetAlertDialog dialog;
-
 
     public static CreateNewWareRequestFragment newInstance() {
 
@@ -116,6 +119,8 @@ public class CreateNewWareRequestFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.new_warehouse_request_create_fragment, container);
         ButterKnife.bind(this, view);
         jsonApi = ApiClient.getClient().create(JsonApi.class);
+        request = new WarehouseTransferCreateRequest();
+
         getDepo1();
         getProduct1();
         getUoms();
@@ -125,6 +130,7 @@ public class CreateNewWareRequestFragment extends DialogFragment {
     }
 
     private void getUoms() {
+
         Call<UomListAll> call = jsonApi.getUomListAllCall();
         APIHelper.enqueueWithRetry(call, new Callback<UomListAll>() {
             @Override
@@ -133,6 +139,7 @@ public class CreateNewWareRequestFragment extends DialogFragment {
                     final UomListAll model = response.body();
                     fillSpinnerUom(model.getUomList());
                 } else Log.d(TAG, "onResponse: " + response.errorBody());
+
             }
 
             @Override
@@ -160,47 +167,42 @@ public class CreateNewWareRequestFragment extends DialogFragment {
             if (b) spnCikisdepo.showDropDown();
             else spnCikisdepo.dismissDropDown();
         });
+        spnBirim.setOnFocusChangeListener((view, b) -> {
+            if (b) spnBirim.showDropDown();
+            else spnBirim.dismissDropDown();
+        });
     }
 
     private void getDepo1() {
-        initDialog();
-        dialog.show();
+
         UserIdRequest request = new UserIdRequest(SingletonUser.getInstance().getUser().getUserId());
         Call<WareHouseListAll> call = jsonApi.getWareHouseListAllCall(request);
-        APIHelper.enqueueWithRetry(call, new Callback<WareHouseListAll>() {
+        call.enqueue(new Callback<WareHouseListAll>() {
             @Override
             public void onResponse(Call<WareHouseListAll> call, Response<WareHouseListAll> response) {
                 if (response.isSuccessful()) {
-
                     WareHouseListAll listAll = response.body();
                     fillSpinner1(listAll.getWarehouses());
                     fillSpinner2(listAll.getWarehouses());
 
                 } else Log.d(TAG, "onResponse: ");
-                dialog.dismissWithAnimation();
+
             }
 
             @Override
             public void onFailure(Call<WareHouseListAll> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
-                dialog.dismissWithAnimation();
+
             }
         });
     }
 
-    private void initDialog() {
-        dialog = new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE);
-        dialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
-        dialog.setTitleText("Loading");
-        dialog.setCancelable(false);
-
-    }
 
     private void getProduct1() {
-        initDialog();
+
         UserIdRequest request = new UserIdRequest(SingletonUser.getInstance().getUser().getUserId());
         Call<ProductListAll> call = jsonApi.productListAll(request);
-        APIHelper.enqueueWithRetry(call, new Callback<ProductListAll>() {
+        call.enqueue(new Callback<ProductListAll>() {
             @Override
             public void onResponse(Call<ProductListAll> call, Response<ProductListAll> response) {
                 if (response.isSuccessful()) {
@@ -210,13 +212,13 @@ public class CreateNewWareRequestFragment extends DialogFragment {
                     fillSpinner22(listAll.getProducts());
 
                 } else Log.d(TAG, "onResponse: ");
-                dialog.dismissWithAnimation();
+
             }
 
             @Override
             public void onFailure(Call<ProductListAll> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
-                dialog.dismissWithAnimation();
+
             }
         });
     }
@@ -226,6 +228,7 @@ public class CreateNewWareRequestFragment extends DialogFragment {
         super.onViewCreated(view, savedInstanceState);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getDialog().setCanceledOnTouchOutside(false);
+
 
     }
 
@@ -270,10 +273,10 @@ public class CreateNewWareRequestFragment extends DialogFragment {
                 visibil2();
                 break;
             case R.id.btn_send:
-                createNewTransfer(1);
+                createNewTransfer();
                 break;
             case R.id.btn_send2:
-                createNewTransfer(2);
+                //  createNewTransfer(2);
                 break;
             case R.id.edt_tarih:
                 openDatePicker(1);
@@ -308,9 +311,9 @@ public class CreateNewWareRequestFragment extends DialogFragment {
                         if (monthString.length() == 1) {
                             monthString = "0" + monthString;
                         }
-                        if (i == 1) edtTarih.setText(dayOfMonth + "." + monthString + "." + year);
+                        if (i == 1) edtTarih.setText(monthString + "." + dayOfMonth + "." + year);
                         else if (i == 2)
-                            edtTarih2.setText(dayOfMonth + "." + monthString + "." + year);
+                            edtTarih2.setText(monthString + "." + dayOfMonth + "." + year);
 
                     }
                 }, yil, ay, gun);
@@ -320,8 +323,63 @@ public class CreateNewWareRequestFragment extends DialogFragment {
         dpd.show();
     }
 
-    private void createNewTransfer(int i) {
+    private void createNewTransfer() {
+        request.setUserId(SingletonUser.getInstance().getUser().getUserId());
+        request.setInv_Description(edtAciklama.getText().toString());
+        request.setInv_RequestDate(edtTarih.getText().toString());
+        request.setInv_TransferTypeCode(new Code("Yeni Stok", 1));
+        request.setInv_Quantity(edtMiktar.getText().toString());
+        request.setInv_WarehouseTransferName("TEST TABLET");
+        if (checkFields(request)) {
+            Call<DefaultResponse> call = jsonApi.createTransfer(request);
+            call.enqueue(new Callback<DefaultResponse>() {
+                @Override
+                public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
+                    if (response.isSuccessful()) {
+                        dismiss();
+                        new SweetAlertDialog(getActivity(), SweetAlertDialog.SUCCESS_TYPE)
+                                .setTitleText("Başarılı")
+                                .show();
 
+                    } else Log.d(TAG, "onResponse: " + response.errorBody());
+                }
+
+                @Override
+                public void onFailure(Call<DefaultResponse> call, Throwable t) {
+                    Log.d(TAG, "onFailure: " + t.getMessage());
+                }
+            });
+
+        } else {
+            new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText("Eksik Alanları Doldurunuz")
+                    .show();
+
+
+        }
+
+    }
+
+    private boolean checkFields(WarehouseTransferCreateRequest request) {
+        if (request.getInv_Description() == null) {
+            return false;
+        } else if (request.getInv_FromWarehouseid() == null) {
+            return false;
+        } else if (request.getInv_Productid() == null) {
+            return false;
+        } else if (request.getInv_Quantity() == null) {
+            return false;
+        } else if (request.getInv_RequestDate() == null) {
+            return false;
+        } else if (request.getInv_WarehouseTransferName() == null) {
+            return false;
+        } else if (request.getInv_Uomid() == null) {
+            return false;
+        } else if (request.getInv_ToWarehouseid() == null) {
+            return false;
+        } else if (request.getInv_TransferTypeCode() == null) {
+            return false;
+        } else return true;
     }
 
     private void fillSpinner1(List<Warehouses> list) {
@@ -339,7 +397,9 @@ public class CreateNewWareRequestFragment extends DialogFragment {
             spnIstenilen.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    //getElevatorByCustomerAll(list.get(i).getAccountId());
+                    request.setInv_ToWarehouseid(new Inv_Id("inv_warehouse",
+                            list.get(i).getInv_WarehouseName(), list.get(i).getInv_WarehouseId()));
+                    request.setInv_FromWarehouseid(list.get(i).getInv_ParentWhid());
                 }
             });
         } else {
@@ -359,7 +419,8 @@ public class CreateNewWareRequestFragment extends DialogFragment {
             spnUrunadi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    //getElevatorByCustomerAll(list.get(i).getAccountId());
+                    request.setInv_Productid(new Inv_Id("product", list.get(i).getName(),
+                            list.get(i).getProductId()));
                 }
             });
         } else {
@@ -417,7 +478,7 @@ public class CreateNewWareRequestFragment extends DialogFragment {
             spnBirim.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    //getElevatorByCustomerAll(list.get(i).getAccountId());
+                    request.setInv_Uomid(list.get(i));
                 }
             });
         } else {

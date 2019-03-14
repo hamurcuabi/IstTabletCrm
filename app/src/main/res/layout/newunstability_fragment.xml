@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
     <ImageView
@@ -169,11 +169,11 @@
                 android:layout_marginStart="@dimen/detay_menu_30"
                 android:layout_weight="5"
                 android:background="@drawable/btn_descp"
-                android:inputType="textMultiLine"
                 android:gravity="top|left"
-                android:paddingEnd="@dimen/padding_rigt32"
+                android:inputType="textMultiLine"
                 android:paddingStart="@dimen/detay_menu_12"
-                android:paddingTop="@dimen/detay_menu_12" />
+                android:paddingTop="@dimen/detay_menu_12"
+                android:paddingEnd="@dimen/padding_rigt32" />
 
         </LinearLayout>
 
@@ -193,15 +193,6 @@
                 android:layout_marginStart="@dimen/padding_top25"
                 android:layout_marginEnd="@dimen/padding_top25"
                 android:layout_weight="1"
-                android:gravity="end"
-                android:orientation="horizontal">
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="5"
                 android:orientation="vertical">
 
                 <ImageView
@@ -221,6 +212,22 @@
                     android:textColor="@color/mobil_konum"
                     android:textSize="@dimen/text_menu_16"
                     android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rcv"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_width110"
+                    android:layout_marginBottom="@dimen/detay_menu_12"></android.support.v7.widget.RecyclerView>
+
+
             </LinearLayout>
         </LinearLayout>
 

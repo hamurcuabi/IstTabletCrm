@@ -13,6 +13,10 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,10 +32,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
+import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
+import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
+import com.emrhmrc.isttabletcrm.adapter.RcvImageAdapter;
+import com.emrhmrc.isttabletcrm.adapter.SwipeToDeleteVertical;
 import com.emrhmrc.isttabletcrm.api.APIHelper;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
-import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
 import com.emrhmrc.isttabletcrm.models.Account.Account;
 import com.emrhmrc.isttabletcrm.models.Account.AccountListAll;
@@ -40,6 +47,7 @@ import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorListAll;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorsCustomer;
 import com.emrhmrc.isttabletcrm.models.ServApp.CreateUnsuitability;
 import com.emrhmrc.isttabletcrm.models.ServApp.DefaultResponse2;
+import com.emrhmrc.isttabletcrm.models.ServApp.Notes;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Calendar;
@@ -52,7 +60,8 @@ import retrofit2.Response;
 import static android.app.Activity.RESULT_OK;
 import static com.emrhmrc.isttabletcrm.helper.Methodes.checkAndRequestPermissions;
 
-public class NewUnstabilityFragment extends DialogFragment implements View.OnClickListener {
+public class NewUnstabilityFragment extends DialogFragment implements View.OnClickListener,
+        OnItemClickListener {
 
     private static final String TAG = "NewUnstabilityFragment";
     private static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -62,6 +71,8 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
     private Button btn_send;
     private JsonApi jsonApi;
     private AutoCompleteTextView spn_account, spnElevator;
+    private RcvImageAdapter adapter;
+    private RecyclerView rcv;
 
     public static NewUnstabilityFragment newInstance() {
         Bundle args = new Bundle();
@@ -80,6 +91,15 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        init(view);
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        getDialog().setCanceledOnTouchOutside(false);
+        getAccountAll();
+        focusing();
+
+    }
+
+    private void init(View view) {
         jsonApi = ApiClient.getClient().create(JsonApi.class);
         btn_send = view.findViewById(R.id.btn_send);
         img_close = view.findViewById(R.id.img_close);
@@ -88,13 +108,18 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
         spnElevator = view.findViewById(R.id.spnElevator);
         spn_account = view.findViewById(R.id.spn_account);
         img_add = view.findViewById(R.id.img_add);
+        rcv = view.findViewById(R.id.rcv);
         btn_send.setOnClickListener(this);
         img_add.setOnClickListener(this);
         img_close.setOnClickListener(this);
         edt_tarih.setOnClickListener(this);
-        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        getDialog().setCanceledOnTouchOutside(false);
-        getAccountAll();
+        adapter = new RcvImageAdapter(getActivity(), this::onItemClicked);
+        rcv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL
+                , false));
+        ItemTouchHelper itemTouchHelper = new
+                ItemTouchHelper(new SwipeToDeleteVertical(adapter));
+        itemTouchHelper.attachToRecyclerView(rcv);
+        rcv.setAdapter(adapter);
 
     }
 
@@ -128,6 +153,18 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
 
 
         }
+
+    }
+
+    private void focusing() {
+        spn_account.setOnFocusChangeListener((view, b) -> {
+            if (b) spn_account.showDropDown();
+            else spn_account.dismissDropDown();
+        });
+        spn_account.setOnFocusChangeListener((view, b) -> {
+            if (b) spn_account.showDropDown();
+            else spn_account.dismissDropDown();
+        });
 
     }
 
@@ -165,22 +202,40 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
         createUnsuitability.setDescription(edt_descp.getText().toString());
         createUnsuitability.setSentOn(edt_tarih.getText().toString());
         createUnsuitability.setSubject("Test Subject");
-        createUnsuitability.setServAppId(ShareData.getInstance().getServAppId());
-        Call<DefaultResponse2> call = jsonApi.createUnsuitabilityCall(createUnsuitability);
-        call.enqueue(new Callback<DefaultResponse2>() {
-            @Override
-            public void onResponse(Call<DefaultResponse2> call, Response<DefaultResponse2> response) {
-                if (response.isSuccessful()) {
-                    Log.d(TAG, "onResponse: Succes");
-                } else Log.d(TAG, "onResponse: Fail");
-            }
+        createUnsuitability.setUnsuitabilityNotes(adapter.getItems());
+        if (checkFields(createUnsuitability)) {
+            Call<DefaultResponse2> call = jsonApi.createUnsuitabilityCall(createUnsuitability);
+            call.enqueue(new Callback<DefaultResponse2>() {
+                @Override
+                public void onResponse(Call<DefaultResponse2> call, Response<DefaultResponse2> response) {
+                    if (response.isSuccessful()) {
+                        dismiss();
+                        new SweetAlertDialog(getActivity(), SweetAlertDialog.SUCCESS_TYPE)
+                                .setTitleText("Başarılı")
+                                .show();
+                    } else Log.d(TAG, "onResponse: Fail"+ response.message());
+                }
 
-            @Override
-            public void onFailure(Call<DefaultResponse2> call, Throwable t) {
-                Log.d(TAG, "onFailure: " + t.getMessage());
-            }
-        });
+                @Override
+                public void onFailure(Call<DefaultResponse2> call, Throwable t) {
+                    Log.d(TAG, "onFailure: " + t.getMessage());
+                }
+            });
+        } else {
+            new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText("Eksik Alanları Doldurunuz")
+                    .show();
+        }
 
+    }
+
+    private boolean checkFields(CreateUnsuitability item) {
+        if (item.getDescription() == null || item.getDescription().isEmpty()) return false;
+        else if (item.getSentOn() == null || item.getSentOn().isEmpty()) return false;
+        else if (item.getSubject() == null || item.getSubject().isEmpty()) return false;
+        else if (item.getUnsuitabilityNotes() == null ) return false;
+        else if (item.getUserId() == null || item.getUserId().isEmpty()) return false;
+        else return true;
     }
 
     private void getElevatorByCustomerAll(String id) {
@@ -189,7 +244,7 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
         Log.d(TAG, "getElevatorByCustomerAll: " + id);
         CustomerIdRequest request = new CustomerIdRequest(id);
         Call<ElevatorListAll> call = jsonApi.elevatorGetByCustomerId(request);
-        APIHelper.enqueueWithRetry(call, new Callback<ElevatorListAll>() {
+        call.enqueue(new Callback<ElevatorListAll>() {
             @Override
             public void onResponse(Call<ElevatorListAll> call, Response<ElevatorListAll> response) {
                 if (response.isSuccessful()) {
@@ -234,7 +289,7 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
     private void getAccountAll() {
 
         Call<AccountListAll> call = jsonApi.geAccountListAllCall();
-        APIHelper.enqueueWithRetry(call, new Callback<AccountListAll>() {
+        call.enqueue(new Callback<AccountListAll>() {
             @Override
             public void onResponse(Call<AccountListAll> call, Response<AccountListAll> response) {
                 if (response.isSuccessful()) {
@@ -316,15 +371,31 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Notes notes = new Notes();
 
             Bitmap photo = (Bitmap) data.getExtras().get("data");
-
             Uri selectedImage = getImageUri(getActivity(), photo);
             String realPath = getRealPathFromURI(selectedImage);
             selectedImage = Uri.parse(realPath);
-            Log.d(TAG, "onActivityResult: " + selectedImage.toString());
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            photo.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+            byte[] byteArray = byteArrayOutputStream.toByteArray();
+            notes.setBitmap(photo);
+            notes.setDocumentBody(Base64.encodeToString(byteArray, Base64.DEFAULT));
+            notes.setDocument(true);
+            notes.setFileName(realPath);
+            notes.setMimeType("image/jpg");
+            notes.setNoteText(null);
+            notes.setSubject("Dosya Eki");
+            adapter.add(notes);
+
+
         }
     }
 
 
+    @Override
+    public void onItemClicked(Object item, int positon) {
+
+    }
 }
