@@ -11,7 +11,7 @@
         android:layout_gravity="center"
         android:gravity="center_vertical"
         android:id="@+id/txt_kod"
-        android:layout_weight="0.4"
+        android:layout_weight="2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_regular"
@@ -25,7 +25,7 @@
         android:layout_marginEnd="@dimen/detay_menu_12"
         android:layout_gravity="center"
         android:id="@+id/txt_urunadi"
-        android:layout_weight="1.9"
+        android:layout_weight="1.5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_regular"
@@ -38,7 +38,7 @@
     <EditText
         android:layout_gravity="center"
         android:id="@+id/edt_miktar"
-        android:layout_weight="0.5"
+        android:layout_weight="0.8"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_regular"
@@ -51,7 +51,7 @@
     <TextView
         android:layout_gravity="center"
         android:id="@+id/txt_birim"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_regular"
@@ -77,7 +77,7 @@
     <TextView
         android:layout_gravity="center"
         android:id="@+id/txt_garantidurumu"
-        android:layout_weight="1"
+        android:layout_weight="2.5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_regular"
@@ -87,12 +87,14 @@
         android:textSize="@dimen/menu_text_16"
         android:textStyle="bold" />
 
-    <TextView
+    <Spinner
         android:layout_gravity="center"
-        android:id="@+id/txt_fatura"
-        android:layout_weight="1"
+        android:id="@+id/spn_ucretli"
+        android:layout_weight="2"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/btn_height45"
+        android:background="@drawable/spn_style"
+        android:entries="@array/ucretli"
         android:fontFamily="@font/roboto_regular"
         android:text="-"
         android:textAllCaps="true"
@@ -102,8 +104,8 @@
 
     <TextView
         android:layout_gravity="center"
-        android:id="@+id/txt_urundahilimi"
-        android:layout_weight="1"
+        android:id="@+id/txt_descp"
+        android:layout_weight="1.7"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_regular"

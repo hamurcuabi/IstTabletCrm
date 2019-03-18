@@ -15,7 +15,6 @@ import com.emrhmrc.isttabletcrm.SweetDialog.AnyDialog;
 import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.adapter.RcvUnstabilityAdapter;
-import com.emrhmrc.isttabletcrm.api.APIHelper;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.fragment.NewUnstabilityFragment;
@@ -63,24 +62,28 @@ public class UnsuitabilityActivity extends AppCompatActivity implements OnItemCl
         dialog.show();
         UserIdRequest userIdRequest = new UserIdRequest(SingletonUser.getInstance().getUser().getUserId());
         Call<UnsuitabilityListAll> call = jsonApi.getUnsuitabilityListAllCall(userIdRequest);
-        APIHelper.enqueueWithRetry(call, 3, new Callback<UnsuitabilityListAll>() {
-                    @Override
-                    public void onResponse(Call<UnsuitabilityListAll> call, Response<UnsuitabilityListAll> response) {
-                        if (response.isSuccessful()) {
-                            List<Unsuitabilities> model = response.body().getUnsuitabilities();
-                            adapter.setItemsFilter(model);
-                            adapter.setItems(model);
-                            search();
-                        }
-                        dialog.dismissWithAnimation();
-                    }
+        call.enqueue(new Callback<UnsuitabilityListAll>() {
+                         @Override
+                         public void onResponse(Call<UnsuitabilityListAll> call, Response<UnsuitabilityListAll> response) {
+                             if (response.isSuccessful()) {
+                                 List<Unsuitabilities> model = response.body().getUnsuitabilities();
+                                 adapter.setItemsFilter(model);
+                                 adapter.setItems(model);
+                                 search();
+                             }
+                             dialog.dismissWithAnimation();
+                         }
 
-                    @Override
-                    public void onFailure(Call<UnsuitabilityListAll> call, Throwable t) {
-                        dialog.dismissWithAnimation();
-                        Log.d(TAG, "onFailure: " + t.getMessage());
-                    }
-                }
+                         @Override
+                         public void onFailure(Call<UnsuitabilityListAll> call, Throwable t) {
+                             dialog.dismissWithAnimation();
+                             Log.d(TAG, "onFailure: " + t.getMessage());
+                             new SweetAlertDialog(UnsuitabilityActivity.this,
+                                     SweetAlertDialog.WARNING_TYPE)
+                                     .setTitleText(getResources().getString(R.string.toast_error))
+                                     .show();
+                         }
+                     }
         );
 
     }

@@ -14,12 +14,21 @@ public class ShareData {
     private String NotificationDetail;
     private double Latitude;
     private double Longitude;
+    private boolean add_sub_piece;
 
     private ShareData() {
     }
 
     public static ShareData getInstance() {
         return Instance;
+    }
+
+    public boolean isAdd_sub_piece() {
+        return add_sub_piece;
+    }
+
+    public void setAdd_sub_piece(boolean add_sub_piece) {
+        this.add_sub_piece = add_sub_piece;
     }
 
     public String getNotificationDetail() {

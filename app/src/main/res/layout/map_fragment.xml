@@ -1,5 +1,4 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:map="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -7,25 +6,29 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/detay_menu_12"
+        android:layout_marginBottom="@dimen/menu_text_16"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn_before"
-            android:layout_width="@dimen/btn_width110"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/detay_menu_12"
             android:background="@drawable/btn_calendars"
             android:text="@string/oncekigun"
-            android:textColor="@color/mobil_konum" />
+            android:textColor="@color/mobil_konum"
+            android:textSize="@dimen/menu_text_14"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btn_next"
-            android:layout_width="@dimen/btn_width110"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_calendars"
             android:text="@string/sonrakigun"
-            android:textColor="@color/mobil_konum" />
+            android:textColor="@color/mobil_konum"
+            android:textSize="@dimen/menu_text_14"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,18 +42,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginEnd="@dimen/detay_menu_12"
+                android:layout_marginEnd="20dp"
                 android:src="@drawable/ic_close" />
         </LinearLayout>
 
 
     </LinearLayout>
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mapview"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-         />
+        android:background="@drawable/bck_map"
+        android:orientation="horizontal">
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/mapview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+           />
+    </LinearLayout>
 
 
 </LinearLayout>

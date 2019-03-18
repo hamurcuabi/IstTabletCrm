@@ -36,6 +36,7 @@ import com.emrhmrc.isttabletcrm.models.Product.SubProductList;
 
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.Call;
@@ -46,6 +47,8 @@ public class AddSubPieceActivity extends AppCompatActivity implements View.OnCli
         OnItemClickListener, SlideInterface {
 
     private static final String TAG = "AddSubPieceActivity";
+    @BindView(R.id.textView6)
+    TextView txtHeader;
     private LinearLayout lnr_main, lnr_sub;
     private Animation anim_down, anim_down_2, anim_up, anim_up_2;
     private ConstraintLayout cons_main, cons_sub;
@@ -60,7 +63,7 @@ public class AddSubPieceActivity extends AppCompatActivity implements View.OnCli
     private ImageSliderFragment fragment;
     private TextView txt_maingroup_name, txt_maingroup_id;
     private int main_background = -1;
-    private SweetAlertDialog dialog,dialog2;
+    private SweetAlertDialog dialog, dialog2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +73,10 @@ public class AddSubPieceActivity extends AppCompatActivity implements View.OnCli
         init();
         getSubProduct();
         AnimateDownMain();
+        if (!ShareData.getInstance().isAdd_sub_piece()) {
+            txtHeader.setText(getResources().getString(R.string.alt_urun));
+
+        }
     }
 
     private void getSubProduct() {

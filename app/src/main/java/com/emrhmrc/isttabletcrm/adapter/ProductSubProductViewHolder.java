@@ -15,11 +15,10 @@ import android.widget.TextView;
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.BaseViewHolder;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
+import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.helper.StateHandler;
 import com.emrhmrc.isttabletcrm.models.Product.Product;
 import com.emrhmrc.isttabletcrm.util.StringUtil;
-
-import java.util.List;
 
 import butterknife.BindDrawable;
 import butterknife.BindView;
@@ -49,7 +48,7 @@ public class ProductSubProductViewHolder extends BaseViewHolder<Product,
     @BindDrawable(R.drawable.btn_kontrol)
     Drawable btn_default;
     private FragmentManager fragmentManager;
-   private Product current;
+    private Product current;
     private Context context;
 
     public ProductSubProductViewHolder(View itemView, Context context) {
@@ -64,6 +63,7 @@ public class ProductSubProductViewHolder extends BaseViewHolder<Product,
     public void onBind(final Product item, @Nullable final OnItemClickListener<Product> listener) {
         GlideBindingAdapters.setImageResourceBase64(imgPic, item.getImage());
         txtCode.setText(StringUtil.nullToString(item.getProductNumber()));
+        if (!ShareData.getInstance().isAdd_sub_piece()) btnAdd.setVisibility(View.GONE);
         if (listener != null)
             imgPic.setOnClickListener(view -> listener.onItemClicked(item, getAdapterPosition()));
         btnAdd.setOnClickListener(this);
@@ -76,7 +76,7 @@ public class ProductSubProductViewHolder extends BaseViewHolder<Product,
             btnAdd.setText("Eklendi");
             btnAdd.setBackground(btn_selected);
         }
-        current=item;
+        current = item;
 
     }
 
@@ -107,6 +107,7 @@ public class ProductSubProductViewHolder extends BaseViewHolder<Product,
         intent.putExtra("product", current);
         LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
     }
+
     public void sendItemToDelete(String id) {
         Log.d("sender", "Broadcasting message");
         Intent intent = new Intent("custom-event-name");

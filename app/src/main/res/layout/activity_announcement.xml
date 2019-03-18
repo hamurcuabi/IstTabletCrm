@@ -102,12 +102,12 @@
         app:layout_constraintTop_toTopOf="parent"></Spinner>
 
     <LinearLayout
-        android:layout_marginStart="@dimen/menu_left"
-        android:layout_marginTop="@dimen/servapp_header"
-        android:layout_marginEnd="@dimen/menu_left"
         android:id="@+id/cons_detail"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="@dimen/menu_left"
+        android:layout_marginTop="@dimen/detay_menu_20"
+        android:layout_marginEnd="@dimen/menu_left"
         android:layout_marginBottom="8dp"
         android:background="@drawable/btn_default_layout"
         android:elevation="2dp"
@@ -120,8 +120,7 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rcv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/bg"></android.support.v7.widget.RecyclerView>
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
 
     </LinearLayout>
 

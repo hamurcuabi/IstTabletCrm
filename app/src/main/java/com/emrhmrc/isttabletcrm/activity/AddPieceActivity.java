@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.SweetDialog.AnyDialog;
@@ -37,6 +38,8 @@ public class AddPieceActivity extends AppCompatActivity implements OnItemClickLi
     RecyclerView rcwServapp;
     @BindString(R.string.loading)
     String loading;
+    @BindView(R.id.textView6)
+    TextView txtHeader;
     private List<MainList> model;
     private JsonApi jsonApi;
     private RcvProductMainAdapter adapter;
@@ -50,6 +53,10 @@ public class AddPieceActivity extends AppCompatActivity implements OnItemClickLi
         ButterKnife.bind(this);
         init();
         getMainProductGroup();
+        if (!ShareData.getInstance().isAdd_sub_piece()) {
+            txtHeader.setText(getResources().getString(R.string.ana_urun));
+
+        }
     }
 
     private void getMainProductGroup() {

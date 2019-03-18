@@ -22,7 +22,7 @@ public class ServAppDescriptionViewHolder extends BaseViewHolder<ServAppGetByIdN
 
     @Override
     public void onBind(final ServAppGetByIdNotes item, @Nullable final OnItemClickListener<ServAppGetByIdNotes> listener) {
-        txt_descp.setText(StringUtil.base64ToString(StringUtil.nullToString(item.getDocumentBody())));
+        txt_descp.setText(StringUtil.nullToString(item.getSubject()));
 
     }
 

@@ -281,7 +281,6 @@
                                 android:orientation="vertical">
 
                                 <TextView
-                                    android:textStyle="bold"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:autoSizeTextType="uniform"
@@ -289,13 +288,14 @@
                                     android:maxLines="1"
                                     android:text="@string/asansor_no"
                                     android:textColor="@color/text_color"
-                                    android:textSize="@dimen/menu_text_16" />
+                                    android:textSize="@dimen/menu_text_16"
+                                    android:textStyle="bold" />
 
                                 <TextView
-                                    android:autoSizeMinTextSize="@dimen/text_menu_18"
                                     android:id="@+id/txt_asansorno"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:autoSizeMinTextSize="@dimen/text_menu_26"
                                     android:autoSizeTextType="uniform"
                                     android:fontFamily="@font/roboto_regular"
                                     android:maxLines="2"
@@ -681,7 +681,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/detay_menu_12"
                                 android:layout_weight="1"
-                                android:background="@drawable/btn_malzeme"
+                                android:background="@drawable/btn_ariza_rounded"
                                 android:gravity="center"
                                 android:text="@string/ariza_nedini"
                                 android:textColor="@color/white"
@@ -791,7 +791,7 @@
                 android:id="@+id/btn_beforeafter"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/detay_menu_45"
-                android:background="@drawable/btn_konum_rounded"
+                android:background="@drawable/btn_beforeafter_rounded"
                 android:padding="@dimen/detay_menu_8"
                 android:text="@string/oncekisonraki"
                 android:textAllCaps="true"
@@ -1021,27 +1021,18 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2.5"
+                        android:layout_weight="2"
                         android:text="@string/ucretli_ucretsiz"
                         android:textAllCaps="true"
                         android:textColor="@color/white"
                         android:textSize="@dimen/menu_text_14"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.5"
-                        android:text="@string/dis_hizmet"
-                        android:textAllCaps="true"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/menu_text_14"
-                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1.2"
+                        android:layout_weight="1.7"
                         android:text="@string/aciklama"
                         android:textAllCaps="true"
                         android:textColor="@color/white"

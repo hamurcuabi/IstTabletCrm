@@ -105,6 +105,29 @@ public class GlideBindingAdapters {
         view.setBackground(context.getDrawable(imageUrl));
     }
 
+    @BindingAdapter("statusTransfer")
+    public static void setStatusTransfer(ImageView view, int id) {
+
+        Context context = view.getContext();
+        int imageUrl;
+        switch (id) {
+
+            case 100000000:
+                imageUrl = R.drawable.ic_waiting;
+                break;
+            case 100000001:
+                imageUrl = R.drawable.ic_confirm;
+                break;
+            case 100000002:
+                imageUrl = R.drawable.ic_reject;
+                break;
+            default:
+                imageUrl = R.drawable.ic_az;
+                break;
+        }
+        view.setBackground(context.getDrawable(imageUrl));
+    }
+
     @BindingAdapter("imageResource")
     public static void setImageResource(ImageView view, String imageUrl) {
         Context context = view.getContext();

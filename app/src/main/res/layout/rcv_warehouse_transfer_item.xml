@@ -7,17 +7,15 @@
     android:orientation="horizontal">
 
     <TextView
-        android:layout_marginStart="@dimen/padding_rigt32"
         android:id="@+id/txt_tranfertipi"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginStart="@dimen/padding_rigt32"
         android:layout_weight="1"
         android:fontFamily="@font/roboto_regular"
-        android:text="@string/depo"
-        android:textAllCaps="true"
-        android:textColor="@color/text_color_3"
-        android:textSize="@dimen/menu_text_14"
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/text_menu_16"
         android:textStyle="bold" />
 
     <TextView
@@ -28,11 +26,8 @@
         android:layout_marginEnd="@dimen/detay_menu_12"
         android:layout_weight="1.7"
         android:fontFamily="@font/roboto_regular"
-        android:text="@string/urun_adi"
-        android:textAllCaps="true"
-        android:textColor="@color/text_color_3"
-        android:textSize="@dimen/menu_text_14"
-        android:textStyle="bold" />
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/text_menu_16" />
 
     <TextView
         android:id="@+id/txt_miktar"
@@ -41,11 +36,8 @@
         android:layout_gravity="center"
         android:layout_weight="0.5"
         android:fontFamily="@font/roboto_regular"
-        android:text="@string/miktar"
-        android:textAllCaps="true"
-        android:textColor="@color/text_color_3"
-        android:textSize="@dimen/menu_text_14"
-        android:textStyle="bold" />
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/text_menu_16" />
 
     <TextView
         android:id="@+id/txt_birim"
@@ -54,11 +46,8 @@
         android:layout_gravity="center"
         android:layout_weight="1"
         android:fontFamily="@font/roboto_regular"
-        android:text="@string/birim"
-        android:textAllCaps="true"
-        android:textColor="@color/text_color_3"
-        android:textSize="@dimen/menu_text_14"
-        android:textStyle="bold" />
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/text_menu_16" />
 
     <TextView
         android:id="@+id/txt_tarih"
@@ -67,11 +56,8 @@
         android:layout_gravity="center"
         android:layout_weight="1"
         android:fontFamily="@font/roboto_regular"
-        android:text="@string/birim"
-        android:textAllCaps="true"
-        android:textColor="@color/text_color_3"
-        android:textSize="@dimen/menu_text_14"
-        android:textStyle="bold" />
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/text_menu_16" />
 
     <TextView
         android:id="@+id/txt_onay_durumu"
@@ -80,11 +66,16 @@
         android:layout_gravity="center"
         android:layout_weight="1"
         android:fontFamily="@font/roboto_regular"
-        android:text="@string/birim"
-        android:textAllCaps="true"
-        android:textColor="@color/text_color_3"
-        android:textSize="@dimen/menu_text_14"
-        android:textStyle="bold" />
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/text_menu_16" />
+
+    <ImageView
+        android:layout_marginStart="@dimen/detay_menu_8"
+        android:layout_marginEnd="@dimen/detay_menu_8"
+        android:layout_gravity="center"
+        android:id="@+id/img_statu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/txt_depo_cikis"
@@ -93,11 +84,8 @@
         android:layout_gravity="center"
         android:layout_weight="1"
         android:fontFamily="@font/roboto_regular"
-        android:text="@string/birim"
-        android:textAllCaps="true"
-        android:textColor="@color/text_color_3"
-        android:textSize="@dimen/menu_text_14"
-        android:textStyle="bold" />
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/text_menu_16" />
 
     <TextView
         android:id="@+id/txt_depo_gonderilecek"
@@ -106,9 +94,6 @@
         android:layout_gravity="center"
         android:layout_weight="1"
         android:fontFamily="@font/roboto_regular"
-        android:text="@string/birim"
-        android:textAllCaps="true"
-        android:textColor="@color/text_color_3"
-        android:textSize="@dimen/menu_text_14"
-        android:textStyle="bold" />
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/text_menu_16" />
 </LinearLayout>

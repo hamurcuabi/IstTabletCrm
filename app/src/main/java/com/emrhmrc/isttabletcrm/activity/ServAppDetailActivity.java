@@ -20,7 +20,6 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
@@ -127,7 +126,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
 
             if (id != null) {
 
-                for (int k=0;k< adapter.getItems().size();k++) {
+                for (int k = 0; k < adapter.getItems().size(); k++) {
 
                     if (adapter.getItems().get(k).getInv_ProductId().getText().equals(id)) {
                         adapter.remove(k);
@@ -329,6 +328,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     }
 
     private void openAddPiece() {
+        ShareData.getInstance().setAdd_sub_piece(true);
         startActivity(new Intent(ServAppDetailActivity.this, AddPieceActivity.class));
     }
 

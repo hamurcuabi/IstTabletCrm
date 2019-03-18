@@ -63,6 +63,13 @@
                 android:background="@drawable/spn_style"
                 android:paddingStart="@dimen/detay_menu_12" />
 
+            <ProgressBar
+                android:visibility="gone"
+                android:id="@+id/prog_account"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -98,6 +105,13 @@
                 android:layout_weight="5"
                 android:background="@drawable/spn_style"
                 android:paddingStart="@dimen/detay_menu_12" />
+
+            <ProgressBar
+                android:visibility="gone"
+                android:id="@+id/prog_elevator"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center" />
 
         </LinearLayout>
 
@@ -263,7 +277,8 @@
                 android:background="@drawable/btn_kontrol"
                 android:text="@string/kaydet"
                 android:textColor="@color/white"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:visibility="invisible" />
 
             <Button
 

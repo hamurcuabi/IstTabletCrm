@@ -4,22 +4,25 @@ import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.BaseViewHolder;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppDetails;
+import com.emrhmrc.isttabletcrm.util.StringUtil;
 
 public class RcvServAppDetailViewHolder extends BaseViewHolder<ServAppGetByIdServAppDetails,
         OnItemClickListener<ServAppGetByIdServAppDetails>> {
-    private TextView txt_urundahilimi, txt_fatura, txt_garantidurumu, txt_stokdurumu, txt_birim,
+    private TextView txt_descp, txt_garantidurumu, txt_stokdurumu, txt_birim,
             edt_miktar, txt_urunadi, txt_kod;
+    private Spinner spn_ucretli;
 
     public RcvServAppDetailViewHolder(View itemView) {
         super(itemView);
-        txt_urundahilimi = itemView.findViewById(R.id.txt_urundahilimi);
-        txt_fatura = itemView.findViewById(R.id.txt_fatura);
+        spn_ucretli = itemView.findViewById(R.id.spn_ucretli);
+        txt_descp = itemView.findViewById(R.id.txt_descp);
         txt_garantidurumu = itemView.findViewById(R.id.txt_garantidurumu);
         txt_stokdurumu = itemView.findViewById(R.id.txt_stokdurumu);
         txt_birim = itemView.findViewById(R.id.txt_birim);
@@ -32,7 +35,6 @@ public class RcvServAppDetailViewHolder extends BaseViewHolder<ServAppGetByIdSer
     public void onBind(ServAppGetByIdServAppDetails item,
                        @Nullable OnItemClickListener<ServAppGetByIdServAppDetails> listener) {
 
-        txt_fatura.setText(String.valueOf(item.getInv_WillBeBilled()));
         if (item.getInv_WarrantyStatusCode() != null)
             txt_garantidurumu.setText(item.getInv_WarrantyStatusCode().getText());
         if (item.getInv_Uomid() != null)
@@ -61,6 +63,7 @@ public class RcvServAppDetailViewHolder extends BaseViewHolder<ServAppGetByIdSer
                 }
             });
         }
+        txt_descp.setText(StringUtil.nullToString(item.getInv_Description()));
 
 
     }

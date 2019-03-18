@@ -50,9 +50,9 @@ public class ReasonOfBreakdownFragment extends DialogFragment implements View.On
         rcv = view.findViewById(R.id.rcv);
         img_close = view.findViewById(R.id.img_close);
         adapter = new ServAppDescriptionAdapter(getActivity(), this);
-        adapter.setItems(list);
         rcv.setLayoutManager(new LinearLayoutManager(getActivity()));
         rcv.setAdapter(adapter);
+        adapter.setItems(list);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getDialog().setCanceledOnTouchOutside(false);
         img_close.setOnClickListener(view1 -> {

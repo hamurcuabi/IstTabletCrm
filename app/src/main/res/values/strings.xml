@@ -229,6 +229,7 @@
     <string name="ururntanim">Ürün Tanım Kodu</string>
     <string name="eklenenarizalar">Eklenen Arızalar</string>
     <string name="cikart">Çıkart</string>
+    <string name="alt_urun">Alt Ürünler</string>
 
     <string-array name="spn_servapp">
         <item>Tüm İş Emirlerim</item>
@@ -272,5 +273,10 @@
     <string-array name="clock_type">
         <item>Açık</item>
         <item>Kapalı</item>
+    </string-array>
+    <string-array name="ucretli">
+        <item>Seçiniz</item>
+        <item>Ücretli</item>
+        <item>Ücretsiz</item>
     </string-array>
 </resources>

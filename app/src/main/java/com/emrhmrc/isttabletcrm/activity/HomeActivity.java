@@ -11,6 +11,7 @@ import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.helper.Methodes;
+import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
 import com.emrhmrc.isttabletcrm.models.CommonClass.NotificationCountResponse;
 import com.emrhmrc.isttabletcrm.models.CommonClass.ServAppCountResponse;
@@ -170,6 +171,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void goCatalog() {
+        ShareData.getInstance().setAdd_sub_piece(false);
         startActivity(new Intent(HomeActivity.this, AddPieceActivity.class));
     }
 

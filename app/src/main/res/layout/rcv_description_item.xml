@@ -9,6 +9,7 @@
         android:id="@+id/txt_descp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:minHeight="@dimen/margin80"
         android:textColor="@color/text_color" />
 
     <View

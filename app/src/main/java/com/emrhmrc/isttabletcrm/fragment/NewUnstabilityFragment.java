@@ -29,6 +29,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
@@ -36,7 +37,6 @@ import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.adapter.RcvImageAdapter;
 import com.emrhmrc.isttabletcrm.adapter.SwipeToDeleteVertical;
-import com.emrhmrc.isttabletcrm.api.APIHelper;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
@@ -73,6 +73,7 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
     private AutoCompleteTextView spn_account, spnElevator;
     private RcvImageAdapter adapter;
     private RecyclerView rcv;
+    private ProgressBar prog_account, prog_elevator;
 
     public static NewUnstabilityFragment newInstance() {
         Bundle args = new Bundle();
@@ -108,18 +109,22 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
         spnElevator = view.findViewById(R.id.spnElevator);
         spn_account = view.findViewById(R.id.spn_account);
         img_add = view.findViewById(R.id.img_add);
+        prog_account = view.findViewById(R.id.prog_account);
+        prog_elevator = view.findViewById(R.id.prog_elevator);
         rcv = view.findViewById(R.id.rcv);
         btn_send.setOnClickListener(this);
         img_add.setOnClickListener(this);
         img_close.setOnClickListener(this);
         edt_tarih.setOnClickListener(this);
-        adapter = new RcvImageAdapter(getActivity(), this::onItemClicked);
-        rcv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL
-                , false));
-        ItemTouchHelper itemTouchHelper = new
-                ItemTouchHelper(new SwipeToDeleteVertical(adapter));
-        itemTouchHelper.attachToRecyclerView(rcv);
-        rcv.setAdapter(adapter);
+        if (getActivity() != null) {
+            adapter = new RcvImageAdapter(getActivity(), this::onItemClicked);
+            rcv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL
+                    , false));
+            ItemTouchHelper itemTouchHelper = new
+                    ItemTouchHelper(new SwipeToDeleteVertical(adapter));
+            itemTouchHelper.attachToRecyclerView(rcv);
+            rcv.setAdapter(adapter);
+        }
 
     }
 
@@ -213,12 +218,17 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
                         new SweetAlertDialog(getActivity(), SweetAlertDialog.SUCCESS_TYPE)
                                 .setTitleText("Başarılı")
                                 .show();
-                    } else Log.d(TAG, "onResponse: Fail"+ response.message());
+                    } else Log.d(TAG, "onResponse: Fail" + response.message());
                 }
 
                 @Override
                 public void onFailure(Call<DefaultResponse2> call, Throwable t) {
                     Log.d(TAG, "onFailure: " + t.getMessage());
+                    if (getDialog() != null && getDialog().isShowing()) {
+                        new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                                .setTitleText(getResources().getString(R.string.toast_error))
+                                .show();
+                    }
                 }
             });
         } else {
@@ -233,32 +243,37 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
         if (item.getDescription() == null || item.getDescription().isEmpty()) return false;
         else if (item.getSentOn() == null || item.getSentOn().isEmpty()) return false;
         else if (item.getSubject() == null || item.getSubject().isEmpty()) return false;
-        else if (item.getUnsuitabilityNotes() == null ) return false;
+        else if (item.getUnsuitabilityNotes() == null) return false;
         else if (item.getUserId() == null || item.getUserId().isEmpty()) return false;
         else return true;
     }
 
     private void getElevatorByCustomerAll(String id) {
-
-
         Log.d(TAG, "getElevatorByCustomerAll: " + id);
+        prog_elevator.setVisibility(View.VISIBLE);
         CustomerIdRequest request = new CustomerIdRequest(id);
         Call<ElevatorListAll> call = jsonApi.elevatorGetByCustomerId(request);
         call.enqueue(new Callback<ElevatorListAll>() {
             @Override
             public void onResponse(Call<ElevatorListAll> call, Response<ElevatorListAll> response) {
                 if (response.isSuccessful()) {
-
                     ElevatorListAll listAll = response.body();
                     fillElevatorSpinner(listAll.getElevators());
 
 
                 } else Log.d(TAG, "onResponse: ");
+                prog_elevator.setVisibility(View.GONE);
             }
 
             @Override
             public void onFailure(Call<ElevatorListAll> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
+                if (getDialog() != null && getDialog().isShowing()) {
+                    new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                            .setTitleText(getResources().getString(R.string.toast_error))
+                            .show();
+                }
+                prog_elevator.setVisibility(View.GONE);
 
             }
         });
@@ -288,22 +303,30 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
 
     private void getAccountAll() {
 
+        prog_account.setVisibility(View.VISIBLE);
         Call<AccountListAll> call = jsonApi.geAccountListAllCall();
         call.enqueue(new Callback<AccountListAll>() {
             @Override
             public void onResponse(Call<AccountListAll> call, Response<AccountListAll> response) {
                 if (response.isSuccessful()) {
-
                     AccountListAll listAll = response.body();
                     fillSpinner(listAll.getAccounts());
 
-                } else Log.d(TAG, "onResponse: ");
-
+                } else Log.d(TAG, "onResponse: " + response.message());
+                prog_account.setVisibility(View.GONE);
             }
 
             @Override
             public void onFailure(Call<AccountListAll> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
+                if (getDialog() != null && getDialog().isShowing()) {
+                    new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                            .setTitleText(getResources().getString(R.string.toast_error))
+                            .show();
+                }
+                prog_account.setVisibility(View.GONE);
+
+
             }
         });
     }
@@ -392,8 +415,7 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
 
         }
     }
-
-
+    
     @Override
     public void onItemClicked(Object item, int positon) {
 

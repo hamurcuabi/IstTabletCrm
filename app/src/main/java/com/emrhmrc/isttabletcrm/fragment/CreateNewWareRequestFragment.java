@@ -27,7 +27,6 @@ import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
-import com.emrhmrc.isttabletcrm.api.APIHelper;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
@@ -132,7 +131,7 @@ public class CreateNewWareRequestFragment extends DialogFragment {
     private void getUoms() {
 
         Call<UomListAll> call = jsonApi.getUomListAllCall();
-        APIHelper.enqueueWithRetry(call, new Callback<UomListAll>() {
+        call.enqueue(new Callback<UomListAll>() {
             @Override
             public void onResponse(Call<UomListAll> call, Response<UomListAll> response) {
                 if (response.isSuccessful()) {
@@ -145,7 +144,11 @@ public class CreateNewWareRequestFragment extends DialogFragment {
             @Override
             public void onFailure(Call<UomListAll> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
-
+                if (getDialog() != null && getDialog().isShowing()) {
+                    new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                            .setTitleText(getResources().getString(R.string.toast_error))
+                            .show();
+                }
             }
         });
     }
@@ -192,11 +195,14 @@ public class CreateNewWareRequestFragment extends DialogFragment {
             @Override
             public void onFailure(Call<WareHouseListAll> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
-
+                if (getDialog() != null && getDialog().isShowing()) {
+                    new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                            .setTitleText(getResources().getString(R.string.toast_error))
+                            .show();
+                }
             }
         });
     }
-
 
     private void getProduct1() {
 
@@ -218,7 +224,11 @@ public class CreateNewWareRequestFragment extends DialogFragment {
             @Override
             public void onFailure(Call<ProductListAll> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
-
+                if (getDialog() != null && getDialog().isShowing()) {
+                    new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                            .setTitleText(getResources().getString(R.string.toast_error))
+                            .show();
+                }
             }
         });
     }
