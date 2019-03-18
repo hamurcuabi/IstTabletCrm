@@ -295,12 +295,12 @@
                                     android:id="@+id/txt_asansorno"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:autoSizeMinTextSize="@dimen/text_menu_26"
-                                    android:autoSizeTextType="uniform"
                                     android:fontFamily="@font/roboto_regular"
                                     android:maxLines="2"
                                     android:text="@{StringUtil.nullToString(model.getInv_ElevatorId().getText())}"
-                                    android:textColor="@color/text_color" />
+                                    android:textColor="@color/text_color"
+                                    android:textSize="@dimen/text_menu_24"
+                                    android:textStyle="bold" />
 
 
                             </LinearLayout>
@@ -355,6 +355,13 @@
                                     android:textColor="@color/text_color"
                                     android:textSize="@dimen/menu_text_16" />
 
+                                <View
+                                    android:layout_marginTop="@dimen/detay_menu_8"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="2dp"
+                                    android:alpha="0.3"
+                                    android:background="@color/view" />
+
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -391,13 +398,14 @@
 
                     </LinearLayout>
 
-                    <LinearLayout
+                    <View
                         android:layout_width="1dp"
                         android:layout_height="match_parent"
                         android:layout_marginStart="@dimen/detay_menu_12"
                         android:layout_marginTop="@dimen/detay_menu_40"
                         android:layout_marginBottom="@dimen/detay_menu_40"
-                        android:background="@color/border"></LinearLayout>
+                        android:alpha="0.3"
+                        android:background="@color/view" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -504,21 +512,23 @@
                             android:layout_height="1dp"
                             android:orientation="horizontal">
 
-                            <LinearLayout
+                            <View
                                 android:layout_width="0dp"
                                 android:layout_height="1dp"
                                 android:layout_marginStart="@dimen/detay_menu_40"
                                 android:layout_marginEnd="@dimen/detay_menu_40"
                                 android:layout_weight="1"
-                                android:background="@color/border"></LinearLayout>
+                                android:alpha="0.3"
+                                android:background="@color/view" />
 
-                            <LinearLayout
+                            <View
                                 android:layout_width="0dp"
                                 android:layout_height="1dp"
                                 android:layout_marginStart="@dimen/detay_menu_40"
                                 android:layout_marginEnd="@dimen/detay_menu_40"
                                 android:layout_weight="1"
-                                android:background="@color/border"></LinearLayout>
+                                android:alpha="0.3"
+                                android:background="@color/view" />
                         </LinearLayout>
 
 
@@ -654,6 +664,14 @@
                             </LinearLayout>
 
                         </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="@dimen/detay_menu_20"
+                            android:layout_marginEnd="@dimen/detay_menu_20"
+                            android:alpha="0.3"
+                            android:background="@color/view" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
