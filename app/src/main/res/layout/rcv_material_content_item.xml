@@ -2,116 +2,102 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="@dimen/margin80"
+    android:layout_marginStart="@dimen/text_menu_32"
+    android:layout_marginEnd="@dimen/menu_left_32"
     android:background="@color/white"
+    android:minHeight="@dimen/margin80"
     android:orientation="horizontal">
 
     <TextView
-        android:layout_marginStart="@dimen/text_menu_32"
-        android:layout_gravity="center"
-        android:gravity="center_vertical"
         android:id="@+id/txt_kod"
-        android:layout_weight="2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/detay_menu_12"
+        android:layout_weight="1.8"
         android:fontFamily="@font/roboto_regular"
-        android:text="-"
-        android:textAllCaps="true"
+        android:gravity="center_vertical"
         android:textColor="@color/malzeme_icerik"
         android:textSize="@dimen/menu_text_16"
         android:textStyle="bold" />
 
     <TextView
-        android:layout_marginEnd="@dimen/detay_menu_12"
-        android:layout_gravity="center"
         android:id="@+id/txt_urunadi"
-        android:layout_weight="1.5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/detay_menu_12"
+        android:layout_weight="2"
         android:fontFamily="@font/roboto_regular"
-        android:text="-"
-        android:textAllCaps="true"
         android:textColor="@color/text_color"
-        android:textSize="@dimen/menu_text_16"
-        android:textStyle="bold" />
+        android:textSize="@dimen/menu_text_16" />
 
     <EditText
-        android:layout_gravity="center"
         android:id="@+id/edt_miktar"
-        android:layout_weight="0.8"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/detay_menu_12"
+        android:layout_weight="1.2"
         android:fontFamily="@font/roboto_regular"
-        android:textAllCaps="true"
-        android:textColor="@color/text_color"
-        android:textSize="@dimen/menu_text_16"
         android:inputType="numberDecimal"
-        android:textStyle="bold"/>
+
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/menu_text_16" />
 
     <TextView
-        android:layout_gravity="center"
         android:id="@+id/txt_birim"
-        android:layout_weight="2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/detay_menu_12"
+        android:layout_weight="0.8"
         android:fontFamily="@font/roboto_regular"
-        android:text="-"
-        android:textAllCaps="true"
         android:textColor="@color/text_color"
-        android:textSize="@dimen/menu_text_16"
-        android:textStyle="bold"/>
+        android:textSize="@dimen/menu_text_16" />
 
     <TextView
-        android:layout_gravity="center"
         android:id="@+id/txt_stokdurumu"
-        android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/detay_menu_12"
+        android:layout_weight="1.6"
         android:fontFamily="@font/roboto_regular"
-        android:text="-"
-        android:textAllCaps="true"
         android:textColor="@color/text_color"
-        android:textSize="@dimen/menu_text_16"
-        android:textStyle="bold" />
+        android:textSize="@dimen/menu_text_16" />
 
     <TextView
-        android:layout_gravity="center"
         android:id="@+id/txt_garantidurumu"
-        android:layout_weight="2.5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/detay_menu_12"
+        android:layout_weight="1"
         android:fontFamily="@font/roboto_regular"
-        android:text="-"
-        android:textAllCaps="true"
         android:textColor="@color/text_color"
-        android:textSize="@dimen/menu_text_16"
-        android:textStyle="bold" />
+        android:textSize="@dimen/menu_text_16" />
 
     <Spinner
-        android:layout_gravity="center"
+        android:backgroundTint="@color/text_color"
+        android:background="@drawable/spn_style"
         android:id="@+id/spn_ucretli"
-        android:layout_weight="2"
         android:layout_width="0dp"
         android:layout_height="@dimen/btn_height45"
-        android:background="@drawable/spn_style"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/detay_menu_12"
+        android:layout_weight="1.8"
         android:entries="@array/ucretli"
-        android:fontFamily="@font/roboto_regular"
-        android:text="-"
-        android:textAllCaps="true"
-        android:textColor="@color/text_color"
-        android:textSize="@dimen/menu_text_16"
-        android:textStyle="bold" />
+        />
 
     <TextView
-        android:layout_gravity="center"
+
         android:id="@+id/txt_descp"
-        android:layout_weight="1.7"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1.7"
         android:fontFamily="@font/roboto_regular"
-        android:text="-"
-        android:textAllCaps="true"
         android:textColor="@color/text_color"
-        android:textSize="@dimen/menu_text_16"
-        android:textStyle="bold" />
+        android:textSize="@dimen/menu_text_16" />
 </LinearLayout>

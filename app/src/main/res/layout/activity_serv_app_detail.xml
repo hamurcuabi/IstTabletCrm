@@ -955,7 +955,8 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2"
+                        android:layout_marginEnd="@dimen/detay_menu_12"
+                        android:layout_weight="1.8"
                         android:fontFamily="@font/roboto_regular"
                         android:text="@string/kod"
                         android:textAllCaps="true"
@@ -966,7 +967,7 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-
+                        android:layout_marginEnd="@dimen/detay_menu_12"
                         android:layout_weight="2"
                         android:fontFamily="@font/roboto_regular"
                         android:text="@string/urun_adi"
@@ -978,7 +979,8 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1.5"
+                        android:layout_marginEnd="@dimen/detay_menu_12"
+                        android:layout_weight="1.2"
                         android:fontFamily="@font/roboto_regular"
                         android:text="@string/miktar"
                         android:textAllCaps="true"
@@ -989,6 +991,7 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/detay_menu_12"
                         android:layout_weight="0.8"
                         android:fontFamily="@font/roboto_regular"
                         android:text="@string/birim"
@@ -1000,7 +1003,8 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2"
+                        android:layout_marginEnd="@dimen/detay_menu_12"
+                        android:layout_weight="1.6"
                         android:fontFamily="@font/roboto_regular"
                         android:text="@string/stok_durumu"
                         android:textAllCaps="true"
@@ -1011,6 +1015,7 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/detay_menu_12"
                         android:layout_weight="1"
                         android:text="@string/garanti_durumu"
                         android:textAllCaps="true"
@@ -1021,7 +1026,8 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2"
+                        android:layout_marginEnd="@dimen/detay_menu_12"
+                        android:layout_weight="1.8"
                         android:text="@string/ucretli_ucretsiz"
                         android:textAllCaps="true"
                         android:textColor="@color/white"

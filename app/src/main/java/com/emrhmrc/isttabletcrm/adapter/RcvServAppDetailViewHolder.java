@@ -4,6 +4,7 @@ import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -34,7 +35,6 @@ public class RcvServAppDetailViewHolder extends BaseViewHolder<ServAppGetByIdSer
     @Override
     public void onBind(ServAppGetByIdServAppDetails item,
                        @Nullable OnItemClickListener<ServAppGetByIdServAppDetails> listener) {
-
         if (item.getInv_WarrantyStatusCode() != null)
             txt_garantidurumu.setText(item.getInv_WarrantyStatusCode().getText());
         if (item.getInv_Uomid() != null)
@@ -64,7 +64,6 @@ public class RcvServAppDetailViewHolder extends BaseViewHolder<ServAppGetByIdSer
             });
         }
         txt_descp.setText(StringUtil.nullToString(item.getInv_Description()));
-
 
     }
 

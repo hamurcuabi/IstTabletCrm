@@ -26,6 +26,9 @@ import com.emrhmrc.isttabletcrm.models.BreakDown.BreakdownCode;
 import com.emrhmrc.isttabletcrm.models.BreakDown.BreakdownCodeListAll;
 import com.emrhmrc.isttabletcrm.models.Product.MainList;
 import com.emrhmrc.isttabletcrm.models.Product.MainProductList;
+import com.emrhmrc.isttabletcrm.models.Product.Product;
+import com.emrhmrc.isttabletcrm.models.Product.ProductListAll;
+import com.emrhmrc.isttabletcrm.models.Product.SubGroupProductsRequest;
 import com.emrhmrc.isttabletcrm.models.Product.SubGroupRequest;
 import com.emrhmrc.isttabletcrm.models.Product.SubList;
 import com.emrhmrc.isttabletcrm.models.Product.SubProductList;
@@ -158,6 +161,31 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
         });
     }
 
+    private void getSubProductProduct(String id) {
+        SubGroupProductsRequest request = new SubGroupProductsRequest(id);
+        Call<ProductListAll> call = jsonApi.productListAll(request);
+        call.enqueue(new Callback<ProductListAll>() {
+            @Override
+            public void onResponse(Call<ProductListAll> call, Response<ProductListAll> response) {
+                if (response.isSuccessful()) {
+
+                    ProductListAll temp = response.body();
+                    fillspnSubSub(temp.getProducts());
+
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ProductListAll> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+
+            }
+        });
+
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -211,7 +239,7 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
 
     }
 
-    private void fillspnSub(List<SubList> list) {
+    private void fillspnSub(List<SubList> list)  {
         if (list.size() > 0 && list != null) {
             ArrayAdapter<SubList> spinnerArrayAdapter = new ArrayAdapter<>(getActivity(),
                     android.R.layout.simple_dropdown_item_1line,
@@ -227,13 +255,41 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     //Get Code
-                    filterSpnCode(subList.get(i).getInv_SubProductGroupid());
+                    //filterSpnCode(subList.get(i).getInv_SubProductGroupid());
+                    getSubProductProduct(subList.get(i).getInv_SubProductGroupid());
 
                 }
             });
         } else {
             spn_sub.setAdapter(null);
             spn_sub.setOnClickListener(null);
+        }
+
+    }
+
+    private void fillspnSubSub(List<Product> list) {
+        if (list.size() > 0 && list != null) {
+            ArrayAdapter<Product> spinnerArrayAdapter = new ArrayAdapter<>(getActivity(),
+                    android.R.layout.simple_dropdown_item_1line,
+                    list);
+            spn_descp_code.setAdapter(spinnerArrayAdapter);
+            spn_descp_code.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    spn_descp_code.showDropDown();
+                }
+            });
+            spn_descp_code.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    //Get Code
+                    // filterSpnCode(subList.get(i).getInv_SubProductGroupid());
+
+                }
+            });
+        } else {
+            spn_descp_code.setAdapter(null);
+            spn_descp_code.setOnClickListener(null);
         }
 
     }
