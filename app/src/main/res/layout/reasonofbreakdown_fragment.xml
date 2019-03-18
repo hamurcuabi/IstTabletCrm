@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
     <LinearLayout
@@ -27,88 +27,101 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/detay_menu_12"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="@dimen/detay_menu_50"
             android:fontFamily="@font/roboto_medium"
             android:text="@string/aciklama"
+            android:textColor="@color/text_color"
             android:textSize="@dimen/text_menu_32" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rcv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="@dimen/detay_menu_12"
-            android:layout_marginTop="@dimen/detay_menu_12"
-            android:layout_marginBottom="@dimen/detay_menu_12"></android.support.v7.widget.RecyclerView>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/detay_menu_12"
-        android:layout_marginTop="@dimen/detay_menu_12"
-        android:layout_marginBottom="@dimen/detay_menu_12"
-        android:background="@color/d5d5"
-        android:minHeight="@dimen/detay_menu_90"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/detay_menu_12"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/txt_owner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:fontFamily="@font/roboto_regular"
-                android:gravity="center"
-                android:textColor="@color/mobil_konum"
-                android:textSize="@dimen/menu_text_16"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txt_statu"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/padding_top25"
-                android:layout_gravity="center"
-                android:layout_marginStart="@dimen/detay_menu_12"
-                android:background="@drawable/text_rounded_teknisyen"
-                android:gravity="center"
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp"
-                android:textColor="@color/white"
-                android:textSize="@dimen/menu_text_16" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="@dimen/detay_menu_12"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/detay_menu_50"
+            android:layout_marginTop="@dimen/padding_top25"
+            android:layout_marginEnd="@dimen/m200"
             android:layout_marginBottom="@dimen/detay_menu_12"
-            android:orientation="horizontal">
+            android:layout_weight="5" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin50"
+            android:layout_marginTop="@dimen/detay_menu_12"
+            android:layout_marginEnd="@dimen/detay_menu_40"
+            android:layout_marginBottom="@dimen/detay_menu_12"
+            android:background="@color/d5d5"
+            android:minHeight="@dimen/detay_menu_90"
+            android:orientation="vertical">
 
-            <EditText
-
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/detay_menu_12"
-                android:layout_weight="1" />
+                android:layout_marginStart="@dimen/detay_menu_20"
+                android:layout_marginTop="@dimen/detay_menu_12"
+                android:orientation="horizontal">
 
-            <Button
-                android:layout_width="@dimen/detay_menu_90"
-                android:layout_height="@dimen/btn_height45"
-                android:layout_marginEnd="@dimen/detay_menu_12"
-                android:background="@drawable/btn_add_rounded"
-                android:text="@string/ekle"
-                android:textColor="@color/white"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/txt_owner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity="center"
+                    android:text="Emre Haurcu"
+                    android:textColor="@color/mobil_konum"
+                    android:textSize="@dimen/menu_text_16"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txt_statu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/padding_top25"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/detay_menu_12"
+                    android:background="@drawable/text_rounded_teknisyen"
+                    android:gravity="center"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:text="Admin"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/menu_text_16" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/detay_menu_12"
+                android:layout_marginBottom="@dimen/detay_menu_12"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/detay_menu_12"
+                    android:layout_weight="1"
+                    android:minHeight="@dimen/btn_height45"
+                    android:textColor="@color/blue_text"
+                    android:theme="@style/edittext_blue" />
+
+                <Button
+                    android:layout_width="@dimen/detay_menu_90"
+                    android:layout_height="@dimen/btn_height45"
+                    android:layout_marginTop="@dimen/detay_menu_8"
+                    android:layout_marginEnd="@dimen/detay_menu_12"
+                    android:layout_marginBottom="@dimen/detay_menu_8"
+                    android:background="@drawable/btn_add_rounded"
+                    android:text="@string/ekle"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+
 
 </LinearLayout>

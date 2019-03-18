@@ -3,11 +3,9 @@ package com.emrhmrc.isttabletcrm.fragment;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,18 +15,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
-import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
-import com.emrhmrc.isttabletcrm.activity.TechnicalDocumentActivity;
-import com.emrhmrc.isttabletcrm.api.APIHelper;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.models.ServApp.GetServFormById;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServiceAppIdRequest;
 import com.emrhmrc.isttabletcrm.util.StringUtil;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 import butterknife.BindString;
 import retrofit2.Call;
@@ -44,6 +35,7 @@ public class DetailServAppFormFragment extends DialogFragment implements View.On
     private GetServFormById document;
     private JsonApi jsonApi;
     private String id;
+    private Call<GetServFormById> getServFormByIdCall;
 
     public static DetailServAppFormFragment newInstance(String id) {
 
@@ -72,8 +64,8 @@ public class DetailServAppFormFragment extends DialogFragment implements View.On
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getDialog().setCanceledOnTouchOutside(false);
         jsonApi = ApiClient.getClient().create(JsonApi.class);
-        Call<GetServFormById> call = jsonApi.getServFormById(new ServiceAppIdRequest(id));
-        APIHelper.enqueueWithRetry(call, new Callback<GetServFormById>() {
+        getServFormByIdCall = jsonApi.getServFormById(new ServiceAppIdRequest(id));
+        getServFormByIdCall.enqueue(new Callback<GetServFormById>() {
             @Override
             public void onResponse(Call<GetServFormById> call, Response<GetServFormById> response) {
                 if (response.isSuccessful()) {
@@ -111,5 +103,11 @@ public class DetailServAppFormFragment extends DialogFragment implements View.On
                 ;
         }
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (getServFormByIdCall != null) getServFormByIdCall.cancel();
     }
 }

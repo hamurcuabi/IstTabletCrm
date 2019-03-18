@@ -1,5 +1,6 @@
 package com.emrhmrc.isttabletcrm.fragment;
 
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +25,7 @@ import java.util.ArrayList;
 
 public class ReasonOfBreakdownFragment extends DialogFragment implements View.OnClickListener, OnItemClickListener {
 
+    private static final String TAG = "ReasonOfBreakdownFragme";
     private ImageView img_close;
     private RecyclerView rcv;
     private ArrayList<ServAppGetByIdNotes> list;
@@ -84,5 +87,17 @@ public class ReasonOfBreakdownFragment extends DialogFragment implements View.On
     @Override
     public void onItemClicked(Object item, int positon) {
 
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
+        Log.d(TAG, "onDismiss: ");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy: ");
     }
 }

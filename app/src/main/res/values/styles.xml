@@ -14,11 +14,13 @@
         <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
         <item name="android:activityCloseEnterAnimation">@anim/slide_in_left</item>
         <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
+        <item name="android:windowSoftInputMode">adjustPan</item>
     </style>
 
     <style name="CustomSpinner" parent="Base.Widget.AppCompat.Spinner">
         <item name="android:textColor">@color/white</item>
     </style>
+
     <style name="CustomSpinner2" parent="Base.Widget.AppCompat.Spinner">
         <item name="android:textColor">@color/text_color</item>
     </style>
@@ -43,4 +45,13 @@
         <item name="android:paddingRight">21dp</item>
         <item name="android:textColor">@color/button_text_color</item>
     </style>
+
+    <style name="edittext_blue" parent="android:Widget.EditText">
+        <item name="android:backgroundTint">@color/malzeme_icerik</item>
+        <item name="android:buttonTint">@color/malzeme_icerik</item>
+        <item name="colorAccent">@color/f7</item>
+
+    </style>
+
+
 </resources>

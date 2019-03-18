@@ -45,6 +45,8 @@
     <color name="cons_bg">#F58220</color>
     <color name="item_bg">#F7F7F7</color>
     <color name="item_bg2">#45070707</color>
+    <color name="f7">#7f7f7f</color>
+    <color name="blue_text">#2699FB</color>
 
 
     <!--Calendar-->

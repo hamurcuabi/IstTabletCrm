@@ -19,7 +19,6 @@ import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.adapter.RcvBreakdownTypeAdapter;
 import com.emrhmrc.isttabletcrm.adapter.RcvBreakdownTypeAddAdapter;
-import com.emrhmrc.isttabletcrm.api.APIHelper;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.helper.StateHandler;
@@ -42,6 +41,8 @@ public class ReasonAndAddenBreakdownFragment extends DialogFragment implements V
     private RcvBreakdownTypeAddAdapter adapter_add;
     private RecyclerView rcv_reason, rcv_add;
     private List<BreakdownType> list, allreason;
+    private Call<BreakDownTypeListAll> breakDownTypeListAllCall;
+
 
     public static ReasonAndAddenBreakdownFragment newInstance() {
 
@@ -74,13 +75,11 @@ public class ReasonAndAddenBreakdownFragment extends DialogFragment implements V
     }
 
     private void getAllReason() {
-
-        Call<BreakDownTypeListAll> call = jsonApi.breakDownTypeListAll();
-        APIHelper.enqueueWithRetry(call, new Callback<BreakDownTypeListAll>() {
+        Call<BreakDownTypeListAll> breakDownTypeListAllCall = jsonApi.breakDownTypeListAll();
+        breakDownTypeListAllCall.enqueue(new Callback<BreakDownTypeListAll>() {
             @Override
             public void onResponse(Call<BreakDownTypeListAll> call, Response<BreakDownTypeListAll> response) {
                 if (response.isSuccessful()) {
-
                     final BreakDownTypeListAll model = response.body();
                     adapter.setItems(model.getBreakdownTypes());
                     allreason = model.getBreakdownTypes();
@@ -98,25 +97,17 @@ public class ReasonAndAddenBreakdownFragment extends DialogFragment implements V
 
     private void init() {
         list = new ArrayList<>();
-        //
         rcv_add.setHasFixedSize(true);
         rcv_add.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter_add = new RcvBreakdownTypeAddAdapter(getActivity(), new OnItemClickListener() {
-            @Override
-            public void onItemClicked(Object item, int positon) {
-                final BreakdownType current = (BreakdownType) item;
-                adapter_add.remove(current);
-                for (int i = 0; i < adapter.getItems().size(); i++) {
-
-                    if (adapter.getItems().get(i).getInv_BreakdownTypeId().equals(current.getInv_BreakdownTypeId())) {
-                        StateHandler.getInstance().getStateList().get(i).setState(false);
-                        adapter.notifyItemChanged(i);
-                        return;
-                    }
-
+        adapter_add = new RcvBreakdownTypeAddAdapter(getActivity(), (item, positon) -> {
+            final BreakdownType current = (BreakdownType) item;
+            adapter_add.remove(current);
+            for (int i = 0; i < adapter.getItems().size(); i++) {
+                if (adapter.getItems().get(i).getInv_BreakdownTypeId().equals(current.getInv_BreakdownTypeId())) {
+                    StateHandler.getInstance().getStateList().get(i).setState(false);
+                    adapter.notifyItemChanged(i);
+                    return;
                 }
-
-
             }
         });
 
@@ -169,5 +160,9 @@ public class ReasonAndAddenBreakdownFragment extends DialogFragment implements V
 
     }
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (breakDownTypeListAllCall != null) breakDownTypeListAllCall.cancel();
+    }
 }

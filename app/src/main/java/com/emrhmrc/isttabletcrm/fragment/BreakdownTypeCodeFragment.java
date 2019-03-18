@@ -16,9 +16,9 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.emrhmrc.isttabletcrm.R;
-import com.emrhmrc.isttabletcrm.api.APIHelper;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
@@ -52,6 +52,16 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
     private List<MainList> mainList;
     private List<SubList> subList;
     private List<BreakdownCode> codeList;
+    private Call<BreakdownCodeListAll> breakdownCodeListAllCall;
+    private Call<MainProductList> mainProductListCall;
+    private Call<SubProductList> subProductListCall;
+    private Call<ProductListAll> productListAllCall;
+    private ProgressBar prog_ana, prog_alt, prog_tanim, prog_ariza;
+    private ArrayAdapter<MainList> mainListArrayAdapter;
+    private ArrayAdapter<SubList> subListArrayAdapter;
+    private ArrayAdapter<Product> productArrayAdapter;
+    private ArrayAdapter<BreakdownCode> breakdownCodeArrayAdapter;
+    private ArrayAdapter<BreakdownCode> codeArrayAdapter;
 
     public static BreakdownTypeCodeFragment newInstance() {
         Bundle args = new Bundle();
@@ -78,6 +88,10 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
         spn_descp_code = view.findViewById(R.id.spn_descp_code);
         spn_sub = view.findViewById(R.id.spn_sub);
         spn_main = view.findViewById(R.id.spn_main);
+        prog_ana = view.findViewById(R.id.prog_ana);
+        prog_alt = view.findViewById(R.id.prog_alt);
+        prog_tanim = view.findViewById(R.id.prog_tanim);
+        prog_ariza = view.findViewById(R.id.prog_ariza);
         btn_save.setOnClickListener(this);
         img_close.setOnClickListener(this);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -89,9 +103,10 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
 
     private void getBreakdownCodes() {
 
+        prog_ariza.setVisibility(View.VISIBLE);
         ServAppIdRequest request = new ServAppIdRequest(shareData.getServAppId());
-        Call<BreakdownCodeListAll> call = jsonApi.getBreakdownCodeListAllCall(request);
-        APIHelper.enqueueWithRetry(call, new Callback<BreakdownCodeListAll>() {
+        breakdownCodeListAllCall = jsonApi.getBreakdownCodeListAllCall(request);
+        breakdownCodeListAllCall.enqueue(new Callback<BreakdownCodeListAll>() {
             @Override
             public void onResponse(Call<BreakdownCodeListAll> call, Response<BreakdownCodeListAll> response) {
                 if (response.isSuccessful()) {
@@ -99,12 +114,18 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
                     fillspnCode(model.getBreakdownCodes());
                     codeList = model.getBreakdownCodes();
                 } else Log.d(TAG, "onResponse: " + response.errorBody());
+                prog_ariza.setVisibility(View.GONE);
+                spn_breakdowntype.setOnFocusChangeListener((view, b) -> {
+                    if (b) spn_breakdowntype.showDropDown();
+                    else spn_breakdowntype.dismissDropDown();
+                });
             }
 
             @Override
             public void onFailure(Call<BreakdownCodeListAll> call, Throwable t) {
 
                 Log.d(TAG, "onFailure: " + t.getMessage());
+                prog_ariza.setVisibility(View.GONE);
             }
         });
 
@@ -112,74 +133,106 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
     }
 
     private void getMainProduct() {
-        Call<MainProductList> call = jsonApi.getMainProductListCall();
-        call.enqueue(new Callback<MainProductList>() {
+        prog_ana.setVisibility(View.VISIBLE);
+        mainProductListCall = jsonApi.getMainProductListCall();
+        mainProductListCall.enqueue(new Callback<MainProductList>() {
             @Override
             public void onResponse(Call<MainProductList> call, Response<MainProductList> response) {
                 if (response.isSuccessful()) {
                     MainProductList model = response.body();
                     mainList = model.getMainProductGroups();
                     fillspnMain(model.getMainProductGroups());
+                    spn_main.setOnFocusChangeListener((view, b) -> {
+                        if (b) spn_main.showDropDown();
+                        else spn_main.dismissDropDown();
+                    });
 
                 } else {
                     Log.d(TAG, "onResponse: " + response.errorBody().toString());
                 }
+                prog_ana.setVisibility(View.GONE);
 
             }
 
             @Override
             public void onFailure(Call<MainProductList> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
+                prog_ana.setVisibility(View.GONE);
 
             }
         });
     }
 
     private void getSubProduct(String id) {
+        if (subListArrayAdapter != null) {
+            subListArrayAdapter.clear();
+            spn_sub.setText("");
+            if (productArrayAdapter != null) {
+                productArrayAdapter.clear();
+                spn_descp_code.setText("");
+            }
 
+        }
+        prog_alt.setVisibility(View.VISIBLE);
         SubGroupRequest request = new SubGroupRequest(id);
-        Call<SubProductList> call = jsonApi.getSubProductListCall(request);
-        call.enqueue(new Callback<SubProductList>() {
+        subProductListCall = jsonApi.getSubProductListCall(request);
+        subProductListCall.enqueue(new Callback<SubProductList>() {
             @Override
             public void onResponse(Call<SubProductList> call, Response<SubProductList> response) {
                 if (response.isSuccessful()) {
                     final SubProductList list = response.body();
                     subList = list.getSubProductGroups();
                     fillspnSub(list.getSubProductGroups());
+                    spn_sub.setOnFocusChangeListener((view, b) -> {
+                        if (b) spn_sub.showDropDown();
+                        else spn_sub.dismissDropDown();
+                    });
 
                 } else {
                     Log.d(TAG, "onResponse: ");
                 }
+                prog_alt.setVisibility(View.GONE);
 
             }
 
             @Override
             public void onFailure(Call<SubProductList> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
+                prog_alt.setVisibility(View.GONE);
 
             }
         });
     }
 
     private void getSubProductProduct(String id) {
+        if (productArrayAdapter != null) {
+            productArrayAdapter.clear();
+            spn_descp_code.setText("");
+        }
+
+
+        prog_tanim.setVisibility(View.VISIBLE);
         SubGroupProductsRequest request = new SubGroupProductsRequest(id);
-        Call<ProductListAll> call = jsonApi.productListAll(request);
-        call.enqueue(new Callback<ProductListAll>() {
+        productListAllCall = jsonApi.productListAll(request);
+        productListAllCall.enqueue(new Callback<ProductListAll>() {
             @Override
             public void onResponse(Call<ProductListAll> call, Response<ProductListAll> response) {
                 if (response.isSuccessful()) {
-
                     ProductListAll temp = response.body();
                     fillspnSubSub(temp.getProducts());
-
-
+                    spn_descp_code.setOnFocusChangeListener((view, b) -> {
+                        if (b) spn_descp_code.showDropDown();
+                        else spn_descp_code.dismissDropDown();
+                    });
                 }
+                prog_tanim.setVisibility(View.GONE);
 
             }
 
             @Override
             public void onFailure(Call<ProductListAll> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
+                prog_tanim.setVisibility(View.GONE);
 
             }
         });
@@ -215,10 +268,10 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
 
     private void fillspnMain(List<MainList> list) {
         if (list.size() > 0 && list != null) {
-            ArrayAdapter<MainList> spinnerArrayAdapter = new ArrayAdapter<>(getActivity(),
+            mainListArrayAdapter = new ArrayAdapter<>(getActivity(),
                     android.R.layout.simple_dropdown_item_1line,
                     list);
-            spn_main.setAdapter(spinnerArrayAdapter);
+            spn_main.setAdapter(mainListArrayAdapter);
             spn_main.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -237,14 +290,15 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
             spn_main.setOnClickListener(null);
         }
 
+
     }
 
-    private void fillspnSub(List<SubList> list)  {
+    private void fillspnSub(List<SubList> list) {
         if (list.size() > 0 && list != null) {
-            ArrayAdapter<SubList> spinnerArrayAdapter = new ArrayAdapter<>(getActivity(),
+            subListArrayAdapter = new ArrayAdapter<>(getActivity(),
                     android.R.layout.simple_dropdown_item_1line,
                     list);
-            spn_sub.setAdapter(spinnerArrayAdapter);
+            spn_sub.setAdapter(subListArrayAdapter);
             spn_sub.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -269,10 +323,10 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
 
     private void fillspnSubSub(List<Product> list) {
         if (list.size() > 0 && list != null) {
-            ArrayAdapter<Product> spinnerArrayAdapter = new ArrayAdapter<>(getActivity(),
+            productArrayAdapter = new ArrayAdapter<>(getActivity(),
                     android.R.layout.simple_dropdown_item_1line,
                     list);
-            spn_descp_code.setAdapter(spinnerArrayAdapter);
+            spn_descp_code.setAdapter(productArrayAdapter);
             spn_descp_code.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -297,10 +351,10 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
     private void fillspnCode(List<BreakdownCode> list) {
         if (list.size() > 0 && list != null) {
 
-            ArrayAdapter<BreakdownCode> spinnerArrayAdapter = new ArrayAdapter<>(getActivity(),
+            breakdownCodeArrayAdapter = new ArrayAdapter<>(getActivity(),
                     android.R.layout.simple_dropdown_item_1line,
                     list);
-            spn_breakdowntype.setAdapter(spinnerArrayAdapter);
+            spn_breakdowntype.setAdapter(breakdownCodeArrayAdapter);
             spn_breakdowntype.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -329,10 +383,10 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
                 if (code.getInv_SubProductGroupId().equals(filter)) filtered.add(code);
 
             }
-            ArrayAdapter<BreakdownCode> spinnerArrayAdapter = new ArrayAdapter<>(getActivity(),
+            codeArrayAdapter = new ArrayAdapter<>(getActivity(),
                     android.R.layout.simple_dropdown_item_1line,
                     filtered);
-            spn_breakdowntype.setAdapter(spinnerArrayAdapter);
+            spn_breakdowntype.setAdapter(codeArrayAdapter);
             spn_breakdowntype.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -352,5 +406,16 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
 
     }
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (breakdownCodeListAllCall != null)
+            breakdownCodeListAllCall.cancel();
+        if (mainProductListCall != null)
+            mainProductListCall.cancel();
+        if (subProductListCall != null)
+            subProductListCall.cancel();
+        if (productListAllCall != null)
+            productListAllCall.cancel();
+    }
 }
