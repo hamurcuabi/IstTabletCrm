@@ -1,5 +1,6 @@
 package com.emrhmrc.isttabletcrm.adapter;
 
+import android.content.Context;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -19,9 +20,11 @@ public class RcvServAppDetailViewHolder extends BaseViewHolder<ServAppGetByIdSer
     private TextView txt_descp, txt_garantidurumu, txt_stokdurumu, txt_birim,
             edt_miktar, txt_urunadi, txt_kod;
     private Spinner spn_ucretli;
+    private Context context;
 
-    public RcvServAppDetailViewHolder(View itemView) {
+    public RcvServAppDetailViewHolder(View itemView, Context context) {
         super(itemView);
+        this.context = context;
         spn_ucretli = itemView.findViewById(R.id.spn_ucretli);
         txt_descp = itemView.findViewById(R.id.txt_descp);
         txt_garantidurumu = itemView.findViewById(R.id.txt_garantidurumu);
@@ -65,7 +68,7 @@ public class RcvServAppDetailViewHolder extends BaseViewHolder<ServAppGetByIdSer
         }
         txt_descp.setText(StringUtil.nullToString(item.getInv_Description()));
 
-    }
 
+    }
 
 }

@@ -108,6 +108,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
             String id = intent.getStringExtra("id");
 
             if (product != null) {
+                Log.d(TAG, "Product not null");
                 boolean exist = false;
                 for (ServAppGetByIdServAppDetails details : adapter.getItems()
                 ) {
@@ -117,6 +118,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
 
                 }
                 if (!exist) {
+                    Log.d(TAG, "Product Not Exist ");
                     ServAppGetByIdServAppDetails add = new ServAppGetByIdServAppDetails();
                     add.setInv_ProductId(new Inv_Id("inv_subproductgroup", product.getName(), product.getProductId()));
                     add.setManuel(true);
@@ -125,10 +127,10 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
             }
 
             if (id != null) {
-
+                Log.d(TAG, "Id not null " + id);
                 for (int k = 0; k < adapter.getItems().size(); k++) {
 
-                    if (adapter.getItems().get(k).getInv_ProductId().getText().equals(id)) {
+                    if (adapter.getItems().get(k).getInv_ProductId().getId().equals(id)) {
                         adapter.remove(k);
                     }
 

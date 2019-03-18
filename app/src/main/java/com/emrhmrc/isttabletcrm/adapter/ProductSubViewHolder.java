@@ -25,6 +25,8 @@ public class ProductSubViewHolder extends BaseViewHolder<SubList,
     TextView txtAnatext;
     @BindView(R.id.txt_anacount)
     TextView txtAnacount;
+    @BindView(R.id.textView8)
+    TextView txtAlt;
     @BindView(R.id.cons_rcv)
     ConstraintLayout cons_bg;
     @BindColor(R.color.cons_bg)
@@ -52,6 +54,7 @@ public class ProductSubViewHolder extends BaseViewHolder<SubList,
         cons_bg.setBackgroundColor(bg_default);
         txtAnacount.setTextColor(defaulttext2);
         txtAnatext.setTextColor(defaulttext);
+        txtAlt.setTextColor(defaulttext);
         if (listener != null) {
             cons_bg.setOnClickListener(view -> listener.onItemClicked(item, getAdapterPosition()));
             imgAnapic.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +64,7 @@ public class ProductSubViewHolder extends BaseViewHolder<SubList,
                     cons_bg.setBackgroundColor(bg);
                     txtAnacount.setTextColor(white);
                     txtAnatext.setTextColor(white);
+                    txtAlt.setTextColor(white);
                 }
             });
 
@@ -72,6 +76,7 @@ public class ProductSubViewHolder extends BaseViewHolder<SubList,
                 cons_bg.setBackgroundColor(bg);
                 txtAnacount.setTextColor(white);
                 txtAnatext.setTextColor(white);
+                txtAlt.setTextColor(white);
             }
         });
     }

@@ -80,6 +80,8 @@ public class AddSubPieceActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void getSubProduct() {
+        AnyDialog anyDialog = new AnyDialog(this);
+        dialog = anyDialog.loading(getResources().getString(R.string.loading));
         dialog.show();
         SubGroupRequest request = new SubGroupRequest(ShareData.getInstance().getProductMainId());
         Call<SubProductList> call = jsonApi.getSubProductListCall(request);
@@ -106,6 +108,8 @@ public class AddSubPieceActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void getSubProductProduct(String id) {
+        AnyDialog anyDialog2 = new AnyDialog(this);
+        dialog2 = anyDialog2.loading(getResources().getString(R.string.loading));
         dialog2.show();
         SubGroupProductsRequest request = new SubGroupProductsRequest(id);
         Call<ProductListAll> call = jsonApi.productListAll(request);
@@ -186,10 +190,6 @@ public class AddSubPieceActivity extends AppCompatActivity implements View.OnCli
         rcv_sub.setAdapter(adapter_sub);
         txt_maingroup_name.setText(ShareData.getInstance().getProductMainName());
 
-        AnyDialog anyDialog = new AnyDialog(this);
-        dialog = anyDialog.loading(getResources().getString(R.string.loading));
-        AnyDialog anyDialog2 = new AnyDialog(this);
-        dialog2 = anyDialog2.loading(getResources().getString(R.string.loading));
 
     }
 

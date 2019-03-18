@@ -79,7 +79,7 @@
         android:textSize="@dimen/menu_text_16" />
 
     <Spinner
-        android:backgroundTint="@color/text_color"
+        android:theme="@style/SpinnerThemeLight"
         android:background="@drawable/spn_style"
         android:id="@+id/spn_ucretli"
         android:layout_width="0dp"
@@ -88,6 +88,7 @@
         android:layout_marginEnd="@dimen/detay_menu_12"
         android:layout_weight="1.8"
         android:entries="@array/ucretli"
+
         />
 
     <TextView

@@ -52,6 +52,12 @@
         <item name="colorAccent">@color/f7</item>
 
     </style>
-
+    <style name="SpinnerThemeLight" >
+        <item name="android:colorBackground">@color/white</item>
+        <item name="android:textColorPrimary">@color/text_color</item>
+        <item name="android:textColorSecondary">@color/text_color</item>
+        <item name="android:textColorTertiary">@color/text_color</item>
+        <item name="android:textColorPrimaryDisableOnly">@color/text_color</item>
+    </style>
 
 </resources>

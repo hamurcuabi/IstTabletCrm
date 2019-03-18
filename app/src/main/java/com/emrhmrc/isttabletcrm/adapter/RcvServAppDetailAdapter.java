@@ -30,11 +30,13 @@ public class RcvServAppDetailAdapter extends GenericAdapter<ServAppGetByIdServAp
     public RcvServAppDetailViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType % 2) {
             case 0:
-                return new RcvServAppDetailViewHolder(inflate(R.layout.rcv_material_content_item, parent));
+                return new RcvServAppDetailViewHolder(inflate(R.layout.rcv_material_content_item,
+                        parent),context);
             case 1:
-                return new RcvServAppDetailViewHolder(inflate(R.layout.rcv_material_content_item_2, parent));
+                return new RcvServAppDetailViewHolder(inflate(R.layout.rcv_material_content_item_2, parent),context);
             default:
-                return new RcvServAppDetailViewHolder(inflate(R.layout.rcv_material_content_item, parent));
+                return new RcvServAppDetailViewHolder(inflate(R.layout.rcv_material_content_item,
+                        parent),context);
         }
 
     }
