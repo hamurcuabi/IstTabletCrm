@@ -164,6 +164,11 @@ public abstract class GenericAdapter<T, L extends BaseRecyclerListener, VH exten
         setItems(items, true);
 
     }
+    public void setItemsWithoutState(List<T> items) {
+        setItems(items, true);
+
+    }
+
 
 
     /**

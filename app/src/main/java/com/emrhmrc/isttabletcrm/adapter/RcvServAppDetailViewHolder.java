@@ -17,10 +17,10 @@ import com.emrhmrc.isttabletcrm.util.StringUtil;
 
 public class RcvServAppDetailViewHolder extends BaseViewHolder<ServAppGetByIdServAppDetails,
         OnItemClickListener<ServAppGetByIdServAppDetails>> {
-    private TextView txt_garantidurumu, txt_stokdurumu, txt_birim,
-            edt_miktar, txt_urunadi, txt_kod;
+    private TextView txt_garantidurumu, txt_stokdurumu,
+            edt_miktar, txt_kod;
     private Spinner spn_ucretli;
-    private EditText edt_descp,edt_fiyat;
+    private EditText edt_descp, edt_fiyat, edt_urunadi, edt_birim;
     private Context context;
 
     public RcvServAppDetailViewHolder(View itemView, Context context) {
@@ -31,9 +31,9 @@ public class RcvServAppDetailViewHolder extends BaseViewHolder<ServAppGetByIdSer
         edt_fiyat = itemView.findViewById(R.id.edt_fiyat);
         txt_garantidurumu = itemView.findViewById(R.id.txt_garantidurumu);
         txt_stokdurumu = itemView.findViewById(R.id.txt_stokdurumu);
-        txt_birim = itemView.findViewById(R.id.txt_birim);
+        edt_birim = itemView.findViewById(R.id.txt_birim);
         edt_miktar = itemView.findViewById(R.id.edt_miktar);
-        txt_urunadi = itemView.findViewById(R.id.txt_urunadi);
+        edt_urunadi = itemView.findViewById(R.id.edt_urunadi);
         txt_kod = itemView.findViewById(R.id.txt_kod);
     }
 
@@ -43,14 +43,25 @@ public class RcvServAppDetailViewHolder extends BaseViewHolder<ServAppGetByIdSer
         if (item.getInv_WarrantyStatusCode() != null)
             txt_garantidurumu.setText(item.getInv_WarrantyStatusCode().getText());
         if (item.getInv_Uomid() != null)
-            txt_birim.setText(item.getInv_Uomid().getText());
+            edt_birim.setText(item.getInv_Uomid().getText());
         edt_miktar.setText(String.valueOf(item.getInv_Quantity()));
-        edt_miktar.setEnabled(false);
         if (item.getInv_ProductId() != null)
-            txt_urunadi.setText(item.getInv_ProductId().getText());
+            edt_urunadi.setText(item.getInv_ProductId().getText());
         if (item.getInv_LineNo() != null)
             txt_kod.setText(item.getInv_LineNo().toString());
-        if (item.isManuel()) {
+        ruleManuelAdd(item);
+        edt_descp.setText(StringUtil.nullToString(item.getInv_Description()));
+
+
+    }
+
+    private void ruleManuelAdd(ServAppGetByIdServAppDetails item) {
+
+        if (item.isManuelProduct()) {
+            edt_urunadi.setEnabled(true);
+
+        } else edt_urunadi.setEnabled(false);
+        if (item.isManuel() || item.isManuelProduct()) {
             edt_miktar.setEnabled(true);
             edt_miktar.addTextChangedListener(new TextWatcher() {
                 @Override
@@ -67,9 +78,19 @@ public class RcvServAppDetailViewHolder extends BaseViewHolder<ServAppGetByIdSer
                         item.setInv_Quantity(Integer.parseInt(editable.toString()));
                 }
             });
-        }
-        edt_descp.setText(StringUtil.nullToString(item.getInv_Description()));
-
+        } else edt_miktar.setEnabled(false);
+        if (item.isManuelProduct()) {
+            edt_birim.setEnabled(true);
+        } else edt_birim.setEnabled(false);
+        if (item.isManuelProduct()) {
+            spn_ucretli.setEnabled(false);
+        } else spn_ucretli.setEnabled(true);
+        if(item.isManuel()){
+            spn_ucretli.setEnabled(true);
+        }else spn_ucretli.setEnabled(false);
+        if (item.isManuelProduct()) {
+            edt_fiyat.setEnabled(true);
+        } else edt_fiyat.setEnabled(false);
 
     }
 

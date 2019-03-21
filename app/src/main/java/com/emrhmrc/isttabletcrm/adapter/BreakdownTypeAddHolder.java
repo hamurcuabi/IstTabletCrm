@@ -1,6 +1,5 @@
 package com.emrhmrc.isttabletcrm.adapter;
 
-import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
@@ -9,15 +8,13 @@ import android.widget.TextView;
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.BaseViewHolder;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
-import com.emrhmrc.isttabletcrm.helper.StateHandler;
-import com.emrhmrc.isttabletcrm.models.BreakDown.BreakdownType;
+import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppBreakdownTypes;
 
-import butterknife.BindDrawable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class BreakdownTypeAddHolder extends BaseViewHolder<BreakdownType,
-        OnItemClickListener<BreakdownType>>  {
+public class BreakdownTypeAddHolder extends BaseViewHolder<ServAppGetByIdServAppBreakdownTypes,
+        OnItemClickListener<ServAppGetByIdServAppBreakdownTypes>> {
 
     @BindView(R.id.txt_reason)
     TextView txtReason;
@@ -30,9 +27,13 @@ public class BreakdownTypeAddHolder extends BaseViewHolder<BreakdownType,
     }
 
     @Override
-    public void onBind(final BreakdownType item, @Nullable final OnItemClickListener<BreakdownType> listener) {
+    public void onBind(final ServAppGetByIdServAppBreakdownTypes item, @Nullable final OnItemClickListener<ServAppGetByIdServAppBreakdownTypes> listener) {
 
-        txtReason.setText(String.format("%1$d- %2$s!", (1 + getAdapterPosition()), item.getInv_BreakdownTypeName()));
+        if (item.getInv_BreakdownTypeId() != null)
+            txtReason.setText(String.format("%1$d- %2$s!", (1 + getAdapterPosition()),
+                    item.getInv_BreakdownTypeId().getText()));
+        else txtReason.setText(String.format("%1$d- %2$s!", (1 + getAdapterPosition()),
+                "null"));
         if (listener != null) {
             btnAdd.setOnClickListener(view -> listener.onItemClicked(item, getAdapterPosition()));
         }

@@ -2,11 +2,15 @@ package com.emrhmrc.isttabletcrm.models.ServApp;
 
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
 
-public class ServAppGetByIdServAppBreakdownTypes {
-    private String inv_ServAppBreakdownTypeId;
+import java.io.Serializable;
 
+public class ServAppGetByIdServAppBreakdownTypes implements Serializable {
+    private String inv_ServAppBreakdownTypeId;
     private Inv_Id inv_BreakdownTypeId;
     private boolean IsDeleted;
+
+    public ServAppGetByIdServAppBreakdownTypes() {
+    }
 
     public boolean isDeleted() {
         return IsDeleted;
@@ -14,9 +18,6 @@ public class ServAppGetByIdServAppBreakdownTypes {
 
     public void setDeleted(boolean deleted) {
         IsDeleted = deleted;
-    }
-
-    public ServAppGetByIdServAppBreakdownTypes() {
     }
 
     public String getInv_ServAppBreakdownTypeId() {

@@ -16,6 +16,10 @@ public class ServAppGetByIdServAppDetails {
     private Inv_Id inv_ProductId;
     private int inv_Quantity;
     private boolean isManuel = false;
+    private boolean isManuelProduct = false;
+
+    public ServAppGetByIdServAppDetails() {
+    }
 
     public boolean isInv_WillBeBilled() {
         return inv_WillBeBilled;
@@ -27,9 +31,6 @@ public class ServAppGetByIdServAppDetails {
 
     public void setManuel(boolean manuel) {
         isManuel = manuel;
-    }
-
-    public ServAppGetByIdServAppDetails() {
     }
 
     public Integer getInv_LineNo() {
@@ -113,5 +114,12 @@ public class ServAppGetByIdServAppDetails {
     }
 
 
+    public boolean isManuelProduct() {
+        return isManuelProduct;
+    }
+
+    public void setManuelProduct(boolean manuelProduct) {
+        isManuelProduct = manuelProduct;
+    }
 }
 

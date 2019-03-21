@@ -130,7 +130,8 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
     public void onItemClicked(Object item, int positon) {
 
         ServiceAppointments current = (ServiceAppointments) item;
-        shareData.setServAppId(current.getActivityId());
+       // shareData.setServAppId(current.getActivityId());
+        shareData.setServAppId("8C096C30-14C3-E811-8103-005056B66D80");
         Log.d(TAG, "onItemClicked: " + current.getActivityId());
         goServAppDetail();
 

@@ -359,7 +359,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
 
     private void openReasonAndAddedBreakdown() {
         ReasonAndAddenBreakdownFragment fragment =
-                ReasonAndAddenBreakdownFragment.newInstance();
+                ReasonAndAddenBreakdownFragment.newInstance(model.getServiceAppointment().getServAppGetByIdServAppBreakdownTypes());
         fragment.show(getSupportFragmentManager(), "ReasonAndAddenBreakdownFragment");
     }
 
@@ -596,6 +596,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     @Override
     public void addProduct(ServAppGetByIdServAppDetails product) {
         adapter.add(product);
+        adapter.notifyItemInserted(adapter.getItems().size() - 1);
 
     }
 }

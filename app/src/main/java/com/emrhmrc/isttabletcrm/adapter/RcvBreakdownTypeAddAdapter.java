@@ -7,9 +7,10 @@ import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.GenericAdapter;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.models.BreakDown.BreakdownType;
+import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppBreakdownTypes;
 
-public class RcvBreakdownTypeAddAdapter extends GenericAdapter<BreakdownType,
-        OnItemClickListener<BreakdownType>,
+public class RcvBreakdownTypeAddAdapter extends GenericAdapter<ServAppGetByIdServAppBreakdownTypes,
+        OnItemClickListener<ServAppGetByIdServAppBreakdownTypes>,
         BreakdownTypeAddHolder>  {
 
 
