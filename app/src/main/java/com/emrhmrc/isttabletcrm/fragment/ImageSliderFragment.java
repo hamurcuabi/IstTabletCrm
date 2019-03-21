@@ -83,7 +83,7 @@ public class ImageSliderFragment extends DialogFragment implements View.OnClickL
         int width = metrics.widthPixels;
         int height = metrics.heightPixels;
         ViewGroup.LayoutParams params = getDialog().getWindow().getAttributes();
-        params.width = width / 2;
+        params.width = 3*width / 5;
         params.height = height / 2;
         getDialog().getWindow().setAttributes((android.view.WindowManager.LayoutParams) params);
     }

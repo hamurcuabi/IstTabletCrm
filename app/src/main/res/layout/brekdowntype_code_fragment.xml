@@ -61,6 +61,9 @@
                 android:layout_marginStart="@dimen/detay_menu_30"
                 android:layout_weight="5"
                 android:background="@drawable/spn_style_search"
+                android:focusableInTouchMode="true"
+                android:focusedByDefault="false"
+                android:imeOptions="actionDone"
                 android:paddingStart="@dimen/detay_menu_12" />
 
             <ProgressBar

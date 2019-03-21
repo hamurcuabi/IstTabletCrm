@@ -20,11 +20,11 @@
     </LinearLayout>
 
     <LinearLayout
-        android:gravity="center_vertical"
-        android:layout_gravity="center_vertical"
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
         android:layout_weight="1"
+        android:gravity="center_vertical"
         android:orientation="vertical">
 
         <LinearLayout
@@ -39,7 +39,8 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/roboto_regular"
                 android:textColor="@color/white"
-                android:textSize="@dimen/menu_text_16" />
+                android:textSize="@dimen/menu_text_16"
+                android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/img_close"
@@ -59,13 +60,12 @@
             android:textSize="@dimen/menu_text_16" />
 
         <ImageView
-            android:layout_marginTop="@dimen/padding_top25"
-            android:scaleType="fitCenter"
             android:id="@+id/img_pic"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
-           />
+            android:layout_marginTop="@dimen/padding_top25"
+            android:scaleType="fitCenter" />
     </LinearLayout>
 
     <LinearLayout

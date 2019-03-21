@@ -70,6 +70,8 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
         img_add_pic_first.setOnClickListener(this);
         img_add_video.setOnClickListener(this);
         img_add_video_second.setOnClickListener(this);
+        video_first.setOnClickListener(this);
+        video_second.setOnClickListener(this);
 
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getDialog().setCanceledOnTouchOutside(false);
@@ -108,6 +110,12 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
             case R.id.img_add_video_second:
                 dispatchTakeVideoIntent(REQUEST_VIDEO_CAPTURE_SECOND);
                 break;
+            case R.id.video_first:
+                video_first.start();
+                break;
+            case R.id.video_second:
+                video_second.start();
+                break;
 
         }
 
@@ -126,6 +134,7 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
     private void dispatchTakeVideoIntent(int i) {
         Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
         if (takeVideoIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+            takeVideoIntent.putExtra(MediaStore.EXTRA_DURATION_LIMIT, 10);
             startActivityForResult(takeVideoIntent, i);
         }
     }
@@ -138,6 +147,7 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
             Bitmap photo = (Bitmap) data.getExtras().get("data");
             img_first.setImageBitmap(photo);
             video_first.setVisibility(View.GONE);
+            video_first.setVideoURI(null);
             img_first.setVisibility(View.VISIBLE);
 
             Uri selectedImage = getImageUri(getActivity(), photo);
@@ -151,16 +161,19 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             img_second.setImageBitmap(imageBitmap);
             video_second.setVisibility(View.GONE);
+            video_second.setVideoURI(null);
             img_second.setVisibility(View.VISIBLE);
         } else if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
             Uri videoUri = data.getData();
             video_first.setVideoURI(videoUri);
             img_first.setVisibility(View.GONE);
+            img_first.setImageBitmap(null);
             video_first.setVisibility(View.VISIBLE);
         } else if (requestCode == REQUEST_VIDEO_CAPTURE_SECOND && resultCode == RESULT_OK) {
             Uri videoUri = data.getData();
             video_second.setVideoURI(videoUri);
             img_second.setVisibility(View.GONE);
+            img_second.setImageBitmap(null);
             video_second.setVisibility(View.VISIBLE);
         }
     }

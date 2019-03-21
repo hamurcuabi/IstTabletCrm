@@ -48,6 +48,7 @@
     <color name="item_bg2">#45070707</color>
     <color name="f7">#7f7f7f</color>
     <color name="blue_text">#2699FB</color>
+    <color name="ebeb">#ebebeb</color>
 
 
     <!--Calendar-->
@@ -85,5 +86,6 @@
     <color name="material_deep_teal_50">#ff009688</color>
     <color name="red">#e20404</color>
     <color name="d5d5">#d5d5d5</color>
+    <color name="f8">#f8f8f8</color>
 
 </resources>

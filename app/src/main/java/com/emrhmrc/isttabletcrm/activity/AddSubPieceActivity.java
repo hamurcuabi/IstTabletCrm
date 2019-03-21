@@ -108,6 +108,7 @@ public class AddSubPieceActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void getSubProductProduct(String id) {
+        Log.d(TAG, "getSubProductProduct: " + id);
         AnyDialog anyDialog2 = new AnyDialog(this);
         dialog2 = anyDialog2.loading(getResources().getString(R.string.loading));
         dialog2.show();

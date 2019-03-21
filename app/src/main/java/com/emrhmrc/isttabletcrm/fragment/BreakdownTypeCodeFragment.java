@@ -268,6 +268,7 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
 
     private void fillspnMain(List<MainList> list) {
         if (list.size() > 0 && list != null) {
+
             mainListArrayAdapter = new ArrayAdapter<>(getActivity(),
                     android.R.layout.simple_dropdown_item_1line,
                     list);

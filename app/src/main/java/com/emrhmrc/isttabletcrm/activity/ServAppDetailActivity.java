@@ -76,6 +76,10 @@ import retrofit2.Response;
 public class ServAppDetailActivity extends AppCompatActivity implements OnItemClickListener, AddManuelProduct {
 
     private static final String TAG = "ServAppDetailActivity";
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
+    private static final int REQUEST_IMAGE_CAPTURE_SECOND = 2;
+    private static final int REQUEST_VIDEO_CAPTURE = 3;
+    private static final int REQUEST_VIDEO_CAPTURE_SECOND = 4;
     ActivityServAppDetailBinding binding;
     @BindView(R.id.rcv)
     RecyclerView rcv;
@@ -536,16 +540,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
 
-            Bitmap photo = (Bitmap) data.getExtras().get("data");
-
-            Uri selectedImage = getImageUri(this, photo);
-            String realPath = getRealPathFromURI(selectedImage);
-            selectedImage = Uri.parse(realPath);
-            Log.d(TAG, "onActivityResult: " + selectedImage.toString());
-
-        }
     }
 
     public Uri getImageUri(Context inContext, Bitmap inImage) {

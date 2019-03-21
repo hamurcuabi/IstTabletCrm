@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
+        android:layout_marginBottom="@dimen/detay_menu_12"
         android:gravity="end">
 
         <ImageView
@@ -49,45 +50,48 @@
 
             <VideoView
                 android:id="@+id/video_first"
-                android:layout_width="300dp"
-                android:layout_height="300dp"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/detay_menu_12"
                 android:visibility="gone" />
 
             <ImageView
-
                 android:id="@+id/img_first"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/detay_menu_250"
+                android:layout_height="150dp"
                 android:layout_marginTop="@dimen/detay_menu_12"
+                android:scaleType="centerCrop"
                 android:src="@drawable/image" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/detay_menu_64"
                 android:layout_marginTop="@dimen/detay_menu_12"
+                android:background="@color/f8"
                 android:orientation="horizontal">
 
                 <EditText
                     android:layout_width="0dp"
                     android:layout_height="@dimen/edt_calendar_height"
                     android:layout_gravity="center"
-                    android:layout_marginStart="@dimen/detay_menu_30"
+                    android:layout_marginStart="@dimen/detay_menu_15"
                     android:layout_marginEnd="@dimen/detay_menu_12"
                     android:layout_weight="4"
-                    android:background="@drawable/btn_calendars"
+                    android:background="@drawable/desc_rounded"
                     android:hint="@string/aciklama"
                     android:paddingStart="@dimen/detay_menu_12" />
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2">
+                    android:layout_gravity="center"
+                    android:layout_weight="2"
+                    android:gravity="center">
 
                     <Button
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/edt_calendar_height"
+                        android:layout_height="45dp"
                         android:layout_gravity="center"
                         android:layout_marginEnd="@dimen/detay_menu_12"
                         android:background="@drawable/btn_malzeme"
@@ -142,7 +146,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:background="@drawable/ic_camera" />
+                        android:background="@drawable/ic_video" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -185,8 +189,8 @@
 
             <VideoView
                 android:id="@+id/video_second"
-                android:layout_width="300dp"
-                android:layout_height="300dp"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/detay_menu_12"
                 android:visibility="gone" />
@@ -194,36 +198,39 @@
             <ImageView
                 android:id="@+id/img_second"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/detay_menu_250"
+                android:layout_height="150dp"
                 android:layout_marginTop="@dimen/detay_menu_12"
+                android:scaleType="centerCrop"
                 android:src="@drawable/image" />
 
             <LinearLayout
-
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/detay_menu_64"
                 android:layout_marginTop="@dimen/detay_menu_12"
+                android:background="@color/f8"
                 android:orientation="horizontal">
 
                 <EditText
                     android:layout_width="0dp"
                     android:layout_height="@dimen/edt_calendar_height"
                     android:layout_gravity="center"
-                    android:layout_marginStart="@dimen/detay_menu_30"
+                    android:layout_marginStart="@dimen/detay_menu_15"
                     android:layout_marginEnd="@dimen/detay_menu_12"
                     android:layout_weight="4"
-                    android:background="@drawable/btn_calendars"
+                    android:background="@drawable/desc_rounded"
                     android:hint="@string/aciklama"
                     android:paddingStart="@dimen/detay_menu_12" />
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2">
+                    android:layout_gravity="center"
+                    android:layout_weight="2"
+                    android:gravity="center">
 
                     <Button
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/edt_calendar_height"
+                        android:layout_height="45dp"
                         android:layout_gravity="center"
                         android:layout_marginEnd="@dimen/detay_menu_12"
                         android:background="@drawable/btn_malzeme"
@@ -278,7 +285,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:background="@drawable/ic_camera" />
+                        android:background="@drawable/ic_video" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -303,6 +310,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/padding_top25"
         android:background="@color/white"
         android:gravity="center"
         android:orientation="horizontal">
@@ -311,9 +319,9 @@
             android:id="@+id/btn_send"
             android:layout_width="@dimen/detay_menu_145"
             android:layout_height="wrap_content"
-            android:layout_gravity="top"
+            android:layout_gravity="bottom"
             android:layout_marginTop="@dimen/padding_top25"
-            android:layout_marginBottom="@dimen/padding_top25"
+            android:layout_marginBottom="@dimen/detay_menu_12"
             android:background="@drawable/btn_kontrol"
             android:gravity="center"
             android:text="@string/kaydet"

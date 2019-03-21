@@ -17,6 +17,16 @@ public class Product implements Serializable {
     private String ImageMimeType;
     private double ImageFileSize;
 
+    public Inv_Id getInv_TypeCode() {
+        return inv_TypeCode;
+    }
+
+    public void setInv_TypeCode(Inv_Id inv_TypeCode) {
+        this.inv_TypeCode = inv_TypeCode;
+    }
+
+    private Inv_Id inv_TypeCode;
+
 
     public String getImage() {
         return Image;
