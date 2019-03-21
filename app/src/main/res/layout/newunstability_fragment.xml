@@ -64,11 +64,11 @@
                 android:paddingStart="@dimen/detay_menu_12" />
 
             <ProgressBar
-                android:visibility="gone"
                 android:id="@+id/prog_account"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:visibility="gone" />
 
         </LinearLayout>
 
@@ -107,11 +107,11 @@
                 android:paddingStart="@dimen/detay_menu_12" />
 
             <ProgressBar
-                android:visibility="gone"
                 android:id="@+id/prog_elevator"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:visibility="gone" />
 
         </LinearLayout>
 
@@ -195,7 +195,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/padding_top25"
-            android:layout_marginTop="@dimen/detay_menu_5"
+            android:layout_marginTop="@dimen/detay_menu_12"
             android:layout_marginEnd="@dimen/padding_top25"
             android:orientation="horizontal"
             android:weightSum="6">
@@ -203,10 +203,10 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
+                android:layout_gravity="center"
                 android:layout_marginStart="@dimen/padding_top25"
-                android:layout_marginEnd="@dimen/padding_top25"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <ImageView
@@ -239,7 +239,10 @@
                     android:id="@+id/rcv"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/btn_width110"
-                    android:layout_marginBottom="@dimen/detay_menu_12"></android.support.v7.widget.RecyclerView>
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/detay_menu_5"
+                    android:layout_marginBottom="@dimen/detay_menu_12"
+                    android:background="@color/grey"></android.support.v7.widget.RecyclerView>
 
 
             </LinearLayout>

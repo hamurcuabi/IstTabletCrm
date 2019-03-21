@@ -22,10 +22,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/detay_menu_10"
-        android:elevation="2dp"
+        android:background="@drawable/servapp_item_rounded"
+        android:elevation="1dp"
         android:gravity="center"
         android:minHeight="@dimen/detay_menu_100"
-        android:background="@drawable/servapp_item_rounded"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -127,6 +127,7 @@
                     android:layout_height="0dp"
                     android:layout_marginTop="@dimen/detay_menu_5"
                     android:layout_weight="1"
+                    android:alpha="0.6"
                     android:fontFamily="@font/roboto_medium"
                     android:text="@{StringUtil.nullToString(Methodes.changeDateFormatToClockText(servappItem.getScheduledStart()))}"
                     android:textColor="@color/text_color"
@@ -156,6 +157,7 @@
                     android:layout_height="0dp"
                     android:layout_marginTop="@dimen/detay_menu_5"
                     android:layout_weight="1"
+                    android:alpha="0.6"
                     android:fontFamily="@font/roboto_medium"
                     android:text="@{StringUtil.nullToString(Methodes.changeDateFormatToClockText(servappItem.getScheduledEnd()))}"
                     android:textColor="@color/text_color"

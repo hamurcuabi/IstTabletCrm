@@ -41,7 +41,6 @@
         android:layout_weight="1.2"
         android:fontFamily="@font/roboto_regular"
         android:inputType="numberDecimal"
-
         android:textColor="@color/text_color"
         android:textSize="@dimen/menu_text_16" />
 
@@ -77,21 +76,33 @@
         android:fontFamily="@font/roboto_regular"
         android:textColor="@color/text_color"
         android:textSize="@dimen/menu_text_16" />
+
     <Spinner
-        android:theme="@style/SpinnerThemeLight"
-        android:background="@drawable/spn_style"
         android:id="@+id/spn_ucretli"
         android:layout_width="0dp"
         android:layout_height="@dimen/btn_height45"
         android:layout_gravity="center"
         android:layout_marginEnd="@dimen/detay_menu_12"
         android:layout_weight="1.8"
+        android:background="@drawable/spn_style"
         android:entries="@array/ucretli"
+        android:theme="@style/SpinnerThemeLight"
 
         />
 
-    <TextView
+    <EditText
+        android:id="@+id/edt_fiyat"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/detay_menu_12"
+        android:layout_weight="1.1"
+        android:fontFamily="@font/roboto_regular"
+        android:inputType="numberDecimal"
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/menu_text_16" />
 
+    <EditText
         android:id="@+id/txt_descp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

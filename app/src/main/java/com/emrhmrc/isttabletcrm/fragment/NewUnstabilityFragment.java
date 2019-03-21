@@ -37,6 +37,7 @@ import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.adapter.RcvImageAdapter;
 import com.emrhmrc.isttabletcrm.adapter.SwipeToDeleteVertical;
+import com.emrhmrc.isttabletcrm.api.APIHelper;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
@@ -166,9 +167,9 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
             if (b) spn_account.showDropDown();
             else spn_account.dismissDropDown();
         });
-        spn_account.setOnFocusChangeListener((view, b) -> {
-            if (b) spn_account.showDropDown();
-            else spn_account.dismissDropDown();
+        spnElevator.setOnFocusChangeListener((view, b) -> {
+            if (b) spnElevator.showDropDown();
+            else spnElevator.dismissDropDown();
         });
 
     }
@@ -253,7 +254,7 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
         prog_elevator.setVisibility(View.VISIBLE);
         CustomerIdRequest request = new CustomerIdRequest(id);
         Call<ElevatorListAll> call = jsonApi.elevatorGetByCustomerId(request);
-        call.enqueue(new Callback<ElevatorListAll>() {
+        APIHelper.enqueueWithRetry(call, new Callback<ElevatorListAll>() {
             @Override
             public void onResponse(Call<ElevatorListAll> call, Response<ElevatorListAll> response) {
                 if (response.isSuccessful()) {
@@ -305,7 +306,7 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
 
         prog_account.setVisibility(View.VISIBLE);
         Call<AccountListAll> call = jsonApi.geAccountListAllCall();
-        call.enqueue(new Callback<AccountListAll>() {
+        APIHelper.enqueueWithRetry(call, new Callback<AccountListAll>() {
             @Override
             public void onResponse(Call<AccountListAll> call, Response<AccountListAll> response) {
                 if (response.isSuccessful()) {
@@ -415,7 +416,7 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
 
         }
     }
-    
+
     @Override
     public void onItemClicked(Object item, int positon) {
 

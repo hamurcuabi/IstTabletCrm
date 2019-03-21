@@ -80,11 +80,7 @@
                     <TextView
                         android:layout_width="@dimen/txt_calendar"
                         android:layout_height="wrap_content"
-                        android:layout_alignTop="@+id/spinner_musteri"
-                        android:layout_alignBottom="@+id/spinner_musteri"
-                        android:layout_alignParentStart="true"
                         android:layout_gravity="center"
-                        android:layout_toStartOf="@+id/spinner_musteri"
                         android:fontFamily="@font/roboto_regular"
                         android:gravity="end"
                         android:text="@string/isteniledepo"
@@ -93,14 +89,12 @@
                         android:textStyle="bold" />
 
                     <AutoCompleteTextView
-                        android:focusableInTouchMode="true"
                         android:id="@+id/spn_istenilen"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
                         android:background="@drawable/spn_style"
+                        android:focusableInTouchMode="true"
                         android:paddingStart="@dimen/detay_menu_12"
                         android:paddingEnd="@dimen/margin30" />
 
@@ -115,11 +109,7 @@
                     <TextView
                         android:layout_width="@dimen/txt_calendar"
                         android:layout_height="wrap_content"
-                        android:layout_alignTop="@+id/spinner_musteri"
-                        android:layout_alignBottom="@+id/spinner_musteri"
-                        android:layout_alignParentStart="true"
                         android:layout_gravity="center"
-                        android:layout_toStartOf="@+id/spinner_musteri"
                         android:fontFamily="@font/roboto_regular"
                         android:gravity="end"
                         android:text="@string/urun_adi"
@@ -128,14 +118,12 @@
                         android:textStyle="bold" />
 
                     <AutoCompleteTextView
-                        android:focusableInTouchMode="true"
                         android:id="@+id/spn_urunadi"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
                         android:background="@drawable/spn_style"
+                        android:focusableInTouchMode="true"
                         android:paddingStart="@dimen/detay_menu_12"
                         android:paddingEnd="@dimen/margin30" />
 
@@ -151,11 +139,7 @@
 
                         android:layout_width="@dimen/txt_calendar"
                         android:layout_height="wrap_content"
-                        android:layout_alignTop="@+id/edt_asansor"
-                        android:layout_alignBottom="@+id/edt_asansor"
-                        android:layout_alignParentStart="true"
                         android:layout_gravity="center"
-                        android:layout_toStartOf="@+id/edt_asansor"
                         android:fontFamily="@font/roboto_regular"
                         android:gravity="end"
                         android:text="@string/birim"
@@ -164,14 +148,12 @@
                         android:textStyle="bold" />
 
                     <AutoCompleteTextView
-                        android:focusableInTouchMode="true"
                         android:id="@+id/spn_birim"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
                         android:background="@drawable/spn_style"
+                        android:focusableInTouchMode="true"
                         android:paddingStart="@dimen/detay_menu_12"
                         android:paddingEnd="@dimen/margin30" />
 
@@ -181,17 +163,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/detay_menu_12"
-                    android:layout_marginBottom="@dimen/detay_menu_12"
                     android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="@dimen/txt_calendar"
                         android:layout_height="wrap_content"
-                        android:layout_alignTop="@+id/edt_asansor"
-                        android:layout_alignBottom="@+id/edt_asansor"
-                        android:layout_alignParentStart="true"
                         android:layout_gravity="center"
-                        android:layout_toStartOf="@+id/edt_asansor"
                         android:fontFamily="@font/roboto_regular"
                         android:gravity="end"
                         android:text="@string/baglioldugu"
@@ -200,15 +177,15 @@
                         android:textStyle="bold" />
 
                     <EditText
+
                         android:id="@+id/edt_baglioldugu_isemri"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
                         android:background="@drawable/btn_eye_text"
-                        android:gravity="center|left"
-                        android:paddingStart="@dimen/detay_menu_12" />
+                        android:gravity="center_vertical|left"
+                        android:paddingStart="@dimen/detay_menu_12"
+                        android:paddingEnd="@dimen/margin30" />
 
                 </LinearLayout>
 
@@ -235,11 +212,7 @@
                     <TextView
                         android:layout_width="@dimen/txt_calendar"
                         android:layout_height="wrap_content"
-                        android:layout_alignTop="@+id/spinner_musteri"
-                        android:layout_alignBottom="@+id/spinner_musteri"
-                        android:layout_alignParentStart="true"
                         android:layout_gravity="center"
-                        android:layout_toStartOf="@+id/spinner_musteri"
                         android:fontFamily="@font/roboto_regular"
                         android:gravity="end"
                         android:text="@string/miktar"
@@ -251,11 +224,9 @@
                         android:id="@+id/edt_miktar"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
                         android:background="@drawable/btn_eye_text"
-                        android:gravity="center|left"
+                        android:gravity="center_vertical|left"
                         android:inputType="number"
                         android:paddingStart="@dimen/detay_menu_12" />
 
@@ -271,11 +242,7 @@
 
                         android:layout_width="@dimen/txt_calendar"
                         android:layout_height="wrap_content"
-                        android:layout_alignTop="@+id/spinner_musteri"
-                        android:layout_alignBottom="@+id/spinner_musteri"
-                        android:layout_alignParentStart="true"
                         android:layout_gravity="center"
-                        android:layout_toStartOf="@+id/spinner_musteri"
                         android:fontFamily="@font/roboto_regular"
                         android:gravity="end"
                         android:text="@string/tarih"
@@ -287,8 +254,6 @@
                         android:id="@+id/edt_tarih"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
                         android:background="@drawable/calendar_style"
                         android:gravity="center|left"
@@ -308,9 +273,6 @@
 
                         android:layout_width="@dimen/txt_calendar"
                         android:layout_height="wrap_content"
-                        android:layout_alignTop="@+id/edt_asansor"
-                        android:layout_alignBottom="@+id/edt_asansor"
-                        android:layout_alignParentStart="true"
                         android:layout_gravity="center|top"
                         android:layout_toStartOf="@+id/edt_asansor"
                         android:fontFamily="@font/roboto_regular"
@@ -359,11 +321,7 @@
                     <TextView
                         android:layout_width="@dimen/txt_calendar"
                         android:layout_height="wrap_content"
-                        android:layout_alignTop="@+id/spinner_musteri"
-                        android:layout_alignBottom="@+id/spinner_musteri"
-                        android:layout_alignParentStart="true"
                         android:layout_gravity="center"
-                        android:layout_toStartOf="@+id/spinner_musteri"
                         android:fontFamily="@font/roboto_regular"
                         android:gravity="end"
                         android:text="@string/cikis_depoo"
@@ -375,8 +333,6 @@
                         android:id="@+id/spn_cikisdepo"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
                         android:background="@drawable/spn_style"
                         android:paddingStart="@dimen/detay_menu_12"
@@ -393,11 +349,7 @@
                     <TextView
                         android:layout_width="@dimen/txt_calendar"
                         android:layout_height="wrap_content"
-                        android:layout_alignTop="@+id/spinner_musteri"
-                        android:layout_alignBottom="@+id/spinner_musteri"
-                        android:layout_alignParentStart="true"
                         android:layout_gravity="center"
-                        android:layout_toStartOf="@+id/spinner_musteri"
                         android:fontFamily="@font/roboto_regular"
                         android:gravity="end"
                         android:text="@string/urun_adi"
@@ -409,8 +361,6 @@
                         android:id="@+id/spn_urunadi2"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
                         android:background="@drawable/spn_style"
                         android:paddingStart="@dimen/detay_menu_12"
@@ -429,11 +379,7 @@
 
                         android:layout_width="@dimen/txt_calendar"
                         android:layout_height="wrap_content"
-                        android:layout_alignTop="@+id/edt_asansor"
-                        android:layout_alignBottom="@+id/edt_asansor"
-                        android:layout_alignParentStart="true"
                         android:layout_gravity="center"
-                        android:layout_toStartOf="@+id/edt_asansor"
                         android:fontFamily="@font/roboto_regular"
                         android:gravity="end"
                         android:text="@string/serinumarasi"
@@ -445,8 +391,6 @@
                         android:id="@+id/edt_serino2"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
                         android:background="@drawable/btn_eye_text"
                         android:gravity="center|left"
@@ -464,11 +408,7 @@
 
                         android:layout_width="@dimen/txt_calendar"
                         android:layout_height="wrap_content"
-                        android:layout_alignTop="@+id/edt_asansor"
-                        android:layout_alignBottom="@+id/edt_asansor"
-                        android:layout_alignParentStart="true"
                         android:layout_gravity="center"
-                        android:layout_toStartOf="@+id/edt_asansor"
                         android:fontFamily="@font/roboto_regular"
                         android:gravity="end"
                         android:text="@string/birim"
@@ -480,8 +420,6 @@
                         android:id="@+id/edt_birim2"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
                         android:background="@drawable/btn_eye_text"
                         android:gravity="center|left"
@@ -513,11 +451,7 @@
                     <TextView
                         android:layout_width="@dimen/txt_calendar"
                         android:layout_height="wrap_content"
-                        android:layout_alignTop="@+id/spinner_musteri"
-                        android:layout_alignBottom="@+id/spinner_musteri"
-                        android:layout_alignParentStart="true"
                         android:layout_gravity="center"
-                        android:layout_toStartOf="@+id/spinner_musteri"
                         android:fontFamily="@font/roboto_regular"
                         android:gravity="end"
                         android:text="@string/miktar"
@@ -529,8 +463,6 @@
                         android:id="@+id/edt_miktar2"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
                         android:background="@drawable/btn_eye_text"
                         android:gravity="center|left"
@@ -548,11 +480,7 @@
                     <TextView
                         android:layout_width="@dimen/txt_calendar"
                         android:layout_height="wrap_content"
-                        android:layout_alignTop="@+id/spinner_musteri"
-                        android:layout_alignBottom="@+id/spinner_musteri"
-                        android:layout_alignParentStart="true"
                         android:layout_gravity="center"
-                        android:layout_toStartOf="@+id/spinner_musteri"
                         android:fontFamily="@font/roboto_regular"
                         android:gravity="end"
                         android:text="@string/tarih"
@@ -564,8 +492,6 @@
                         android:id="@+id/edt_tarih2"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
                         android:background="@drawable/calendar_style"
                         android:gravity="center|left"
@@ -584,11 +510,7 @@
 
                         android:layout_width="@dimen/txt_calendar"
                         android:layout_height="wrap_content"
-                        android:layout_alignTop="@+id/edt_asansor"
-                        android:layout_alignBottom="@+id/edt_asansor"
-                        android:layout_alignParentStart="true"
                         android:layout_gravity="center"
-                        android:layout_toStartOf="@+id/edt_asansor"
                         android:fontFamily="@font/roboto_regular"
                         android:gravity="end"
                         android:text="@string/iadenedeni"
@@ -600,8 +522,6 @@
                         android:id="@+id/edt_iadenedeni"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
                         android:background="@drawable/btn_descp"
                         android:gravity="center|left"
@@ -620,11 +540,7 @@
 
                         android:layout_width="@dimen/txt_calendar"
                         android:layout_height="wrap_content"
-                        android:layout_alignTop="@+id/edt_asansor"
-                        android:layout_alignBottom="@+id/edt_asansor"
-                        android:layout_alignParentStart="true"
                         android:layout_gravity="center"
-                        android:layout_toStartOf="@+id/edt_asansor"
                         android:fontFamily="@font/roboto_regular"
                         android:gravity="end"
                         android:text="@string/aciklama"
@@ -636,8 +552,6 @@
                         android:id="@+id/edt_aciklama2"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/detay_menu_30"
                         android:background="@drawable/btn_descp"
                         android:gravity="center|left"

@@ -1051,6 +1051,16 @@
                         android:textColor="@color/white"
                         android:textSize="@dimen/menu_text_14"
                         android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/detay_menu_12"
+                        android:layout_weight="1.1"
+                        android:text="@string/ucret"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/menu_text_14"
+                        android:textStyle="bold" />
 
 
                     <TextView

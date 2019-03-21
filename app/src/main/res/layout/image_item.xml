@@ -2,13 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="@dimen/detay_menu_100"
     android:layout_height="@dimen/detay_menu_100"
-    android:layout_marginStart="6dp"
-    android:layout_marginEnd="6dp">
+    android:layout_gravity="center"
+    android:layout_margin="@dimen/detay_menu_8"
+    android:background="@color/grey"
+    android:gravity="center">
 
     <ImageView
         android:id="@+id/img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitCenter" />
 
 </LinearLayout>

@@ -30,6 +30,15 @@ public class StringUtil {
         return String.valueOf(value);
     }
 
+    public static int convertStringToınt(String value) {
+        try {
+            return Integer.parseInt(value);
+        } catch (Exception ex) {
+            return 0;
+        }
+
+    }
+
     public static String nullToString(String string) {
         if (validateStrings(string)) return string;
         else return "";

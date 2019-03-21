@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -17,16 +17,18 @@ import com.emrhmrc.isttabletcrm.util.StringUtil;
 
 public class RcvServAppDetailViewHolder extends BaseViewHolder<ServAppGetByIdServAppDetails,
         OnItemClickListener<ServAppGetByIdServAppDetails>> {
-    private TextView txt_descp, txt_garantidurumu, txt_stokdurumu, txt_birim,
+    private TextView txt_garantidurumu, txt_stokdurumu, txt_birim,
             edt_miktar, txt_urunadi, txt_kod;
     private Spinner spn_ucretli;
+    private EditText edt_descp,edt_fiyat;
     private Context context;
 
     public RcvServAppDetailViewHolder(View itemView, Context context) {
         super(itemView);
         this.context = context;
         spn_ucretli = itemView.findViewById(R.id.spn_ucretli);
-        txt_descp = itemView.findViewById(R.id.txt_descp);
+        edt_descp = itemView.findViewById(R.id.txt_descp);
+        edt_fiyat = itemView.findViewById(R.id.edt_fiyat);
         txt_garantidurumu = itemView.findViewById(R.id.txt_garantidurumu);
         txt_stokdurumu = itemView.findViewById(R.id.txt_stokdurumu);
         txt_birim = itemView.findViewById(R.id.txt_birim);
@@ -66,7 +68,7 @@ public class RcvServAppDetailViewHolder extends BaseViewHolder<ServAppGetByIdSer
                 }
             });
         }
-        txt_descp.setText(StringUtil.nullToString(item.getInv_Description()));
+        edt_descp.setText(StringUtil.nullToString(item.getInv_Description()));
 
 
     }

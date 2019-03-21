@@ -33,6 +33,7 @@ import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointment;
 import com.emrhmrc.isttabletcrm.databinding.ActivityServAppDetailBinding;
+import com.emrhmrc.isttabletcrm.fragment.AddManuelProductFragment;
 import com.emrhmrc.isttabletcrm.fragment.BeforeAfterPicFragment;
 import com.emrhmrc.isttabletcrm.fragment.BreakdownTypeCodeFragment;
 import com.emrhmrc.isttabletcrm.fragment.ControlListFragment;
@@ -40,6 +41,7 @@ import com.emrhmrc.isttabletcrm.fragment.DefaultMapFragment;
 import com.emrhmrc.isttabletcrm.fragment.DetailServAppFormFragment;
 import com.emrhmrc.isttabletcrm.fragment.ReasonAndAddenBreakdownFragment;
 import com.emrhmrc.isttabletcrm.fragment.ReasonOfBreakdownFragment;
+import com.emrhmrc.isttabletcrm.helper.AddManuelProduct;
 import com.emrhmrc.isttabletcrm.helper.CreateSubServAppSingleton;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
@@ -71,7 +73,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ServAppDetailActivity extends AppCompatActivity implements OnItemClickListener {
+public class ServAppDetailActivity extends AppCompatActivity implements OnItemClickListener, AddManuelProduct {
 
     private static final String TAG = "ServAppDetailActivity";
     ActivityServAppDetailBinding binding;
@@ -160,6 +162,12 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
 
         BreakdownTypeCodeFragment fragment = BreakdownTypeCodeFragment.newInstance();
         fragment.show(getSupportFragmentManager(), "BreakdownTypeCodeFragment");
+    }
+
+    private void openAddManuelProductFragment() {
+
+        AddManuelProductFragment fragment = AddManuelProductFragment.newInstance();
+        fragment.show(getSupportFragmentManager(), "AddManuelProductFragment");
     }
 
     private void mapFragment() {
@@ -358,7 +366,8 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     @OnClick({R.id.img_cancel, R.id.txt_cancel, R.id.btn_closejob, R.id.txt_yeni, R.id.img_yeni,
             R.id.img_add, R.id.txt_add, R.id.btn_beforeafter, R.id.txt_aciklamanot,
             R.id.txt_asansorno, R.id.txt_servis_raporu, R.id.img_servis_raporu, R.id.img_gps,
-            R.id.img_menu, R.id.txt_kaydet, R.id.img_kaydet, R.id.btn_ariza_kodu, R.id.btn_ariza_nedeni})
+            R.id.img_menu, R.id.txt_kaydet, R.id.img_kaydet, R.id.btn_ariza_kodu,
+            R.id.btn_ariza_nedeni, R.id.add_job_2, R.id.img_add_3})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_cancel:
@@ -420,6 +429,12 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                 break;
             case R.id.btn_ariza_nedeni:
                 openReasonAndAddedBreakdown();
+                break;
+            case R.id.add_job_2:
+                openAddManuelProductFragment();
+                break;
+            case R.id.img_add_3:
+                openAddManuelProductFragment();
                 break;
         }
     }
@@ -578,4 +593,9 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
         }
     }
 
+    @Override
+    public void addProduct(ServAppGetByIdServAppDetails product) {
+        adapter.add(product);
+
+    }
 }

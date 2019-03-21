@@ -27,6 +27,7 @@ import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
+import com.emrhmrc.isttabletcrm.api.APIHelper;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
@@ -102,6 +103,9 @@ public class CreateNewWareRequestFragment extends DialogFragment {
     WarehouseTransferCreateRequest request;
     SweetAlertDialog pDialog;
     private JsonApi jsonApi;
+    private Call<UomListAll> uomListAllCall;
+    private Call<WareHouseListAll> wareHouseListAllCall;
+    private Call<ProductListAll> productListAllCall;
 
     public static CreateNewWareRequestFragment newInstance() {
 
@@ -129,9 +133,8 @@ public class CreateNewWareRequestFragment extends DialogFragment {
     }
 
     private void getUoms() {
-
-        Call<UomListAll> call = jsonApi.getUomListAllCall();
-        call.enqueue(new Callback<UomListAll>() {
+        uomListAllCall = jsonApi.getUomListAllCall();
+        APIHelper.enqueueWithRetry(uomListAllCall, new Callback<UomListAll>() {
             @Override
             public void onResponse(Call<UomListAll> call, Response<UomListAll> response) {
                 if (response.isSuccessful()) {
@@ -177,10 +180,9 @@ public class CreateNewWareRequestFragment extends DialogFragment {
     }
 
     private void getDepo1() {
-
         UserIdRequest request = new UserIdRequest(SingletonUser.getInstance().getUser().getUserId());
-        Call<WareHouseListAll> call = jsonApi.getWareHouseListAllCall(request);
-        call.enqueue(new Callback<WareHouseListAll>() {
+        wareHouseListAllCall = jsonApi.getWareHouseListAllCall(request);
+        APIHelper.enqueueWithRetry(wareHouseListAllCall, new Callback<WareHouseListAll>() {
             @Override
             public void onResponse(Call<WareHouseListAll> call, Response<WareHouseListAll> response) {
                 if (response.isSuccessful()) {
@@ -205,10 +207,9 @@ public class CreateNewWareRequestFragment extends DialogFragment {
     }
 
     private void getProduct1() {
-
         UserIdRequest request = new UserIdRequest(SingletonUser.getInstance().getUser().getUserId());
-        Call<ProductListAll> call = jsonApi.productListAll(request);
-        call.enqueue(new Callback<ProductListAll>() {
+        productListAllCall = jsonApi.productListAll(request);
+        APIHelper.enqueueWithRetry(productListAllCall, new Callback<ProductListAll>() {
             @Override
             public void onResponse(Call<ProductListAll> call, Response<ProductListAll> response) {
                 if (response.isSuccessful()) {
@@ -498,5 +499,11 @@ public class CreateNewWareRequestFragment extends DialogFragment {
 
     }
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (uomListAllCall != null) uomListAllCall.cancel();
+        if (wareHouseListAllCall != null) wareHouseListAllCall.cancel();
+        if (productListAllCall != null) productListAllCall.cancel();
+    }
 }
