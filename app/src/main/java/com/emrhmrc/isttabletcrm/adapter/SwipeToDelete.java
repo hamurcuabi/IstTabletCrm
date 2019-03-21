@@ -38,7 +38,7 @@ public class SwipeToDelete extends ItemTouchHelper.SimpleCallback {
 
     @Override
     public int getSwipeDirs(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
-        if(mAdapter.getItems().get(viewHolder.getAdapterPosition()).isManuel())
+        if(mAdapter.getItems().get(viewHolder.getAdapterPosition()).isManuel() || mAdapter.getItems().get(viewHolder.getAdapterPosition()).isManuelProduct())
         return super.getSwipeDirs(recyclerView, viewHolder);
         else return 0;
     }
