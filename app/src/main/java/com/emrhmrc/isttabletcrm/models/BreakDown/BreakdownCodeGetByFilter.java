@@ -4,7 +4,7 @@ import com.emrhmrc.isttabletcrm.models.CommonClass.TableMetadata;
 
 import java.util.List;
 
-public class BreakdownCodeListAll {
+public class BreakdownCodeGetByFilter {
     private String ErrorMsg;
 
     private boolean Success;
@@ -12,7 +12,7 @@ public class BreakdownCodeListAll {
 
     private TableMetadata TableMetadata;
 
-    public BreakdownCodeListAll() {
+    public BreakdownCodeGetByFilter() {
     }
 
     public String getErrorMsg() {

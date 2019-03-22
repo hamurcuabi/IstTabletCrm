@@ -4,7 +4,6 @@ public class BreakdownCode {
 
     private String inv_BreakdownCodeId;
     private String inv_BreakdownCodeName;
-    private String inv_SubProductGroupId;
 
     public BreakdownCode() {
     }
@@ -25,13 +24,6 @@ public class BreakdownCode {
         this.inv_BreakdownCodeName = inv_BreakdownCodeName;
     }
 
-    public String getInv_SubProductGroupId() {
-        return inv_SubProductGroupId;
-    }
-
-    public void setInv_SubProductGroupId(String inv_SubProductGroupId) {
-        this.inv_SubProductGroupId = inv_SubProductGroupId;
-    }
 
     @Override
     public String toString() {

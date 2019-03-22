@@ -21,7 +21,6 @@ public class ServAppListAll {
     }
 
 
-
     public boolean isSuccess() {
         return Success;
     }

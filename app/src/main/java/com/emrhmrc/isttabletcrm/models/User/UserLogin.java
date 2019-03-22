@@ -1,5 +1,6 @@
 package com.emrhmrc.isttabletcrm.models.User;
 
+import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
 import com.google.gson.annotations.SerializedName;
 
 public class UserLogin {
@@ -9,9 +10,27 @@ public class UserLogin {
     private String UserId;
     private String UserName;
     private String Description;
+    private Inv_Id SuperVisorId;
+    private Inv_Id CustomerId;
 
     public UserLogin() {
 
+    }
+
+    public Inv_Id getSuperVisorId() {
+        return SuperVisorId;
+    }
+
+    public void setSuperVisorId(Inv_Id superVisorId) {
+        SuperVisorId = superVisorId;
+    }
+
+    public Inv_Id getCustomerId() {
+        return CustomerId;
+    }
+
+    public void setCustomerId(Inv_Id customerId) {
+        CustomerId = customerId;
     }
 
     public boolean isSuccess() {

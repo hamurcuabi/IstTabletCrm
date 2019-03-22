@@ -23,7 +23,7 @@ import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.models.BreakDown.BreakdownCode;
-import com.emrhmrc.isttabletcrm.models.BreakDown.BreakdownCodeListAll;
+import com.emrhmrc.isttabletcrm.models.BreakDown.BreakdownCodeGetByFilter;
 import com.emrhmrc.isttabletcrm.models.Product.MainList;
 import com.emrhmrc.isttabletcrm.models.Product.MainProductList;
 import com.emrhmrc.isttabletcrm.models.Product.Product;
@@ -52,7 +52,7 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
     private List<MainList> mainList;
     private List<SubList> subList;
     private List<BreakdownCode> codeList;
-    private Call<BreakdownCodeListAll> breakdownCodeListAllCall;
+    private Call<BreakdownCodeGetByFilter> breakdownCodeListAllCall;
     private Call<MainProductList> mainProductListCall;
     private Call<SubProductList> subProductListCall;
     private Call<ProductListAll> productListAllCall;
@@ -106,11 +106,11 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
         prog_ariza.setVisibility(View.VISIBLE);
         ServAppIdRequest request = new ServAppIdRequest(shareData.getServAppId());
         breakdownCodeListAllCall = jsonApi.getBreakdownCodeListAllCall(request);
-        breakdownCodeListAllCall.enqueue(new Callback<BreakdownCodeListAll>() {
+        breakdownCodeListAllCall.enqueue(new Callback<BreakdownCodeGetByFilter>() {
             @Override
-            public void onResponse(Call<BreakdownCodeListAll> call, Response<BreakdownCodeListAll> response) {
+            public void onResponse(Call<BreakdownCodeGetByFilter> call, Response<BreakdownCodeGetByFilter> response) {
                 if (response.isSuccessful()) {
-                    final BreakdownCodeListAll model = response.body();
+                    final BreakdownCodeGetByFilter model = response.body();
                     fillspnCode(model.getBreakdownCodes());
                     codeList = model.getBreakdownCodes();
                 } else Log.d(TAG, "onResponse: " + response.errorBody());
@@ -122,7 +122,7 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
             }
 
             @Override
-            public void onFailure(Call<BreakdownCodeListAll> call, Throwable t) {
+            public void onFailure(Call<BreakdownCodeGetByFilter> call, Throwable t) {
 
                 Log.d(TAG, "onFailure: " + t.getMessage());
                 prog_ariza.setVisibility(View.GONE);

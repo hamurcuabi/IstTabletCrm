@@ -33,6 +33,7 @@ import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Code;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
+import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Uom;
 import com.emrhmrc.isttabletcrm.models.CommonClass.UomListAll;
 import com.emrhmrc.isttabletcrm.models.Product.Product;
 import com.emrhmrc.isttabletcrm.models.Product.ProductListAll;
@@ -341,6 +342,7 @@ public class CreateNewWareRequestFragment extends DialogFragment {
         request.setInv_TransferTypeCode(new Code("Yeni Stok", 1));
         request.setInv_Quantity(edtMiktar.getText().toString());
         request.setInv_WarehouseTransferName("TEST TABLET");
+        request.setInv_FromWarehouseid(null);
         if (checkFields(request)) {
             Call<DefaultResponse> call = jsonApi.createTransfer(request);
             call.enqueue(new Callback<DefaultResponse>() {
@@ -390,7 +392,10 @@ public class CreateNewWareRequestFragment extends DialogFragment {
             return false;
         } else if (request.getInv_TransferTypeCode() == null) {
             return false;
-        } else return true;
+        }  else if (request.getInv_ProductSerialNumber() == null ) {
+            return false;
+        }
+        else return true;
     }
 
     private void fillSpinner1(List<Warehouses> list) {
@@ -410,7 +415,7 @@ public class CreateNewWareRequestFragment extends DialogFragment {
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     request.setInv_ToWarehouseid(new Inv_Id("inv_warehouse",
                             list.get(i).getInv_WarehouseName(), list.get(i).getInv_WarehouseId()));
-                    request.setInv_FromWarehouseid(list.get(i).getInv_ParentWhid());
+                    //request.setInv_FromWarehouseid(list.get(i).getInv_ParentWhid());
                 }
             });
         } else {
@@ -432,6 +437,7 @@ public class CreateNewWareRequestFragment extends DialogFragment {
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     request.setInv_Productid(new Inv_Id("product", list.get(i).getName(),
                             list.get(i).getProductId()));
+                    request.setInv_ProductSerialNumber(list.get(i).getProductNumber());
                 }
             });
         } else {
@@ -480,16 +486,17 @@ public class CreateNewWareRequestFragment extends DialogFragment {
 
     }
 
-    private void fillSpinnerUom(List<Inv_Id> list) {
+    private void fillSpinnerUom(List<Inv_Uom> list) {
         if (list.size() > 0 && list != null) {
-            ArrayAdapter<Inv_Id> spinnerArrayAdapter = new ArrayAdapter<>(getActivity(),
+            ArrayAdapter<Inv_Uom> spinnerArrayAdapter = new ArrayAdapter<>(getActivity(),
                     android.R.layout.simple_dropdown_item_1line,
                     list);
             spnBirim.setAdapter(spinnerArrayAdapter);
             spnBirim.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    request.setInv_Uomid(list.get(i));
+
+                    request.setInv_Uomid(new Inv_Id("uom", list.get(i).getName(), list.get(i).getUoMId()));
                 }
             });
         } else {

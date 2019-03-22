@@ -9,35 +9,70 @@ import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppDetails;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppModernizationChecklists;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppUnsuitabilities;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppWorkListDetails;
-import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 public class ServiceAppointment {
-    @SerializedName("StatusCode")
     private Code StatusCode;
     private String ActivityId;
     private String inv_Description;
     private String Subject;
-    private List<com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppBreakdownTypes> ServAppGetByIdServAppBreakdownTypes;
+    private List<ServAppGetByIdServAppBreakdownTypes> ServAppGetByIdServAppBreakdownTypes;
     private Inv_Id inv_CustomerId;
-    private List<com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppWorkListDetails> ServAppGetByIdServAppWorkListDetails;
-    private List<com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdNotes> ServAppGetByIdNotes;
+    private List<ServAppGetByIdServAppWorkListDetails> ServAppGetByIdServAppWorkListDetails;
+    private List<ServAppGetByIdNotes> ServAppGetByIdNotes;
     private String ScheduledStart;
     private String ScheduledEnd;
     private Inv_Id inv_ElevatorId;
-    private List<com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppUnsuitabilities> ServAppGetByIdServAppUnsuitabilities;
-    private List<com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppDetails> ServAppGetByIdServAppDetails;
+    private List<ServAppGetByIdServAppUnsuitabilities> ServAppGetByIdServAppUnsuitabilities;
+    private List<ServAppGetByIdServAppDetails> ServAppGetByIdServAppDetails;
     private Code inv_TypeCode;
-    private List<com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppModernizationChecklists> ServAppGetByIdServAppModernizationChecklists;
+    private List<ServAppGetByIdServAppModernizationChecklists> ServAppGetByIdServAppModernizationChecklists;
     private double inv_Latitude;
     private double inv_Longitude;
     private Code PriortiyCode;
     private String inv_BlockName;
     private String inv_QuoteId;
     private String inv_BreakdownCode;
-    private Inv_Id OwnerId;
     private Inv_Id inv_Supervisorid;
+    private Inv_Id OwnerId;
+    private Inv_Id Inv_BreakdownCodeId;
+    private Inv_Id inv_BreakdownDefCodeid;
+    private Inv_Id inv_MainProductGroupid;
+    private Inv_Id inv_SubProductGroupid;
+    private Inv_Id inv_BreakdownCodeid;
+
+    public Inv_Id getInv_BreakdownCodeid() {
+        return inv_BreakdownCodeid;
+    }
+
+    public void setInv_BreakdownCodeid(Inv_Id inv_BreakdownCodeid) {
+        this.inv_BreakdownCodeid = inv_BreakdownCodeid;
+    }
+
+    public Inv_Id getInv_BreakdownDefCodeid() {
+        return inv_BreakdownDefCodeid;
+    }
+
+    public void setInv_BreakdownDefCodeid(Inv_Id inv_BreakdownDefCodeid) {
+        this.inv_BreakdownDefCodeid = inv_BreakdownDefCodeid;
+    }
+
+    public Inv_Id getInv_MainProductGroupid() {
+        return inv_MainProductGroupid;
+    }
+
+    public void setInv_MainProductGroupid(Inv_Id inv_MainProductGroupid) {
+        this.inv_MainProductGroupid = inv_MainProductGroupid;
+    }
+
+    public Inv_Id getInv_SubProductGroupid() {
+        return inv_SubProductGroupid;
+    }
+
+    public void setInv_SubProductGroupid(Inv_Id inv_SubProductGroupid) {
+        this.inv_SubProductGroupid = inv_SubProductGroupid;
+    }
 
     public Inv_Id getInv_BreakdownCodeId() {
         return Inv_BreakdownCodeId;
@@ -46,8 +81,6 @@ public class ServiceAppointment {
     public void setInv_BreakdownCodeId(Inv_Id inv_BreakdownCodeId) {
         Inv_BreakdownCodeId = inv_BreakdownCodeId;
     }
-
-    private Inv_Id Inv_BreakdownCodeId;
 
     public String getInv_Description() {
         return inv_Description;

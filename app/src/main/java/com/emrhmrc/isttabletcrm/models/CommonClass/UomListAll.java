@@ -5,7 +5,7 @@ import java.util.List;
 public class UomListAll {
     private String ErrorMsg;
     private boolean Success;
-    private List<Inv_Id> UomList;
+    private List<Inv_Uom> UomList;
 
 
     public UomListAll() {
@@ -27,11 +27,11 @@ public class UomListAll {
         Success = success;
     }
 
-    public List<Inv_Id> getUomList() {
+    public List<Inv_Uom> getUomList() {
         return UomList;
     }
 
-    public void setUomList(List<Inv_Id> uomList) {
+    public void setUomList(List<Inv_Uom> uomList) {
         UomList = uomList;
     }
 }

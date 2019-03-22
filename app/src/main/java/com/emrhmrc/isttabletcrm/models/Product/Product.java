@@ -1,5 +1,6 @@
 package com.emrhmrc.isttabletcrm.models.Product;
 
+import com.emrhmrc.isttabletcrm.models.CommonClass.Code;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
 
 import java.io.Serializable;
@@ -10,23 +11,29 @@ public class Product implements Serializable {
     private Inv_Id inv_SalesGroupId;
     private Inv_Id inv_MainGroupId;
     private Inv_Id inv_BrandId;
+    private Inv_Id UoM;
     private String ProductNumber;
     private String inv_BillDefinition;
     private String ProductId;
     private String Image;
     private String ImageMimeType;
-    private double ImageFileSize;
+    private Code inv_TypeCode;
 
-    public Inv_Id getInv_TypeCode() {
+    public Inv_Id getUoM() {
+        return UoM;
+    }
+
+    public void setUoM(Inv_Id uoM) {
+        UoM = uoM;
+    }
+
+    public Code getInv_TypeCode() {
         return inv_TypeCode;
     }
 
-    public void setInv_TypeCode(Inv_Id inv_TypeCode) {
+    public void setInv_TypeCode(Code inv_TypeCode) {
         this.inv_TypeCode = inv_TypeCode;
     }
-
-    private Inv_Id inv_TypeCode;
-
 
     public String getImage() {
         return Image;
@@ -42,14 +49,6 @@ public class Product implements Serializable {
 
     public void setImageMimeType(String imageMimeType) {
         ImageMimeType = imageMimeType;
-    }
-
-    public double getImageFileSize() {
-        return ImageFileSize;
-    }
-
-    public void setImageFileSize(double imageFileSize) {
-        ImageFileSize = imageFileSize;
     }
 
     public String getName() {

@@ -15,6 +15,7 @@ public class WarehouseTransferCreateRequest {
     private Inv_Id inv_Productid;
     private Inv_Id inv_Uomid;
     private String inv_Quantity;
+    private String inv_ProductSerialNumber;
 
     public WarehouseTransferCreateRequest() {
     }
@@ -97,5 +98,13 @@ public class WarehouseTransferCreateRequest {
 
     public void setInv_Quantity(String inv_Quantity) {
         this.inv_Quantity = inv_Quantity;
+    }
+
+    public String getInv_ProductSerialNumber() {
+        return inv_ProductSerialNumber;
+    }
+
+    public void setInv_ProductSerialNumber(String inv_ProductSerialNumber) {
+        this.inv_ProductSerialNumber = inv_ProductSerialNumber;
     }
 }

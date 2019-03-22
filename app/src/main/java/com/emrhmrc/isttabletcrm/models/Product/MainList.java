@@ -6,8 +6,9 @@ public class MainList {
     private String inv_MainProductGroupid;
     private String Image;
     private String ImageMimeType;
+    private String inv_Code;
     private int SubGroupCount;
-    private double ImageFileSize;
+
 
     public MainList() {
     }
@@ -65,11 +66,11 @@ public class MainList {
         SubGroupCount = subGroupCount;
     }
 
-    public double getImageFileSize() {
-        return ImageFileSize;
+    public String getInv_Code() {
+        return inv_Code;
     }
 
-    public void setImageFileSize(double imageFileSize) {
-        ImageFileSize = imageFileSize;
+    public void setInv_Code(String inv_Code) {
+        this.inv_Code = inv_Code;
     }
 }

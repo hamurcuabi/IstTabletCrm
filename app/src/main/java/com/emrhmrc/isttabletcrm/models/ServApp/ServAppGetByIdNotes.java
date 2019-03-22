@@ -4,29 +4,17 @@ package com.emrhmrc.isttabletcrm.models.ServApp;
 import java.io.Serializable;
 
 public class ServAppGetByIdNotes implements Serializable {
-    private Integer FileSize;
     private boolean IsDocument;
     private String Subject;
-
     private String MimeType;
-
     private String FileName;
-
     private String DocumentBody;
-
     private String NoteId;
     private String NoteText;
 
     public ServAppGetByIdNotes() {
     }
 
-    public Integer getFileSize() {
-        return FileSize;
-    }
-
-    public void setFileSize(Integer FileSize) {
-        this.FileSize = FileSize;
-    }
 
     public boolean getIsDocument() {
         return IsDocument;
@@ -84,19 +72,7 @@ public class ServAppGetByIdNotes implements Serializable {
         this.NoteText = NoteText;
     }
 
-    @Override
-    public String toString() {
-        return "ServAppGetByIdNotes{" +
-                "FileSize='" + FileSize + '\'' +
-                ", IsDocument='" + IsDocument + '\'' +
-                ", Subject='" + Subject + '\'' +
-                ", MimeType='" + MimeType + '\'' +
-                ", FileName='" + FileName + '\'' +
-                ", DocumentBody='" + DocumentBody + '\'' +
-                ", NoteId='" + NoteId + '\'' +
-                ", NoteText='" + NoteText + '\'' +
-                '}';
-    }
+
 }
 
 

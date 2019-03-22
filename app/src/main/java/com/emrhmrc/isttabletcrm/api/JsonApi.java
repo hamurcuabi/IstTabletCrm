@@ -3,7 +3,10 @@ package com.emrhmrc.isttabletcrm.api;
 
 import com.emrhmrc.isttabletcrm.models.Account.AccountListAll;
 import com.emrhmrc.isttabletcrm.models.BreakDown.BreakDownTypeListAll;
-import com.emrhmrc.isttabletcrm.models.BreakDown.BreakdownCodeListAll;
+import com.emrhmrc.isttabletcrm.models.BreakDown.BreakdownCodeGetByFilter;
+import com.emrhmrc.isttabletcrm.models.BreakDown.BreakdownDefCodeListAll;
+import com.emrhmrc.isttabletcrm.models.BreakDown.BreakdownDefCodeRequest;
+import com.emrhmrc.isttabletcrm.models.BreakDown.BreakdownFilterRequest;
 import com.emrhmrc.isttabletcrm.models.CommonClass.NotificationCountResponse;
 import com.emrhmrc.isttabletcrm.models.CommonClass.ServAppCountResponse;
 import com.emrhmrc.isttabletcrm.models.CommonClass.UomListAll;
@@ -124,8 +127,12 @@ public interface JsonApi {
     Call<ServAppGetById> servAppGetById(@Body ServAppIdRequest servAppId);
 
     //OK
-    @POST("BreakdownCode/ListAll")
-    Call<BreakdownCodeListAll> getBreakdownCodeListAllCall(@Body ServAppIdRequest servAppId);
+    @POST("BreakdownDefCode/ListAll")
+    Call<BreakdownDefCodeListAll> breakdownDefCodeListAllCall(@Body BreakdownDefCodeRequest request);
+
+    //OK
+    @POST("BreakdownCode/GetByFilter")
+    Call<BreakdownCodeGetByFilter> geBreakdownCodeGetByFilterCall(@Body BreakdownFilterRequest servAppId);
 
     //OK
     @POST("ServApp/CompleteById")

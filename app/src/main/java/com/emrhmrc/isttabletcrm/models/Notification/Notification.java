@@ -10,6 +10,10 @@ public class Notification {
     private String ScheduledStart;
     private String Description;
     private Code NotificationType;
+    private Inv_Id From;
+
+    public Notification() {
+    }
 
     public Inv_Id getFrom() {
         return From;
@@ -17,11 +21,6 @@ public class Notification {
 
     public void setFrom(Inv_Id from) {
         From = from;
-    }
-
-    private Inv_Id From;
-
-    public Notification() {
     }
 
     public String getActivityId() {

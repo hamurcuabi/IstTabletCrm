@@ -18,7 +18,7 @@ public class ServAppGetById {
 
     private String ErrorMsg;
     private boolean Success;
-    private com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointment ServiceAppointment;
+    private ServiceAppointment ServiceAppointment;
     @SerializedName("TableMetadataServAppUnsuitabilities")
     private TableMetadata TableMetadataServAppUnsuitabilities;
     @SerializedName("TableMetadataServAppWorkListDetails")

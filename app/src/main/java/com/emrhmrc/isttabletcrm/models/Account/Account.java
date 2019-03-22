@@ -4,6 +4,15 @@ public class Account {
     private String Name;
 
     private String AccountId;
+    private Integer inv_LocationSequence;
+
+    public Integer getInv_LocationSequence() {
+        return inv_LocationSequence;
+    }
+
+    public void setInv_LocationSequence(Integer inv_LocationSequence) {
+        this.inv_LocationSequence = inv_LocationSequence;
+    }
 
     public String getName() {
         return Name;
