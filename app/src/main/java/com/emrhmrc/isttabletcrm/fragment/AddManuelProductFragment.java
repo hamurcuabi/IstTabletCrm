@@ -28,6 +28,7 @@ import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.helper.AddManuelProduct;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
+import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Uom;
 import com.emrhmrc.isttabletcrm.models.CommonClass.UomListAll;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppDetails;
 import com.emrhmrc.isttabletcrm.util.StringUtil;
@@ -119,16 +120,17 @@ public class AddManuelProductFragment extends DialogFragment implements View.OnC
         });
     }
 
-    private void fillSpinnerUom(List<Inv_Id> list) {
+    private void fillSpinnerUom(List<Inv_Uom> list) {
         if (list.size() > 0 && list != null) {
-            ArrayAdapter<Inv_Id> spinnerArrayAdapter = new ArrayAdapter<>(getActivity(),
+            ArrayAdapter<Inv_Uom> spinnerArrayAdapter = new ArrayAdapter<>(getActivity(),
                     android.R.layout.simple_dropdown_item_1line,
                     list);
             spn_birim.setAdapter(spinnerArrayAdapter);
             spn_birim.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    selected = list.get(i);
+
+                    selected = new Inv_Id("uom", list.get(i).getName(), list.get(i).getUoMId());
                 }
             });
         } else {

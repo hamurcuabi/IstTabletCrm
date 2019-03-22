@@ -24,6 +24,7 @@ import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.models.BreakDown.BreakdownCode;
 import com.emrhmrc.isttabletcrm.models.BreakDown.BreakdownCodeGetByFilter;
+import com.emrhmrc.isttabletcrm.models.BreakDown.BreakdownFilterRequest;
 import com.emrhmrc.isttabletcrm.models.Product.MainList;
 import com.emrhmrc.isttabletcrm.models.Product.MainProductList;
 import com.emrhmrc.isttabletcrm.models.Product.Product;
@@ -97,15 +98,15 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getDialog().setCanceledOnTouchOutside(false);
         getMainProduct();
-        getBreakdownCodes();
+
 
     }
 
     private void getBreakdownCodes() {
 
         prog_ariza.setVisibility(View.VISIBLE);
-        ServAppIdRequest request = new ServAppIdRequest(shareData.getServAppId());
-        breakdownCodeListAllCall = jsonApi.getBreakdownCodeListAllCall(request);
+        BreakdownFilterRequest request = new BreakdownFilterRequest();
+        breakdownCodeListAllCall = jsonApi.geBreakdownCodeGetByFilterCall(request);
         breakdownCodeListAllCall.enqueue(new Callback<BreakdownCodeGetByFilter>() {
             @Override
             public void onResponse(Call<BreakdownCodeGetByFilter> call, Response<BreakdownCodeGetByFilter> response) {
@@ -337,8 +338,7 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
             spn_descp_code.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    //Get Code
-                    // filterSpnCode(subList.get(i).getInv_SubProductGroupid());
+
 
                 }
             });
@@ -375,37 +375,6 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
 
     }
 
-    private void filterSpnCode(String filter) {
-        if (codeList.size() > 0 && codeList != null) {
-            spn_breakdowntype.setEnabled(true);
-            List<BreakdownCode> filtered = new ArrayList<>();
-            for (BreakdownCode code : codeList
-            ) {
-                if (code.getInv_SubProductGroupId().equals(filter)) filtered.add(code);
-
-            }
-            codeArrayAdapter = new ArrayAdapter<>(getActivity(),
-                    android.R.layout.simple_dropdown_item_1line,
-                    filtered);
-            spn_breakdowntype.setAdapter(codeArrayAdapter);
-            spn_breakdowntype.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    spn_breakdowntype.showDropDown();
-                }
-            });
-            spn_breakdowntype.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    //Get Sub
-                }
-            });
-        } else {
-            spn_breakdowntype.setAdapter(null);
-            spn_breakdowntype.setOnClickListener(null);
-        }
-
-    }
 
     @Override
     public void onDestroy() {

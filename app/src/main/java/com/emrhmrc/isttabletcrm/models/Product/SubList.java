@@ -15,13 +15,13 @@ public class SubList {
         return inv_SubProductGroupName;
     }
 
-    @Override
-    public String toString() {
-        return  inv_SubProductGroupName;
-    }
-
     public void setInv_SubProductGroupName(String inv_SubProductGroupName) {
         this.inv_SubProductGroupName = inv_SubProductGroupName;
+    }
+
+    @Override
+    public String toString() {
+        return inv_SubProductGroupName;
     }
 
     public int getProductCount() {
