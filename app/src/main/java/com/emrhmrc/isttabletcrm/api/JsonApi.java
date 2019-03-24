@@ -24,6 +24,7 @@ import com.emrhmrc.isttabletcrm.models.Product.MainProductList;
 import com.emrhmrc.isttabletcrm.models.Product.ProductListAll;
 import com.emrhmrc.isttabletcrm.models.Product.SubGroupProductsRequest;
 import com.emrhmrc.isttabletcrm.models.Product.SubGroupRequest;
+import com.emrhmrc.isttabletcrm.models.Product.SubProductGroupIdRequest;
 import com.emrhmrc.isttabletcrm.models.Product.SubProductList;
 import com.emrhmrc.isttabletcrm.models.Quote.QuoteGetById;
 import com.emrhmrc.isttabletcrm.models.ServApp.CompleteByIdRequest;
@@ -148,6 +149,9 @@ public interface JsonApi {
     //OK
     @POST("Notification/ListAll")
     Call<NotificationListAll> getNotificationListAll(@Body UserIdRequest userId);
+    //OK
+    @POST("BreakdownDefCode/ListAll")
+    Call<BreakdownDefCodeListAll> defListAllCall(@Body SubProductGroupIdRequest request);
 
     //OK
     @GET("Account/ListAll")

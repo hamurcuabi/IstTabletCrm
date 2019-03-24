@@ -4,6 +4,7 @@ public class BreakdownDefCodes {
 
     private String inv_BreakdownDefCodeId;
     private String inv_BreakdownDefCodeName;
+    private String inv_Code;
 
     public BreakdownDefCodes() {
     }
@@ -32,5 +33,8 @@ public class BreakdownDefCodes {
         this.inv_Code = inv_Code;
     }
 
-    private String inv_Code;
+    @Override
+    public String toString() {
+        return inv_BreakdownDefCodeName;
+    }
 }

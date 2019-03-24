@@ -24,18 +24,16 @@ import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.models.BreakDown.BreakdownCode;
 import com.emrhmrc.isttabletcrm.models.BreakDown.BreakdownCodeGetByFilter;
+import com.emrhmrc.isttabletcrm.models.BreakDown.BreakdownDefCodeListAll;
+import com.emrhmrc.isttabletcrm.models.BreakDown.BreakdownDefCodes;
 import com.emrhmrc.isttabletcrm.models.BreakDown.BreakdownFilterRequest;
 import com.emrhmrc.isttabletcrm.models.Product.MainList;
 import com.emrhmrc.isttabletcrm.models.Product.MainProductList;
-import com.emrhmrc.isttabletcrm.models.Product.Product;
-import com.emrhmrc.isttabletcrm.models.Product.ProductListAll;
-import com.emrhmrc.isttabletcrm.models.Product.SubGroupProductsRequest;
 import com.emrhmrc.isttabletcrm.models.Product.SubGroupRequest;
 import com.emrhmrc.isttabletcrm.models.Product.SubList;
+import com.emrhmrc.isttabletcrm.models.Product.SubProductGroupIdRequest;
 import com.emrhmrc.isttabletcrm.models.Product.SubProductList;
-import com.emrhmrc.isttabletcrm.models.ServApp.ServAppIdRequest;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -56,13 +54,14 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
     private Call<BreakdownCodeGetByFilter> breakdownCodeListAllCall;
     private Call<MainProductList> mainProductListCall;
     private Call<SubProductList> subProductListCall;
-    private Call<ProductListAll> productListAllCall;
+    private Call<BreakdownDefCodeListAll> productListAllCall;
     private ProgressBar prog_ana, prog_alt, prog_tanim, prog_ariza;
     private ArrayAdapter<MainList> mainListArrayAdapter;
     private ArrayAdapter<SubList> subListArrayAdapter;
-    private ArrayAdapter<Product> productArrayAdapter;
+    private ArrayAdapter<BreakdownDefCodes> productArrayAdapter;
     private ArrayAdapter<BreakdownCode> breakdownCodeArrayAdapter;
     private ArrayAdapter<BreakdownCode> codeArrayAdapter;
+    private BreakdownFilterRequest filterRequest;
 
     public static BreakdownTypeCodeFragment newInstance() {
         Bundle args = new Bundle();
@@ -82,6 +81,7 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         shareData = ShareData.getInstance();
+        filterRequest = new BreakdownFilterRequest();
         jsonApi = ApiClient.getClient().create(JsonApi.class);
         btn_save = view.findViewById(R.id.btn_save);
         img_close = view.findViewById(R.id.img_close);
@@ -102,11 +102,11 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
 
     }
 
-    private void getBreakdownCodes() {
+    private void getBreakdownCodes(String defId) {
 
         prog_ariza.setVisibility(View.VISIBLE);
-        BreakdownFilterRequest request = new BreakdownFilterRequest();
-        breakdownCodeListAllCall = jsonApi.geBreakdownCodeGetByFilterCall(request);
+        filterRequest.setBreakdownDefCodeId(defId);
+        breakdownCodeListAllCall = jsonApi.geBreakdownCodeGetByFilterCall(filterRequest);
         breakdownCodeListAllCall.enqueue(new Callback<BreakdownCodeGetByFilter>() {
             @Override
             public void onResponse(Call<BreakdownCodeGetByFilter> call, Response<BreakdownCodeGetByFilter> response) {
@@ -213,14 +213,14 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
 
 
         prog_tanim.setVisibility(View.VISIBLE);
-        SubGroupProductsRequest request = new SubGroupProductsRequest(id);
-        productListAllCall = jsonApi.productListAll(request);
-        productListAllCall.enqueue(new Callback<ProductListAll>() {
+        SubProductGroupIdRequest request = new SubProductGroupIdRequest(id);
+        productListAllCall = jsonApi.defListAllCall(request);
+        productListAllCall.enqueue(new Callback<BreakdownDefCodeListAll>() {
             @Override
-            public void onResponse(Call<ProductListAll> call, Response<ProductListAll> response) {
+            public void onResponse(Call<BreakdownDefCodeListAll> call, Response<BreakdownDefCodeListAll> response) {
                 if (response.isSuccessful()) {
-                    ProductListAll temp = response.body();
-                    fillspnSubSub(temp.getProducts());
+                    BreakdownDefCodeListAll temp = response.body();
+                    fillspnSubSub(temp.getBreakdownDefCodes());
                     spn_descp_code.setOnFocusChangeListener((view, b) -> {
                         if (b) spn_descp_code.showDropDown();
                         else spn_descp_code.dismissDropDown();
@@ -231,7 +231,7 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
             }
 
             @Override
-            public void onFailure(Call<ProductListAll> call, Throwable t) {
+            public void onFailure(Call<BreakdownDefCodeListAll> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
                 prog_tanim.setVisibility(View.GONE);
 
@@ -310,9 +310,10 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
             spn_sub.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    //Get Code
-                    //filterSpnCode(subList.get(i).getInv_SubProductGroupid());
-                    getSubProductProduct(subList.get(i).getInv_SubProductGroupid());
+                    if (list.get(i).getInv_SubProductGroupid() != null) {
+                        filterRequest.setSubProductCodeId(list.get(i).getInv_SubProductGroupid());
+                        getSubProductProduct(list.get(i).getInv_SubProductGroupid());
+                    }
 
                 }
             });
@@ -323,7 +324,7 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
 
     }
 
-    private void fillspnSubSub(List<Product> list) {
+    private void fillspnSubSub(List<BreakdownDefCodes> list) {
         if (list.size() > 0 && list != null) {
             productArrayAdapter = new ArrayAdapter<>(getActivity(),
                     android.R.layout.simple_dropdown_item_1line,
@@ -339,6 +340,8 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+
+                    getBreakdownCodes(list.get(i).getInv_BreakdownDefCodeId());
 
                 }
             });
