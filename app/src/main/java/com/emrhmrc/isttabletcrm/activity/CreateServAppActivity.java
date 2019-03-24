@@ -1,5 +1,6 @@
 package com.emrhmrc.isttabletcrm.activity;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -7,11 +8,15 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
+import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
 import com.emrhmrc.isttabletcrm.api.APIHelper;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
@@ -27,6 +32,7 @@ import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorsCustomer;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetById;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;
@@ -57,6 +63,14 @@ public class CreateServAppActivity extends AppCompatActivity {
     LinearLayout lnrOnceki;
     @BindView(R.id.edt_aciklama)
     EditText edtAciklama;
+    @BindView(R.id.edt_saat)
+    TextView edtSaat;
+    @BindView(R.id.prog_acoount)
+    ProgressBar progAcoount;
+    @BindView(R.id.prog_elevator)
+    ProgressBar progElevator;
+    @BindView(R.id.edt_supervisor)
+    EditText edtSupervisor;
     private JsonApi jsonApi;
     private ServAppGetById servAppGetById;
 
@@ -67,7 +81,25 @@ public class CreateServAppActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         init();
         subOrNew();
+        focusing();
 
+    }
+
+    private void focusing() {
+        spnAsansor.setOnFocusChangeListener((view, b) -> {
+            if (b) spnAsansor.showDropDown();
+            else spnAsansor.dismissDropDown();
+        });
+        spinner_musteri.setOnFocusChangeListener((view, b) -> {
+            if (b) spinner_musteri.showDropDown();
+            else spinner_musteri.dismissDropDown();
+        });
+        spnAsansor.setOnClickListener(view -> {
+            spnAsansor.showDropDown();
+        });
+        spinner_musteri.setOnClickListener(view -> {
+            spinner_musteri.showDropDown();
+        });
     }
 
     private void subOrNew() {
@@ -76,12 +108,14 @@ public class CreateServAppActivity extends AppCompatActivity {
             fillAll(servAppGetById);
         } else {
             getAccountAll();
+            edtSupervisor.setText(SingletonUser.getInstance().getUser().getSuperVisorId().getText());
             lnrOnceki.setVisibility(View.GONE);
             edtIsimsoyad.setText(SingletonUser.getInstance().getUser().getUserName());
         }
     }
 
     private void getElevatorByCustomerAll(String id) {
+        progElevator.setVisibility(View.VISIBLE);
         Log.d(TAG, "getElevatorByCustomerAll: " + id);
         CustomerIdRequest request = new CustomerIdRequest(id);
         Call<ElevatorListAll> call = jsonApi.elevatorGetByCustomerId(request);
@@ -93,12 +127,21 @@ public class CreateServAppActivity extends AppCompatActivity {
                     ElevatorListAll listAll = response.body();
                     fillElevatorSpinner(listAll.getElevators());
 
-                } else Log.d(TAG, "onResponse: ");
+                } else {
+                    new SweetAlertDialog(CreateServAppActivity.this, SweetAlertDialog.WARNING_TYPE)
+                            .setTitleText(response.message())
+                            .show();
+                }
+                progElevator.setVisibility(View.GONE);
+
             }
 
             @Override
             public void onFailure(Call<ElevatorListAll> call, Throwable t) {
-
+                progElevator.setVisibility(View.GONE);
+                new SweetAlertDialog(CreateServAppActivity.this, SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText(getResources().getString(R.string.toast_error))
+                        .show();
             }
         });
     }
@@ -112,45 +155,49 @@ public class CreateServAppActivity extends AppCompatActivity {
         list.add(account);
         fillSpinner(list);
         edtKonu.setText(item.getSubject());
-        edtKonu.setEnabled(false);
         fillElevatorSpinner(item.getInv_ElevatorId().getId(), item.getInv_ElevatorId().getText());
         spnAsansor.setEnabled(false);
-        if(item.getInv_TypeCode()!=null)
-        spnAriza.setSelection(item.getInv_TypeCode().getValue() - 1);
-        if(item.getPriortiyCode()!=null)
-        spnOncelik.setSelection(item.getPriortiyCode().getValue() - 1);
+        if (item.getInv_TypeCode() != null)
+            spnAriza.setSelection(item.getInv_TypeCode().getValue() - 1);
+        if (item.getPriortiyCode() != null)
+            spnOncelik.setSelection(item.getPriortiyCode().getValue() - 1);
         edtIsimsoyad.setText(item.getOwnerId().getText());
         edtIsimsoyad.setEnabled(false);
         edtAciklama.setText(item.getInv_Description());
-        edtAciklama.setEnabled(false);
         edtOnceki.setText(item.getActivityId());
         edtOnceki.setEnabled(false);
+        edtSupervisor.setText(model.getServiceAppointment().getInv_Supervisorid().getText());
+        edtSaat.setText(model.getServiceAppointment().getScheduledStart());
         lnrOnceki.setVisibility(View.VISIBLE);
 
     }
 
     private void getAccountAll() {
+        progAcoount.setVisibility(View.VISIBLE);
         Call<AccountListAll> call = jsonApi.geAccountListAllCall();
         APIHelper.enqueueWithRetry(call, new Callback<AccountListAll>() {
             @Override
             public void onResponse(Call<AccountListAll> call, Response<AccountListAll> response) {
                 if (response.isSuccessful()) {
-
                     AccountListAll listAll = response.body();
                     fillSpinner(listAll.getAccounts());
 
-                } else Log.d(TAG, "onResponse: ");
+                } else {
+                    new SweetAlertDialog(CreateServAppActivity.this, SweetAlertDialog.WARNING_TYPE)
+                            .setTitleText(response.message())
+                            .show();
+                }
+                progAcoount.setVisibility(View.GONE);
             }
 
             @Override
             public void onFailure(Call<AccountListAll> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
-               /* Account account = new Account();
-                account.setAccountId("123456");
-                account.setName("NameName");
-                List<Account> list = new ArrayList<>();
-                list.add(account);
-                fillSpinner(list);*/
+                progAcoount.setVisibility(View.GONE);
+                new SweetAlertDialog(CreateServAppActivity.this, SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText(getResources().getString(R.string.toast_error))
+                        .show();
+
             }
         });
     }
@@ -220,12 +267,42 @@ public class CreateServAppActivity extends AppCompatActivity {
 
     }
 
-
     private void createNew() {
 
     }
 
-    @OnClick({R.id.img_menu, R.id.btn_save})
+    private void openDatePicker() {
+        // Şimdiki zaman bilgilerini alıyoruz. güncel yıl, güncel ay, güncel gün.
+        final Calendar takvim = Calendar.getInstance();
+        int yil = takvim.get(Calendar.YEAR);
+        int ay = takvim.get(Calendar.MONTH);
+        int gun = takvim.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog dpd = new DatePickerDialog(this,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        // ay değeri 0 dan başladığı için (Ocak=0, Şubat=1,..,Aralık=11)
+                        // değeri 1 artırarak gösteriyoruz.
+                        month += 1;
+                        // year, month ve dayOfMonth değerleri seçilen tarihin değerleridir.
+                        // Edittextte bu değerleri gösteriyoruz.
+                        String monthString = String.valueOf(month);
+                        if (monthString.length() == 1) {
+                            monthString = "0" + monthString;
+                        }
+                        edtSaat.setText(monthString + "." + dayOfMonth + "." + year);
+
+
+                    }
+                }, yil, ay, gun);
+        dpd.getDatePicker().setMinDate(takvim.getTime().getTime());
+        dpd.setButton(DatePickerDialog.BUTTON_POSITIVE, "Seç", dpd);
+        dpd.setButton(DatePickerDialog.BUTTON_NEGATIVE, "İptal", dpd);
+        dpd.show();
+    }
+
+    @OnClick({R.id.img_menu, R.id.btn_save, R.id.edt_saat})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_menu:
@@ -233,6 +310,9 @@ public class CreateServAppActivity extends AppCompatActivity {
                 break;
             case R.id.btn_save:
                 createNew();
+                break;
+            case R.id.edt_saat:
+                openDatePicker();
                 break;
         }
     }

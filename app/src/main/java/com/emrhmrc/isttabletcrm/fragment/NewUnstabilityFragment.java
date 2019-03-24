@@ -41,6 +41,7 @@ import com.emrhmrc.isttabletcrm.api.APIHelper;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
+import com.emrhmrc.isttabletcrm.helper.ViewDialog;
 import com.emrhmrc.isttabletcrm.models.Account.Account;
 import com.emrhmrc.isttabletcrm.models.Account.AccountListAll;
 import com.emrhmrc.isttabletcrm.models.Elevator.CustomerIdRequest;
@@ -75,6 +76,10 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
     private RcvImageAdapter adapter;
     private RecyclerView rcv;
     private ProgressBar prog_account, prog_elevator;
+    private ViewDialog viewDialog;
+    private Call<DefaultResponse2> createCall;
+    private Call<ElevatorListAll> elevatorListAllCall;
+    private Call<AccountListAll> accountListAllCall;
 
     public static NewUnstabilityFragment newInstance() {
         Bundle args = new Bundle();
@@ -102,6 +107,7 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
     }
 
     private void init(View view) {
+        viewDialog = new ViewDialog(getActivity());
         jsonApi = ApiClient.getClient().create(JsonApi.class);
         btn_send = view.findViewById(R.id.btn_send);
         img_close = view.findViewById(R.id.img_close);
@@ -171,6 +177,8 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
             if (b) spnElevator.showDropDown();
             else spnElevator.dismissDropDown();
         });
+        spn_account.setOnClickListener(view -> spn_account.showDropDown());
+        spnElevator.setOnClickListener(view -> spnElevator.showDropDown());
 
     }
 
@@ -210,21 +218,31 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
         createUnsuitability.setSubject("Test Subject");
         createUnsuitability.setUnsuitabilityNotes(adapter.getItems());
         if (checkFields(createUnsuitability)) {
-            Call<DefaultResponse2> call = jsonApi.createUnsuitabilityCall(createUnsuitability);
-            call.enqueue(new Callback<DefaultResponse2>() {
+            viewDialog.showDialog();
+            createCall = jsonApi.createUnsuitabilityCall(createUnsuitability);
+            APIHelper.enqueueWithRetry(createCall, new Callback<DefaultResponse2>() {
                 @Override
                 public void onResponse(Call<DefaultResponse2> call, Response<DefaultResponse2> response) {
                     if (response.isSuccessful()) {
+                        viewDialog.hideDialog();
                         dismiss();
                         new SweetAlertDialog(getActivity(), SweetAlertDialog.SUCCESS_TYPE)
                                 .setTitleText("Başarılı")
                                 .show();
-                    } else Log.d(TAG, "onResponse: Fail" + response.message());
+                    } else {
+                        viewDialog.hideDialog();
+                        if (getDialog() != null && getDialog().isShowing()) {
+                            new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                                    .setTitleText(response.message())
+                                    .show();
+                        }
+                    }
                 }
 
                 @Override
                 public void onFailure(Call<DefaultResponse2> call, Throwable t) {
                     Log.d(TAG, "onFailure: " + t.getMessage());
+                    viewDialog.hideDialog();
                     if (getDialog() != null && getDialog().isShowing()) {
                         new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
                                 .setTitleText(getResources().getString(R.string.toast_error))
@@ -233,9 +251,12 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
                 }
             });
         } else {
-            new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
-                    .setTitleText("Eksik Alanları Doldurunuz")
-                    .show();
+            if (getDialog() != null && getDialog().isShowing()) {
+                new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("Eksik Alanları Doldurunuz")
+                        .show();
+            }
+
         }
 
     }
@@ -253,17 +274,23 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
         Log.d(TAG, "getElevatorByCustomerAll: " + id);
         prog_elevator.setVisibility(View.VISIBLE);
         CustomerIdRequest request = new CustomerIdRequest(id);
-        Call<ElevatorListAll> call = jsonApi.elevatorGetByCustomerId(request);
-        APIHelper.enqueueWithRetry(call, new Callback<ElevatorListAll>() {
+        elevatorListAllCall = jsonApi.elevatorGetByCustomerId(request);
+        APIHelper.enqueueWithRetry(elevatorListAllCall, new Callback<ElevatorListAll>() {
             @Override
             public void onResponse(Call<ElevatorListAll> call, Response<ElevatorListAll> response) {
+                prog_elevator.setVisibility(View.GONE);
                 if (response.isSuccessful()) {
                     ElevatorListAll listAll = response.body();
                     fillElevatorSpinner(listAll.getElevators());
 
+                } else {
+                    if (getDialog() != null && getDialog().isShowing()) {
+                        new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                                .setTitleText(response.message())
+                                .show();
+                    }
+                }
 
-                } else Log.d(TAG, "onResponse: ");
-                prog_elevator.setVisibility(View.GONE);
             }
 
             @Override
@@ -305,28 +332,35 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
     private void getAccountAll() {
 
         prog_account.setVisibility(View.VISIBLE);
-        Call<AccountListAll> call = jsonApi.geAccountListAllCall();
-        APIHelper.enqueueWithRetry(call, new Callback<AccountListAll>() {
+        accountListAllCall = jsonApi.geAccountListAllCall();
+        APIHelper.enqueueWithRetry(accountListAllCall, new Callback<AccountListAll>() {
             @Override
             public void onResponse(Call<AccountListAll> call, Response<AccountListAll> response) {
+                prog_account.setVisibility(View.GONE);
                 if (response.isSuccessful()) {
                     AccountListAll listAll = response.body();
                     fillSpinner(listAll.getAccounts());
 
-                } else Log.d(TAG, "onResponse: " + response.message());
-                prog_account.setVisibility(View.GONE);
+                } else {
+                    if (getDialog() != null && getDialog().isShowing()) {
+                        new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                                .setTitleText(response.message())
+                                .show();
+                    }
+
+                }
+
             }
 
             @Override
             public void onFailure(Call<AccountListAll> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
+                prog_account.setVisibility(View.GONE);
                 if (getDialog() != null && getDialog().isShowing()) {
                     new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
-                            .setTitleText(getResources().getString(R.string.toast_error))
+                            .setTitleText(t.getMessage())
                             .show();
                 }
-                prog_account.setVisibility(View.GONE);
-
 
             }
         });
@@ -420,5 +454,13 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
     @Override
     public void onItemClicked(Object item, int positon) {
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (createCall != null) createCall.cancel();
+        if (elevatorListAllCall != null) elevatorListAllCall.cancel();
+        if (accountListAllCall != null) accountListAllCall.cancel();
     }
 }

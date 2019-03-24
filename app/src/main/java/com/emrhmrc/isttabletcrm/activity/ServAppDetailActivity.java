@@ -20,6 +20,7 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
@@ -54,6 +55,7 @@ import com.emrhmrc.isttabletcrm.models.ServApp.DefaultResponse2;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetById;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdNotes;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppDetails;
+import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppModernizationChecklists;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppIdRequest;
 import com.emrhmrc.isttabletcrm.models.ServApp.UpsertByIdRequest;
 
@@ -76,13 +78,12 @@ import retrofit2.Response;
 public class ServAppDetailActivity extends AppCompatActivity implements OnItemClickListener, AddManuelProduct {
 
     private static final String TAG = "ServAppDetailActivity";
-    private static final int REQUEST_IMAGE_CAPTURE = 1;
-    private static final int REQUEST_IMAGE_CAPTURE_SECOND = 2;
-    private static final int REQUEST_VIDEO_CAPTURE = 3;
-    private static final int REQUEST_VIDEO_CAPTURE_SECOND = 4;
+
     ActivityServAppDetailBinding binding;
     @BindView(R.id.rcv)
     RecyclerView rcv;
+    @BindView(R.id.btn_kontrol_listesi)
+    Button btn_kontrol_listesi;
     @BindView(R.id.txt_aciklamanot)
     TextView txt_aciklamanot;
     @BindString(R.string.loading)
@@ -154,6 +155,8 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
         getServAppById(shareData.getServAppId());
         LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
                 new IntentFilter("custom-event-name"));
+
+
     }
 
     private void openServappFormFragment() {
@@ -243,6 +246,10 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
         ShareData.getInstance().setElevatorId(model.getInv_ElevatorId().getId());
         Log.d(TAG, "setElevatorId: " + model.getInv_ElevatorId().getId());
         adapter.setItems(model.getServAppGetByIdServAppDetails());
+        if (model.getInv_TypeCode().getValue() != 3 || model.getInv_TypeCode().getValue() != 1) {
+            btn_kontrol_listesi.setVisibility(View.INVISIBLE);
+        }
+
 
     }
 
@@ -334,8 +341,13 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     }
 
     public void openControlList() {
+        for (ServAppGetByIdServAppModernizationChecklists item : model.getServiceAppointment().getServAppGetByIdServAppModernizationChecklists()
+        ) {
+            if(model.getServiceAppointment().getInv_TypeCode().getValue()==3)item.setIs_modernization(true);
 
-        ControlListFragment fragment = ControlListFragment.newInstance();
+        }
+        ControlListFragment fragment =
+                ControlListFragment.newInstance(model.getServiceAppointment().getServAppGetByIdServAppModernizationChecklists());
         fragment.setCancelable(false);
         fragment.show(getSupportFragmentManager(), "KontrolListesi");
 
@@ -371,7 +383,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
             R.id.img_add, R.id.txt_add, R.id.btn_beforeafter, R.id.txt_aciklamanot,
             R.id.txt_asansorno, R.id.txt_servis_raporu, R.id.img_servis_raporu, R.id.img_gps,
             R.id.img_menu, R.id.txt_kaydet, R.id.img_kaydet, R.id.btn_ariza_kodu,
-            R.id.btn_ariza_nedeni, R.id.add_job_2, R.id.img_add_3})
+            R.id.btn_ariza_nedeni, R.id.add_job_2, R.id.img_add_3, R.id.btn_kontrol_listesi})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_cancel:

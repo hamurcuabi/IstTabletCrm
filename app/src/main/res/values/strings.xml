@@ -232,6 +232,8 @@
     <string name="alt_urun">Alt Ürünler</string>
     <string name="ucret">Fiyat</string>
     <string name="bos_alan">Eksik Alanları doldurunuz!</string>
+    <string name="saatt">Saat</string>
+    <string name="yuzde">Yüzde</string>
 
     <string-array name="spn_servapp">
         <item>Tüm İş Emirlerim</item>

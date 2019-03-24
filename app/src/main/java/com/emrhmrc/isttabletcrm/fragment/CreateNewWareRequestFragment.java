@@ -31,6 +31,7 @@ import com.emrhmrc.isttabletcrm.api.APIHelper;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
+import com.emrhmrc.isttabletcrm.helper.ViewDialog;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Code;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Uom;
@@ -75,8 +76,8 @@ public class CreateNewWareRequestFragment extends DialogFragment {
     AutoCompleteTextView spnCikisdepo;
     @BindView(R.id.spn_urunadi2)
     AutoCompleteTextView spnUrunadi2;
-    @BindView(R.id.edt_birim2)
-    EditText edtBirim2;
+    @BindView(R.id.spn_birim2)
+    AutoCompleteTextView spnBirim2;
     @BindView(R.id.edt_aciklama2)
     EditText edtAciklama2;
     @BindView(R.id.lnr2)
@@ -101,12 +102,16 @@ public class CreateNewWareRequestFragment extends DialogFragment {
     RadioGroup rdGrup;
     @BindView(R.id.img_close)
     ImageView imgClose;
-    WarehouseTransferCreateRequest request;
-    SweetAlertDialog pDialog;
+    @BindView(R.id.edt_serino2)
+    EditText edtSerino2;
+    private WarehouseTransferCreateRequest request_create_new;
+    private WarehouseTransferCreateRequest request_return_back;
     private JsonApi jsonApi;
     private Call<UomListAll> uomListAllCall;
     private Call<WareHouseListAll> wareHouseListAllCall;
     private Call<ProductListAll> productListAllCall;
+    private Call<DefaultResponse> createCall, returnCall;
+    private ViewDialog viewDialog;
 
     public static CreateNewWareRequestFragment newInstance() {
 
@@ -123,10 +128,12 @@ public class CreateNewWareRequestFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.new_warehouse_request_create_fragment, container);
         ButterKnife.bind(this, view);
         jsonApi = ApiClient.getClient().create(JsonApi.class);
-        request = new WarehouseTransferCreateRequest();
+        request_create_new = new WarehouseTransferCreateRequest();
+        request_return_back = new WarehouseTransferCreateRequest();
+        viewDialog = new ViewDialog(getActivity());
 
-        getDepo1();
-        getProduct1();
+        getWarehouses();
+        getProducts();
         getUoms();
         focusing();
         return view;
@@ -140,7 +147,7 @@ public class CreateNewWareRequestFragment extends DialogFragment {
             public void onResponse(Call<UomListAll> call, Response<UomListAll> response) {
                 if (response.isSuccessful()) {
                     final UomListAll model = response.body();
-                    fillSpinnerUom(model.getUomList());
+                    fillSpinnersUom(model.getUomList());
                 } else Log.d(TAG, "onResponse: " + response.errorBody());
 
             }
@@ -178,9 +185,32 @@ public class CreateNewWareRequestFragment extends DialogFragment {
             if (b) spnBirim.showDropDown();
             else spnBirim.dismissDropDown();
         });
+        spnBirim2.setOnFocusChangeListener((view, b) -> {
+            if (b) spnBirim2.showDropDown();
+            else spnBirim2.dismissDropDown();
+        });
+
+        spnIstenilen.setOnClickListener(view -> {
+            spnIstenilen.showDropDown();
+        });
+        spnUrunadi2.setOnClickListener(view -> {
+            spnUrunadi2.showDropDown();
+        });
+        spnUrunadi.setOnClickListener(view -> {
+            spnUrunadi.showDropDown();
+        });
+        spnCikisdepo.setOnClickListener(view -> {
+            spnCikisdepo.showDropDown();
+        });
+        spnBirim.setOnClickListener(view -> {
+            spnBirim.showDropDown();
+        });
+        spnBirim2.setOnClickListener(view -> {
+            spnBirim2.showDropDown();
+        });
     }
 
-    private void getDepo1() {
+    private void getWarehouses() {
         UserIdRequest request = new UserIdRequest(SingletonUser.getInstance().getUser().getUserId());
         wareHouseListAllCall = jsonApi.getWareHouseListAllCall(request);
         APIHelper.enqueueWithRetry(wareHouseListAllCall, new Callback<WareHouseListAll>() {
@@ -188,8 +218,8 @@ public class CreateNewWareRequestFragment extends DialogFragment {
             public void onResponse(Call<WareHouseListAll> call, Response<WareHouseListAll> response) {
                 if (response.isSuccessful()) {
                     WareHouseListAll listAll = response.body();
-                    fillSpinner1(listAll.getWarehouses());
-                    fillSpinner2(listAll.getWarehouses());
+                    fillSpinnersWareHouse(listAll.getWarehouses());
+
 
                 } else Log.d(TAG, "onResponse: ");
 
@@ -207,7 +237,7 @@ public class CreateNewWareRequestFragment extends DialogFragment {
         });
     }
 
-    private void getProduct1() {
+    private void getProducts() {
         UserIdRequest request = new UserIdRequest(SingletonUser.getInstance().getUser().getUserId());
         productListAllCall = jsonApi.productListAll(request);
         APIHelper.enqueueWithRetry(productListAllCall, new Callback<ProductListAll>() {
@@ -216,8 +246,7 @@ public class CreateNewWareRequestFragment extends DialogFragment {
                 if (response.isSuccessful()) {
 
                     ProductListAll listAll = response.body();
-                    fillSpinner11(listAll.getProducts());
-                    fillSpinner22(listAll.getProducts());
+                    fillSpinnersProducts(listAll.getProducts());
 
                 } else Log.d(TAG, "onResponse: ");
 
@@ -256,7 +285,7 @@ public class CreateNewWareRequestFragment extends DialogFragment {
         getDialog().getWindow().setAttributes((WindowManager.LayoutParams) params);
     }
 
-    private void visibil2() {
+    private void visibilityReturn() {
         lnr1.setVisibility(View.GONE);
         lnr11.setVisibility(View.GONE);
         lnr2.setVisibility(View.VISIBLE);
@@ -265,7 +294,7 @@ public class CreateNewWareRequestFragment extends DialogFragment {
         btnSend2.setVisibility(View.VISIBLE);
     }
 
-    private void visibil1() {
+    private void visibilityCreate() {
         lnr1.setVisibility(View.VISIBLE);
         lnr11.setVisibility(View.VISIBLE);
         lnr2.setVisibility(View.GONE);
@@ -279,16 +308,16 @@ public class CreateNewWareRequestFragment extends DialogFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rd_new:
-                visibil1();
+                visibilityCreate();
                 break;
             case R.id.rd_hurda:
-                visibil2();
+                visibilityReturn();
                 break;
             case R.id.btn_send:
                 createNewTransfer();
                 break;
             case R.id.btn_send2:
-                //  createNewTransfer(2);
+                createReturnransfer();
                 break;
             case R.id.edt_tarih:
                 openDatePicker(1);
@@ -336,47 +365,118 @@ public class CreateNewWareRequestFragment extends DialogFragment {
     }
 
     private void createNewTransfer() {
-        request.setUserId(SingletonUser.getInstance().getUser().getUserId());
-        request.setInv_Description(edtAciklama.getText().toString());
-        request.setInv_RequestDate(edtTarih.getText().toString());
-        request.setInv_TransferTypeCode(new Code("Yeni Stok", 1));
-        request.setInv_Quantity(edtMiktar.getText().toString());
-        request.setInv_WarehouseTransferName("TEST TABLET");
-        request.setInv_FromWarehouseid(null);
-        if (checkFields(request)) {
-            Call<DefaultResponse> call = jsonApi.createTransfer(request);
-            call.enqueue(new Callback<DefaultResponse>() {
+        request_create_new.setUserId(SingletonUser.getInstance().getUser().getUserId());
+        request_create_new.setInv_Description(edtAciklama.getText().toString());
+        request_create_new.setInv_RequestDate(edtTarih.getText().toString());
+        request_create_new.setInv_TransferTypeCode(new Code("Yeni Stok", 1));
+        request_create_new.setInv_Quantity(edtMiktar.getText().toString());
+        request_create_new.setInv_WarehouseTransferName("TEST TABLET");
+        request_create_new.setInv_FromWarehouseid(null);
+        Log.d(TAG, "createNewTransfer: " + request_create_new.getInv_ProductSerialNumber());
+        if (checkFieldsToCreate(request_create_new)) {
+            viewDialog.showDialog();
+            createCall = jsonApi.createTransfer(request_create_new);
+            APIHelper.enqueueWithRetry(createCall, new Callback<DefaultResponse>() {
                 @Override
                 public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
                     if (response.isSuccessful()) {
+                        viewDialog.hideDialog();
                         dismiss();
                         new SweetAlertDialog(getActivity(), SweetAlertDialog.SUCCESS_TYPE)
                                 .setTitleText("Başarılı")
                                 .show();
 
-                    } else Log.d(TAG, "onResponse: " + response.errorBody());
+                    } else {
+                        viewDialog.hideDialog();
+                        if (getDialog() != null && getDialog().isShowing()) {
+                            new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                                    .setTitleText(response.message())
+                                    .show();
+                        }
+                    }
+
                 }
 
                 @Override
                 public void onFailure(Call<DefaultResponse> call, Throwable t) {
+                    viewDialog.hideDialog();
                     Log.d(TAG, "onFailure: " + t.getMessage());
+                    if (getDialog() != null && getDialog().isShowing()) {
+                        new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                                .setTitleText(getResources().getString(R.string.toast_error))
+                                .show();
+                    }
                 }
             });
 
         } else {
-            new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
-                    .setTitleText("Eksik Alanları Doldurunuz")
-                    .show();
+            if (getDialog() != null && getDialog().isShowing()) {
+                new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("Eksik Alanları Doldurunuz")
+                        .show();
+            }
 
 
         }
 
     }
 
-    private boolean checkFields(WarehouseTransferCreateRequest request) {
+    private void createReturnransfer() {
+        request_return_back.setUserId(SingletonUser.getInstance().getUser().getUserId());
+        request_return_back.setInv_Description(edtAciklama2.getText().toString());
+        request_return_back.setInv_RequestDate(edtTarih2.getText().toString());
+        request_return_back.setInv_TransferTypeCode(new Code("İade Et", 2));
+        request_return_back.setInv_Quantity(edtMiktar2.getText().toString());
+        request_return_back.setInv_WarehouseTransferName("TEST TABLET");
+        request_return_back.setInv_ToWarehouseid(null);
+        if (checkFieldsToReturn(request_return_back)) {
+
+            viewDialog.showDialog();
+            returnCall = jsonApi.createTransfer(request_return_back);
+            APIHelper.enqueueWithRetry(returnCall, new Callback<DefaultResponse>() {
+                @Override
+                public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
+                    if (response.isSuccessful()) {
+                        viewDialog.hideDialog();
+                        dismiss();
+                        new SweetAlertDialog(getActivity(), SweetAlertDialog.SUCCESS_TYPE)
+                                .setTitleText("Başarılı")
+                                .show();
+
+                    }
+                    viewDialog.hideDialog();
+                    if (getDialog() != null && getDialog().isShowing()) {
+                        new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                                .setTitleText(response.message())
+                                .show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<DefaultResponse> call, Throwable t) {
+                    Log.d(TAG, "onFailure: " + t.getMessage());
+                    viewDialog.hideDialog();
+                    if (getDialog() != null && getDialog().isShowing()) {
+                        new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                                .setTitleText(getResources().getString(R.string.toast_error))
+                                .show();
+                    }
+
+                }
+            });
+
+        } else {
+            if (getDialog() != null && getDialog().isShowing()) {
+                new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("Eksik Alanları Doldurunuz")
+                        .show();
+            }
+        }
+
+    }
+
+    private boolean checkFieldsToCreate(WarehouseTransferCreateRequest request) {
         if (request.getInv_Description() == null) {
-            return false;
-        } else if (request.getInv_FromWarehouseid() == null) {
             return false;
         } else if (request.getInv_Productid() == null) {
             return false;
@@ -392,15 +492,39 @@ public class CreateNewWareRequestFragment extends DialogFragment {
             return false;
         } else if (request.getInv_TransferTypeCode() == null) {
             return false;
-        }  else if (request.getInv_ProductSerialNumber() == null ) {
+        } else if (request.getInv_ProductSerialNumber() == null) {
             return false;
-        }
-        else return true;
+        } else return true;
     }
 
-    private void fillSpinner1(List<Warehouses> list) {
+    private boolean checkFieldsToReturn(WarehouseTransferCreateRequest request) {
+        if (request.getInv_Description() == null) {
+            return false;
+        } else if (request.getInv_FromWarehouseid() == null) {
+            return false;
+        } else if (request.getInv_Productid() == null) {
+            return false;
+        } else if (request.getInv_Quantity() == null) {
+            return false;
+        } else if (request.getInv_RequestDate() == null) {
+            return false;
+        } else if (request.getInv_WarehouseTransferName() == null) {
+            return false;
+        } else if (request.getInv_Uomid() == null) {
+            return false;
+        } else if (request.getInv_TransferTypeCode() == null) {
+            return false;
+        } else if (request.getInv_ProductSerialNumber() == null) {
+            return false;
+        } else return true;
+    }
+
+    private void fillSpinnersWareHouse(List<Warehouses> list) {
         if (list.size() > 0 && list != null) {
             ArrayAdapter<Warehouses> spinnerArrayAdapter = new ArrayAdapter<>(getActivity(),
+                    android.R.layout.simple_dropdown_item_1line,
+                    list);
+            ArrayAdapter<Warehouses> spinnerArrayAdapter2 = new ArrayAdapter<>(getActivity(),
                     android.R.layout.simple_dropdown_item_1line,
                     list);
             spnIstenilen.setAdapter(spinnerArrayAdapter);
@@ -413,80 +537,76 @@ public class CreateNewWareRequestFragment extends DialogFragment {
             spnIstenilen.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    request.setInv_ToWarehouseid(new Inv_Id("inv_warehouse",
+                    request_create_new.setInv_ToWarehouseid(new Inv_Id("inv_warehouse",
                             list.get(i).getInv_WarehouseName(), list.get(i).getInv_WarehouseId()));
                     //request.setInv_FromWarehouseid(list.get(i).getInv_ParentWhid());
                 }
             });
+
+            spnCikisdepo.setAdapter(spinnerArrayAdapter2);
+            spnCikisdepo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    spnCikisdepo.showDropDown();
+                }
+            });
+            spnCikisdepo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    request_return_back.setInv_FromWarehouseid(new Inv_Id("inv_warehouse",
+                            list.get(i).getInv_WarehouseName(), list.get(i).getInv_WarehouseId()));
+
+                }
+            });
         } else {
-            spnIstenilen.setAdapter(null);
+            spnCikisdepo.setAdapter(null);
+            spnCikisdepo.setAdapter(null);
+            spnIstenilen.setOnClickListener(null);
             spnIstenilen.setOnClickListener(null);
         }
 
     }
 
-    private void fillSpinner11(List<Product> list) {
+    private void fillSpinnersProducts(List<Product> list) {
         if (list.size() > 0 && list != null) {
             ArrayAdapter<Product> spinnerArrayAdapter = new ArrayAdapter<>(getActivity(),
                     android.R.layout.simple_dropdown_item_1line,
                     list);
             spnUrunadi.setAdapter(spinnerArrayAdapter);
-
             spnUrunadi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    request.setInv_Productid(new Inv_Id("product", list.get(i).getName(),
+                    request_create_new.setInv_Productid(new Inv_Id("product", list.get(i).getName(),
                             list.get(i).getProductId()));
-                    request.setInv_ProductSerialNumber(list.get(i).getProductNumber());
+                    request_create_new.setInv_ProductSerialNumber(list.get(i).getProductNumber());
                 }
             });
-        } else {
-            spnUrunadi.setAdapter(null);
-            spnUrunadi.setOnClickListener(null);
-        }
 
-    }
-
-    private void fillSpinner22(List<Product> list) {
-        if (list.size() > 0 && list != null) {
-            ArrayAdapter<Product> spinnerArrayAdapter = new ArrayAdapter<>(getActivity(),
+            ArrayAdapter<Product> spinnerArrayAdapter2 = new ArrayAdapter<>(getActivity(),
                     android.R.layout.simple_dropdown_item_1line,
                     list);
-            spnUrunadi2.setAdapter(spinnerArrayAdapter);
+            spnUrunadi2.setAdapter(spinnerArrayAdapter2);
 
             spnUrunadi2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    //getElevatorByCustomerAll(list.get(i).getAccountId());
+                    request_return_back.setInv_Productid(new Inv_Id("product", list.get(i).getName(),
+                            list.get(i).getProductId()));
+                    request_return_back.setInv_ProductSerialNumber(list.get(i).getProductNumber());
+                    edtSerino2.setText(list.get(i).getProductNumber());
                 }
             });
+
         } else {
+            spnUrunadi.setAdapter(null);
+            spnUrunadi.setOnClickListener(null);
             spnUrunadi2.setAdapter(null);
             spnUrunadi2.setOnClickListener(null);
         }
 
     }
 
-    private void fillSpinner2(List<Warehouses> list) {
-        if (list.size() > 0 && list != null) {
-            ArrayAdapter<Warehouses> spinnerArrayAdapter = new ArrayAdapter<>(getActivity(),
-                    android.R.layout.simple_dropdown_item_1line,
-                    list);
-            spnCikisdepo.setAdapter(spinnerArrayAdapter);
-            spnCikisdepo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    //getElevatorByCustomerAll(list.get(i).getAccountId());
-                }
-            });
-        } else {
-            spnCikisdepo.setAdapter(null);
-            spnCikisdepo.setOnClickListener(null);
-        }
-
-    }
-
-    private void fillSpinnerUom(List<Inv_Uom> list) {
+    private void fillSpinnersUom(List<Inv_Uom> list) {
         if (list.size() > 0 && list != null) {
             ArrayAdapter<Inv_Uom> spinnerArrayAdapter = new ArrayAdapter<>(getActivity(),
                     android.R.layout.simple_dropdown_item_1line,
@@ -496,12 +616,27 @@ public class CreateNewWareRequestFragment extends DialogFragment {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                    request.setInv_Uomid(new Inv_Id("uom", list.get(i).getName(), list.get(i).getUoMId()));
+                    request_create_new.setInv_Uomid(new Inv_Id("uom", list.get(i).getName(), list.get(i).getUoMId()));
+                }
+            });
+
+            ArrayAdapter<Inv_Uom> spinnerArrayAdapter2 = new ArrayAdapter<>(getActivity(),
+                    android.R.layout.simple_dropdown_item_1line,
+                    list);
+            spnBirim2.setAdapter(spinnerArrayAdapter2);
+            spnBirim2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                    request_return_back.setInv_Uomid(new Inv_Id("uom", list.get(i).getName(),
+                            list.get(i).getUoMId()));
                 }
             });
         } else {
             spnBirim.setAdapter(null);
             spnBirim.setOnClickListener(null);
+            spnBirim2.setAdapter(null);
+            spnBirim2.setOnClickListener(null);
         }
 
     }
@@ -512,5 +647,8 @@ public class CreateNewWareRequestFragment extends DialogFragment {
         if (uomListAllCall != null) uomListAllCall.cancel();
         if (wareHouseListAllCall != null) wareHouseListAllCall.cancel();
         if (productListAllCall != null) productListAllCall.cancel();
+        if (returnCall != null) returnCall.cancel();
+        if (createCall != null) createCall.cancel();
     }
+
 }

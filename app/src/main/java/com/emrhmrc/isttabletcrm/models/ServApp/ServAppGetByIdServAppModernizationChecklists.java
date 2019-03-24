@@ -3,14 +3,23 @@ package com.emrhmrc.isttabletcrm.models.ServApp;
 
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
 
-public class ServAppGetByIdServAppModernizationChecklists {
+import java.io.Serializable;
+
+public class ServAppGetByIdServAppModernizationChecklists implements Serializable {
     private String inv_QuoteModernizationChecklistId;
-
     private Inv_Id inv_ChecklistDetailid;
-
     private String inv_Date;
+    private boolean is_modernization = false;
 
     public ServAppGetByIdServAppModernizationChecklists() {
+    }
+
+    public boolean getIs_modernization() {
+        return is_modernization;
+    }
+
+    public void setIs_modernization(boolean is_modernization) {
+        this.is_modernization = is_modernization;
     }
 
     public String getInv_QuoteModernizationChecklistId() {

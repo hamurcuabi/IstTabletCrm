@@ -108,6 +108,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (response.isSuccessful()) {
                         UserLogin model = response.body();
                         goHome(model);
+                        Log.d(TAG, "onResponse: "+model.getUserId());
                     } else {
                         Log.d(TAG, "onResponse: " + response.message());
                         btn_login.setEnabled(true);

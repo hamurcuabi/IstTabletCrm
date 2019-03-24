@@ -98,6 +98,7 @@
                         android:paddingStart="@dimen/detay_menu_12"
                         android:paddingEnd="@dimen/margin30" />
 
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -393,6 +394,7 @@
                         android:layout_height="@dimen/edt_calendar_height"
                         android:layout_marginStart="@dimen/detay_menu_30"
                         android:background="@drawable/btn_eye_text"
+                        android:enabled="false"
                         android:gravity="center|left"
                         android:paddingStart="@dimen/detay_menu_12" />
 
@@ -416,14 +418,15 @@
                         android:textSize="@dimen/text_menu_15"
                         android:textStyle="bold" />
 
-                    <EditText
-                        android:id="@+id/edt_birim2"
+                    <AutoCompleteTextView
+                        android:id="@+id/spn_birim2"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
                         android:layout_marginStart="@dimen/detay_menu_30"
-                        android:background="@drawable/btn_eye_text"
-                        android:gravity="center|left"
-                        android:paddingStart="@dimen/detay_menu_12" />
+                        android:background="@drawable/spn_style"
+                        android:focusableInTouchMode="true"
+                        android:paddingStart="@dimen/detay_menu_12"
+                        android:paddingEnd="@dimen/margin30" />
 
                 </LinearLayout>
 
@@ -523,7 +526,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
                         android:layout_marginStart="@dimen/detay_menu_30"
-                        android:background="@drawable/btn_descp"
+                        android:background="@drawable/btn_pen_text"
                         android:gravity="center|left"
                         android:paddingStart="@dimen/detay_menu_12" />
 
@@ -553,7 +556,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_calendar_height"
                         android:layout_marginStart="@dimen/detay_menu_30"
-                        android:background="@drawable/btn_descp"
+                        android:background="@drawable/btn_pen_text"
                         android:gravity="center|left"
                         android:paddingStart="@dimen/detay_menu_12" />
 
