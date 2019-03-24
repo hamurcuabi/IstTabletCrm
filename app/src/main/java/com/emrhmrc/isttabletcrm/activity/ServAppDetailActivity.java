@@ -251,6 +251,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
         }
 
 
+
     }
 
     private void cancelServApp() {

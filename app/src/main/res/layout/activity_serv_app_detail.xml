@@ -676,20 +676,22 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_marginTop="@dimen/detay_menu_12"
+                            android:layout_gravity="center"
                             android:layout_weight="1"
+                            android:gravity="center"
                             android:orientation="horizontal"
-                            android:weightSum="2.5">
+                            android:weightSum="2.3">
 
                             <Button
                                 android:id="@+id/btn_ariza_kodu"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/detay_menu_20"
                                 android:layout_weight="1"
+                                android:autoSizeTextType="uniform"
+                                android:autoSizeMaxTextSize="@dimen/text_menu_16"
                                 android:background="@drawable/btn_arizakodu"
                                 android:gravity="center"
-                                android:text="@{StringUtil.breakdownCode(model.inv_BreakdownCode)}"
+                                android:text="@{model.getInv_BreakdownCodeid()==null?StringUtil.returnNull():StringUtil.breakdownCode(model.getInv_BreakdownCodeid().getText())}"
                                 android:textColor="@color/white"
                                 android:textStyle="bold" />
 
@@ -699,6 +701,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/detay_menu_12"
                                 android:layout_weight="1"
+                                android:autoSizeTextType="uniform"
+                                android:autoSizeMaxTextSize="@dimen/text_menu_16"
                                 android:background="@drawable/btn_ariza_rounded"
                                 android:gravity="center"
                                 android:text="@string/ariza_nedini"

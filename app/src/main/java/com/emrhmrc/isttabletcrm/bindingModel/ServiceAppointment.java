@@ -33,10 +33,8 @@ public class ServiceAppointment {
     private Code PriortiyCode;
     private String inv_BlockName;
     private String inv_QuoteId;
-    private String inv_BreakdownCode;
     private Inv_Id inv_Supervisorid;
     private Inv_Id OwnerId;
-    private Inv_Id Inv_BreakdownCodeId;
     private Inv_Id inv_BreakdownDefCodeid;
     private Inv_Id inv_MainProductGroupid;
     private Inv_Id inv_SubProductGroupid;
@@ -74,13 +72,6 @@ public class ServiceAppointment {
         this.inv_SubProductGroupid = inv_SubProductGroupid;
     }
 
-    public Inv_Id getInv_BreakdownCodeId() {
-        return Inv_BreakdownCodeId;
-    }
-
-    public void setInv_BreakdownCodeId(Inv_Id inv_BreakdownCodeId) {
-        Inv_BreakdownCodeId = inv_BreakdownCodeId;
-    }
 
     public String getInv_Description() {
         return inv_Description;
@@ -88,14 +79,6 @@ public class ServiceAppointment {
 
     public void setInv_Description(String inv_Description) {
         this.inv_Description = inv_Description;
-    }
-
-    public String getInv_BreakdownCode() {
-        return inv_BreakdownCode;
-    }
-
-    public void setInv_BreakdownCode(String inv_BreakdownCode) {
-        this.inv_BreakdownCode = inv_BreakdownCode;
     }
 
     public String getInv_QuoteId() {

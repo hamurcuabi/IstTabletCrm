@@ -8,9 +8,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -248,8 +250,11 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
         int height = metrics.heightPixels;
         ViewGroup.LayoutParams params = getDialog().getWindow().getAttributes();
         params.width = 3 * width / 5;
-        params.height = height;
+        params.height =4* height/5;
+        getDialog().getWindow().setGravity(Gravity.CENTER_VERTICAL);
         getDialog().getWindow().setAttributes((android.view.WindowManager.LayoutParams) params);
+
+
     }
 
     @Override
