@@ -38,6 +38,7 @@ import com.emrhmrc.isttabletcrm.models.ServApp.ServAppListAll;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServiceAppIdRequest;
 import com.emrhmrc.isttabletcrm.models.ServApp.UpdateServFormById;
 import com.emrhmrc.isttabletcrm.models.ServApp.UpsertByIdCreateRequest;
+import com.emrhmrc.isttabletcrm.models.ServApp.UpsertByIdUpdateRequest;
 import com.emrhmrc.isttabletcrm.models.Unsuitablity.UnsuitabilityListAll;
 import com.emrhmrc.isttabletcrm.models.User.EmailRequest;
 import com.emrhmrc.isttabletcrm.models.User.UserForgotPassword;
@@ -203,6 +204,9 @@ public interface JsonApi {
 
     @POST("ServApp/UpsertById")
     Call<DefaultResponse2> createServapp(@Body UpsertByIdCreateRequest request);
+
+    @POST("ServApp/UpsertById")
+    Call<DefaultResponse2> updateServapp(@Body UpsertByIdUpdateRequest request);
 
 
 }

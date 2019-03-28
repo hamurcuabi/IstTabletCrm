@@ -6,6 +6,7 @@ import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
 
 public class ServAppGetByIdServAppDetails {
     private Integer inv_LineNo;
+    private Integer inv_Price;
     private String inv_Description;
     private Code inv_WarrantyStatusCode;
     private boolean inv_WillBeBilled;
@@ -17,8 +18,15 @@ public class ServAppGetByIdServAppDetails {
     private int inv_Quantity;
     private boolean isManuel = false;
     private boolean isManuelProduct = false;
-
     public ServAppGetByIdServAppDetails() {
+    }
+
+    public Integer getInv_Price() {
+        return inv_Price;
+    }
+
+    public void setInv_Price(Integer inv_Price) {
+        this.inv_Price = inv_Price;
     }
 
     public boolean isInv_WillBeBilled() {

@@ -53,6 +53,7 @@ public class RcvServAppDetailViewHolder extends BaseViewHolder<ServAppGetByIdSer
         edt_descp.setText(StringUtil.nullToString(item.getInv_Description()));
 
 
+
     }
 
     private void ruleManuelAdd(ServAppGetByIdServAppDetails item) {
@@ -85,9 +86,9 @@ public class RcvServAppDetailViewHolder extends BaseViewHolder<ServAppGetByIdSer
         if (item.isManuelProduct()) {
             spn_ucretli.setEnabled(false);
         } else spn_ucretli.setEnabled(true);
-        if(item.isManuel()){
+        if (item.isManuel()) {
             spn_ucretli.setEnabled(true);
-        }else spn_ucretli.setEnabled(false);
+        } else spn_ucretli.setEnabled(false);
         if (item.isManuelProduct()) {
             edt_fiyat.setEnabled(true);
         } else edt_fiyat.setEnabled(false);

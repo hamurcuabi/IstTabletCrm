@@ -46,16 +46,21 @@ import com.emrhmrc.isttabletcrm.helper.AddManuelProduct;
 import com.emrhmrc.isttabletcrm.helper.CreateSubServAppSingleton;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
+import com.emrhmrc.isttabletcrm.models.CommonClass.Code_Id;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
+import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id_Id;
 import com.emrhmrc.isttabletcrm.models.MapModel;
 import com.emrhmrc.isttabletcrm.models.Product.Product;
 import com.emrhmrc.isttabletcrm.models.ServApp.CompleteByIdRequest;
 import com.emrhmrc.isttabletcrm.models.ServApp.DefaultResponse;
+import com.emrhmrc.isttabletcrm.models.ServApp.DefaultResponse2;
+import com.emrhmrc.isttabletcrm.models.ServApp.ServAppDetailsList;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetById;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdNotes;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppDetails;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppModernizationChecklists;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppIdRequest;
+import com.emrhmrc.isttabletcrm.models.ServApp.UpsertByIdUpdateRequest;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -98,12 +103,15 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     String error;
     @BindString(R.string.succes)
     String succes;
+    @BindString(R.string.fillblanks)
+    String blanks;
     private JsonApi jsonApi;
     private RcvServAppDetailAdapter adapter;
     private ShareData shareData;
     private List<ServAppGetByIdNotes> notes;
     private SweetAlertDialog dialog;
     private ServAppGetById model;
+    private UpsertByIdUpdateRequest updateRequest;
     private boolean isOk;
     private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
         @Override
@@ -119,6 +127,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                 ) {
                     if (details.getInv_ProductId().getText().equals(product.getProductId())) {
                         exist = true;
+                        updateRequest.getServAppDetailsList().remove(details);
                     }
 
                 }
@@ -127,6 +136,14 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                     ServAppGetByIdServAppDetails add = new ServAppGetByIdServAppDetails();
                     add.setInv_ProductId(new Inv_Id("inv_subproductgroup", product.getName(), product.getProductId()));
                     add.setManuel(true);
+                    add.setInv_Quantity(1);
+                    add.setInv_WillBeBilled(true);
+                    ServAppDetailsList item = new ServAppDetailsList();
+                    item.setInv_WillBeBilled(true);
+                    item.setInv_Quantity(1);
+                    item.setInv_ProductId(new Inv_Id_Id(add.getInv_ProductId().getId()));
+                    item.setInv_Uomid(new Inv_Id_Id());
+                    updateRequest.getServAppDetailsList().add(item);
                     adapter.add(add);
                 }
             }
@@ -150,11 +167,17 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
         binding = DataBindingUtil.setContentView(this, R.layout.activity_serv_app_detail);
         ButterKnife.bind(this);
         init();
+        initDialog();
         getServAppById(shareData.getServAppId());
         LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
                 new IntentFilter("custom-event-name"));
 
 
+    }
+
+    private void initDialog() {
+        AnyDialog anyDialog = new AnyDialog(this);
+        dialog = anyDialog.loading(loading);
     }
 
     private void openServappFormFragment() {
@@ -202,8 +225,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
         ItemTouchHelper itemTouchHelper = new
                 ItemTouchHelper(new SwipeToDelete(adapter));
         itemTouchHelper.attachToRecyclerView(rcv);
-        AnyDialog anyDialog = new AnyDialog(this);
-        dialog = anyDialog.loading(loading);
+        updateRequest = new UpsertByIdUpdateRequest();
     }
 
     private void getServAppById(String id) {
@@ -246,17 +268,17 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
 
         if (model.getInv_TypeCode() != null) {
 
-            btn_kontrol_listesi.setVisibility(View.VISIBLE);
             if (model.getInv_TypeCode().getValue() == 3) {
                 for (ServAppGetByIdServAppModernizationChecklists item : model.getServAppGetByIdServAppModernizationChecklists()
                 ) {
                     item.setIs_modernization(true);
 
                 }
+                btn_kontrol_listesi.setVisibility(View.VISIBLE);
             } else if (model.getInv_TypeCode().getValue() == 1)
                 btn_kontrol_listesi.setVisibility(View.VISIBLE);
 
-
+            else btn_kontrol_listesi.setVisibility(View.INVISIBLE);
         } else btn_kontrol_listesi.setVisibility(View.INVISIBLE);
         adapter.setItems(model.getServAppGetByIdServAppDetails());
 
@@ -487,7 +509,8 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                         public void onClick(SweetAlertDialog sweetAlertDialog) {
                             isOk = true;
                             sweetAlertDialog.cancel();
-                            doUpsert();
+                            updateServApp();
+
                         }
                     })
                     .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
@@ -501,9 +524,6 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
 
     }
 
-    private void doUpsert() {
-
-    }
 
     @Override
     protected void onDestroy() {
@@ -591,6 +611,54 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     public void addProduct(ServAppGetByIdServAppDetails product) {
         adapter.add(product);
         adapter.notifyItemInserted(adapter.getItems().size() - 1);
+
+    }
+
+    private void updateServApp() {
+        initDialog();
+        updateRequest.setUserId(SingletonUser.getInstance().getUser().getUserId());
+        updateRequest.getServiceAppointment().setActivityId(model.getServiceAppointment().getActivityId());
+        updateRequest.getServiceAppointment().setInv_BreakdownCodeId(new Code_Id());
+        updateRequest.getServiceAppointment().setInv_BreakdownDefCodeid(new Code_Id());
+        updateRequest.getServiceAppointment().setInv_MainProductGroupid(new Code_Id());
+        updateRequest.getServiceAppointment().setInv_SubProductGroupid(new Code_Id());
+        dialog.show();
+        Call<DefaultResponse2> call = jsonApi.updateServapp(updateRequest);
+        APIHelper.enqueueWithRetry(call, new Callback<DefaultResponse2>() {
+            @Override
+            public void onResponse(Call<DefaultResponse2> call, Response<DefaultResponse2> response) {
+                dialog.dismissWithAnimation();
+                if (response.isSuccessful()) {
+
+                    new SweetAlertDialog(ServAppDetailActivity.this, SweetAlertDialog.SUCCESS_TYPE)
+                            .setTitleText(succes)
+                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                    onBackPressed();
+                                }
+                            })
+                            .show();
+
+
+                } else {
+
+                    new SweetAlertDialog(ServAppDetailActivity.this, SweetAlertDialog.WARNING_TYPE)
+                            .setTitleText(response.message())
+                            .show();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DefaultResponse2> call, Throwable t) {
+                dialog.dismissWithAnimation();
+                new SweetAlertDialog(ServAppDetailActivity.this, SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText(t.getMessage())
+                        .show();
+            }
+        });
+
 
     }
 }

@@ -5,6 +5,9 @@ public class Code_Id {
 
     private Integer Value;
 
+    public Code_Id() {
+    }
+
     public Code_Id(Integer value) {
 
         Value = value;
