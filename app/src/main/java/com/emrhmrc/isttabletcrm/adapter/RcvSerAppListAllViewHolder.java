@@ -58,6 +58,7 @@ public class RcvSerAppListAllViewHolder extends BaseViewHolder<ServiceAppointmen
     public void onBind(final ServiceAppointments item, final @Nullable
             OnItemClickListener<ServiceAppointments> listener) {
         binding.setServappItem(item);
+
         binding.setCount(StringUtil.convertIntToString(getAdapterPosition() + 1));
         if (listener != null) {
             rlf.setOnClickListener(view -> listener.onItemClicked(item,getAdapterPosition()));

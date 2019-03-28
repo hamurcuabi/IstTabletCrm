@@ -555,6 +555,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/text_menu_16"
                             android:orientation="horizontal"
+                            android:visibility="gone"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/lnr_sahini">
@@ -994,10 +995,11 @@
             app:layout_constraintTop_toBottomOf="@+id/btn_wish">
 
             <LinearLayout
-                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin30"
+                android:layout_marginEnd="@dimen/margin30"
+                android:gravity="center"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -1007,13 +1009,16 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/detay_menu_12"
                     android:layout_weight="2.5"
                     android:text="@string/malzemekodu"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_menu_14" />
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/detay_menu_12"
                     android:layout_weight="3"
                     android:text="@string/malzeme"
                     android:textColor="@color/white"
@@ -1022,6 +1027,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/detay_menu_12"
                     android:layout_weight="1.7"
                     android:text="@string/degisim_tarihi"
                     android:textColor="@color/white"
@@ -1030,6 +1036,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/detay_menu_12"
                     android:layout_weight="2.5"
                     android:text="@string/usta_adi"
                     android:textColor="@color/white"
@@ -1038,24 +1045,30 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/detay_menu_12"
                     android:layout_weight="2"
                     android:text="@string/garantibaslangic"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_menu_14" />
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/detay_menu_12"
                     android:layout_weight="1.6"
                     android:text="@string/garantibitis"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_menu_14" />
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/detay_menu_12"
                     android:layout_weight="1.5"
                     android:text="@string/sure2"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_menu_14" />
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

@@ -51,13 +51,11 @@ import com.emrhmrc.isttabletcrm.models.MapModel;
 import com.emrhmrc.isttabletcrm.models.Product.Product;
 import com.emrhmrc.isttabletcrm.models.ServApp.CompleteByIdRequest;
 import com.emrhmrc.isttabletcrm.models.ServApp.DefaultResponse;
-import com.emrhmrc.isttabletcrm.models.ServApp.DefaultResponse2;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetById;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdNotes;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppDetails;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppModernizationChecklists;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppIdRequest;
-import com.emrhmrc.isttabletcrm.models.ServApp.UpsertByIdRequest;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -245,11 +243,22 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
         binding.setModel(model);
         ShareData.getInstance().setElevatorId(model.getInv_ElevatorId().getId());
         Log.d(TAG, "setElevatorId: " + model.getInv_ElevatorId().getId());
-        adapter.setItems(model.getServAppGetByIdServAppDetails());
-        if (model.getInv_TypeCode().getValue() != 3 || model.getInv_TypeCode().getValue() != 1) {
-            btn_kontrol_listesi.setVisibility(View.INVISIBLE);
-        }
 
+        if (model.getInv_TypeCode() != null) {
+
+            btn_kontrol_listesi.setVisibility(View.VISIBLE);
+            if (model.getInv_TypeCode().getValue() == 3) {
+                for (ServAppGetByIdServAppModernizationChecklists item : model.getServAppGetByIdServAppModernizationChecklists()
+                ) {
+                    item.setIs_modernization(true);
+
+                }
+            } else if (model.getInv_TypeCode().getValue() == 1)
+                btn_kontrol_listesi.setVisibility(View.VISIBLE);
+
+
+        } else btn_kontrol_listesi.setVisibility(View.INVISIBLE);
+        adapter.setItems(model.getServAppGetByIdServAppDetails());
 
 
     }
@@ -344,7 +353,8 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     public void openControlList() {
         for (ServAppGetByIdServAppModernizationChecklists item : model.getServiceAppointment().getServAppGetByIdServAppModernizationChecklists()
         ) {
-            if(model.getServiceAppointment().getInv_TypeCode().getValue()==3)item.setIs_modernization(true);
+            if (model.getServiceAppointment().getInv_TypeCode().getValue() == 3)
+                item.setIs_modernization(true);
 
         }
         ControlListFragment fragment =
@@ -492,31 +502,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     }
 
     private void doUpsert() {
-        UpsertByIdRequest request = new UpsertByIdRequest();
-        List<String> changed = new ArrayList<>();
-        changed.add("ServAppDetails");
-        if (model != null)
-            request.setServiceApp(model.getServiceAppointment());
-        request.setServAppChangedFields(changed);
-        request.setUserId(SingletonUser.getInstance().getUser().getUserId());
-        request.setNotes(notes);
-        request.setServAppDetails(adapter.getItems());
-        Call<DefaultResponse2> call = jsonApi.upsertById(request);
-        APIHelper.enqueueWithRetry(call, new Callback<DefaultResponse2>() {
-            @Override
-            public void onResponse(Call<DefaultResponse2> call, Response<DefaultResponse2> response) {
-                if (response.isSuccessful()) {
 
-
-                }
-                Log.d(TAG, "ActvityonResponse: ");
-            }
-
-            @Override
-            public void onFailure(Call<DefaultResponse2> call, Throwable t) {
-                Log.d(TAG, "ActivtyonFailure: " + t.getMessage());
-            }
-        });
     }
 
     @Override

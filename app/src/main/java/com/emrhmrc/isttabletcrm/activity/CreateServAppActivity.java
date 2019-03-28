@@ -3,6 +3,7 @@ package com.emrhmrc.isttabletcrm.activity;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,6 +17,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
+import com.emrhmrc.isttabletcrm.SweetDialog.AnyDialog;
 import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
 import com.emrhmrc.isttabletcrm.api.APIHelper;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
@@ -25,16 +27,22 @@ import com.emrhmrc.isttabletcrm.helper.CreateSubServAppSingleton;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
 import com.emrhmrc.isttabletcrm.models.Account.Account;
 import com.emrhmrc.isttabletcrm.models.Account.AccountListAll;
+import com.emrhmrc.isttabletcrm.models.CommonClass.Code_Id;
+import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id_Id;
 import com.emrhmrc.isttabletcrm.models.Elevator.CustomerIdRequest;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorListAll;
-import com.emrhmrc.isttabletcrm.models.Elevator.Elevators;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorsCustomer;
+import com.emrhmrc.isttabletcrm.models.ServApp.DefaultResponse2;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetById;
+import com.emrhmrc.isttabletcrm.models.ServApp.UpsertByIdCreateRequest;
+import com.emrhmrc.isttabletcrm.models.ServApp.serviceAppointment;
 
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
+import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -71,8 +79,16 @@ public class CreateServAppActivity extends AppCompatActivity {
     ProgressBar progElevator;
     @BindView(R.id.edt_supervisor)
     EditText edtSupervisor;
+    @BindString(R.string.loading)
+    String loading;
+    @BindString(R.string.succes)
+    String succes;
+    @BindString(R.string.fillblanks)
+    String blanks;
     private JsonApi jsonApi;
     private ServAppGetById servAppGetById;
+    private serviceAppointment request;
+    private SweetAlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +98,48 @@ public class CreateServAppActivity extends AppCompatActivity {
         init();
         subOrNew();
         focusing();
+        getSpnOncelik();
+        getSpnTip();
+        initDialog();
+
+    }
+
+    private void initDialog() {
+        AnyDialog anyDialog = new AnyDialog(this);
+        dialog = anyDialog.loading(loading);
+    }
+
+    private void getSpnOncelik() {
+
+        spnOncelik.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                // request.setInv_TypeCode(new Code_Id(i + 1));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
+    }
+
+    private void getSpnTip() {
+
+        spnAriza.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                request.setInv_TypeCode(new Code_Id(i + 1));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                request.setInv_TypeCode(new Code_Id(1));
+            }
+        });
+
 
     }
 
@@ -107,6 +165,7 @@ public class CreateServAppActivity extends AppCompatActivity {
             servAppGetById = CreateSubServAppSingleton.getInstance().getServAppGetById();
             fillAll(servAppGetById);
         } else {
+            request.setInv_RelatedServiceAppointmentId(new Inv_Id_Id());
             getAccountAll();
             edtSupervisor.setText(SingletonUser.getInstance().getUser().getSuperVisorId().getText());
             lnrOnceki.setVisibility(View.GONE);
@@ -151,12 +210,9 @@ public class CreateServAppActivity extends AppCompatActivity {
         Account account = new Account();
         account.setAccountId(item.getInv_CustomerId().getId());
         account.setName(item.getInv_CustomerId().getText());
-        List<Account> list = new ArrayList<>();
-        list.add(account);
-        fillSpinner(list);
+        fillSpinnerOneItem(account);
         edtKonu.setText(item.getSubject());
         fillElevatorSpinner(item.getInv_ElevatorId().getId(), item.getInv_ElevatorId().getText());
-        spnAsansor.setEnabled(false);
         if (item.getInv_TypeCode() != null)
             spnAriza.setSelection(item.getInv_TypeCode().getValue() - 1);
         if (item.getPriortiyCode() != null)
@@ -169,6 +225,7 @@ public class CreateServAppActivity extends AppCompatActivity {
         edtSupervisor.setText(model.getServiceAppointment().getInv_Supervisorid().getText());
         edtSaat.setText(model.getServiceAppointment().getScheduledStart());
         lnrOnceki.setVisibility(View.VISIBLE);
+        request.setInv_RelatedServiceAppointmentId(new Inv_Id_Id(item.getActivityId()));
 
     }
 
@@ -204,6 +261,7 @@ public class CreateServAppActivity extends AppCompatActivity {
 
     private void init() {
         jsonApi = ApiClient.getClient().create(JsonApi.class);
+        request = new serviceAppointment();
     }
 
     private void fillSpinner(List<Account> list) {
@@ -223,8 +281,10 @@ public class CreateServAppActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     getElevatorByCustomerAll(list.get(i).getAccountId());
+                    request.setInv_CustomerId(new Inv_Id_Id(list.get(i).getAccountId()));
                 }
             });
+            spinner_musteri.setListSelection(0);
         } else {
             spinner_musteri.setAdapter(null);
             spinner_musteri.setOnClickListener(null);
@@ -232,13 +292,24 @@ public class CreateServAppActivity extends AppCompatActivity {
 
     }
 
+    private void fillSpinnerOneItem(Account account) {
+        spinner_musteri.setText(account.getName());
+        spinner_musteri.setEnabled(false);
+        request.setInv_CustomerId(new Inv_Id_Id(account.getAccountId()));
+
+    }
+
     private void fillElevatorSpinner(List<ElevatorsCustomer> list) {
         if (list.size() > 0 && list != null) {
             ArrayAdapter<ElevatorsCustomer> spinnerArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line,
                     list);
-            // spinnerArrayAdapter.setDropDownViewResource(android.R.layout
-            // .simple_spinner_dropdown_item);
             spnAsansor.setAdapter(spinnerArrayAdapter);
+            spnAsansor.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    request.setInv_ElevatorId(new Inv_Id_Id(list.get(i).getInv_ElevatorId()));
+                }
+            });
             spnAsansor.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -246,6 +317,7 @@ public class CreateServAppActivity extends AppCompatActivity {
                     spnAsansor.showDropDown();
                 }
             });
+            spnAsansor.setListSelection(0);
         } else {
             spnAsansor.setAdapter(null);
             spnAsansor.setOnClickListener(null);
@@ -254,21 +326,76 @@ public class CreateServAppActivity extends AppCompatActivity {
     }
 
     private void fillElevatorSpinner(String id, String name) {
-        List<Elevators> list = new ArrayList<>();
-        Elevators elevators = new Elevators();
-        elevators.setInv_ElevatorId(id);
-        elevators.setInv_ElevatorName(name);
-        ArrayAdapter<Elevators> spinnerArrayAdapter = new ArrayAdapter<>(this, R.layout.spinner_item,
-                list);
-        // spinnerArrayAdapter.setDropDownViewResource(android.R.layout
-        // .simple_spinner_dropdown_item);
-        spnAsansor.setAdapter(spinnerArrayAdapter);
-
+        spnAsansor.setEnabled(false);
+        spnAsansor.setText(name);
+        request.setInv_ElevatorId(new Inv_Id_Id(id));
 
     }
 
     private void createNew() {
 
+        request.setSubject(edtKonu.getText().toString());
+        request.setScheduledStart(edtSaat.getText().toString());
+        //  request.setInv_RelatedServiceAppointmentId(new Inv_Id_Id());
+        //check everything
+        if (checkFields()) {
+            final UpsertByIdCreateRequest createRequest = new UpsertByIdCreateRequest();
+            createRequest.setServiceAppointment(request);
+            createRequest.setUserId(SingletonUser.getInstance().getUser().getUserId());
+            dialog.show();
+            Call<DefaultResponse2> call = jsonApi.createServapp(createRequest);
+            APIHelper.enqueueWithRetry(call, new Callback<DefaultResponse2>() {
+                @Override
+                public void onResponse(Call<DefaultResponse2> call, Response<DefaultResponse2> response) {
+                    dialog.dismissWithAnimation();
+                    if (response.isSuccessful()) {
+
+                        new SweetAlertDialog(CreateServAppActivity.this, SweetAlertDialog.SUCCESS_TYPE)
+                                .setTitleText(succes)
+                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                    @Override
+                                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                        onBackPressed();
+                                    }
+                                })
+                                .show();
+
+
+                    } else {
+
+
+                        new SweetAlertDialog(CreateServAppActivity.this, SweetAlertDialog.WARNING_TYPE)
+                                .setTitleText(response.message())
+                                .show();
+
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<DefaultResponse2> call, Throwable t) {
+                    dialog.dismissWithAnimation();
+                    new SweetAlertDialog(CreateServAppActivity.this, SweetAlertDialog.WARNING_TYPE)
+                            .setTitleText(t.getMessage())
+                            .show();
+                }
+            });
+        } else {
+            new SweetAlertDialog(CreateServAppActivity.this, SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText(blanks)
+                    .show();
+        }
+
+
+    }
+
+    private boolean checkFields() {
+        if (request.getInv_CustomerId() == null) return false;
+        else if (request.getInv_ElevatorId() == null) return false;
+        else if (request.getInv_RelatedServiceAppointmentId() == null) return false;
+        else if (TextUtils.isEmpty((request.getScheduledStart()))) return false;
+        else if (TextUtils.isEmpty(request.getSubject())) return false;
+        else if (request.getInv_TypeCode() == null) return false;
+        else return true;
     }
 
     private void openDatePicker() {
@@ -291,7 +418,10 @@ public class CreateServAppActivity extends AppCompatActivity {
                         if (monthString.length() == 1) {
                             monthString = "0" + monthString;
                         }
-                        edtSaat.setText(monthString + "." + dayOfMonth + "." + year);
+                        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+                        String currentDateandTime = sdf.format(Calendar.getInstance().getTime());
+
+                        edtSaat.setText(dayOfMonth + "." + monthString + "." + year + " " + currentDateandTime);
 
 
                     }

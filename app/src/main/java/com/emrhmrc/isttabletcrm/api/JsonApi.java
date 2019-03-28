@@ -37,7 +37,7 @@ import com.emrhmrc.isttabletcrm.models.ServApp.ServAppIdRequest;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppListAll;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServiceAppIdRequest;
 import com.emrhmrc.isttabletcrm.models.ServApp.UpdateServFormById;
-import com.emrhmrc.isttabletcrm.models.ServApp.UpsertByIdRequest;
+import com.emrhmrc.isttabletcrm.models.ServApp.UpsertByIdCreateRequest;
 import com.emrhmrc.isttabletcrm.models.Unsuitablity.UnsuitabilityListAll;
 import com.emrhmrc.isttabletcrm.models.User.EmailRequest;
 import com.emrhmrc.isttabletcrm.models.User.UserForgotPassword;
@@ -50,15 +50,10 @@ import com.emrhmrc.isttabletcrm.models.Warehouse.WarehouseItemListAll;
 import com.emrhmrc.isttabletcrm.models.Warehouse.WarehouseTransferCreateRequest;
 import com.emrhmrc.isttabletcrm.models.Warehouse.WarehouseTransferListAll;
 
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.Multipart;
 import retrofit2.http.POST;
-import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 public interface JsonApi {
@@ -121,7 +116,7 @@ public interface JsonApi {
 
     //Not Even Tried :D
     @POST("ServApp/UpsertById")
-    Call<DefaultResponse2> upsertById(@Body UpsertByIdRequest upsertById);
+    Call<DefaultResponse2> upsertById(@Body UpsertByIdCreateRequest upsertById);
 
     //OK
     @POST("ServApp/GetById")
@@ -149,6 +144,7 @@ public interface JsonApi {
     //OK
     @POST("Notification/ListAll")
     Call<NotificationListAll> getNotificationListAll(@Body UserIdRequest userId);
+
     //OK
     @POST("BreakdownDefCode/ListAll")
     Call<BreakdownDefCodeListAll> defListAllCall(@Body SubProductGroupIdRequest request);
@@ -205,14 +201,8 @@ public interface JsonApi {
     @POST("ElevatorChangingPart/ListAll")
     Call<ElevatorChangingPart> getElevatorChangingPartCall(@Body ElevatorIdRequest request);
 
-    @Multipart
     @POST("ServApp/UpsertById")
-    Call<ResponseBody> uploadFile(@Part MultipartBody.Part file,
-                                  @Part("DocumentBody") RequestBody DocumentBody,
-                                  @Part("MimeType") RequestBody MimeType,
-                                  @Part("FileSize") RequestBody FileSize,
-                                  @Part("Subject") RequestBody Subject,
-                                  @Part("IsDocument") RequestBody IsDocument,
-                                  @Part("FileName") RequestBody FileName);
+    Call<DefaultResponse2> createServapp(@Body UpsertByIdCreateRequest request);
+
 
 }

@@ -58,8 +58,14 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
         setContentView(R.layout.activity_serv_app_activty);
         ButterKnife.bind(this);
         init();
-        getServAppListAll();
+        initDialog();
 
+
+    }
+
+    private void initDialog() {
+        AnyDialog anyDialog = new AnyDialog(this);
+        dialog = anyDialog.loading(loading);
     }
 
     private void filterwithSpinner() {
@@ -92,8 +98,7 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(spinnerArrayAdapter);
         shareData = ShareData.getInstance();
-        AnyDialog anyDialog = new AnyDialog(this);
-        dialog = anyDialog.loading(loading);
+
 
     }
 
@@ -130,20 +135,20 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
     public void onItemClicked(Object item, int positon) {
 
         ServiceAppointments current = (ServiceAppointments) item;
-       // shareData.setServAppId(current.getActivityId());
-        shareData.setServAppId("8C096C30-14C3-E811-8103-005056B66D80");
+        shareData.setServAppId(current.getActivityId());
+        //shareData.setServAppId("8C096C30-14C3-E811-8103-005056B66D80");
         Log.d(TAG, "onItemClicked: " + current.getActivityId());
         goServAppDetail();
 
     }
 
     public void goServAppDetail() {
-
+        dialog.cancel();
         startActivity(new Intent(ServAppActivty.this, ServAppDetailActivity.class));
     }
 
     public void goCreateServApp() {
-
+        dialog.cancel();
         startActivity(new Intent(ServAppActivty.this, CreateServAppActivity.class));
     }
 
@@ -166,6 +171,15 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initDialog();
+        getServAppListAll();
+
 
     }
 }

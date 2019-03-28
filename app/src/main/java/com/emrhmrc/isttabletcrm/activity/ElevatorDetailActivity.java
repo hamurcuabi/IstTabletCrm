@@ -119,7 +119,8 @@ public class ElevatorDetailActivity extends AppCompatActivity implements OnItemC
     }
 
     private void setTexts(Elevator model) {
-        txtAsansorname.setText(StringUtil.nullToString(model.getInv_AccountId().getText()));
+        txtAsansorname.setText("-");
+        txtApartadi.setText(StringUtil.nullToString(model.getInv_AccountId().getText()));
         txtBlokadi.setText(StringUtil.nullToString(model.getInv_BlockName()));
         txtEtiketrengi.setText(StringUtil.nullToString(model.getInv_ColorCode().getText()));
         txtSozlemebitis.setText(StringUtil.nullToString(model.getInv_ContractEndDate()));

@@ -30,7 +30,7 @@ public class ServiceAppointment {
     private List<ServAppGetByIdServAppModernizationChecklists> ServAppGetByIdServAppModernizationChecklists;
     private double inv_Latitude;
     private double inv_Longitude;
-    private Code PriortiyCode;
+    private Code PriorityCode;
     private String inv_BlockName;
     private String inv_QuoteId;
     private Inv_Id inv_Supervisorid;
@@ -130,11 +130,11 @@ public class ServiceAppointment {
     }
 
     public Code getPriortiyCode() {
-        return PriortiyCode;
+        return PriorityCode;
     }
 
     public void setPriortiyCode(Code priortiyCode) {
-        PriortiyCode = priortiyCode;
+        PriorityCode = priortiyCode;
     }
 
     public Code getStatusCode() {

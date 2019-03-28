@@ -2,7 +2,6 @@ package com.emrhmrc.isttabletcrm.models.ServApp;
 
 
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
-import com.google.gson.annotations.SerializedName;
 
 public class ServAppGetByIdServAppWorkListDetails {
     private String inv_ServAppWorkListDetailId;
@@ -11,7 +10,6 @@ public class ServAppGetByIdServAppWorkListDetails {
 
     private String inv_Date;
 
-    @SerializedName("inv_WorkListDetailId")
     private Inv_Id inv_WorkListDetailId;
 
     public ServAppGetByIdServAppWorkListDetails() {

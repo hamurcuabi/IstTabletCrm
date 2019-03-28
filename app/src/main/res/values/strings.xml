@@ -234,6 +234,7 @@
     <string name="bos_alan">Eksik Alanları doldurunuz!</string>
     <string name="saatt">Saat</string>
     <string name="yuzde">Yüzde</string>
+    <string name="fillblanks">Boşlukları Doldurunuz</string>
 
     <string-array name="spn_servapp">
         <item>Tüm İş Emirlerim</item>

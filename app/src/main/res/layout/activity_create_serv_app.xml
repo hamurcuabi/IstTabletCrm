@@ -130,7 +130,6 @@
                         android:layout_marginStart="@dimen/detay_menu_30"
                         android:layout_weight="3"
                         android:background="@drawable/spn_style"
-                        android:completionThreshold="1"
                         android:paddingStart="@dimen/detay_menu_25"
                         android:paddingEnd="@dimen/detay_menu_12" />
 
@@ -173,7 +172,7 @@
                         android:layout_weight="3"
                         android:background="@drawable/btn_eye_text"
                         android:paddingStart="@dimen/detay_menu_25"
-                        android:paddingEnd="@dimen/detay_menu_12" />
+                        android:paddingEnd="@dimen/padding_rigt32" />
 
                 </LinearLayout>
 
@@ -480,7 +479,7 @@
                         android:background="@drawable/btn_eye_text"
                         android:enabled="false"
                         android:hint="@string/isimsoyad"
-                        android:paddingStart="@dimen/detay_menu_25"
+                        android:paddingStart="@dimen/padding_rigt32"
                         android:paddingEnd="@dimen/detay_menu_12" />
 
                 </LinearLayout>

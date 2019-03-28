@@ -2,10 +2,8 @@ package com.emrhmrc.isttabletcrm.bindingModel;
 
 import com.emrhmrc.isttabletcrm.models.CommonClass.Code;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
-import com.google.gson.annotations.SerializedName;
 
 public class ServiceAppointments {
-    @SerializedName("StatusCode")
     private Code StatusCode;
     private String ScheduledStart;
     private String ScheduledEnd;
@@ -15,8 +13,10 @@ public class ServiceAppointments {
     private Code inv_TypeCode;
     private double inv_Latitude;
     private double inv_Longitude;
+    private Code PriorityCode;
 
-    private Code PriortiyCode;
+    public ServiceAppointments() {
+    }
 
     public double getInv_Latitude() {
         return inv_Latitude;
@@ -35,11 +35,11 @@ public class ServiceAppointments {
     }
 
     public Code getPriortiyCode() {
-        return PriortiyCode;
+        return PriorityCode;
     }
 
     public void setPriortiyCode(Code priortiyCode) {
-        PriortiyCode = priortiyCode;
+        PriorityCode = priortiyCode;
     }
 
     public Code getStatusCode() {
@@ -98,20 +98,5 @@ public class ServiceAppointments {
         this.inv_TypeCode = inv_TypeCode;
     }
 
-    @Override
-    public String toString() {
-        return "ServiceAppointments{" +
-                "StatusCode=" + StatusCode +
-                ", ScheduledStart='" + ScheduledStart + '\'' +
-                ", ScheduledEnd='" + ScheduledEnd + '\'' +
-                ", ActivityId='" + ActivityId + '\'' +
-                ", Subject='" + Subject + '\'' +
-                ", inv_CustomerId=" + inv_CustomerId +
-                ", inv_TypeCode=" + inv_TypeCode +
-                ", inv_Latitude=" + inv_Latitude +
-                ", inv_Longitude=" + inv_Longitude +
-                ", PriortiyCode=" + PriortiyCode +
-                '}';
-    }
 }
 

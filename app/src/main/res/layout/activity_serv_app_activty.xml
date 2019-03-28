@@ -85,15 +85,17 @@
                 android:id="@+id/spn_servapp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/detay_menu_30"
+                android:minHeight="@dimen/btn_height45"
+                android:layout_marginStart="@dimen/detay_menu_70"
                 android:layout_marginEnd="@dimen/margin30"
-                android:layout_weight="2"
+                android:layout_weight="2.5"
                 android:backgroundTint="@color/white" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
+                android:layout_weight="5"
+                android:layout_marginEnd="@dimen/detay_menu_12"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/konusu"
                 android:textColor="@color/white"
@@ -103,7 +105,8 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
+                android:layout_weight="2"
+                android:layout_marginEnd="@dimen/detay_menu_12"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/bas_tarih"
                 android:textColor="@color/white"
@@ -113,7 +116,8 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
+                android:layout_weight="2"
+                android:layout_marginEnd="@dimen/detay_menu_12"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/bit_tarih"
                 android:textColor="@color/white"
@@ -123,7 +127,8 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_marginEnd="@dimen/detay_menu_12"
+                android:layout_weight="1.5"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/oncelik"
                 android:textColor="@color/white"

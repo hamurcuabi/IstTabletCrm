@@ -10,7 +10,7 @@
         android:id="@+id/img_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/detay_menu_70"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="@dimen/detay_menu_20"
         android:src="@drawable/ic_left"
         app:layout_constraintStart_toStartOf="parent"

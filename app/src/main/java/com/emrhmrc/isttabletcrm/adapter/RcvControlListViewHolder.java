@@ -53,20 +53,24 @@ public class RcvControlListViewHolder extends BaseViewHolder<ServAppGetByIdServA
 
     private void visibilty(ServAppGetByIdServAppModernizationChecklists item) {
         if (item.getIs_modernization()) {
-            edt_decimal.setVisibility(View.GONE);
+            txt_tarih.setVisibility(View.VISIBLE);
+            til_decimal.setVisibility(View.GONE);
             rad_no.setOnCheckedChangeListener((compoundButton, b) -> {
-                if (!b) edt_descp.setVisibility(View.VISIBLE);
-                else edt_descp.setVisibility(View.GONE);
+                if (b) til_descp.setVisibility(View.VISIBLE);
+                else til_descp.setVisibility(View.GONE);
 
             });
+            rad_no.setSelected(true);
+
         } else {
             txt_tarih.setVisibility(View.GONE);
-            edt_descp.setVisibility(View.GONE);
+            til_descp.setVisibility(View.GONE);
             rad_yes.setOnCheckedChangeListener((compoundButton, b) -> {
-
-                if (b) edt_decimal.setVisibility(View.VISIBLE);
-                else edt_decimal.setVisibility(View.GONE);
+                if (b) til_decimal.setVisibility(View.VISIBLE);
+                else til_decimal.setVisibility(View.GONE);
             });
+            rad_yes.setSelected(true);
+
         }
     }
 
