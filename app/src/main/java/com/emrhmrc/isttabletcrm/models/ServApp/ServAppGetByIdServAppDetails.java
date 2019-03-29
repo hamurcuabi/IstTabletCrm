@@ -15,7 +15,7 @@ public class ServAppGetByIdServAppDetails {
     private String inv_ProductDescription;
     private Inv_Id inv_Uomid;
     private Inv_Id inv_ProductId;
-    private int inv_Quantity;
+    private Integer inv_Quantity;
     private boolean isManuel = false;
     private boolean isManuelProduct = false;
     public ServAppGetByIdServAppDetails() {
@@ -113,11 +113,11 @@ public class ServAppGetByIdServAppDetails {
         this.inv_ProductId = inv_ProductId;
     }
 
-    public int getInv_Quantity() {
+    public Integer getInv_Quantity() {
         return inv_Quantity;
     }
 
-    public void setInv_Quantity(int inv_Quantity) {
+    public void setInv_Quantity(Integer inv_Quantity) {
         this.inv_Quantity = inv_Quantity;
     }
 

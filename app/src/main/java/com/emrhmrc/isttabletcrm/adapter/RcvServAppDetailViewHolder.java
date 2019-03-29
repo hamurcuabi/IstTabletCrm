@@ -3,6 +3,7 @@ package com.emrhmrc.isttabletcrm.adapter;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
@@ -51,8 +52,46 @@ public class RcvServAppDetailViewHolder extends BaseViewHolder<ServAppGetByIdSer
             txt_kod.setText(item.getInv_LineNo().toString());
         ruleManuelAdd(item);
         edt_descp.setText(StringUtil.nullToString(item.getInv_Description()));
+        saveChanges(item);
 
+    }
 
+    private void saveChanges(ServAppGetByIdServAppDetails item) {
+        edt_descp.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                item.setInv_Description(editable.toString());
+            }
+        });
+        edt_miktar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (!TextUtils.isEmpty(editable)) {
+                    item.setInv_Quantity(StringUtil.convertStringToınt(editable.toString()));
+                }
+
+            }
+        });
 
     }
 
@@ -81,7 +120,7 @@ public class RcvServAppDetailViewHolder extends BaseViewHolder<ServAppGetByIdSer
             });
         } else edt_miktar.setEnabled(false);
         if (item.isManuelProduct()) {
-            edt_birim.setEnabled(true);
+            edt_birim.setEnabled(false);
         } else edt_birim.setEnabled(false);
         if (item.isManuelProduct()) {
             spn_ucretli.setEnabled(false);

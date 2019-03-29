@@ -22,7 +22,7 @@ public class RcvImageViewHolder extends BaseViewHolder<Notes,
     @Override
     public void onBind(Notes item,
                        @Nullable OnItemClickListener<Notes> listener) {
-        GlideBindingAdapters.setImageResourceBitmap(img, item.getBitmap());
+        GlideBindingAdapters.setImageResourceUri(img, item.getSelectedImageUri());
     }
 
 

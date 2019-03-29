@@ -9,8 +9,8 @@ public class ServAppDetailsList {
     private String inv_Description;
     private Inv_Id_Id inv_ProductId;
     private Inv_Id_Id inv_Uomid;
-    private int inv_Quantity;
-    private int inv_Price;
+    private Integer inv_Quantity;
+    private Integer inv_Price;
     private boolean inv_WillBeBilled;
 
     public ServAppDetailsList() {
@@ -18,6 +18,8 @@ public class ServAppDetailsList {
         inv_ProductDescription = "";
         inv_Description = "";
         inv_Price = 0;
+        inv_Quantity = 0;
+        inv_WillBeBilled = false;
 
     }
 
@@ -69,11 +71,11 @@ public class ServAppDetailsList {
         this.inv_Quantity = inv_Quantity;
     }
 
-    public int getInv_Price() {
+    public Integer getInv_Price() {
         return inv_Price;
     }
 
-    public void setInv_Price(int inv_Price) {
+    public void setInv_Price(Integer inv_Price) {
         this.inv_Price = inv_Price;
     }
 

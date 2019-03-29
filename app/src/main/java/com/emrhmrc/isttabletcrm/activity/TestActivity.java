@@ -361,8 +361,8 @@ public class TestActivity extends AppCompatActivity implements OnItemClickListen
     }
 
     private void openBeforeAfter() {
-        BeforeAfterPicFragment fragment = BeforeAfterPicFragment.newInstance();
-        fragment.show(getSupportFragmentManager(), "beforeafter");
+       /* BeforeAfterPicFragment fragment = BeforeAfterPicFragment.newInstance();
+        fragment.show(getSupportFragmentManager(), "beforeafter");*/
     }
 
     @Override

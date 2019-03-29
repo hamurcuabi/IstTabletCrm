@@ -6,23 +6,34 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.VideoView;
 
 import com.emrhmrc.isttabletcrm.R;
+import com.emrhmrc.isttabletcrm.helper.AddNotes;
+import com.emrhmrc.isttabletcrm.models.ServApp.Notes;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Serializable;
+import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
 import static com.emrhmrc.isttabletcrm.helper.Methodes.checkAndRequestPermissions;
@@ -37,9 +48,16 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
     private ImageView img_close, img_first, img_second, img_add_pic_first, img_add_pic_second,
             img_add_video, img_add_video_second;
     private VideoView video_first, video_second;
+    private Notes notePhoto1, notePhoto2, noteVideo1, noteVideo2;
+    private Button btn_add_1, btn_add_2, btn_send;
+    private EditText edt_1, edt_2;
+    private AddNotes addNotes;
+    private boolean isImage1 = false, isImage2 = false;
+    private List<Notes> haveNotes;
 
-    public static BeforeAfterPicFragment newInstance() {
+    public static BeforeAfterPicFragment newInstance(List<Notes> haveNote) {
         Bundle args = new Bundle();
+        args.putSerializable("notes", (Serializable) haveNote);
         BeforeAfterPicFragment fragment = new BeforeAfterPicFragment();
         fragment.setArguments(args);
         return fragment;
@@ -65,6 +83,15 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
         video_second = view.findViewById(R.id.video_second);
         img_add_video = view.findViewById(R.id.img_add_video);
         img_add_video_second = view.findViewById(R.id.img_add_video_second);
+        btn_send = view.findViewById(R.id.btn_send);
+        btn_add_1 = view.findViewById(R.id.btn_add_1);
+        btn_add_2 = view.findViewById(R.id.btn_add_2);
+        edt_1 = view.findViewById(R.id.edt_1);
+        edt_2 = view.findViewById(R.id.edt_2);
+
+        btn_send.setOnClickListener(this);
+        btn_add_1.setOnClickListener(this);
+        btn_add_2.setOnClickListener(this);
         img_close.setOnClickListener(this);
         img_add_pic_second.setOnClickListener(this);
         img_add_pic_first.setOnClickListener(this);
@@ -72,10 +99,48 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
         img_add_video_second.setOnClickListener(this);
         video_first.setOnClickListener(this);
         video_second.setOnClickListener(this);
-
+        addNotes = (AddNotes) getActivity();
+        haveNotes = (List<Notes>) getArguments().getSerializable("notes");
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getDialog().setCanceledOnTouchOutside(false);
 
+        initFields(haveNotes);
+
+    }
+
+    private void initFields(List<Notes> haveNotes) {
+        if (haveNotes.size() > 0 && haveNotes != null) {
+
+            for (int i = 0; i < haveNotes.size(); i++) {
+
+                if (haveNotes.get(i).getFrom() == 1) {
+                    if (haveNotes.get(i).isImage1()) {
+                        img_first.setImageURI(haveNotes.get(i).getSelectedImageUri());
+                        video_first.setVisibility(View.GONE);
+                        img_first.setVisibility(View.VISIBLE);
+                    } else {
+                        video_first.setVideoURI(haveNotes.get(i).getSelectedVideoUri());
+                        video_first.setVisibility(View.VISIBLE);
+                        img_first.setVisibility(View.GONE);
+                    }
+                    edt_1.setText(haveNotes.get(i).getNoteText());
+
+                } else {
+                    if (haveNotes.get(i).isImage1()) {
+                        img_second.setImageURI(haveNotes.get(i).getSelectedImageUri());
+                        video_second.setVisibility(View.GONE);
+                        img_second.setVisibility(View.VISIBLE);
+                    } else {
+                        video_second.setVideoURI(haveNotes.get(i).getSelectedVideoUri());
+                        img_second.setVisibility(View.GONE);
+                        video_second.setVisibility(View.VISIBLE);
+                    }
+                    edt_2.setText(haveNotes.get(i).getNoteText());
+
+                }
+            }
+
+        }
     }
 
     @Override
@@ -97,7 +162,6 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
             case R.id.img_close:
                 this.dismiss();
                 break;
-
             case R.id.img_add_pic_first:
                 dispatchTakePictureIntent(REQUEST_IMAGE_CAPTURE);
                 break;
@@ -116,9 +180,45 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
             case R.id.video_second:
                 video_second.start();
                 break;
+            case R.id.btn_add_1:
+                edtfill(1);
+                break;
+            case R.id.btn_add_2:
+                edtfill(2);
+                break;
+
+            case R.id.btn_send:
+                sendToRequest();
+                break;
 
         }
 
+    }
+
+    private void sendToRequest() {
+
+        if (haveNotes.size() > 0) {
+            addNotes.addNote(haveNotes);
+            dismiss();
+        } else {
+            dismiss();
+            /*if (getDialog() != null && getDialog().isShowing()) {
+                new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText(getResources().getString(R.string.no_content))
+                        .show();
+            }*/
+        }
+
+    }
+
+    private void edtfill(int i) {
+        if (i == 1) {
+            if (notePhoto1 != null) notePhoto1.setSubject(edt_1.getText().toString());
+            else if (noteVideo1 != null) noteVideo1.setSubject(edt_1.getText().toString());
+        } else if (i == 2) {
+            if (notePhoto2 != null) notePhoto2.setSubject(edt_2.getText().toString());
+            else if (noteVideo2 != null) noteVideo2.setSubject(edt_2.getText().toString());
+        }
     }
 
     private void dispatchTakePictureIntent(int i) {
@@ -143,7 +243,7 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-
+            notePhoto1 = new Notes();
             Bitmap photo = (Bitmap) data.getExtras().get("data");
             img_first.setImageBitmap(photo);
             video_first.setVisibility(View.GONE);
@@ -153,28 +253,157 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
             Uri selectedImage = getImageUri(getActivity(), photo);
             String realPath = getRealPathFromURI(selectedImage);
             selectedImage = Uri.parse(realPath);
-            Log.d(TAG, "onActivityResult: " + selectedImage.toString());
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            photo.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+            byte[] byteArray = byteArrayOutputStream.toByteArray();
+            notePhoto1.setSelectedImageUri(selectedImage);
+            notePhoto1.setDocumentBody(Base64.encodeToString(byteArray, Base64.DEFAULT));
+            notePhoto1.setDocument(true);
+            notePhoto1.setFileName(realPath);
+            notePhoto1.setMimeType("image/jpg");
+            notePhoto1.setSubject("Önceki Görünüm");
+            isImage1 = true;
+            notePhoto1.setFrom(1);
+            notePhoto1.setImage1(true);
+
 
         } else if (requestCode == REQUEST_IMAGE_CAPTURE_SECOND && resultCode == RESULT_OK) {
-
+            notePhoto2 = new Notes();
             Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            img_second.setImageBitmap(imageBitmap);
+            Bitmap photo = (Bitmap) extras.get("data");
+            img_second.setImageBitmap(photo);
             video_second.setVisibility(View.GONE);
             video_second.setVideoURI(null);
             img_second.setVisibility(View.VISIBLE);
+            Uri selectedImage = getImageUri(getActivity(), photo);
+            String realPath = getRealPathFromURI(selectedImage);
+            selectedImage = Uri.parse(realPath);
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            photo.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+            byte[] byteArray = byteArrayOutputStream.toByteArray();
+            notePhoto2.setSelectedImageUri(selectedImage);
+            notePhoto2.setDocumentBody(Base64.encodeToString(byteArray, Base64.DEFAULT));
+            notePhoto2.setDocument(true);
+            notePhoto2.setFileName(realPath);
+            notePhoto2.setMimeType("image/jpg");
+            notePhoto2.setSubject("Sonraki Görünüm");
+            isImage2 = true;
+            notePhoto2.setFrom(2);
+            notePhoto2.setImage1(true);
         } else if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
-            Uri videoUri = data.getData();
-            video_first.setVideoURI(videoUri);
+            Uri selectedVideoUri = data.getData();
+            video_first.setVideoURI(selectedVideoUri);
             img_first.setVisibility(View.GONE);
             img_first.setImageBitmap(null);
             video_first.setVisibility(View.VISIBLE);
+
+            String[] projection = {MediaStore.Video.Media.DATA, MediaStore.Video.Media.SIZE, MediaStore.Video.Media.DURATION};
+            Cursor cursor = getActivity().managedQuery(selectedVideoUri, projection, null, null,
+                    null);
+
+            cursor.moveToFirst();
+            String filePath = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA));
+            Log.d("File Name:", filePath);
+
+            Bitmap thumb = ThumbnailUtils.createVideoThumbnail(filePath, MediaStore.Video.Thumbnails.MINI_KIND);
+            // Setting the thumbnail of the video in to the image view
+            // msImage.setImageBitmap(thumb);
+            InputStream inputStream = null;
+// Converting the video in to the bytes
+            try {
+                inputStream = getActivity().getContentResolver().openInputStream(selectedVideoUri);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            int bufferSize = 1024;
+            byte[] buffer = new byte[bufferSize];
+            ByteArrayOutputStream byteBuffer;
+            byteBuffer = new ByteArrayOutputStream();
+            int len = 0;
+            try {
+                while ((len = inputStream.read(buffer)) != -1) {
+                    byteBuffer.write(buffer, 0, len);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.println("converted!");
+
+            String videoData = "";
+            //Converting bytes into base64
+            videoData = Base64.encodeToString(byteBuffer.toByteArray(), Base64.DEFAULT);
+            // Log.d("VideoData**>  ", videoData);
+            String sinSaltoFinal2 = videoData.trim();
+            String sinsinSalto2 = sinSaltoFinal2.replaceAll("\n", "");
+            //Log.d("VideoData**>  ", sinsinSalto2);
+            String realPath = getRealPathFromURI(selectedVideoUri);
+            noteVideo1 = new Notes();
+            noteVideo1.setDocumentBody(Base64.encodeToString(byteBuffer.toByteArray(), Base64.DEFAULT));
+            noteVideo1.setDocument(true);
+            noteVideo1.setFileName(realPath);
+            noteVideo1.setMimeType("video/mp4");
+            noteVideo1.setSubject("Önceki Görünüm Video");
+            noteVideo1.setSelectedVideoUri(selectedVideoUri);
+            isImage1 = false;
+            noteVideo1.setFrom(1);
+            noteVideo1.setImage1(false);
+
         } else if (requestCode == REQUEST_VIDEO_CAPTURE_SECOND && resultCode == RESULT_OK) {
-            Uri videoUri = data.getData();
-            video_second.setVideoURI(videoUri);
+            Uri selectedVideoUri = data.getData();
+            video_second.setVideoURI(selectedVideoUri);
             img_second.setVisibility(View.GONE);
             img_second.setImageBitmap(null);
             video_second.setVisibility(View.VISIBLE);
+            String[] projection = {MediaStore.Video.Media.DATA, MediaStore.Video.Media.SIZE, MediaStore.Video.Media.DURATION};
+            Cursor cursor = getActivity().managedQuery(selectedVideoUri, projection, null, null,
+                    null);
+
+            cursor.moveToFirst();
+            String filePath = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA));
+            Log.d("File Name:", filePath);
+
+            Bitmap thumb = ThumbnailUtils.createVideoThumbnail(filePath, MediaStore.Video.Thumbnails.MINI_KIND);
+            // Setting the thumbnail of the video in to the image view
+            // msImage.setImageBitmap(thumb);
+            InputStream inputStream = null;
+// Converting the video in to the bytes
+            try {
+                inputStream = getActivity().getContentResolver().openInputStream(selectedVideoUri);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            int bufferSize = 1024;
+            byte[] buffer = new byte[bufferSize];
+            ByteArrayOutputStream byteBuffer;
+            byteBuffer = new ByteArrayOutputStream();
+            int len = 0;
+            try {
+                while ((len = inputStream.read(buffer)) != -1) {
+                    byteBuffer.write(buffer, 0, len);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.println("converted!");
+
+            String videoData = "";
+            //Converting bytes into base64
+            videoData = Base64.encodeToString(byteBuffer.toByteArray(), Base64.DEFAULT);
+            //  Log.d("VideoData**>  ", videoData);
+            String sinSaltoFinal2 = videoData.trim();
+            String sinsinSalto2 = sinSaltoFinal2.replaceAll("\n", "");
+            //   Log.d("VideoData**>  ", sinsinSalto2);
+            String realPath = getRealPathFromURI(selectedVideoUri);
+            noteVideo2 = new Notes();
+            noteVideo2.setDocumentBody(Base64.encodeToString(byteBuffer.toByteArray(), Base64.DEFAULT));
+            noteVideo2.setDocument(true);
+            noteVideo2.setFileName(realPath);
+            noteVideo2.setMimeType("video/mp4");
+            noteVideo2.setSubject("Sonraki Görünüm Video");
+            noteVideo2.setSelectedVideoUri(selectedVideoUri);
+            isImage2 = false;
+            noteVideo2.setFrom(2);
+            noteVideo2.setImage1(false);
         }
     }
 

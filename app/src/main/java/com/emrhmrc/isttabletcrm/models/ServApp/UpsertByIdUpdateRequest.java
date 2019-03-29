@@ -7,7 +7,7 @@ public class UpsertByIdUpdateRequest {
 
     private String UserId;
     private ServiceAppointmentUpdate serviceAppointment;
-    private List<ServAppGetByIdNotes> servAppNotesList;
+    private List<Notes> servAppNotesList;
     private List<ServAppGetByIdServAppWorkListDetails> servAppWorkListDetailsList;
     private List<ServAppDetailsList> servAppDetailsList;
     private List<ServAppGetByIdServAppBreakdownTypes> servAppBreakdownTypesList;
@@ -38,11 +38,11 @@ public class UpsertByIdUpdateRequest {
         this.serviceAppointment = serviceAppointment;
     }
 
-    public List<ServAppGetByIdNotes> getServAppNotesList() {
+    public List<Notes> getServAppNotesList() {
         return servAppNotesList;
     }
 
-    public void setServAppNotesList(List<ServAppGetByIdNotes> servAppNotesList) {
+    public void setServAppNotesList(List<Notes> servAppNotesList) {
         this.servAppNotesList = servAppNotesList;
     }
 

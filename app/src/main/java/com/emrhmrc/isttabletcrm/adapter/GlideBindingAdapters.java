@@ -3,6 +3,7 @@ package com.emrhmrc.isttabletcrm.adapter;
 import android.content.Context;
 import android.databinding.BindingAdapter;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.util.Base64;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -149,6 +150,17 @@ public class GlideBindingAdapters {
         Glide.with(context)
                 .setDefaultRequestOptions(option)
                 .load(bitmap)
+                .into(view);
+    }
+    @BindingAdapter("imageResourceUri")
+    public static void setImageResourceUri(ImageView view, Uri uri) {
+        Context context = view.getContext();
+        RequestOptions option = new RequestOptions()
+                .placeholder(R.drawable.ic_launcher_background)
+                .error(R.drawable.ic_launcher_background);
+        Glide.with(context)
+                .setDefaultRequestOptions(option)
+                .load(uri)
                 .into(view);
     }
 

@@ -1,17 +1,12 @@
 package com.emrhmrc.isttabletcrm.activity;
 
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.database.Cursor;
 import android.databinding.DataBindingUtil;
-import android.graphics.Bitmap;
 import android.graphics.Point;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -42,11 +37,12 @@ import com.emrhmrc.isttabletcrm.fragment.DefaultMapFragment;
 import com.emrhmrc.isttabletcrm.fragment.DetailServAppFormFragment;
 import com.emrhmrc.isttabletcrm.fragment.ReasonAndAddenBreakdownFragment;
 import com.emrhmrc.isttabletcrm.fragment.ReasonOfBreakdownFragment;
+import com.emrhmrc.isttabletcrm.helper.AddBreakdownTypeCode;
 import com.emrhmrc.isttabletcrm.helper.AddManuelProduct;
+import com.emrhmrc.isttabletcrm.helper.AddNotes;
 import com.emrhmrc.isttabletcrm.helper.CreateSubServAppSingleton;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
-import com.emrhmrc.isttabletcrm.models.CommonClass.Code_Id;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id_Id;
 import com.emrhmrc.isttabletcrm.models.MapModel;
@@ -54,16 +50,17 @@ import com.emrhmrc.isttabletcrm.models.Product.Product;
 import com.emrhmrc.isttabletcrm.models.ServApp.CompleteByIdRequest;
 import com.emrhmrc.isttabletcrm.models.ServApp.DefaultResponse;
 import com.emrhmrc.isttabletcrm.models.ServApp.DefaultResponse2;
+import com.emrhmrc.isttabletcrm.models.ServApp.Notes;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppDetailsList;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetById;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdNotes;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppDetails;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppModernizationChecklists;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppIdRequest;
+import com.emrhmrc.isttabletcrm.models.ServApp.ServiceAppHelperIds;
 import com.emrhmrc.isttabletcrm.models.ServApp.UpsertByIdUpdateRequest;
+import com.emrhmrc.isttabletcrm.util.StringUtil;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,14 +68,12 @@ import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ServAppDetailActivity extends AppCompatActivity implements OnItemClickListener, AddManuelProduct {
+public class ServAppDetailActivity extends AppCompatActivity implements OnItemClickListener,
+        AddManuelProduct, AddNotes, AddBreakdownTypeCode {
 
     private static final String TAG = "ServAppDetailActivity";
 
@@ -125,11 +120,12 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                 boolean exist = false;
                 for (ServAppGetByIdServAppDetails details : adapter.getItems()
                 ) {
-                    if (details.getInv_ProductId().getText().equals(product.getProductId())) {
-                        exist = true;
-                        updateRequest.getServAppDetailsList().remove(details);
+                    if (details.getInv_ProductId() != null) {
+                        if (details.getInv_ProductId().getText().equals(product.getProductId())) {
+                            exist = true;
+                            updateRequest.getServAppDetailsList().remove(details);
+                        }
                     }
-
                 }
                 if (!exist) {
                     Log.d(TAG, "Product Not Exist ");
@@ -138,12 +134,6 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                     add.setManuel(true);
                     add.setInv_Quantity(1);
                     add.setInv_WillBeBilled(true);
-                    ServAppDetailsList item = new ServAppDetailsList();
-                    item.setInv_WillBeBilled(true);
-                    item.setInv_Quantity(1);
-                    item.setInv_ProductId(new Inv_Id_Id(add.getInv_ProductId().getId()));
-                    item.setInv_Uomid(new Inv_Id_Id());
-                    updateRequest.getServAppDetailsList().add(item);
                     adapter.add(add);
                 }
             }
@@ -396,7 +386,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     }
 
     private void openBeforeAfter() {
-        BeforeAfterPicFragment fragment = BeforeAfterPicFragment.newInstance();
+        BeforeAfterPicFragment fragment = BeforeAfterPicFragment.newInstance(updateRequest.getServAppNotesList());
         fragment.show(getSupportFragmentManager(), "beforeafter");
     }
 
@@ -524,7 +514,6 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
 
     }
 
-
     @Override
     protected void onDestroy() {
         Log.d(TAG, "onDestroy: ");
@@ -562,51 +551,6 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
 
     }
 
-    public Uri getImageUri(Context inContext, Bitmap inImage) {
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
-        return Uri.parse(path);
-    }
-
-    public String getRealPathFromURI(Uri contentUri) {
-        Cursor cursor = null;
-        try {
-            String[] proj = {MediaStore.Images.Media.DATA};
-            cursor = getContentResolver().query(contentUri, proj, null, null, null);
-            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            cursor.moveToFirst();
-            return cursor.getString(column_index);
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-        }
-    }
-
-    private void uploadFile(Uri fileUri) {
-
-        String filePath = getRealPathFromURIPath(fileUri, this);
-        File file = new File(filePath);
-        Log.d(TAG, "Filename " + file.getName());
-        //RequestBody mFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-        RequestBody mFile = RequestBody.create(MediaType.parse("image/*"), file);
-        MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("file", file.getName(), mFile);
-        RequestBody filename = RequestBody.create(MediaType.parse("text/plain"), file.getName());
-
-    }
-
-    private String getRealPathFromURIPath(Uri contentURI, Activity activity) {
-        Cursor cursor = activity.getContentResolver().query(contentURI, null, null, null, null);
-        if (cursor == null) {
-            return contentURI.getPath();
-        } else {
-            cursor.moveToFirst();
-            int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
-            return cursor.getString(idx);
-        }
-    }
-
     @Override
     public void addProduct(ServAppGetByIdServAppDetails product) {
         adapter.add(product);
@@ -616,12 +560,34 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
 
     private void updateServApp() {
         initDialog();
+        //Eklenen Ürünleri Map Edelim
+        updateRequest.getServAppDetailsList().clear();
+        for (ServAppGetByIdServAppDetails current : adapter.getItems()
+        ) {
+            ServAppDetailsList item = new ServAppDetailsList();
+            item.setInv_ServiceAppDetailId(StringUtil.emptyToString(current.getInv_ServiceAppDetailId()));
+            item.setInv_ProductDescription(StringUtil.nullToString(current.getInv_ProductDescription()));
+            item.setInv_Description(StringUtil.emptyToString(current.getInv_Description()));
+            if (current.getInv_ProductId() != null)
+                item.setInv_ProductId(new Inv_Id_Id(current.getInv_ProductId().getId()));
+            if (current.getInv_Uomid() != null)
+                item.setInv_Uomid(new Inv_Id_Id(current.getInv_Uomid().getId()));
+            else item.setInv_Uomid(new Inv_Id_Id());
+            item.setInv_Quantity(current.getInv_Quantity() != null ? current.getInv_Quantity() : 0);
+            item.setInv_Price(current.getInv_Price() != null ? current.getInv_Price() : 0);
+            item.setInv_WillBeBilled(current.getInv_WillBeBilled());
+            updateRequest.getServAppDetailsList().add(item);
+
+        }
+
+
+        //
         updateRequest.setUserId(SingletonUser.getInstance().getUser().getUserId());
         updateRequest.getServiceAppointment().setActivityId(model.getServiceAppointment().getActivityId());
-        updateRequest.getServiceAppointment().setInv_BreakdownCodeId(new Code_Id());
-        updateRequest.getServiceAppointment().setInv_BreakdownDefCodeid(new Code_Id());
-        updateRequest.getServiceAppointment().setInv_MainProductGroupid(new Code_Id());
-        updateRequest.getServiceAppointment().setInv_SubProductGroupid(new Code_Id());
+        updateRequest.getServiceAppointment().setInv_BreakdownCodeId(new Inv_Id_Id());
+        updateRequest.getServiceAppointment().setInv_BreakdownDefCodeid(new Inv_Id_Id());
+        updateRequest.getServiceAppointment().setInv_MainProductGroupid(new Inv_Id_Id());
+        updateRequest.getServiceAppointment().setInv_SubProductGroupid(new Inv_Id_Id());
         dialog.show();
         Call<DefaultResponse2> call = jsonApi.updateServapp(updateRequest);
         APIHelper.enqueueWithRetry(call, new Callback<DefaultResponse2>() {
@@ -658,6 +624,27 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                         .show();
             }
         });
+
+
+    }
+
+    @Override
+    public void addNote(List<Notes> notes) {
+
+        updateRequest.getServAppNotesList().clear();
+        for (Notes current : notes
+        ) {
+            updateRequest.getServAppNotesList().add(current);
+        }
+
+    }
+
+    @Override
+    public void addIds(ServiceAppHelperIds ids) {
+        updateRequest.getServiceAppointment().setInv_BreakdownCodeId(ids.getInv_BreakdownCodeId());
+        updateRequest.getServiceAppointment().setInv_BreakdownDefCodeid(ids.getInv_BreakdownDefCodeid());
+        updateRequest.getServiceAppointment().setInv_MainProductGroupid(ids.getInv_MainProductGroupid());
+        updateRequest.getServiceAppointment().setInv_SubProductGroupid(ids.getInv_SubProductGroupid());
 
 
     }

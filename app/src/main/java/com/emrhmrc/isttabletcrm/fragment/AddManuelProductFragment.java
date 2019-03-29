@@ -175,10 +175,13 @@ public class AddManuelProductFragment extends DialogFragment implements View.OnC
     private void addProduct() {
         if (checkFields()) {
             ServAppGetByIdServAppDetails add = new ServAppGetByIdServAppDetails();
-            add.setInv_ProductId(new Inv_Id("inv_subproductgroup", edt_urunadi.getText().toString(), null));
+            add.setInv_ProductId(new Inv_Id("inv_subproductgroup",
+                    edt_urunadi.getText().toString(), null));
             add.setManuelProduct(true);
+            add.setInv_ProductDescription(edt_urunadi.getText().toString());
             add.setInv_Description(edt_descp.getText().toString());
             add.setInv_Uomid(selected);
+            add.setInv_Price(0);
             add.setInv_Quantity(StringUtil.convertStringToınt(edt_miktar.getText().toString()));
             addManuelProduct.addProduct(add);
             dismiss();

@@ -281,7 +281,7 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
                 prog_elevator.setVisibility(View.GONE);
                 if (response.isSuccessful()) {
                     ElevatorListAll listAll = response.body();
-                    fillElevatorSpinner(listAll.getElevators());
+                    if (getDialog() != null && getDialog().isShowing())   fillElevatorSpinner(listAll.getElevators());
 
                 } else {
                     if (getDialog() != null && getDialog().isShowing()) {
@@ -339,7 +339,7 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
                 prog_account.setVisibility(View.GONE);
                 if (response.isSuccessful()) {
                     AccountListAll listAll = response.body();
-                    fillSpinner(listAll.getAccounts());
+                    if (getDialog() != null && getDialog().isShowing())  fillSpinner(listAll.getAccounts());
 
                 } else {
                     if (getDialog() != null && getDialog().isShowing()) {
@@ -435,10 +435,11 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
             Uri selectedImage = getImageUri(getActivity(), photo);
             String realPath = getRealPathFromURI(selectedImage);
             selectedImage = Uri.parse(realPath);
+
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             photo.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
             byte[] byteArray = byteArrayOutputStream.toByteArray();
-            notes.setBitmap(photo);
+            notes.setSelectedImageUri(selectedImage);
             notes.setDocumentBody(Base64.encodeToString(byteArray, Base64.DEFAULT));
             notes.setDocument(true);
             notes.setFileName(realPath);

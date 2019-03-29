@@ -12,7 +12,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -21,20 +20,24 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.emrhmrc.isttabletcrm.R;
+import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
+import com.emrhmrc.isttabletcrm.helper.AddBreakdownTypeCode;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.models.BreakDown.BreakdownCode;
 import com.emrhmrc.isttabletcrm.models.BreakDown.BreakdownCodeGetByFilter;
 import com.emrhmrc.isttabletcrm.models.BreakDown.BreakdownDefCodeListAll;
 import com.emrhmrc.isttabletcrm.models.BreakDown.BreakdownDefCodes;
 import com.emrhmrc.isttabletcrm.models.BreakDown.BreakdownFilterRequest;
+import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id_Id;
 import com.emrhmrc.isttabletcrm.models.Product.MainList;
 import com.emrhmrc.isttabletcrm.models.Product.MainProductList;
 import com.emrhmrc.isttabletcrm.models.Product.SubGroupRequest;
 import com.emrhmrc.isttabletcrm.models.Product.SubList;
 import com.emrhmrc.isttabletcrm.models.Product.SubProductGroupIdRequest;
 import com.emrhmrc.isttabletcrm.models.Product.SubProductList;
+import com.emrhmrc.isttabletcrm.models.ServApp.ServiceAppHelperIds;
 
 import java.util.List;
 
@@ -64,6 +67,8 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
     private ArrayAdapter<BreakdownCode> breakdownCodeArrayAdapter;
     private ArrayAdapter<BreakdownCode> codeArrayAdapter;
     private BreakdownFilterRequest filterRequest;
+    private ServiceAppHelperIds ids;
+    private AddBreakdownTypeCode addBreakdownTypeCode;
 
     public static BreakdownTypeCodeFragment newInstance() {
         Bundle args = new Bundle();
@@ -83,6 +88,7 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         shareData = ShareData.getInstance();
+        ids = new ServiceAppHelperIds();
         filterRequest = new BreakdownFilterRequest();
         jsonApi = ApiClient.getClient().create(JsonApi.class);
         btn_save = view.findViewById(R.id.btn_save);
@@ -97,6 +103,7 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
         prog_ariza = view.findViewById(R.id.prog_ariza);
         btn_save.setOnClickListener(this);
         img_close.setOnClickListener(this);
+        addBreakdownTypeCode = (AddBreakdownTypeCode) getActivity();
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getDialog().setCanceledOnTouchOutside(false);
         getMainProduct();
@@ -250,7 +257,7 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
         int height = metrics.heightPixels;
         ViewGroup.LayoutParams params = getDialog().getWindow().getAttributes();
         params.width = 3 * width / 5;
-        params.height =4* height/5;
+        params.height = 4 * height / 5;
         getDialog().getWindow().setGravity(Gravity.CENTER_VERTICAL);
         getDialog().getWindow().setAttributes((android.view.WindowManager.LayoutParams) params);
 
@@ -261,7 +268,7 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_save:
-
+                sendToRequest();
                 break;
             case R.id.img_close:
                 dismiss();
@@ -270,6 +277,18 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
 
         }
 
+    }
+
+    private void sendToRequest() {
+        if (ids != null)
+            addBreakdownTypeCode.addIds(ids);
+        else {
+            if (getDialog() != null && getDialog().isShowing()) {
+                new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText(getResources().getString(R.string.empty_fields))
+                        .show();
+            }
+        }
     }
 
     private void fillspnMain(List<MainList> list) {
@@ -290,6 +309,7 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     //Get Sub
                     getSubProduct(mainList.get(i).getInv_MainProductGroupid());
+                    ids.setInv_MainProductGroupid(new Inv_Id_Id(mainList.get(i).getInv_MainProductGroupid()));
                 }
             });
         } else {
@@ -318,6 +338,7 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
                     if (list.get(i).getInv_SubProductGroupid() != null) {
                         filterRequest.setSubProductCodeId(list.get(i).getInv_SubProductGroupid());
                         getSubProductProduct(list.get(i).getInv_SubProductGroupid());
+                        ids.setInv_SubProductGroupid(new Inv_Id_Id(list.get(i).getInv_SubProductGroupid()));
                     }
 
                 }
@@ -347,6 +368,8 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
 
 
                     getBreakdownCodes(list.get(i).getInv_BreakdownDefCodeId());
+                    ids.setInv_BreakdownDefCodeid(new Inv_Id_Id(list.get(i).getInv_BreakdownDefCodeId()));
+
 
                 }
             });
@@ -373,7 +396,7 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
             spn_breakdowntype.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    //Get Sub
+                    ids.setInv_BreakdownCodeId(new Inv_Id_Id(list.get(i).getInv_BreakdownCodeId()));
                 }
             });
         } else {

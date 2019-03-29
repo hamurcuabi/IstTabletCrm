@@ -1,38 +1,61 @@
 package com.emrhmrc.isttabletcrm.models.ServApp;
 
-import android.graphics.Bitmap;
+import android.net.Uri;
 
 import com.google.gson.annotations.Expose;
 
-public class Notes {
-    private Integer FileSize;
+import java.io.Serializable;
+
+public class Notes implements Serializable {
+
     private boolean IsDocument;
     private String Subject;
     private String MimeType;
     private String FileName;
     private String DocumentBody;
     private String NoteText;
-
-    public Bitmap getBitmap() {
-        return bitmap;
-    }
-
-    public void setBitmap(Bitmap bitmap) {
-        this.bitmap = bitmap;
-    }
-
     @Expose
-    private Bitmap bitmap;
+    private int from;
+    @Expose
+    private transient Uri selectedVideoUri;
+    @Expose
+    private transient Uri selectedImageUri;
+    @Expose
+    private boolean isImage1;
 
     public Notes() {
     }
 
-    public Integer getFileSize() {
-        return FileSize;
+    public Uri getSelectedImageUri() {
+        return selectedImageUri;
     }
 
-    public void setFileSize(Integer fileSize) {
-        FileSize = fileSize;
+    public void setSelectedImageUri(Uri selectedImageUri) {
+        this.selectedImageUri = selectedImageUri;
+    }
+
+    public int getFrom() {
+        return from;
+    }
+
+    public void setFrom(int from) {
+        this.from = from;
+    }
+
+    public Uri getSelectedVideoUri() {
+        return selectedVideoUri;
+    }
+
+    public void setSelectedVideoUri(Uri selectedVideoUri) {
+        this.selectedVideoUri = selectedVideoUri;
+    }
+
+    public boolean isImage1() {
+        return isImage1;
+    }
+
+    public void setImage1(boolean image1) {
+        isImage1 = image1;
     }
 
     public boolean isDocument() {

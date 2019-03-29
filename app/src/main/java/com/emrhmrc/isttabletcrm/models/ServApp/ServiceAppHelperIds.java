@@ -1,26 +1,12 @@
 package com.emrhmrc.isttabletcrm.models.ServApp;
 
-import com.emrhmrc.isttabletcrm.models.CommonClass.Code_Id;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id_Id;
 
-public class ServiceAppointmentUpdate {
-
-    private String ActivityId;
+public class ServiceAppHelperIds {
     private Inv_Id_Id inv_BreakdownCodeId;
     private Inv_Id_Id inv_BreakdownDefCodeid;
     private Inv_Id_Id inv_MainProductGroupid;
     private Inv_Id_Id inv_SubProductGroupid;
-
-    public ServiceAppointmentUpdate() {
-    }
-
-    public String getActivityId() {
-        return ActivityId;
-    }
-
-    public void setActivityId(String activityId) {
-        ActivityId = activityId;
-    }
 
     public Inv_Id_Id getInv_BreakdownCodeId() {
         return inv_BreakdownCodeId;
@@ -52,5 +38,8 @@ public class ServiceAppointmentUpdate {
 
     public void setInv_SubProductGroupid(Inv_Id_Id inv_SubProductGroupid) {
         this.inv_SubProductGroupid = inv_SubProductGroupid;
+    }
+
+    public ServiceAppHelperIds() {
     }
 }

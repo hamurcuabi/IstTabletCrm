@@ -61,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginTop="@dimen/detay_menu_12"
-                android:scaleType="centerCrop"
+                android:scaleType="fitCenter"
                 android:src="@drawable/image" />
 
             <LinearLayout
@@ -72,6 +72,7 @@
                 android:orientation="horizontal">
 
                 <EditText
+                    android:id="@+id/edt_1"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/edt_calendar_height"
                     android:layout_gravity="center"
@@ -90,6 +91,8 @@
                     android:gravity="center">
 
                     <Button
+                        android:visibility="gone"
+                        android:id="@+id/btn_add_1"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:layout_gravity="center"
@@ -200,7 +203,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginTop="@dimen/detay_menu_12"
-                android:scaleType="centerCrop"
+                android:scaleType="fitCenter"
                 android:src="@drawable/image" />
 
             <LinearLayout
@@ -211,6 +214,7 @@
                 android:orientation="horizontal">
 
                 <EditText
+                    android:id="@+id/edt_2"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/edt_calendar_height"
                     android:layout_gravity="center"
@@ -229,6 +233,8 @@
                     android:gravity="center">
 
                     <Button
+                        android:visibility="gone"
+                        android:id="@+id/btn_add_2"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:layout_gravity="center"

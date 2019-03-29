@@ -44,6 +44,11 @@ public class StringUtil {
         else return "-";
     }
 
+    public static String emptyToString(String string) {
+        if (validateStrings(string)) return string;
+        else return "";
+    }
+
     public static boolean isNull(String string) {
         if (string == null) return false;
         else return true;
