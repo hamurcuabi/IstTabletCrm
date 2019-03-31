@@ -30,6 +30,7 @@ import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointment;
 import com.emrhmrc.isttabletcrm.databinding.ActivityServAppDetailBinding;
 import com.emrhmrc.isttabletcrm.fragment.AddManuelProductFragment;
+import com.emrhmrc.isttabletcrm.fragment.AddWorkmanshipFragment;
 import com.emrhmrc.isttabletcrm.fragment.BeforeAfterPicFragment;
 import com.emrhmrc.isttabletcrm.fragment.BreakdownTypeCodeFragment;
 import com.emrhmrc.isttabletcrm.fragment.ControlListFragment;
@@ -134,6 +135,8 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                     add.setManuel(true);
                     add.setInv_Quantity(1);
                     add.setInv_WillBeBilled(true);
+                    add.setInv_Uomid(product.getUoM());
+                    add.setInv_ProductDescription(product.getName());
                     adapter.add(add);
                 }
             }
@@ -141,10 +144,10 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
             if (id != null) {
                 Log.d(TAG, "Id not null " + id);
                 for (int k = 0; k < adapter.getItems().size(); k++) {
-
-                    if (adapter.getItems().get(k).getInv_ProductId().getId().equals(id)) {
-                        adapter.remove(k);
-                    }
+                    if (adapter.getItems().get(k).getInv_ProductId() != null)
+                        if (adapter.getItems().get(k).getInv_ProductId().getId().equals(id)) {
+                            adapter.remove(k);
+                        }
 
                 }
             }
@@ -406,7 +409,8 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
             R.id.img_add, R.id.txt_add, R.id.btn_beforeafter, R.id.txt_aciklamanot,
             R.id.txt_asansorno, R.id.txt_servis_raporu, R.id.img_servis_raporu, R.id.img_gps,
             R.id.img_menu, R.id.txt_kaydet, R.id.img_kaydet, R.id.btn_ariza_kodu,
-            R.id.btn_ariza_nedeni, R.id.add_job_2, R.id.img_add_3, R.id.btn_kontrol_listesi})
+            R.id.btn_ariza_nedeni, R.id.add_job_2, R.id.img_add_3, R.id.btn_kontrol_listesi,
+            R.id.img_add_2, R.id.add_job})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_cancel:
@@ -423,9 +427,6 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                 break;
             case R.id.txt_asansorno:
                 openElevatorDetail();
-                break;
-            case R.id.add_job:
-                openAddPiece();
                 break;
             case R.id.btn_kontrol_listesi:
                 openControlList();
@@ -475,7 +476,19 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
             case R.id.img_add_3:
                 openAddManuelProductFragment();
                 break;
+            case R.id.img_add_2:
+                openWordkman();
+                break;
+            case R.id.add_job:
+                openWordkman();
+                break;
         }
+    }
+
+    private void openWordkman() {
+        AddWorkmanshipFragment fragment = AddWorkmanshipFragment.newInstance();
+        fragment.show(getSupportFragmentManager(), "AddWorkmanshipFragment");
+
     }
 
     @Override
@@ -630,12 +643,9 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
 
     @Override
     public void addNote(List<Notes> notes) {
-
-        updateRequest.getServAppNotesList().clear();
-        for (Notes current : notes
-        ) {
-            updateRequest.getServAppNotesList().add(current);
-        }
+        updateRequest.setServAppNotesList(new ArrayList<>());
+        updateRequest.getServAppNotesList().add(notes.get(0));
+        updateRequest.getServAppNotesList().add(notes.get(1));
 
     }
 

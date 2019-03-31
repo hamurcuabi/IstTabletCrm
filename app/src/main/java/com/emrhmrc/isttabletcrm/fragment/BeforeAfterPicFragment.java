@@ -104,43 +104,48 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getDialog().setCanceledOnTouchOutside(false);
 
-        initFields(haveNotes);
+        initFields();
 
     }
 
-    private void initFields(List<Notes> haveNotes) {
-        if (haveNotes.size() > 0 && haveNotes != null) {
+    private void initFields() {
+        if (haveNotes.size() == 0) {
 
-            for (int i = 0; i < haveNotes.size(); i++) {
-
-                if (haveNotes.get(i).getFrom() == 1) {
-                    if (haveNotes.get(i).isImage1()) {
-                        img_first.setImageURI(haveNotes.get(i).getSelectedImageUri());
-                        video_first.setVisibility(View.GONE);
-                        img_first.setVisibility(View.VISIBLE);
-                    } else {
-                        video_first.setVideoURI(haveNotes.get(i).getSelectedVideoUri());
-                        video_first.setVisibility(View.VISIBLE);
-                        img_first.setVisibility(View.GONE);
-                    }
-                    edt_1.setText(haveNotes.get(i).getNoteText());
-
-                } else {
-                    if (haveNotes.get(i).isImage1()) {
-                        img_second.setImageURI(haveNotes.get(i).getSelectedImageUri());
-                        video_second.setVisibility(View.GONE);
-                        img_second.setVisibility(View.VISIBLE);
-                    } else {
-                        video_second.setVideoURI(haveNotes.get(i).getSelectedVideoUri());
-                        img_second.setVisibility(View.GONE);
-                        video_second.setVisibility(View.VISIBLE);
-                    }
-                    edt_2.setText(haveNotes.get(i).getNoteText());
-
-                }
-            }
+            haveNotes.add(0, new Notes());
+            haveNotes.add(1, new Notes());
 
         }
+
+        if (haveNotes.get(0) != null && haveNotes.get(0).getFrom() == 1) {
+            if (haveNotes.get(0).isImage1() && haveNotes.get(0).getSelectedImageUri() != null) {
+                img_first.setImageURI(haveNotes.get(0).getSelectedImageUri());
+                video_first.setVisibility(View.GONE);
+                img_first.setVisibility(View.VISIBLE);
+            } else if(haveNotes.get(0).getSelectedVideoUri() != null){
+                video_first.setVideoURI(haveNotes.get(0).getSelectedVideoUri());
+                video_first.setVisibility(View.VISIBLE);
+                img_first.setVisibility(View.GONE);
+
+            }
+            edt_1.setText(haveNotes.get(0).getNoteText());
+
+        }
+        if (haveNotes.get(1) != null && haveNotes.get(1).getFrom() == 2) {
+            if (haveNotes.get(1).isImage1()&&haveNotes.get(1).getSelectedImageUri() != null) {
+                img_second.setImageURI(haveNotes.get(1).getSelectedImageUri());
+                video_second.setVisibility(View.GONE);
+                img_second.setVisibility(View.VISIBLE);
+
+            } else if(haveNotes.get(1).getSelectedVideoUri() != null) {
+                video_second.setVideoURI(haveNotes.get(1).getSelectedVideoUri());
+                img_second.setVisibility(View.GONE);
+                video_second.setVisibility(View.VISIBLE);
+
+            }
+            edt_2.setText(haveNotes.get(1).getNoteText());
+
+        }
+
     }
 
     @Override
@@ -197,17 +202,12 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
 
     private void sendToRequest() {
 
-        if (haveNotes.size() > 0) {
-            addNotes.addNote(haveNotes);
-            dismiss();
-        } else {
-            dismiss();
-            /*if (getDialog() != null && getDialog().isShowing()) {
-                new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
-                        .setTitleText(getResources().getString(R.string.no_content))
-                        .show();
-            }*/
-        }
+        haveNotes.get(0).setNoteText(edt_1.getText().toString());
+        haveNotes.get(0).setFrom(1);
+        haveNotes.get(1).setNoteText(edt_2.getText().toString());
+        haveNotes.get(1).setFrom(2);
+        addNotes.addNote(haveNotes);
+        dismiss();
 
     }
 
@@ -243,7 +243,11 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            notePhoto1 = new Notes();
+            if (notePhoto1 == null) {
+                notePhoto1 = new Notes();
+                noteVideo1 = null;
+            }
+
             Bitmap photo = (Bitmap) data.getExtras().get("data");
             img_first.setImageBitmap(photo);
             video_first.setVisibility(View.GONE);
@@ -265,10 +269,14 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
             isImage1 = true;
             notePhoto1.setFrom(1);
             notePhoto1.setImage1(true);
+            haveNotes.set(0, notePhoto1);
 
 
         } else if (requestCode == REQUEST_IMAGE_CAPTURE_SECOND && resultCode == RESULT_OK) {
-            notePhoto2 = new Notes();
+            if (notePhoto2 == null) {
+                notePhoto2 = new Notes();
+                noteVideo2 = null;
+            }
             Bundle extras = data.getExtras();
             Bitmap photo = (Bitmap) extras.get("data");
             img_second.setImageBitmap(photo);
@@ -290,6 +298,7 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
             isImage2 = true;
             notePhoto2.setFrom(2);
             notePhoto2.setImage1(true);
+            haveNotes.set(1, notePhoto2);
         } else if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
             Uri selectedVideoUri = data.getData();
             video_first.setVideoURI(selectedVideoUri);
@@ -337,7 +346,10 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
             String sinsinSalto2 = sinSaltoFinal2.replaceAll("\n", "");
             //Log.d("VideoData**>  ", sinsinSalto2);
             String realPath = getRealPathFromURI(selectedVideoUri);
-            noteVideo1 = new Notes();
+            if (noteVideo1 == null) {
+                noteVideo1 = new Notes();
+                notePhoto1 = null;
+            }
             noteVideo1.setDocumentBody(Base64.encodeToString(byteBuffer.toByteArray(), Base64.DEFAULT));
             noteVideo1.setDocument(true);
             noteVideo1.setFileName(realPath);
@@ -347,6 +359,7 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
             isImage1 = false;
             noteVideo1.setFrom(1);
             noteVideo1.setImage1(false);
+            haveNotes.set(0, noteVideo1);
 
         } else if (requestCode == REQUEST_VIDEO_CAPTURE_SECOND && resultCode == RESULT_OK) {
             Uri selectedVideoUri = data.getData();
@@ -394,7 +407,10 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
             String sinsinSalto2 = sinSaltoFinal2.replaceAll("\n", "");
             //   Log.d("VideoData**>  ", sinsinSalto2);
             String realPath = getRealPathFromURI(selectedVideoUri);
-            noteVideo2 = new Notes();
+            if (noteVideo2 == null) {
+                noteVideo2 = new Notes();
+                notePhoto2 = null;
+            }
             noteVideo2.setDocumentBody(Base64.encodeToString(byteBuffer.toByteArray(), Base64.DEFAULT));
             noteVideo2.setDocument(true);
             noteVideo2.setFileName(realPath);
@@ -404,6 +420,7 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
             isImage2 = false;
             noteVideo2.setFrom(2);
             noteVideo2.setImage1(false);
+            haveNotes.set(1, noteVideo2);
         }
     }
 

@@ -87,6 +87,11 @@ public interface JsonApi {
     @POST("Product/ListAll")
     Call<ProductListAll> productListAll(@Body UserIdRequest request);
 
+
+    //OK
+    @POST("Product/ListAll")
+    Call<ProductListAll> productListAllNoParam();
+
     //OK
     @GET("MainProductGroup/ListAll")
     Call<MainProductList> getMainProductListCall();

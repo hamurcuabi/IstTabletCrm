@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -15,24 +16,45 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
+            android:layout_marginBottom="@dimen/detay_menu_8"
             android:src="@drawable/ic_close" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/bg"
+        android:background="@color/white"
         android:orientation="vertical">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="@dimen/detay_menu_50"
-            android:fontFamily="@font/roboto_medium"
-            android:text="@string/iscilik_ekle"
-            android:textColor="@color/text_color"
-            android:textSize="@dimen/text_menu_32" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="@dimen/detay_menu_50"
+                android:layout_weight="3"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/iscilik_ekle"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/text_menu_32" />
+
+            <android.support.v7.widget.SearchView
+                app:iconifiedByDefault="false"
+                android:id="@+id/search"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/detay_menu_55"
+                android:layout_marginTop="@dimen/detay_menu_50"
+                android:layout_marginEnd="@dimen/detay_menu_12"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:elevation="1dp"
+                app:queryHint="@string/urun_ara" />
+
+        </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rcv"
@@ -40,6 +62,13 @@
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/padding_top25"
             android:layout_marginBottom="@dimen/detay_menu_12" />
+
+        <ProgressBar
+            android:id="@+id/prog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
 
     </LinearLayout>
 

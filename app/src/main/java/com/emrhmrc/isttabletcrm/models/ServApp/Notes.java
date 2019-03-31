@@ -15,7 +15,7 @@ public class Notes implements Serializable {
     private String DocumentBody;
     private String NoteText;
     @Expose
-    private int from;
+    private int from ;
     @Expose
     private transient Uri selectedVideoUri;
     @Expose
@@ -24,6 +24,7 @@ public class Notes implements Serializable {
     private boolean isImage1;
 
     public Notes() {
+
     }
 
     public Uri getSelectedImageUri() {

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/detay_menu_70"
     android:background="@color/white"
-    android:elevation="2dp"
+    android:elevation="1dp"
     android:gravity="center"
     android:orientation="horizontal">
 
@@ -33,6 +33,7 @@
         android:textColor="@color/text_color" />
 
     <Button
+        android:id="@+id/btn_add"
         android:layout_width="@dimen/detay_menu_70"
         android:layout_height="@dimen/detay_menu_35"
         android:layout_gravity="center"
