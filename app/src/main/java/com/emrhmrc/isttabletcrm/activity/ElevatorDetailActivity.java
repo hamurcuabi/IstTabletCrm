@@ -76,8 +76,6 @@ public class ElevatorDetailActivity extends AppCompatActivity implements OnItemC
     TextView txtAsansorhizi;
     @BindView(R.id.rcv)
     RecyclerView rcv;
-
-
     private JsonApi jsonApi;
     private RcvChangingPartAdapter adapter;
 

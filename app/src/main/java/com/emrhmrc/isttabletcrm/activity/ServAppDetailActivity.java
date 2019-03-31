@@ -117,17 +117,27 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
             String id = intent.getStringExtra("id");
 
             if (product != null) {
-                Log.d(TAG, "Product not null");
                 boolean exist = false;
                 for (ServAppGetByIdServAppDetails details : adapter.getItems()
                 ) {
                     if (details.getInv_ProductId() != null) {
-                        if (details.getInv_ProductId().getText().equals(product.getProductId())) {
+                        if (details.getInv_ProductId().getId().equals(product.getProductId())) {
                             exist = true;
-                            updateRequest.getServAppDetailsList().remove(details);
+
                         }
                     }
                 }
+                if (id != null) {
+
+                    for (int k = 0; k < adapter.getItems().size(); k++) {
+                        if (adapter.getItems().get(k).getInv_ProductId() != null)
+                            if (adapter.getItems().get(k).getInv_ProductId().getId().equals(id)) {
+                                adapter.remove(k);
+                            }
+
+                    }
+                }
+
                 if (!exist) {
                     Log.d(TAG, "Product Not Exist ");
                     ServAppGetByIdServAppDetails add = new ServAppGetByIdServAppDetails();
@@ -141,16 +151,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                 }
             }
 
-            if (id != null) {
-                Log.d(TAG, "Id not null " + id);
-                for (int k = 0; k < adapter.getItems().size(); k++) {
-                    if (adapter.getItems().get(k).getInv_ProductId() != null)
-                        if (adapter.getItems().get(k).getInv_ProductId().getId().equals(id)) {
-                            adapter.remove(k);
-                        }
 
-                }
-            }
         }
     };
 
