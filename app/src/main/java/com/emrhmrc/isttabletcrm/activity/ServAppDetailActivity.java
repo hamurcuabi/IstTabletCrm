@@ -680,8 +680,10 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     @Override
     public void addNote(List<Notes> notes) {
         updateRequest.setServAppNotesList(new ArrayList<>());
-        updateRequest.getServAppNotesList().add(notes.get(0));
-        // updateRequest.getServAppNotesList().add(notes.get(1));
+        if (notes.get(0).getSubject() != null)
+            updateRequest.getServAppNotesList().add(notes.get(0));
+        if (notes.get(1).getSubject() != null)
+            updateRequest.getServAppNotesList().add(notes.get(1));
 
     }
 
