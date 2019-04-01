@@ -7,6 +7,9 @@ public class Inv_Id {
 
     private String Id;
 
+    public Inv_Id() {
+    }
+
     public Inv_Id(String logicalName, String text, String id) {
         LogicalName = logicalName;
         Text = text;

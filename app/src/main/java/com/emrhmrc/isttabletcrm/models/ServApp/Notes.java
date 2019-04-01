@@ -14,17 +14,26 @@ public class Notes implements Serializable {
     private String FileName;
     private String DocumentBody;
     private String NoteText;
+    private String NoteId;
     @Expose
-    private int from ;
+    private int from;
     @Expose
     private transient Uri selectedVideoUri;
     @Expose
     private transient Uri selectedImageUri;
     @Expose
     private boolean isImage1;
-
     public Notes() {
+        NoteId="";
 
+    }
+
+    public String getNoteId() {
+        return NoteId;
+    }
+
+    public void setNoteId(String noteId) {
+        NoteId = noteId;
     }
 
     public Uri getSelectedImageUri() {

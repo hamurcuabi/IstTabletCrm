@@ -280,9 +280,10 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
     }
 
     private void sendToRequest() {
-        if (ids != null)
+        if (ids != null) {
             addBreakdownTypeCode.addIds(ids);
-        else {
+            dismiss();
+        } else {
             if (getDialog() != null && getDialog().isShowing()) {
                 new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
                         .setTitleText(getResources().getString(R.string.empty_fields))

@@ -140,7 +140,7 @@ public class AddWorkmanshipFragment extends DialogFragment implements View.OnCli
         for (Product item : products
         ) {
             if (item.getInv_TypeCode() != null) {
-                if (item.getInv_TypeCode().getValue() == 1) items.add(item);
+                if (item.getInv_TypeCode().getValue() == 3) items.add(item);
             }
 
         }

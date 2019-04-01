@@ -237,6 +237,7 @@
     <string name="fillblanks">Boşlukları Doldurunuz</string>
     <string name="no_content">Medya Eklenmedi</string>
     <string name="empty_fields">Bazı Alanlar Boş</string>
+    <string name="update">İş Emri Güncelleme İşlemi</string>
 
     <string-array name="spn_servapp">
         <item>Tüm İş Emirlerim</item>
