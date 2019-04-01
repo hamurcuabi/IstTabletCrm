@@ -101,6 +101,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     String succes;
     @BindString(R.string.fillblanks)
     String blanks;
+
     private JsonApi jsonApi;
     private RcvServAppDetailAdapter adapter;
     private ShareData shareData;
@@ -311,7 +312,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     }
 
     private void closeServApp() {
-        if (checkProductAmount()) {
+
             new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
                     .setTitleText(sure)
                     .setContentText(close)
@@ -351,7 +352,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                     })
                     .show();
 
-        }
+
 
 
     }
