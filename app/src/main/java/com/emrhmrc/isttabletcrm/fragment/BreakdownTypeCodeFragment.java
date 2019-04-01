@@ -313,6 +313,7 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
                     ids.setInv_MainProductGroupid(new Inv_Id_Id(mainList.get(i).getInv_MainProductGroupid()));
                 }
             });
+            spn_main.showDropDown();
         } else {
             spn_main.setAdapter(null);
             spn_main.setOnClickListener(null);
@@ -344,6 +345,7 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
 
                 }
             });
+            spn_sub.showDropDown();
         } else {
             spn_sub.setAdapter(null);
             spn_sub.setOnClickListener(null);
@@ -374,6 +376,7 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
 
                 }
             });
+            spn_descp_code.showDropDown();
         } else {
             spn_descp_code.setAdapter(null);
             spn_descp_code.setOnClickListener(null);
@@ -400,6 +403,7 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
                     ids.setInv_BreakdownCodeId(new Inv_Id_Id(list.get(i).getInv_BreakdownCodeId()));
                 }
             });
+            spn_breakdowntype.showDropDown();
         } else {
             spn_breakdowntype.setAdapter(null);
             spn_breakdowntype.setOnClickListener(null);
