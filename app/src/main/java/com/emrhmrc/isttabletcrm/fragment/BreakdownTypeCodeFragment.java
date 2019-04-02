@@ -30,6 +30,7 @@ import com.emrhmrc.isttabletcrm.models.BreakDown.BreakdownCodeGetByFilter;
 import com.emrhmrc.isttabletcrm.models.BreakDown.BreakdownDefCodeListAll;
 import com.emrhmrc.isttabletcrm.models.BreakDown.BreakdownDefCodes;
 import com.emrhmrc.isttabletcrm.models.BreakDown.BreakdownFilterRequest;
+import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id_Id;
 import com.emrhmrc.isttabletcrm.models.Product.MainList;
 import com.emrhmrc.isttabletcrm.models.Product.MainProductList;
@@ -400,7 +401,8 @@ public class BreakdownTypeCodeFragment extends DialogFragment implements View.On
             spn_breakdowntype.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    ids.setInv_BreakdownCodeId(new Inv_Id_Id(list.get(i).getInv_BreakdownCodeId()));
+                    ids.setInv_BreakdownCodeId(new Inv_Id("",
+                            list.get(i).getInv_BreakdownCodeName(), list.get(i).getInv_BreakdownCodeId()));
                 }
             });
             spn_breakdowntype.showDropDown();

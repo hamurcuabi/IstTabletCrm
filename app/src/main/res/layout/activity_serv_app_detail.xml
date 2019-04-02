@@ -691,7 +691,7 @@
                                 android:autoSizeMaxTextSize="@dimen/text_menu_16"
                                 android:background="@drawable/btn_arizakodu"
                                 android:gravity="center"
-                                android:text="@{model.getInv_BreakdownCodeid()==null?StringUtil.returnNull():StringUtil.breakdownCode(model.getInv_BreakdownCodeid().getText())}"
+                                android:text="@{StringUtil.breakdownCode(model.getInv_BreakdownCodeid().getText())}"
                                 android:textColor="@color/white"
                                 android:textStyle="bold" />
 

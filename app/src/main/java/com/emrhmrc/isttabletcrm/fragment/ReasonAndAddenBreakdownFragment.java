@@ -24,6 +24,8 @@ import com.emrhmrc.isttabletcrm.adapter.RcvBreakdownTypeAddAdapter;
 import com.emrhmrc.isttabletcrm.api.APIHelper;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
+import com.emrhmrc.isttabletcrm.helper.AddOrDeleteBreakdown;
+import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.helper.StateHandler;
 import com.emrhmrc.isttabletcrm.models.BreakDown.BreakDownTypeListAll;
 import com.emrhmrc.isttabletcrm.models.BreakDown.BreakdownType;
@@ -50,6 +52,7 @@ public class ReasonAndAddenBreakdownFragment extends DialogFragment implements V
     private Call<BreakDownTypeListAll> breakDownTypeListAllCall;
     private List<ServAppGetByIdServAppBreakdownTypes> servAppBreakdownTypes;
     private ProgressBar prog_1;
+    private AddOrDeleteBreakdown addOrDeleteBreakdown;
 
 
     public static ReasonAndAddenBreakdownFragment newInstance(List<ServAppGetByIdServAppBreakdownTypes> model) {
@@ -82,36 +85,47 @@ public class ReasonAndAddenBreakdownFragment extends DialogFragment implements V
         servAppBreakdownTypes = (List<ServAppGetByIdServAppBreakdownTypes>) getArguments().getSerializable("servAppBreakdownTypes");
         init();
         getAllReason();
+        addOrDeleteBreakdown = (AddOrDeleteBreakdown) getActivity();
 
     }
 
     private void getAllReason() {
-        prog_1.setVisibility(View.VISIBLE);
-        breakDownTypeListAllCall = jsonApi.breakDownTypeListAll();
-        APIHelper.enqueueWithRetry(breakDownTypeListAllCall, new Callback<BreakDownTypeListAll>() {
-            @Override
-            public void onResponse(Call<BreakDownTypeListAll> call, Response<BreakDownTypeListAll> response) {
-                if (response.isSuccessful()) {
-                    final BreakDownTypeListAll model = response.body();
-                    adapter.setItems(model.getBreakdownTypes());
-                    allreason = model.getBreakdownTypes();
-                    checkAddedReasons();
-                    prog_1.setVisibility(View.GONE);
 
-                } else Log.d(TAG, "onResponse: " + response.errorBody());
-            }
+        //Önceden almışsam çağırmıcam
+        if (ShareData.getInstance().getBreakDownTypeListAll() != null && ShareData.getInstance().getBreakDownTypeListAll().getBreakdownTypes().size() > 0) {
+            final BreakDownTypeListAll model = ShareData.getInstance().getBreakDownTypeListAll();
+            allreason = model.getBreakdownTypes();
+            adapter.setItems(allreason);
+            checkAddedReasons();
+        } else {
+            prog_1.setVisibility(View.VISIBLE);
+            breakDownTypeListAllCall = jsonApi.breakDownTypeListAll();
+            APIHelper.enqueueWithRetry(breakDownTypeListAllCall, new Callback<BreakDownTypeListAll>() {
+                @Override
+                public void onResponse(Call<BreakDownTypeListAll> call, Response<BreakDownTypeListAll> response) {
+                    if (response.isSuccessful()) {
+                        final BreakDownTypeListAll model = response.body();
+                        adapter.setItems(model.getBreakdownTypes());
+                        allreason = model.getBreakdownTypes();
+                        checkAddedReasons();
+                        prog_1.setVisibility(View.GONE);
+                        ShareData.getInstance().setBreakDownTypeListAll(model);
 
-            @Override
-            public void onFailure(Call<BreakDownTypeListAll> call, Throwable t) {
-                Log.d(TAG, "onFailure: " + t.getMessage());
-                prog_1.setVisibility(View.GONE);
-                if (getDialog() != null && getDialog().isShowing()) {
-                    new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
-                            .setTitleText(getResources().getString(R.string.toast_error))
-                            .show();
+                    } else Log.d(TAG, "onResponse: " + response.errorBody());
                 }
-            }
-        });
+
+                @Override
+                public void onFailure(Call<BreakDownTypeListAll> call, Throwable t) {
+                    Log.d(TAG, "onFailure: " + t.getMessage());
+                    prog_1.setVisibility(View.GONE);
+                    if (getDialog() != null && getDialog().isShowing()) {
+                        new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                                .setTitleText(getResources().getString(R.string.toast_error))
+                                .show();
+                    }
+                }
+            });
+        }
 
     }
 
@@ -121,7 +135,14 @@ public class ReasonAndAddenBreakdownFragment extends DialogFragment implements V
         rcv_add.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter_add = new RcvBreakdownTypeAddAdapter(getActivity(), (item, positon) -> {
             final ServAppGetByIdServAppBreakdownTypes current = (ServAppGetByIdServAppBreakdownTypes) item;
-            adapter_add.remove(current);
+            if (((ServAppGetByIdServAppBreakdownTypes) item).isManuel()) {
+                addOrDeleteBreakdown.deleteBreakdown(current.getInv_BreakdownTypeId().getId());
+                adapter_add.remove(current);
+            } else {
+                current.setDeleted(true);
+                addOrDeleteBreakdown.updateBreakdown(current.getInv_BreakdownTypeId().getId(), true);
+                adapter_add.notifyItemChanged(positon, current);
+            }
             for (int i = 0; i < adapter.getItems().size(); i++) {
                 if (adapter.getItems().get(i).getInv_BreakdownTypeId().equals(current.getInv_BreakdownTypeId().getId())) {
                     StateHandler.getInstance().getStateList().get(i).setState(false);
@@ -129,6 +150,7 @@ public class ReasonAndAddenBreakdownFragment extends DialogFragment implements V
                     return;
                 }
             }
+
         });
         rcv_add.setAdapter(adapter_add);
         adapter_add.setItemsWithoutState(servAppBreakdownTypes);
@@ -140,14 +162,33 @@ public class ReasonAndAddenBreakdownFragment extends DialogFragment implements V
         adapter = new RcvBreakdownTypeAdapter(getActivity(), new OnItemClickListener() {
             @Override
             public void onItemClicked(Object item, int positon) {
+                boolean inList = false;
                 final BreakdownType current = (BreakdownType) item;
                 final ServAppGetByIdServAppBreakdownTypes breakdownTypes =
                         new ServAppGetByIdServAppBreakdownTypes();
-                breakdownTypes.setDeleted(false);
-                breakdownTypes.setInv_ServAppBreakdownTypeId("");
-                breakdownTypes.setInv_BreakdownTypeId(new Inv_Id("inv_breakdowntype", current.getInv_BreakdownTypeName(),
-                        current.getInv_BreakdownTypeId()));
-                adapter_add.add(breakdownTypes);
+                for (int i = 0; i < adapter_add.getItems().size(); i++) {
+
+                    if (adapter_add.getItems().get(i).getInv_BreakdownTypeId() != null) {
+                        if (adapter_add.getItems().get(i).getInv_BreakdownTypeId().getId().equals(current.getInv_BreakdownTypeId())) {
+                            adapter_add.getItems().get(i).setDeleted(false);
+                            adapter_add.notifyItemChanged(i);
+                            addOrDeleteBreakdown.updateBreakdown(adapter_add.getItems().get(i).getInv_BreakdownTypeId().getId(), false);
+                            inList = true;
+                            return;
+                        }
+                    }
+
+
+                }
+                if (!inList) {
+                    breakdownTypes.setManuel(true);
+                    breakdownTypes.setDeleted(false);
+                    breakdownTypes.setInv_ServAppBreakdownTypeId("");
+                    breakdownTypes.setInv_BreakdownTypeId(new Inv_Id("inv_breakdowntype", current.getInv_BreakdownTypeName(),
+                            current.getInv_BreakdownTypeId()));
+                    addOrDeleteBreakdown.addBreakdown(breakdownTypes);
+                    adapter_add.add(breakdownTypes);
+                }
                 if (!StateHandler.getInstance().getStateList().get(positon).isState()) {
                     StateHandler.getInstance().getStateList().get(positon).setState(true);
 
@@ -164,9 +205,9 @@ public class ReasonAndAddenBreakdownFragment extends DialogFragment implements V
     }
 
     private void checkAddedReasons() {
-        for (int i = 0; i < adapter.getItems().size() - 1; i++) {
+        for (int i = 0; i < adapter.getItems().size(); i++) {
 
-            for (int k = 0; k < adapter_add.getItems().size() - 1; k++) {
+            for (int k = 0; k < adapter_add.getItems().size(); k++) {
 
                 if (adapter.getItems().get(i).getInv_BreakdownTypeId().equals(adapter_add.getItems().get(k).getInv_BreakdownTypeId().getId())) {
 

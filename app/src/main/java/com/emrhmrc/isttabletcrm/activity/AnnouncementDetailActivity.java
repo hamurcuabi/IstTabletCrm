@@ -38,13 +38,16 @@ public class AnnouncementDetailActivity extends AppCompatActivity {
         txtDescp.setText(StringUtil.nullToString(n.getDescription()));
     }
 
-    @OnClick({R.id.img_return, R.id.txt_return})
+    @OnClick({R.id.img_return, R.id.txt_return,R.id.img_menu})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_return:
                 super.onBackPressed();
                 break;
             case R.id.txt_return:
+                super.onBackPressed();
+                break;
+                case R.id.img_menu:
                 super.onBackPressed();
                 break;
         }

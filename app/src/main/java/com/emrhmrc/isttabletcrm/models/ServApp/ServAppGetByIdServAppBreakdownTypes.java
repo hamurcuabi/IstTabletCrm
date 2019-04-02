@@ -1,6 +1,7 @@
 package com.emrhmrc.isttabletcrm.models.ServApp;
 
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
+import com.google.gson.annotations.Expose;
 
 import java.io.Serializable;
 
@@ -8,8 +9,18 @@ public class ServAppGetByIdServAppBreakdownTypes implements Serializable {
     private String inv_ServAppBreakdownTypeId;
     private Inv_Id inv_BreakdownTypeId;
     private boolean IsDeleted;
+    @Expose
+    private boolean isManuel = false;
 
     public ServAppGetByIdServAppBreakdownTypes() {
+    }
+
+    public boolean isManuel() {
+        return isManuel;
+    }
+
+    public void setManuel(boolean manuel) {
+        isManuel = manuel;
     }
 
     public boolean isDeleted() {

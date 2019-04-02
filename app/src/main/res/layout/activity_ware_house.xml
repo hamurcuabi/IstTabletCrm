@@ -161,14 +161,9 @@
         </RelativeLayout>
 
         <LinearLayout
-
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/padding_rigt32"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="@dimen/padding_rigt32"
-            android:layout_marginBottom="8dp"
             android:orientation="horizontal"
             android:weightSum="7"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -179,7 +174,10 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.3"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/padding_rigt32"
+                android:layout_marginEnd="@dimen/detay_menu_12"
+                android:layout_weight="1.2"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/depo"
                 android:textAllCaps="true"
@@ -190,8 +188,9 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin30"
-                android:layout_weight="1.8"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/detay_menu_12"
+                android:layout_weight="2.5"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/urun_adi"
                 android:textAllCaps="true"
@@ -202,7 +201,9 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.2"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/detay_menu_12"
+                android:layout_weight="1"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/miktar"
                 android:textAllCaps="true"
@@ -213,6 +214,8 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/padding_rigt32"
                 android:layout_weight="1"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/birim"
@@ -227,10 +230,6 @@
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/padding_rigt32"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="@dimen/padding_rigt32"
-            android:layout_marginBottom="8dp"
             android:orientation="horizontal"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -241,19 +240,23 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.1"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/padding_rigt32"
+                android:layout_marginEnd="@dimen/detay_menu_12"
+                android:layout_weight="1"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/transfer_tipi"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:textSize="@dimen/menu_text_14"
-                android:layout_marginEnd="@dimen/detay_menu_12"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.85"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/detay_menu_12"
+                android:layout_weight="1.7"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/urun_adi"
                 android:textAllCaps="true"
@@ -264,7 +267,9 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.9"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/detay_menu_12"
+                android:layout_weight="0.5"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/miktar"
                 android:textAllCaps="true"
@@ -275,7 +280,9 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.2"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/detay_menu_12"
+                android:layout_weight="1"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/birim"
                 android:textAllCaps="true"
@@ -286,6 +293,8 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/detay_menu_12"
                 android:layout_weight="1"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/tarih"
@@ -297,7 +306,9 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.2"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/detay_menu_12"
+                android:layout_weight="1"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/onay_durumu"
                 android:textAllCaps="true"
@@ -305,10 +316,21 @@
                 android:textSize="@dimen/menu_text_14"
                 android:textStyle="bold" />
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/detay_menu_8"
+                android:layout_marginEnd="@dimen/detay_menu_8"
+                android:src="@drawable/ic_confirm"
+                android:visibility="invisible" />
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.2"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/m16"
+                android:layout_weight="1"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/cikis_depo"
                 android:textAllCaps="true"
@@ -319,7 +341,9 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.2"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/padding_rigt32"
+                android:layout_weight="1"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/gonderilecek_depo"
                 android:textAllCaps="true"

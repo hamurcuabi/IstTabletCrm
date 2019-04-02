@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -432,13 +433,21 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
             Notes notes = new Notes();
 
             Bitmap photo = (Bitmap) data.getExtras().get("data");
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
             Uri selectedImage = getImageUri(getActivity(), photo);
             String realPath = getRealPathFromURI(selectedImage);
             selectedImage = Uri.parse(realPath);
 
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            /*ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             photo.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+            byte[] byteArray = byteArrayOutputStream.toByteArray();*/
+
+            Bitmap bitmap = BitmapFactory.decodeFile(realPath, options);
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
             byte[] byteArray = byteArrayOutputStream.toByteArray();
+
             notes.setSelectedImageUri(selectedImage);
             notes.setDocumentBody(Base64.encodeToString(byteArray, Base64.DEFAULT));
             notes.setDocument(true);

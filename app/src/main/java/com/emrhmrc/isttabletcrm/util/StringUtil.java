@@ -13,6 +13,10 @@ public class StringUtil {
         return "null";
     }
 
+    public static String returnSpace() {
+        return "";
+    }
+
     public static boolean validateStrings(String... string) {
 
         boolean validation = true;
@@ -70,7 +74,7 @@ public class StringUtil {
     public static String breakdownCode(String code) {
         if (code != null)
             return "ARIZA KODU: " + code;
-        else return returnNull();
+        else return "ARIZA KODU: " + returnSpace();
     }
 
 }

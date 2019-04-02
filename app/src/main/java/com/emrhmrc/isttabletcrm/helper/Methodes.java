@@ -97,6 +97,8 @@ public class Methodes {
 
     }
 
+
+
     public static String changeDateFormatToClockText(String date) {
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");

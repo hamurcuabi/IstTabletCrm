@@ -37,15 +37,15 @@ public class RcvWarehouseTransferViewHolder extends BaseViewHolder<WarehouseTran
     @Override
     public void onBind(final WarehouseTransferItem item,
                        @Nullable final OnItemClickListener<WarehouseTransferItem> listener) {
-        if (item.getInv_WarehouseTransferName() != null)
-            txt_tranfertipi.setText(StringUtil.nullToString(item.getInv_WarehouseTransferName()));
+        if (item.getInv_TransferTypeCode() != null)
+            txt_tranfertipi.setText(StringUtil.nullToString(item.getInv_TransferTypeCode().getText()));
         if (item.getInv_Productid() != null)
             txt_urunadi.setText(StringUtil.nullToString(item.getInv_Productid().getText()));
         txt_miktar.setText(StringUtil.convertIntToString(item.getInv_Quantity()));
         if (item.getInv_Uomid() != null)
             txt_birim.setText(StringUtil.nullToString(item.getInv_Uomid().getText()));
         if (item.getInv_RequestDate() != null)
-            txt_tarih.setText(Methodes.changeDateFormatToText(StringUtil.nullToString(item.getInv_RequestDate())));
+            txt_tarih.setText(StringUtil.nullToString(item.getInv_RequestDate()));
         if (item.getStatusCode() != null) {
             txt_onay_durumu.setText(StringUtil.nullToString(item.getStatusCode().getText()));
             GlideBindingAdapters.setStatusTransfer(img_statu, item.getStatusCode().getValue());

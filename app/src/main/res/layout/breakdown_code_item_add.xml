@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     android:minHeight="@dimen/margin80"
+    android:id="@+id/lnr"
     android:orientation="vertical">
 
     <LinearLayout

@@ -25,7 +25,7 @@
             android:layout_marginStart="@dimen/detay_menu_35"
             android:layout_marginTop="@dimen/detay_menu_20"
             android:fontFamily="@font/roboto_regular"
-            android:text="@string/new_warehouse_request"
+            android:text="@string/kontrol_listesi"
             android:textColor="@color/text_color_4"
             android:textSize="@dimen/text_menu_24"
             android:textStyle="bold" />

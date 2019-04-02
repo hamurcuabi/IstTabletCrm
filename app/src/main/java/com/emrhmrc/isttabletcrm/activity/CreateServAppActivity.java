@@ -24,6 +24,7 @@ import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointment;
 import com.emrhmrc.isttabletcrm.helper.CreateSubServAppSingleton;
+import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
 import com.emrhmrc.isttabletcrm.models.Account.Account;
 import com.emrhmrc.isttabletcrm.models.Account.AccountListAll;
@@ -39,7 +40,6 @@ import com.emrhmrc.isttabletcrm.models.ServApp.serviceAppointment;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import butterknife.BindString;
@@ -85,6 +85,14 @@ public class CreateServAppActivity extends AppCompatActivity {
     String succes;
     @BindString(R.string.fillblanks)
     String blanks;
+    @BindString(R.string.sub_servapp)
+    String sub;
+    @BindString(R.string.create_sub_servapp)
+    String crete_sub;
+    @BindView(R.id.txt_menu_header)
+    TextView txtMenuHeader;
+    @BindView(R.id.txt_yeni)
+    TextView txtYeni;
     private JsonApi jsonApi;
     private ServAppGetById servAppGetById;
     private serviceAppointment request;
@@ -101,6 +109,10 @@ public class CreateServAppActivity extends AppCompatActivity {
         getSpnOncelik();
         getSpnTip();
         initDialog();
+        if (ShareData.getInstance().isSub_servapp()) {
+            txtMenuHeader.setText(sub);
+            txtYeni.setText(crete_sub);
+        }
 
     }
 
@@ -222,7 +234,8 @@ public class CreateServAppActivity extends AppCompatActivity {
         edtAciklama.setText(item.getInv_Description());
         edtOnceki.setText(item.getActivityId());
         edtOnceki.setEnabled(false);
-        edtSupervisor.setText(model.getServiceAppointment().getInv_Supervisorid().getText());
+        if (model.getServiceAppointment().getInv_Supervisorid() != null)
+            edtSupervisor.setText(model.getServiceAppointment().getInv_Supervisorid().getText());
         edtSaat.setText(model.getServiceAppointment().getScheduledStart());
         lnrOnceki.setVisibility(View.VISIBLE);
         request.setInv_RelatedServiceAppointmentId(new Inv_Id_Id(item.getActivityId()));

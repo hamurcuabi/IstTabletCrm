@@ -41,6 +41,7 @@ import com.emrhmrc.isttabletcrm.fragment.ReasonOfBreakdownFragment;
 import com.emrhmrc.isttabletcrm.helper.AddBreakdownTypeCode;
 import com.emrhmrc.isttabletcrm.helper.AddManuelProduct;
 import com.emrhmrc.isttabletcrm.helper.AddNotes;
+import com.emrhmrc.isttabletcrm.helper.AddOrDeleteBreakdown;
 import com.emrhmrc.isttabletcrm.helper.CreateSubServAppSingleton;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
@@ -55,6 +56,7 @@ import com.emrhmrc.isttabletcrm.models.ServApp.Notes;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppDetailsList;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetById;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdNotes;
+import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppBreakdownTypes;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppDetails;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppModernizationChecklists;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppIdRequest;
@@ -74,7 +76,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ServAppDetailActivity extends AppCompatActivity implements OnItemClickListener,
-        AddManuelProduct, AddNotes, AddBreakdownTypeCode {
+        AddManuelProduct, AddNotes, AddBreakdownTypeCode, AddOrDeleteBreakdown {
 
     private static final String TAG = "ServAppDetailActivity";
 
@@ -103,6 +105,8 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     String succes;
     @BindString(R.string.fillblanks)
     String blanks;
+    @BindString(R.string.iptal_islemi)
+    String cancel;
 
     private JsonApi jsonApi;
     private RcvServAppDetailAdapter adapter;
@@ -261,6 +265,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     }
 
     private void setModelToBind(ServiceAppointment model) {
+
         binding.setModel(model);
         ShareData.getInstance().setElevatorId(model.getInv_ElevatorId().getId());
         Log.d(TAG, "setElevatorId: " + model.getInv_ElevatorId().getId());
@@ -286,31 +291,67 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
 
     private void cancelServApp() {
 
-        CompleteByIdRequest request = new CompleteByIdRequest();
-        request.setServiceAppId(ShareData.getInstance().getServAppId());
-        request.setUserId(SingletonUser.getInstance().getUser().getUserId());
-        request.setCompleteType(false);
-        Call<DefaultResponse> call = jsonApi.servAppCompleteById(request);
-        APIHelper.enqueueWithRetry(call, new Callback<DefaultResponse>() {
-            @Override
-            public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
-                if (response.isSuccessful()) {
-                    new SweetAlertDialog(ServAppDetailActivity.this,
-                            SweetAlertDialog.SUCCESS_TYPE)
-                            .setTitleText(succes)
-                            .setContentText("")
-                            .show();
-                }
-            }
 
-            @Override
-            public void onFailure(Call<DefaultResponse> call, Throwable t) {
-                new SweetAlertDialog(ServAppDetailActivity.this, SweetAlertDialog.ERROR_TYPE)
-                        .setTitleText(error)
-                        .setContentText(t.getMessage())
-                        .show();
-            }
-        });
+        new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                .setTitleText(sure)
+                .setContentText(cancel)
+                .setCancelText(dont)
+                .setConfirmText(doit)
+                .showCancelButton(true)
+                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+
+                        CompleteByIdRequest request = new CompleteByIdRequest();
+                        request.setServiceAppId(ShareData.getInstance().getServAppId());
+                        request.setUserId(SingletonUser.getInstance().getUser().getUserId());
+                        request.setCompleteType(false);
+                        initDialog();
+                        dialog.show();
+                        Call<DefaultResponse> call = jsonApi.servAppCompleteById(request);
+                        APIHelper.enqueueWithRetry(call, new Callback<DefaultResponse>() {
+                            @Override
+                            public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
+                                dialog.dismissWithAnimation();
+                                if (response.isSuccessful()) {
+
+                                    new SweetAlertDialog(ServAppDetailActivity.this, SweetAlertDialog.SUCCESS_TYPE)
+                                            .setTitleText(succes)
+                                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                @Override
+                                                public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                                    onBackPressed();
+                                                }
+                                            })
+                                            .show();
+
+
+                                } else {
+
+                                    new SweetAlertDialog(ServAppDetailActivity.this, SweetAlertDialog.WARNING_TYPE)
+                                            .setTitleText(response.message())
+                                            .show();
+
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<DefaultResponse> call, Throwable t) {
+                                dialog.dismissWithAnimation();
+                                new SweetAlertDialog(ServAppDetailActivity.this, SweetAlertDialog.WARNING_TYPE)
+                                        .setTitleText(t.getMessage())
+                                        .show();
+                            }
+                        });
+                    }
+                })
+                .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sDialog) {
+                        sDialog.cancel();
+                    }
+                })
+                .show();
 
 
     }
@@ -387,6 +428,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
 
     public void newServApp() {
 
+        ShareData.getInstance().setSub_servapp(true);
         startActivity(new Intent(ServAppDetailActivity.this, CreateServAppActivity.class));
     }
 
@@ -425,6 +467,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     }
 
     private void openReasonAndAddedBreakdown() {
+
         ReasonAndAddenBreakdownFragment fragment =
                 ReasonAndAddenBreakdownFragment.newInstance(model.getServiceAppointment().getServAppGetByIdServAppBreakdownTypes());
         fragment.show(getSupportFragmentManager(), "ReasonAndAddenBreakdownFragment");
@@ -502,15 +545,15 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                 openAddManuelProductFragment();
                 break;
             case R.id.img_add_2:
-                openWordkman();
+                openWorkman();
                 break;
             case R.id.add_job:
-                openWordkman();
+                openWorkman();
                 break;
         }
     }
 
-    private void openWordkman() {
+    private void openWorkman() {
         AddWorkmanshipFragment fragment = AddWorkmanshipFragment.newInstance();
         fragment.show(getSupportFragmentManager(), "AddWorkmanshipFragment");
 
@@ -689,11 +732,42 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
 
     @Override
     public void addIds(ServiceAppHelperIds ids) {
-        updateRequest.getServiceAppointment().setInv_BreakdownCodeId(ids.getInv_BreakdownCodeId());
+        updateRequest.getServiceAppointment().setInv_BreakdownCodeId(new Inv_Id_Id(ids.getInv_BreakdownCodeId().getId()));
         updateRequest.getServiceAppointment().setInv_BreakdownDefCodeid(ids.getInv_BreakdownDefCodeid());
         updateRequest.getServiceAppointment().setInv_MainProductGroupid(ids.getInv_MainProductGroupid());
         updateRequest.getServiceAppointment().setInv_SubProductGroupid(ids.getInv_SubProductGroupid());
+        model.getServiceAppointment().setInv_BreakdownCodeid(ids.getInv_BreakdownCodeId());
+        binding.setModel(model.getServiceAppointment());
 
 
+    }
+
+    @Override
+    public void addBreakdown(ServAppGetByIdServAppBreakdownTypes item) {
+        model.getServiceAppointment().getServAppGetByIdServAppBreakdownTypes().add(item);
+    }
+
+    @Override
+    public void updateBreakdown(String id, boolean deleteStatus) {
+
+        for (ServAppGetByIdServAppBreakdownTypes item : model.getServiceAppointment().getServAppGetByIdServAppBreakdownTypes()) {
+            if (item.getInv_BreakdownTypeId() != null) {
+                if (item.getInv_BreakdownTypeId().getId().equals(id)) item.setDeleted(deleteStatus);
+            }
+
+        }
+    }
+
+    @Override
+    public void deleteBreakdown(String id) {
+        if (id != null && !id.isEmpty()) {
+            for (ServAppGetByIdServAppBreakdownTypes item : model.getServiceAppointment().getServAppGetByIdServAppBreakdownTypes()) {
+                if (item.getInv_BreakdownTypeId() != null) {
+                    if (item.getInv_BreakdownTypeId().getId().equals(id))
+                        model.getServiceAppointment().getServAppGetByIdServAppBreakdownTypes().remove(item);
+                }
+
+            }
+        }
     }
 }

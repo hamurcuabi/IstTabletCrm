@@ -1,18 +1,19 @@
 package com.emrhmrc.isttabletcrm.models.ServApp;
 
+import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id_Id;
 
 public class ServiceAppHelperIds {
-    private Inv_Id_Id inv_BreakdownCodeId;
+    private Inv_Id inv_BreakdownCodeId;
     private Inv_Id_Id inv_BreakdownDefCodeid;
     private Inv_Id_Id inv_MainProductGroupid;
     private Inv_Id_Id inv_SubProductGroupid;
 
-    public Inv_Id_Id getInv_BreakdownCodeId() {
+    public Inv_Id getInv_BreakdownCodeId() {
         return inv_BreakdownCodeId;
     }
 
-    public void setInv_BreakdownCodeId(Inv_Id_Id inv_BreakdownCodeId) {
+    public void setInv_BreakdownCodeId(Inv_Id inv_BreakdownCodeId) {
         this.inv_BreakdownCodeId = inv_BreakdownCodeId;
     }
 

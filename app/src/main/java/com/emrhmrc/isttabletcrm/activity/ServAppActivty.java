@@ -151,6 +151,7 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
 
     public void goCreateServApp() {
         dialog.cancel();
+        ShareData.getInstance().setSub_servapp(false);
         startActivity(new Intent(ServAppActivty.this, CreateServAppActivity.class));
     }
 

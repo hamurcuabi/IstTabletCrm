@@ -53,7 +53,7 @@
                 android:layout_marginStart="@dimen/detay_menu_30"
                 android:layout_weight="2"
                 android:fontFamily="@font/roboto_regular"
-                android:text="@string/baslangic"
+                android:text="@string/baslik"
                 android:textColor="@color/white"
                 android:textSize="@dimen/txt_header"
                 android:textStyle="bold" />

@@ -1,5 +1,6 @@
 package com.emrhmrc.isttabletcrm.helper;
 
+import com.emrhmrc.isttabletcrm.models.BreakDown.BreakDownTypeListAll;
 import com.emrhmrc.isttabletcrm.models.Notification.Notification;
 
 public class ShareData {
@@ -15,6 +16,17 @@ public class ShareData {
     private double Latitude;
     private double Longitude;
     private boolean add_sub_piece;
+    private boolean sub_servapp;
+
+    public BreakDownTypeListAll getBreakDownTypeListAll() {
+        return breakDownTypeListAll;
+    }
+
+    public void setBreakDownTypeListAll(BreakDownTypeListAll breakDownTypeListAll) {
+        this.breakDownTypeListAll = breakDownTypeListAll;
+    }
+
+    private BreakDownTypeListAll breakDownTypeListAll;
 
     private ShareData() {
     }
@@ -29,6 +41,14 @@ public class ShareData {
 
     public void setAdd_sub_piece(boolean add_sub_piece) {
         this.add_sub_piece = add_sub_piece;
+    }
+
+    public boolean isSub_servapp() {
+        return sub_servapp;
+    }
+
+    public void setSub_servapp(boolean sub_servapp) {
+        this.sub_servapp = sub_servapp;
     }
 
     public String getNotificationDetail() {

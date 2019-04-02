@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.ThumbnailUtils;
@@ -247,19 +248,28 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
                 notePhoto1 = new Notes();
                 noteVideo1 = null;
             }
-
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
             Bitmap photo = (Bitmap) data.getExtras().get("data");
             img_first.setImageBitmap(photo);
             video_first.setVisibility(View.GONE);
             video_first.setVideoURI(null);
             img_first.setVisibility(View.VISIBLE);
 
+
             Uri selectedImage = getImageUri(getActivity(), photo);
             String realPath = getRealPathFromURI(selectedImage);
             selectedImage = Uri.parse(realPath);
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            /*ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             photo.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+            byte[] byteArray = byteArrayOutputStream.toByteArray();*/
+
+
+            Bitmap bitmap = BitmapFactory.decodeFile(realPath, options);
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
             byte[] byteArray = byteArrayOutputStream.toByteArray();
+
             notePhoto1.setSelectedImageUri(selectedImage);
             notePhoto1.setDocumentBody(Base64.encodeToString(byteArray, Base64.DEFAULT));
             notePhoto1.setDocument(true);
@@ -279,16 +289,25 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
             }
             Bundle extras = data.getExtras();
             Bitmap photo = (Bitmap) extras.get("data");
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
             img_second.setImageBitmap(photo);
             video_second.setVisibility(View.GONE);
             video_second.setVideoURI(null);
             img_second.setVisibility(View.VISIBLE);
+
             Uri selectedImage = getImageUri(getActivity(), photo);
             String realPath = getRealPathFromURI(selectedImage);
             selectedImage = Uri.parse(realPath);
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+
+          /*  ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             photo.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+            byte[] byteArray = byteArrayOutputStream.toByteArray();*/
+            Bitmap bitmap = BitmapFactory.decodeFile(realPath, options);
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
             byte[] byteArray = byteArrayOutputStream.toByteArray();
+
             notePhoto2.setSelectedImageUri(selectedImage);
             notePhoto2.setDocumentBody(Base64.encodeToString(byteArray, Base64.DEFAULT));
             notePhoto2.setDocument(true);

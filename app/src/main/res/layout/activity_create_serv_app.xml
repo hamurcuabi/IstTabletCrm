@@ -92,7 +92,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/txt_yeni"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/detay_menu_35"
@@ -148,8 +148,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/detay_menu_12"
                     android:orientation="horizontal"
-                    app:layout_constraintStart_toStartOf="@+id/textView2"
-                    app:layout_constraintTop_toBottomOf="@+id/lnr_mus_adi">
+                 >
 
                     <TextView
                         android:id="@+id/txt_konu"
@@ -203,11 +202,8 @@
                         android:layout_marginStart="@dimen/detay_menu_30"
                         android:layout_weight="3"
                         android:background="@drawable/spn_style"
-                        android:completionThreshold="1"
                         android:paddingStart="@dimen/detay_menu_25"
-                        android:paddingEnd="@dimen/detay_menu_12"
-                        app:layout_constraintStart_toEndOf="@+id/txt_asansor"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:paddingEnd="@dimen/detay_menu_12" />
 
                     <ProgressBar
                         android:id="@+id/prog_elevator"
@@ -310,8 +306,7 @@
                         android:enabled="false"
                         android:paddingStart="@dimen/detay_menu_25"
                         android:paddingEnd="@dimen/detay_menu_12"
-                        app:layout_constraintStart_toEndOf="@+id/txt_isimsoyad"
-                        app:layout_constraintTop_toTopOf="parent" />
+                         />
 
                 </LinearLayout>
 
@@ -373,12 +368,11 @@
                         android:layout_marginStart="@dimen/detay_menu_30"
                         android:layout_weight="3"
                         android:background="@drawable/spn_style"
-                        android:entries="@array/type_of_servapp"
+                        android:entries="@array/type_of_servapp_ariza"
                         android:paddingStart="@dimen/detay_menu_25"
                         android:paddingEnd="@dimen/detay_menu_12"
                         android:prompt="@string/isemritipi"
-                        app:layout_constraintStart_toEndOf="@+id/txt_ariza"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        />
 
                 </LinearLayout>
 
