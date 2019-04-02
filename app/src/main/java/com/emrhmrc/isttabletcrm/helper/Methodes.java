@@ -7,7 +7,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 
-import java.lang.reflect.Field;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
@@ -66,7 +65,8 @@ public class Methodes {
         }
         if (permissionACCESS_READ != PackageManager.PERMISSION_GRANTED) {
             listPermissionsNeeded.add(android.Manifest.permission.READ_EXTERNAL_STORAGE);
-        } if (permissionACCESS_WRITE != PackageManager.PERMISSION_GRANTED) {
+        }
+        if (permissionACCESS_WRITE != PackageManager.PERMISSION_GRANTED) {
             listPermissionsNeeded.add(android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
         }
         if (!listPermissionsNeeded.isEmpty()) {
@@ -97,6 +97,24 @@ public class Methodes {
 
     }
 
+    public static int compareDateFromText(String first, String second) {
+
+        if (validateInput(first) && validateInput(second)) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+            Date sourceDateFirst = null;
+            Date sourceDateSecond = null;
+            try {
+                sourceDateFirst = dateFormat.parse(first);
+                sourceDateSecond = dateFormat.parse(second);
+                return sourceDateFirst.compareTo(sourceDateSecond);
+            } catch (ParseException e) {
+                e.printStackTrace();
+                return 0;
+            }
+        } else return 0;
+
+
+    }
 
 
     public static String changeDateFormatToClockText(String date) {
@@ -114,6 +132,7 @@ public class Methodes {
 
 
     }
+
 
     public static Calendar changeDateFormatToDate(String date) {
 

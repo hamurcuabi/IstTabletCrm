@@ -107,7 +107,6 @@ public class CreateServAppActivity extends AppCompatActivity {
         subOrNew();
         focusing();
         getSpnOncelik();
-        getSpnTip();
         initDialog();
         if (ShareData.getInstance().isSub_servapp()) {
             txtMenuHeader.setText(sub);
@@ -138,23 +137,6 @@ public class CreateServAppActivity extends AppCompatActivity {
 
     }
 
-    private void getSpnTip() {
-
-        spnAriza.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                request.setInv_TypeCode(new Code_Id(i + 1));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                request.setInv_TypeCode(new Code_Id(1));
-            }
-        });
-
-
-    }
-
     private void focusing() {
         spnAsansor.setOnFocusChangeListener((view, b) -> {
             if (b) spnAsansor.showDropDown();
@@ -176,7 +158,9 @@ public class CreateServAppActivity extends AppCompatActivity {
         if (CreateSubServAppSingleton.getInstance().getServAppGetById() != null) {
             servAppGetById = CreateSubServAppSingleton.getInstance().getServAppGetById();
             fillAll(servAppGetById);
+
         } else {
+            request.setInv_TypeCode(new Code_Id(2));
             request.setInv_RelatedServiceAppointmentId(new Inv_Id_Id());
             getAccountAll();
             edtSupervisor.setText(SingletonUser.getInstance().getUser().getSuperVisorId().getText());
@@ -220,9 +204,12 @@ public class CreateServAppActivity extends AppCompatActivity {
     private void fillAll(ServAppGetById model) {
         ServiceAppointment item = model.getServiceAppointment();
         Account account = new Account();
-        account.setAccountId(item.getInv_CustomerId().getId());
-        account.setName(item.getInv_CustomerId().getText());
-        fillSpinnerOneItem(account);
+        if (item.getInv_CustomerId() != null) {
+            account.setAccountId(item.getInv_CustomerId().getId());
+            account.setName(item.getInv_CustomerId().getText());
+            fillSpinnerOneItem(account);
+        }
+
         edtKonu.setText(item.getSubject());
         fillElevatorSpinner(item.getInv_ElevatorId().getId(), item.getInv_ElevatorId().getText());
         if (item.getInv_TypeCode() != null)
@@ -239,6 +226,8 @@ public class CreateServAppActivity extends AppCompatActivity {
         edtSaat.setText(model.getServiceAppointment().getScheduledStart());
         lnrOnceki.setVisibility(View.VISIBLE);
         request.setInv_RelatedServiceAppointmentId(new Inv_Id_Id(item.getActivityId()));
+        spinner_musteri.setEnabled(false);
+        spnAsansor.setEnabled(false);
 
     }
 
@@ -275,6 +264,7 @@ public class CreateServAppActivity extends AppCompatActivity {
     private void init() {
         jsonApi = ApiClient.getClient().create(JsonApi.class);
         request = new serviceAppointment();
+
     }
 
     private void fillSpinner(List<Account> list) {
@@ -307,7 +297,7 @@ public class CreateServAppActivity extends AppCompatActivity {
 
     private void fillSpinnerOneItem(Account account) {
         spinner_musteri.setText(account.getName());
-        spinner_musteri.setEnabled(false);
+        // spinner_musteri.setEnabled(false);
         request.setInv_CustomerId(new Inv_Id_Id(account.getAccountId()));
 
     }
@@ -339,7 +329,7 @@ public class CreateServAppActivity extends AppCompatActivity {
     }
 
     private void fillElevatorSpinner(String id, String name) {
-        spnAsansor.setEnabled(false);
+        // spnAsansor.setEnabled(false);
         spnAsansor.setText(name);
         request.setInv_ElevatorId(new Inv_Id_Id(id));
 

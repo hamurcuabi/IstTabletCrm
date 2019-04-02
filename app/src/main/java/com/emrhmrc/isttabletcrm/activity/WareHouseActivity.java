@@ -25,6 +25,7 @@ import com.emrhmrc.isttabletcrm.adapter.RcvWarehouseTransferAdapter;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.fragment.CreateNewWareRequestFragment;
+import com.emrhmrc.isttabletcrm.helper.Methodes;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
 import com.emrhmrc.isttabletcrm.models.User.UserIdRequest;
 import com.emrhmrc.isttabletcrm.models.Warehouse.WarehouseItem;
@@ -82,7 +83,7 @@ public class WareHouseActivity extends AppCompatActivity implements OnItemClickL
     private RcvWarehouseTransferAdapter adapter_talep;
     private List<WarehouseTransferItem> warehouseTransferItems;
     private List<WarehouseItem> warehouseItems;
-    private String[] items,items2;
+    private String[] items, items2;
     private SweetAlertDialog dialog;
 
     @Override
@@ -329,16 +330,15 @@ public class WareHouseActivity extends AppCompatActivity implements OnItemClickL
                         break;
                     case 2:
                         Collections.sort(warehouseTransferItems,
-                                (lhs, rhs) -> rhs.getInv_Productid().getText().compareTo(lhs.getInv_Productid().getText()));
-
+                                (WarehouseTransferItem lhs, WarehouseTransferItem rhs) -> {
+                                    if (lhs.getInv_TransferTypeCode() != null && rhs.getInv_TransferTypeCode() != null)
+                                        return lhs.getInv_TransferTypeCode().getValue() - rhs.getInv_TransferTypeCode().getValue();
+                                    else return 0;
+                                });
                         break;
                     case 3:
                         Collections.sort(warehouseTransferItems,
-                                (lhs, rhs) -> lhs.getInv_Quantity() - rhs.getInv_Quantity());
-                        break;
-                    case 4:
-                        Collections.sort(warehouseTransferItems,
-                                (lhs, rhs) -> rhs.getInv_Quantity() - lhs.getInv_Quantity());
+                                (WarehouseTransferItem lhs, WarehouseTransferItem rhs) -> Methodes.compareDateFromText(rhs.getInv_RequestDate(), lhs.getInv_RequestDate()));
                         break;
                 }
                 adapter_talep.setItems(warehouseTransferItems);

@@ -134,6 +134,16 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/txt_header"
                 android:textStyle="bold" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/detay_menu_12"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/statu"
+                android:textColor="@color/white"
+                android:textSize="@dimen/txt_header"
+                android:textStyle="bold" />
         </LinearLayout>
 
 

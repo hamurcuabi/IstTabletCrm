@@ -22,7 +22,6 @@ import com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointments;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppListAll;
 import com.emrhmrc.isttabletcrm.models.User.UserIdRequest;
-import com.emrhmrc.isttabletcrm.util.StringUtil;
 
 import java.util.List;
 
@@ -59,12 +58,12 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
         ButterKnife.bind(this);
         init();
         initDialog();
-        fillSpinner();
 
 
     }
 
     private void fillSpinner() {
+
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(
                 this, R.layout.spinner_item_white, items);
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -80,7 +79,41 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                adapter.getFilter().filter(StringUtil.convertIntToString(i));
+
+                switch (i) {
+
+                    case 0:
+                        adapter.getFilter().filter("0");
+                        break;
+                    case 1:
+                        adapter.getFilter().filter("1");
+                        break;
+                    case 2:
+                        adapter.getFilter().filter("2");
+                        break;
+                    case 3:
+                        adapter.getFilter().filter("3");
+                        break;
+                    case 4:
+                        adapter.getFilter().filter("4");
+                        break;
+                    case 5:
+                        adapter.getFilter().filter("5");
+                        break;
+                    case 6:
+                        adapter.getFilter().filter("7");
+                        break;
+                    case 7:
+                        adapter.getFilter().filter("8");
+                        break;
+                    case 8:
+                        adapter.getFilter().filter("9");
+                        break;
+                    default:
+                        adapter.getFilter().filter("10");
+                        break;
+                }
+
 
             }
 

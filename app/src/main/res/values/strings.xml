@@ -250,6 +250,9 @@
         <item>Yedek Parça Değişimi</item>
         <item>Durum Tespit</item>
         <item>Açık Servis</item>
+        <item>Tamamlandı</item>
+        <item>İptal</item>
+        <item>Açık</item>
     </string-array>
     <string-array name="spn_notif">
         <item>Tüm Duyurular</item>
@@ -262,10 +265,9 @@
     </string-array>
     <string-array name="spn_sort">
         <item>Sırala</item>
-        <item>A...Z</item>
-        <item>Z...A</item>
-        <item>1 2 3...</item>
-        <item>...3 2 1</item>
+        <item>Ürün Adına Göre</item>
+        <item>Transfer Tipine Göre</item>
+        <item>Tarihe Göre</item>
     </string-array>
 
     <string-array name="priorty">
