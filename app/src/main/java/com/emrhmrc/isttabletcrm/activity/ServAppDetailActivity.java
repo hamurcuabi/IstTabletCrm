@@ -761,10 +761,10 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     @Override
     public void deleteBreakdown(String id) {
         if (id != null && !id.isEmpty()) {
-            for (ServAppGetByIdServAppBreakdownTypes item : model.getServiceAppointment().getServAppGetByIdServAppBreakdownTypes()) {
-                if (item.getInv_BreakdownTypeId() != null) {
-                    if (item.getInv_BreakdownTypeId().getId().equals(id))
-                        model.getServiceAppointment().getServAppGetByIdServAppBreakdownTypes().remove(item);
+            for (int i = 0; i < model.getServiceAppointment().getServAppGetByIdServAppBreakdownTypes().size(); i++) {
+                if (model.getServiceAppointment().getServAppGetByIdServAppBreakdownTypes().get(i).getInv_BreakdownTypeId() != null) {
+                    if (model.getServiceAppointment().getServAppGetByIdServAppBreakdownTypes().get(i).getInv_BreakdownTypeId().getId().equals(id))
+                        model.getServiceAppointment().getServAppGetByIdServAppBreakdownTypes().remove(i);
                 }
 
             }
