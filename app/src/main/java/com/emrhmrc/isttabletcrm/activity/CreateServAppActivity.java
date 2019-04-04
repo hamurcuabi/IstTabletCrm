@@ -232,7 +232,10 @@ public class CreateServAppActivity extends AppCompatActivity {
     }
 
     private void getAccountAll() {
-        progAcoount.setVisibility(View.VISIBLE);
+        if (ShareData.getInstance().getAccountListAll() != null && ShareData.getInstance().getAccountListAll().getAccounts().size() > 0) {
+            fillSpinner(ShareData.getInstance().getAccountListAll().getAccounts());
+        } else{
+            progAcoount.setVisibility(View.VISIBLE);
         Call<AccountListAll> call = jsonApi.geAccountListAllCall();
         APIHelper.enqueueWithRetry(call, new Callback<AccountListAll>() {
             @Override
@@ -240,6 +243,7 @@ public class CreateServAppActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     AccountListAll listAll = response.body();
                     fillSpinner(listAll.getAccounts());
+                    ShareData.getInstance().setAccountListAll(listAll);
 
                 } else {
                     new SweetAlertDialog(CreateServAppActivity.this, SweetAlertDialog.WARNING_TYPE)
@@ -260,6 +264,8 @@ public class CreateServAppActivity extends AppCompatActivity {
             }
         });
     }
+
+}
 
     private void init() {
         jsonApi = ApiClient.getClient().create(JsonApi.class);

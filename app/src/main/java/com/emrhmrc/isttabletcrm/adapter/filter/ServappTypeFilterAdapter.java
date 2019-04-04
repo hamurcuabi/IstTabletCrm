@@ -10,12 +10,14 @@ import java.util.List;
 
 public class ServappTypeFilterAdapter extends Filter {
     List<ServiceAppointments> filterList;
+    List<ServiceAppointments> subfilterList;
     RcvServAppListAllAdapter adapter;
 
     public ServappTypeFilterAdapter(RcvServAppListAllAdapter adapter,
                                     List<ServiceAppointments> filterList) {
         this.adapter = adapter;
         this.filterList = filterList;
+        this.subfilterList = filterList;
 
     }
 
@@ -30,19 +32,36 @@ public class ServappTypeFilterAdapter extends Filter {
             constraint = constraint.toString().toLowerCase();
             //STORE OUR FILTERED PLAYERS
             List<ServiceAppointments> filtered = new ArrayList<>();
+            if (Integer.parseInt(constraint.toString()) >= 8) {
+                for (int i = 0; i < subfilterList.size(); i++) {
+                    if (subfilterList.get(i).getStatusCode() != null) {
+                        if (subfilterList.get(i).getStatusCode().getValue() == Integer.parseInt(constraint.toString()) || Integer.parseInt(constraint.toString()) == 10) {
+                            filtered.add(subfilterList.get(i));
+                        }
+                    } else if (Integer.parseInt(constraint.toString()) == 99 && subfilterList.get(i).getStatusCode().getValue() != 8 && subfilterList.get(i).getStatusCode().getValue() != 9) {
+                        filtered.add(subfilterList.get(i));
+                    }
 
-            for (int i = 0; i < adapter.getItemsFilter().size(); i++) {
-                //CHECK
-                if (adapter.getItemsFilter().get(i).getInv_TypeCode() != null) {
-                    if (adapter.getItemsFilter().get(i).getInv_TypeCode().getValue() == Integer.parseInt(constraint.toString()) || adapter.getItemsFilter().get(i).getStatusCode().getValue() == Integer.parseInt(constraint.toString()) || Integer.parseInt(constraint.toString()) == 0) {
-                        //ADD DATA TO FILTERED DATA
-                        filtered.add(adapter.getItemsFilter().get(i));
-                    } else if (adapter.getItemsFilter().get(i).getInv_TypeCode().getValue() == 10)
-                        filtered.add(adapter.getItemsFilter().get(i));
-                } //else filtered.add(adapter.getItems().get(i));
+                }
 
+            } else {
+                subfilterList.clear();
+                for (int i = 0; i < adapter.getItemsFilter().size(); i++) {
+                    //CHECK
+                    if (adapter.getItemsFilter().get(i).getInv_TypeCode() != null) {
+                        if (adapter.getItemsFilter().get(i).getInv_TypeCode().getValue() == Integer.parseInt(constraint.toString()) || Integer.parseInt(constraint.toString()) == 0) {
+                            //ADD DATA TO FILTERED DATA
+                            filtered.add(adapter.getItemsFilter().get(i));
+                            subfilterList.add(adapter.getItemsFilter().get(i));
+
+                        }
+                    } else if (adapter.getItemsFilter().get(i).getStatusCode().getValue() == Integer.parseInt(constraint.toString())) {
+                        filtered.add(adapter.getItemsFilter().get(i));
+                        subfilterList.add(adapter.getItemsFilter().get(i));
+                    }
+
+                }
             }
-
             results.count = filtered.size();
             results.values = filtered;
         } else {
@@ -50,6 +69,7 @@ public class ServappTypeFilterAdapter extends Filter {
             results.values = filterList;
 
         }
+
 
         return results;
     }

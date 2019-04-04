@@ -241,6 +241,7 @@
     <string name="iptal_islemi">İptal Etme İşlemi</string>
     <string name="sub_servapp">Alt İş Emri</string>
     <string name="create_sub_servapp">Alt İş emri Oluştur</string>
+    <string name="uygnsuzluk">Uygunsuzluk</string>
 
     <string-array name="spn_servapp">
         <item>Tüm İş Emirlerim</item>
@@ -250,6 +251,10 @@
         <item>Yedek Parça Değişimi</item>
         <item>Durum Tespit</item>
         <item>Açık Servis</item>
+
+    </string-array>
+    <string-array name="spn_statu">
+        <item>Statü</item>
         <item>Tamamlandı</item>
         <item>İptal</item>
         <item>Açık</item>

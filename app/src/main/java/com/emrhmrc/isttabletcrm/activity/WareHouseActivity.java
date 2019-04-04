@@ -342,6 +342,8 @@ public class WareHouseActivity extends AppCompatActivity implements OnItemClickL
                         break;
                 }
                 adapter_talep.setItems(warehouseTransferItems);
+                if (adapter_talep.getItems().size() > 0)
+                    rcvTalep.scrollToPosition(0);
 
             }
 

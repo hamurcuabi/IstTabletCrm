@@ -23,8 +23,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -44,18 +42,15 @@ import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
 import com.emrhmrc.isttabletcrm.helper.ViewDialog;
-import com.emrhmrc.isttabletcrm.models.Account.Account;
 import com.emrhmrc.isttabletcrm.models.Account.AccountListAll;
-import com.emrhmrc.isttabletcrm.models.Elevator.CustomerIdRequest;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorListAll;
-import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorsCustomer;
 import com.emrhmrc.isttabletcrm.models.ServApp.CreateUnsuitability;
 import com.emrhmrc.isttabletcrm.models.ServApp.DefaultResponse2;
 import com.emrhmrc.isttabletcrm.models.ServApp.Notes;
+import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetById;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Calendar;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -64,10 +59,10 @@ import retrofit2.Response;
 import static android.app.Activity.RESULT_OK;
 import static com.emrhmrc.isttabletcrm.helper.Methodes.checkAndRequestPermissions;
 
-public class NewUnstabilityFragment extends DialogFragment implements View.OnClickListener,
+public class NewUnstabilityServAppFragment extends DialogFragment implements View.OnClickListener,
         OnItemClickListener {
 
-    private static final String TAG = "NewUnstabilityFragment";
+    private static final String TAG = "NewUnstabilityServAppFr";
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private ImageView img_close, img_add;
     private EditText edt_descp;
@@ -82,10 +77,12 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
     private Call<DefaultResponse2> createCall;
     private Call<ElevatorListAll> elevatorListAllCall;
     private Call<AccountListAll> accountListAllCall;
+    private ServAppGetById servAppGetById;
 
-    public static NewUnstabilityFragment newInstance() {
+    public static NewUnstabilityServAppFragment newInstance(ServAppGetById servAppGetById) {
         Bundle args = new Bundle();
-        NewUnstabilityFragment fragment = new NewUnstabilityFragment();
+        args.putSerializable("servAppGetById", servAppGetById);
+        NewUnstabilityServAppFragment fragment = new NewUnstabilityServAppFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -103,9 +100,16 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
         init(view);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getDialog().setCanceledOnTouchOutside(false);
-        getAccountAll();
-        focusing();
+        servAppGetById = (ServAppGetById) getArguments().getSerializable("servAppGetById");
+        fillFields();
 
+    }
+
+    private void fillFields() {
+        spn_account.setEnabled(false);
+        spnElevator.setEnabled(false);
+        spn_account.setText(servAppGetById.getServiceAppointment().getInv_CustomerId().getText());
+        spnElevator.setText(servAppGetById.getServiceAppointment().getInv_ElevatorId().getText());
     }
 
     private void init(View view) {
@@ -217,6 +221,7 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
         createUnsuitability.setUserId(SingletonUser.getInstance().getUser().getUserId());
         createUnsuitability.setDescription(edt_descp.getText().toString());
         createUnsuitability.setSentOn(edt_tarih.getText().toString());
+        createUnsuitability.setServAppId(ShareData.getInstance().getServAppId());
         createUnsuitability.setSubject("Test Subject");
         createUnsuitability.setUnsuitabilityNotes(adapter.getItems());
         if (checkFields(createUnsuitability)) {
@@ -270,135 +275,6 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
         else if (item.getUnsuitabilityNotes() == null) return false;
         else if (item.getUserId() == null || item.getUserId().isEmpty()) return false;
         else return true;
-    }
-
-    private void getElevatorByCustomerAll(String id) {
-        Log.d(TAG, "getElevatorByCustomerAll: " + id);
-        prog_elevator.setVisibility(View.VISIBLE);
-        CustomerIdRequest request = new CustomerIdRequest(id);
-        elevatorListAllCall = jsonApi.elevatorGetByCustomerId(request);
-        APIHelper.enqueueWithRetry(elevatorListAllCall, new Callback<ElevatorListAll>() {
-            @Override
-            public void onResponse(Call<ElevatorListAll> call, Response<ElevatorListAll> response) {
-                prog_elevator.setVisibility(View.GONE);
-                if (response.isSuccessful()) {
-                    ElevatorListAll listAll = response.body();
-                    if (getDialog() != null && getDialog().isShowing())
-                        fillElevatorSpinner(listAll.getElevators());
-
-                } else {
-                    if (getDialog() != null && getDialog().isShowing()) {
-                        new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
-                                .setTitleText(response.message())
-                                .show();
-                    }
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<ElevatorListAll> call, Throwable t) {
-                Log.d(TAG, "onFailure: " + t.getMessage());
-                if (getDialog() != null && getDialog().isShowing()) {
-                    new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
-                            .setTitleText(getResources().getString(R.string.toast_error))
-                            .show();
-                }
-                prog_elevator.setVisibility(View.GONE);
-
-            }
-        });
-    }
-
-    private void fillElevatorSpinner(List<ElevatorsCustomer> list) {
-        if (list.size() > 0 && list != null) {
-            ArrayAdapter<ElevatorsCustomer> spinnerArrayAdapter = new ArrayAdapter<>(getActivity(),
-                    android.R.layout.simple_dropdown_item_1line,
-                    list);
-            // spinnerArrayAdapter.setDropDownViewResource(android.R.layout
-            // .simple_spinner_dropdown_item);
-            spnElevator.setAdapter(spinnerArrayAdapter);
-            spnElevator.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    spnElevator.showDropDown();
-                }
-            });
-        } else {
-            spnElevator.setAdapter(null);
-            spnElevator.setOnClickListener(null);
-        }
-
-    }
-
-    private void getAccountAll() {
-        if (ShareData.getInstance().getAccountListAll() != null && ShareData.getInstance().getAccountListAll().getAccounts().size() > 0) {
-            fillSpinner(ShareData.getInstance().getAccountListAll().getAccounts());
-        } else {
-            prog_account.setVisibility(View.VISIBLE);
-            accountListAllCall = jsonApi.geAccountListAllCall();
-            APIHelper.enqueueWithRetry(accountListAllCall, new Callback<AccountListAll>() {
-                @Override
-                public void onResponse(Call<AccountListAll> call, Response<AccountListAll> response) {
-                    prog_account.setVisibility(View.GONE);
-                    if (response.isSuccessful()) {
-                        AccountListAll listAll = response.body();
-                        if (getDialog() != null && getDialog().isShowing())
-                            fillSpinner(listAll.getAccounts());
-                        ShareData.getInstance().setAccountListAll(listAll);
-
-                    } else {
-                        if (getDialog() != null && getDialog().isShowing()) {
-                            new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
-                                    .setTitleText(response.message())
-                                    .show();
-                        }
-
-                    }
-
-                }
-
-                @Override
-                public void onFailure(Call<AccountListAll> call, Throwable t) {
-                    Log.d(TAG, "onFailure: " + t.getMessage());
-                    prog_account.setVisibility(View.GONE);
-                    if (getDialog() != null && getDialog().isShowing()) {
-                        new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
-                                .setTitleText(t.getMessage())
-                                .show();
-                    }
-
-                }
-            });
-        }
-    }
-
-    private void fillSpinner(List<Account> list) {
-        if (list.size() > 0 && list != null) {
-            ArrayAdapter<Account> spinnerArrayAdapter = new ArrayAdapter<>(getActivity(),
-                    android.R.layout.simple_dropdown_item_1line,
-                    list);
-            //spinnerArrayAdapter.setDropDownViewResource(android.R.layout
-            // .simple_spinner_dropdown_item);
-            spn_account.setAdapter(spinnerArrayAdapter);
-            spn_account.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    spn_account.showDropDown();
-                }
-            });
-            spn_account.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    getElevatorByCustomerAll(list.get(i).getAccountId());
-                }
-            });
-        } else {
-            spn_account.setAdapter(null);
-            spn_account.setOnClickListener(null);
-        }
-
     }
 
     private void dispatchTakePictureIntent(int i) {

@@ -64,6 +64,7 @@
     <color name="text_color_5">#383838</color>
     <color name="bg">#F5F5F5</color>
     <color name="view">#707070</color>
+    <color name="view2">#77707070</color>
     <color name="text_color_6">#464646</color>
     <!--Sweet Dialog-->
     <color name="float_transparent">#00000000</color>

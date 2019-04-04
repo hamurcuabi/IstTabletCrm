@@ -123,10 +123,11 @@ public class GlideBindingAdapters {
                 imageUrl = R.drawable.ic_reject;
                 break;
             default:
-                imageUrl = R.drawable.ic_az;
+                imageUrl = -1;
                 break;
         }
-        view.setBackground(context.getDrawable(imageUrl));
+        if (imageUrl != -1)
+            view.setBackground(context.getDrawable(imageUrl));
     }
 
     @BindingAdapter("imageResource")
@@ -152,6 +153,7 @@ public class GlideBindingAdapters {
                 .load(bitmap)
                 .into(view);
     }
+
     @BindingAdapter("imageResourceUri")
     public static void setImageResourceUri(ImageView view, Uri uri) {
         Context context = view.getContext();

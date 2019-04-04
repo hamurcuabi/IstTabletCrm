@@ -1,6 +1,7 @@
 package com.emrhmrc.isttabletcrm.fragment;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -540,6 +542,9 @@ public class CreateNewWareRequestFragment extends DialogFragment {
                     request_create_new.setInv_ToWarehouseid(new Inv_Id("inv_warehouse",
                             list.get(i).getInv_WarehouseName(), list.get(i).getInv_WarehouseId()));
                     //request.setInv_FromWarehouseid(list.get(i).getInv_ParentWhid());
+                    InputMethodManager in =
+                            (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
                 }
             });
 
@@ -555,7 +560,9 @@ public class CreateNewWareRequestFragment extends DialogFragment {
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     request_return_back.setInv_FromWarehouseid(new Inv_Id("inv_warehouse",
                             list.get(i).getInv_WarehouseName(), list.get(i).getInv_WarehouseId()));
-
+                    InputMethodManager in =
+                            (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
                 }
             });
         } else {
@@ -579,6 +586,9 @@ public class CreateNewWareRequestFragment extends DialogFragment {
                     request_create_new.setInv_Productid(new Inv_Id("product", list.get(i).getName(),
                             list.get(i).getProductId()));
                     request_create_new.setInv_ProductSerialNumber(list.get(i).getProductNumber());
+                    InputMethodManager in =
+                            (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
                 }
             });
 
@@ -594,6 +604,9 @@ public class CreateNewWareRequestFragment extends DialogFragment {
                             list.get(i).getProductId()));
                     request_return_back.setInv_ProductSerialNumber(list.get(i).getProductNumber());
                     edtSerino2.setText(list.get(i).getProductNumber());
+                    InputMethodManager in =
+                            (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
                 }
             });
 
@@ -630,6 +643,9 @@ public class CreateNewWareRequestFragment extends DialogFragment {
 
                     request_return_back.setInv_Uomid(new Inv_Id("uom", list.get(i).getName(),
                             list.get(i).getUoMId()));
+                    InputMethodManager in =
+                            (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
                 }
             });
         } else {

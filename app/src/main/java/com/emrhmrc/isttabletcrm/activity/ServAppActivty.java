@@ -39,10 +39,14 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
     private static final String TAG = "ServAppActivty";
     @BindView(R.id.spn_servapp)
     Spinner spinner;
+    @BindView(R.id.spn_statu)
+    Spinner spn_statu;
     @BindView(R.id.rcw_servapp)
     RecyclerView rcw;
     @BindArray(R.array.spn_servapp)
     String[] items;
+    @BindArray(R.array.spn_statu)
+    String[] items_statu;
     @BindString(R.string.loading)
     String loading;
     private List<ServiceAppointments> model;
@@ -68,6 +72,13 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
                 this, R.layout.spinner_item_white, items);
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(spinnerArrayAdapter);
+
+        //Spn Statu,
+
+        ArrayAdapter<String> spinnerArrayAdapter2 = new ArrayAdapter<>(
+                this, R.layout.spinner_item_white, items_statu);
+        spinnerArrayAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spn_statu.setAdapter(spinnerArrayAdapter2);
     }
 
     private void initDialog() {
@@ -103,17 +114,35 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
                     case 6:
                         adapter.getFilter().filter("7");
                         break;
-                    case 7:
-                        adapter.getFilter().filter("8");
-                        break;
-                    case 8:
-                        adapter.getFilter().filter("9");
-                        break;
-                    default:
+
+                }
+                spn_statu.setSelection(0);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        spn_statu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i) {
+                    case 0:
                         adapter.getFilter().filter("10");
                         break;
+                    case 1:
+                        adapter.getFilter().filter("8");
+                        break;
+                    case 2:
+                        adapter.getFilter().filter("9");
+                        break;
+                    case 3:
+                        adapter.getFilter().filter("99");
+                        break;
                 }
-
 
             }
 

@@ -36,6 +36,7 @@ import com.emrhmrc.isttabletcrm.fragment.BreakdownTypeCodeFragment;
 import com.emrhmrc.isttabletcrm.fragment.ControlListFragment;
 import com.emrhmrc.isttabletcrm.fragment.DefaultMapFragment;
 import com.emrhmrc.isttabletcrm.fragment.DetailServAppFormFragment;
+import com.emrhmrc.isttabletcrm.fragment.NewUnstabilityServAppFragment;
 import com.emrhmrc.isttabletcrm.fragment.ReasonAndAddenBreakdownFragment;
 import com.emrhmrc.isttabletcrm.fragment.ReasonOfBreakdownFragment;
 import com.emrhmrc.isttabletcrm.helper.AddBreakdownTypeCode;
@@ -478,7 +479,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
             R.id.txt_asansorno, R.id.txt_servis_raporu, R.id.img_servis_raporu, R.id.img_gps,
             R.id.img_menu, R.id.txt_kaydet, R.id.img_kaydet, R.id.btn_ariza_kodu,
             R.id.btn_ariza_nedeni, R.id.add_job_2, R.id.img_add_3, R.id.btn_kontrol_listesi,
-            R.id.img_add_2, R.id.add_job})
+            R.id.img_add_2, R.id.add_job, R.id.img_yeni_uygunsuzluk, R.id.txt_yeni_uygunsuzluk})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_cancel:
@@ -550,12 +551,24 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
             case R.id.add_job:
                 openWorkman();
                 break;
+            case R.id.img_yeni_uygunsuzluk:
+                openNewUnsuit();
+                break;
+            case R.id.txt_yeni_uygunsuzluk:
+                openNewUnsuit();
+                break;
         }
     }
 
     private void openWorkman() {
         AddWorkmanshipFragment fragment = AddWorkmanshipFragment.newInstance();
         fragment.show(getSupportFragmentManager(), "AddWorkmanshipFragment");
+
+    }
+
+    private void openNewUnsuit() {
+        NewUnstabilityServAppFragment fragment = NewUnstabilityServAppFragment.newInstance(model);
+        fragment.show(getSupportFragmentManager(), "NewUnstabilityServAppFragment");
 
     }
 

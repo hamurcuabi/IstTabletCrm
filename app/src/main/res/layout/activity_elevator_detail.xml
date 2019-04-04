@@ -78,14 +78,16 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <android.support.constraint.ConstraintLayout
+
                 android:id="@+id/cons_genel"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/menu_left"
                 android:layout_marginTop="@dimen/detay_menu"
+                android:layout_marginBottom="@dimen/detay_menu_12"
                 android:layout_weight="1"
                 android:background="@drawable/btn_default_layout"
-                android:elevation="@dimen/detay_menu_8"
+                android:elevation="2dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -436,7 +438,7 @@
                         <LinearLayout
                             android:id="@+id/lnr_asyil"
                             android:layout_width="@dimen/detay_menu_370"
-                            android:layout_height="wrap_content"
+                            android:layout_height="26dp"
                             android:layout_marginTop="@dimen/text_menu_16"
                             android:orientation="horizontal"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -643,9 +645,10 @@
                 android:layout_marginStart="@dimen/menu_left"
                 android:layout_marginTop="@dimen/detay_menu"
                 android:layout_marginEnd="@dimen/menu_left"
+                android:layout_marginBottom="@dimen/detay_menu_12"
                 android:layout_weight="1"
                 android:background="@drawable/btn_default_layout"
-                android:elevation="@dimen/detay_menu_20"
+                android:elevation="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/cons_genel"
                 app:layout_constraintTop_toTopOf="parent">

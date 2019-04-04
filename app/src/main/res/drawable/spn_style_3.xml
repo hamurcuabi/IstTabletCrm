@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <layer-list>
+            <item>
+                <shape android:shape="rectangle">
+                    <stroke android:width="0.3dp" android:color="@color/view2" android:dashWidth="1dp" />
+                    <corners android:radius="0.3dp" />
+                    <padding android:right="4dp" />
+
+
+                </shape>
+            </item>
+
+            <item>
+
+                <bitmap android:gravity="center|end" android:src="@drawable/ic_arrow_down_white" />
+
+            </item>
+
+
+        </layer-list>
+    </item>
+</selector>

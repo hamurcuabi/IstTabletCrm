@@ -1,5 +1,6 @@
 package com.emrhmrc.isttabletcrm.helper;
 
+import com.emrhmrc.isttabletcrm.models.Account.AccountListAll;
 import com.emrhmrc.isttabletcrm.models.BreakDown.BreakDownTypeListAll;
 import com.emrhmrc.isttabletcrm.models.Notification.Notification;
 
@@ -17,6 +18,23 @@ public class ShareData {
     private double Longitude;
     private boolean add_sub_piece;
     private boolean sub_servapp;
+    private BreakDownTypeListAll breakDownTypeListAll;
+    private AccountListAll accountListAll;
+
+    private ShareData() {
+    }
+
+    public static ShareData getInstance() {
+        return Instance;
+    }
+
+    public AccountListAll getAccountListAll() {
+        return accountListAll;
+    }
+
+    public void setAccountListAll(AccountListAll accountListAll) {
+        this.accountListAll = accountListAll;
+    }
 
     public BreakDownTypeListAll getBreakDownTypeListAll() {
         return breakDownTypeListAll;
@@ -24,15 +42,6 @@ public class ShareData {
 
     public void setBreakDownTypeListAll(BreakDownTypeListAll breakDownTypeListAll) {
         this.breakDownTypeListAll = breakDownTypeListAll;
-    }
-
-    private BreakDownTypeListAll breakDownTypeListAll;
-
-    private ShareData() {
-    }
-
-    public static ShareData getInstance() {
-        return Instance;
     }
 
     public boolean isAdd_sub_piece() {
