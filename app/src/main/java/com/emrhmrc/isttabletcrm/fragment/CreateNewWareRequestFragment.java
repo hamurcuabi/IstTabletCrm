@@ -543,7 +543,7 @@ public class CreateNewWareRequestFragment extends DialogFragment {
                             list.get(i).getInv_WarehouseName(), list.get(i).getInv_WarehouseId()));
                     //request.setInv_FromWarehouseid(list.get(i).getInv_ParentWhid());
                     InputMethodManager in =
-                            (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                            (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                     in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
                 }
             });
@@ -561,7 +561,7 @@ public class CreateNewWareRequestFragment extends DialogFragment {
                     request_return_back.setInv_FromWarehouseid(new Inv_Id("inv_warehouse",
                             list.get(i).getInv_WarehouseName(), list.get(i).getInv_WarehouseId()));
                     InputMethodManager in =
-                            (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                            (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                     in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
                 }
             });
@@ -587,7 +587,7 @@ public class CreateNewWareRequestFragment extends DialogFragment {
                             list.get(i).getProductId()));
                     request_create_new.setInv_ProductSerialNumber(list.get(i).getProductNumber());
                     InputMethodManager in =
-                            (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                            (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                     in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
                 }
             });
@@ -605,7 +605,7 @@ public class CreateNewWareRequestFragment extends DialogFragment {
                     request_return_back.setInv_ProductSerialNumber(list.get(i).getProductNumber());
                     edtSerino2.setText(list.get(i).getProductNumber());
                     InputMethodManager in =
-                            (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                            (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                     in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
                 }
             });
@@ -630,6 +630,9 @@ public class CreateNewWareRequestFragment extends DialogFragment {
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                     request_create_new.setInv_Uomid(new Inv_Id("uom", list.get(i).getName(), list.get(i).getUoMId()));
+                    InputMethodManager in =
+                            (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
                 }
             });
 
@@ -644,7 +647,7 @@ public class CreateNewWareRequestFragment extends DialogFragment {
                     request_return_back.setInv_Uomid(new Inv_Id("uom", list.get(i).getName(),
                             list.get(i).getUoMId()));
                     InputMethodManager in =
-                            (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                            (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                     in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
                 }
             });
