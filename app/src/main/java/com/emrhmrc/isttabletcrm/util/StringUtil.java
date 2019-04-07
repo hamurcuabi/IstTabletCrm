@@ -12,6 +12,9 @@ public class StringUtil {
     public static String returnNull() {
         return "null";
     }
+    public static String notExist() {
+        return "-";
+    }
 
     public static String returnSpace() {
         return "";

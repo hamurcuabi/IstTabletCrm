@@ -5,8 +5,9 @@ public class SubList {
     private int ProductCount;
     private String inv_SubProductGroupid;
     private String Image;
+    private String inv_Code;
     private String ImageMimeType;
-    private double ImageFileSize;
+
 
     public SubList() {
     }
@@ -56,11 +57,11 @@ public class SubList {
         ImageMimeType = imageMimeType;
     }
 
-    public double getImageFileSize() {
-        return ImageFileSize;
+    public String getInv_Code() {
+        return inv_Code;
     }
 
-    public void setImageFileSize(double imageFileSize) {
-        ImageFileSize = imageFileSize;
+    public void setInv_Code(String inv_Code) {
+        this.inv_Code = inv_Code;
     }
 }

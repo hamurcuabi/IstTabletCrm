@@ -2,6 +2,7 @@ package com.emrhmrc.isttabletcrm.fragment;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -17,21 +18,25 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.emrhmrc.isttabletcrm.R;
+import com.emrhmrc.isttabletcrm.adapter.CustomInfoWindowAdapter;
 import com.emrhmrc.isttabletcrm.helper.CalendarEventsSingleton;
 import com.emrhmrc.isttabletcrm.helper.MapGo;
 import com.emrhmrc.isttabletcrm.helper.Methodes;
 import com.emrhmrc.isttabletcrm.models.MapModel;
+import com.emrhmrc.isttabletcrm.util.StringUtil;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.maps.android.ui.IconGenerator;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class MapFragment extends DialogFragment {
+public class MapFragment extends DialogFragment implements GoogleMap.OnMarkerClickListener {
 
     MapView mMapView;
     private GoogleMap googleMap;
@@ -40,6 +45,7 @@ public class MapFragment extends DialogFragment {
     private ImageView img_close;
     private Button btn_before, btn_next;
     private MapGo mapGo;
+    private MarkerOptions marker;
 
     public static MapFragment newInstance(ArrayList<MapModel> map, int w, int h) {
 
@@ -56,6 +62,11 @@ public class MapFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.map_fragment, container, false);
         map = (ArrayList<MapModel>) getArguments().getSerializable("map");
+      /*  map = new ArrayList<>();
+        map.add(new MapModel(37.1, 40.0, "title1", "descp1"));
+        map.add(new MapModel(27.1, 29.0, "title2", "descp2"));
+        map.add(new MapModel(33.1, 35.0, "title3", "descp3"));
+        map.add(new MapModel(34.1, 42.0, "title4", "descp4"));*/
         w = getArguments().getInt("w");
         h = getArguments().getInt("h");
         mMapView = rootView.findViewById(R.id.mapview);
@@ -84,16 +95,27 @@ public class MapFragment extends DialogFragment {
                     return;
                 }
                 googleMap.setMyLocationEnabled(true);
+                googleMap.setOnMarkerClickListener(this::onMarkerClick);
             }
 
             // For dropping a marker at a point on the Map
             // create marker
+            int i = 0;
             for (MapModel current : map
             ) {
+                i++;
                 LatLng gps = new LatLng(current.getLatitude(), current.getLongitude());
-                MarkerOptions marker = new MarkerOptions().position(gps).title(current.getTitle());
-                marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker));
+                marker = new MarkerOptions().position(gps).title(current.getTitle());
+
+                IconGenerator iconGenerator = new IconGenerator(getActivity());
+                //  iconGenerator.setBackground(getActivity().getDrawable(R.drawable.gps_marker));
+                iconGenerator.setTextAppearance(getActivity(), R.style.iconGenText);
+                Bitmap bitmap = iconGenerator.makeIcon(StringUtil.convertIntToString(i));
+                marker.icon(BitmapDescriptorFactory.fromBitmap(bitmap));
+                // marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker));
                 googleMap.addMarker(marker.position(gps)).setSnippet(current.getDescp());
+                googleMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(getActivity()));
+
 
             }
 
@@ -157,5 +179,11 @@ public class MapFragment extends DialogFragment {
     public void onLowMemory() {
         super.onLowMemory();
         mMapView.onLowMemory();
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        if (!marker.isInfoWindowShown()) marker.showInfoWindow();
+        return false;
     }
 }

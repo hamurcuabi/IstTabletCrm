@@ -23,6 +23,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -38,8 +39,14 @@ import com.emrhmrc.isttabletcrm.models.CommonClass.Code;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Uom;
 import com.emrhmrc.isttabletcrm.models.CommonClass.UomListAll;
+import com.emrhmrc.isttabletcrm.models.Product.MainList;
+import com.emrhmrc.isttabletcrm.models.Product.MainProductList;
 import com.emrhmrc.isttabletcrm.models.Product.Product;
 import com.emrhmrc.isttabletcrm.models.Product.ProductListAll;
+import com.emrhmrc.isttabletcrm.models.Product.SubGroupProductsRequest;
+import com.emrhmrc.isttabletcrm.models.Product.SubGroupRequest;
+import com.emrhmrc.isttabletcrm.models.Product.SubList;
+import com.emrhmrc.isttabletcrm.models.Product.SubProductList;
 import com.emrhmrc.isttabletcrm.models.ServApp.DefaultResponse;
 import com.emrhmrc.isttabletcrm.models.User.UserIdRequest;
 import com.emrhmrc.isttabletcrm.models.Warehouse.WareHouseListAll;
@@ -106,6 +113,24 @@ public class CreateNewWareRequestFragment extends DialogFragment {
     ImageView imgClose;
     @BindView(R.id.edt_serino2)
     EditText edtSerino2;
+    @BindView(R.id.spn_urunkodu)
+    AutoCompleteTextView spnUrunkodu;
+    @BindView(R.id.spn_anaurun)
+    AutoCompleteTextView spnAnaurun;
+    @BindView(R.id.spn_alturun)
+    AutoCompleteTextView spnAlturun;
+    @BindView(R.id.prog_depo)
+    ProgressBar progDepo;
+    @BindView(R.id.prog_ana)
+    ProgressBar progAna;
+    @BindView(R.id.prog_alt)
+    ProgressBar progAlt;
+    @BindView(R.id.prog_urun)
+    ProgressBar progUrun;
+    @BindView(R.id.prog_birim)
+    ProgressBar progBirim;
+    @BindView(R.id.edt_baglioldugu_isemri)
+    EditText edtBagliolduguIsemri;
     private WarehouseTransferCreateRequest request_create_new;
     private WarehouseTransferCreateRequest request_return_back;
     private JsonApi jsonApi;
@@ -114,6 +139,9 @@ public class CreateNewWareRequestFragment extends DialogFragment {
     private Call<ProductListAll> productListAllCall;
     private Call<DefaultResponse> createCall, returnCall;
     private ViewDialog viewDialog;
+    private ArrayAdapter<MainList> mainListArrayAdapter;
+    private ArrayAdapter<SubList> subProductListArrayAdapter;
+    private ArrayAdapter<Product> productArrayAdapter;
 
     public static CreateNewWareRequestFragment newInstance() {
 
@@ -135,14 +163,326 @@ public class CreateNewWareRequestFragment extends DialogFragment {
         viewDialog = new ViewDialog(getActivity());
 
         getWarehouses();
-        getProducts();
+        getMainProductGroup();
+        getProductAllList();
         getUoms();
         focusing();
         return view;
 
     }
 
+    private void getMainProductGroup() {
+
+        progAna.setVisibility(View.VISIBLE);
+        Call<MainProductList> call = jsonApi.getMainProductListCall();
+        call.enqueue(new Callback<MainProductList>() {
+            @Override
+            public void onResponse(Call<MainProductList> call, Response<MainProductList> response) {
+                if (response.isSuccessful()) {
+                    MainProductList model = response.body();
+                    fillSpinnersMainProducts(model.getMainProductGroups());
+
+
+                } else {
+                    Log.d(TAG, "onResponse: " + response.errorBody().toString());
+                }
+                progAna.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onFailure(Call<MainProductList> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+                progAna.setVisibility(View.GONE);
+            }
+        });
+    }
+
+    private void getProductAllList() {
+
+        Call<ProductListAll> call = jsonApi.productListAllNoParam();
+        call.enqueue(new Callback<ProductListAll>() {
+            @Override
+            public void onResponse(Call<ProductListAll> call, Response<ProductListAll> response) {
+                if (response.isSuccessful()) {
+                    ProductListAll model = response.body();
+                    fillSpinnersProductsAll(model.getProducts());
+
+
+                } else {
+                    Log.d(TAG, "onResponse: " + response.errorBody().toString());
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ProductListAll> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+
+            }
+        });
+    }
+
+    private void getSubProductGroup(String id) {
+
+        progAlt.setVisibility(View.VISIBLE);
+        SubGroupRequest request = new SubGroupRequest(id);
+        Call<SubProductList> call = jsonApi.getSubProductListCall(request);
+        call.enqueue(new Callback<SubProductList>() {
+            @Override
+            public void onResponse(Call<SubProductList> call, Response<SubProductList> response) {
+                if (response.isSuccessful()) {
+                    final SubProductList list = response.body();
+                    fillSpinnersSubProducts(list.getSubProductGroups());
+                } else {
+                    Log.d(TAG, "onResponse: ");
+                }
+                progAlt.setVisibility(View.GONE);
+
+            }
+
+            @Override
+            public void onFailure(Call<SubProductList> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+                progAlt.setVisibility(View.GONE);
+            }
+        });
+    }
+
+    private void getProducList(String id) {
+        progUrun.setVisibility(View.VISIBLE);
+        SubGroupProductsRequest request = new SubGroupProductsRequest(id);
+        Call<ProductListAll> call = jsonApi.productListAll(request);
+        call.enqueue(new Callback<ProductListAll>() {
+            @Override
+            public void onResponse(Call<ProductListAll> call, Response<ProductListAll> response) {
+                if (response.isSuccessful()) {
+
+                    ProductListAll temp = response.body();
+                    fillSpinnersProducts(temp.getProducts());
+
+                }
+                progUrun.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onFailure(Call<ProductListAll> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+                progUrun.setVisibility(View.GONE);
+            }
+        });
+
+    }
+
+    private void fillSpinnersMainProducts(List<MainList> list) {
+        if (list.size() > 0 && list != null) {
+            mainListArrayAdapter = new ArrayAdapter<>(getActivity(),
+                    android.R.layout.simple_dropdown_item_1line,
+                    list);
+            spnAnaurun.setAdapter(mainListArrayAdapter);
+            spnAnaurun.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                    final MainList current = list.get(i);
+                    getSubProductGroup(current.getInv_MainProductGroupid());
+
+                    InputMethodManager in = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
+                }
+            });
+            spnAnaurun.showDropDown();
+
+        } else {
+            spnAnaurun.setAdapter(null);
+            spnAnaurun.setOnClickListener(null);
+
+        }
+
+    }
+
+    private void fillSpinnersSubProducts(List<SubList> list) {
+        if (list.size() > 0 && list != null) {
+            subProductListArrayAdapter = new ArrayAdapter<>(getActivity(),
+                    android.R.layout.simple_dropdown_item_1line,
+                    list);
+            spnAlturun.setAdapter(subProductListArrayAdapter);
+            spnAlturun.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                    final SubList current = list.get(i);
+                    getProducList(current.getInv_SubProductGroupid());
+                    InputMethodManager in =
+                            (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
+                }
+            });
+            spnAlturun.showDropDown();
+        } else {
+            spnAlturun.setAdapter(null);
+            spnAlturun.setOnClickListener(null);
+
+        }
+
+    }
+
+    private void fillSpinnersWareHouse(List<Warehouses> list) {
+        if (list.size() > 0 && list != null) {
+            ArrayAdapter<Warehouses> spinnerArrayAdapter = new ArrayAdapter<>(getActivity(),
+                    android.R.layout.simple_dropdown_item_1line,
+                    list);
+            ArrayAdapter<Warehouses> spinnerArrayAdapter2 = new ArrayAdapter<>(getActivity(),
+                    android.R.layout.simple_dropdown_item_1line,
+                    list);
+            spnIstenilen.setAdapter(spinnerArrayAdapter);
+            spnIstenilen.showDropDown();
+            spnIstenilen.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    spnIstenilen.showDropDown();
+                }
+            });
+            spnIstenilen.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    request_create_new.setInv_ToWarehouseid(new Inv_Id("inv_warehouse",
+                            list.get(i).getInv_WarehouseName(), list.get(i).getInv_WarehouseId()));
+                    //request.setInv_FromWarehouseid(list.get(i).getInv_ParentWhid());
+                    InputMethodManager in =
+                            (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
+                }
+            });
+
+            spnCikisdepo.setAdapter(spinnerArrayAdapter2);
+            spnCikisdepo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    spnCikisdepo.showDropDown();
+                }
+            });
+            spnCikisdepo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    request_return_back.setInv_FromWarehouseid(new Inv_Id("inv_warehouse",
+                            list.get(i).getInv_WarehouseName(), list.get(i).getInv_WarehouseId()));
+                    InputMethodManager in =
+                            (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
+                }
+            });
+        } else {
+            spnCikisdepo.setAdapter(null);
+            spnCikisdepo.setAdapter(null);
+            spnIstenilen.setOnClickListener(null);
+            spnIstenilen.setOnClickListener(null);
+        }
+
+    }
+
+    private void fillSpinnersProducts(List<Product> list) {
+        if (list.size() > 0 && list != null) {
+            productArrayAdapter = new ArrayAdapter<>(getActivity(),
+                    android.R.layout.simple_dropdown_item_1line,
+                    list);
+            spnUrunadi.setAdapter(productArrayAdapter);
+            spnUrunadi.showDropDown();
+            spnUrunadi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    request_create_new.setInv_Productid(new Inv_Id("product", list.get(i).getName(),
+                            list.get(i).getProductId()));
+                    request_create_new.setInv_ProductSerialNumber(list.get(i).getProductNumber());
+                    spnUrunkodu.setText(list.get(i).getProductNumber());
+                    InputMethodManager in =
+                            (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
+                }
+            });
+
+
+        } else {
+            spnUrunadi.setAdapter(null);
+            spnUrunadi.setOnClickListener(null);
+
+        }
+
+    }
+
+    private void fillSpinnersProductsAll(List<Product> list) {
+        if (list.size() > 0 && list != null) {
+
+            ArrayAdapter<Product> spinnerArrayAdapter2 = new ArrayAdapter<>(getActivity(),
+                    android.R.layout.simple_dropdown_item_1line,
+                    list);
+            spnUrunadi2.setAdapter(spinnerArrayAdapter2);
+            spnUrunadi2.showDropDown();
+            spnUrunadi2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    request_return_back.setInv_Productid(new Inv_Id("product", list.get(i).getName(),
+                            list.get(i).getProductId()));
+                    request_return_back.setInv_ProductSerialNumber(list.get(i).getProductNumber());
+                    edtSerino2.setText(list.get(i).getProductNumber());
+                    InputMethodManager in =
+                            (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
+                }
+            });
+
+        } else {
+            spnUrunadi.setAdapter(null);
+            spnUrunadi.setOnClickListener(null);
+            spnUrunadi2.setAdapter(null);
+            spnUrunadi2.setOnClickListener(null);
+        }
+
+    }
+
+    private void fillSpinnersUom(List<Inv_Uom> list) {
+        if (list.size() > 0 && list != null) {
+            ArrayAdapter<Inv_Uom> spinnerArrayAdapter = new ArrayAdapter<>(getActivity(),
+                    android.R.layout.simple_dropdown_item_1line,
+                    list);
+            spnBirim.setAdapter(spinnerArrayAdapter);
+            spnBirim.showDropDown();
+            spnBirim.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                    request_create_new.setInv_Uomid(new Inv_Id("uom", list.get(i).getName(), list.get(i).getUoMId()));
+                    InputMethodManager in =
+                            (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
+                }
+            });
+
+            ArrayAdapter<Inv_Uom> spinnerArrayAdapter2 = new ArrayAdapter<>(getActivity(),
+                    android.R.layout.simple_dropdown_item_1line,
+                    list);
+            spnBirim2.setAdapter(spinnerArrayAdapter2);
+            spnBirim2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                    request_return_back.setInv_Uomid(new Inv_Id("uom", list.get(i).getName(),
+                            list.get(i).getUoMId()));
+                    InputMethodManager in =
+                            (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
+                }
+            });
+        } else {
+            spnBirim.setAdapter(null);
+            spnBirim.setOnClickListener(null);
+            spnBirim2.setAdapter(null);
+            spnBirim2.setOnClickListener(null);
+        }
+
+    }
+
     private void getUoms() {
+        progBirim.setVisibility(View.VISIBLE);
         uomListAllCall = jsonApi.getUomListAllCall();
         APIHelper.enqueueWithRetry(uomListAllCall, new Callback<UomListAll>() {
             @Override
@@ -151,11 +491,12 @@ public class CreateNewWareRequestFragment extends DialogFragment {
                     final UomListAll model = response.body();
                     fillSpinnersUom(model.getUomList());
                 } else Log.d(TAG, "onResponse: " + response.errorBody());
-
+                progBirim.setVisibility(View.GONE);
             }
 
             @Override
             public void onFailure(Call<UomListAll> call, Throwable t) {
+                progBirim.setVisibility(View.GONE);
                 Log.d(TAG, "onFailure: " + t.getMessage());
                 if (getDialog() != null && getDialog().isShowing()) {
                     new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
@@ -191,6 +532,14 @@ public class CreateNewWareRequestFragment extends DialogFragment {
             if (b) spnBirim2.showDropDown();
             else spnBirim2.dismissDropDown();
         });
+        spnAlturun.setOnFocusChangeListener((view, b) -> {
+            if (b) spnAlturun.showDropDown();
+            else spnAlturun.dismissDropDown();
+        });
+        spnAnaurun.setOnFocusChangeListener((view, b) -> {
+            if (b) spnAnaurun.showDropDown();
+            else spnAnaurun.dismissDropDown();
+        });
 
         spnIstenilen.setOnClickListener(view -> {
             spnIstenilen.showDropDown();
@@ -210,9 +559,16 @@ public class CreateNewWareRequestFragment extends DialogFragment {
         spnBirim2.setOnClickListener(view -> {
             spnBirim2.showDropDown();
         });
+        spnAlturun.setOnClickListener(view -> {
+            spnAlturun.showDropDown();
+        });
+        spnAnaurun.setOnClickListener(view -> {
+            spnAnaurun.showDropDown();
+        });
     }
 
     private void getWarehouses() {
+        progDepo.setVisibility(View.VISIBLE);
         UserIdRequest request = new UserIdRequest(SingletonUser.getInstance().getUser().getUserId());
         wareHouseListAllCall = jsonApi.getWareHouseListAllCall(request);
         APIHelper.enqueueWithRetry(wareHouseListAllCall, new Callback<WareHouseListAll>() {
@@ -224,39 +580,13 @@ public class CreateNewWareRequestFragment extends DialogFragment {
 
 
                 } else Log.d(TAG, "onResponse: ");
-
+                progDepo.setVisibility(View.GONE);
             }
 
             @Override
             public void onFailure(Call<WareHouseListAll> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
-                if (getDialog() != null && getDialog().isShowing()) {
-                    new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
-                            .setTitleText(getResources().getString(R.string.toast_error))
-                            .show();
-                }
-            }
-        });
-    }
-
-    private void getProducts() {
-        UserIdRequest request = new UserIdRequest(SingletonUser.getInstance().getUser().getUserId());
-        productListAllCall = jsonApi.productListAll(request);
-        APIHelper.enqueueWithRetry(productListAllCall, new Callback<ProductListAll>() {
-            @Override
-            public void onResponse(Call<ProductListAll> call, Response<ProductListAll> response) {
-                if (response.isSuccessful()) {
-
-                    ProductListAll listAll = response.body();
-                    fillSpinnersProducts(listAll.getProducts());
-
-                } else Log.d(TAG, "onResponse: ");
-
-            }
-
-            @Override
-            public void onFailure(Call<ProductListAll> call, Throwable t) {
-                Log.d(TAG, "onFailure: " + t.getMessage());
+                progDepo.setVisibility(View.GONE);
                 if (getDialog() != null && getDialog().isShowing()) {
                     new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
                             .setTitleText(getResources().getString(R.string.toast_error))
@@ -521,144 +851,6 @@ public class CreateNewWareRequestFragment extends DialogFragment {
         } else return true;
     }
 
-    private void fillSpinnersWareHouse(List<Warehouses> list) {
-        if (list.size() > 0 && list != null) {
-            ArrayAdapter<Warehouses> spinnerArrayAdapter = new ArrayAdapter<>(getActivity(),
-                    android.R.layout.simple_dropdown_item_1line,
-                    list);
-            ArrayAdapter<Warehouses> spinnerArrayAdapter2 = new ArrayAdapter<>(getActivity(),
-                    android.R.layout.simple_dropdown_item_1line,
-                    list);
-            spnIstenilen.setAdapter(spinnerArrayAdapter);
-            spnIstenilen.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    spnIstenilen.showDropDown();
-                }
-            });
-            spnIstenilen.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    request_create_new.setInv_ToWarehouseid(new Inv_Id("inv_warehouse",
-                            list.get(i).getInv_WarehouseName(), list.get(i).getInv_WarehouseId()));
-                    //request.setInv_FromWarehouseid(list.get(i).getInv_ParentWhid());
-                    InputMethodManager in =
-                            (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
-                }
-            });
-
-            spnCikisdepo.setAdapter(spinnerArrayAdapter2);
-            spnCikisdepo.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    spnCikisdepo.showDropDown();
-                }
-            });
-            spnCikisdepo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    request_return_back.setInv_FromWarehouseid(new Inv_Id("inv_warehouse",
-                            list.get(i).getInv_WarehouseName(), list.get(i).getInv_WarehouseId()));
-                    InputMethodManager in =
-                            (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
-                }
-            });
-        } else {
-            spnCikisdepo.setAdapter(null);
-            spnCikisdepo.setAdapter(null);
-            spnIstenilen.setOnClickListener(null);
-            spnIstenilen.setOnClickListener(null);
-        }
-
-    }
-
-    private void fillSpinnersProducts(List<Product> list) {
-        if (list.size() > 0 && list != null) {
-            ArrayAdapter<Product> spinnerArrayAdapter = new ArrayAdapter<>(getActivity(),
-                    android.R.layout.simple_dropdown_item_1line,
-                    list);
-            spnUrunadi.setAdapter(spinnerArrayAdapter);
-            spnUrunadi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    request_create_new.setInv_Productid(new Inv_Id("product", list.get(i).getName(),
-                            list.get(i).getProductId()));
-                    request_create_new.setInv_ProductSerialNumber(list.get(i).getProductNumber());
-                    InputMethodManager in =
-                            (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
-                }
-            });
-
-            ArrayAdapter<Product> spinnerArrayAdapter2 = new ArrayAdapter<>(getActivity(),
-                    android.R.layout.simple_dropdown_item_1line,
-                    list);
-            spnUrunadi2.setAdapter(spinnerArrayAdapter2);
-
-            spnUrunadi2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    request_return_back.setInv_Productid(new Inv_Id("product", list.get(i).getName(),
-                            list.get(i).getProductId()));
-                    request_return_back.setInv_ProductSerialNumber(list.get(i).getProductNumber());
-                    edtSerino2.setText(list.get(i).getProductNumber());
-                    InputMethodManager in =
-                            (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
-                }
-            });
-
-        } else {
-            spnUrunadi.setAdapter(null);
-            spnUrunadi.setOnClickListener(null);
-            spnUrunadi2.setAdapter(null);
-            spnUrunadi2.setOnClickListener(null);
-        }
-
-    }
-
-    private void fillSpinnersUom(List<Inv_Uom> list) {
-        if (list.size() > 0 && list != null) {
-            ArrayAdapter<Inv_Uom> spinnerArrayAdapter = new ArrayAdapter<>(getActivity(),
-                    android.R.layout.simple_dropdown_item_1line,
-                    list);
-            spnBirim.setAdapter(spinnerArrayAdapter);
-            spnBirim.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                    request_create_new.setInv_Uomid(new Inv_Id("uom", list.get(i).getName(), list.get(i).getUoMId()));
-                    InputMethodManager in =
-                            (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
-                }
-            });
-
-            ArrayAdapter<Inv_Uom> spinnerArrayAdapter2 = new ArrayAdapter<>(getActivity(),
-                    android.R.layout.simple_dropdown_item_1line,
-                    list);
-            spnBirim2.setAdapter(spinnerArrayAdapter2);
-            spnBirim2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                    request_return_back.setInv_Uomid(new Inv_Id("uom", list.get(i).getName(),
-                            list.get(i).getUoMId()));
-                    InputMethodManager in =
-                            (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
-                }
-            });
-        } else {
-            spnBirim.setAdapter(null);
-            spnBirim.setOnClickListener(null);
-            spnBirim2.setAdapter(null);
-            spnBirim2.setOnClickListener(null);
-        }
-
-    }
 
     @Override
     public void onDestroy() {
@@ -670,4 +862,9 @@ public class CreateNewWareRequestFragment extends DialogFragment {
         if (createCall != null) createCall.cancel();
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
+    }
 }

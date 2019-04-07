@@ -47,6 +47,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
     implementation 'com.squareup.okhttp3:okhttp:3.13.1'
     implementation 'com.joanzapata.pdfview:android-pdfview:1.0.4@aar'
+    implementation 'com.google.maps.android:android-maps-utils:0.5+'
 
 
 }

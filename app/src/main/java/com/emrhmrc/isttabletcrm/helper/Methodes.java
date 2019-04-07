@@ -96,6 +96,25 @@ public class Methodes {
 
 
     }
+    public static String changeDateFormatToTextWithClock(String date) {
+
+        if (validateInput(date)) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+            Date sourceDate = null;
+            try {
+                sourceDate = dateFormat.parse(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+                return "null";
+
+            }
+
+            SimpleDateFormat targetFormat = new SimpleDateFormat("dd.MM.yyyy / HH:mm");
+            return targetFormat.format(sourceDate);
+        } else return "null";
+
+
+    }
 
     public static int compareDateFromText(String first, String second) {
 

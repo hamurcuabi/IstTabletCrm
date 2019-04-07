@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginEnd="20dp"
-                android:src="@drawable/ic_close_blue" />
+                android:src="@drawable/ic_close" />
         </LinearLayout>
 
 

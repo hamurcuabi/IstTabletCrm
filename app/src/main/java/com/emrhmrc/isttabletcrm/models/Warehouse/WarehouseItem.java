@@ -8,8 +8,48 @@ public class WarehouseItem {
     private Code inv_WarehouseTypeCode;
     private Inv_Id inv_Warehouseid;
     private Inv_Id inv_Productid;
+    private Inv_Id SubProductGroupid;
+
+    public Inv_Id getSubProductGroupid() {
+        return SubProductGroupid;
+    }
+
+    public void setSubProductGroupid(Inv_Id subProductGroupid) {
+        SubProductGroupid = subProductGroupid;
+    }
+
+    public Inv_Id getMainProductGroupid() {
+        return MainProductGroupid;
+    }
+
+    public void setMainProductGroupid(Inv_Id mainProductGroupid) {
+        MainProductGroupid = mainProductGroupid;
+    }
+
+    public String getProductNumber() {
+        return ProductNumber;
+    }
+
+    public void setProductNumber(String productNumber) {
+        ProductNumber = productNumber;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String description) {
+        Description = description;
+    }
+
+    private Inv_Id MainProductGroupid;
     private Inv_Id inv_Uomid;
     private int inv_Quantity;
+    private String ProductNumber;
+    private String Description;
+
+    public WarehouseItem() {
+    }
 
     public String getInv_WarehouseItemId() {
         return inv_WarehouseItemId;
@@ -57,8 +97,5 @@ public class WarehouseItem {
 
     public void setInv_Quantity(int inv_Quantity) {
         this.inv_Quantity = inv_Quantity;
-    }
-
-    public WarehouseItem() {
     }
 }

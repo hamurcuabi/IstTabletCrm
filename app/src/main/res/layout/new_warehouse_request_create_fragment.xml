@@ -9,12 +9,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:layout_marginBottom="@dimen/detay_menu_12"
         android:src="@drawable/ic_close" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@drawable/btn_default_layout"
         android:orientation="vertical">
 
@@ -23,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layout_marginStart="@dimen/detay_menu_35"
-            android:layout_marginTop="@dimen/detay_menu_20"
+            android:layout_marginTop="@dimen/detay_menu_12"
             android:fontFamily="@font/roboto_regular"
             android:text="@string/new_warehouse_request"
             android:textColor="@color/text_color_4"
@@ -36,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layout_marginStart="@dimen/detay_menu_35"
-            android:layout_marginTop="@dimen/margin30"
+            android:layout_marginTop="@dimen/detay_menu_20"
             android:orientation="horizontal">
 
             <RadioButton
@@ -57,7 +56,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin30"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -78,9 +76,10 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="@dimen/txt_calendar"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_weight="2"
                         android:fontFamily="@font/roboto_regular"
                         android:gravity="end"
                         android:text="@string/isteniledepo"
@@ -90,13 +89,20 @@
 
                     <AutoCompleteTextView
                         android:id="@+id/spn_istenilen"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="@dimen/edt_calendar_height"
                         android:layout_marginStart="@dimen/detay_menu_30"
+                        android:layout_weight="5"
                         android:background="@drawable/spn_style"
                         android:focusableInTouchMode="true"
                         android:paddingStart="@dimen/detay_menu_12"
                         android:paddingEnd="@dimen/margin30" />
+
+                    <ProgressBar
+                        android:id="@+id/prog_depo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone" />
 
 
                 </LinearLayout>
@@ -108,9 +114,115 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="@dimen/txt_calendar"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_weight="2"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="end"
+                        android:text="@string/urun_kodu"
+                        android:textColor="@color/text_color_5"
+                        android:textSize="@dimen/text_menu_15"
+                        android:textStyle="bold" />
+
+                    <AutoCompleteTextView
+                        android:enabled="false"
+                        android:id="@+id/spn_urunkodu"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/edt_calendar_height"
+                        android:layout_marginStart="@dimen/detay_menu_30"
+                        android:layout_weight="5"
+                        android:background="@drawable/spn_style"
+                        android:focusableInTouchMode="true"
+                        android:paddingStart="@dimen/detay_menu_12"
+                        android:paddingEnd="@dimen/margin30" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/detay_menu_12"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="2"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="end"
+                        android:text="@string/ana_urun"
+                        android:textColor="@color/text_color_5"
+                        android:textSize="@dimen/text_menu_15"
+                        android:textStyle="bold" />
+
+                    <AutoCompleteTextView
+                        android:id="@+id/spn_anaurun"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/edt_calendar_height"
+                        android:layout_marginStart="@dimen/detay_menu_30"
+                        android:layout_weight="5"
+                        android:background="@drawable/spn_style"
+                        android:focusableInTouchMode="true"
+                        android:paddingStart="@dimen/detay_menu_12"
+                        android:paddingEnd="@dimen/margin30" />
+
+                    <ProgressBar
+                        android:id="@+id/prog_ana"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/detay_menu_12"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="2"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="end"
+                        android:text="@string/alt_urun"
+                        android:textColor="@color/text_color_5"
+                        android:textSize="@dimen/text_menu_15"
+                        android:textStyle="bold" />
+
+                    <AutoCompleteTextView
+                        android:id="@+id/spn_alturun"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/edt_calendar_height"
+                        android:layout_marginStart="@dimen/detay_menu_30"
+                        android:layout_weight="5"
+                        android:background="@drawable/spn_style"
+                        android:focusableInTouchMode="true"
+                        android:paddingStart="@dimen/detay_menu_12"
+                        android:paddingEnd="@dimen/margin30" />
+
+                    <ProgressBar
+                        android:id="@+id/prog_alt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/detay_menu_12"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="2"
                         android:fontFamily="@font/roboto_regular"
                         android:gravity="end"
                         android:text="@string/urun_adi"
@@ -120,75 +232,22 @@
 
                     <AutoCompleteTextView
                         android:id="@+id/spn_urunadi"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="@dimen/edt_calendar_height"
                         android:layout_marginStart="@dimen/detay_menu_30"
+                        android:layout_weight="5"
                         android:background="@drawable/spn_style"
                         android:focusableInTouchMode="true"
                         android:paddingStart="@dimen/detay_menu_12"
                         android:paddingEnd="@dimen/margin30" />
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/detay_menu_12"
-                    android:orientation="horizontal">
-
-                    <TextView
-
-                        android:layout_width="@dimen/txt_calendar"
+                    <ProgressBar
+                        android:id="@+id/prog_urun"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/roboto_regular"
-                        android:gravity="end"
-                        android:text="@string/birim"
-                        android:textColor="@color/text_color_5"
-                        android:textSize="@dimen/text_menu_15"
-                        android:textStyle="bold" />
-
-                    <AutoCompleteTextView
-                        android:id="@+id/spn_birim"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/edt_calendar_height"
-                        android:layout_marginStart="@dimen/detay_menu_30"
-                        android:background="@drawable/spn_style"
-                        android:focusableInTouchMode="true"
-                        android:paddingStart="@dimen/detay_menu_12"
-                        android:paddingEnd="@dimen/margin30" />
-
+                        android:visibility="gone" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/detay_menu_12"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="@dimen/txt_calendar"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/roboto_regular"
-                        android:gravity="end"
-                        android:text="@string/baglioldugu"
-                        android:textColor="@color/text_color_5"
-                        android:textSize="@dimen/text_menu_15"
-                        android:textStyle="bold" />
-
-                    <EditText
-
-                        android:id="@+id/edt_baglioldugu_isemri"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/edt_calendar_height"
-                        android:layout_marginStart="@dimen/detay_menu_30"
-                        android:background="@drawable/btn_eye_text"
-                        android:gravity="center_vertical|left"
-                        android:paddingStart="@dimen/detay_menu_12"
-                        android:paddingEnd="@dimen/margin30" />
-
-                </LinearLayout>
 
             </LinearLayout>
 
@@ -203,17 +262,86 @@
                 android:gravity="left"
                 android:orientation="vertical">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_top25"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="2"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="end"
+                        android:text="@string/birim"
+                        android:textColor="@color/text_color_5"
+                        android:textSize="@dimen/text_menu_15"
+                        android:textStyle="bold" />
+
+                    <AutoCompleteTextView
+                        android:id="@+id/spn_birim"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/edt_calendar_height"
+                        android:layout_marginStart="@dimen/detay_menu_30"
+                        android:layout_weight="5"
+                        android:background="@drawable/spn_style"
+                        android:focusableInTouchMode="true"
+                        android:paddingStart="@dimen/detay_menu_12"
+                        android:paddingEnd="@dimen/margin30" />
+
+                    <ProgressBar
+                        android:id="@+id/prog_birim"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/detay_menu_25"
+                    android:layout_marginTop="@dimen/detay_menu_12"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="@dimen/txt_calendar"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_weight="2"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="end"
+                        android:text="@string/baglioldugu"
+                        android:textColor="@color/text_color_5"
+                        android:textSize="@dimen/text_menu_15"
+                        android:textStyle="bold" />
+
+                    <EditText
+
+                        android:id="@+id/edt_baglioldugu_isemri"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/edt_calendar_height"
+                        android:layout_marginStart="@dimen/detay_menu_30"
+                        android:layout_weight="5"
+                        android:background="@drawable/btn_eye_text"
+                        android:gravity="center_vertical|left"
+                        android:paddingStart="@dimen/detay_menu_12"
+                        android:paddingEnd="@dimen/margin30" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/detay_menu_12"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="2"
                         android:fontFamily="@font/roboto_regular"
                         android:gravity="end"
                         android:text="@string/miktar"
@@ -223,9 +351,10 @@
 
                     <EditText
                         android:id="@+id/edt_miktar"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="@dimen/edt_calendar_height"
                         android:layout_marginStart="@dimen/detay_menu_30"
+                        android:layout_weight="5"
                         android:background="@drawable/btn_eye_text"
                         android:gravity="center_vertical|left"
                         android:inputType="number"
@@ -241,9 +370,10 @@
 
                     <TextView
 
-                        android:layout_width="@dimen/txt_calendar"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_weight="2"
                         android:fontFamily="@font/roboto_regular"
                         android:gravity="end"
                         android:text="@string/tarih"
@@ -253,9 +383,10 @@
 
                     <TextView
                         android:id="@+id/edt_tarih"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="@dimen/edt_calendar_height"
                         android:layout_marginStart="@dimen/detay_menu_30"
+                        android:layout_weight="5"
                         android:background="@drawable/calendar_style"
                         android:gravity="center|left"
                         android:paddingStart="@dimen/detay_menu_12" />
@@ -272,10 +403,11 @@
 
                     <TextView
 
-                        android:layout_width="@dimen/txt_calendar"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|top"
                         android:layout_toStartOf="@+id/edt_asansor"
+                        android:layout_weight="2"
                         android:fontFamily="@font/roboto_regular"
                         android:gravity="end"
                         android:text="@string/aciklama"
@@ -285,7 +417,7 @@
 
                     <EditText
                         android:id="@+id/edt_aciklama"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="122dp"
                         android:layout_marginStart="@dimen/detay_menu_30"
                         android:layout_weight="5"
@@ -574,8 +706,7 @@
             android:layout_width="@dimen/m200"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
-            android:layout_marginTop="@dimen/padding_top25"
-            android:layout_marginBottom="@dimen/detay_menu_12"
+            android:layout_marginBottom="@dimen/detay_menu_8"
             android:background="@drawable/btn_kontrol"
             android:gravity="center"
             android:text="@string/gonder"

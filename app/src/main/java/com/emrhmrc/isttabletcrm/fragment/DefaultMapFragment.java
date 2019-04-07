@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.emrhmrc.isttabletcrm.R;
+import com.emrhmrc.isttabletcrm.adapter.CustomInfoWindowAdapter;
 import com.emrhmrc.isttabletcrm.helper.CalendarEventsSingleton;
 import com.emrhmrc.isttabletcrm.helper.MapGo;
 import com.emrhmrc.isttabletcrm.helper.Methodes;
@@ -26,12 +27,13 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class DefaultMapFragment extends DialogFragment {
+public class DefaultMapFragment extends DialogFragment implements GoogleMap.OnMarkerClickListener {
 
     MapView mMapView;
     private GoogleMap googleMap;
@@ -84,6 +86,7 @@ public class DefaultMapFragment extends DialogFragment {
                     return;
                 }
                 googleMap.setMyLocationEnabled(true);
+                googleMap.setOnMarkerClickListener(this);
             }
 
             // For dropping a marker at a point on the Map
@@ -94,6 +97,7 @@ public class DefaultMapFragment extends DialogFragment {
                 MarkerOptions marker = new MarkerOptions().position(gps).title(current.getTitle());
                 marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.gps_marker));
                 googleMap.addMarker(marker.position(gps)).setSnippet(current.getDescp());
+                googleMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(getActivity()));
             }
 
             // For zooming automatically to the location of the marker
@@ -141,5 +145,11 @@ public class DefaultMapFragment extends DialogFragment {
     public void onLowMemory() {
         super.onLowMemory();
         mMapView.onLowMemory();
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        if(!marker.isInfoWindowShown())marker.showInfoWindow();
+        return false;
     }
 }

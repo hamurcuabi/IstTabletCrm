@@ -265,7 +265,7 @@ public class WareHouseActivity extends AppCompatActivity implements OnItemClickL
 
     private void openCreateFragment() {
         CreateNewWareRequestFragment fragment = CreateNewWareRequestFragment.newInstance();
-        fragment.show(getSupportFragmentManager(), "beforeafter");
+        fragment.show(getSupportFragmentManager(), "CreateNewWareRequestFragment");
     }
 
     private void filterwithSpinner() {
@@ -282,30 +282,27 @@ public class WareHouseActivity extends AppCompatActivity implements OnItemClickL
                     case 1:
                         adapter.getFilter().filter("1");
                         break;
-                }
-
-               /* switch (i) {
-                    case 0:
-                        break;
-                    case 1:
-                        Collections.sort(warehouseItems,
-                                (lhs, rhs) -> lhs.getInv_Productid().getText().compareTo(rhs.getInv_Productid().getText()));
-                        break;
                     case 2:
                         Collections.sort(warehouseItems,
-                                (lhs, rhs) -> rhs.getInv_Productid().getText().compareTo(lhs.getInv_Productid().getText()));
+                                (WarehouseItem lhs, WarehouseItem rhs) -> {
+                                    if (lhs.getMainProductGroupid() != null && rhs.getMainProductGroupid() != null)
+                                        return lhs.getMainProductGroupid().getText().compareTo(rhs.getMainProductGroupid().getText());
+                                    else return 0;
+                                });
                         break;
-
                     case 3:
                         Collections.sort(warehouseItems,
-                                (lhs, rhs) -> lhs.getInv_Quantity() - rhs.getInv_Quantity());
-                        break;
-                    case 4:
-                        Collections.sort(warehouseItems,
-                                (lhs, rhs) -> rhs.getInv_Quantity() - lhs.getInv_Quantity());
+                                (WarehouseItem lhs, WarehouseItem rhs) -> {
+                                    if (lhs.getSubProductGroupid() != null && rhs.getSubProductGroupid() != null)
+                                        return lhs.getSubProductGroupid().getText().compareTo(rhs.getSubProductGroupid().getText());
+                                    else return 0;
+                                });
                         break;
                 }
-                adapter.setItems(warehouseItems);*/
+                adapter.setItems(warehouseItems);
+                if (adapter.getItems().size() > 0)
+                    rcv.scrollToPosition(0);
+
 
             }
 
@@ -356,6 +353,7 @@ public class WareHouseActivity extends AppCompatActivity implements OnItemClickL
 
     @Override
     public void onItemClicked(Object item, int positon) {
+
 
     }
 }

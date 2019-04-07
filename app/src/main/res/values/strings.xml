@@ -241,7 +241,13 @@
     <string name="iptal_islemi">İptal Etme İşlemi</string>
     <string name="sub_servapp">Alt İş Emri</string>
     <string name="create_sub_servapp">Alt İş emri Oluştur</string>
-    <string name="uygnsuzluk">Uygunsuzluk</string>
+    <string name="uygnsuzluk">Yeni Uygunsuzluk Bildir</string>
+    <string name="alt_urun_grubu">Alt Ürün Grubu</string>
+    <string name="urun_kodu">Ürün Kodu</string>
+    <string name="yoltarifi">Yol Tarifi Al</string>
+    <string name="teknisyen_adi">Teknisyen Adı</string>
+    <string name="isemrino">İş Emri No</string>
+    <string name="yenistok">Yeni Stok Talep Et</string>
 
     <string-array name="spn_servapp">
         <item>Tüm İş Emirlerim</item>
@@ -267,6 +273,8 @@
     <string-array name="spn_stok">
         <item>Tümü</item>
         <item>Üzerimdeki Stoklar</item>
+        <item>Ana Ürün Grubu</item>
+        <item>Alt Ürün Grubu</item>
     </string-array>
     <string-array name="spn_sort">
         <item>Sırala</item>
