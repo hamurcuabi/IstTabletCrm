@@ -18,7 +18,17 @@
         android:textColor="@color/text_color"
         android:textSize="@dimen/text_menu_16"
         android:textStyle="bold" />
-
+    <TextView
+        android:id="@+id/txt_urunkodu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/detay_menu_12"
+        android:layout_weight="1"
+        android:fontFamily="@font/roboto_regular"
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/text_menu_16"
+        />
 
     <TextView
         android:id="@+id/txt_urunadi"

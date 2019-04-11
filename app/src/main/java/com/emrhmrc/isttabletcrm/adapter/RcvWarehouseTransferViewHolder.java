@@ -31,7 +31,7 @@ public class RcvWarehouseTransferViewHolder extends BaseViewHolder<WarehouseTran
         txt_onay_durumu = itemView.findViewById(R.id.txt_onay_durumu);
         txt_depo_cikis = itemView.findViewById(R.id.txt_depo_cikis);
         txt_depo_gonderilecek = itemView.findViewById(R.id.txt_depo_gonderilecek);
-       // txt_urunkodu = itemView.findViewById(R.id.txt_urunkodu);
+        txt_urunkodu = itemView.findViewById(R.id.txt_urunkodu);
 
     }
 
@@ -55,7 +55,7 @@ public class RcvWarehouseTransferViewHolder extends BaseViewHolder<WarehouseTran
             txt_depo_cikis.setText(StringUtil.nullToString(item.getInv_FromWarehouseid().getText()));
         if (item.getInv_ToWarehouseid() != null)
             txt_depo_gonderilecek.setText(StringUtil.nullToString(item.getInv_ToWarehouseid().getText()));
-       // txt_urunkodu.setText(StringUtil.notExist());
+        txt_urunkodu.setText(StringUtil.notExist());
 
 
     }
