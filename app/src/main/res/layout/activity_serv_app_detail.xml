@@ -213,6 +213,13 @@
                             android:textStyle="bold" />
                     </LinearLayout>
 
+                    <android.support.constraint.Guideline
+                        android:id="@+id/guideline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_begin="56dp" />
+
 
                 </android.support.constraint.ConstraintLayout>
 
@@ -286,14 +293,13 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center|start"
+                                    android:autoSizeMaxTextSize="18sp"
                                     android:autoSizeTextType="uniform"
-                                    android:ellipsize="end"
                                     android:fontFamily="@font/roboto_regular"
                                     android:gravity="center|start"
-                                    android:maxLines="1"
+                                    android:maxLines="2"
                                     android:text="@{StringUtil.nullToString(model.getInv_CustomerId().getText())}"
                                     android:textColor="@color/text_color"
-                                    android:textSize="@dimen/text_menu_18"
                                     android:textStyle="bold" />
 
 
@@ -312,11 +318,11 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="@dimen/detay_menu_12"
                                     android:layout_marginTop="@dimen/detay_menu_12"
+                                    android:autoSizeMaxTextSize="@dimen/text_menu_20"
                                     android:fontFamily="@font/roboto_regular"
                                     android:maxLines="2"
                                     android:text="@{StringUtil.nullToString(model.getSubject())}"
                                     android:textColor="@color/text_color"
-                                    android:textSize="@dimen/text_menu_18"
                                     app:autoSizeTextType="uniform" />
 
                                 <TextView
@@ -325,11 +331,11 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="@dimen/detay_menu_12"
                                     android:layout_marginTop="@dimen/detay_menu_12"
+                                    android:autoSizeMaxTextSize="@dimen/text_menu_20"
                                     android:fontFamily="@font/roboto_regular"
                                     android:maxLines="2"
                                     android:text="@{StringUtil.nullToString(model.getInv_BlockName())}"
                                     android:textColor="@color/text_color"
-                                    android:textSize="@dimen/text_menu_18"
                                     android:textStyle="bold"
                                     app:autoSizeTextType="uniform" />
                             </LinearLayout>
@@ -378,12 +384,12 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="@dimen/detay_menu_8"
+                                    android:autoSizeMaxTextSize="@dimen/text_menu_20"
                                     android:ellipsize="end"
                                     android:fontFamily="@font/roboto_regular"
-                                    android:maxLines="1"
+                                    android:maxLines="2"
                                     android:text="@{StringUtil.nullToString(model.getInv_ElevatorId().getText())}"
                                     android:textColor="@color/text_color"
-                                    android:textSize="@dimen/text_menu_18"
                                     android:textStyle="bold"
                                     app:autoSizeTextType="uniform" />
 

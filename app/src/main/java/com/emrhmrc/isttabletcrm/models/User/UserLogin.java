@@ -1,12 +1,11 @@
 package com.emrhmrc.isttabletcrm.models.User;
 
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
-import com.google.gson.annotations.SerializedName;
+import com.emrhmrc.isttabletcrm.models.ServApp.DefaultResponse;
 
-public class UserLogin {
-    @SerializedName("Succes")
-    private boolean Success;
-    private String ErrorMsg;
+public class UserLogin extends DefaultResponse {
+    /* private boolean Success;
+     private String ErrorMsg;*/
     private String UserId;
     private String UserName;
     private String Description;
@@ -16,6 +15,7 @@ public class UserLogin {
     public UserLogin() {
 
     }
+
 
     public Inv_Id getSuperVisorId() {
         return SuperVisorId;
@@ -33,9 +33,9 @@ public class UserLogin {
         CustomerId = customerId;
     }
 
-    public boolean isSuccess() {
+   /* public boolean isSuccess() {
         return Success;
-    }
+    }*/
 
     public String getUserName() {
         return UserName;
@@ -56,7 +56,7 @@ public class UserLogin {
     // Getter Methods
 
     public boolean getSuccess() {
-        return Success;
+        return this.Success;
     }
 
     public void setSuccess(boolean Success) {

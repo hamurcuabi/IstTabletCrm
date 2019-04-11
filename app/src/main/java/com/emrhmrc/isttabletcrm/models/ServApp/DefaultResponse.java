@@ -1,23 +1,23 @@
 package com.emrhmrc.isttabletcrm.models.ServApp;
 
 public class DefaultResponse {
-    private boolean Succes;
-    private String ErrorMsg;
+    public boolean Success;
+    public String ErrorMsg;
 
     @Override
     public String toString() {
         return "ServAppCompleteById{" +
-                "Succes=" + Succes +
+                "Succes=" + Success +
                 ", ErrorMsg='" + ErrorMsg + '\'' +
                 '}';
     }
 
     public boolean isSucces() {
-        return Succes;
+        return Success;
     }
 
     public void setSucces(boolean succes) {
-        Succes = succes;
+        Success = succes;
     }
 
     public String getErrorMsg() {

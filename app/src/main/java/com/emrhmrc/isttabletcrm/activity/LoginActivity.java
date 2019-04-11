@@ -59,6 +59,8 @@ public class LoginActivity extends AppCompatActivity {
     String error_pass;
     @BindString(R.string.loading)
     String loading;
+    @BindString(R.string.try_again)
+    String try_again;
     private ActivityLoginBinding binding;
     private JsonApi jsonApi;
     private SharedPref pref;
@@ -87,10 +89,11 @@ public class LoginActivity extends AppCompatActivity {
         jsonApi = ApiClient.getClient().create(JsonApi.class);
 
     }
-   private void  initDialog(){
-       AnyDialog anyDialog = new AnyDialog(this);
-       dialog = anyDialog.loading(loading);
-   }
+
+    private void initDialog() {
+        AnyDialog anyDialog = new AnyDialog(this);
+        dialog = anyDialog.loading(loading);
+    }
 
     private void doLogin() {
         String mail = edt_nick.getText().toString();
@@ -106,14 +109,26 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<UserLogin> call, Response<UserLogin> response) {
                     if (response.isSuccessful()) {
-                        UserLogin model = response.body();
-                        goHome(model);
-                        Log.d(TAG, "onResponse: "+model.getUserId());
+                        if (response.body().Success) {
+                            UserLogin model = response.body();
+                            goHome(model);
+                        } else {
+                            new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.WARNING_TYPE)
+                                    .setContentText(response.body().getErrorMsg())
+                                    .show();
+
+                        }
+
+
                     } else {
-                        Log.d(TAG, "onResponse: " + response.message());
-                        btn_login.setEnabled(true);
+                        new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.WARNING_TYPE)
+                               // .setTitleText(try_again)
+                                .setContentText(try_again)
+                                .show();
+
                     }
                     dialog.dismissWithAnimation();
+                    btn_login.setEnabled(true);
 
                 }
 
@@ -121,7 +136,10 @@ public class LoginActivity extends AppCompatActivity {
                 public void onFailure(Call<UserLogin> call, Throwable t) {
                     dialog.dismissWithAnimation();
                     btn_login.setEnabled(true);
-                    Log.d(TAG, "onFailure: " + t.getMessage());
+                    new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.WARNING_TYPE)
+                            // .setTitleText(try_again)
+                            .setContentText(try_again)
+                            .show();
 
 
                 }
