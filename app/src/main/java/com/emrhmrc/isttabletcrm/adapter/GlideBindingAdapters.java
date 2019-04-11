@@ -128,6 +128,7 @@ public class GlideBindingAdapters {
         }
         if (imageUrl != -1)
             view.setBackground(context.getDrawable(imageUrl));
+        else view.setBackground(context.getDrawable(R.drawable.ic_az));
     }
 
     @BindingAdapter("imageResource")
