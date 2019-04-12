@@ -20,9 +20,12 @@ import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointments;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
+import com.emrhmrc.isttabletcrm.models.CommonClass.FilterModel;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppListAll;
 import com.emrhmrc.isttabletcrm.models.User.UserIdRequest;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindArray;
@@ -38,9 +41,9 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
 
     private static final String TAG = "ServAppActivty";
     @BindView(R.id.spn_servapp)
-    Spinner spinner;
+    Spinner servappTypespinner;
     @BindView(R.id.spn_statu)
-    Spinner spn_statu;
+    Spinner statuTypeSpinner;
     @BindView(R.id.rcw_servapp)
     RecyclerView rcw;
     @BindArray(R.array.spn_servapp)
@@ -66,92 +69,13 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
 
     }
 
-    private void fillSpinner() {
-
-        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(
-                this, R.layout.spinner_item_white, items);
-        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(spinnerArrayAdapter);
-
-        //Spn Statu,
-
-        ArrayAdapter<String> spinnerArrayAdapter2 = new ArrayAdapter<>(
-                this, R.layout.spinner_item_white, items_statu);
-        spinnerArrayAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spn_statu.setAdapter(spinnerArrayAdapter2);
-    }
 
     private void initDialog() {
         AnyDialog anyDialog = new AnyDialog(this);
         dialog = anyDialog.loading(loading);
     }
 
-    private void filterwithSpinner() {
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                switch (i) {
-
-                    case 0:
-                        adapter.getFilter().filter("0");
-                        break;
-                    case 1:
-                        adapter.getFilter().filter("1");
-                        break;
-                    case 2:
-                        adapter.getFilter().filter("2");
-                        break;
-                    case 3:
-                        adapter.getFilter().filter("3");
-                        break;
-                    case 4:
-                        adapter.getFilter().filter("4");
-                        break;
-                    case 5:
-                        adapter.getFilter().filter("5");
-                        break;
-                    case 6:
-                        adapter.getFilter().filter("7");
-                        break;
-
-                }
-                spn_statu.setSelection(0);
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
-        spn_statu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                switch (i) {
-                    case 0:
-                        adapter.getFilter().filter("10");
-                        break;
-                    case 1:
-                        adapter.getFilter().filter("8");
-                        break;
-                    case 2:
-                        adapter.getFilter().filter("9");
-                        break;
-                    case 3:
-                        adapter.getFilter().filter("99");
-                        break;
-                }
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-    }
 
     private void init() {
         jsonApi = ApiClient.getClient().create(JsonApi.class);
@@ -179,7 +103,7 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
                     model = temp.getServiceAppointments();
                     adapter.setItems(model);
                     adapter.setItemsFilter(model);
-                    filterwithSpinner();
+                    setupFilters(model);
 
 
                 }
@@ -190,6 +114,82 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
             public void onFailure(Call<ServAppListAll> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
                 dialog.dismissWithAnimation();
+            }
+        });
+
+    }
+
+    private void setupFilters(List<ServiceAppointments> model) {
+
+        HashMap<Integer, String> servappTypeHash = new HashMap<>();
+        HashMap<Integer, String> statuTypeHash = new HashMap<>();
+        List<FilterModel> servappType = new ArrayList<>();
+        List<FilterModel> statuType = new ArrayList<>();
+
+        for (ServiceAppointments current : model
+        ) {
+
+            if (current.getInv_TypeCode() != null) {
+
+                if (!servappTypeHash.containsKey(current.getInv_TypeCode().getValue())) {
+                    servappType.add(new FilterModel(current.getInv_TypeCode().getValue(),
+                            current.getInv_TypeCode().getText()));
+                    servappTypeHash.put(current.getInv_TypeCode().getValue(), "");
+                }
+            }
+            if (current.getStatusCode() != null) {
+
+                if (!statuTypeHash.containsKey(current.getStatusCode().getValue())) {
+                    statuType.add(new FilterModel(current.getStatusCode().getValue(),
+                            current.getStatusCode().getText()));
+                    statuTypeHash.put(current.getStatusCode().getValue(), "");
+                }
+            }
+        }
+
+        servappType.add(0, new FilterModel(-1, "Tüm İş Emirlerim"));
+        statuType.add(0, new FilterModel(-1, "Statü"));
+        ArrayAdapter<FilterModel> spinnerArrayAdapter = new ArrayAdapter<>(
+                this, R.layout.spinner_item_white, servappType);
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        servappTypespinner.setAdapter(spinnerArrayAdapter);
+
+
+        //Spn Statu
+
+        ArrayAdapter<FilterModel> spinnerArrayAdapter2 = new ArrayAdapter<>(
+                this, R.layout.spinner_item_white, statuType);
+        spinnerArrayAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        statuTypeSpinner.setAdapter(spinnerArrayAdapter2);
+
+
+        //OnSelected
+        servappTypespinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                FilterModel filterModel = (FilterModel) adapterView.getItemAtPosition(i);
+                adapter.getFilter().filter("A" + filterModel.getValue());
+                statuTypeSpinner.setSelection(0);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        statuTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                FilterModel filterModel = (FilterModel) adapterView.getItemAtPosition(i);
+                adapter.getFilter().filter("B" + filterModel.getValue());
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
 
@@ -244,7 +244,6 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
         super.onResume();
         initDialog();
         getServAppListAll();
-        fillSpinner();
 
 
     }

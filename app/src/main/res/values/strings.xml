@@ -249,6 +249,7 @@
     <string name="isemrino">İş Emri No</string>
     <string name="yenistok">Yeni Stok Talep Et</string>
     <string name="try_again">Beklenmedik Bir Hata Oluştu. Lütfen Tekrar Deneyiniz!</string>
+    <string name="read_error">Okuma İşlemi Başarısız</string>
 
     <string-array name="spn_servapp">
         <item>Tüm İş Emirlerim</item>

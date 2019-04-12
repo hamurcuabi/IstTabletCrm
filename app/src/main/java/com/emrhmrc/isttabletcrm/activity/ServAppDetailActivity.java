@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.SweetDialog.AnyDialog;
+import com.emrhmrc.isttabletcrm.SweetDialog.DialogCreater;
 import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.adapter.RcvServAppDetailAdapter;
@@ -64,6 +65,8 @@ import com.emrhmrc.isttabletcrm.models.ServApp.ServAppIdRequest;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServiceAppHelperIds;
 import com.emrhmrc.isttabletcrm.models.ServApp.UpsertByIdUpdateRequest;
 import com.emrhmrc.isttabletcrm.util.StringUtil;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -98,6 +101,8 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     String dont;
     @BindString(R.string.close_servapp)
     String close;
+    @BindString(R.string.read_error)
+    String read_error;
     @BindString(R.string.update)
     String update;
     @BindString(R.string.toast_error)
@@ -646,7 +651,19 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if (result != null) {
+            if (result.getContents() != null) {
+                Log.d("MainActivity", result.getContents());
+                DialogCreater.succesDialog(ServAppDetailActivity.this, result.getContents());
+
+            } else {
+
+                DialogCreater.errorDialog(ServAppDetailActivity.this, read_error);
+
+            }
+        }
 
     }
 
@@ -782,5 +799,15 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
 
             }
         }
+    }
+
+    private void startScan() {
+        IntentIntegrator integrator = new IntentIntegrator(this);
+        integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
+        integrator.setPrompt("Tara");
+        integrator.setCameraId(0);
+        integrator.setBeepEnabled(true);
+        integrator.setBarcodeImageEnabled(false);
+        integrator.initiateScan();
     }
 }

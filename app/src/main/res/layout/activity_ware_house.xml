@@ -292,13 +292,13 @@
                 android:textStyle="bold" />
 
             <TextView
-
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginEnd="@dimen/detay_menu_12"
                 android:layout_weight="1"
                 android:fontFamily="@font/roboto_regular"
+                android:text="Malzeme Kodu"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:textSize="@dimen/menu_text_14"

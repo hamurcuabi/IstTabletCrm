@@ -127,21 +127,38 @@ public class CreateNewWareRequestFragment extends DialogFragment {
     ProgressBar progAlt;
     @BindView(R.id.prog_urun)
     ProgressBar progUrun;
+    @BindView(R.id.progUrun2)
+    ProgressBar progUrun2;
     @BindView(R.id.prog_birim)
     ProgressBar progBirim;
     @BindView(R.id.edt_baglioldugu_isemri)
     EditText edtBagliolduguIsemri;
+    @BindView(R.id.spn_anaurun2)
+    AutoCompleteTextView spnAnaurun2;
+    @BindView(R.id.prog_ana2)
+    ProgressBar progAna2;
+    @BindView(R.id.spn_alturun2)
+    AutoCompleteTextView spnAlturun2;
+    @BindView(R.id.prog_alt2)
+    ProgressBar progAlt2;
     private WarehouseTransferCreateRequest request_create_new;
     private WarehouseTransferCreateRequest request_return_back;
     private JsonApi jsonApi;
     private Call<UomListAll> uomListAllCall;
     private Call<WareHouseListAll> wareHouseListAllCall;
-    private Call<ProductListAll> productListAllCall;
     private Call<DefaultResponse> createCall, returnCall;
     private ViewDialog viewDialog;
     private ArrayAdapter<MainList> mainListArrayAdapter;
+    private ArrayAdapter<MainList> mainList2ArrayAdapter;
     private ArrayAdapter<SubList> subProductListArrayAdapter;
+    private ArrayAdapter<SubList> subProductListArrayAdapter2;
     private ArrayAdapter<Product> productArrayAdapter;
+    private Call<MainProductList> mainProductListCall;
+    private Call<ProductListAll> productListAllCall2;
+    private Call<SubProductList> subProductListCall;
+    private Call<SubProductList> subProductListCall2;
+    private Call<ProductListAll> productListAllCall3;
+    private Call<ProductListAll> productListAllCall4;
 
     public static CreateNewWareRequestFragment newInstance() {
 
@@ -164,7 +181,6 @@ public class CreateNewWareRequestFragment extends DialogFragment {
 
         getWarehouses();
         getMainProductGroup();
-        getProductAllList();
         getUoms();
         focusing();
         return view;
@@ -174,19 +190,22 @@ public class CreateNewWareRequestFragment extends DialogFragment {
     private void getMainProductGroup() {
 
         progAna.setVisibility(View.VISIBLE);
-        Call<MainProductList> call = jsonApi.getMainProductListCall();
-        call.enqueue(new Callback<MainProductList>() {
+        progAna2.setVisibility(View.VISIBLE);
+        mainProductListCall = jsonApi.getMainProductListCall();
+        mainProductListCall.enqueue(new Callback<MainProductList>() {
             @Override
             public void onResponse(Call<MainProductList> call, Response<MainProductList> response) {
                 if (response.isSuccessful()) {
                     MainProductList model = response.body();
                     fillSpinnersMainProducts(model.getMainProductGroups());
+                    fillSpinnersMain2Products(model.getMainProductGroups());
 
 
                 } else {
                     Log.d(TAG, "onResponse: " + response.errorBody().toString());
                 }
                 progAna.setVisibility(View.GONE);
+                progAna2.setVisibility(View.GONE);
             }
 
             @Override
@@ -197,37 +216,13 @@ public class CreateNewWareRequestFragment extends DialogFragment {
         });
     }
 
-    private void getProductAllList() {
-
-        Call<ProductListAll> call = jsonApi.productListAllNoParam();
-        call.enqueue(new Callback<ProductListAll>() {
-            @Override
-            public void onResponse(Call<ProductListAll> call, Response<ProductListAll> response) {
-                if (response.isSuccessful()) {
-                    ProductListAll model = response.body();
-                    fillSpinnersProductsAll(model.getProducts());
-
-
-                } else {
-                    Log.d(TAG, "onResponse: " + response.errorBody().toString());
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<ProductListAll> call, Throwable t) {
-                Log.d(TAG, "onFailure: " + t.getMessage());
-
-            }
-        });
-    }
 
     private void getSubProductGroup(String id) {
 
         progAlt.setVisibility(View.VISIBLE);
         SubGroupRequest request = new SubGroupRequest(id);
-        Call<SubProductList> call = jsonApi.getSubProductListCall(request);
-        call.enqueue(new Callback<SubProductList>() {
+        subProductListCall = jsonApi.getSubProductListCall(request);
+        subProductListCall.enqueue(new Callback<SubProductList>() {
             @Override
             public void onResponse(Call<SubProductList> call, Response<SubProductList> response) {
                 if (response.isSuccessful()) {
@@ -248,11 +243,37 @@ public class CreateNewWareRequestFragment extends DialogFragment {
         });
     }
 
+    private void getSubProduct2Group(String id) {
+
+        progAlt2.setVisibility(View.VISIBLE);
+        SubGroupRequest request = new SubGroupRequest(id);
+        subProductListCall2 = jsonApi.getSubProductListCall(request);
+        subProductListCall2.enqueue(new Callback<SubProductList>() {
+            @Override
+            public void onResponse(Call<SubProductList> call, Response<SubProductList> response) {
+                if (response.isSuccessful()) {
+                    final SubProductList list = response.body();
+                    fillSpinnersSub2Products(list.getSubProductGroups());
+                } else {
+                    Log.d(TAG, "onResponse: ");
+                }
+                progAlt2.setVisibility(View.GONE);
+
+            }
+
+            @Override
+            public void onFailure(Call<SubProductList> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+                progAlt2.setVisibility(View.GONE);
+            }
+        });
+    }
+
     private void getProducList(String id) {
         progUrun.setVisibility(View.VISIBLE);
         SubGroupProductsRequest request = new SubGroupProductsRequest(id);
-        Call<ProductListAll> call = jsonApi.productListAll(request);
-        call.enqueue(new Callback<ProductListAll>() {
+        productListAllCall3 = jsonApi.productListAll(request);
+        productListAllCall3.enqueue(new Callback<ProductListAll>() {
             @Override
             public void onResponse(Call<ProductListAll> call, Response<ProductListAll> response) {
                 if (response.isSuccessful()) {
@@ -268,6 +289,31 @@ public class CreateNewWareRequestFragment extends DialogFragment {
             public void onFailure(Call<ProductListAll> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
                 progUrun.setVisibility(View.GONE);
+            }
+        });
+
+    }
+
+    private void getProducList2(String id) {
+        progUrun2.setVisibility(View.VISIBLE);
+        SubGroupProductsRequest request = new SubGroupProductsRequest(id);
+        productListAllCall4 = jsonApi.productListAll(request);
+        productListAllCall4.enqueue(new Callback<ProductListAll>() {
+            @Override
+            public void onResponse(Call<ProductListAll> call, Response<ProductListAll> response) {
+                if (response.isSuccessful()) {
+
+                    ProductListAll temp = response.body();
+                    fillSpinnersProducts2(temp.getProducts());
+
+                }
+                progUrun2.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onFailure(Call<ProductListAll> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+                progUrun2.setVisibility(View.GONE);
             }
         });
 
@@ -300,6 +346,33 @@ public class CreateNewWareRequestFragment extends DialogFragment {
 
     }
 
+    private void fillSpinnersMain2Products(List<MainList> list) {
+        if (list.size() > 0 && list != null) {
+            mainList2ArrayAdapter = new ArrayAdapter<>(getActivity(),
+                    android.R.layout.simple_dropdown_item_1line,
+                    list);
+            spnAnaurun2.setAdapter(mainList2ArrayAdapter);
+            spnAnaurun2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                    final MainList current = list.get(i);
+                    getSubProduct2Group(current.getInv_MainProductGroupid());
+
+                    InputMethodManager in = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
+                }
+            });
+            spnAnaurun2.showDropDown();
+
+        } else {
+            spnAnaurun2.setAdapter(null);
+            spnAnaurun2.setOnClickListener(null);
+
+        }
+
+    }
+
     private void fillSpinnersSubProducts(List<SubList> list) {
         if (list.size() > 0 && list != null) {
             subProductListArrayAdapter = new ArrayAdapter<>(getActivity(),
@@ -321,6 +394,32 @@ public class CreateNewWareRequestFragment extends DialogFragment {
         } else {
             spnAlturun.setAdapter(null);
             spnAlturun.setOnClickListener(null);
+
+        }
+
+    }
+
+    private void fillSpinnersSub2Products(List<SubList> list) {
+        if (list.size() > 0 && list != null) {
+            subProductListArrayAdapter2 = new ArrayAdapter<>(getActivity(),
+                    android.R.layout.simple_dropdown_item_1line,
+                    list);
+            spnAlturun2.setAdapter(subProductListArrayAdapter2);
+            spnAlturun2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                    final SubList current = list.get(i);
+                    getProducList2(current.getInv_SubProductGroupid());
+                    InputMethodManager in =
+                            (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
+                }
+            });
+            spnAlturun2.showDropDown();
+        } else {
+            spnAlturun2.setAdapter(null);
+            spnAlturun2.setOnClickListener(null);
 
         }
 
@@ -409,7 +508,7 @@ public class CreateNewWareRequestFragment extends DialogFragment {
 
     }
 
-    private void fillSpinnersProductsAll(List<Product> list) {
+    private void fillSpinnersProducts2(List<Product> list) {
         if (list.size() > 0 && list != null) {
 
             ArrayAdapter<Product> spinnerArrayAdapter2 = new ArrayAdapter<>(getActivity(),
@@ -536,10 +635,19 @@ public class CreateNewWareRequestFragment extends DialogFragment {
             if (b) spnAlturun.showDropDown();
             else spnAlturun.dismissDropDown();
         });
+        spnAnaurun2.setOnFocusChangeListener((view, b) -> {
+            if (b) spnAnaurun2.showDropDown();
+            else spnAnaurun2.dismissDropDown();
+        });
         spnAnaurun.setOnFocusChangeListener((view, b) -> {
             if (b) spnAnaurun.showDropDown();
             else spnAnaurun.dismissDropDown();
         });
+        spnAlturun2.setOnFocusChangeListener((view, b) -> {
+            if (b) spnAlturun2.showDropDown();
+            else spnAlturun2.dismissDropDown();
+        });
+
 
         spnIstenilen.setOnClickListener(view -> {
             spnIstenilen.showDropDown();
@@ -564,6 +672,9 @@ public class CreateNewWareRequestFragment extends DialogFragment {
         });
         spnAnaurun.setOnClickListener(view -> {
             spnAnaurun.showDropDown();
+        });
+        spnAnaurun2.setOnClickListener(view -> {
+            spnAnaurun2.showDropDown();
         });
     }
 
@@ -851,20 +962,22 @@ public class CreateNewWareRequestFragment extends DialogFragment {
         } else return true;
     }
 
-
     @Override
     public void onDestroy() {
         super.onDestroy();
         if (uomListAllCall != null) uomListAllCall.cancel();
         if (wareHouseListAllCall != null) wareHouseListAllCall.cancel();
-        if (productListAllCall != null) productListAllCall.cancel();
+        if (productListAllCall2 != null) productListAllCall2.cancel();
         if (returnCall != null) returnCall.cancel();
         if (createCall != null) createCall.cancel();
+        if (mainProductListCall != null) mainProductListCall.cancel();
+        if (subProductListCall != null) subProductListCall.cancel();
+        if (productListAllCall3 != null) productListAllCall3.cancel();
+        if (productListAllCall4 != null) productListAllCall4.cancel();
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-
     }
 }

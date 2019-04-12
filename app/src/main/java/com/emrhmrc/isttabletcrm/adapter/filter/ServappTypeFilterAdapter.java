@@ -17,7 +17,7 @@ public class ServappTypeFilterAdapter extends Filter {
                                     List<ServiceAppointments> filterList) {
         this.adapter = adapter;
         this.filterList = filterList;
-        this.subfilterList = filterList;
+        subfilterList = new ArrayList<>();
 
     }
 
@@ -25,43 +25,54 @@ public class ServappTypeFilterAdapter extends Filter {
     @Override
     protected FilterResults performFiltering(CharSequence constraint) {
         FilterResults results = new FilterResults();
+        String from = "";
 
-        //CHECK CONSTRAINT VALIDITY
         if (constraint != null && constraint.length() > 0) {
-            //CHANGE TO UPPER
+
             constraint = constraint.toString().toLowerCase();
-            //STORE OUR FILTERED PLAYERS
+            from = ((String) constraint).substring(0, 1);
+            constraint = ((String) constraint).substring(1);
+
             List<ServiceAppointments> filtered = new ArrayList<>();
-            if (Integer.parseInt(constraint.toString()) >= 8) {
+
+            if (from.equals("b")) {
                 for (int i = 0; i < subfilterList.size(); i++) {
-                    if (subfilterList.get(i).getStatusCode() != null) {
-                        if (subfilterList.get(i).getStatusCode().getValue() == Integer.parseInt(constraint.toString()) || Integer.parseInt(constraint.toString()) == 10) {
+
+                    if (Integer.parseInt(constraint.toString()) == -1) {
+                        filtered.add(subfilterList.get(i));
+                    } else if (subfilterList.get(i).getStatusCode() != null) {
+                        if (subfilterList.get(i).getStatusCode().getValue() == Integer.parseInt(constraint.toString())) {
                             filtered.add(subfilterList.get(i));
                         }
-                    } else if (Integer.parseInt(constraint.toString()) == 99 && subfilterList.get(i).getStatusCode().getValue() != 8 && subfilterList.get(i).getStatusCode().getValue() != 9) {
-                        filtered.add(subfilterList.get(i));
                     }
 
                 }
+            } else if (from.equals("a")) {
 
-            } else {
                 subfilterList.clear();
                 for (int i = 0; i < adapter.getItemsFilter().size(); i++) {
-                    //CHECK
-                    if (adapter.getItemsFilter().get(i).getInv_TypeCode() != null) {
-                        if (adapter.getItemsFilter().get(i).getInv_TypeCode().getValue() == Integer.parseInt(constraint.toString()) || Integer.parseInt(constraint.toString()) == 0) {
-                            //ADD DATA TO FILTERED DATA
-                            filtered.add(adapter.getItemsFilter().get(i));
-                            subfilterList.add(adapter.getItemsFilter().get(i));
 
-                        }
-                    } else if (adapter.getItemsFilter().get(i).getStatusCode().getValue() == Integer.parseInt(constraint.toString())) {
+                    if (Integer.parseInt(constraint.toString()) == -1) {
                         filtered.add(adapter.getItemsFilter().get(i));
                         subfilterList.add(adapter.getItemsFilter().get(i));
-                    }
+                    } else {
+                        if (adapter.getItemsFilter().get(i).getInv_TypeCode() != null) {
 
+                            if (adapter.getItemsFilter().get(i).getInv_TypeCode().getValue() == Integer.parseInt(constraint.toString())) {
+                                filtered.add(adapter.getItemsFilter().get(i));
+                                subfilterList.add(adapter.getItemsFilter().get(i));
+
+                            } else if (adapter.getItemsFilter().get(i).getInv_TypeCode().getValue() == Integer.parseInt(constraint.toString())) {
+                                filtered.add(adapter.getItemsFilter().get(i));
+                                subfilterList.add(adapter.getItemsFilter().get(i));
+                            }
+
+                        }
+                    }
                 }
             }
+
+
             results.count = filtered.size();
             results.values = filtered;
         } else {

@@ -51,9 +51,10 @@ public class WarehouseFilterAdapter extends Filter {
                 } catch (Exception ex) {
 
                     if (adapter.getItemsFilter().get(i).getInv_Productid() != null) {
+
                         if (adapter.getItemsFilter().get(i).getInv_Productid().getText().toLowerCase().contains(constraint)) {
-                            //ADD DATA TO FILTERED DATA
                             filtered.add(adapter.getItemsFilter().get(i));
+
                         }
                     }
 
