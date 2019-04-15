@@ -45,6 +45,7 @@ import com.emrhmrc.isttabletcrm.helper.AddManuelProduct;
 import com.emrhmrc.isttabletcrm.helper.AddNotes;
 import com.emrhmrc.isttabletcrm.helper.AddOrDeleteBreakdown;
 import com.emrhmrc.isttabletcrm.helper.CreateSubServAppSingleton;
+import com.emrhmrc.isttabletcrm.helper.Methodes;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
@@ -62,6 +63,7 @@ import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppBreakdownTyp
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppDetails;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppModernizationChecklists;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppIdRequest;
+import com.emrhmrc.isttabletcrm.models.ServApp.ServappCheckinRequest;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServiceAppHelperIds;
 import com.emrhmrc.isttabletcrm.models.ServApp.UpsertByIdUpdateRequest;
 import com.emrhmrc.isttabletcrm.util.StringUtil;
@@ -484,7 +486,8 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
             R.id.txt_asansorno, R.id.txt_servis_raporu, R.id.img_servis_raporu, R.id.img_gps,
             R.id.img_menu, R.id.txt_kaydet, R.id.img_kaydet, R.id.btn_ariza_kodu,
             R.id.btn_ariza_nedeni, R.id.add_job_2, R.id.img_add_3, R.id.btn_kontrol_listesi,
-            R.id.img_add_2, R.id.add_job, R.id.img_yeni_uygunsuzluk, R.id.txt_yeni_uygunsuzluk})
+            R.id.img_add_2, R.id.add_job, R.id.img_yeni_uygunsuzluk, R.id.txt_yeni_uygunsuzluk,
+            R.id.img_qr, R.id.img_send_supervisor, R.id.txt_send_supervisor})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_cancel:
@@ -562,7 +565,23 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
             case R.id.txt_yeni_uygunsuzluk:
                 openNewUnsuit();
                 break;
+            case R.id.img_qr:
+                startScan();
+                break;
+            case R.id.img_send_supervisor:
+                sendToSupervisor();
+                break;
+            case R.id.txt_send_supervisor:
+                sendToSupervisor();
+                break;
+
+
         }
+    }
+
+    private void sendToSupervisor() {
+        //Bitmedi
+
     }
 
     private void openWorkman() {
@@ -657,6 +676,8 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
             if (result.getContents() != null) {
                 Log.d("MainActivity", result.getContents());
                 DialogCreater.succesDialog(ServAppDetailActivity.this, result.getContents());
+                //Api Hazır çağır
+                doCheckin(result.getContents());
 
             } else {
 
@@ -664,6 +685,35 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
 
             }
         }
+
+    }
+
+    private void doCheckin(String contents) {
+
+        ServappCheckinRequest request = new ServappCheckinRequest();
+        request.setInv_QrCode(contents);
+        request.setUserId(ShareData.getInstance().getUserId());
+        request.setInv_Date(Methodes.getCurrenttime());
+
+        Call<DefaultResponse> call = jsonApi.checkInCall(request);
+        APIHelper.enqueueWithRetry(call, new Callback<DefaultResponse>() {
+            @Override
+            public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
+
+                if (response.isSuccessful()) {
+                    DialogCreater.succesDialog(ServAppDetailActivity.this, response.message());
+                } else {
+                    DialogCreater.errorDialog(ServAppDetailActivity.this, response.errorBody().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DefaultResponse> call, Throwable t) {
+                DialogCreater.errorDialog(ServAppDetailActivity.this, t.getMessage());
+
+            }
+        });
+
 
     }
 

@@ -2,7 +2,6 @@ package com.emrhmrc.isttabletcrm.models.Elevator;
 
 import com.emrhmrc.isttabletcrm.models.CommonClass.Code;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
-import com.google.gson.annotations.SerializedName;
 
 public class ServAppDetails {
     private int inv_LineNo;
@@ -18,6 +17,9 @@ public class ServAppDetails {
     private Inv_Id inv_ProductId;
     private Inv_Id TransactionCurrencyId;
     private float inv_Quantity;
+
+    public ServAppDetails() {
+    }
 
     public int getInv_LineNo() {
         return inv_LineNo;
@@ -121,9 +123,6 @@ public class ServAppDetails {
 
     public void setInv_Quantity(float inv_Quantity) {
         this.inv_Quantity = inv_Quantity;
-    }
-
-    public ServAppDetails() {
     }
 }
 

@@ -35,6 +35,9 @@ import com.emrhmrc.isttabletcrm.models.ServApp.GetServFormById;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetById;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppIdRequest;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppListAll;
+import com.emrhmrc.isttabletcrm.models.ServApp.ServappCheckinRequest;
+import com.emrhmrc.isttabletcrm.models.ServApp.ServappGetByElevatorId;
+import com.emrhmrc.isttabletcrm.models.ServApp.ServappSendToSuperVisorRequest;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServiceAppIdRequest;
 import com.emrhmrc.isttabletcrm.models.ServApp.UpdateServFormById;
 import com.emrhmrc.isttabletcrm.models.ServApp.UpsertByIdCreateRequest;
@@ -212,6 +215,15 @@ public interface JsonApi {
 
     @POST("ServApp/UpsertById")
     Call<DefaultResponse2> updateServapp(@Body UpsertByIdUpdateRequest request);
+
+    @POST("ServApp/GetByElevatorId")
+    Call<ServappGetByElevatorId> getServappGetByElevatorIdCall(@Body ElevatorIdRequest request);
+
+    @POST("ServApp/SendToSuperVisor")
+    Call<DefaultResponse2> sendToSupervisor(@Body ServappSendToSuperVisorRequest request);
+
+    @POST("ServApp/CheckIn")
+    Call<DefaultResponse> checkInCall(@Body ServappCheckinRequest request);
 
 
 }

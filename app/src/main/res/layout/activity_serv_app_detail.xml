@@ -76,7 +76,25 @@
                         app:layout_constraintBottom_toTopOf="@+id/linearLayout7"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
+                        <ImageView
+                            android:id="@+id/img_send_supervisor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/detay_menu_5"
+                            android:src="@drawable/ic_yeni" />
 
+                        <TextView
+                            android:id="@+id/txt_send_supervisor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="@dimen/detay_menu_12"
+                            android:fontFamily="@font/roboto_regular"
+                            android:text="@string/send_to_super"
+                            android:textAllCaps="true"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/menu_text_14"
+                            android:textStyle="bold" />
 
                         <ImageView
                             android:id="@+id/img_yeni"
@@ -920,6 +938,7 @@
                             android:text="@string/qr_tarat" />
 
                         <ImageView
+                            android:id="@+id/img_qr"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"

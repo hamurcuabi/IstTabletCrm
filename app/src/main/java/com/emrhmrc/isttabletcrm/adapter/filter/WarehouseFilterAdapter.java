@@ -6,6 +6,7 @@ import com.emrhmrc.isttabletcrm.adapter.RcvWarehouseAdapter;
 import com.emrhmrc.isttabletcrm.models.Warehouse.WarehouseItem;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class WarehouseFilterAdapter extends Filter {
@@ -31,6 +32,7 @@ public class WarehouseFilterAdapter extends Filter {
             constraint = constraint.toString().toLowerCase();
             //STORE OUR FILTERED PLAYERS
             List<WarehouseItem> filtered = new ArrayList<>();
+            HashMap<Integer, String> hashMap = new HashMap<>();
             for (int i = 0; i < adapter.getItemsFilter().size(); i++) {
                 //CHECK
                 try {
@@ -45,6 +47,7 @@ public class WarehouseFilterAdapter extends Filter {
                             }
 
                         }
+
                     } else {
                         filtered.add(adapter.getItemsFilter().get(i));
                     }
@@ -53,10 +56,54 @@ public class WarehouseFilterAdapter extends Filter {
                     if (adapter.getItemsFilter().get(i).getInv_Productid() != null) {
 
                         if (adapter.getItemsFilter().get(i).getInv_Productid().getText().toLowerCase().contains(constraint)) {
-                            filtered.add(adapter.getItemsFilter().get(i));
+                           if(!hashMap.containsKey(i)) {
+                               hashMap.put(i,"");
+                               filtered.add(adapter.getItemsFilter().get(i));
+                           }
 
                         }
                     }
+                    if (adapter.getItemsFilter().get(i).getSubProductGroupid() != null) {
+
+                        if (adapter.getItemsFilter().get(i).getSubProductGroupid().getText().toLowerCase().contains(constraint)) {
+                            if(!hashMap.containsKey(i)) {
+                                hashMap.put(i,"");
+                                filtered.add(adapter.getItemsFilter().get(i));
+                            }
+
+                        }
+                    }
+                    if (adapter.getItemsFilter().get(i).getMainProductGroupid() != null) {
+
+                        if (adapter.getItemsFilter().get(i).getMainProductGroupid().getText().toLowerCase().contains(constraint)) {
+                            if(!hashMap.containsKey(i)) {
+                                hashMap.put(i,"");
+                                filtered.add(adapter.getItemsFilter().get(i));
+                            }
+
+                        }
+                    }
+                    if (adapter.getItemsFilter().get(i).getProductNumber() != null) {
+
+                        if (adapter.getItemsFilter().get(i).getProductNumber().toLowerCase().contains(constraint)) {
+                            if(!hashMap.containsKey(i)) {
+                                hashMap.put(i,"");
+                                filtered.add(adapter.getItemsFilter().get(i));
+                            }
+
+                        }
+                    }
+                    if (adapter.getItemsFilter().get(i).getInv_WarehouseTypeCode() != null) {
+
+                        if (adapter.getItemsFilter().get(i).getInv_WarehouseTypeCode().getText().toLowerCase().contains(constraint)) {
+                            if(!hashMap.containsKey(i)) {
+                                hashMap.put(i,"");
+                                filtered.add(adapter.getItemsFilter().get(i));
+                            }
+
+                        }
+                    }
+
 
                 }
             }

@@ -361,12 +361,12 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:visibility="gone"
                             android:id="@+id/lnr_soz"
                             android:layout_width="@dimen/detay_menu_370"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/text_menu_16"
                             android:orientation="horizontal"
+                            android:visibility="gone"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/lnr_etiket">
@@ -965,6 +965,7 @@
             android:layout_height="@dimen/btn_malzeme_height"
             android:layout_marginStart="@dimen/menu_left"
             android:background="@drawable/btn_malzeme_2"
+            android:stateListAnimator="@null"
             android:text="@string/malzemelistesi"
             android:textAllCaps="true"
             android:textColor="@color/white"
@@ -981,6 +982,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="@dimen/margin30"
             android:background="@drawable/btn_taleplerim"
+            android:stateListAnimator="@null"
             android:text="@string/servistalep"
             android:textAllCaps="true"
             android:textColor="@color/white"
@@ -993,13 +995,15 @@
         <android.support.constraint.ConstraintLayout
             android:id="@+id/constraintLayout2"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/detay_menu_50"
+            android:layout_height="wrap_content"
             android:background="@color/malzeme_icerik"
+            android:minHeight="@dimen/detay_menu_70"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_wish">
 
             <LinearLayout
+                android:id="@+id/lnr1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin30"
@@ -1086,6 +1090,87 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/lnr2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin30"
+                android:layout_marginEnd="@dimen/margin30"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/detay_menu_12"
+                    android:layout_weight="1"
+                    android:text="@string/servistipi"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_menu_14"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/detay_menu_12"
+                    android:layout_weight="1"
+                    android:text="@string/tarih"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_menu_14"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/detay_menu_12"
+                    android:layout_weight="1"
+                    android:text="@string/usta_adi"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_menu_14"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/detay_menu_12"
+                    android:layout_weight="1"
+                    android:text="@string/statu"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_menu_14"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/detay_menu_12"
+                    android:layout_weight="1"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_menu_14" />
+
+
+                <Spinner
+                    android:id="@+id/spn_statu"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/edt_calendar_height"
+                    android:layout_weight="1"
+                    android:background="@drawable/spn_style"
+                    android:paddingStart="@dimen/detay_menu_25"
+                    android:paddingEnd="@dimen/detay_menu_12"
+                    android:prompt="@string/isemritipi" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin30"
@@ -1140,6 +1225,21 @@
             android:layout_marginTop="@dimen/detay_menu_8"
             android:layout_marginBottom="8dp"
             android:minHeight="@dimen/m200"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rcv_talep"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/detay_menu_8"
+            android:layout_marginBottom="8dp"
+            android:minHeight="@dimen/m200"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

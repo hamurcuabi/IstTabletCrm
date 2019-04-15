@@ -96,6 +96,7 @@ public class Methodes {
 
 
     }
+
     public static String changeDateFormatToTextWithClock(String date) {
 
         if (validateInput(date)) {
@@ -167,6 +168,15 @@ public class Methodes {
 
 
         return calendar;
+
+
+    }
+
+    public static String getCurrenttime() {
+
+        Date sourceDate = Calendar.getInstance().getTime();
+        SimpleDateFormat targetFormat = new SimpleDateFormat("dd.MM.yyyy");
+        return targetFormat.format(sourceDate);
 
 
     }
