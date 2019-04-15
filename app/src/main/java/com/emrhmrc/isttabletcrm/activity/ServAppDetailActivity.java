@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.SweetDialog.AnyDialog;
+import com.emrhmrc.isttabletcrm.SweetDialog.DialogButtonListener;
 import com.emrhmrc.isttabletcrm.SweetDialog.DialogCreater;
 import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
@@ -82,7 +83,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ServAppDetailActivity extends AppCompatActivity implements OnItemClickListener,
-        AddManuelProduct, AddNotes, AddBreakdownTypeCode, AddOrDeleteBreakdown {
+        AddManuelProduct, AddNotes, AddBreakdownTypeCode, AddOrDeleteBreakdown, DialogButtonListener {
 
     private static final String TAG = "ServAppDetailActivity";
 
@@ -115,6 +116,8 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     String blanks;
     @BindString(R.string.iptal_islemi)
     String cancel;
+    @BindString(R.string.amount_check)
+    String amount;
 
     private JsonApi jsonApi;
     private RcvServAppDetailAdapter adapter;
@@ -298,9 +301,9 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     }
 
     private void cancelServApp() {
+        DialogCreater.questionDialog(this, this, cancel, 2);
 
-
-        new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+     /*   new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
                 .setTitleText(sure)
                 .setContentText(cancel)
                 .setCancelText(dont)
@@ -359,7 +362,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                         sDialog.cancel();
                     }
                 })
-                .show();
+                .show();*/
 
 
     }
@@ -605,29 +608,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     private void checkUpsertById() {
         isOk = false;
         if (checkProductAmount()) {
-
-            new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
-                    .setTitleText(sure)
-                    .setContentText(update)
-                    .setCancelText(dont)
-                    .setConfirmText(doit)
-                    .showCancelButton(true)
-                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                        @Override
-                        public void onClick(SweetAlertDialog sweetAlertDialog) {
-                            isOk = true;
-                            sweetAlertDialog.cancel();
-                            updateServApp();
-
-                        }
-                    })
-                    .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                        @Override
-                        public void onClick(SweetAlertDialog sDialog) {
-                            sDialog.cancel();
-                        }
-                    })
-                    .show();
+            DialogCreater.questionDialog(ServAppDetailActivity.this, this, update, 1);
         }
 
     }
@@ -641,10 +622,11 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     }
 
     private void openDialog() {
-        new SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)
+      /*  new SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)
                 .setTitleText("Hata...")
                 .setContentText("Miktarları belirleyiniz !")
-                .show();
+                .show();*/
+        DialogCreater.errorDialog(this,amount);
     }
 
     private boolean checkProductAmount() {
@@ -859,5 +841,50 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
         integrator.setBeepEnabled(true);
         integrator.setBarcodeImageEnabled(false);
         integrator.initiateScan();
+    }
+
+    private void cancelServAppDoit() {
+        CompleteByIdRequest request = new CompleteByIdRequest();
+        request.setServiceAppId(ShareData.getInstance().getServAppId());
+        request.setUserId(SingletonUser.getInstance().getUser().getUserId());
+        request.setCompleteType(false);
+        initDialog();
+        dialog.show();
+        Call<DefaultResponse> call = jsonApi.servAppCompleteById(request);
+        APIHelper.enqueueWithRetry(call, new Callback<DefaultResponse>() {
+            @Override
+            public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
+                dialog.dismissWithAnimation();
+                if (response.isSuccessful()) {
+                    DialogCreater.doneDialog(ServAppDetailActivity.this);
+
+                } else {
+                    DialogCreater.errorDialog(ServAppDetailActivity.this, response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DefaultResponse> call, Throwable t) {
+                dialog.dismissWithAnimation();
+                DialogCreater.errorDialog(ServAppDetailActivity.this, t.getMessage());
+            }
+        });
+    }
+    @Override
+    public void onConfirmButton(int id) {
+        switch (id) {
+            case 1:
+                updateServApp();
+                break;
+            case 2:
+                cancelServAppDoit();
+                break;
+        }
+
+    }
+
+    @Override
+    public void onCancelButton(int id) {
+        DialogCreater.errorDialog(this, "İptal Edildi");
     }
 }
