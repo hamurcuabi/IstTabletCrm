@@ -622,11 +622,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     }
 
     private void openDialog() {
-      /*  new SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)
-                .setTitleText("Hata...")
-                .setContentText("Miktarları belirleyiniz !")
-                .show();*/
-        DialogCreater.errorDialog(this,amount);
+        DialogCreater.errorDialog(this, amount);
     }
 
     private boolean checkProductAmount() {
@@ -870,6 +866,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
             }
         });
     }
+
     @Override
     public void onConfirmButton(int id) {
         switch (id) {

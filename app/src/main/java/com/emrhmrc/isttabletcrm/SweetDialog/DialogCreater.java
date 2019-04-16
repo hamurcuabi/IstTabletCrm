@@ -5,6 +5,7 @@ import android.graphics.Color;
 
 public class DialogCreater {
 
+    private static String LOADING_COLOR="#A5DC86";
     private static String SURE = "Emin misiniz?";
     private static String YES = "Evet";
     private static String NO = "Hayır";
@@ -12,6 +13,7 @@ public class DialogCreater {
     private static String LOADING = "Yükleniyor";
     private static String SUCCES = "İşlem Başarılı";
     private static String FAIL = "İşlem Başarısız";
+    private static String OK = "Tamam";
 
     public static void basicDialog(Activity activity, String title) {
         new SweetAlertDialog(activity)
@@ -69,7 +71,7 @@ public class DialogCreater {
     public static SweetAlertDialog loadingDialog(Activity activity, String loadingText) {
 
         SweetAlertDialog pDialog = new SweetAlertDialog(activity, SweetAlertDialog.PROGRESS_TYPE);
-        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        pDialog.getProgressHelper().setBarColor(Color.parseColor(LOADING_COLOR));
         pDialog.setTitleText(loadingText);
         pDialog.setCancelable(false);
         pDialog.show();
@@ -79,7 +81,7 @@ public class DialogCreater {
     public static SweetAlertDialog loadingDialog(Activity activity) {
 
         SweetAlertDialog pDialog = new SweetAlertDialog(activity, SweetAlertDialog.PROGRESS_TYPE);
-        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        pDialog.getProgressHelper().setBarColor(Color.parseColor(LOADING_COLOR));
         pDialog.setTitleText(LOADING);
         pDialog.setCancelable(false);
         pDialog.show();
@@ -99,6 +101,36 @@ public class DialogCreater {
                 .setTitleText(INFO)
                 .setContentText(FAIL)
                 .setConfirmClickListener(sweetAlertDialog -> sweetAlertDialog.dismissWithAnimation())
+                .show();
+    }
+
+    public static void changeDoneDialog(Activity activity, String question) {
+        new SweetAlertDialog(activity, SweetAlertDialog.WARNING_TYPE)
+                .setTitleText(SURE)
+                .setContentText(question)
+                .setConfirmText(YES)
+                .setCancelText(NO)
+                .setConfirmClickListener(sDialog -> sDialog
+                        .setTitleText(INFO)
+                        .setContentText(SUCCES)
+                        .setConfirmText(OK)
+                        .setConfirmClickListener(null)
+                        .changeAlertType(SweetAlertDialog.SUCCESS_TYPE))
+                .show();
+    }
+
+    public static void changeFailDialog(Activity activity, String question) {
+        new SweetAlertDialog(activity, SweetAlertDialog.WARNING_TYPE)
+                .setTitleText(SURE)
+                .setContentText(question)
+                .setConfirmText(YES)
+                .setCancelText(NO)
+                .setConfirmClickListener(sDialog -> sDialog
+                        .setTitleText(INFO)
+                        .setContentText(FAIL)
+                        .setConfirmText(OK)
+                        .setConfirmClickListener(null)
+                        .changeAlertType(SweetAlertDialog.ERROR_TYPE))
                 .show();
     }
 }
