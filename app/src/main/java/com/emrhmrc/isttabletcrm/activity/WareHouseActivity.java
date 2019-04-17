@@ -25,8 +25,10 @@ import com.emrhmrc.isttabletcrm.adapter.RcvWarehouseTransferAdapter;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.fragment.CreateNewWareRequestFragment;
+import com.emrhmrc.isttabletcrm.fragment.ImageSliderWarehouseFragment;
 import com.emrhmrc.isttabletcrm.helper.Methodes;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
+import com.emrhmrc.isttabletcrm.helper.SlideInterface;
 import com.emrhmrc.isttabletcrm.models.User.UserIdRequest;
 import com.emrhmrc.isttabletcrm.models.Warehouse.WarehouseItem;
 import com.emrhmrc.isttabletcrm.models.Warehouse.WarehouseItemListAll;
@@ -45,7 +47,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class WareHouseActivity extends AppCompatActivity implements OnItemClickListener {
+public class WareHouseActivity extends AppCompatActivity implements OnItemClickListener, SlideInterface {
 
     private static final String TAG = "WareHouseActivity";
     @BindView(R.id.search)
@@ -85,6 +87,7 @@ public class WareHouseActivity extends AppCompatActivity implements OnItemClickL
     private List<WarehouseItem> warehouseItems;
     private String[] items, items2;
     private SweetAlertDialog dialog;
+    private ImageSliderWarehouseFragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -354,6 +357,23 @@ public class WareHouseActivity extends AppCompatActivity implements OnItemClickL
     @Override
     public void onItemClicked(Object item, int positon) {
 
+        if (item instanceof WarehouseItem) {
+            openSilder(((WarehouseItem) item), positon);
+        }
 
+    }
+
+    private void openSilder(WarehouseItem product, int position) {
+        fragment = ImageSliderWarehouseFragment.newInstance(product, position);
+        fragment.show(getSupportFragmentManager(), "slider");
+    }
+
+    @Override
+    public void slideTo(int position) {
+        if (position < 0) openSilder(adapter.getItems().get(0), 0);
+        else if (position > adapter.getItems().size() - 1)
+            openSilder(adapter.getItems().get(adapter.getItems().size() - 1),
+                    adapter.getItems().size() - 1);
+        else openSilder(adapter.getItems().get(position), position);
     }
 }

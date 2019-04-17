@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.SweetDialog.AnyDialog;
+import com.emrhmrc.isttabletcrm.SweetDialog.DialogCreater;
 import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
 import com.emrhmrc.isttabletcrm.api.APIHelper;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
@@ -113,18 +114,13 @@ public class LoginActivity extends AppCompatActivity {
                             UserLogin model = response.body();
                             goHome(model);
                         } else {
-                            new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.WARNING_TYPE)
-                                    .setContentText(response.body().getErrorMsg())
-                                    .show();
+                            DialogCreater.errorDialog(LoginActivity.this, response.body().getErrorMsg());
 
                         }
 
 
                     } else {
-                        new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.WARNING_TYPE)
-                               // .setTitleText(try_again)
-                                .setContentText(try_again)
-                                .show();
+                        DialogCreater.errorDialog(LoginActivity.this, try_again);
 
                     }
                     dialog.dismissWithAnimation();
@@ -136,10 +132,7 @@ public class LoginActivity extends AppCompatActivity {
                 public void onFailure(Call<UserLogin> call, Throwable t) {
                     dialog.dismissWithAnimation();
                     btn_login.setEnabled(true);
-                    new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.WARNING_TYPE)
-                            // .setTitleText(try_again)
-                            .setContentText(try_again)
-                            .show();
+                    DialogCreater.errorDialog(LoginActivity.this, try_again);
 
 
                 }

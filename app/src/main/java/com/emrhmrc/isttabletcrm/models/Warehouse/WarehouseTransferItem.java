@@ -9,6 +9,7 @@ public class WarehouseTransferItem {
     private String inv_Description;
     private String inv_RejectDescription;
     private String ConfirmUserId;
+    private String ProductNumber;
     private Code inv_TransferTypeCode;
     private Code inv_ScrapReasonCode;
     private Code StatusCode;
@@ -18,8 +19,15 @@ public class WarehouseTransferItem {
     private Inv_Id inv_Productid;
     private Inv_Id inv_Uomid;
     private int inv_Quantity;
-
     public WarehouseTransferItem() {
+    }
+
+    public String getProductNumber() {
+        return ProductNumber;
+    }
+
+    public void setProductNumber(String productNumber) {
+        ProductNumber = productNumber;
     }
 
     public String getInv_WarehouseTransferId() {

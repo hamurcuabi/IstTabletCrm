@@ -33,12 +33,65 @@ public class ServiceAppointment {
     private Code PriorityCode;
     private String inv_BlockName;
     private String inv_QuoteId;
+    private String inv_ServiceAppointmentNumber;
+    private String CreatedOn;
     private Inv_Id inv_Supervisorid;
     private Inv_Id OwnerId;
     private Inv_Id inv_BreakdownDefCodeid;
     private Inv_Id inv_MainProductGroupid;
     private Inv_Id inv_SubProductGroupid;
     private Inv_Id inv_BreakdownCodeid;
+    private Inv_Id ContactUser;
+    private Integer ActualDurationMinutes;
+    private Code inv_OriginCode;
+
+    public String getInv_ServiceAppointmentNumber() {
+        return inv_ServiceAppointmentNumber;
+    }
+
+    public void setInv_ServiceAppointmentNumber(String inv_ServiceAppointmentNumber) {
+        this.inv_ServiceAppointmentNumber = inv_ServiceAppointmentNumber;
+    }
+
+    public Code getPriorityCode() {
+        return PriorityCode;
+    }
+
+    public void setPriorityCode(Code priorityCode) {
+        PriorityCode = priorityCode;
+    }
+
+    public String getCreatedOn() {
+        return CreatedOn;
+    }
+
+    public void setCreatedOn(String createdOn) {
+        CreatedOn = createdOn;
+    }
+
+    public Inv_Id getContactUser() {
+        return ContactUser;
+    }
+
+    public void setContactUser(Inv_Id contactUser) {
+        ContactUser = contactUser;
+    }
+
+    public Integer getActualDurationMinutes() {
+        return ActualDurationMinutes;
+    }
+
+    public void setActualDurationMinutes(Integer actualDurationMinutes) {
+        ActualDurationMinutes = actualDurationMinutes;
+    }
+
+    public Code getInv_OriginCode() {
+        return inv_OriginCode;
+    }
+
+    public void setInv_OriginCode(Code inv_OriginCode) {
+        this.inv_OriginCode = inv_OriginCode;
+    }
 
     public Inv_Id getInv_BreakdownCodeid() {
         return inv_BreakdownCodeid;

@@ -6,9 +6,23 @@ import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
 public class ServiceAppointmentElevator {
 
     private String ActivityId;
+    private String inv_ServiceAppointmentNumber;
     private Code inv_TypeCode;
     private Code StatusCode;
     private String ScheduledStart;
+    private String ScheduledEnd;
+    private Inv_Id OwnerId;
+
+    public ServiceAppointmentElevator() {
+    }
+
+    public String getInv_ServiceAppointmentNumber() {
+        return inv_ServiceAppointmentNumber;
+    }
+
+    public void setInv_ServiceAppointmentNumber(String inv_ServiceAppointmentNumber) {
+        this.inv_ServiceAppointmentNumber = inv_ServiceAppointmentNumber;
+    }
 
     public String getActivityId() {
         return ActivityId;
@@ -56,11 +70,5 @@ public class ServiceAppointmentElevator {
 
     public void setOwnerId(Inv_Id ownerId) {
         OwnerId = ownerId;
-    }
-
-    private String ScheduledEnd;
-    private Inv_Id OwnerId;
-
-    public ServiceAppointmentElevator() {
     }
 }

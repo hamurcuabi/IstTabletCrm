@@ -9,6 +9,33 @@ public class WarehouseItem {
     private Inv_Id inv_Warehouseid;
     private Inv_Id inv_Productid;
     private Inv_Id SubProductGroupid;
+    private Inv_Id MainProductGroupid;
+    private Inv_Id inv_Uomid;
+    private int inv_Quantity;
+    private String ProductNumber;
+    private String Description;
+    private String ImageMimeType;
+
+    public String getImageMimeType() {
+        return ImageMimeType;
+    }
+
+    public void setImageMimeType(String imageMimeType) {
+        ImageMimeType = imageMimeType;
+    }
+
+    public String getImage() {
+        return Image;
+    }
+
+    public void setImage(String image) {
+        Image = image;
+    }
+
+    private String Image;
+
+    public WarehouseItem() {
+    }
 
     public Inv_Id getSubProductGroupid() {
         return SubProductGroupid;
@@ -40,15 +67,6 @@ public class WarehouseItem {
 
     public void setDescription(String description) {
         Description = description;
-    }
-
-    private Inv_Id MainProductGroupid;
-    private Inv_Id inv_Uomid;
-    private int inv_Quantity;
-    private String ProductNumber;
-    private String Description;
-
-    public WarehouseItem() {
     }
 
     public String getInv_WarehouseItemId() {

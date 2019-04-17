@@ -155,7 +155,7 @@
         android:layout_marginStart="@dimen/detay_menu_30"
         android:layout_marginTop="@dimen/header_rcw"
         android:layout_marginEnd="@dimen/detay_menu_30"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="12dp"
         android:background="@color/bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

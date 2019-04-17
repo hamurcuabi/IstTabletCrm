@@ -2,12 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/margin30"
-    android:layout_marginEnd="@dimen/margin30"
     android:background="@color/back"
     android:minHeight="@dimen/margin80">
 
     <TextView
+        android:layout_marginStart="@dimen/margin30"
+
         android:id="@+id/txt_servistipi"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -75,7 +75,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginEnd="@dimen/detay_menu_12"
+        android:layout_marginEnd="@dimen/margin30"
         android:layout_weight="1"
         android:fontFamily="@font/roboto_regular"
         android:textColor="@color/text_color"

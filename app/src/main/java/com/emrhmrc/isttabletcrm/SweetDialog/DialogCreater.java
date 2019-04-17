@@ -34,6 +34,12 @@ public class DialogCreater {
                 .setContentText(content)
                 .show();
     }
+    public static void warningDialog(Activity activity, String content) {
+        new SweetAlertDialog(activity, SweetAlertDialog.WARNING_TYPE)
+                .setTitleText(INFO)
+                .setContentText(content)
+                .show();
+    }
 
     public static void succesDialog(Activity activity, String content) {
         new SweetAlertDialog(activity, SweetAlertDialog.SUCCESS_TYPE)

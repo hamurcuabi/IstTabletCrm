@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/detay_menu_70"
+        android:background="@color/malzeme_icerik"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/lnr1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/margin30"
+            android:layout_marginEnd="@dimen/margin30"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/detay_menu_12"
+                android:layout_weight="2.5"
+                android:text="@string/malzemekodu"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_menu_14" />
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/detay_menu_12"
+                android:layout_weight="3"
+                android:text="@string/malzeme"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_menu_14" />
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/detay_menu_12"
+                android:layout_weight="1.7"
+                android:text="@string/degisim_tarihi"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_menu_14" />
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/detay_menu_12"
+                android:layout_weight="2.5"
+                android:text="@string/usta_adi"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_menu_14" />
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/detay_menu_12"
+                android:layout_weight="2"
+                android:text="@string/garantibaslangic"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_menu_14" />
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/detay_menu_12"
+                android:layout_weight="1.6"
+                android:text="@string/garantibitis"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_menu_14" />
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/detay_menu_12"
+                android:layout_weight="1.5"
+                android:text="@string/sure2"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_menu_14" />
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/serino"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_menu_14" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/detay_menu_8"
+        android:layout_marginBottom="8dp"
+        android:minHeight="@dimen/m200">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+</LinearLayout>

@@ -78,6 +78,7 @@ public class NewUnstabilityServAppFragment extends DialogFragment implements Vie
     private Call<ElevatorListAll> elevatorListAllCall;
     private Call<AccountListAll> accountListAllCall;
     private ServAppGetById servAppGetById;
+    private CreateUnsuitability createUnsuitability;
 
     public static NewUnstabilityServAppFragment newInstance(ServAppGetById servAppGetById) {
         Bundle args = new Bundle();
@@ -110,6 +111,8 @@ public class NewUnstabilityServAppFragment extends DialogFragment implements Vie
         spnElevator.setEnabled(false);
         spn_account.setText(servAppGetById.getServiceAppointment().getInv_CustomerId().getText());
         spnElevator.setText(servAppGetById.getServiceAppointment().getInv_ElevatorId().getText());
+        createUnsuitability.setElevatorId(servAppGetById.getServiceAppointment().getInv_ElevatorId().getText());
+        createUnsuitability.setCustomerId(servAppGetById.getServiceAppointment().getInv_CustomerId().getText());
     }
 
     private void init(View view) {
@@ -138,7 +141,7 @@ public class NewUnstabilityServAppFragment extends DialogFragment implements Vie
             itemTouchHelper.attachToRecyclerView(rcv);
             rcv.setAdapter(adapter);
         }
-
+        createUnsuitability = new CreateUnsuitability();
     }
 
     @Override
@@ -217,7 +220,7 @@ public class NewUnstabilityServAppFragment extends DialogFragment implements Vie
     }
 
     private void send() {
-        CreateUnsuitability createUnsuitability = new CreateUnsuitability();
+
         createUnsuitability.setUserId(SingletonUser.getInstance().getUser().getUserId());
         createUnsuitability.setDescription(edt_descp.getText().toString());
         createUnsuitability.setSentOn(edt_tarih.getText().toString());
@@ -274,6 +277,8 @@ public class NewUnstabilityServAppFragment extends DialogFragment implements Vie
         else if (item.getSubject() == null || item.getSubject().isEmpty()) return false;
         else if (item.getUnsuitabilityNotes() == null) return false;
         else if (item.getUserId() == null || item.getUserId().isEmpty()) return false;
+        else if (item.getCustomerId() == null || item.getCustomerId().isEmpty()) return false;
+        else if (item.getElevatorId() == null || item.getElevatorId().isEmpty()) return false;
         else return true;
     }
 

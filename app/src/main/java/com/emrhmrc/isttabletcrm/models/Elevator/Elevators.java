@@ -4,6 +4,16 @@ public class Elevators {
     private String inv_ElevatorId;
     private String inv_ElevatorName;
 
+    public String getInv_BlockName() {
+        return inv_BlockName;
+    }
+
+    public void setInv_BlockName(String inv_BlockName) {
+        this.inv_BlockName = inv_BlockName;
+    }
+
+    private String inv_BlockName;
+
     public Elevators() {
     }
 

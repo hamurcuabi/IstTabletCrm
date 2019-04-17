@@ -16,6 +16,7 @@ import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorChangingPart;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorGetById;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorIdRequest;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorListAll;
+import com.emrhmrc.isttabletcrm.models.Elevator.PeriodicalProductListAll;
 import com.emrhmrc.isttabletcrm.models.Notification.GetByIdWithSurvey;
 import com.emrhmrc.isttabletcrm.models.Notification.NotificationIdRequest;
 import com.emrhmrc.isttabletcrm.models.Notification.NotificationListAll;
@@ -224,6 +225,9 @@ public interface JsonApi {
 
     @POST("ServApp/CheckIn")
     Call<DefaultResponse> checkInCall(@Body ServappCheckinRequest request);
+
+    @POST("PeriodicalProduct/ListAll")
+    Call<PeriodicalProductListAll> periodicalProductListAllCall(@Body ElevatorIdRequest request);
 
 
 }

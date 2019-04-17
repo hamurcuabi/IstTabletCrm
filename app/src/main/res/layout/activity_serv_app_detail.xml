@@ -76,6 +76,7 @@
                         app:layout_constraintBottom_toTopOf="@+id/linearLayout7"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
+
                         <ImageView
                             android:id="@+id/img_send_supervisor"
                             android:layout_width="wrap_content"
@@ -456,7 +457,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_marginStart="@dimen/detay_menu_12"
-                            android:layout_marginTop="@dimen/detay_menu_12"
+                            android:layout_marginTop="8dp"
                             android:layout_weight="1.2"
                             android:orientation="vertical">
 
@@ -480,7 +481,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/roboto_regular"
-                                        android:text="İş Emri Alınma Şekli"
+                                        android:text="@{StringUtil.nullToString(model.getInv_OriginCode().getText())}"
                                         android:textColor="@color/text_color"
                                         android:textSize="@dimen/menu_text_16"
                                         app:autoSizeTextType="uniform" />
@@ -491,7 +492,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="@dimen/detay_menu_8"
                                         android:fontFamily="@font/roboto_regular"
-                                        android:text="İş Emrini Alan Kişi"
+                                        android:text="@{StringUtil.nullToString(model.getContactUser().getText())}"
                                         android:textColor="@color/text_color"
                                         android:textSize="@dimen/menu_text_16"
                                         app:autoSizeTextType="uniform" />
@@ -609,7 +610,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/roboto_regular"
-                                        android:text="@{StringUtil.notExist()}"
+                                        android:text="@{StringUtil.nullToString(model.getInv_ServiceAppointmentNumber)}"
                                         android:textColor="@color/text_color_3"
                                         android:textSize="@dimen/text_menu_16"
                                         android:textStyle="bold" />

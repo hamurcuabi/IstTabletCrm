@@ -8,7 +8,6 @@ import android.widget.TextView;
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.BaseViewHolder;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
-import com.emrhmrc.isttabletcrm.helper.Methodes;
 import com.emrhmrc.isttabletcrm.models.Warehouse.WarehouseTransferItem;
 import com.emrhmrc.isttabletcrm.util.StringUtil;
 
@@ -16,7 +15,7 @@ public class RcvWarehouseTransferViewHolder extends BaseViewHolder<WarehouseTran
         OnItemClickListener<WarehouseTransferItem>> {
 
     private TextView txt_tranfertipi, txt_urunadi, txt_miktar, txt_birim, txt_tarih,
-            txt_onay_durumu, txt_depo_cikis, txt_depo_gonderilecek,txt_urunkodu;
+            txt_onay_durumu, txt_depo_cikis, txt_depo_gonderilecek, txt_urunkodu;
     private ImageView img_statu;
 
 
@@ -55,7 +54,7 @@ public class RcvWarehouseTransferViewHolder extends BaseViewHolder<WarehouseTran
             txt_depo_cikis.setText(StringUtil.nullToString(item.getInv_FromWarehouseid().getText()));
         if (item.getInv_ToWarehouseid() != null)
             txt_depo_gonderilecek.setText(StringUtil.nullToString(item.getInv_ToWarehouseid().getText()));
-        txt_urunkodu.setText(StringUtil.notExist());
+        txt_urunkodu.setText(StringUtil.nullToString(item.getProductNumber()));
 
 
     }

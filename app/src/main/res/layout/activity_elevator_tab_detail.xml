@@ -1,0 +1,1035 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg"
+        tools:context=".activity.ElevatorDetailActivity">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/detay_menu_297"
+            android:background="@drawable/elevator_detail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toTopOf="parent">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/transparent">
+
+                <ImageView
+                    android:id="@+id/img_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/menu_left"
+                    android:layout_marginTop="@dimen/menu_top"
+                    android:src="@drawable/ic_menu_white"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txt_menu_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/servapp_icon_text"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/asansor"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/menu_text"
+                    app:layout_constraintBottom_toBottomOf="@+id/img_menu"
+                    app:layout_constraintStart_toEndOf="@+id/img_menu"
+                    app:layout_constraintTop_toTopOf="@+id/img_menu" />
+
+                <TextView
+                    android:id="@+id/txt_elevator_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/detay_menu_12"
+                    android:layout_marginTop="@dimen/detay_menu_12"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_menu_32"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/img_menu"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_menu_header" />
+
+
+            </android.support.constraint.ConstraintLayout>
+
+
+        </android.support.constraint.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <android.support.constraint.ConstraintLayout
+
+                android:id="@+id/cons_genel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/menu_left"
+                android:layout_marginTop="@dimen/detay_menu"
+                android:layout_marginBottom="@dimen/detay_menu_12"
+                android:layout_weight="1"
+                android:background="@drawable/btn_default_layout"
+                android:elevation="2dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imageView9"
+                    android:layout_width="@dimen/detay_menu_100"
+                    android:layout_height="@dimen/detay_menu_100"
+                    android:layout_marginTop="@dimen/detay_menu_25"
+                    android:layout_marginEnd="@dimen/detay_menu_30"
+                    android:src="@drawable/note"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/detay_menu_40"
+                    android:layout_marginTop="@dimen/detay_menu_30"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/genel"
+                    android:textColor="@color/text_color_6"
+                    android:textSize="@dimen/text_menu_24"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ScrollView
+                    android:id="@+id/scroll_genel"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/detay_menu_30"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView9"
+                    app:layout_constraintStart_toStartOf="@+id/textView3"
+                    app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="370dp"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:id="@+id/lnr_asansoradi"
+                            android:layout_width="@dimen/detay_menu_370"
+                            android:layout_height="20dp"
+                            android:orientation="horizontal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:layout_width="@dimen/detay_menu_170"
+                                android:layout_height="wrap_content"
+                                android:text="@string/asansoradi"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/ikinokta"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txt_asansorname"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/detay_menu_8"
+                                android:fontFamily="@font/roboto_regular"
+
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/lnr_apartadi"
+                            android:layout_width="@dimen/detay_menu_370"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/text_menu_16"
+                            android:orientation="horizontal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/lnr_asansoradi">
+
+                            <TextView
+                                android:layout_width="@dimen/detay_menu_170"
+                                android:layout_height="wrap_content"
+                                android:text="@string/apartadi"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/ikinokta"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txt_apartadi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/detay_menu_8"
+                                android:background="@drawable/txt_rounded"
+                                android:fontFamily="@font/roboto_regular"
+                                android:padding="@dimen/txt_padding_2"
+
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/lnr_blok"
+                            android:layout_width="@dimen/detay_menu_370"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/text_menu_16"
+                            android:orientation="horizontal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/lnr_apartadi">
+
+                            <TextView
+                                android:layout_width="@dimen/detay_menu_170"
+                                android:layout_height="wrap_content"
+                                android:text="@string/blokadi"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/ikinokta"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txt_blokadi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/detay_menu_8"
+                                android:fontFamily="@font/roboto_regular"
+
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/lnr_pan"
+                            android:layout_width="@dimen/detay_menu_370"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/text_menu_16"
+                            android:orientation="horizontal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/lnr_blok">
+
+                            <TextView
+                                android:layout_width="@dimen/detay_menu_170"
+                                android:layout_height="wrap_content"
+                                android:text="@string/pan"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/ikinokta"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txt_panaromikmi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/detay_menu_8"
+                                android:fontFamily="@font/roboto_regular"
+
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/lnr_tek"
+                            android:layout_width="@dimen/detay_menu_370"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/text_menu_16"
+                            android:orientation="horizontal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/lnr_pan">
+
+                            <TextView
+                                android:layout_width="@dimen/detay_menu_170"
+                                android:layout_height="wrap_content"
+                                android:text="@string/tektanım"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/ikinokta"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txt_tekniktakim"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/detay_menu_8"
+                                android:fontFamily="@font/roboto_regular"
+
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/lnr_etiket"
+                            android:layout_width="@dimen/detay_menu_370"
+                            android:layout_height="26dp"
+                            android:layout_marginTop="@dimen/text_menu_16"
+                            android:orientation="horizontal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/lnr_tek">
+
+                            <TextView
+                                android:layout_width="@dimen/detay_menu_170"
+                                android:layout_height="wrap_content"
+                                android:text="@string/etiket"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/ikinokta"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txt_etiketrengi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/detay_menu_8"
+                                android:fontFamily="@font/roboto_regular"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/lnr_soz"
+                            android:layout_width="@dimen/detay_menu_370"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/text_menu_16"
+                            android:orientation="horizontal"
+                            android:visibility="gone"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/lnr_etiket">
+
+                            <TextView
+                                android:layout_width="@dimen/detay_menu_170"
+                                android:layout_height="wrap_content"
+                                android:text="@string/soztarih"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/ikinokta"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txt_sozlemebitis"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/detay_menu_8"
+                                android:fontFamily="@font/roboto_regular"
+
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/lnr_asmak"
+                            android:layout_width="@dimen/detay_menu_370"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/text_menu_16"
+                            android:orientation="horizontal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/lnr_soz">
+
+                            <TextView
+                                android:layout_width="@dimen/detay_menu_170"
+                                android:layout_height="wrap_content"
+                                android:text="@string/asmak"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/ikinokta"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txt_asansormanike"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/detay_menu_8"
+                                android:fontFamily="@font/roboto_regular"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/lnr_asyil"
+                            android:layout_width="@dimen/detay_menu_370"
+                            android:layout_height="26dp"
+                            android:layout_marginTop="@dimen/text_menu_16"
+                            android:orientation="horizontal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/lnr_asmak">
+
+                            <TextView
+                                android:layout_width="@dimen/detay_menu_170"
+                                android:layout_height="wrap_content"
+                                android:text="@string/asanlik"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/ikinokta"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txt_anlikdurum"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/detay_menu_8"
+                                android:fontFamily="@font/roboto_regular"
+
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/lnr_ashiz"
+                            android:layout_width="@dimen/detay_menu_370"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/text_menu_16"
+                            android:orientation="horizontal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/lnr_asyil">
+
+                            <TextView
+                                android:layout_width="@dimen/detay_menu_170"
+                                android:layout_height="wrap_content"
+                                android:text="@string/ashiz"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/ikinokta"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txt_hizmetyili"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/detay_menu_8"
+                                android:fontFamily="@font/roboto_regular"
+
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/lnr_sahini"
+                            android:layout_width="@dimen/detay_menu_370"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/text_menu_16"
+                            android:orientation="horizontal"
+                            android:visibility="gone"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/lnr_ashiz">
+
+                            <TextView
+                                android:layout_width="@dimen/detay_menu_170"
+                                android:layout_height="wrap_content"
+                                android:text="@string/sahibi"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/ikinokta"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txt_adsoyad"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/detay_menu_8"
+                                android:background="@drawable/txt_rounded"
+                                android:fontFamily="@font/roboto_regular"
+                                android:padding="@dimen/txt_padding_2"
+
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/lnr_assorun"
+                            android:layout_width="@dimen/detay_menu_370"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/text_menu_16"
+                            android:orientation="horizontal"
+                            android:visibility="gone"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/lnr_sahini">
+
+                            <TextView
+                                android:layout_width="@dimen/detay_menu_170"
+                                android:layout_height="wrap_content"
+                                android:text="@string/assorun"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/ikinokta"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txt_arizadakisorun"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/detay_menu_8"
+                                android:fontFamily="@font/roboto_regular"
+
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+
+                            android:id="@+id/lnr_asfirma"
+                            android:layout_width="@dimen/detay_menu_370"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/text_menu_16"
+                            android:orientation="horizontal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/lnr_assorun">
+
+                            <TextView
+                                android:layout_width="@dimen/detay_menu_170"
+                                android:layout_height="wrap_content"
+                                android:text="@string/asfirma"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/ikinokta"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txt_yaptiranfirma"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/detay_menu_8"
+                                android:fontFamily="@font/roboto_regular"
+
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+
+                    </android.support.constraint.ConstraintLayout>
+
+
+                </ScrollView>
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/cons_ozellik"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin456"
+                android:layout_marginStart="@dimen/menu_left"
+                android:layout_marginTop="@dimen/detay_menu"
+                android:layout_marginEnd="@dimen/menu_left"
+                android:layout_marginBottom="@dimen/detay_menu_12"
+                android:layout_weight="1"
+                android:background="@drawable/btn_default_layout"
+                android:elevation="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/cons_genel"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/img_feature"
+                    android:layout_width="@dimen/detay_menu_100"
+                    android:layout_height="@dimen/detay_menu_100"
+                    android:layout_marginTop="@dimen/detay_menu_25"
+                    android:layout_marginEnd="@dimen/detay_menu_30"
+                    android:src="@drawable/feature"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txt_ozellikler"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/detay_menu_40"
+                    android:layout_marginTop="@dimen/detay_menu_30"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/ozellikler"
+                    android:textColor="@color/text_color_6"
+                    android:textSize="@dimen/text_menu_24"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ScrollView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/detay_menu_30"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/img_feature"
+                    app:layout_constraintStart_toStartOf="@+id/txt_ozellikler"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_ozellikler">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:id="@+id/lnr_askimlik"
+                            android:layout_width="@dimen/detay_menu_370"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:layout_width="@dimen/detay_menu_170"
+                                android:layout_height="wrap_content"
+                                android:text="@string/askimlik"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/ikinokta"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txt_kimlikno"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/detay_menu_8"
+                                android:fontFamily="@font/roboto_regular"
+
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/lnr_kapasite"
+                            android:layout_width="@dimen/detay_menu_370"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/text_menu_16"
+                            android:orientation="horizontal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/lnr_askimlik">
+
+                            <TextView
+                                android:layout_width="@dimen/detay_menu_170"
+                                android:layout_height="wrap_content"
+                                android:text="@string/kapasite"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/ikinokta"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txt_kapasite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/detay_menu_8"
+                                android:fontFamily="@font/roboto_regular"
+
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/lnr_kat"
+                            android:layout_width="@dimen/detay_menu_370"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/text_menu_16"
+                            android:orientation="horizontal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/lnr_sinif">
+
+                            <TextView
+                                android:layout_width="@dimen/detay_menu_170"
+                                android:layout_height="wrap_content"
+                                android:text="@string/kat"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/ikinokta"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txt_katsayisi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/detay_menu_8"
+                                android:fontFamily="@font/roboto_regular"
+
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/lnr_sinif"
+                            android:layout_width="@dimen/detay_menu_370"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/text_menu_16"
+                            android:orientation="horizontal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/lnr_kapasite">
+
+                            <TextView
+                                android:layout_width="@dimen/detay_menu_170"
+                                android:layout_height="wrap_content"
+                                android:text="@string/sinif"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/ikinokta"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txt_sinif"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/detay_menu_8"
+                                android:background="@drawable/txt_rounded"
+                                android:fontFamily="@font/roboto_regular"
+                                android:padding="@dimen/txt_padding_2"
+
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/lnr_seri"
+                            android:layout_width="@dimen/detay_menu_370"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/text_menu_16"
+                            android:orientation="horizontal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/lnr_kat">
+
+                            <TextView
+                                android:layout_width="@dimen/detay_menu_170"
+                                android:layout_height="wrap_content"
+                                android:text="@string/seri"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/ikinokta"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txt_serino"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/detay_menu_8"
+                                android:fontFamily="@font/roboto_regular"
+
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/lnr_durak"
+                            android:layout_width="@dimen/detay_menu_370"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/text_menu_16"
+                            android:orientation="horizontal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/lnr_seri">
+
+                            <TextView
+                                android:layout_width="@dimen/detay_menu_170"
+                                android:layout_height="wrap_content"
+                                android:text="@string/durak"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/ikinokta"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txt_duraksayisi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/detay_menu_8"
+                                android:fontFamily="@font/roboto_regular"
+
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/lnr_hiz"
+                            android:layout_width="@dimen/detay_menu_370"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/text_menu_16"
+                            android:orientation="horizontal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/lnr_durak">
+
+                            <TextView
+                                android:layout_width="@dimen/detay_menu_170"
+                                android:layout_height="wrap_content"
+                                android:text="@string/hiz"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/ikinokta"
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txt_asansorhizi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/detay_menu_8"
+                                android:fontFamily="@font/roboto_regular"
+
+                                android:textColor="@color/text_color_3"
+                                android:textSize="@dimen/text_menu_16"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+                    </android.support.constraint.ConstraintLayout>
+
+
+                </ScrollView>
+
+
+            </android.support.constraint.ConstraintLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnrbuttons"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/menu_left"
+            android:layout_marginTop="@dimen/padding_top25"
+            android:layout_marginEnd="@dimen/menu_left"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+
+            <Button
+                android:id="@+id/btn_changeproductlist"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/btn_malzeme_height"
+                android:layout_weight="1"
+                android:background="@drawable/btn_malzeme_2"
+                android:stateListAnimator="@null"
+                android:text="@string/malzemelistesi"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_menu_18"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_wish"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/btn_malzeme_height"
+                android:layout_marginStart="8dp"
+
+                android:layout_weight="1"
+                android:background="@drawable/btn_taleplerim"
+                android:stateListAnimator="@null"
+                android:text="@string/servistalep"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_menu_18"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_omurlu"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/btn_malzeme_height"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_taleplerim"
+                android:stateListAnimator="@null"
+                android:text="Ömürlü Parçalar"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_menu_18"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+
+        </LinearLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/m200"
+            android:layout_marginBottom="8dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lnrbuttons" />
+    </android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.NestedScrollView>

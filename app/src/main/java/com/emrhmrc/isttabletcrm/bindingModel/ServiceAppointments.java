@@ -9,6 +9,7 @@ public class ServiceAppointments {
     private String ScheduledEnd;
     private String ActivityId;
     private String Subject;
+    private String inv_ServiceAppointmentNumber;
     private Inv_Id inv_CustomerId;
     private Code inv_TypeCode;
     private double inv_Latitude;
@@ -16,6 +17,22 @@ public class ServiceAppointments {
     private Code PriorityCode;
 
     public ServiceAppointments() {
+    }
+
+    public String getInv_ServiceAppointmentNumber() {
+        return inv_ServiceAppointmentNumber;
+    }
+
+    public void setInv_ServiceAppointmentNumber(String inv_ServiceAppointmentNumber) {
+        this.inv_ServiceAppointmentNumber = inv_ServiceAppointmentNumber;
+    }
+
+    public Code getPriorityCode() {
+        return PriorityCode;
+    }
+
+    public void setPriorityCode(Code priorityCode) {
+        PriorityCode = priorityCode;
     }
 
     public double getInv_Latitude() {

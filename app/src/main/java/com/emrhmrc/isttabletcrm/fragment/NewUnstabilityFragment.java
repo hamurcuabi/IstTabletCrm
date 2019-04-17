@@ -34,6 +34,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
+import com.emrhmrc.isttabletcrm.SweetDialog.DialogCreater;
 import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.adapter.RcvImageAdapter;
@@ -82,6 +83,7 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
     private Call<DefaultResponse2> createCall;
     private Call<ElevatorListAll> elevatorListAllCall;
     private Call<AccountListAll> accountListAllCall;
+    private CreateUnsuitability createUnsuitability;
 
     public static NewUnstabilityFragment newInstance() {
         Bundle args = new Bundle();
@@ -134,7 +136,7 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
             itemTouchHelper.attachToRecyclerView(rcv);
             rcv.setAdapter(adapter);
         }
-
+        createUnsuitability = new CreateUnsuitability();
     }
 
     @Override
@@ -213,12 +215,13 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
     }
 
     private void send() {
-        CreateUnsuitability createUnsuitability = new CreateUnsuitability();
+
         createUnsuitability.setUserId(SingletonUser.getInstance().getUser().getUserId());
         createUnsuitability.setDescription(edt_descp.getText().toString());
         createUnsuitability.setSentOn(edt_tarih.getText().toString());
         createUnsuitability.setSubject("Test Subject");
         createUnsuitability.setUnsuitabilityNotes(adapter.getItems());
+
         if (checkFields(createUnsuitability)) {
             viewDialog.showDialog();
             createCall = jsonApi.createUnsuitabilityCall(createUnsuitability);
@@ -254,9 +257,8 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
             });
         } else {
             if (getDialog() != null && getDialog().isShowing()) {
-                new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
-                        .setTitleText("Eksik Alanları Doldurunuz")
-                        .show();
+
+                DialogCreater.warningDialog(getActivity(), "Eksik Alanları Doldurunuz");
             }
 
         }
@@ -269,6 +271,8 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
         else if (item.getSubject() == null || item.getSubject().isEmpty()) return false;
         else if (item.getUnsuitabilityNotes() == null) return false;
         else if (item.getUserId() == null || item.getUserId().isEmpty()) return false;
+        else if (item.getCustomerId() == null || item.getCustomerId().isEmpty()) return false;
+        else if (item.getElevatorId() == null || item.getElevatorId().isEmpty()) return false;
         else return true;
     }
 
@@ -323,6 +327,12 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
                 public void onClick(View view) {
 
                     spnElevator.showDropDown();
+                }
+            });
+            spnElevator.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    createUnsuitability.setElevatorId(list.get(i).getInv_ElevatorId());
                 }
             });
         } else {
@@ -392,6 +402,7 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     getElevatorByCustomerAll(list.get(i).getAccountId());
+                    createUnsuitability.setCustomerId(list.get(i).getAccountId());
                 }
             });
         } else {

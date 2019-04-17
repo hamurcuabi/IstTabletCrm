@@ -5,6 +5,25 @@ import java.util.List;
 public class CreateUnsuitability {
     private String ServAppId;
     private String UserId;
+    private String ElevatorId;
+
+    public String getElevatorId() {
+        return ElevatorId;
+    }
+
+    public void setElevatorId(String elevatorId) {
+        ElevatorId = elevatorId;
+    }
+
+    public String getCustomerId() {
+        return CustomerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        CustomerId = customerId;
+    }
+
+    private String CustomerId;
     private String Description;
     private String Subject;
     private String SentOn;

@@ -186,7 +186,6 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
         LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
                 new IntentFilter("custom-event-name"));
 
-
     }
 
     private void initDialog() {

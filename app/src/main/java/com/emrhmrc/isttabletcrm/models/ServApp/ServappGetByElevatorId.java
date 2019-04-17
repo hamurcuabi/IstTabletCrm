@@ -5,10 +5,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class ServappGetByElevatorId {
+public class ServappGetByElevatorId extends DefaultResponse {
 
-    private boolean Success;
-    private String ErrorMsg;
     private TableMetadata TableMetadataGetByElevatorIdServApp;
     @SerializedName("ServiceAppointment")
     private List<ServiceAppointmentElevator> ServiceAppointment;

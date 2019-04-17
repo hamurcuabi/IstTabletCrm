@@ -2,38 +2,26 @@ package com.emrhmrc.isttabletcrm.activity;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
-import com.emrhmrc.isttabletcrm.adapter.RcvChangingPartAdapter;
-import com.emrhmrc.isttabletcrm.adapter.RcvElevatorRequestAdapter;
-import com.emrhmrc.isttabletcrm.api.APIHelper;
+import com.emrhmrc.isttabletcrm.adapter.ViewPagerAdapter;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
+import com.emrhmrc.isttabletcrm.fragment.FragMalzemeGecmisi;
+import com.emrhmrc.isttabletcrm.fragment.FragOmurluParcalar;
+import com.emrhmrc.isttabletcrm.fragment.FragServisler;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
-import com.emrhmrc.isttabletcrm.models.CommonClass.FilterModel;
 import com.emrhmrc.isttabletcrm.models.Elevator.Elevator;
-import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorChangingPart;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorGetById;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorIdRequest;
-import com.emrhmrc.isttabletcrm.models.ServApp.ServappGetByElevatorId;
-import com.emrhmrc.isttabletcrm.models.ServApp.ServiceAppointmentElevator;
 import com.emrhmrc.isttabletcrm.util.StringUtil;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 import butterknife.BindDrawable;
 import butterknife.BindView;
@@ -90,89 +78,35 @@ public class ElevatorDetailActivity extends AppCompatActivity implements OnItemC
     TextView txtDuraksayisi;
     @BindView(R.id.txt_asansorhizi)
     TextView txtAsansorhizi;
-    @BindView(R.id.rcv)
-    RecyclerView rcv;
     @BindDrawable(R.drawable.btn_malzeme_2)
     Drawable first;
     @BindDrawable(R.drawable.btn_taleplerim)
     Drawable second;
     @BindView(R.id.btn_wish)
     Button btnWish;
-    @BindView(R.id.lnr1)
-    LinearLayout lnr1;
-    @BindView(R.id.lnr2)
-    LinearLayout lnr2;
-    @BindView(R.id.rcv_talep)
-    RecyclerView rcvTalep;
-    @BindView(R.id.spn_statu)
-    Spinner spnStatu;
+    @BindView(R.id.btn_omurlu)
+    Button btnOmurlu;
     @BindView(R.id.btn_changeproductlist)
     Button btnChangeproductlist;
+    @BindView(R.id.viewpager)
+    ViewPager viewpager;
     private JsonApi jsonApi;
-    private RcvChangingPartAdapter adapter;
-    private RcvElevatorRequestAdapter adapter_request;
+    private ViewPagerAdapter viewPagerAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_elevator_detail);
+        setContentView(R.layout.activity_elevator_tab_detail);
         ButterKnife.bind(this);
         init();
         getElevatorById();
-        getChangingPart();
-        getMyRequest();
+        setupViewPager();
     }
 
-    private void getChangingPart() {
-        Call<ElevatorChangingPart> call = jsonApi.getElevatorChangingPartCall(new ElevatorIdRequest(ShareData
-                .getInstance().getElevatorId()));
-        call.enqueue(new Callback<ElevatorChangingPart>() {
-            @Override
-            public void onResponse(Call<ElevatorChangingPart> call, Response<ElevatorChangingPart> response) {
-                if (response.isSuccessful()) {
-                    final ElevatorChangingPart model = response.body();
-                    adapter.setItems(model.getElevatorChangingParts());
-                } else Log.d(TAG, "onResponse: " + response.message());
-            }
-
-            @Override
-            public void onFailure(Call<ElevatorChangingPart> call, Throwable t) {
-                Log.d(TAG, "onFailure: " + t.getMessage());
-            }
-        });
-    }
-
-    private void getMyRequest() {
-        Call<ServappGetByElevatorId> call = jsonApi.getServappGetByElevatorIdCall(new ElevatorIdRequest(ShareData
-                .getInstance().getElevatorId()));
-        APIHelper.enqueueWithRetry(call, new Callback<ServappGetByElevatorId>() {
-            @Override
-            public void onResponse(Call<ServappGetByElevatorId> call, Response<ServappGetByElevatorId> response) {
-
-                if (response.isSuccessful()) {
-                    final ServappGetByElevatorId model = response.body();
-                    adapter_request.setItems(model.getServiceAppointment());
-                    setupFilters(model.getServiceAppointment());
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<ServappGetByElevatorId> call, Throwable t) {
-
-            }
-        });
-    }
 
     private void init() {
         jsonApi = ApiClient.getClient().create(JsonApi.class);
-        adapter = new RcvChangingPartAdapter(this, this::onItemClicked);
-        adapter_request = new RcvElevatorRequestAdapter(this, this::onItemClicked);
-        rcv.setLayoutManager(new LinearLayoutManager(this));
-        rcv.setAdapter(adapter);
-        rcvTalep.setLayoutManager(new LinearLayoutManager(this));
-        rcvTalep.setAdapter(adapter_request);
-
     }
 
     private void setTexts(Elevator model) {
@@ -222,73 +156,27 @@ public class ElevatorDetailActivity extends AppCompatActivity implements OnItemC
     private void rcvFirst() {
 
         btnChangeproductlist.setBackground(first);
-        rcv.setVisibility(View.VISIBLE);
-        lnr1.setVisibility(View.VISIBLE);
-
         btnWish.setBackground(second);
-        lnr2.setVisibility(View.GONE);
-        spnStatu.setVisibility(View.GONE);
-        rcvTalep.setVisibility(View.GONE);
-
+        btnOmurlu.setBackground(second);
+        viewpager.setCurrentItem(0);
 
     }
 
     private void rcvSecond() {
 
-        btnChangeproductlist.setBackground(second);
-        rcv.setVisibility(View.GONE);
-        lnr1.setVisibility(View.GONE);
-
         btnWish.setBackground(first);
-        lnr2.setVisibility(View.VISIBLE);
-        spnStatu.setVisibility(View.VISIBLE);
-        rcvTalep.setVisibility(View.VISIBLE);
+        btnChangeproductlist.setBackground(second);
+        btnOmurlu.setBackground(second);
+        viewpager.setCurrentItem(1);
+
 
     }
 
-    private void setupFilters(List<ServiceAppointmentElevator> model) {
-
-        HashMap<Integer, String> statuTypeHash = new HashMap<>();
-        List<FilterModel> statuType = new ArrayList<>();
-
-        for (ServiceAppointmentElevator current : model
-        ) {
-
-
-            if (current.getStatusCode() != null) {
-
-                if (!statuTypeHash.containsKey(current.getStatusCode().getValue())) {
-                    statuType.add(new FilterModel(current.getStatusCode().getValue(),
-                            current.getStatusCode().getText()));
-                    statuTypeHash.put(current.getStatusCode().getValue(), "");
-                }
-            }
-        }
-
-        statuType.add(0, new FilterModel(-1, "Statü"));
-
-        //Spn Statu
-
-        ArrayAdapter<FilterModel> spinnerArrayAdapter2 = new ArrayAdapter<>(
-                this, R.layout.spinner_item_white, statuType);
-        spinnerArrayAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spnStatu.setAdapter(spinnerArrayAdapter2);
-
-
-        spnStatu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                FilterModel filterModel = (FilterModel) adapterView.getItemAtPosition(i);
-                adapter_request.getFilter().filter("" + filterModel.getValue());
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
+    private void rcvThird() {
+        btnOmurlu.setBackground(first);
+        btnChangeproductlist.setBackground(second);
+        btnWish.setBackground(second);
+        viewpager.setCurrentItem(2);
     }
 
     @Override
@@ -301,7 +189,8 @@ public class ElevatorDetailActivity extends AppCompatActivity implements OnItemC
 
     }
 
-    @OnClick({R.id.btn_changeproductlist, R.id.btn_wish, R.id.img_menu, R.id.txt_menu_header})
+    @OnClick({R.id.btn_changeproductlist, R.id.btn_wish, R.id.btn_omurlu, R.id.img_menu,
+            R.id.txt_menu_header})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_changeproductlist:
@@ -310,6 +199,9 @@ public class ElevatorDetailActivity extends AppCompatActivity implements OnItemC
             case R.id.btn_wish:
                 rcvSecond();
                 break;
+            case R.id.btn_omurlu:
+                rcvThird();
+                break;
             case R.id.img_menu:
                 onBackPressed();
                 break;
@@ -317,5 +209,40 @@ public class ElevatorDetailActivity extends AppCompatActivity implements OnItemC
                 onBackPressed();
                 break;
         }
+    }
+
+
+    private void setupViewPager() {
+
+        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        viewPagerAdapter.addFragment(FragMalzemeGecmisi.newInstance(), "FragMalzemeGecmisi");
+        viewPagerAdapter.addFragment(FragServisler.newInstance(), "FragServisler");
+        viewPagerAdapter.addFragment(FragOmurluParcalar.newInstance(), "FragOmurluParcalar");
+        viewpager.setAdapter(viewPagerAdapter);
+        viewpager.setCurrentItem(0);
+        viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            public void onPageScrollStateChanged(int state) {
+            }
+
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            public void onPageSelected(int position) {
+                switch (position) {
+                    case 0:
+                        rcvFirst();
+                        break;
+                    case 1:
+                        rcvSecond();
+                        break;
+                    case 2:
+                        rcvThird();
+                        break;
+                    default:
+                        rcvFirst();
+                        break;
+                }
+            }
+        });
     }
 }
