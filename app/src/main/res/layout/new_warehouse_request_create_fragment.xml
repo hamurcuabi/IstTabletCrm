@@ -65,8 +65,7 @@
                 android:layout_gravity="top"
                 android:layout_weight="1"
                 android:gravity="left"
-                android:orientation="vertical"
-              >
+                android:orientation="vertical">
 
 
                 <LinearLayout
@@ -259,8 +258,7 @@
                 android:layout_marginEnd="@dimen/padding_top25"
                 android:layout_weight="1"
                 android:gravity="left"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -303,7 +301,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/detay_menu_12"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="0dp"
@@ -318,13 +317,13 @@
                         android:textStyle="bold" />
 
                     <EditText
-
                         android:id="@+id/edt_baglioldugu_isemri"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/edt_calendar_height"
                         android:layout_marginStart="@dimen/detay_menu_30"
                         android:layout_weight="5"
                         android:background="@drawable/btn_eye_text"
+                        android:enabled="false"
                         android:gravity="center_vertical|left"
                         android:paddingStart="@dimen/detay_menu_12"
                         android:paddingEnd="@dimen/margin30" />
@@ -433,14 +432,14 @@
             </LinearLayout>
 
             <LinearLayout
-                android:visibility="gone"
                 android:id="@+id/lnr2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
                 android:layout_weight="1"
                 android:gravity="left"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
 
                 <LinearLayout
@@ -574,6 +573,7 @@
                         android:background="@drawable/spn_style"
                         android:paddingStart="@dimen/detay_menu_12"
                         android:paddingEnd="@dimen/margin30" />
+
                     <ProgressBar
                         android:id="@+id/progUrun2"
                         android:layout_width="wrap_content"
@@ -619,7 +619,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:visibility="gone"
                 android:id="@+id/lnr22"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -627,7 +626,8 @@
                 android:layout_marginEnd="@dimen/detay_menu_12"
                 android:layout_weight="1"
                 android:gravity="left"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -36,6 +36,7 @@ import com.emrhmrc.isttabletcrm.fragment.AddWorkmanshipFragment;
 import com.emrhmrc.isttabletcrm.fragment.BeforeAfterPicFragment;
 import com.emrhmrc.isttabletcrm.fragment.BreakdownTypeCodeFragment;
 import com.emrhmrc.isttabletcrm.fragment.ControlListFragment;
+import com.emrhmrc.isttabletcrm.fragment.CreateNewWareRequestServappFragment;
 import com.emrhmrc.isttabletcrm.fragment.DefaultMapFragment;
 import com.emrhmrc.isttabletcrm.fragment.DetailServAppFormFragment;
 import com.emrhmrc.isttabletcrm.fragment.NewUnstabilityServAppFragment;
@@ -51,6 +52,7 @@ import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id_Id;
+import com.emrhmrc.isttabletcrm.models.Elevator.ServAppDetails;
 import com.emrhmrc.isttabletcrm.models.MapModel;
 import com.emrhmrc.isttabletcrm.models.Product.Product;
 import com.emrhmrc.isttabletcrm.models.ServApp.CompleteByIdRequest;
@@ -65,6 +67,7 @@ import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppDetails;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetByIdServAppModernizationChecklists;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppIdRequest;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServappCheckinRequest;
+import com.emrhmrc.isttabletcrm.models.ServApp.ServappSendToSuperVisorRequest;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServiceAppHelperIds;
 import com.emrhmrc.isttabletcrm.models.ServApp.UpsertByIdUpdateRequest;
 import com.emrhmrc.isttabletcrm.util.StringUtil;
@@ -436,7 +439,8 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
             R.id.img_menu, R.id.txt_kaydet, R.id.img_kaydet, R.id.btn_ariza_kodu,
             R.id.btn_ariza_nedeni, R.id.add_job_2, R.id.img_add_3, R.id.btn_kontrol_listesi,
             R.id.img_add_2, R.id.add_job, R.id.img_yeni_uygunsuzluk, R.id.txt_yeni_uygunsuzluk,
-            R.id.img_qr, R.id.img_send_supervisor, R.id.txt_send_supervisor})
+            R.id.img_qr, R.id.img_send_supervisor, R.id.txt_send_supervisor,
+            R.id.img_yeni_stoktalep, R.id.txt_stok_talep})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_cancel:
@@ -523,6 +527,12 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
             case R.id.txt_send_supervisor:
                 sendToSupervisor();
                 break;
+            case R.id.txt_stok_talep:
+                openNewWarehouse();
+                break;
+            case R.id.img_yeni_stoktalep:
+                openNewWarehouse();
+                break;
 
 
         }
@@ -530,6 +540,8 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
 
     private void sendToSupervisor() {
         //Bitmedi
+        ServappSendToSuperVisorRequest request=new ServappSendToSuperVisorRequest();
+        request.setUserId(ShareData.getInstance().getUserId());
 
     }
 
@@ -542,6 +554,12 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     private void openNewUnsuit() {
         NewUnstabilityServAppFragment fragment = NewUnstabilityServAppFragment.newInstance(model);
         fragment.show(getSupportFragmentManager(), "NewUnstabilityServAppFragment");
+
+    }
+
+    private void openNewWarehouse() {
+        CreateNewWareRequestServappFragment fragment = CreateNewWareRequestServappFragment.newInstance();
+        fragment.show(getSupportFragmentManager(), "CreateNewWareRequestServappFragment");
 
     }
 
@@ -570,6 +588,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     private void openDialog() {
         DialogCreater.errorDialog(this, amount);
     }
+
 
     private boolean checkProductAmount() {
 
@@ -663,7 +682,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
             if (current.getInv_Uomid() != null)
                 item.setInv_Uomid(new Inv_Id_Id(current.getInv_Uomid().getId()));
             else item.setInv_Uomid(new Inv_Id_Id());
-            item.setInv_Quantity(current.getInv_Quantity() != null ? current.getInv_Quantity() : 0);
+            item.setInv_Quantity(current.getInv_Quantity());
             item.setInv_Price(current.getInv_Price() != null ? current.getInv_Price() : 0);
             item.setInv_WillBeBilled(current.getInv_WillBeBilled());
             updateRequest.getServAppDetailsList().add(item);

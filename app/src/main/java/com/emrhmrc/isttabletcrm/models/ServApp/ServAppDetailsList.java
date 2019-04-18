@@ -9,7 +9,7 @@ public class ServAppDetailsList {
     private String inv_Description;
     private Inv_Id_Id inv_ProductId;
     private Inv_Id_Id inv_Uomid;
-    private Integer inv_Quantity;
+    private float inv_Quantity;
     private Integer inv_Price;
     private boolean inv_WillBeBilled;
 
@@ -63,11 +63,11 @@ public class ServAppDetailsList {
         this.inv_Uomid = inv_Uomid;
     }
 
-    public int getInv_Quantity() {
+    public float getInv_Quantity() {
         return inv_Quantity;
     }
 
-    public void setInv_Quantity(int inv_Quantity) {
+    public void setInv_Quantity(float inv_Quantity) {
         this.inv_Quantity = inv_Quantity;
     }
 

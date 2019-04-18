@@ -5,8 +5,8 @@ import com.emrhmrc.isttabletcrm.models.CommonClass.Code;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
 
 public class ServAppGetByIdServAppDetails {
-    private Integer inv_LineNo;
-    private Integer inv_Price;
+    private int inv_LineNo;
+    private int inv_Price;
     private String inv_Description;
     private Code inv_WarrantyStatusCode;
     private boolean inv_WillBeBilled;
@@ -15,9 +15,11 @@ public class ServAppGetByIdServAppDetails {
     private String inv_ProductDescription;
     private Inv_Id inv_Uomid;
     private Inv_Id inv_ProductId;
-    private Integer inv_Quantity;
+    private float inv_Quantity;
+
     private boolean isManuel = false;
     private boolean isManuelProduct = false;
+
     public ServAppGetByIdServAppDetails() {
     }
 
@@ -113,11 +115,11 @@ public class ServAppGetByIdServAppDetails {
         this.inv_ProductId = inv_ProductId;
     }
 
-    public Integer getInv_Quantity() {
+    public float getInv_Quantity() {
         return inv_Quantity;
     }
 
-    public void setInv_Quantity(Integer inv_Quantity) {
+    public void setInv_Quantity(float inv_Quantity) {
         this.inv_Quantity = inv_Quantity;
     }
 

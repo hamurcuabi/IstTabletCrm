@@ -22,7 +22,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.emrhmrc.isttabletcrm.R;
-import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
+import com.emrhmrc.isttabletcrm.SweetDialog.DialogCreater;
 import com.emrhmrc.isttabletcrm.api.APIHelper;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
@@ -51,6 +51,7 @@ public class AddManuelProductFragment extends DialogFragment implements View.OnC
     private Call<UomListAll> call;
     private AddManuelProduct addManuelProduct;
     private Inv_Id selected;
+    private String try_again = "Beklenmedik Bir Hata Oluştu, Lütfen Tekrar Deneyiniz";
 
     public static AddManuelProductFragment newInstance() {
         Bundle args = new Bundle();
@@ -102,9 +103,15 @@ public class AddManuelProductFragment extends DialogFragment implements View.OnC
             @Override
             public void onResponse(Call<UomListAll> call, Response<UomListAll> response) {
                 if (response.isSuccessful()) {
-                    final UomListAll model = response.body();
-                    fillSpinnerUom(model.getUomList());
-                } else Log.d(TAG, "onResponse: " + response.errorBody());
+                    if (response.body().Success) {
+                        final UomListAll model = response.body();
+                        fillSpinnerUom(model.getUomList());
+                    } else {
+                        DialogCreater.errorDialog(getActivity(), response.body().ErrorMsg);
+                    }
+                } else {
+                    DialogCreater.errorDialog(getActivity(), try_again);
+                }
 
             }
 
@@ -112,9 +119,7 @@ public class AddManuelProductFragment extends DialogFragment implements View.OnC
             public void onFailure(Call<UomListAll> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
                 if (getDialog() != null && getDialog().isShowing()) {
-                    new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
-                            .setTitleText(getResources().getString(R.string.toast_error))
-                            .show();
+                    DialogCreater.errorDialog(getActivity(), try_again);
                 }
             }
         });
@@ -145,6 +150,12 @@ public class AddManuelProductFragment extends DialogFragment implements View.OnC
         spn_birim.setOnFocusChangeListener((view, b) -> {
             if (b) spn_birim.showDropDown();
             else spn_birim.dismissDropDown();
+        });
+        spn_birim.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                spn_birim.showDropDown();
+            }
         });
     }
 
@@ -187,9 +198,7 @@ public class AddManuelProductFragment extends DialogFragment implements View.OnC
             dismiss();
         } else {
             if (getDialog() != null && getDialog().isShowing()) {
-                new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
-                        .setTitleText(getResources().getString(R.string.bos_alan))
-                        .show();
+                DialogCreater.warningDialog(getActivity(), getResources().getString(R.string.bos_alan));
             }
         }
     }

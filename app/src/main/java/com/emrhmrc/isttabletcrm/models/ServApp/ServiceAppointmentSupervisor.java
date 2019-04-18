@@ -13,6 +13,10 @@ public class ServiceAppointmentSupervisor {
     private String ScheduledStart;
     private String ScheduledEnd;
     private Code inv_TypeCode;
+    private String Subject;
+    private Inv_Id inv_ElevatorId;
+    private String ActivityId;
+    private Inv_Id inv_CustomerId;
 
     public ServiceAppointmentSupervisor() {
     }
@@ -112,9 +116,4 @@ public class ServiceAppointmentSupervisor {
     public void setInv_CustomerId(Inv_Id inv_CustomerId) {
         this.inv_CustomerId = inv_CustomerId;
     }
-
-    private String Subject;
-    private Inv_Id inv_ElevatorId;
-    private String ActivityId;
-    private Inv_Id inv_CustomerId;
 }
