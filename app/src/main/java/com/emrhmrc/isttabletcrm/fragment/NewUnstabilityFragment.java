@@ -42,12 +42,14 @@ import com.emrhmrc.isttabletcrm.adapter.SwipeToDeleteVertical;
 import com.emrhmrc.isttabletcrm.api.APIHelper;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
+import com.emrhmrc.isttabletcrm.helper.Methodes;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
 import com.emrhmrc.isttabletcrm.helper.ViewDialog;
 import com.emrhmrc.isttabletcrm.models.Account.Account;
 import com.emrhmrc.isttabletcrm.models.Account.AccountListAll;
 import com.emrhmrc.isttabletcrm.models.Elevator.CustomerIdRequest;
+import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorIdRequest;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorListAll;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorsCustomer;
 import com.emrhmrc.isttabletcrm.models.ServApp.CreateUnsuitability;
@@ -204,7 +206,8 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
                         if (monthString.length() == 1) {
                             monthString = "0" + monthString;
                         }
-                        edt_tarih.setText(dayOfMonth + "." + monthString + "." + year);
+                        edt_tarih.setText(dayOfMonth + "." + monthString + "." + year
+                                + " " + Methodes.getCurrentClock());
 
                     }
                 }, yil, ay, gun);
@@ -219,7 +222,7 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
         createUnsuitability.setUserId(SingletonUser.getInstance().getUser().getUserId());
         createUnsuitability.setDescription(edt_descp.getText().toString());
         createUnsuitability.setSentOn(edt_tarih.getText().toString());
-        createUnsuitability.setSubject("Test Subject");
+        createUnsuitability.setSubject("Not From Servapp");
         createUnsuitability.setUnsuitabilityNotes(adapter.getItems());
 
         if (checkFields(createUnsuitability)) {
@@ -271,8 +274,8 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
         else if (item.getSubject() == null || item.getSubject().isEmpty()) return false;
         else if (item.getUnsuitabilityNotes() == null) return false;
         else if (item.getUserId() == null || item.getUserId().isEmpty()) return false;
-        else if (item.getCustomerId() == null || item.getCustomerId().isEmpty()) return false;
-        else if (item.getElevatorId() == null || item.getElevatorId().isEmpty()) return false;
+        else if (item.getCustomerId() == null ) return false;
+        else if (item.getElevatorId() == null ) return false;
         else return true;
     }
 
@@ -332,7 +335,7 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
             spnElevator.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    createUnsuitability.setElevatorId(list.get(i).getInv_ElevatorId());
+                    createUnsuitability.setElevatorId(new ElevatorIdRequest(list.get(i).getInv_ElevatorId()));
                 }
             });
         } else {
@@ -402,7 +405,7 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     getElevatorByCustomerAll(list.get(i).getAccountId());
-                    createUnsuitability.setCustomerId(list.get(i).getAccountId());
+                    createUnsuitability.setCustomerId(new CustomerIdRequest(list.get(i).getAccountId()));
                 }
             });
         } else {

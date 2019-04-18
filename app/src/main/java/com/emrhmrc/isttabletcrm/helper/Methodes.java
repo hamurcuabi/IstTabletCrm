@@ -177,8 +177,12 @@ public class Methodes {
         Date sourceDate = Calendar.getInstance().getTime();
         SimpleDateFormat targetFormat = new SimpleDateFormat("dd.MM.yyyy");
         return targetFormat.format(sourceDate);
+    }
+    public static String getCurrentClock() {
 
-
+        Date sourceDate = Calendar.getInstance().getTime();
+        SimpleDateFormat targetFormat = new SimpleDateFormat("HH:mm");
+        return targetFormat.format(sourceDate);
     }
 
 }

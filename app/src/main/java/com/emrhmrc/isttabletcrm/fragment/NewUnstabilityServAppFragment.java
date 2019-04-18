@@ -33,18 +33,18 @@ import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.SweetDialog.DialogCreater;
-import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.adapter.RcvImageAdapter;
 import com.emrhmrc.isttabletcrm.adapter.SwipeToDeleteVertical;
 import com.emrhmrc.isttabletcrm.api.APIHelper;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
+import com.emrhmrc.isttabletcrm.helper.Methodes;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
 import com.emrhmrc.isttabletcrm.helper.ViewDialog;
-import com.emrhmrc.isttabletcrm.models.Account.AccountListAll;
-import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorListAll;
+import com.emrhmrc.isttabletcrm.models.Elevator.CustomerIdRequest;
+import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorIdRequest;
 import com.emrhmrc.isttabletcrm.models.ServApp.CreateUnsuitability;
 import com.emrhmrc.isttabletcrm.models.ServApp.DefaultResponse2;
 import com.emrhmrc.isttabletcrm.models.ServApp.Notes;
@@ -76,8 +76,7 @@ public class NewUnstabilityServAppFragment extends DialogFragment implements Vie
     private ProgressBar prog_account, prog_elevator;
     private ViewDialog viewDialog;
     private Call<DefaultResponse2> createCall;
-    private Call<ElevatorListAll> elevatorListAllCall;
-    private Call<AccountListAll> accountListAllCall;
+
     private ServAppGetById servAppGetById;
     private CreateUnsuitability createUnsuitability;
     private String try_again = "Beklenmedi Bir Hata Oluştu, Lütfen Tekrar Deneyiniz";
@@ -113,8 +112,8 @@ public class NewUnstabilityServAppFragment extends DialogFragment implements Vie
         spnElevator.setEnabled(false);
         spn_account.setText(servAppGetById.getServiceAppointment().getInv_CustomerId().getText());
         spnElevator.setText(servAppGetById.getServiceAppointment().getInv_ElevatorId().getText());
-        createUnsuitability.setElevatorId(servAppGetById.getServiceAppointment().getInv_ElevatorId().getText());
-        createUnsuitability.setCustomerId(servAppGetById.getServiceAppointment().getInv_CustomerId().getText());
+        createUnsuitability.setElevatorId(new ElevatorIdRequest(servAppGetById.getServiceAppointment().getInv_ElevatorId().getId()));
+        createUnsuitability.setCustomerId(new CustomerIdRequest(servAppGetById.getServiceAppointment().getInv_CustomerId().getId()));
     }
 
     private void init(View view) {
@@ -211,7 +210,8 @@ public class NewUnstabilityServAppFragment extends DialogFragment implements Vie
                         if (monthString.length() == 1) {
                             monthString = "0" + monthString;
                         }
-                        edt_tarih.setText(dayOfMonth + "." + monthString + "." + year);
+
+                        edt_tarih.setText(dayOfMonth + "." + monthString + "." + year + " " + Methodes.getCurrentClock());
 
                     }
                 }, yil, ay, gun);
@@ -227,7 +227,7 @@ public class NewUnstabilityServAppFragment extends DialogFragment implements Vie
         createUnsuitability.setDescription(edt_descp.getText().toString());
         createUnsuitability.setSentOn(edt_tarih.getText().toString());
         createUnsuitability.setServAppId(ShareData.getInstance().getServAppId());
-        createUnsuitability.setSubject("Test Subject");
+        createUnsuitability.setSubject("From ServApp");
         createUnsuitability.setUnsuitabilityNotes(adapter.getItems());
         if (checkFields(createUnsuitability)) {
             viewDialog.showDialog();
@@ -236,18 +236,17 @@ public class NewUnstabilityServAppFragment extends DialogFragment implements Vie
                 @Override
                 public void onResponse(Call<DefaultResponse2> call, Response<DefaultResponse2> response) {
                     if (response.isSuccessful()) {
-                        viewDialog.hideDialog();
-                        dismiss();
-                        new SweetAlertDialog(getActivity(), SweetAlertDialog.SUCCESS_TYPE)
-                                .setTitleText("Başarılı")
-                                .show();
+                        if (response.body().isSucces()) {
+                            viewDialog.hideDialog();
+                            dismiss();
+                            DialogCreater.succesDialog(getActivity());
+                        } else {
+                            DialogCreater.errorDialog(getActivity(), response.body().getErrorMsg());
+                        }
+
                     } else {
                         viewDialog.hideDialog();
-                        if (getDialog() != null && getDialog().isShowing()) {
-                            new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
-                                    .setTitleText(response.message())
-                                    .show();
-                        }
+                        DialogCreater.errorDialog(getActivity(), try_again);
                     }
                 }
 
@@ -262,9 +261,7 @@ public class NewUnstabilityServAppFragment extends DialogFragment implements Vie
             });
         } else {
             if (getDialog() != null && getDialog().isShowing()) {
-                new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
-                        .setTitleText("Eksik Alanları Doldurunuz")
-                        .show();
+                DialogCreater.errorDialog(getActivity(), "Eksik Alanları Doldurunuz");
             }
 
         }
@@ -358,7 +355,6 @@ public class NewUnstabilityServAppFragment extends DialogFragment implements Vie
     public void onDestroy() {
         super.onDestroy();
         if (createCall != null) createCall.cancel();
-        if (elevatorListAllCall != null) elevatorListAllCall.cancel();
-        if (accountListAllCall != null) accountListAllCall.cancel();
+
     }
 }
