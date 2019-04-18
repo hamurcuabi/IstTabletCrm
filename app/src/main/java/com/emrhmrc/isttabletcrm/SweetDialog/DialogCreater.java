@@ -47,6 +47,12 @@ public class DialogCreater {
                 .setContentText(content)
                 .show();
     }
+    public static void succesDialog(Activity activity) {
+        new SweetAlertDialog(activity, SweetAlertDialog.SUCCESS_TYPE)
+                .setTitleText(INFO)
+                .setContentText(SUCCES)
+                .show();
+    }
 
     public static void questionDialog(Activity activity, DialogButtonListener listener,
                                       String question, int id) {

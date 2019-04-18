@@ -118,6 +118,8 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     String cancel;
     @BindString(R.string.amount_check)
     String amount;
+    @BindString(R.string.try_again)
+    String try_again;
 
     private JsonApi jsonApi;
     private RcvServAppDetailAdapter adapter;
@@ -247,27 +249,34 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
         APIHelper.enqueueWithRetry(call, new Callback<ServAppGetById>() {
             @Override
             public void onResponse(Call<ServAppGetById> call, Response<ServAppGetById> response) {
-                if (response.isSuccessful()) {
-                    model = response.body();
-                    CreateSubServAppSingleton.getInstance().setServAppGetById(model);
-                    notes = new ArrayList<>();
-                    notes = model.getServiceAppointment().getServAppGetByIdNotes();
-                    if (notes.size() > 0)
-                        txt_aciklamanot.setText(notes.get(notes.size() - 1).getNoteText());
-
-                    setModelToBind(model.getServiceAppointment());
-                    ShareData.getInstance().setLongitude(model.getServiceAppointment().getInv_Longitude());
-                    ShareData.getInstance().setLatitude(model.getServiceAppointment().getInv_Latitude());
-                    adapter.setItems(model.getServiceAppointment().getServAppGetByIdServAppDetails());
-                }
                 dialog.dismissWithAnimation();
+                if (response.isSuccessful()) {
+                    if (response.body().getSuccess()) {
+                        model = response.body();
+                        CreateSubServAppSingleton.getInstance().setServAppGetById(model);
+                        notes = new ArrayList<>();
+                        notes = model.getServiceAppointment().getServAppGetByIdNotes();
+                        if (notes.size() > 0)
+                            txt_aciklamanot.setText(notes.get(notes.size() - 1).getNoteText());
+
+                        setModelToBind(model.getServiceAppointment());
+                        ShareData.getInstance().setLongitude(model.getServiceAppointment().getInv_Longitude());
+                        ShareData.getInstance().setLatitude(model.getServiceAppointment().getInv_Latitude());
+                        adapter.setItems(model.getServiceAppointment().getServAppGetByIdServAppDetails());
+                    } else {
+                        DialogCreater.errorDialog(ServAppDetailActivity.this, response.body().getErrorMsg());
+                    }
+                } else {
+                    DialogCreater.errorDialog(ServAppDetailActivity.this, try_again);
+                }
+
             }
 
             @Override
             public void onFailure(Call<ServAppGetById> call, Throwable t) {
-                Log.d(TAG, "onFailure: " + t.getMessage());
                 CreateSubServAppSingleton.getInstance().setServAppGetById(null);
                 dialog.dismissWithAnimation();
+                DialogCreater.errorDialog(ServAppDetailActivity.this, try_again);
             }
         });
 
@@ -301,68 +310,6 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
 
     private void cancelServApp() {
         DialogCreater.questionDialog(this, this, cancel, 2);
-
-     /*   new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
-                .setTitleText(sure)
-                .setContentText(cancel)
-                .setCancelText(dont)
-                .setConfirmText(doit)
-                .showCancelButton(true)
-                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                    @Override
-                    public void onClick(SweetAlertDialog sweetAlertDialog) {
-
-                        CompleteByIdRequest request = new CompleteByIdRequest();
-                        request.setServiceAppId(ShareData.getInstance().getServAppId());
-                        request.setUserId(SingletonUser.getInstance().getUser().getUserId());
-                        request.setCompleteType(false);
-                        initDialog();
-                        dialog.show();
-                        Call<DefaultResponse> call = jsonApi.servAppCompleteById(request);
-                        APIHelper.enqueueWithRetry(call, new Callback<DefaultResponse>() {
-                            @Override
-                            public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
-                                dialog.dismissWithAnimation();
-                                if (response.isSuccessful()) {
-
-                                    new SweetAlertDialog(ServAppDetailActivity.this, SweetAlertDialog.SUCCESS_TYPE)
-                                            .setTitleText(succes)
-                                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                                @Override
-                                                public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                                    onBackPressed();
-                                                }
-                                            })
-                                            .show();
-
-
-                                } else {
-
-                                    new SweetAlertDialog(ServAppDetailActivity.this, SweetAlertDialog.WARNING_TYPE)
-                                            .setTitleText(response.message())
-                                            .show();
-
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Call<DefaultResponse> call, Throwable t) {
-                                dialog.dismissWithAnimation();
-                                new SweetAlertDialog(ServAppDetailActivity.this, SweetAlertDialog.WARNING_TYPE)
-                                        .setTitleText(t.getMessage())
-                                        .show();
-                            }
-                        });
-                    }
-                })
-                .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                    @Override
-                    public void onClick(SweetAlertDialog sDialog) {
-                        sDialog.cancel();
-                    }
-                })
-                .show();*/
-
 
     }
 

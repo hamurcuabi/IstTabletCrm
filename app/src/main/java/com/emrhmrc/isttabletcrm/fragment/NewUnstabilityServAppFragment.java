@@ -32,6 +32,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
+import com.emrhmrc.isttabletcrm.SweetDialog.DialogCreater;
 import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.adapter.RcvImageAdapter;
@@ -79,6 +80,7 @@ public class NewUnstabilityServAppFragment extends DialogFragment implements Vie
     private Call<AccountListAll> accountListAllCall;
     private ServAppGetById servAppGetById;
     private CreateUnsuitability createUnsuitability;
+    private String try_again = "Beklenmedi Bir Hata Oluştu, Lütfen Tekrar Deneyiniz";
 
     public static NewUnstabilityServAppFragment newInstance(ServAppGetById servAppGetById) {
         Bundle args = new Bundle();
@@ -254,9 +256,7 @@ public class NewUnstabilityServAppFragment extends DialogFragment implements Vie
                     Log.d(TAG, "onFailure: " + t.getMessage());
                     viewDialog.hideDialog();
                     if (getDialog() != null && getDialog().isShowing()) {
-                        new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
-                                .setTitleText(getResources().getString(R.string.toast_error))
-                                .show();
+                        DialogCreater.errorDialog(getActivity(), try_again);
                     }
                 }
             });

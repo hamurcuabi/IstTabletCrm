@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cons_content"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/malzeme_height"
+        android:background="@color/malzeme_icerik"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_wish">
+
+        <RelativeLayout
+            android:id="@+id/lnr_yeni"
+            android:layout_width="220dp"
+            android:layout_height="@dimen/btn_height45"
+            android:layout_marginStart="@dimen/padding_top25"
+            android:layout_marginTop="@dimen/padding_rigt32"
+            android:background="@color/btn_dark_blue"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <Spinner
+                android:id="@+id/spn_sort"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/btn_height45"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="0dp"
+                android:layout_toEndOf="@+id/img_add"
+                android:backgroundTint="@color/white"
+                android:entries="@array/spn_stok"
+                android:gravity="center" />
+
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+
+            android:id="@+id/lnr_worker"
+            android:layout_width="@dimen/btn_width165"
+            android:layout_height="@dimen/btn_height45"
+            android:layout_marginStart="@dimen/padding_top25"
+            android:layout_marginTop="@dimen/padding_rigt32"
+            android:background="@color/btn_dark_blue"
+            app:layout_constraintStart_toEndOf="@id/lnr_yeni"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/img_add_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="@dimen/icon_text8"
+                android:src="@drawable/ic_yeni" />
+
+            <TextView
+                android:id="@+id/add_job"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="0dp"
+                android:layout_toEndOf="@+id/img_add_2"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center_vertical"
+                android:text="@string/new_ware"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/menu_text_14"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lnr_yeni">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/padding_rigt32"
+                android:layout_marginEnd="@dimen/detay_menu_12"
+                android:layout_weight="1.2"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/depo"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/menu_text_14"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/detay_menu_12"
+                android:layout_weight="1.2"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/malzemekodu"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/menu_text_14"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/detay_menu_12"
+                android:layout_weight="1.2"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/ana_urun"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/menu_text_14"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/detay_menu_12"
+                android:layout_weight="1.2"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/alt_urun_grubu"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/menu_text_14"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/detay_menu_12"
+                android:layout_weight="2.5"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/urun_adi"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/menu_text_14"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/detay_menu_12"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/miktar"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/menu_text_14"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/padding_rigt32"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/birim"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/menu_text_14"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.v7.widget.SearchView
+        android:id="@+id/search"
+        android:layout_width="@dimen/detay_menu_250"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="@dimen/menu_left_32"
+        android:layout_marginEnd="@dimen/padding_top25"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/cons_content"
+        app:layout_constraintTop_toTopOf="@+id/cons_content"
+        app:queryHint="@string/urun_ara"></android.support.v7.widget.SearchView>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cons_content"></android.support.v7.widget.RecyclerView>
+
+</android.support.constraint.ConstraintLayout>

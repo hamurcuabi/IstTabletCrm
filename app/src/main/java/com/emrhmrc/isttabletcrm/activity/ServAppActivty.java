@@ -76,7 +76,6 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
     }
 
 
-
     private void init() {
         jsonApi = ApiClient.getClient().create(JsonApi.class);
         rcw.setHasFixedSize(true);
@@ -103,7 +102,7 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
                     model = temp.getServiceAppointments();
                     adapter.setItems(model);
                     adapter.setItemsFilter(model);
-                    setupFilters(model);
+                    setupFilters();
 
 
                 }
@@ -119,14 +118,16 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
 
     }
 
-    private void setupFilters(List<ServiceAppointments> model) {
+    private void setupFilters() {
 
         HashMap<Integer, String> servappTypeHash = new HashMap<>();
         HashMap<Integer, String> statuTypeHash = new HashMap<>();
         List<FilterModel> servappType = new ArrayList<>();
         List<FilterModel> statuType = new ArrayList<>();
+        servappType.add(new FilterModel(-1, "Tüm İş Emirlerim"));
+        statuType.add(new FilterModel(-1, "Statü"));
 
-        for (ServiceAppointments current : model
+        for (ServiceAppointments current : adapter.getItems()
         ) {
 
             if (current.getInv_TypeCode() != null) {
@@ -147,8 +148,6 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
             }
         }
 
-        servappType.add(0, new FilterModel(-1, "Tüm İş Emirlerim"));
-        statuType.add(0, new FilterModel(-1, "Statü"));
         ArrayAdapter<FilterModel> spinnerArrayAdapter = new ArrayAdapter<>(
                 this, R.layout.spinner_item_white, servappType);
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

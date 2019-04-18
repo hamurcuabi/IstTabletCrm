@@ -1,15 +1,12 @@
 package com.emrhmrc.isttabletcrm.models.Product;
 
 import com.emrhmrc.isttabletcrm.models.CommonClass.TableMetadata;
+import com.emrhmrc.isttabletcrm.models.ServApp.DefaultResponse;
 
 import java.util.List;
 
-public class SubProductList {
+public class SubProductList extends DefaultResponse {
     private List<SubList> SubProductGroups;
-
-    private String ErrorMsg;
-
-    private boolean Success;
 
     private TableMetadata TableMetadata;
 

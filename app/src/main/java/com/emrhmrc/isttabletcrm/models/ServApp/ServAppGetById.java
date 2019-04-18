@@ -17,9 +17,8 @@ public class ServAppGetById implements Serializable {
     private TableMetadata TableMetadataServAppModernizationChecklists;
     @SerializedName("TableMetadataServApp")
     private TableMetadata TableMetadataServApp;
-
-    private String ErrorMsg;
     private boolean Success;
+    private String ErrorMsg;
     private ServiceAppointment ServiceAppointment;
     @SerializedName("TableMetadataServAppUnsuitabilities")
     private TableMetadata TableMetadataServAppUnsuitabilities;

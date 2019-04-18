@@ -1,17 +1,14 @@
 package com.emrhmrc.isttabletcrm.models.Product;
 
 import com.emrhmrc.isttabletcrm.models.CommonClass.TableMetadata;
+import com.emrhmrc.isttabletcrm.models.ServApp.DefaultResponse;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class ProductListAll {
+public class ProductListAll extends DefaultResponse {
     @SerializedName("Products")
     private List<Product> Products;
-
-    private String ErrorMsg;
-
-    private boolean Success;
 
     private TableMetadata TableMetadata;
 

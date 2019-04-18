@@ -167,18 +167,24 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<UserForgotPassword> call, Response<UserForgotPassword> response) {
                     if (response.isSuccessful()) {
-                        UserForgotPassword model = response.body();
+                        if (response.body().getSuccess()) {
+                            UserForgotPassword model = response.body();
+                            DialogCreater.succesDialog(LoginActivity.this);
+                        } else {
+                            DialogCreater.errorDialog(LoginActivity.this, response.body().getErrorMsg());
+                        }
+
                     }
                 }
 
                 @Override
                 public void onFailure(Call<UserForgotPassword> call, Throwable t) {
-
+                    DialogCreater.errorDialog(LoginActivity.this, try_again);
                     Log.d(TAG, "onFailure: " + t.getMessage());
                 }
             });
         } else {
-            Log.d(TAG, "forgatPass: Mail Alanı Boş");
+            DialogCreater.warningDialog(LoginActivity.this, "Mail Alanı Boş");
         }
 
     }

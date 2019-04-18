@@ -1,14 +1,13 @@
 package com.emrhmrc.isttabletcrm.models.Warehouse;
 
 import com.emrhmrc.isttabletcrm.models.CommonClass.TableMetadata;
+import com.emrhmrc.isttabletcrm.models.ServApp.DefaultResponse;
 
 import java.util.List;
 
-public class WarehouseTransferListAll {
+public class WarehouseTransferListAll extends DefaultResponse {
 
     private TableMetadata TableMetadataWarehouseTransfer;
-    private boolean Succes;
-    private String ErrorMsg;
     private List<WarehouseTransferItem> WarehouseTransfers;
 
     public WarehouseTransferListAll() {
@@ -22,13 +21,6 @@ public class WarehouseTransferListAll {
         TableMetadataWarehouseTransfer = tableMetadataWarehouseTransfer;
     }
 
-    public boolean isSucces() {
-        return Succes;
-    }
-
-    public void setSucces(boolean succes) {
-        Succes = succes;
-    }
 
     public String getErrorMsg() {
         return ErrorMsg;

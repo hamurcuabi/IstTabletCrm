@@ -1,10 +1,11 @@
 package com.emrhmrc.isttabletcrm.models.CommonClass;
 
+import com.emrhmrc.isttabletcrm.models.ServApp.DefaultResponse;
+
 import java.util.List;
 
-public class UomListAll {
-    private String ErrorMsg;
-    private boolean Success;
+public class UomListAll extends DefaultResponse {
+
     private List<Inv_Uom> UomList;
 
 

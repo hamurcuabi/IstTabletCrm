@@ -1,12 +1,12 @@
 package com.emrhmrc.isttabletcrm.models.Warehouse;
 
 import com.emrhmrc.isttabletcrm.models.CommonClass.TableMetadata;
+import com.emrhmrc.isttabletcrm.models.ServApp.DefaultResponse;
 
 import java.util.List;
 
-public class WarehouseItemListAll {
-    private String ErrorMsg;
-    private boolean Success;
+public class WarehouseItemListAll  extends DefaultResponse {
+
     private TableMetadata TableMetadataWarehouseItem;
     private List<WarehouseItem> WarehouseItems;
 

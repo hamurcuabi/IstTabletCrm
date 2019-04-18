@@ -29,6 +29,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
+import com.emrhmrc.isttabletcrm.SweetDialog.DialogCreater;
 import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
 import com.emrhmrc.isttabletcrm.api.APIHelper;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
@@ -56,6 +57,7 @@ import com.emrhmrc.isttabletcrm.models.Warehouse.Warehouses;
 import java.util.Calendar;
 import java.util.List;
 
+import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -141,6 +143,8 @@ public class CreateNewWareRequestFragment extends DialogFragment {
     AutoCompleteTextView spnAlturun2;
     @BindView(R.id.prog_alt2)
     ProgressBar progAlt2;
+    @BindString(R.string.try_again)
+    String try_again;
     private WarehouseTransferCreateRequest request_create_new;
     private WarehouseTransferCreateRequest request_return_back;
     private JsonApi jsonApi;
@@ -196,13 +200,16 @@ public class CreateNewWareRequestFragment extends DialogFragment {
             @Override
             public void onResponse(Call<MainProductList> call, Response<MainProductList> response) {
                 if (response.isSuccessful()) {
-                    MainProductList model = response.body();
-                    fillSpinnersMainProducts(model.getMainProductGroups());
-                    fillSpinnersMain2Products(model.getMainProductGroups());
-
+                    if (response.body().Success) {
+                        MainProductList model = response.body();
+                        fillSpinnersMainProducts(model.getMainProductGroups());
+                        fillSpinnersMain2Products(model.getMainProductGroups());
+                    } else {
+                        DialogCreater.errorDialog(getActivity(), response.body().ErrorMsg);
+                    }
 
                 } else {
-                    Log.d(TAG, "onResponse: " + response.errorBody().toString());
+                    DialogCreater.errorDialog(getActivity(), try_again);
                 }
                 progAna.setVisibility(View.GONE);
                 progAna2.setVisibility(View.GONE);
@@ -211,6 +218,9 @@ public class CreateNewWareRequestFragment extends DialogFragment {
             @Override
             public void onFailure(Call<MainProductList> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
+                if (getDialog() != null && getDialog().isShowing()) {
+                    DialogCreater.errorDialog(getActivity(), try_again);
+                }
                 progAna.setVisibility(View.GONE);
             }
         });
@@ -226,10 +236,15 @@ public class CreateNewWareRequestFragment extends DialogFragment {
             @Override
             public void onResponse(Call<SubProductList> call, Response<SubProductList> response) {
                 if (response.isSuccessful()) {
-                    final SubProductList list = response.body();
-                    fillSpinnersSubProducts(list.getSubProductGroups());
+                    if (response.body().Success) {
+                        final SubProductList list = response.body();
+                        fillSpinnersSubProducts(list.getSubProductGroups());
+                    } else {
+                        DialogCreater.errorDialog(getActivity(), try_again);
+                    }
                 } else {
-                    Log.d(TAG, "onResponse: ");
+
+                    DialogCreater.errorDialog(getActivity(), try_again);
                 }
                 progAlt.setVisibility(View.GONE);
 
@@ -237,7 +252,9 @@ public class CreateNewWareRequestFragment extends DialogFragment {
 
             @Override
             public void onFailure(Call<SubProductList> call, Throwable t) {
-                Log.d(TAG, "onFailure: " + t.getMessage());
+                if (getDialog() != null && getDialog().isShowing()) {
+                    DialogCreater.errorDialog(getActivity(), try_again);
+                }
                 progAlt.setVisibility(View.GONE);
             }
         });
@@ -252,10 +269,17 @@ public class CreateNewWareRequestFragment extends DialogFragment {
             @Override
             public void onResponse(Call<SubProductList> call, Response<SubProductList> response) {
                 if (response.isSuccessful()) {
-                    final SubProductList list = response.body();
-                    fillSpinnersSub2Products(list.getSubProductGroups());
+                    if (response.body().Success) {
+                        final SubProductList list = response.body();
+                        fillSpinnersSub2Products(list.getSubProductGroups());
+                    } else {
+
+                        DialogCreater.errorDialog(getActivity(), response.body().ErrorMsg);
+                    }
                 } else {
-                    Log.d(TAG, "onResponse: ");
+
+                    DialogCreater.errorDialog(getActivity(), try_again);
+
                 }
                 progAlt2.setVisibility(View.GONE);
 
@@ -263,7 +287,9 @@ public class CreateNewWareRequestFragment extends DialogFragment {
 
             @Override
             public void onFailure(Call<SubProductList> call, Throwable t) {
-                Log.d(TAG, "onFailure: " + t.getMessage());
+                if (getDialog() != null && getDialog().isShowing()) {
+                    DialogCreater.errorDialog(getActivity(), try_again);
+                }
                 progAlt2.setVisibility(View.GONE);
             }
         });
@@ -277,9 +303,14 @@ public class CreateNewWareRequestFragment extends DialogFragment {
             @Override
             public void onResponse(Call<ProductListAll> call, Response<ProductListAll> response) {
                 if (response.isSuccessful()) {
+                    if (response.body().Success) {
 
-                    ProductListAll temp = response.body();
-                    fillSpinnersProducts(temp.getProducts());
+                        ProductListAll temp = response.body();
+                        fillSpinnersProducts(temp.getProducts());
+                    } else {
+
+                        DialogCreater.errorDialog(getActivity(), response.body().ErrorMsg);
+                    }
 
                 }
                 progUrun.setVisibility(View.GONE);
@@ -287,7 +318,9 @@ public class CreateNewWareRequestFragment extends DialogFragment {
 
             @Override
             public void onFailure(Call<ProductListAll> call, Throwable t) {
-                Log.d(TAG, "onFailure: " + t.getMessage());
+                if (getDialog() != null && getDialog().isShowing()) {
+                    DialogCreater.errorDialog(getActivity(), try_again);
+                }
                 progUrun.setVisibility(View.GONE);
             }
         });
@@ -303,16 +336,26 @@ public class CreateNewWareRequestFragment extends DialogFragment {
             public void onResponse(Call<ProductListAll> call, Response<ProductListAll> response) {
                 if (response.isSuccessful()) {
 
-                    ProductListAll temp = response.body();
-                    fillSpinnersProducts2(temp.getProducts());
+                    if (response.body().Success) {
+                        ProductListAll temp = response.body();
+                        fillSpinnersProducts2(temp.getProducts());
+                    } else {
+                        DialogCreater.errorDialog(getActivity(), response.body().ErrorMsg);
 
+                    }
+
+                } else {
+
+                    DialogCreater.errorDialog(getActivity(), try_again);
                 }
                 progUrun2.setVisibility(View.GONE);
             }
 
             @Override
             public void onFailure(Call<ProductListAll> call, Throwable t) {
-                Log.d(TAG, "onFailure: " + t.getMessage());
+                if (getDialog() != null && getDialog().isShowing()) {
+                    DialogCreater.errorDialog(getActivity(), try_again);
+                }
                 progUrun2.setVisibility(View.GONE);
             }
         });
@@ -587,9 +630,15 @@ public class CreateNewWareRequestFragment extends DialogFragment {
             @Override
             public void onResponse(Call<UomListAll> call, Response<UomListAll> response) {
                 if (response.isSuccessful()) {
-                    final UomListAll model = response.body();
-                    fillSpinnersUom(model.getUomList());
-                } else Log.d(TAG, "onResponse: " + response.errorBody());
+                    if (response.body().Success) {
+                        final UomListAll model = response.body();
+                        fillSpinnersUom(model.getUomList());
+                    } else {
+                        DialogCreater.errorDialog(getActivity(), response.body().ErrorMsg);
+                    }
+                } else {
+                    DialogCreater.errorDialog(getActivity(), try_again);
+                }
                 progBirim.setVisibility(View.GONE);
             }
 
@@ -598,9 +647,7 @@ public class CreateNewWareRequestFragment extends DialogFragment {
                 progBirim.setVisibility(View.GONE);
                 Log.d(TAG, "onFailure: " + t.getMessage());
                 if (getDialog() != null && getDialog().isShowing()) {
-                    new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
-                            .setTitleText(getResources().getString(R.string.toast_error))
-                            .show();
+                    DialogCreater.errorDialog(getActivity(), try_again);
                 }
             }
         });
@@ -686,11 +733,17 @@ public class CreateNewWareRequestFragment extends DialogFragment {
             @Override
             public void onResponse(Call<WareHouseListAll> call, Response<WareHouseListAll> response) {
                 if (response.isSuccessful()) {
-                    WareHouseListAll listAll = response.body();
-                    fillSpinnersWareHouse(listAll.getWarehouses());
+                    if (response.body().Success) {
+                        WareHouseListAll listAll = response.body();
+                        fillSpinnersWareHouse(listAll.getWarehouses());
+                    } else {
+                        DialogCreater.errorDialog(getActivity(), response.body().ErrorMsg);
+                    }
 
+                } else {
+                    DialogCreater.errorDialog(getActivity(), try_again);
 
-                } else Log.d(TAG, "onResponse: ");
+                }
                 progDepo.setVisibility(View.GONE);
             }
 
@@ -699,9 +752,7 @@ public class CreateNewWareRequestFragment extends DialogFragment {
                 Log.d(TAG, "onFailure: " + t.getMessage());
                 progDepo.setVisibility(View.GONE);
                 if (getDialog() != null && getDialog().isShowing()) {
-                    new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
-                            .setTitleText(getResources().getString(R.string.toast_error))
-                            .show();
+                    DialogCreater.errorDialog(getActivity(), try_again);
                 }
             }
         });
