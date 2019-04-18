@@ -32,7 +32,7 @@ public class ServiceAppointment {
     private double inv_Longitude;
     private Code PriorityCode;
     private String inv_BlockName;
-    private String inv_QuoteId;
+    private Inv_Id inv_QuoteId;
     private String inv_ServiceAppointmentNumber;
     private String CreatedOn;
     private Inv_Id inv_Supervisorid;
@@ -134,11 +134,11 @@ public class ServiceAppointment {
         this.inv_Description = inv_Description;
     }
 
-    public String getInv_QuoteId() {
+    public Inv_Id getInv_QuoteId() {
         return inv_QuoteId;
     }
 
-    public void setInv_QuoteId(String inv_QuoteId) {
+    public void setInv_QuoteId(Inv_Id inv_QuoteId) {
         this.inv_QuoteId = inv_QuoteId;
     }
 
