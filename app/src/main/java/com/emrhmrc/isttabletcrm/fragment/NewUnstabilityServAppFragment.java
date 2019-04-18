@@ -43,10 +43,10 @@ import com.emrhmrc.isttabletcrm.helper.Methodes;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
 import com.emrhmrc.isttabletcrm.helper.ViewDialog;
-import com.emrhmrc.isttabletcrm.models.Elevator.CustomerIdRequest;
-import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorIdRequest;
 import com.emrhmrc.isttabletcrm.models.ServApp.CreateUnsuitability;
+import com.emrhmrc.isttabletcrm.models.ServApp.CustomerIdRequestId;
 import com.emrhmrc.isttabletcrm.models.ServApp.DefaultResponse2;
+import com.emrhmrc.isttabletcrm.models.ServApp.ElevatorIdRequestId;
 import com.emrhmrc.isttabletcrm.models.ServApp.Notes;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetById;
 
@@ -79,7 +79,7 @@ public class NewUnstabilityServAppFragment extends DialogFragment implements Vie
 
     private ServAppGetById servAppGetById;
     private CreateUnsuitability createUnsuitability;
-    private String try_again = "Beklenmedi Bir Hata Oluştu, Lütfen Tekrar Deneyiniz";
+    private String try_again = "Beklenmedik Bir Hata Oluştu, Lütfen Tekrar Deneyiniz";
 
     public static NewUnstabilityServAppFragment newInstance(ServAppGetById servAppGetById) {
         Bundle args = new Bundle();
@@ -112,8 +112,8 @@ public class NewUnstabilityServAppFragment extends DialogFragment implements Vie
         spnElevator.setEnabled(false);
         spn_account.setText(servAppGetById.getServiceAppointment().getInv_CustomerId().getText());
         spnElevator.setText(servAppGetById.getServiceAppointment().getInv_ElevatorId().getText());
-        createUnsuitability.setElevatorId(new ElevatorIdRequest(servAppGetById.getServiceAppointment().getInv_ElevatorId().getId()));
-        createUnsuitability.setCustomerId(new CustomerIdRequest(servAppGetById.getServiceAppointment().getInv_CustomerId().getId()));
+        createUnsuitability.setElevatorId(new ElevatorIdRequestId(servAppGetById.getServiceAppointment().getInv_ElevatorId().getId()));
+        createUnsuitability.setCustomerId(new CustomerIdRequestId(servAppGetById.getServiceAppointment().getInv_CustomerId().getId()));
     }
 
     private void init(View view) {
@@ -237,7 +237,6 @@ public class NewUnstabilityServAppFragment extends DialogFragment implements Vie
                 public void onResponse(Call<DefaultResponse2> call, Response<DefaultResponse2> response) {
                     if (response.isSuccessful()) {
                         if (response.body().isSucces()) {
-                            viewDialog.hideDialog();
                             dismiss();
                             DialogCreater.succesDialog(getActivity());
                         } else {
@@ -245,9 +244,10 @@ public class NewUnstabilityServAppFragment extends DialogFragment implements Vie
                         }
 
                     } else {
-                        viewDialog.hideDialog();
+
                         DialogCreater.errorDialog(getActivity(), try_again);
                     }
+                    viewDialog.hideDialog();
                 }
 
                 @Override
@@ -274,8 +274,8 @@ public class NewUnstabilityServAppFragment extends DialogFragment implements Vie
         else if (item.getSubject() == null || item.getSubject().isEmpty()) return false;
         else if (item.getUnsuitabilityNotes() == null) return false;
         else if (item.getUserId() == null || item.getUserId().isEmpty()) return false;
-        else if (item.getCustomerId() == null || item.getCustomerId().isEmpty()) return false;
-        else if (item.getElevatorId() == null || item.getElevatorId().isEmpty()) return false;
+        else if (item.getCustomerId() == null) return false;
+        else if (item.getElevatorId() == null) return false;
         else return true;
     }
 

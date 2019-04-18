@@ -53,7 +53,9 @@ import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorIdRequest;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorListAll;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorsCustomer;
 import com.emrhmrc.isttabletcrm.models.ServApp.CreateUnsuitability;
+import com.emrhmrc.isttabletcrm.models.ServApp.CustomerIdRequestId;
 import com.emrhmrc.isttabletcrm.models.ServApp.DefaultResponse2;
+import com.emrhmrc.isttabletcrm.models.ServApp.ElevatorIdRequestId;
 import com.emrhmrc.isttabletcrm.models.ServApp.Notes;
 
 import java.io.ByteArrayOutputStream;
@@ -274,8 +276,8 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
         else if (item.getSubject() == null || item.getSubject().isEmpty()) return false;
         else if (item.getUnsuitabilityNotes() == null) return false;
         else if (item.getUserId() == null || item.getUserId().isEmpty()) return false;
-        else if (item.getCustomerId() == null ) return false;
-        else if (item.getElevatorId() == null ) return false;
+        else if (item.getCustomerId() == null) return false;
+        else if (item.getElevatorId() == null) return false;
         else return true;
     }
 
@@ -335,7 +337,7 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
             spnElevator.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    createUnsuitability.setElevatorId(new ElevatorIdRequest(list.get(i).getInv_ElevatorId()));
+                    createUnsuitability.setElevatorId(new ElevatorIdRequestId(list.get(i).getInv_ElevatorId()));
                 }
             });
         } else {
@@ -405,7 +407,7 @@ public class NewUnstabilityFragment extends DialogFragment implements View.OnCli
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     getElevatorByCustomerAll(list.get(i).getAccountId());
-                    createUnsuitability.setCustomerId(new CustomerIdRequest(list.get(i).getAccountId()));
+                    createUnsuitability.setCustomerId(new CustomerIdRequestId(list.get(i).getAccountId()));
                 }
             });
         } else {

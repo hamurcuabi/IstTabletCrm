@@ -1,36 +1,35 @@
 package com.emrhmrc.isttabletcrm.models.ServApp;
 
-import com.emrhmrc.isttabletcrm.models.Elevator.CustomerIdRequest;
-import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorIdRequest;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class CreateUnsuitability {
     private String ServAppId;
     private String UserId;
-    private ElevatorIdRequest ElevatorId;
-    private CustomerIdRequest CustomerId;
+    private ElevatorIdRequestId ElevatorId;
+    private CustomerIdRequestId CustomerId;
     private String Description;
     private String Subject;
     private String SentOn;
     private List<Notes> UnsuitabilityNotes;
 
     public CreateUnsuitability() {
+        UnsuitabilityNotes = new ArrayList<>();
     }
 
-    public ElevatorIdRequest getElevatorId() {
+    public ElevatorIdRequestId getElevatorId() {
         return ElevatorId;
     }
 
-    public void setElevatorId(ElevatorIdRequest elevatorId) {
+    public void setElevatorId(ElevatorIdRequestId elevatorId) {
         ElevatorId = elevatorId;
     }
 
-    public CustomerIdRequest getCustomerId() {
+    public CustomerIdRequestId getCustomerId() {
         return CustomerId;
     }
 
-    public void setCustomerId(CustomerIdRequest customerId) {
+    public void setCustomerId(CustomerIdRequestId customerId) {
         CustomerId = customerId;
     }
 
