@@ -7,7 +7,7 @@ public class ServAppDetails extends ServAppGetByIdServAppDetails {
 
     private boolean IsDeleted;
     private Inv_Id TransactionCurrencyId;
-    private float inv_Quantity;
+
 
     public ServAppDetails() {
     }
@@ -28,15 +28,6 @@ public class ServAppDetails extends ServAppGetByIdServAppDetails {
         TransactionCurrencyId = transactionCurrencyId;
     }
 
-    @Override
-    public float getInv_Quantity() {
-        return inv_Quantity;
-    }
-
-    @Override
-    public void setInv_Quantity(float inv_Quantity) {
-        this.inv_Quantity = inv_Quantity;
-    }
 
 }
 

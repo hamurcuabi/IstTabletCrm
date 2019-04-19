@@ -13,6 +13,7 @@ import android.widget.Spinner;
 
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.SweetDialog.AnyDialog;
+import com.emrhmrc.isttabletcrm.SweetDialog.DialogCreater;
 import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.adapter.RcvServAppListAllAdapter;
@@ -52,6 +53,8 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
     String[] items_statu;
     @BindString(R.string.loading)
     String loading;
+    @BindString(R.string.try_again)
+    String try_again;
     private List<ServiceAppointments> model;
     private JsonApi jsonApi;
     private RcvServAppListAllAdapter adapter;
@@ -97,12 +100,16 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
             @Override
             public void onResponse(Call<ServAppListAll> call, Response<ServAppListAll> response) {
                 if (response.isSuccessful()) {
-
-                    final ServAppListAll temp = response.body();
-                    model = temp.getServiceAppointments();
-                    adapter.setItems(model);
-                    adapter.setItemsFilter(model);
-                    setupFilters();
+                    if (response.body().getSuccess()) {
+                        final ServAppListAll temp = response.body();
+                        model = temp.getServiceAppointments();
+                        adapter.setItems(model);
+                        adapter.setItemsFilter(model);
+                        setupFilters();
+                    } else {
+                        DialogCreater.errorDialog(ServAppActivty.this,
+                                response.body().getErrorMsg());
+                    }
 
 
                 }
@@ -113,6 +120,7 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
             public void onFailure(Call<ServAppListAll> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
                 dialog.dismissWithAnimation();
+                DialogCreater.errorDialog(ServAppActivty.this, try_again);
             }
         });
 

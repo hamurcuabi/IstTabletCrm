@@ -69,6 +69,7 @@ import com.emrhmrc.isttabletcrm.models.ServApp.ServAppIdRequest;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServappCheckinRequest;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServappSendToSuperVisorRequest;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServiceAppHelperIds;
+import com.emrhmrc.isttabletcrm.models.ServApp.ServiceAppointmentSupervisor;
 import com.emrhmrc.isttabletcrm.models.ServApp.UpsertByIdUpdateRequest;
 import com.emrhmrc.isttabletcrm.util.StringUtil;
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -539,9 +540,73 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     }
 
     private void sendToSupervisor() {
-        //Bitmedi
-        ServappSendToSuperVisorRequest request=new ServappSendToSuperVisorRequest();
+        //map ediliyor
+        List<ServAppDetails> servAppDetails = new ArrayList<>();
+        ServiceAppointment serviceAppointment = model.getServiceAppointment();
+        ServiceAppointmentSupervisor supervisor = new ServiceAppointmentSupervisor();
+        ServappSendToSuperVisorRequest request = new ServappSendToSuperVisorRequest();
         request.setUserId(ShareData.getInstance().getUserId());
+        //map supervispor
+        supervisor.setActivityId(serviceAppointment.getActivityId());
+        supervisor.setInv_BreakdownCodeid(serviceAppointment.getInv_BreakdownCodeid());
+        supervisor.setInv_BreakdownDefCodeid(serviceAppointment.getInv_BreakdownDefCodeid());
+        supervisor.setInv_MainProductGroupid(serviceAppointment.getInv_MainProductGroupid());
+        supervisor.setInv_SubProductGroupid(serviceAppointment.getInv_SubProductGroupid());
+        supervisor.setStatusCode(serviceAppointment.getStatusCode());
+        supervisor.setScheduledStart(serviceAppointment.getScheduledStart());
+        supervisor.setScheduledEnd(serviceAppointment.getScheduledEnd());
+        supervisor.setInv_TypeCode(serviceAppointment.getInv_TypeCode());
+        supervisor.setSubject(serviceAppointment.getSubject());
+        supervisor.setInv_ElevatorId(serviceAppointment.getInv_ElevatorId());
+        supervisor.setInv_CustomerId(serviceAppointment.getInv_CustomerId());
+        //map
+        request.setServiceAppointment(supervisor);
+        //map details
+        for (ServAppGetByIdServAppDetails current :
+                serviceAppointment.getServAppGetByIdServAppDetails()
+        ) {
+            ServAppDetails details = new ServAppDetails();
+            details.setDeleted(false);
+            details.setInv_Quantity(current.getInv_Quantity());
+            details.setTransactionCurrencyId(new Inv_Id("transactioncurrency", "Türk Lirası", "ECF22335-4D62-E811-80FB-005056B66D80"));
+            details.setInv_ApprovalStCode(current.getInv_ApprovalStCode());
+            details.setInv_Description(current.getInv_Description());
+            details.setInv_LineNo(current.getInv_LineNo());
+            details.setInv_Price(current.getInv_Price());
+            details.setInv_ProductDescription(current.getInv_ProductDescription());
+            details.setInv_ProductId(current.getInv_ProductId());
+            details.setInv_ServiceAppDetailId(current.getInv_ServiceAppDetailId());
+            details.setInv_Uomid(current.getInv_Uomid());
+            details.setInv_WarrantyStatusCode(current.getInv_WarrantyStatusCode());
+            details.setInv_WillBeBilled(current.getInv_WillBeBilled());
+            servAppDetails.add(details);
+
+        }
+        request.setServAppDetailsList(servAppDetails);
+        SweetAlertDialog alertDialog = DialogCreater.loadingDialog(this);
+        alertDialog.show();
+        Call<DefaultResponse2> call = jsonApi.sendToSupervisor(request);
+        APIHelper.enqueueWithRetry(call, new Callback<DefaultResponse2>() {
+            @Override
+            public void onResponse(Call<DefaultResponse2> call, Response<DefaultResponse2> response) {
+                if (response.isSuccessful()) {
+                    if (response.body().isSucces()) {
+                        DialogCreater.succesDialog(ServAppDetailActivity.this);
+                    } else {
+                        DialogCreater.errorDialog(ServAppDetailActivity.this, response.body().getErrorMsg());
+                    }
+                } else {
+                    DialogCreater.errorDialog(ServAppDetailActivity.this, try_again);
+                }
+                alertDialog.dismissWithAnimation();
+            }
+
+            @Override
+            public void onFailure(Call<DefaultResponse2> call, Throwable t) {
+                alertDialog.dismissWithAnimation();
+                DialogCreater.errorDialog(ServAppDetailActivity.this, try_again);
+            }
+        });
 
     }
 
