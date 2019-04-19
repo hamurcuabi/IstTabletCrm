@@ -67,15 +67,16 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/m16"
+                android:layout_marginTop="4dp"
                 android:layout_marginEnd="@dimen/margin30"
+                android:layout_marginBottom="4dp"
                 android:layout_weight="2"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/txt_title"
                     android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_medium"
                     android:text="@{StringUtil.nullToString(servappItem.getInv_TypeCode().getText())}"
                     android:textColor="@color/text_color"
@@ -85,9 +86,8 @@
                 <TextView
                     android:id="@+id/txt_custumerid"
                     android:layout_width="wrap_content"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/detay_menu_5"
-                    android:layout_weight="1"
                     android:fontFamily="@font/roboto_regular"
                     android:text="@{StringUtil.nullToString(servappItem.getInv_CustomerId().getText())}"
                     android:textColor="@color/text_color"

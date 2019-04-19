@@ -27,6 +27,7 @@ import com.emrhmrc.isttabletcrm.api.APIHelper;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.helper.AddManuelProduct;
+import com.emrhmrc.isttabletcrm.helper.Methodes;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Uom;
 import com.emrhmrc.isttabletcrm.models.CommonClass.UomListAll;
@@ -147,15 +148,14 @@ public class AddManuelProductFragment extends DialogFragment implements View.OnC
     }
 
     private void focusing() {
+
         spn_birim.setOnFocusChangeListener((view, b) -> {
             if (b) spn_birim.showDropDown();
             else spn_birim.dismissDropDown();
         });
-        spn_birim.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                spn_birim.showDropDown();
-            }
+        spn_birim.setOnClickListener(view -> {
+            spn_birim.showDropDown();
+            Methodes.hideKeyboardFrom(getActivity(),getActivity().getWindow().getDecorView());
         });
     }
 
