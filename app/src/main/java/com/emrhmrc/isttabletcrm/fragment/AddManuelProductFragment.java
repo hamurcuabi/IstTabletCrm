@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
@@ -27,7 +28,6 @@ import com.emrhmrc.isttabletcrm.api.APIHelper;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.helper.AddManuelProduct;
-import com.emrhmrc.isttabletcrm.helper.Methodes;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Uom;
 import com.emrhmrc.isttabletcrm.models.CommonClass.UomListAll;
@@ -94,6 +94,7 @@ public class AddManuelProductFragment extends DialogFragment implements View.OnC
         spn_ucretli.setEnabled(false);
         spn_ucretli.setSelection(0);
         getUoms();
+        spn_birim.setInputType(InputType.TYPE_NULL);
 
     }
 
@@ -137,6 +138,7 @@ public class AddManuelProductFragment extends DialogFragment implements View.OnC
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                     selected = new Inv_Id("uom", list.get(i).getName(), list.get(i).getUoMId());
+
                 }
             });
         } else {
@@ -155,7 +157,6 @@ public class AddManuelProductFragment extends DialogFragment implements View.OnC
         });
         spn_birim.setOnClickListener(view -> {
             spn_birim.showDropDown();
-            Methodes.hideKeyboardFrom(getActivity(),getActivity().getWindow().getDecorView());
         });
     }
 
