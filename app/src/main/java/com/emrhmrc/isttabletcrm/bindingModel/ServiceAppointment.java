@@ -53,13 +53,7 @@ public class ServiceAppointment {
         this.inv_ServiceAppointmentNumber = inv_ServiceAppointmentNumber;
     }
 
-    public Code getPriorityCode() {
-        return PriorityCode;
-    }
 
-    public void setPriorityCode(Code priorityCode) {
-        PriorityCode = priorityCode;
-    }
 
     public String getCreatedOn() {
         return CreatedOn;
@@ -302,24 +296,6 @@ public class ServiceAppointment {
         this.ServAppGetByIdServAppModernizationChecklists = ServAppGetByIdServAppModernizationChecklists;
     }
 
-    @Override
-    public String toString() {
-        return "ServiceAppointment{" +
-                "StatusCode=" + StatusCode +
-                ", ActivityId='" + ActivityId + '\'' +
-                ", Subject='" + Subject + '\'' +
-                ", ServAppGetByIdServAppBreakdownTypes=" + ServAppGetByIdServAppBreakdownTypes +
-                ", inv_CustomerId=" + inv_CustomerId +
-                ", ServAppGetByIdServAppWorkListDetails=" + ServAppGetByIdServAppWorkListDetails +
-                ", ServAppGetByIdNotes=" + ServAppGetByIdNotes +
-                ", ActualStart='" + ScheduledStart + '\'' +
-                ", ActualEnd='" + ScheduledEnd + '\'' +
-                ", inv_ElevatorId='" + inv_ElevatorId + '\'' +
-                ", ServAppGetByIdServAppUnsuitabilities=" + ServAppGetByIdServAppUnsuitabilities +
-                ", ServAppGetByIdServAppDetails=" + ServAppGetByIdServAppDetails +
-                ", inv_TypeCode=" + inv_TypeCode +
-                ", ServAppGetByIdServAppModernizationChecklists=" + ServAppGetByIdServAppModernizationChecklists +
-                '}';
-    }
+
 }
 

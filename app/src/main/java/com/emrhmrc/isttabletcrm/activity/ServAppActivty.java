@@ -128,6 +128,11 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
 
     private void setupFilters() {
 
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         HashMap<Integer, String> servappTypeHash = new HashMap<>();
         HashMap<Integer, String> statuTypeHash = new HashMap<>();
         List<FilterModel> servappType = new ArrayList<>();

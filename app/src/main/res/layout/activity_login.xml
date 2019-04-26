@@ -68,6 +68,8 @@
                     android:buttonTint="@color/kontrol_listesi"
                     android:hint="@string/nickname"
                     android:text="@{userName}"
+                    android:imeOptions="actionNext"
+                    android:singleLine="true"
                     android:textColorHint="@color/is_kapatma" />
 
             </android.support.design.widget.TextInputLayout>
@@ -87,6 +89,8 @@
                     android:hint="@string/pass"
                     android:inputType="textPassword"
                     android:text="@{userPass}"
+                    android:imeOptions="actionSend"
+                    android:nextFocusDown="@id/btn_login"
                     android:textColorHint="@color/is_kapatma" />
 
             </android.support.design.widget.TextInputLayout>

@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
+import com.emrhmrc.isttabletcrm.activity.AddSubPieceActivity;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.BaseViewHolder;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
@@ -50,6 +51,7 @@ public class ProductSubProductViewHolder extends BaseViewHolder<Product,
     private FragmentManager fragmentManager;
     private Product current;
     private Context context;
+
 
     public ProductSubProductViewHolder(View itemView, Context context) {
         super(itemView);
@@ -94,12 +96,18 @@ public class ProductSubProductViewHolder extends BaseViewHolder<Product,
             btnAdd.setText("Eklendi");
             btnAdd.setBackground(btn_selected);
             sendItemToAdd(current);
+            if (context instanceof AddSubPieceActivity) {
+                ((AddSubPieceActivity) context).changeTextCountUp();
+            }
 
         } else {
             StateHandler.getInstance().getStateList().get(getAdapterPosition()).setState(false);
             btnAdd.setText("Ekle");
             btnAdd.setBackground(btn_default);
             sendItemToDelete(current.getProductId());
+            if (context instanceof AddSubPieceActivity) {
+                ((AddSubPieceActivity) context).changeTextCountDown();
+            }
 
         }
 
@@ -112,6 +120,8 @@ public class ProductSubProductViewHolder extends BaseViewHolder<Product,
         // You can also include some extra data.
         intent.putExtra("product", current);
         LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+
+
     }
 
     public void sendItemToDelete(String id) {
@@ -120,6 +130,8 @@ public class ProductSubProductViewHolder extends BaseViewHolder<Product,
         // You can also include some extra data.
         intent.putExtra("id", id);
         LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+
+
     }
 
 }

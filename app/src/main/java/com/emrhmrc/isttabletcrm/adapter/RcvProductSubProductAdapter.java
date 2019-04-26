@@ -6,6 +6,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 
 import com.emrhmrc.isttabletcrm.R;
+import com.emrhmrc.isttabletcrm.activity.AddSubPieceActivity;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.GenericAdapter;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.adapter.filter.ProductSubGroupProductFilterAdapter;
@@ -22,6 +23,7 @@ public class RcvProductSubProductAdapter extends GenericAdapter<Product,
         super(context, listener);
         this.context=context;
         filter = new ProductSubGroupProductFilterAdapter(this, getItemsFilter());
+
 
     }
 

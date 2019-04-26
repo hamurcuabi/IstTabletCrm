@@ -18,17 +18,20 @@ import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.SweetDialog.AnyDialog;
+import com.emrhmrc.isttabletcrm.SweetDialog.DialogCreater;
 import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
 import com.emrhmrc.isttabletcrm.api.APIHelper;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointment;
 import com.emrhmrc.isttabletcrm.helper.CreateSubServAppSingleton;
+import com.emrhmrc.isttabletcrm.helper.Methodes;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.helper.SingletonUser;
 import com.emrhmrc.isttabletcrm.models.Account.Account;
 import com.emrhmrc.isttabletcrm.models.Account.AccountListAll;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Code_Id;
+import com.emrhmrc.isttabletcrm.models.CommonClass.FilterModel;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id_Id;
 import com.emrhmrc.isttabletcrm.models.Elevator.CustomerIdRequest;
 import com.emrhmrc.isttabletcrm.models.Elevator.ElevatorListAll;
@@ -37,9 +40,13 @@ import com.emrhmrc.isttabletcrm.models.ServApp.DefaultResponse2;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServAppGetById;
 import com.emrhmrc.isttabletcrm.models.ServApp.UpsertByIdCreateRequest;
 import com.emrhmrc.isttabletcrm.models.ServApp.serviceAppointment;
+import com.emrhmrc.isttabletcrm.util.StringUtil;
+import com.kunzisoft.switchdatetime.SwitchDateTimeDialogFragment;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindString;
@@ -53,6 +60,7 @@ import retrofit2.Response;
 public class CreateServAppActivity extends AppCompatActivity {
 
     private static final String TAG = "CreateServAppActivity";
+    private static final String TAG_DATETIME_FRAGMENT = "TAG_DATETIME_FRAGMENT";
     @BindView(R.id.spinner_musteri)
     AutoCompleteTextView spinner_musteri;
     @BindView(R.id.edt_konu)
@@ -89,14 +97,21 @@ public class CreateServAppActivity extends AppCompatActivity {
     String sub;
     @BindString(R.string.create_sub_servapp)
     String crete_sub;
+    @BindString(R.string.try_again)
+    String try_again;
     @BindView(R.id.txt_menu_header)
     TextView txtMenuHeader;
     @BindView(R.id.txt_yeni)
     TextView txtYeni;
+    @BindView(R.id.edt_konum)
+    EditText edtKonum;
+    @BindString(R.string.no_elevator)
+    String no_elevator;
     private JsonApi jsonApi;
     private ServAppGetById servAppGetById;
     private serviceAppointment request;
     private SweetAlertDialog dialog;
+    private SwitchDateTimeDialogFragment dateTimeFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +119,7 @@ public class CreateServAppActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_serv_app);
         ButterKnife.bind(this);
         init();
+        initDateAndTime();
         subOrNew();
         focusing();
         getSpnOncelik();
@@ -112,6 +128,60 @@ public class CreateServAppActivity extends AppCompatActivity {
             txtMenuHeader.setText(sub);
             txtYeni.setText(crete_sub);
         }
+
+    }
+
+    private void fillServAppTypeAndPrioritySpinner() {
+
+        List<FilterModel> servApptype = new ArrayList<>();
+        List<FilterModel> priorty = new ArrayList<>();
+
+        servApptype.add(new FilterModel(1, "Yedek Parça Değişimi"));
+        servApptype.add(new FilterModel(2, "Bakım"));
+        servApptype.add(new FilterModel(5, "Durum Tespit"));
+        servApptype.add(new FilterModel(7, "Açık Servis"));
+
+        priorty.add(new FilterModel(0, "Düşük"));
+        priorty.add(new FilterModel(1, "Normal"));
+        priorty.add(new FilterModel(2, "Yüksek"));
+
+        ArrayAdapter<FilterModel> spinnerArrayAdapter = new ArrayAdapter<>(
+                this, R.layout.spinner_item_white, servApptype);
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnAriza.setAdapter(spinnerArrayAdapter);
+
+        ArrayAdapter<FilterModel> spinnerArrayAdapter2 = new ArrayAdapter<>(
+                this, R.layout.spinner_item_white, priorty);
+        spinnerArrayAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnOncelik.setAdapter(spinnerArrayAdapter2);
+
+        //OnSelected
+        spnAriza.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                FilterModel filterModel = (FilterModel) adapterView.getItemAtPosition(i);
+                //Seçilen
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        spnOncelik.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                FilterModel filterModel = (FilterModel) adapterView.getItemAtPosition(i);
+                //Seçilen
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
     }
 
@@ -166,6 +236,7 @@ public class CreateServAppActivity extends AppCompatActivity {
             edtSupervisor.setText(SingletonUser.getInstance().getUser().getSuperVisorId().getText());
             lnrOnceki.setVisibility(View.GONE);
             edtIsimsoyad.setText(SingletonUser.getInstance().getUser().getUserName());
+            fillServAppTypeAndPrioritySpinner();
         }
     }
 
@@ -179,13 +250,16 @@ public class CreateServAppActivity extends AppCompatActivity {
             public void onResponse(Call<ElevatorListAll> call, Response<ElevatorListAll> response) {
                 if (response.isSuccessful()) {
 
-                    ElevatorListAll listAll = response.body();
-                    fillElevatorSpinner(listAll.getElevators());
+                    if (response.body().isSuccess()) {
+                        ElevatorListAll listAll = response.body();
+                        fillElevatorSpinner(listAll.getElevators());
+
+                    } else {
+                        DialogCreater.errorDialog(CreateServAppActivity.this, response.body().getErrorMsg());
+                    }
 
                 } else {
-                    new SweetAlertDialog(CreateServAppActivity.this, SweetAlertDialog.WARNING_TYPE)
-                            .setTitleText(response.message())
-                            .show();
+                    DialogCreater.errorDialog(CreateServAppActivity.this, try_again);
                 }
                 progElevator.setVisibility(View.GONE);
 
@@ -194,9 +268,7 @@ public class CreateServAppActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ElevatorListAll> call, Throwable t) {
                 progElevator.setVisibility(View.GONE);
-                new SweetAlertDialog(CreateServAppActivity.this, SweetAlertDialog.WARNING_TYPE)
-                        .setTitleText(getResources().getString(R.string.toast_error))
-                        .show();
+                DialogCreater.errorDialog(CreateServAppActivity.this, try_again);
             }
         });
     }
@@ -212,10 +284,30 @@ public class CreateServAppActivity extends AppCompatActivity {
 
         edtKonu.setText(item.getSubject());
         fillElevatorSpinner(item.getInv_ElevatorId().getId(), item.getInv_ElevatorId().getText());
-        if (item.getInv_TypeCode() != null)
-            spnAriza.setSelection(item.getInv_TypeCode().getValue() - 1);
-        if (item.getPriortiyCode() != null)
-            spnOncelik.setSelection(item.getPriortiyCode().getValue() - 1);
+        if (item.getInv_TypeCode() != null) {
+
+            List<FilterModel> servApptype = new ArrayList<>();
+
+            servApptype.add(new FilterModel(item.getInv_TypeCode().getValue(),
+                    item.getInv_TypeCode().getText()));
+
+            ArrayAdapter<FilterModel> spinnerArrayAdapter = new ArrayAdapter<>(
+                    this, R.layout.spinner_item_white, servApptype);
+            spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spnAriza.setAdapter(spinnerArrayAdapter);
+
+        }
+        if (item.getPriortiyCode() != null) {
+            List<FilterModel> priorty = new ArrayList<>();
+
+            priorty.add(new FilterModel(item.getPriortiyCode().getValue(),
+                    item.getPriortiyCode().getText()));
+
+            ArrayAdapter<FilterModel> spinnerArrayAdapter = new ArrayAdapter<>(
+                    this, R.layout.spinner_item_white, priorty);
+            spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spnOncelik.setAdapter(spinnerArrayAdapter);
+        }
         edtIsimsoyad.setText(item.getOwnerId().getText());
         edtIsimsoyad.setEnabled(false);
         edtAciklama.setText(item.getInv_Description());
@@ -234,38 +326,38 @@ public class CreateServAppActivity extends AppCompatActivity {
     private void getAccountAll() {
         if (ShareData.getInstance().getAccountListAll() != null && ShareData.getInstance().getAccountListAll().getAccounts().size() > 0) {
             fillSpinner(ShareData.getInstance().getAccountListAll().getAccounts());
-        } else{
+        } else {
             progAcoount.setVisibility(View.VISIBLE);
-        Call<AccountListAll> call = jsonApi.geAccountListAllCall();
-        APIHelper.enqueueWithRetry(call, new Callback<AccountListAll>() {
-            @Override
-            public void onResponse(Call<AccountListAll> call, Response<AccountListAll> response) {
-                if (response.isSuccessful()) {
-                    AccountListAll listAll = response.body();
-                    fillSpinner(listAll.getAccounts());
-                    ShareData.getInstance().setAccountListAll(listAll);
+            Call<AccountListAll> call = jsonApi.geAccountListAllCall();
+            APIHelper.enqueueWithRetry(call, new Callback<AccountListAll>() {
+                @Override
+                public void onResponse(Call<AccountListAll> call, Response<AccountListAll> response) {
+                    if (response.isSuccessful()) {
+                        if (response.body().getSuccess()) {
+                            AccountListAll listAll = response.body();
+                            fillSpinner(listAll.getAccounts());
+                            ShareData.getInstance().setAccountListAll(listAll);
+                        } else {
+                            DialogCreater.errorDialog(CreateServAppActivity.this, response.body().getErrorMsg());
+                        }
 
-                } else {
-                    new SweetAlertDialog(CreateServAppActivity.this, SweetAlertDialog.WARNING_TYPE)
-                            .setTitleText(response.message())
-                            .show();
+                    } else {
+                        DialogCreater.errorDialog(CreateServAppActivity.this, try_again);
+                    }
+                    progAcoount.setVisibility(View.GONE);
                 }
-                progAcoount.setVisibility(View.GONE);
-            }
 
-            @Override
-            public void onFailure(Call<AccountListAll> call, Throwable t) {
-                Log.d(TAG, "onFailure: " + t.getMessage());
-                progAcoount.setVisibility(View.GONE);
-                new SweetAlertDialog(CreateServAppActivity.this, SweetAlertDialog.WARNING_TYPE)
-                        .setTitleText(getResources().getString(R.string.toast_error))
-                        .show();
+                @Override
+                public void onFailure(Call<AccountListAll> call, Throwable t) {
+                    Log.d(TAG, "onFailure: " + t.getMessage());
+                    progAcoount.setVisibility(View.GONE);
+                    DialogCreater.errorDialog(CreateServAppActivity.this, try_again);
 
-            }
-        });
+                }
+            });
+        }
+
     }
-
-}
 
     private void init() {
         jsonApi = ApiClient.getClient().create(JsonApi.class);
@@ -273,8 +365,20 @@ public class CreateServAppActivity extends AppCompatActivity {
 
     }
 
+    private void initDateAndTime() {
+        dateTimeFragment = (SwitchDateTimeDialogFragment) getSupportFragmentManager().findFragmentByTag(TAG_DATETIME_FRAGMENT);
+        if (dateTimeFragment == null) {
+            dateTimeFragment = SwitchDateTimeDialogFragment.newInstance(
+                    getString(R.string.label_datetime_dialog),
+                    getString(android.R.string.ok),
+                    getString(android.R.string.cancel)
+                    //getString(R.string.clean) // Optional
+            );
+        }
+    }
+
     private void fillSpinner(List<Account> list) {
-        if (list.size() > 0 && list != null) {
+        if (list != null && list.size() > 0) {
             ArrayAdapter<Account> spinnerArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line,
                     list);
             //spinnerArrayAdapter.setDropDownViewResource(android.R.layout
@@ -289,12 +393,17 @@ public class CreateServAppActivity extends AppCompatActivity {
             spinner_musteri.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    getElevatorByCustomerAll(list.get(i).getAccountId());
-                    request.setInv_CustomerId(new Inv_Id_Id(list.get(i).getAccountId()));
+                    final Account account = (Account) list.get(i);
+                    getElevatorByCustomerAll(account.getAccountId());
+                    request.setInv_CustomerId(new Inv_Id_Id(account.getAccountId()));
+                    Methodes.hideKeyboard(CreateServAppActivity.this);
+                    edtKonum.setText(StringUtil.convertIntToString(account.getInv_LocationSequence()));
+
                 }
             });
             spinner_musteri.setListSelection(0);
         } else {
+            DialogCreater.warningDialog(CreateServAppActivity.this, "Liste Boş");
             spinner_musteri.setAdapter(null);
             spinner_musteri.setOnClickListener(null);
         }
@@ -309,7 +418,7 @@ public class CreateServAppActivity extends AppCompatActivity {
     }
 
     private void fillElevatorSpinner(List<ElevatorsCustomer> list) {
-        if (list.size() > 0 && list != null) {
+        if (list != null && list.size() > 0) {
             ArrayAdapter<ElevatorsCustomer> spinnerArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line,
                     list);
             spnAsansor.setAdapter(spinnerArrayAdapter);
@@ -317,6 +426,7 @@ public class CreateServAppActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     request.setInv_ElevatorId(new Inv_Id_Id(list.get(i).getInv_ElevatorId()));
+                    Methodes.hideKeyboard(CreateServAppActivity.this);
                 }
             });
             spnAsansor.setOnClickListener(new View.OnClickListener() {
@@ -328,6 +438,7 @@ public class CreateServAppActivity extends AppCompatActivity {
             });
             spnAsansor.setListSelection(0);
         } else {
+            DialogCreater.warningDialog(CreateServAppActivity.this, no_elevator);
             spnAsansor.setAdapter(null);
             spnAsansor.setOnClickListener(null);
         }
@@ -359,39 +470,35 @@ public class CreateServAppActivity extends AppCompatActivity {
                     dialog.dismissWithAnimation();
                     if (response.isSuccessful()) {
 
-                        new SweetAlertDialog(CreateServAppActivity.this, SweetAlertDialog.SUCCESS_TYPE)
-                                .setTitleText(succes)
-                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                    @Override
-                                    public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                        onBackPressed();
-                                    }
-                                })
-                                .show();
+                        if (response.body().isSucces()) {
+                            new SweetAlertDialog(CreateServAppActivity.this, SweetAlertDialog.SUCCESS_TYPE)
+                                    .setTitleText(succes)
+                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                        @Override
+                                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                            onBackPressed();
+                                        }
+                                    })
+                                    .show();
+                        } else {
+                            DialogCreater.warningDialog(CreateServAppActivity.this,
+                                    response.body().getErrorMsg());
+                        }
 
 
                     } else {
-
-
-                        new SweetAlertDialog(CreateServAppActivity.this, SweetAlertDialog.WARNING_TYPE)
-                                .setTitleText(response.message())
-                                .show();
-
+                        DialogCreater.warningDialog(CreateServAppActivity.this, try_again);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<DefaultResponse2> call, Throwable t) {
                     dialog.dismissWithAnimation();
-                    new SweetAlertDialog(CreateServAppActivity.this, SweetAlertDialog.WARNING_TYPE)
-                            .setTitleText(t.getMessage())
-                            .show();
+                    DialogCreater.warningDialog(CreateServAppActivity.this, try_again);
                 }
             });
         } else {
-            new SweetAlertDialog(CreateServAppActivity.this, SweetAlertDialog.WARNING_TYPE)
-                    .setTitleText(blanks)
-                    .show();
+            DialogCreater.warningDialog(CreateServAppActivity.this, blanks);
         }
 
 
@@ -441,6 +548,27 @@ public class CreateServAppActivity extends AppCompatActivity {
         dpd.show();
     }
 
+    private void openDateAndTime() {
+        final SimpleDateFormat myDateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm",
+                java.util.Locale.getDefault());
+        dateTimeFragment.setHighlightAMPMSelection(false);
+        dateTimeFragment.setMinimumDateTime(Calendar.getInstance().getTime());
+        dateTimeFragment.setDefaultDateTime(Calendar.getInstance().getTime());
+        dateTimeFragment.setOnButtonClickListener(new SwitchDateTimeDialogFragment.OnButtonClickListener() {
+            @Override
+            public void onPositiveButtonClick(Date date) {
+                edtSaat.setText(myDateFormat.format(date));
+            }
+
+            @Override
+            public void onNegativeButtonClick(Date date) {
+
+            }
+        });
+        dateTimeFragment.startAtCalendarView();
+        dateTimeFragment.show(getSupportFragmentManager(), TAG_DATETIME_FRAGMENT);
+    }
+
     @OnClick({R.id.img_menu, R.id.btn_save, R.id.edt_saat})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -451,7 +579,8 @@ public class CreateServAppActivity extends AppCompatActivity {
                 createNew();
                 break;
             case R.id.edt_saat:
-                openDatePicker();
+                //openDatePicker();
+                openDateAndTime();
                 break;
         }
     }

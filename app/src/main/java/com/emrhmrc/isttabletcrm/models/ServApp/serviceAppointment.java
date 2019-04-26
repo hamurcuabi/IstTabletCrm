@@ -1,10 +1,7 @@
 package com.emrhmrc.isttabletcrm.models.ServApp;
 
 import com.emrhmrc.isttabletcrm.models.CommonClass.Code_Id;
-import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id;
 import com.emrhmrc.isttabletcrm.models.CommonClass.Inv_Id_Id;
-
-import java.util.List;
 
 public class serviceAppointment {
 
@@ -14,6 +11,9 @@ public class serviceAppointment {
     private Code_Id inv_TypeCode;
     private String Subject;
     private String ScheduledStart;
+
+    public serviceAppointment() {
+    }
 
     public Inv_Id_Id getInv_CustomerId() {
         return inv_CustomerId;
@@ -61,8 +61,5 @@ public class serviceAppointment {
 
     public void setScheduledStart(String scheduledStart) {
         ScheduledStart = scheduledStart;
-    }
-
-    public serviceAppointment() {
     }
 }

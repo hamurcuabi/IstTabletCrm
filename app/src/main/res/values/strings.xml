@@ -171,7 +171,7 @@
     <string name="anagrubuac">Ana Ürün Gurubunu Aç</string>
     <string name="altgrubuac">Alt Ürün Gurubunu Aç</string>
     <string name="buton">Buton</string>
-    <string name="xadeturun">x Adet Ürün</string>
+    <string name="xadeturun">0 Adet Ürün</string>
     <string name="isemritipi">İş Emri tipi</string>
     <string name="add_sub_servapp">Alt İş Emri Ekle</string>
     <string name="add_new_pieces">Yeni Malzeme Ekle</string>
@@ -252,6 +252,7 @@
     <string name="read_error">Okuma İşlemi Başarısız</string>
     <string name="send_to_super">Süpervisor\'a Gönder</string>
     <string name="amount_check">Miktarları belirleyiniz</string>
+    <string name="no_elevator">Müşteriye tanımlı asansör bulunmamaktadır</string>
 
     <string-array name="spn_servapp">
         <item>Tüm İş Emirlerim</item>
@@ -296,6 +297,12 @@
         <item>Bakım</item>
         <item>Arıza</item>
         <item>Modernizasyon</item>
+        <item>Yedek Parça Değişimi</item>
+        <item>Durum Tespit</item>
+        <item>Açık Servis</item>
+    </string-array>
+    <string-array name="type_of_servapp_new">
+        <item>Arıza</item>
         <item>Yedek Parça Değişimi</item>
         <item>Durum Tespit</item>
         <item>Açık Servis</item>

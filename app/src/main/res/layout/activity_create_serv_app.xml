@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -20,7 +27,11 @@
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/transparent">
+            android:background="@color/transparent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <ImageView
                 android:id="@+id/img_menu"
@@ -60,6 +71,7 @@
 
 
     </android.support.constraint.ConstraintLayout>
+
 
     <LinearLayout
         android:id="@+id/cons_detail"
@@ -124,6 +136,8 @@
                         android:textStyle="bold" />
 
                     <AutoCompleteTextView
+                        android:nextFocusDown="@id/edt_konu"
+                        android:imeOptions="actionSend"
                         android:id="@+id/spinner_musteri"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/edt_calendar_height"
@@ -163,6 +177,7 @@
                         android:textStyle="bold" />
 
                     <EditText
+                        android:imeOptions="actionNext"
                         android:id="@+id/edt_konu"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/edt_calendar_height"
@@ -195,6 +210,7 @@
                         android:textStyle="bold" />
 
                     <AutoCompleteTextView
+                        android:imeOptions="actionNext"
                         android:id="@+id/spn_asansor"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/edt_calendar_height"
@@ -231,6 +247,7 @@
                         android:textStyle="bold" />
 
                     <EditText
+                        android:imeOptions="actionNext"
                         android:id="@+id/edt_supervisor"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/edt_calendar_height"
@@ -262,6 +279,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:imeOptions="actionNext"
                         android:id="@+id/edt_saat"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/edt_calendar_height"
@@ -296,6 +314,7 @@
                         android:textStyle="bold" />
 
                     <EditText
+                        android:imeOptions="actionNext"
                         android:id="@+id/edt_onceki"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/edt_calendar_height"
@@ -366,7 +385,6 @@
                         android:layout_marginStart="@dimen/detay_menu_30"
                         android:layout_weight="3"
                         android:background="@drawable/spn_style"
-                        android:entries="@array/type_of_servapp"
                         android:paddingStart="@dimen/detay_menu_25"
                         android:paddingEnd="@dimen/detay_menu_12"
                         android:prompt="@string/isemritipi" />
@@ -434,7 +452,6 @@
                         android:layout_weight="3"
                         android:background="@drawable/spn_style"
                         android:drawSelectorOnTop="true"
-                        android:entries="@array/priorty"
                         android:paddingStart="@dimen/detay_menu_25"
                         android:paddingEnd="@dimen/detay_menu_12"
                         android:prompt="@string/normal"
@@ -497,6 +514,7 @@
                         android:textStyle="bold" />
 
                     <EditText
+                        android:imeOptions="actionDone"
                         android:id="@+id/edt_aciklama"
                         android:layout_width="0dp"
                         android:layout_height="122dp"
@@ -536,4 +554,7 @@
         </LinearLayout>
 
     </LinearLayout>
+
+
 </android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.NestedScrollView>

@@ -115,7 +115,7 @@ public class RcvServAppDetailViewHolder extends BaseViewHolder<ServAppGetByIdSer
                 @Override
                 public void afterTextChanged(Editable editable) {
                     if (!editable.toString().isEmpty())
-                        item.setInv_Quantity(Integer.parseInt(editable.toString()));
+                        item.setInv_Quantity(Float.parseFloat(editable.toString()));
                 }
             });
         } else edt_miktar.setEnabled(false);

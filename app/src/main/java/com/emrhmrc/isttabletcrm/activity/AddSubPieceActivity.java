@@ -49,6 +49,8 @@ public class AddSubPieceActivity extends AppCompatActivity implements View.OnCli
     private static final String TAG = "AddSubPieceActivity";
     @BindView(R.id.textView6)
     TextView txtHeader;
+    @BindView(R.id.txt_count_item)
+    TextView txt_count;
     private LinearLayout lnr_main, lnr_sub;
     private Animation anim_down, anim_down_2, anim_up, anim_up_2;
     private ConstraintLayout cons_main, cons_sub;
@@ -64,6 +66,7 @@ public class AddSubPieceActivity extends AppCompatActivity implements View.OnCli
     private TextView txt_maingroup_name, txt_maingroup_id;
     private int main_background = -1;
     private SweetAlertDialog dialog, dialog2;
+    private  int i = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -185,7 +188,7 @@ public class AddSubPieceActivity extends AppCompatActivity implements View.OnCli
         rcv_sub.setLayoutManager(new LinearLayoutManager(this));
         adapter_main = new RcvProductSubAdapter(getApplicationContext(), this);
         adapter_main.setListener(this);
-        adapter_sub = new RcvProductSubProductAdapter(getApplicationContext(), this);
+        adapter_sub = new RcvProductSubProductAdapter(this, this);
         adapter_sub.setListener(this);
         rcv_main.setAdapter(adapter_main);
         rcv_sub.setAdapter(adapter_sub);
@@ -324,5 +327,15 @@ public class AddSubPieceActivity extends AppCompatActivity implements View.OnCli
         // You can also include some extra data.
         intent.putExtra("message", "This is my message!");
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+    }
+
+    public void changeTextCountUp() {
+        i++;
+        txt_count.setText(i + " Adet Ürün");
+    }
+
+    public void changeTextCountDown() {
+        i--;
+        txt_count.setText(i + " Adet Ürün");
     }
 }

@@ -90,7 +90,6 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
         AddManuelProduct, AddNotes, AddBreakdownTypeCode, AddOrDeleteBreakdown, DialogButtonListener {
 
     private static final String TAG = "ServAppDetailActivity";
-
     ActivityServAppDetailBinding binding;
     @BindView(R.id.rcv)
     RecyclerView rcv;
@@ -124,6 +123,10 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     String amount;
     @BindString(R.string.try_again)
     String try_again;
+    @BindView(R.id.btn_ariza_kodu)
+    Button btnArizaKodu;
+    @BindView(R.id.btn_ariza_nedeni)
+    Button btnArizaNedeni;
 
     private JsonApi jsonApi;
     private RcvServAppDetailAdapter adapter;
@@ -151,16 +154,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                         }
                     }
                 }
-                if (id != null) {
 
-                    for (int k = 0; k < adapter.getItems().size(); k++) {
-                        if (adapter.getItems().get(k).getInv_ProductId() != null)
-                            if (adapter.getItems().get(k).getInv_ProductId().getId().equals(id)) {
-                                adapter.remove(k);
-                            }
-
-                    }
-                }
 
                 if (!exist) {
                     Log.d(TAG, "Product Not Exist ");
@@ -174,6 +168,16 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                     else add.setInv_Uomid(product.getUoM());
                     add.setInv_ProductDescription(product.getName());
                     adapter.add(add);
+                }
+            }
+            if (id != null) {
+
+                for (int k = 0; k < adapter.getItems().size(); k++) {
+                    if (adapter.getItems().get(k).getInv_ProductId() != null)
+                        if (adapter.getItems().get(k).getInv_ProductId().getId().equals(id)) {
+                            adapter.remove(k);
+                        }
+
                 }
             }
 
@@ -309,6 +313,15 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
         } else btn_kontrol_listesi.setVisibility(View.INVISIBLE);
         adapter.setItems(model.getServAppGetByIdServAppDetails());
 
+
+        if (model.getInv_TypeCode() != null) {
+            if (model.getInv_TypeCode().getValue() != 3) {
+
+                btnArizaKodu.setVisibility(View.GONE);
+                btnArizaNedeni.setVisibility(View.GONE);
+
+            }
+        }
 
     }
 
@@ -654,7 +667,6 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
         DialogCreater.errorDialog(this, amount);
     }
 
-
     private boolean checkProductAmount() {
 
 
@@ -678,7 +690,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
+        super.onActivityResult(requestCode, resultCode, data);
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {
             if (result.getContents() != null) {
@@ -688,9 +700,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
                 doCheckin(result.getContents());
 
             } else {
-
                 DialogCreater.errorDialog(ServAppDetailActivity.this, read_error);
-
             }
         }
 

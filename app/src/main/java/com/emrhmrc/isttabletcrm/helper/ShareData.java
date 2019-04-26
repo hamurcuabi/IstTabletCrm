@@ -3,6 +3,7 @@ package com.emrhmrc.isttabletcrm.helper;
 import com.emrhmrc.isttabletcrm.models.Account.AccountListAll;
 import com.emrhmrc.isttabletcrm.models.BreakDown.BreakDownTypeListAll;
 import com.emrhmrc.isttabletcrm.models.Notification.Notification;
+import com.emrhmrc.isttabletcrm.models.Product.MainProductList;
 
 public class ShareData {
     private static final ShareData Instance = new ShareData();
@@ -20,6 +21,15 @@ public class ShareData {
     private boolean sub_servapp;
     private BreakDownTypeListAll breakDownTypeListAll;
     private AccountListAll accountListAll;
+    private MainProductList mainProductList;
+
+    public MainProductList getMainProductList() {
+        return mainProductList;
+    }
+
+    public void setMainProductList(MainProductList mainProductList) {
+        this.mainProductList = mainProductList;
+    }
 
     private ShareData() {
     }

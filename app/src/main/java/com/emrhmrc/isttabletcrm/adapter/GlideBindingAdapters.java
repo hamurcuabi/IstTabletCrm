@@ -23,25 +23,27 @@ public class GlideBindingAdapters {
         int imageUrl;
         switch (id) {
             case 1:
-                imageUrl = R.drawable.ic_bakim;
+                imageUrl = R.drawable.ic_yedek;
                 break;
             case 2:
-                imageUrl = R.drawable.ic_ariza;
+                imageUrl = R.drawable.ic_bakim;
                 break;
             case 3:
-                imageUrl = R.drawable.ic_modern;
+                imageUrl = R.drawable.ic_ariza;
                 break;
             case 4:
-                imageUrl = R.drawable.ic_yedek;
+                imageUrl = R.drawable.ic_modern;
                 break;
             case 5:
-                imageUrl = R.drawable.ic_yedek;
+                //Durum tespit
+                imageUrl = R.drawable.ic_muayene;
                 break;
             case 7:
-                imageUrl = R.drawable.ic_yedek;
+                //Açık Servis
+                imageUrl = R.drawable.ic_muayene;
                 break;
             default:
-                imageUrl = R.drawable.ic_bakim;
+                imageUrl = R.drawable.ic_muayene;
                 break;
         }
         view.setImageResource(imageUrl);
@@ -62,22 +64,25 @@ public class GlideBindingAdapters {
         int imageUrl;
         switch (id) {
             case 1:
-                imageUrl = R.drawable.isemri_bakim;
+                imageUrl = R.drawable.isemri_yedek;
                 break;
             case 2:
-                imageUrl = R.drawable.isemri_ariza;
+                imageUrl = R.drawable.isemri_bakim;
                 break;
             case 3:
-                imageUrl = R.drawable.isemri_modern;
+                imageUrl = R.drawable.isemri_ariza;
                 break;
             case 4:
-                imageUrl = R.drawable.isemri_yedek;
+                imageUrl = R.drawable.isemri_modern;
                 break;
             case 5:
-                imageUrl = R.drawable.isemri_yedek;
+                imageUrl = R.drawable.isemri_muayene;
+                break;
+            case 7:
+                imageUrl = R.drawable.isemri_muayene;
                 break;
             default:
-                imageUrl = R.drawable.isemri_bakim;
+                imageUrl = R.drawable.isemri_muayene;
                 break;
         }
         view.setBackground(context.getDrawable(imageUrl));

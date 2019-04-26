@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:layout_margin="@dimen/detay_menu_10"
+        android:layout_marginBottom="@dimen/detay_menu_8"
         android:src="@drawable/ic_close" />
 
     <LinearLayout
@@ -20,7 +20,6 @@
         android:orientation="vertical">
 
         <TextView
-            android:text="@string/aciklama"
             android:id="@+id/txt_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -28,6 +27,7 @@
             android:layout_marginTop="@dimen/text_menu_32"
             android:background="@color/white"
             android:fontFamily="@font/roboto_medium"
+            android:text="@string/aciklama"
             android:textColor="@color/text_color"
             android:textSize="@dimen/text_menu_32" />
 
@@ -38,6 +38,13 @@
             android:layout_margin="@dimen/padding_top25"
             android:fontFamily="@font/roboto_regular"
             android:textColor="@color/text_color_3"
-            android:textSize="@dimen/text_menu_16" />
+            android:textSize="@dimen/text_menu_16"
+            android:visibility="gone" />
+
+        <ProgressBar
+            android:id="@+id/prog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
     </LinearLayout>
 </LinearLayout>

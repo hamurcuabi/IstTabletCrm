@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.SweetDialog.AnyDialog;
+import com.emrhmrc.isttabletcrm.SweetDialog.DialogCreater;
 import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.adapter.RcvProductMainAdapter;
@@ -38,6 +39,8 @@ public class AddPieceActivity extends AppCompatActivity implements OnItemClickLi
     RecyclerView rcwServapp;
     @BindString(R.string.loading)
     String loading;
+    @BindString(R.string.try_again)
+    String try_again;
     @BindView(R.id.textView6)
     TextView txtHeader;
     private List<MainList> model;
@@ -52,7 +55,15 @@ public class AddPieceActivity extends AppCompatActivity implements OnItemClickLi
         setContentView(R.layout.activity_add_piece);
         ButterKnife.bind(this);
         init();
-        getMainProductGroup();
+
+        if (ShareData.getInstance().getMainProductList() != null && ShareData.getInstance().getMainProductList().getMainProductGroups().size() > 0) {
+            model = ShareData.getInstance().getMainProductList().getMainProductGroups();
+            adapter.setItems(model);
+            adapter.setItemsFilter(model);
+            search();
+        } else {
+            getMainProductGroup();
+        }
         if (!ShareData.getInstance().isAdd_sub_piece()) {
             txtHeader.setText(getResources().getString(R.string.ana_urun));
 
@@ -66,13 +77,18 @@ public class AddPieceActivity extends AppCompatActivity implements OnItemClickLi
             @Override
             public void onResponse(Call<MainProductList> call, Response<MainProductList> response) {
                 if (response.isSuccessful()) {
-                    MainProductList model = response.body();
-                    adapter.setItems(model.getMainProductGroups());
-                    adapter.setItemsFilter(model.getMainProductGroups());
-                    search();
+                    if (response.body().Success) {
+                        MainProductList model = response.body();
+                        ShareData.getInstance().setMainProductList(model);
+                        adapter.setItems(model.getMainProductGroups());
+                        adapter.setItemsFilter(model.getMainProductGroups());
+                        search();
+                    } else {
+                        DialogCreater.errorDialog(AddPieceActivity.this, response.body().ErrorMsg);
+                    }
 
                 } else {
-                    Log.d(TAG, "onResponse: " + response.errorBody().toString());
+                    DialogCreater.errorDialog(AddPieceActivity.this, try_again);
                 }
                 dialog.dismissWithAnimation();
             }
@@ -81,6 +97,7 @@ public class AddPieceActivity extends AppCompatActivity implements OnItemClickLi
             public void onFailure(Call<MainProductList> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
                 dialog.dismissWithAnimation();
+                DialogCreater.errorDialog(AddPieceActivity.this, try_again);
             }
         });
     }

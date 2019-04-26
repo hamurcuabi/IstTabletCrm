@@ -4,13 +4,13 @@ public class Account {
     private String Name;
 
     private String AccountId;
-    private Integer inv_LocationSequence;
+    private int inv_LocationSequence;
 
-    public Integer getInv_LocationSequence() {
+    public int getInv_LocationSequence() {
         return inv_LocationSequence;
     }
 
-    public void setInv_LocationSequence(Integer inv_LocationSequence) {
+    public void setInv_LocationSequence(int inv_LocationSequence) {
         this.inv_LocationSequence = inv_LocationSequence;
     }
 

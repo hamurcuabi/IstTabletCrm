@@ -19,7 +19,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.emrhmrc.isttabletcrm.R;
-import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
+import com.emrhmrc.isttabletcrm.SweetDialog.DialogCreater;
 import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.adapter.ProductAdapter;
 import com.emrhmrc.isttabletcrm.api.APIHelper;
@@ -32,6 +32,7 @@ import com.emrhmrc.isttabletcrm.models.Product.ProductListAll;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindString;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -39,6 +40,8 @@ import retrofit2.Response;
 public class AddWorkmanshipFragment extends DialogFragment implements View.OnClickListener, OnItemClickListener {
 
     private static final String TAG = "AddWorkmanshipFragment";
+    @BindString(R.string.try_again)
+    String try_again;
     private ImageView img_close;
     private RecyclerView rcv;
     private ProductAdapter adapter;
@@ -93,14 +96,15 @@ public class AddWorkmanshipFragment extends DialogFragment implements View.OnCli
                 prog.setVisibility(View.GONE);
                 rcv.setVisibility(View.VISIBLE);
                 if (response.isSuccessful()) {
-                    final ProductListAll listAll = response.body();
-                    fillProducts(listAll.getProducts());
-                } else {
-                    if (getDialog() != null && getDialog().isShowing()) {
-                        new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
-                                .setTitleText(response.message())
-                                .show();
+                    if (response.body().Success) {
+                        ProductListAll listAll = response.body();
+                        fillProducts(listAll.getProducts());
+                    } else {
+                        DialogCreater.errorDialog(getActivity(), response.body().ErrorMsg);
                     }
+
+                } else {
+                    DialogCreater.errorDialog(getActivity(), try_again);
                 }
             }
 
@@ -109,11 +113,7 @@ public class AddWorkmanshipFragment extends DialogFragment implements View.OnCli
                 Log.d(TAG, "onFailure: " + t.getMessage());
                 prog.setVisibility(View.GONE);
                 rcv.setVisibility(View.VISIBLE);
-                if (getDialog() != null && getDialog().isShowing()) {
-                    new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
-                            .setTitleText(t.getMessage())
-                            .show();
-                }
+                DialogCreater.errorDialog(getActivity(), try_again);
 
             }
         });
@@ -140,7 +140,8 @@ public class AddWorkmanshipFragment extends DialogFragment implements View.OnCli
         for (Product item : products
         ) {
             if (item.getInv_TypeCode() != null) {
-                if (item.getInv_TypeCode().getValue() == 3) items.add(item);
+                //if (item.getInv_TypeCode().getValue() == 3)
+                items.add(item);
             }
 
         }
@@ -185,4 +186,5 @@ public class AddWorkmanshipFragment extends DialogFragment implements View.OnCli
         super.onDestroy();
         if (productListAllCall != null) productListAllCall.cancel();
     }
+
 }

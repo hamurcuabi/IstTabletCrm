@@ -10,7 +10,7 @@ public class ElevatorListAll {
 
     private String ErrorMsg;
 
-    private String Success;
+    private boolean Success;
 
     private TableMetadata TableMetadata;
 
@@ -30,12 +30,12 @@ public class ElevatorListAll {
         this.ErrorMsg = ErrorMsg;
     }
 
-    public String getSuccess() {
+    public boolean isSuccess() {
         return Success;
     }
 
-    public void setSuccess(String Success) {
-        this.Success = Success;
+    public void setSuccess(boolean success) {
+        Success = success;
     }
 
     public TableMetadata getTableMetadata() {
@@ -46,14 +46,6 @@ public class ElevatorListAll {
         this.TableMetadata = TableMetadata;
     }
 
-    @Override
-    public String toString() {
-        return "ElevatorListAll{" +
-                "Elevators=" + Elevators +
-                ", ErrorMsg='" + ErrorMsg + '\'' +
-                ", Success='" + Success + '\'' +
-                ", TableMetadata=" + TableMetadata +
-                '}';
-    }
+
 }
 

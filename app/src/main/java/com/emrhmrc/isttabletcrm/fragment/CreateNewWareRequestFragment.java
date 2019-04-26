@@ -846,9 +846,9 @@ public class CreateNewWareRequestFragment extends DialogFragment {
                         if (monthString.length() == 1) {
                             monthString = "0" + monthString;
                         }
-                        if (i == 1) edtTarih.setText(monthString + "." + dayOfMonth + "." + year);
+                        if (i == 1) edtTarih.setText(dayOfMonth + "." + monthString + "." + year);
                         else if (i == 2)
-                            edtTarih2.setText(monthString + "." + dayOfMonth + "." + year);
+                            edtTarih2.setText(dayOfMonth + "." + monthString + "." + year);
 
                     }
                 }, yil, ay, gun);

@@ -1,5 +1,6 @@
 package com.emrhmrc.isttabletcrm.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -122,7 +123,7 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
                 img_first.setImageURI(haveNotes.get(0).getSelectedImageUri());
                 video_first.setVisibility(View.GONE);
                 img_first.setVisibility(View.VISIBLE);
-            } else if(haveNotes.get(0).getSelectedVideoUri() != null){
+            } else if (haveNotes.get(0).getSelectedVideoUri() != null) {
                 video_first.setVideoURI(haveNotes.get(0).getSelectedVideoUri());
                 video_first.setVisibility(View.VISIBLE);
                 img_first.setVisibility(View.GONE);
@@ -132,12 +133,12 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
 
         }
         if (haveNotes.get(1) != null && haveNotes.get(1).getFrom() == 2) {
-            if (haveNotes.get(1).isImage1()&&haveNotes.get(1).getSelectedImageUri() != null) {
+            if (haveNotes.get(1).isImage1() && haveNotes.get(1).getSelectedImageUri() != null) {
                 img_second.setImageURI(haveNotes.get(1).getSelectedImageUri());
                 video_second.setVisibility(View.GONE);
                 img_second.setVisibility(View.VISIBLE);
 
-            } else if(haveNotes.get(1).getSelectedVideoUri() != null) {
+            } else if (haveNotes.get(1).getSelectedVideoUri() != null) {
                 video_second.setVideoURI(haveNotes.get(1).getSelectedVideoUri());
                 img_second.setVisibility(View.GONE);
                 video_second.setVisibility(View.VISIBLE);
@@ -228,7 +229,7 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
        /* if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, i);
         }*/
-            this.startActivityForResult(takePictureIntent, i);
+            startActivityForResult(takePictureIntent, i);
         }
     }
 
@@ -243,203 +244,207 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            if (notePhoto1 == null) {
-                notePhoto1 = new Notes();
-                noteVideo1 = null;
-            }
-            BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-            Bitmap photo = (Bitmap) data.getExtras().get("data");
-            img_first.setImageBitmap(photo);
-            video_first.setVisibility(View.GONE);
-            video_first.setVideoURI(null);
-            img_first.setVisibility(View.VISIBLE);
+        if (resultCode == Activity.RESULT_OK) {
 
 
-            Uri selectedImage = getImageUri(getActivity(), photo);
-            String realPath = getRealPathFromURI(selectedImage);
-            selectedImage = Uri.parse(realPath);
+            if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+                if (notePhoto1 == null) {
+                    notePhoto1 = new Notes();
+                    noteVideo1 = null;
+                }
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+                Bitmap photo = (Bitmap) data.getExtras().get("data");
+                img_first.setImageBitmap(photo);
+                video_first.setVisibility(View.GONE);
+                video_first.setVideoURI(null);
+                img_first.setVisibility(View.VISIBLE);
+
+
+                Uri selectedImage = getImageUri(getActivity(), photo);
+                String realPath = getRealPathFromURI(selectedImage);
+                selectedImage = Uri.parse(realPath);
             /*ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             photo.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
             byte[] byteArray = byteArrayOutputStream.toByteArray();*/
 
 
-            Bitmap bitmap = BitmapFactory.decodeFile(realPath, options);
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-            byte[] byteArray = byteArrayOutputStream.toByteArray();
+                Bitmap bitmap = BitmapFactory.decodeFile(realPath, options);
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+                byte[] byteArray = byteArrayOutputStream.toByteArray();
 
-            notePhoto1.setSelectedImageUri(selectedImage);
-            notePhoto1.setDocumentBody(Base64.encodeToString(byteArray, Base64.DEFAULT));
-            notePhoto1.setDocument(true);
-            notePhoto1.setFileName(realPath);
-            notePhoto1.setMimeType("image/jpg");
-            notePhoto1.setSubject("Önceki Görünüm");
-            isImage1 = true;
-            notePhoto1.setFrom(1);
-            notePhoto1.setImage1(true);
-            haveNotes.set(0, notePhoto1);
+                notePhoto1.setSelectedImageUri(selectedImage);
+                notePhoto1.setDocumentBody(Base64.encodeToString(byteArray, Base64.DEFAULT));
+                notePhoto1.setDocument(true);
+                notePhoto1.setFileName(realPath);
+                notePhoto1.setMimeType("image/jpg");
+                notePhoto1.setSubject("Önceki Görünüm");
+                isImage1 = true;
+                notePhoto1.setFrom(1);
+                notePhoto1.setImage1(true);
+                haveNotes.set(0, notePhoto1);
 
 
-        } else if (requestCode == REQUEST_IMAGE_CAPTURE_SECOND && resultCode == RESULT_OK) {
-            if (notePhoto2 == null) {
-                notePhoto2 = new Notes();
-                noteVideo2 = null;
-            }
-            Bundle extras = data.getExtras();
-            Bitmap photo = (Bitmap) extras.get("data");
-            BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-            img_second.setImageBitmap(photo);
-            video_second.setVisibility(View.GONE);
-            video_second.setVideoURI(null);
-            img_second.setVisibility(View.VISIBLE);
+            } else if (requestCode == REQUEST_IMAGE_CAPTURE_SECOND && resultCode == RESULT_OK) {
+                if (notePhoto2 == null) {
+                    notePhoto2 = new Notes();
+                    noteVideo2 = null;
+                }
+                Bundle extras = data.getExtras();
+                Bitmap photo = (Bitmap) extras.get("data");
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+                img_second.setImageBitmap(photo);
+                video_second.setVisibility(View.GONE);
+                video_second.setVideoURI(null);
+                img_second.setVisibility(View.VISIBLE);
 
-            Uri selectedImage = getImageUri(getActivity(), photo);
-            String realPath = getRealPathFromURI(selectedImage);
-            selectedImage = Uri.parse(realPath);
+                Uri selectedImage = getImageUri(getActivity(), photo);
+                String realPath = getRealPathFromURI(selectedImage);
+                selectedImage = Uri.parse(realPath);
 
           /*  ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             photo.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
             byte[] byteArray = byteArrayOutputStream.toByteArray();*/
-            Bitmap bitmap = BitmapFactory.decodeFile(realPath, options);
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-            byte[] byteArray = byteArrayOutputStream.toByteArray();
+                Bitmap bitmap = BitmapFactory.decodeFile(realPath, options);
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+                byte[] byteArray = byteArrayOutputStream.toByteArray();
 
-            notePhoto2.setSelectedImageUri(selectedImage);
-            notePhoto2.setDocumentBody(Base64.encodeToString(byteArray, Base64.DEFAULT));
-            notePhoto2.setDocument(true);
-            notePhoto2.setFileName(realPath);
-            notePhoto2.setMimeType("image/jpg");
-            notePhoto2.setSubject("Sonraki Görünüm");
-            isImage2 = true;
-            notePhoto2.setFrom(2);
-            notePhoto2.setImage1(true);
-            haveNotes.set(1, notePhoto2);
-        } else if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
-            Uri selectedVideoUri = data.getData();
-            video_first.setVideoURI(selectedVideoUri);
-            img_first.setVisibility(View.GONE);
-            img_first.setImageBitmap(null);
-            video_first.setVisibility(View.VISIBLE);
+                notePhoto2.setSelectedImageUri(selectedImage);
+                notePhoto2.setDocumentBody(Base64.encodeToString(byteArray, Base64.DEFAULT));
+                notePhoto2.setDocument(true);
+                notePhoto2.setFileName(realPath);
+                notePhoto2.setMimeType("image/jpg");
+                notePhoto2.setSubject("Sonraki Görünüm");
+                isImage2 = true;
+                notePhoto2.setFrom(2);
+                notePhoto2.setImage1(true);
+                haveNotes.set(1, notePhoto2);
+            } else if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
+                Uri selectedVideoUri = data.getData();
+                video_first.setVideoURI(selectedVideoUri);
+                img_first.setVisibility(View.GONE);
+                img_first.setImageBitmap(null);
+                video_first.setVisibility(View.VISIBLE);
 
-            String[] projection = {MediaStore.Video.Media.DATA, MediaStore.Video.Media.SIZE, MediaStore.Video.Media.DURATION};
-            Cursor cursor = getActivity().managedQuery(selectedVideoUri, projection, null, null,
-                    null);
+                String[] projection = {MediaStore.Video.Media.DATA, MediaStore.Video.Media.SIZE, MediaStore.Video.Media.DURATION};
+                Cursor cursor = getActivity().managedQuery(selectedVideoUri, projection, null, null,
+                        null);
 
-            cursor.moveToFirst();
-            String filePath = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA));
-            Log.d("File Name:", filePath);
+                cursor.moveToFirst();
+                String filePath = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA));
+                Log.d("File Name:", filePath);
 
-            Bitmap thumb = ThumbnailUtils.createVideoThumbnail(filePath, MediaStore.Video.Thumbnails.MINI_KIND);
-            // Setting the thumbnail of the video in to the image view
-            // msImage.setImageBitmap(thumb);
-            InputStream inputStream = null;
+                Bitmap thumb = ThumbnailUtils.createVideoThumbnail(filePath, MediaStore.Video.Thumbnails.MINI_KIND);
+                // Setting the thumbnail of the video in to the image view
+                // msImage.setImageBitmap(thumb);
+                InputStream inputStream = null;
 // Converting the video in to the bytes
-            try {
-                inputStream = getActivity().getContentResolver().openInputStream(selectedVideoUri);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-            int bufferSize = 1024;
-            byte[] buffer = new byte[bufferSize];
-            ByteArrayOutputStream byteBuffer;
-            byteBuffer = new ByteArrayOutputStream();
-            int len = 0;
-            try {
-                while ((len = inputStream.read(buffer)) != -1) {
-                    byteBuffer.write(buffer, 0, len);
+                try {
+                    inputStream = getActivity().getContentResolver().openInputStream(selectedVideoUri);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            System.out.println("converted!");
+                int bufferSize = 1024;
+                byte[] buffer = new byte[bufferSize];
+                ByteArrayOutputStream byteBuffer;
+                byteBuffer = new ByteArrayOutputStream();
+                int len = 0;
+                try {
+                    while ((len = inputStream.read(buffer)) != -1) {
+                        byteBuffer.write(buffer, 0, len);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("converted!");
 
-            String videoData = "";
-            //Converting bytes into base64
-            videoData = Base64.encodeToString(byteBuffer.toByteArray(), Base64.DEFAULT);
-            // Log.d("VideoData**>  ", videoData);
-            String sinSaltoFinal2 = videoData.trim();
-            String sinsinSalto2 = sinSaltoFinal2.replaceAll("\n", "");
-            //Log.d("VideoData**>  ", sinsinSalto2);
-            String realPath = getRealPathFromURI(selectedVideoUri);
-            if (noteVideo1 == null) {
-                noteVideo1 = new Notes();
-                notePhoto1 = null;
-            }
-            noteVideo1.setDocumentBody(Base64.encodeToString(byteBuffer.toByteArray(), Base64.DEFAULT));
-            noteVideo1.setDocument(true);
-            noteVideo1.setFileName(realPath);
-            noteVideo1.setMimeType("video/mp4");
-            noteVideo1.setSubject("Önceki Görünüm Video");
-            noteVideo1.setSelectedVideoUri(selectedVideoUri);
-            isImage1 = false;
-            noteVideo1.setFrom(1);
-            noteVideo1.setImage1(false);
-            haveNotes.set(0, noteVideo1);
+                String videoData = "";
+                //Converting bytes into base64
+                videoData = Base64.encodeToString(byteBuffer.toByteArray(), Base64.DEFAULT);
+                // Log.d("VideoData**>  ", videoData);
+                String sinSaltoFinal2 = videoData.trim();
+                String sinsinSalto2 = sinSaltoFinal2.replaceAll("\n", "");
+                //Log.d("VideoData**>  ", sinsinSalto2);
+                String realPath = getRealPathFromURI(selectedVideoUri);
+                if (noteVideo1 == null) {
+                    noteVideo1 = new Notes();
+                    notePhoto1 = null;
+                }
+                noteVideo1.setDocumentBody(Base64.encodeToString(byteBuffer.toByteArray(), Base64.DEFAULT));
+                noteVideo1.setDocument(true);
+                noteVideo1.setFileName(realPath);
+                noteVideo1.setMimeType("video/mp4");
+                noteVideo1.setSubject("Önceki Görünüm Video");
+                noteVideo1.setSelectedVideoUri(selectedVideoUri);
+                isImage1 = false;
+                noteVideo1.setFrom(1);
+                noteVideo1.setImage1(false);
+                haveNotes.set(0, noteVideo1);
 
-        } else if (requestCode == REQUEST_VIDEO_CAPTURE_SECOND && resultCode == RESULT_OK) {
-            Uri selectedVideoUri = data.getData();
-            video_second.setVideoURI(selectedVideoUri);
-            img_second.setVisibility(View.GONE);
-            img_second.setImageBitmap(null);
-            video_second.setVisibility(View.VISIBLE);
-            String[] projection = {MediaStore.Video.Media.DATA, MediaStore.Video.Media.SIZE, MediaStore.Video.Media.DURATION};
-            Cursor cursor = getActivity().managedQuery(selectedVideoUri, projection, null, null,
-                    null);
+            } else if (requestCode == REQUEST_VIDEO_CAPTURE_SECOND && resultCode == RESULT_OK) {
+                Uri selectedVideoUri = data.getData();
+                video_second.setVideoURI(selectedVideoUri);
+                img_second.setVisibility(View.GONE);
+                img_second.setImageBitmap(null);
+                video_second.setVisibility(View.VISIBLE);
+                String[] projection = {MediaStore.Video.Media.DATA, MediaStore.Video.Media.SIZE, MediaStore.Video.Media.DURATION};
+                Cursor cursor = getActivity().managedQuery(selectedVideoUri, projection, null, null,
+                        null);
 
-            cursor.moveToFirst();
-            String filePath = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA));
-            Log.d("File Name:", filePath);
+                cursor.moveToFirst();
+                String filePath = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA));
+                Log.d("File Name:", filePath);
 
-            Bitmap thumb = ThumbnailUtils.createVideoThumbnail(filePath, MediaStore.Video.Thumbnails.MINI_KIND);
-            // Setting the thumbnail of the video in to the image view
-            // msImage.setImageBitmap(thumb);
-            InputStream inputStream = null;
+                Bitmap thumb = ThumbnailUtils.createVideoThumbnail(filePath, MediaStore.Video.Thumbnails.MINI_KIND);
+                // Setting the thumbnail of the video in to the image view
+                // msImage.setImageBitmap(thumb);
+                InputStream inputStream = null;
 // Converting the video in to the bytes
-            try {
-                inputStream = getActivity().getContentResolver().openInputStream(selectedVideoUri);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-            int bufferSize = 1024;
-            byte[] buffer = new byte[bufferSize];
-            ByteArrayOutputStream byteBuffer;
-            byteBuffer = new ByteArrayOutputStream();
-            int len = 0;
-            try {
-                while ((len = inputStream.read(buffer)) != -1) {
-                    byteBuffer.write(buffer, 0, len);
+                try {
+                    inputStream = getActivity().getContentResolver().openInputStream(selectedVideoUri);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            System.out.println("converted!");
+                int bufferSize = 1024;
+                byte[] buffer = new byte[bufferSize];
+                ByteArrayOutputStream byteBuffer;
+                byteBuffer = new ByteArrayOutputStream();
+                int len = 0;
+                try {
+                    while ((len = inputStream.read(buffer)) != -1) {
+                        byteBuffer.write(buffer, 0, len);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("converted!");
 
-            String videoData = "";
-            //Converting bytes into base64
-            videoData = Base64.encodeToString(byteBuffer.toByteArray(), Base64.DEFAULT);
-            //  Log.d("VideoData**>  ", videoData);
-            String sinSaltoFinal2 = videoData.trim();
-            String sinsinSalto2 = sinSaltoFinal2.replaceAll("\n", "");
-            //   Log.d("VideoData**>  ", sinsinSalto2);
-            String realPath = getRealPathFromURI(selectedVideoUri);
-            if (noteVideo2 == null) {
-                noteVideo2 = new Notes();
-                notePhoto2 = null;
+                String videoData = "";
+                //Converting bytes into base64
+                videoData = Base64.encodeToString(byteBuffer.toByteArray(), Base64.DEFAULT);
+                //  Log.d("VideoData**>  ", videoData);
+                String sinSaltoFinal2 = videoData.trim();
+                String sinsinSalto2 = sinSaltoFinal2.replaceAll("\n", "");
+                //   Log.d("VideoData**>  ", sinsinSalto2);
+                String realPath = getRealPathFromURI(selectedVideoUri);
+                if (noteVideo2 == null) {
+                    noteVideo2 = new Notes();
+                    notePhoto2 = null;
+                }
+                noteVideo2.setDocumentBody(Base64.encodeToString(byteBuffer.toByteArray(), Base64.DEFAULT));
+                noteVideo2.setDocument(true);
+                noteVideo2.setFileName(realPath);
+                noteVideo2.setMimeType("video/mp4");
+                noteVideo2.setSubject("Sonraki Görünüm Video");
+                noteVideo2.setSelectedVideoUri(selectedVideoUri);
+                isImage2 = false;
+                noteVideo2.setFrom(2);
+                noteVideo2.setImage1(false);
+                haveNotes.set(1, noteVideo2);
             }
-            noteVideo2.setDocumentBody(Base64.encodeToString(byteBuffer.toByteArray(), Base64.DEFAULT));
-            noteVideo2.setDocument(true);
-            noteVideo2.setFileName(realPath);
-            noteVideo2.setMimeType("video/mp4");
-            noteVideo2.setSubject("Sonraki Görünüm Video");
-            noteVideo2.setSelectedVideoUri(selectedVideoUri);
-            isImage2 = false;
-            noteVideo2.setFrom(2);
-            noteVideo2.setImage1(false);
-            haveNotes.set(1, noteVideo2);
         }
     }
 

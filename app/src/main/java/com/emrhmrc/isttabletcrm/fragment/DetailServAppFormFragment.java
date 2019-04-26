@@ -7,14 +7,15 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
+import com.emrhmrc.isttabletcrm.SweetDialog.DialogCreater;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.models.ServApp.GetServFormById;
@@ -30,6 +31,9 @@ public class DetailServAppFormFragment extends DialogFragment implements View.On
     private static final String TAG = "DetailTechnicalFragment";
     @BindString(R.string.aciklama)
     String header;
+    @BindString(R.string.try_again)
+    String try_again;
+    private ProgressBar prog;
     private ImageView img_close;
     private TextView txt_header, txt_content;
     private GetServFormById document;
@@ -57,6 +61,7 @@ public class DetailServAppFormFragment extends DialogFragment implements View.On
         super.onViewCreated(view, savedInstanceState);
 
         img_close = view.findViewById(R.id.img_close);
+        prog = view.findViewById(R.id.prog);
         img_close.setOnClickListener(this);
         txt_header = view.findViewById(R.id.txt_header);
         txt_content = view.findViewById(R.id.txt_content);
@@ -69,14 +74,27 @@ public class DetailServAppFormFragment extends DialogFragment implements View.On
             @Override
             public void onResponse(Call<GetServFormById> call, Response<GetServFormById> response) {
                 if (response.isSuccessful()) {
-                    document = response.body();
-                    txt_content.setText(StringUtil.base64ToString(StringUtil.nullToString(document.getDocumentBody())));
+                    if (response.body().getSuccess()) {
+                        document = response.body();
+                        txt_content.setText(StringUtil.base64ToString(StringUtil.nullToString(document.getDocumentBody())));
+                    } else {
+                        DialogCreater.errorDialog(getActivity(), response.body().getErrorMsg());
+                    }
+                } else {
+                    DialogCreater.errorDialog(getActivity(), try_again);
                 }
+                prog.setVisibility(View.GONE);
+                txt_content.setVisibility(View.VISIBLE);
+
+
             }
+
 
             @Override
             public void onFailure(Call<GetServFormById> call, Throwable t) {
-                Log.d(TAG, "onFailure: " + t.getMessage());
+                DialogCreater.errorDialog(getActivity(), try_again);
+                prog.setVisibility(View.GONE);
+                txt_content.setVisibility(View.VISIBLE);
             }
         });
 
