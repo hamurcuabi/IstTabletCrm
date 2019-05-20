@@ -52,6 +52,8 @@ public class Methodes {
 
     public static boolean checkAndRequestPermissions(Activity activity) {
         int permissionACCESS_FINE_LOCATION = ContextCompat.checkSelfPermission(activity, android.Manifest.permission.ACCESS_FINE_LOCATION);
+        int permissionCAMERA = ContextCompat.checkSelfPermission(activity,
+                Manifest.permission.CAMERA);
         int permissionACCESS_COARSE_LOCATION = ContextCompat.checkSelfPermission(activity, android.Manifest.permission.ACCESS_COARSE_LOCATION);
         int permissionACCESS_READ = ContextCompat.checkSelfPermission(activity,
                 Manifest.permission.READ_EXTERNAL_STORAGE);
@@ -59,6 +61,9 @@ public class Methodes {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE);
         List<String> listPermissionsNeeded = new ArrayList<>();
 
+        if (permissionCAMERA != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(Manifest.permission.CAMERA);
+        }
         if (permissionACCESS_FINE_LOCATION != PackageManager.PERMISSION_GRANTED) {
             listPermissionsNeeded.add(android.Manifest.permission.ACCESS_FINE_LOCATION);
         }
@@ -181,16 +186,19 @@ public class Methodes {
         SimpleDateFormat targetFormat = new SimpleDateFormat("dd.MM.yyyy");
         return targetFormat.format(sourceDate);
     }
+
     public static String getCurrentClock() {
 
         Date sourceDate = Calendar.getInstance().getTime();
         SimpleDateFormat targetFormat = new SimpleDateFormat("HH:mm");
         return targetFormat.format(sourceDate);
     }
+
     public static void hideKeyboardFrom(Context context, View view) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
+
     public static void hideKeyboard(Activity activity) {
         InputMethodManager inputManager = (InputMethodManager) activity
                 .getSystemService(Context.INPUT_METHOD_SERVICE);

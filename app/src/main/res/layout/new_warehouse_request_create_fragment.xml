@@ -614,7 +614,7 @@
                             android:layout_marginStart="@dimen/detay_menu_30"
                             android:layout_weight="5"
                             android:background="@drawable/btn_eye_text"
-                            android:enabled="false"
+
                             android:gravity="center|left"
                             android:paddingStart="@dimen/detay_menu_12" />
 

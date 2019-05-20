@@ -37,7 +37,6 @@ import java.io.InputStream;
 import java.io.Serializable;
 import java.util.List;
 
-import static android.app.Activity.RESULT_OK;
 import static com.emrhmrc.isttabletcrm.helper.Methodes.checkAndRequestPermissions;
 
 public class BeforeAfterPicFragment extends DialogFragment implements View.OnClickListener {
@@ -234,10 +233,12 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
     }
 
     private void dispatchTakeVideoIntent(int i) {
-        Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-        if (takeVideoIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-            takeVideoIntent.putExtra(MediaStore.EXTRA_DURATION_LIMIT, 10);
-            startActivityForResult(takeVideoIntent, i);
+        if (checkAndRequestPermissions(getActivity())) {
+            Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+            if (takeVideoIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+                takeVideoIntent.putExtra(MediaStore.EXTRA_DURATION_LIMIT, 10);
+                startActivityForResult(takeVideoIntent, i);
+            }
         }
     }
 
@@ -247,7 +248,7 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
         if (resultCode == Activity.RESULT_OK) {
 
 
-            if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            if (requestCode == REQUEST_IMAGE_CAPTURE) {
                 if (notePhoto1 == null) {
                     notePhoto1 = new Notes();
                     noteVideo1 = null;
@@ -286,7 +287,7 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
                 haveNotes.set(0, notePhoto1);
 
 
-            } else if (requestCode == REQUEST_IMAGE_CAPTURE_SECOND && resultCode == RESULT_OK) {
+            } else if (requestCode == REQUEST_IMAGE_CAPTURE_SECOND) {
                 if (notePhoto2 == null) {
                     notePhoto2 = new Notes();
                     noteVideo2 = null;
@@ -322,7 +323,7 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
                 notePhoto2.setFrom(2);
                 notePhoto2.setImage1(true);
                 haveNotes.set(1, notePhoto2);
-            } else if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
+            } else if (requestCode == REQUEST_VIDEO_CAPTURE) {
                 Uri selectedVideoUri = data.getData();
                 video_first.setVideoURI(selectedVideoUri);
                 img_first.setVisibility(View.GONE);
@@ -384,7 +385,7 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
                 noteVideo1.setImage1(false);
                 haveNotes.set(0, noteVideo1);
 
-            } else if (requestCode == REQUEST_VIDEO_CAPTURE_SECOND && resultCode == RESULT_OK) {
+            } else if (requestCode == REQUEST_VIDEO_CAPTURE_SECOND) {
                 Uri selectedVideoUri = data.getData();
                 video_second.setVideoURI(selectedVideoUri);
                 img_second.setVisibility(View.GONE);

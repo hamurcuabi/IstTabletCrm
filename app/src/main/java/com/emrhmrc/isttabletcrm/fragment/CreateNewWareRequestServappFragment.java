@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -566,7 +567,7 @@ public class CreateNewWareRequestServappFragment extends DialogFragment {
                     request_return_back.setInv_Productid(new Inv_Id("product", list.get(i).getName(),
                             list.get(i).getProductId()));
                     request_return_back.setInv_ProductSerialNumber(list.get(i).getProductNumber());
-                    edtSerino2.setText(list.get(i).getProductNumber());
+                    // edtSerino2.setText(list.get(i).getProductNumber());
                     InputMethodManager in =
                             (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                     in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
@@ -917,6 +918,7 @@ public class CreateNewWareRequestServappFragment extends DialogFragment {
     }
 
     private void createReturnransfer() {
+        request_return_back.setInv_ProductSerialNumber(edtSerino2.getText().toString());
         request_return_back.setUserId(SingletonUser.getInstance().getUser().getUserId());
         request_return_back.setInv_Description(edtAciklama2.getText().toString());
         request_return_back.setInv_RequestDate(edtTarih2.getText().toString());
@@ -1010,6 +1012,8 @@ public class CreateNewWareRequestServappFragment extends DialogFragment {
         } else if (request.getInv_TransferTypeCode() == null) {
             return false;
         } else if (request.getInv_ProductSerialNumber() == null) {
+            return false;
+        } else if (TextUtils.isEmpty(request.getInv_ProductSerialNumber())) {
             return false;
         } else return true;
     }

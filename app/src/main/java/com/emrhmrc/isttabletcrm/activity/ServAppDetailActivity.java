@@ -8,6 +8,7 @@ import android.databinding.DataBindingUtil;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -127,6 +128,8 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
     Button btnArizaKodu;
     @BindView(R.id.btn_ariza_nedeni)
     Button btnArizaNedeni;
+    @BindView(R.id.nested)
+    NestedScrollView nested;
 
     private JsonApi jsonApi;
     private RcvServAppDetailAdapter adapter;
@@ -195,6 +198,8 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
         getServAppById(shareData.getServAppId());
         LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
                 new IntentFilter("custom-event-name"));
+        nested.fullScroll(View.FOCUS_UP);
+        nested.scrollTo(0, 0);
 
     }
 

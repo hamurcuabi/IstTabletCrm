@@ -137,7 +137,7 @@ public class CreateServAppActivity extends AppCompatActivity {
         List<FilterModel> priorty = new ArrayList<>();
 
         servApptype.add(new FilterModel(1, "Yedek Parça Değişimi"));
-        servApptype.add(new FilterModel(2, "Bakım"));
+       // servApptype.add(new FilterModel(2, "Bakım"));
         servApptype.add(new FilterModel(5, "Durum Tespit"));
         servApptype.add(new FilterModel(7, "Açık Servis"));
 
@@ -255,7 +255,7 @@ public class CreateServAppActivity extends AppCompatActivity {
                         fillElevatorSpinner(listAll.getElevators());
 
                     } else {
-                        DialogCreater.errorDialog(CreateServAppActivity.this, response.body().getErrorMsg());
+                        DialogCreater.errorDialog(CreateServAppActivity.this, no_elevator);
                     }
 
                 } else {

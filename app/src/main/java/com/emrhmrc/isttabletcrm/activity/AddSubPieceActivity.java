@@ -126,6 +126,7 @@ public class AddSubPieceActivity extends AppCompatActivity implements View.OnCli
                     productList = temp.getProducts();
                     adapter_sub.setItems(temp.getProducts());
                     adapter_sub.setItemsFilter(temp.getProducts());
+                    txt_count.setText(productList.size() + " Adet Ürün");
                     search_sub();
 
                 }
@@ -331,11 +332,11 @@ public class AddSubPieceActivity extends AppCompatActivity implements View.OnCli
 
     public void changeTextCountUp() {
         i++;
-        txt_count.setText(i + " Adet Ürün");
+      //  txt_count.setText(i + " Adet Ürün");
     }
 
     public void changeTextCountDown() {
         i--;
-        txt_count.setText(i + " Adet Ürün");
+       // txt_count.setText(i + " Adet Ürün");
     }
 }

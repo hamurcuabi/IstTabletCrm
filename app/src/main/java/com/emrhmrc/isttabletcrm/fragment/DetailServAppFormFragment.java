@@ -3,6 +3,7 @@ package com.emrhmrc.isttabletcrm.fragment;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -16,11 +17,15 @@ import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.SweetDialog.DialogCreater;
+import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.models.ServApp.GetServFormById;
 import com.emrhmrc.isttabletcrm.models.ServApp.ServiceAppIdRequest;
 import com.emrhmrc.isttabletcrm.util.StringUtil;
+import com.joanzapata.pdfview.PDFView;
+
+import java.io.File;
 
 import butterknife.BindString;
 import retrofit2.Call;
@@ -39,6 +44,7 @@ public class DetailServAppFormFragment extends DialogFragment implements View.On
     private GetServFormById document;
     private JsonApi jsonApi;
     private String id;
+    private PDFView pdfView;
     private Call<GetServFormById> getServFormByIdCall;
 
     public static DetailServAppFormFragment newInstance(String id) {
@@ -65,6 +71,7 @@ public class DetailServAppFormFragment extends DialogFragment implements View.On
         img_close.setOnClickListener(this);
         txt_header = view.findViewById(R.id.txt_header);
         txt_content = view.findViewById(R.id.txt_content);
+        pdfView = view.findViewById(R.id.pdfview);
         id = getArguments().getString("id");
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getDialog().setCanceledOnTouchOutside(false);
@@ -76,7 +83,23 @@ public class DetailServAppFormFragment extends DialogFragment implements View.On
                 if (response.isSuccessful()) {
                     if (response.body().getSuccess()) {
                         document = response.body();
-                        txt_content.setText(StringUtil.base64ToString(StringUtil.nullToString(document.getDocumentBody())));
+                        if (document.getMimeType().equals(StringUtil.PDF)) {
+                            String filename = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) +
+                                    "/" + "detay";
+                            File file = new File(filename);
+                            txt_content.setVisibility(View.GONE);
+                            if (file.exists()) {
+                                pdfView.fromFile(file)
+                                        .defaultPage(1)
+                                        .enableSwipe(true)
+                                        .showMinimap(true)
+                                        .load();
+                            }
+                        } else {
+                            pdfView.setVisibility(View.GONE);
+                            txt_content.setText(StringUtil.base64ToString(StringUtil.nullToString(document
+                                    .getDocumentBody())));
+                        }
                     } else {
                         DialogCreater.errorDialog(getActivity(), response.body().getErrorMsg());
                     }

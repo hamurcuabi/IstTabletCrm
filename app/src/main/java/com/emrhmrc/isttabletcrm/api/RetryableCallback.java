@@ -35,7 +35,8 @@ public abstract class RetryableCallback<T> implements Callback<T> {
     public void onFailure(Call<T> call, Throwable t) {
         Log.d(TAG, "Fail");
         if (retryCount++ < totalRetries) {
-            Log.d(TAG, "Retrying API Call -  (" + retryCount + " / " + totalRetries + ")");
+            Log.d(TAG,
+                    "Retrying API Call -  (" + retryCount + " / " + totalRetries + ") Error: "+t.getMessage());
             retry();
         } else
             onFinalFailure(call, t);
