@@ -146,12 +146,12 @@ public class CreateServAppActivity extends AppCompatActivity {
         priorty.add(new FilterModel(2, "Yüksek"));
 
         ArrayAdapter<FilterModel> spinnerArrayAdapter = new ArrayAdapter<>(
-                this, R.layout.spinner_item_white, servApptype);
+                this, R.layout.spinner_item_black, servApptype);
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnAriza.setAdapter(spinnerArrayAdapter);
 
         ArrayAdapter<FilterModel> spinnerArrayAdapter2 = new ArrayAdapter<>(
-                this, R.layout.spinner_item_white, priorty);
+                this, R.layout.spinner_item_black, priorty);
         spinnerArrayAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnOncelik.setAdapter(spinnerArrayAdapter2);
 
@@ -304,7 +304,7 @@ public class CreateServAppActivity extends AppCompatActivity {
                     item.getPriortiyCode().getText()));
 
             ArrayAdapter<FilterModel> spinnerArrayAdapter = new ArrayAdapter<>(
-                    this, R.layout.spinner_item_white, priorty);
+                    this, R.layout.spinner_item_black, priorty);
             spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spnOncelik.setAdapter(spinnerArrayAdapter);
         }

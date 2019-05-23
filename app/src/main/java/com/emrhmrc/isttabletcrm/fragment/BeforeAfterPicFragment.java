@@ -24,8 +24,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.VideoView;
 
+import com.bogdwellers.pinchtozoom.ImageMatrixTouchHandler;
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.helper.AddNotes;
 import com.emrhmrc.isttabletcrm.models.ServApp.Notes;
@@ -47,7 +49,7 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int REQUEST_IMAGE_CAPTURE_SECOND = 2;
     private ImageView img_close, img_first, img_second, img_add_pic_first, img_add_pic_second,
-            img_add_video, img_add_video_second;
+            img_add_video, img_add_video_second, imgMedia, imgShowContent;
     private VideoView video_first, video_second;
     private Notes notePhoto1, notePhoto2, noteVideo1, noteVideo2;
     private Button btn_add_1, btn_add_2, btn_send;
@@ -55,6 +57,7 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
     private AddNotes addNotes;
     private boolean isImage1 = false, isImage2 = false;
     private List<Notes> haveNotes;
+    private LinearLayout lnrShowMedia, lnrShowContent;
 
     public static BeforeAfterPicFragment newInstance(List<Notes> haveNote) {
         Bundle args = new Bundle();
@@ -68,7 +71,6 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_before_after_pic, container);
-
 
     }
 
@@ -89,10 +91,14 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
         btn_add_2 = view.findViewById(R.id.btn_add_2);
         edt_1 = view.findViewById(R.id.edt_1);
         edt_2 = view.findViewById(R.id.edt_2);
+        lnrShowContent = view.findViewById(R.id.lnrShowContent);
+        lnrShowMedia = view.findViewById(R.id.lnrShowMedia);
+        imgMedia = view.findViewById(R.id.imgMedia);
+        imgShowContent = view.findViewById(R.id.imgShowContent);
 
         btn_send.setOnClickListener(this);
-        btn_add_1.setOnClickListener(this);
-        btn_add_2.setOnClickListener(this);
+        img_first.setOnClickListener(this);
+        img_second.setOnClickListener(this);
         img_close.setOnClickListener(this);
         img_add_pic_second.setOnClickListener(this);
         img_add_pic_first.setOnClickListener(this);
@@ -100,12 +106,14 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
         img_add_video_second.setOnClickListener(this);
         video_first.setOnClickListener(this);
         video_second.setOnClickListener(this);
+        imgShowContent.setOnClickListener(this);
         addNotes = (AddNotes) getActivity();
         haveNotes = (List<Notes>) getArguments().getSerializable("notes");
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getDialog().setCanceledOnTouchOutside(false);
 
         initFields();
+        imgMedia.setOnTouchListener(new ImageMatrixTouchHandler(view.getContext()));
 
     }
 
@@ -129,6 +137,7 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
 
             }
             edt_1.setText(haveNotes.get(0).getNoteText());
+
 
         }
         if (haveNotes.get(1) != null && haveNotes.get(1).getFrom() == 2) {
@@ -186,19 +195,27 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
             case R.id.video_second:
                 video_second.start();
                 break;
-            case R.id.btn_add_1:
+            case R.id.img_first:
                 edtfill(1);
                 break;
-            case R.id.btn_add_2:
+            case R.id.img_second:
                 edtfill(2);
                 break;
 
             case R.id.btn_send:
                 sendToRequest();
                 break;
+            case R.id.imgShowContent:
+                goBack();
+                break;
 
         }
 
+    }
+
+    private void goBack() {
+        lnrShowMedia.setVisibility(View.GONE);
+        lnrShowContent.setVisibility(View.VISIBLE);
     }
 
     private void sendToRequest() {
@@ -214,12 +231,13 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
 
     private void edtfill(int i) {
         if (i == 1) {
-            if (notePhoto1 != null) notePhoto1.setSubject(edt_1.getText().toString());
-            else if (noteVideo1 != null) noteVideo1.setSubject(edt_1.getText().toString());
+            imgMedia.setImageURI(haveNotes.get(0).getSelectedImageUri());
         } else if (i == 2) {
-            if (notePhoto2 != null) notePhoto2.setSubject(edt_2.getText().toString());
-            else if (noteVideo2 != null) noteVideo2.setSubject(edt_2.getText().toString());
+            imgMedia.setImageURI(haveNotes.get(1).getSelectedImageUri());
         }
+        Log.d(TAG, "edtfill: ");
+        lnrShowMedia.setVisibility(View.VISIBLE);
+        lnrShowContent.setVisibility(View.GONE);
     }
 
     private void dispatchTakePictureIntent(int i) {
@@ -469,5 +487,12 @@ public class BeforeAfterPicFragment extends DialogFragment implements View.OnCli
                 cursor.close();
             }
         }
+    }
+
+    private void showFullscreenImage(Uri uri) {
+
+        FullScreenImageFragment fragment = FullScreenImageFragment.newInstance(uri);
+        fragment.show(getActivity().getSupportFragmentManager(), "beforeafter");
+
     }
 }

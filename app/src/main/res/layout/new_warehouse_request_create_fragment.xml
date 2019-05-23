@@ -426,7 +426,8 @@
                             android:layout_weight="5"
                             android:background="@drawable/btn_descp"
                             android:gravity="top|left"
-                            android:inputType="textMultiLine"
+                            android:imeOptions="actionDone"
+                            android:inputType="textLongMessage"
                             android:paddingStart="@dimen/detay_menu_12"
                             android:paddingTop="@dimen/detay_menu_12"
                             android:paddingEnd="@dimen/padding_rigt32" />
@@ -614,8 +615,9 @@
                             android:layout_marginStart="@dimen/detay_menu_30"
                             android:layout_weight="5"
                             android:background="@drawable/btn_eye_text"
-
                             android:gravity="center|left"
+                            android:imeOptions="actionDone"
+                            android:inputType="textLongMessage"
                             android:paddingStart="@dimen/detay_menu_12" />
 
                     </LinearLayout>
@@ -756,6 +758,8 @@
                             android:layout_weight="5"
                             android:background="@drawable/btn_pen_text"
                             android:gravity="center|left"
+                            android:imeOptions="actionDone"
+                            android:inputType="textLongMessage"
                             android:paddingStart="@dimen/detay_menu_12" />
 
                     </LinearLayout>
@@ -787,7 +791,8 @@
                             android:layout_weight="5"
                             android:background="@drawable/btn_descp"
                             android:gravity="top|left"
-                            android:inputType="textMultiLine"
+                            android:imeOptions="actionDone"
+                            android:inputType="textLongMessage"
                             android:paddingStart="@dimen/detay_menu_12"
                             android:paddingTop="@dimen/detay_menu_12"
                             android:paddingEnd="@dimen/padding_rigt32" />

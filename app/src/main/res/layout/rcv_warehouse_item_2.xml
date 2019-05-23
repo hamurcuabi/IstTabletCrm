@@ -19,6 +19,30 @@
         android:textColor="@color/text_color"
         android:textSize="@dimen/menu_text_16"
         android:textStyle="bold" />
+    <TextView
+        android:id="@+id/txt_irsaliye"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/padding_rigt32"
+        android:layout_marginEnd="@dimen/detay_menu_12"
+        android:layout_weight="1.2"
+        android:fontFamily="@font/roboto_regular"
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/menu_text_16"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/txt_sevkiyat"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/padding_rigt32"
+        android:layout_marginEnd="@dimen/detay_menu_12"
+        android:layout_weight="1.2"
+        android:fontFamily="@font/roboto_regular"
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/menu_text_16"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/txt_malzemekodu"

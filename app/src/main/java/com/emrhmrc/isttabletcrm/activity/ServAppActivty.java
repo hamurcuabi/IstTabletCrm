@@ -101,7 +101,7 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
             public void onResponse(Call<ServAppListAll> call, Response<ServAppListAll> response) {
                 if (response.isSuccessful()) {
                     if (response.body().getSuccess()) {
-                        final ServAppListAll temp = response.body();
+                         ServAppListAll temp = response.body();
                         model = temp.getServiceAppointments();
                         adapter.setItems(model);
                         adapter.setItemsFilter(model);
@@ -253,9 +253,10 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
 
     @Override
     protected void onResume() {
-        super.onResume();
         initDialog();
         getServAppListAll();
+        super.onResume();
+
 
 
     }

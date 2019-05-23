@@ -7,7 +7,9 @@ import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.util.Base64;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +19,6 @@ import android.widget.TextView;
 
 import com.emrhmrc.isttabletcrm.R;
 import com.emrhmrc.isttabletcrm.SweetDialog.DialogCreater;
-import com.emrhmrc.isttabletcrm.SweetDialog.SweetAlertDialog;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
 import com.emrhmrc.isttabletcrm.models.ServApp.GetServFormById;
@@ -26,6 +27,8 @@ import com.emrhmrc.isttabletcrm.util.StringUtil;
 import com.joanzapata.pdfview.PDFView;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import butterknife.BindString;
 import retrofit2.Call;
@@ -73,6 +76,7 @@ public class DetailServAppFormFragment extends DialogFragment implements View.On
         txt_content = view.findViewById(R.id.txt_content);
         pdfView = view.findViewById(R.id.pdfview);
         id = getArguments().getString("id");
+        Log.d(TAG, "onViewCreated: " + id);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getDialog().setCanceledOnTouchOutside(false);
         jsonApi = ApiClient.getClient().create(JsonApi.class);
@@ -84,8 +88,23 @@ public class DetailServAppFormFragment extends DialogFragment implements View.On
                     if (response.body().getSuccess()) {
                         document = response.body();
                         if (document.getMimeType().equals(StringUtil.PDF)) {
+                            pdfView.setVisibility(View.VISIBLE);
+                            txt_content.setVisibility(View.GONE);
+                            final File dwldsPath =
+                                    new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/" + "detay.pdf");
+                            byte[] pdfAsBytes = Base64.decode(document.getDocumentBody(), 0);
+                            FileOutputStream os = null;
+                            try {
+                                os = new FileOutputStream(dwldsPath, false);
+                                os.write(pdfAsBytes);
+                                os.flush();
+                                os.close();
+                            } catch (IOException e) {
+                                Log.d(TAG, "Create File Error " + e.getMessage());
+                                e.printStackTrace();
+                            }
                             String filename = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) +
-                                    "/" + "detay";
+                                    "/" + "detay.pdf";
                             File file = new File(filename);
                             txt_content.setVisibility(View.GONE);
                             if (file.exists()) {
@@ -97,6 +116,7 @@ public class DetailServAppFormFragment extends DialogFragment implements View.On
                             }
                         } else {
                             pdfView.setVisibility(View.GONE);
+                            txt_content.setVisibility(View.VISIBLE);
                             txt_content.setText(StringUtil.base64ToString(StringUtil.nullToString(document
                                     .getDocumentBody())));
                         }
@@ -106,9 +126,8 @@ public class DetailServAppFormFragment extends DialogFragment implements View.On
                 } else {
                     DialogCreater.errorDialog(getActivity(), try_again);
                 }
-                prog.setVisibility(View.GONE);
-                txt_content.setVisibility(View.VISIBLE);
 
+                prog.setVisibility(View.GONE);
 
             }
 
@@ -130,8 +149,8 @@ public class DetailServAppFormFragment extends DialogFragment implements View.On
         int width = metrics.widthPixels;
         int height = metrics.heightPixels;
         ViewGroup.LayoutParams params = getDialog().getWindow().getAttributes();
-        params.width = width / 2;
-        params.height = height / 2;
+        params.width = 9 * width / 10;
+        params.height = 9 * height / 10;
         getDialog().getWindow().setAttributes((android.view.WindowManager.LayoutParams) params);
     }
 

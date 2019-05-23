@@ -15,7 +15,7 @@ public class RcvWarehouselViewHolder extends BaseViewHolder<WarehouseItem,
         OnItemClickListener<WarehouseItem>> {
 
     private TextView txt_depo, txt_urunadi, txt_miktar, txt_birim, txt_malzemekodu, txt_anaurun,
-            txt_alturun;
+            txt_alturun,txt_irsaliye,txt_sevkiyat;
     private LinearLayout lnr;
 
 
@@ -25,6 +25,8 @@ public class RcvWarehouselViewHolder extends BaseViewHolder<WarehouseItem,
         txt_urunadi = itemView.findViewById(R.id.txt_urunadi);
         txt_miktar = itemView.findViewById(R.id.txt_miktar);
         txt_birim = itemView.findViewById(R.id.txt_birim);
+        txt_irsaliye = itemView.findViewById(R.id.txt_irsaliye);
+        txt_sevkiyat = itemView.findViewById(R.id.txt_sevkiyat);
 
         txt_malzemekodu = itemView.findViewById(R.id.txt_malzemekodu);
         txt_anaurun = itemView.findViewById(R.id.txt_anaurun);

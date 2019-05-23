@@ -94,6 +94,7 @@ public class FragStokBilgisi extends Fragment implements OnItemClickListener, Sl
     }
 
     private void getAll() {
+        Log.d(TAG, "USerID: "+SingletonUser.getInstance().getUser().getUserId());
         UserIdRequest userIdRequest = new UserIdRequest(SingletonUser.getInstance().getUser().getUserId());
         call = jsonApi.getWarehouseItemListAllCall(userIdRequest);
         call.enqueue(new Callback<WarehouseItemListAll>() {

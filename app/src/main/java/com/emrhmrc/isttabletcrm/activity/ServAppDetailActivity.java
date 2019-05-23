@@ -212,6 +212,7 @@ public class ServAppDetailActivity extends AppCompatActivity implements OnItemCl
 
         DetailServAppFormFragment fragment = DetailServAppFormFragment.newInstance(ShareData.getInstance().getServAppId());
         fragment.show(getSupportFragmentManager(), "DetailServAppFormFragment");
+
     }
 
     private void openBreakdownFormFragment() {
