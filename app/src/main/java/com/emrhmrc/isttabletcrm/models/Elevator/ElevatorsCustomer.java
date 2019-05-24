@@ -18,13 +18,21 @@ public class ElevatorsCustomer {
     private Code inv_ColorCode;
     private double inv_Latitude;
     private double inv_Longitude;
-
+    private String inv_ElevatorName;
     public ElevatorsCustomer() {
+    }
+
+    public String getInv_ElevatorName() {
+        return inv_ElevatorName;
+    }
+
+    public void setInv_ElevatorName(String inv_ElevatorName) {
+        this.inv_ElevatorName = inv_ElevatorName;
     }
 
     @Override
     public String toString() {
-        return inv_ElevatorNumber;
+        return inv_ElevatorName;
     }
 
     public String getInv_ElevatorId() {
