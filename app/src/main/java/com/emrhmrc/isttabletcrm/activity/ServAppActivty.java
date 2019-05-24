@@ -19,6 +19,7 @@ import com.emrhmrc.isttabletcrm.adapter.GenericRcwAdapter.OnItemClickListener;
 import com.emrhmrc.isttabletcrm.adapter.RcvServAppListAllAdapter;
 import com.emrhmrc.isttabletcrm.api.ApiClient;
 import com.emrhmrc.isttabletcrm.api.JsonApi;
+import com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointment;
 import com.emrhmrc.isttabletcrm.bindingModel.ServiceAppointments;
 import com.emrhmrc.isttabletcrm.helper.ShareData;
 import com.emrhmrc.isttabletcrm.models.CommonClass.FilterModel;
@@ -105,7 +106,7 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
                         model = temp.getServiceAppointments();
                         adapter.setItems(model);
                         adapter.setItemsFilter(model);
-                        setupFilters();
+                        setupFilters(model);
                     } else {
                         DialogCreater.errorDialog(ServAppActivty.this,
                                 response.body().getErrorMsg());
@@ -126,13 +127,8 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
 
     }
 
-    private void setupFilters() {
+    private void setupFilters(List<ServiceAppointments> model) {
 
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         HashMap<Integer, String> servappTypeHash = new HashMap<>();
         HashMap<Integer, String> statuTypeHash = new HashMap<>();
         List<FilterModel> servappType = new ArrayList<>();
@@ -140,7 +136,7 @@ public class ServAppActivty extends AppCompatActivity implements OnItemClickList
         servappType.add(new FilterModel(-1, "Tüm İş Emirlerim"));
         statuType.add(new FilterModel(-1, "Statü"));
 
-        for (ServiceAppointments current : adapter.getItems()
+        for (ServiceAppointments current : model
         ) {
 
             if (current.getInv_TypeCode() != null) {
