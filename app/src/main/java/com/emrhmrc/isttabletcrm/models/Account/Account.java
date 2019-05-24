@@ -5,6 +5,15 @@ public class Account {
 
     private String AccountId;
     private int inv_LocationSequence;
+    private String inv_SiteId;
+
+    public String getInv_SiteId() {
+        return inv_SiteId;
+    }
+
+    public void setInv_SiteId(String inv_SiteId) {
+        this.inv_SiteId = inv_SiteId;
+    }
 
     public int getInv_LocationSequence() {
         return inv_LocationSequence;
