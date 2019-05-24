@@ -19,6 +19,8 @@ public class WarehouseTransferItem {
     private Inv_Id inv_Productid;
     private Inv_Id inv_Uomid;
     private int inv_Quantity;
+
+
     public WarehouseTransferItem() {
     }
 

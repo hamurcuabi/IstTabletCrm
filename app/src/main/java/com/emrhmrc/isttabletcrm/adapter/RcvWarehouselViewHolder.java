@@ -15,7 +15,7 @@ public class RcvWarehouselViewHolder extends BaseViewHolder<WarehouseItem,
         OnItemClickListener<WarehouseItem>> {
 
     private TextView txt_depo, txt_urunadi, txt_miktar, txt_birim, txt_malzemekodu, txt_anaurun,
-            txt_alturun,txt_irsaliye,txt_sevkiyat;
+            txt_alturun, txt_irsaliye, txt_sevkiyat;
     private LinearLayout lnr;
 
 
@@ -52,6 +52,10 @@ public class RcvWarehouselViewHolder extends BaseViewHolder<WarehouseItem,
         if (item.getSubProductGroupid() != null)
             txt_alturun.setText(item.getSubProductGroupid().getText());
         else txt_alturun.setText(StringUtil.notExist());
+        if (item.getInv_ShipmentStatusCode() != null) {
+            txt_sevkiyat.setText(item.getInv_ShipmentStatusCode().getText());
+        } else txt_sevkiyat.setText("-");
+        txt_irsaliye.setText(StringUtil.nullToString(item.getInv_WaybillNo()));
         if (listener != null) {
             lnr.setOnClickListener(view -> listener.onItemClicked(item, RcvWarehouselViewHolder.this.getAdapterPosition()));
         }

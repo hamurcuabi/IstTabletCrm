@@ -15,6 +15,25 @@ public class WarehouseItem {
     private String ProductNumber;
     private String Description;
     private String ImageMimeType;
+    private Code inv_ShipmentStatusCode;
+
+    public Code getInv_ShipmentStatusCode() {
+        return inv_ShipmentStatusCode;
+    }
+
+    public void setInv_ShipmentStatusCode(Code inv_ShipmentStatusCode) {
+        this.inv_ShipmentStatusCode = inv_ShipmentStatusCode;
+    }
+
+    public String getInv_WaybillNo() {
+        return inv_WaybillNo;
+    }
+
+    public void setInv_WaybillNo(String inv_WaybillNo) {
+        this.inv_WaybillNo = inv_WaybillNo;
+    }
+
+    private String inv_WaybillNo;
 
     public String getImageMimeType() {
         return ImageMimeType;
